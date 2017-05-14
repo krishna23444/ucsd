@@ -1,0 +1,2 @@
+let $st := "554jkl.123"
+  return integer($st)

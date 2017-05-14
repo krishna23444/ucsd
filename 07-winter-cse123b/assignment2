@@ -1,0 +1,104 @@
+#include <arpa/inet.h>
+
+#include <netinet/ip.h>
+#include <netinet/tcp.h>
+
+#include "Debug.hh"
+#include "TranslationInfo.hh"
+
+const uint16_t TranslationInfo::INVALID_PORT = 0;
+
+TranslationInfo::TranslationInfo() : _source_ip(0), _source_port(0),
+                                     _destination_ip(0), _destination_port(0),
+                                     _nat_port(INVALID_PORT), _timestamp(),
+                                     _last_packet_info() {
+}
+
+TranslationInfo::~TranslationInfo() {
+}
+
+struct tcphdr *TranslationInfo::findTcpHeader(struct iphdr *myip) {
+  return (struct tcphdr *)(((char *)myip) + myip->ihl * 4);
+}
+
+void TranslationInfo::setCommon(struct iphdr *myip, struct tcphdr *mytcp) {
+  _source_ip = ntohl(myip->saddr);
+  _source_port = ntohs(mytcp->source);
+  
+  _last_packet_info.reset(new struct PacketInfo);
+  _last_packet_info->_is_fin = mytcp->fin;
+  _last_packet_info->_seq = ntohl(mytcp->seq);
+  _last_packet_info->_is_ack = mytcp->ack;
+  _last_packet_info->_ack_seq = ntohl(mytcp->ack_seq);
+}
+
+void TranslationInfo::setOutgoing(struct iphdr *myip) {
+  struct tcphdr *mytcp = findTcpHeader(myip);
+  setCommon(myip, mytcp);
+
+  _destination_ip = ntohl(myip->daddr);
+  _destination_port = ntohs(mytcp->dest);
+  
+  _is_outgoing = true;
+}
+
+void TranslationInfo::setIncoming(struct iphdr *myip) {
+  struct tcphdr *mytcp = findTcpHeader(myip);
+  setCommon(myip, mytcp);
+
+  _nat_port = ntohs(mytcp->dest);
+  
+  _is_outgoing = false;
+}
+
+bool TranslationInfo::operator==(const TranslationInfo &data) const {
+  if (_is_outgoing != data._is_outgoing)
+    return false;
+  if (_is_outgoing)
+    return equalOutgoing(data);
+  else
+    return equalIncoming(data);
+}
+
+bool TranslationInfo::equalCommon(const TranslationInfo &data) const {
+  return _source_ip == data._source_ip
+      && _source_port == data._source_port;
+}
+
+bool TranslationInfo::equalOutgoing(const TranslationInfo &data) const {
+  return equalCommon(data)
+      && _destination_ip == data._destination_ip
+      && _destination_port == data._destination_port;
+}
+
+bool TranslationInfo::equalIncoming(const TranslationInfo &data) const {
+  return equalCommon(data) && _nat_port == data._nat_port;
+}
+
+std::ostream &TranslationInfo::dump(std::ostream &o) const {
+  o << "{" << ipNumToStrHost(_source_ip) << ":" << _source_port << " -> ";
+  o << _nat_port << " -> " << ipNumToStrHost(_destination_ip);
+  o << ":" << _destination_port;
+  o  << "} (";
+  if (!_timestamp)
+    o << "null";
+  else {
+    time_t time_now;
+    time(&time_now);
+    o << time_now - *_timestamp;
+  } 
+  if (!_last_packet_info)
+    o << ",null";
+  else {
+    if (_last_packet_info->_is_fin)
+      o << ",FIN=" << _last_packet_info->_seq << ",";
+    if (_last_packet_info->_is_ack)
+      o << ",ACK=" << _last_packet_info->_ack_seq;
+  }
+  o << ")";
+  return o;
+}
+
+std::ostream &operator<<(std::ostream &o, const TranslationInfo &data) {
+  return data.dump(o);
+}

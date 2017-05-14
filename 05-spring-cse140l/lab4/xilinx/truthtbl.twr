@@ -1,0 +1,72 @@
+--------------------------------------------------------------------------------
+Release 7.1.01i Trace H.39
+Copyright (c) 1995-2005 Xilinx, Inc.  All rights reserved.
+
+G:/xilinx/ise71/bin/nt/trce.exe -ise g:\xilinx\projects\lab4\lab4.ise -intstyle
+ise -e 3 -l 3 -s 5 -xml truthtbl truthtbl.ncd -o truthtbl.twr truthtbl.pcf
+
+
+Design file:              truthtbl.ncd
+Physical constraint file: truthtbl.pcf
+Device,speed:             xc2v80,-5 (PRODUCTION 1.121 2005-02-23, STEPPING level 1)
+Report level:             error report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:2698 - No timing constraints found, doing default enumeration.
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths
+   option. All paths that are not constrained will be reported in the
+   unconstrained paths section(s) of the report.
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Pad to Pad
+---------------+---------------+---------+
+Source Pad     |Destination Pad|  Delay  |
+---------------+---------------+---------+
+D<3>           |shf_of<0>      |    6.956|
+D<4>           |shf_of<1>      |    5.806|
+D<5>           |R1_en          |    7.605|
+D<5>           |R2_sel         |    6.414|
+D<5>           |R3_en          |    6.657|
+D<5>           |clr            |    6.414|
+D<5>           |ge_en          |    6.549|
+D<5>           |ov_en          |    6.810|
+D<5>           |sel<0>         |    6.557|
+D<5>           |shf_of<0>      |    8.061|
+D<5>           |shf_of<1>      |    6.942|
+D<6>           |R1_en          |    7.020|
+D<6>           |R2_en          |    7.224|
+D<6>           |R2_sel         |    6.116|
+D<6>           |R3_en          |    6.361|
+D<6>           |clr            |    6.116|
+D<6>           |ge_en          |    5.949|
+D<6>           |ov_en          |    6.208|
+D<6>           |sel<1>         |    7.192|
+D<6>           |shf_of<0>      |    7.241|
+D<6>           |shf_of<1>      |    6.193|
+D<7>           |R1_en          |    7.729|
+D<7>           |R2_en          |    8.107|
+D<7>           |R2_sel         |    6.328|
+D<7>           |R3_en          |    6.630|
+D<7>           |clr            |    6.328|
+D<7>           |ge_en          |    6.097|
+D<7>           |ov_en          |    6.417|
+D<7>           |sel<0>         |    6.377|
+D<7>           |sel<1>         |    8.132|
+D<7>           |shf_of<0>      |    7.893|
+D<7>           |shf_of<1>      |    6.615|
+---------------+---------------+---------+
+
+Analysis completed Wed Jun 01 02:09:53 2005
+--------------------------------------------------------------------------------
+
+
+
+Peak Memory Usage: 74 MB

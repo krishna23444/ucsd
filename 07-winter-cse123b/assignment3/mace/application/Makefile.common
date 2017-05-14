@@ -1,0 +1,159 @@
+# -*- makefile -*- vim:ft=make
+#This directory should hold common info
+
+#NOTE: LIBS here should be in a safe order
+#NOTE: Including Makefiles should set MACEPATH to the mace base
+
+include $(MACEPATH)/Makefile.vars
+include $(MACEPATH)/services/Makefile.services
+ifdef XMLRPC
+ifneq (clean,$(MAKECMDGOALS))
+ifneq (cleaner,$(MAKECMDGOALS))
+include $(PERLMAKE)
+endif
+endif
+endif
+
+all : whole
+
+CLIBS = -lpthread -lm -lstdc++ -lcrypto -lssl# -ldb -ldb_cxx
+SERVICE_INC = $(addprefix -I$(MACEPATH)/services/,$(SERVICES))
+SERVICE_DEFINES = $(addprefix -DUse,$(SERVICES))
+SERVICE_LIBDIRS = $(addprefix -L$(MACEPATH)/services/,$(SERVICES))
+LIBDIRS = -L. -L$(MACEPATH)/lib $(SERVICE_LIBDIRS) -L$(MACEPATH)/application/common $(EXTRA_LIBDIR)
+
+LINK_LIBS = $(LIBNAME) $(EXTRA_MLIB_PRE) $(RSERVICES) appcommon mace $(EXTRA_MLIB)
+LINK_LIBFILESPRE = lib$(LIBNAME) $(foreach sv,$(SERVICES),$(MACEPATH)/services/$(sv)/lib$(sv)) $(MACEPATH)/application/common/libappcommon $(MACEPATH)/lib/libmace
+
+GENERIC_LINK_FLAGS_PRE = $(PTHREAD_FLAG) $(LIBDIRS)
+GENERIC_LINK_FLAGS_POST = $(CLIBS) $(EXTRA_LIB)
+
+ifeq "$(MACE_EXTRAS_SHA1)" "1"
+LIBDIRS+=-L$(MACEPATH)/mace-extras/sha1
+GENERIC_LINK_FLAGS_POST += -lmacesha1
+#  LIBS+=-lmacesha1 -lmace
+endif
+
+INCLUDE_DIRS = -I$(MACEPATH) -I$(MACEPATH)/lib -I$(MACEPATH)/services/interfaces \
+	       -I$(MACEPATH)/services $(SERVICE_INC) \
+	       -I$(MACEPATH)/application/common $(EXTRA_INCLUDES)
+
+CXXFLAGS = $(GLOBAL_FLAGS) $(INCLUDE_DIRS) $(PTHREAD_FLAG) $(SERVICE_DEFINES)
+
+NODIRXMLRPC = $(notdir $(XMLRPC))
+BASENAMEXMLRPC = $(basename $(NODIRXMLRPC))
+
+XMLRPCCLASSNAMES = $(foreach base, $(BASENAMEXMLRPC), $(if $(subst undefined,,$(origin XMLRPC_$(base))), $(XMLRPC_$(base)), $(base)))
+
+# ../Foo.h -> Foo
+BASEFILE = $(basename $(notdir $(file)))
+# BASEFILES = $(basename $(notdir $(XMLRPC)))
+# defined(XMLRPC_Foo) ? defined : undefined
+ORIGINBASEFILE = $(origin XMLRPC_$(BASEFILE))
+# if XMLRPC_Foo undefined, return empty string
+DEFINEDBASEFILECOND = $(subst undefined,,$(ORIGINBASEFILE))
+CLASSNAMEIF = $(if $(DEFINEDBASEFILECOND),$(XMLRPC_$(BASEFILE)),$(BASEFILE))
+VARMATCHIF = $(if $(subst %,,$(CLASSNAMEIF)),,$(file))
+XMLRPCDEP = $(foreach file,$(XMLRPC),$(VARMATCHIF))
+XMLRPCMAKE = $(foreach file,$(XMLRPC),"$(CLASSNAMEIF)XmlRpcHandler.h $(CLASSNAMEIF)XmlRpcClient.h $(CLASSNAMEIF)XmlRpcClient.cc: $(file) \$$(xmlrpcc_dep)" "\$$(xmlrpcc) $(file) -c $(CLASSNAMEIF)")
+
+XMLRPCHDRS = $(addsuffix XmlRpcHandler.h,$(XMLRPCCLASSNAMES))
+XMLRPCSRCHDRS = $(addsuffix XmlRpcClient.h,$(XMLRPCCLASSNAMES))
+XMLRPCSRCS = $(XMLRPCSRCHDRS:.h=.cc)
+
+XMLRPCSRCALL = $(XMLRPCHDRS) $(XMLRPCSRCHDRS) $(XMLRPCSRCS)
+
+CSRCS = $(wildcard *.c)
+SRCS = $(XMLRPCSRCS) $(wildcard *.cc)
+ALLOBJ = $(SRCS:.cc=.o) $(CSRCS:.c=.o)
+MAINOBJ = $(APPS:=.o)
+BASE_OBJS = $(filter-out $(MAINOBJ), $(ALLOBJ))
+
+CLEANDIRS=$(addprefix clean_,$(DIRS))
+
+.PHONY: all clean $(DIRS) $(CLEANDIRS) .cvsignore svnignore
+
+STRIPPED_APPS = $(addsuffix .stripped,$(ALL_APPS))
+CLEAN_STRIPPED_APPS = $(addsuffix .stripped,$(CLEAN_APPS))
+
+#%.d:	%.cc $(XMLRPCSRCALL) interfaces
+%.d:	%.cc $(XMLRPCSRCALL)
+	$(DEPENDCCRULE)
+%.d:	%.c $(XMLRPCSRCALL)
+	$(DEPENDCRULE)
+ifeq "$(MAKECMDGOALS)" "clean"
+else 
+ifeq "$(MAKECMDGOALS)" "cleaner"
+else 
+ifeq "$(SRCS)" ""
+else 
+-include $(SRCS:.cc=.d) $(CSRCS:.c=.d)
+endif
+endif
+endif
+
+$(CLEAN_STRIPPED_APPS) : %.stripped : %
+	cp -f $@ $@.stripped
+	strip $@.stripped*
+
+#$(PLAINAPPS) : % : %.o $(LIB) $(SERVICE_LIBFILES) $(OTHER_LIBFILES) $(EXTRA_DEP)
+#	$(CXX) -pthread -o $@ $< $(LIBS) $(GLOBAL_LINK_FLAGS)
+
+$(DIRS) : 
+	@$(MAKE) DIR=$@ -C $@
+
+$(ALL_OBJS) : 
+
+clean: $(CLEANDIRS)
+	@echo "Removing dependency files"
+	@rm -f *.d *.d.*
+	@echo "Removing object, binary and library files of compile type $(TYPES)"
+	@rm -f $(ALL_OBJS) $(ALL_LIBS) $(ALL_APPS) $(APPS) $(STRIPPED_APPS) $(DEL)
+	@echo "Removing $(DEL) and XML RPC files"
+	@rm -f $(DEL) $(XMLRPCHDRS) $(XMLRPCSRCHDRS) $(XMLRPCSRCS) Makefile.xmlrpc
+cleaner: $(CLEANDIRS)
+	@echo "Removing all dependency files, cvsignore files, and object, binary and library files of compile type $(COMPILE_VERSIONS)"
+	@rm -f *.d *.d.* .cvsignore $(CLEAN_OBJS) $(APPS) $(CLEAN_LIBS) $(CLEAN_APPS) $(CLEAN_STRIPPED_APPS) $(DEL)
+	@echo "Removing $(DEL) and XML RPC files"
+	@rm -f $(DEL) $(XMLRPCHDRS) $(XMLRPCSRCHDRS) $(XMLRPCSRCS) Makefile.xmlrpc
+
+$(CLEANDIRS) : clean_% :
+	@$(MAKE) DIR=$* -C $* clean
+
+Makefile.xmlrpc: Makefile $(MACEPATH)/application/Makefile.common $(PERLMAKE)
+	@echo "">$@
+	@tab=""; for i in $(XMLRPCMAKE); do echo "$$tab$$i"; if [ "$$tab" = "" ]; then tab="	"; else tab=""; fi; done >>$@
+
+
+$(SERVICE_LIBFILES) $(OTHER_LIBFILES): 
+	 echo "Missing library files $@.  Make them first"
+	 1
+
+svnignore: .cvsignore
+	if [ -f .cvsignore ]; then svn propset svn:ignore -F .cvsignore .; fi
+.cvsignore : 
+	rm -f .cvsignore
+	for i in .cvsignore Makefile.xmlrpc $(XMLRPCSRCS) $(XMLRPCHDRS) $(XMLRPCSRCHDRS) $(CLEAN_LIBS) $(CLEAN_APPS) $(CLEAN_STRIPPED_APPS) $(APPS); do echo $$i >> $@; done
+
+ifdef XMLRPC
+ifeq "$(MAKECMDGOALS)" "clean"
+else 
+ifeq "$(MAKECMDGOALS)" "cleaner"
+else 
+-include Makefile.xmlrpc
+endif
+endif
+endif
+
+include $(MACEPATH)/extradefaults.mk
+
+whole : $(PRE_TARGETS) $(ALL_LIBS) $(DIRS) $(ALL_APPS) $(APPS) $(POST_TARGETS)
+
+# $(PERLMAKE) :
+# 	$(MAKE) DIR=$(MACEPATH)/perl5 -C $(MACEPATH)/perl5 perlmake
+
+$(MACEPATH)/perl5/% :
+	$(MAKE) DIR=$(MACEPATH)/perl5 -C $(MACEPATH)/perl5 $*
+
+# interfaces : 
+# 	$(MAKE) DIR=$(MACEPATH)/services/interfaces -C $(MACEPATH)/services/interfaces -f Makefile.mknull

@@ -1,0 +1,127 @@
+\documentclass{article}
+\usepackage{bbm}
+
+\marginparwidth  0pt
+\oddsidemargin   0pt
+\evensidemargin  0pt
+\marginparsep    0pt
+\topmargin       0pt
+\textwidth     6.0in
+\textheight    8.5in
+
+\title{CSE166 Image Processing Homework 3}
+\author{Nitay Joffe}
+\date{10/19/2006}
+
+\begin{document}
+  \maketitle
+
+  \noindent{\bf Written exercises}
+  \begin{enumerate}
+    \item \textit{GW, Problem 4.2.\\
+    Show that the Fourier transform and its inverse are linear processes.}
+    \begin{eqnarray*}
+      af_1(x)+bf_2(x) &\longleftrightarrow & F(u)\\
+      F(u) &=& \frac{1}{M}\sum_{x=0}^{M-1}[af_1(x)+bf_2(x)]e^{-j2\pi ux/M}\\
+           &=& a\frac{1}{M}\sum_{x=0}^{M-1}f_1(x)e^{-j2\pi ux/M} +
+               b\frac{1}{M}\sum_{x=0}^{M-1}f_2(x)e^{-j2\pi ux/M}\\
+           &=& aF_1(u) + bF_2(u)
+    \end{eqnarray*}
+    \begin{eqnarray*}
+      f(x) &\longleftrightarrow & aF_1(u)+bF_2(u)\\
+      f(x) &=& \sum_{u=0}^{M-1}[aF_1(u)+bF_2(u)]e^{j2\pi ux/M}\\
+           &=& a\sum_{u=0}^{M-1}F_1(u)e^{j2\pi ux/M} +
+               b\sum_{u=0}^{M-1}F_2(u)e^{j2\pi ux/M}\\
+           &=& af_1(x) + bf_2(x)
+    \end{eqnarray*}
+
+    \item \textit{GW, Problem 4.7.\\
+    What is the source of the nearly periodic bright points in the horizontal
+    axis of the spectrum in Fig4.11(b)?}\\
+    \\
+    The bright points are the high values of the sinc function, which is the
+    result of running the discrete fourier transform on a box. The original
+    image has many boxes and rectangles, so it is likely caused by them.\\
+
+    \item \textit{GW, Problem 4.8.\\
+    Each of the spatial filters shown in Fig4.23 has a strong spike at the
+    origin. Explain the source of these spikes.}\\
+    \\
+    The spikes are caused by the $1-...$ portion of the equations that all the
+    high pass filters have. The inverse discrete fourier transform of 1 is
+    a delta function.\\
+
+    \pagebreak
+    \item \textit{GW, Problem 4.10.\\
+    Show that if a filter transfer function H(u,v) is real and symmetric, then
+    the corresponding spatial domain filter h(x,y) also is real and symmetric.}\\
+    $$ H(u,v) = H(-u,v) = H(u,-v) $$
+    $$ h(-x,y) = \sum_{u=0}^{M-1}\sum_{v=0}^{N-1} H(u,v) e^{-j2\pi ux/M}
+                                                         e^{j2\pi vy/M} $$
+    $$ let \;\; a = -u, u = -a $$
+    $$ h(-x,y) = \sum_{a=0}^{M-1}\sum_{v=0}^{N-1} H(-a,v) e^{j2\pi ax/M}
+                                                          e^{j2\pi vy/M} $$
+    $$ h(-x,y) = \sum_{a=0}^{M-1}\sum_{v=0}^{N-1} H(a,v) e^{j2\pi ax/M}
+                                                         e^{j2\pi vy/M} $$
+    $$ h(-x,y) = h(x,y) $$\\
+    The argument for the y case is the same, just using different variable.\\
+
+    \item \textit{GW, Problem 4.15.\\
+    The basic approach used to approximate a discrete derivative (Section 3.7)
+    involves taking differences of the form $ f(x+1,y)-f(x,y) $.\\
+      (a) Obtain the filter transfer function, H(u,v), for performing the
+          equivalent process in the frequency domain.}\\
+    \begin{eqnarray*}
+      f(x,y) &\longleftrightarrow & F(u,v)\\
+      f(x+1,y) &\longleftrightarrow & F(u,v)e^{j2\pi u/M}\\
+      f(x,y+1) &\longleftrightarrow & F(u,v)e^{j2\pi v/N}\\
+      g(x,y) &=& f(x+1,y) - f(x,y) + f(x,y+1) - f(x,y)\\
+      g(x,y) &\longleftrightarrow & G(u,v)\\
+      G(u,v) &\longleftrightarrow & F(u,v)e^{j2\pi u/M}-F(u,v) +
+                                    F(u,v)e^{j2\pi v/N}-F(u,v)\\
+             &=& \left[e^{j2\pi u/M}-1\right]F(u,v) +
+                 \left[e^{j2\pi v/N}-1\right]F(u,v)\\
+    \end{eqnarray*}
+      \textit{(b) Show that H(u,v) is a highpass filter.}\\
+      \linebreak
+      When u or v are zero, the respective exponential of that part of the
+      filter goes to one, which cancels out the -1 term. This shows that low
+      frequencies are attenuated by this filter. As u or v increase to
+      infinity, the exponential term grows unbounbed, which makes the overall
+      term also grow since the -1 constant does not change. This shows that
+      high frequencies are passed through. This behavior is exactly that of
+      a high pass filter.\\
+
+    \pagebreak
+    \item \textit{GW, Problem 4.18.\\
+    Can you think of a way to use the Fourier transform to compute (or
+    partially compute) the magnitude of the gradient for use in image
+    differentiation (see Section 3.7.3)? If your answer is yes, give a method
+    to do it. If your answer is no, explain why.}\\
+    \linebreak
+    No. Computing the magnitude of the gradient of an image requires
+    calculating squares and square roots. These calculations are not linear,
+    and therefore a Fourier transform, which is a linear process, cannot be
+    used to compute them.\\
+  \end{enumerate}
+
+  \noindent{\bf Matlab exercises}
+  \begin{enumerate}
+    \item \textit{Filtered Noise}
+    \begin{enumerate}
+      \item[(b)] \textit{
+      Display the filtered image along with the
+      original noise image.  Quite remarkably, the filtered image should
+      look like a ``natural'' texture, such as clouds or terrain.  What does
+      this suggest about the statistics of natural images vs.\ that of
+      images of manmade objects?}\\
+      \\
+      The fact that the filtered normally distributed noise images look like
+      suggests that the objects and behavior humans see and experience in our
+      surroundings is caused by random processes, while the structures that
+      people create tend to have very regular structure. Images of buildings
+      have and cars have a defined shape, while images of natural things have
+      much more random variation.
+    \end{enumerate}
+  \end{enumerate}
+\end{document}

@@ -1,0 +1,4 @@
+APPS = firstping
+MACEPATH = ../../
+
+include ../Makefile.common

@@ -1,0 +1,97 @@
+# Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+# do randomsequencer_tbw.tdo 
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vital_timing
+# -- Loading package vcomponents
+# -- Loading package vital_primitives
+# -- Loading package textio
+# -- Loading package vpackage
+# -- Compiling entity randomsequencer
+# -- Compiling architecture structure of randomsequencer
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity randomsequencer_tbw
+# -- Compiling architecture testbench_arch of randomsequencer_tbw
+# vsim -lib work -sdfmax /UUT=randomsequencer_timesim.sdf -t 1ps randomsequencer_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.randomsequencer_tbw(testbench_arch)
+# Loading g:\xilinx\modelsim\win32xoem/../vital2000.vital_timing(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../vital2000.vital_primitives(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.vpackage(body)
+# Loading work.randomsequencer(structure)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_tri_pp(x_tri_pp_v)
+# Loading randomsequencer_timesim.sdf
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_inv_pp(x_inv_pp_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_buf_pp(x_buf_pp_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_bufgmux(x_bufgmux_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_ff(x_ff_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_or2(x_or2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_lut4(x_lut4_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_one(x_one_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_zero(x_zero_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_roc(x_roc_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_toc(x_toc_v)
+# ** Note: (vsim-3587) SDF Backannotation Successfully Completed.
+#    Time: 0 ps  Iteration: 0  Region: /randomsequencer_tbw  File: randomsequencer_tbw.timesim_vhw
+# .main_pane.mdi.interior.cs.vm.paneset.cli_0.wf.clip.cs
+# .main_pane.workspace
+# .main_pane.signals.interior.cs
+# ** Error: Error at time=70ns D=1111, Expected = 1110 
+#    Time: 70 ns  Iteration: 0  Instance: /randomsequencer_tbw
+# ** Error: Error at time=110ns D=1111, Expected = 1100 
+#    Time: 110 ns  Iteration: 0  Instance: /randomsequencer_tbw
+# ** Error: Error at time=150ns D=1110, Expected = 1000 
+#    Time: 150 ns  Iteration: 0  Instance: /randomsequencer_tbw
+# ** Error: Error at time=190ns D=1100, Expected = 0001 
+#    Time: 190 ns  Iteration: 0  Instance: /randomsequencer_tbw
+# ** Error: Error at time=230ns D=1000, Expected = 0010 
+#    Time: 230 ns  Iteration: 0  Instance: /randomsequencer_tbw
+# ** Error: Error at time=270ns D=0001, Expected = 0100 
+#    Time: 270 ns  Iteration: 0  Instance: /randomsequencer_tbw
+# ** Error: Error at time=310ns D=0010, Expected = 1001 
+#    Time: 310 ns  Iteration: 0  Instance: /randomsequencer_tbw
+# ** Error: Error at time=350ns D=0100, Expected = 0011 
+#    Time: 350 ns  Iteration: 0  Instance: /randomsequencer_tbw
+# ** Error: Error at time=390ns D=1001, Expected = 0110 
+#    Time: 390 ns  Iteration: 0  Instance: /randomsequencer_tbw
+# ** Error: Error at time=430ns D=0011, Expected = 1101 
+#    Time: 430 ns  Iteration: 0  Instance: /randomsequencer_tbw
+# ** Error: Error at time=470ns D=0110, Expected = 1010 
+#    Time: 470 ns  Iteration: 0  Instance: /randomsequencer_tbw
+# ** Error: Error at time=510ns D=1101, Expected = 0101 
+#    Time: 510 ns  Iteration: 0  Instance: /randomsequencer_tbw
+# ** Error: Error at time=550ns D=1010, Expected = 1011 
+#    Time: 550 ns  Iteration: 0  Instance: /randomsequencer_tbw
+# ** Error: Error at time=590ns D=0101, Expected = 0111 
+#    Time: 590 ns  Iteration: 0  Instance: /randomsequencer_tbw
+# ** Error: Error at time=630ns D=1011, Expected = 1111 
+#    Time: 630 ns  Iteration: 0  Instance: /randomsequencer_tbw
+# ** Error: Error at time=670ns D=0111, Expected = 1110 
+#    Time: 670 ns  Iteration: 0  Instance: /randomsequencer_tbw
+# ** Error: Error at time=710ns D=1111, Expected = 1100 
+#    Time: 710 ns  Iteration: 0  Instance: /randomsequencer_tbw
+# ** Error: Error at time=750ns D=1110, Expected = 1000 
+#    Time: 750 ns  Iteration: 0  Instance: /randomsequencer_tbw
+# ** Error: Error at time=790ns D=1100, Expected = 0001 
+#    Time: 790 ns  Iteration: 0  Instance: /randomsequencer_tbw
+# ** Failure: Errors found during simulation
+#    Time: 1 us  Iteration: 0  Process: /randomsequencer_tbw/line__59 File: randomsequencer_tbw.timesim_vhw
+# Break at randomsequencer_tbw.timesim_vhw line 320
+# Simulation Breakpoint: Break at randomsequencer_tbw.timesim_vhw line 320
+# MACRO ./randomsequencer_tbw.tdo PAUSED at line 14
+# WARNING: No extended dataflow License exists
+# WARNING: No extended dataflow License exists

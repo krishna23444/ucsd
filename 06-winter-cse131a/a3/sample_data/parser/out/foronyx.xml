@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.ast.Query>
+   <onyx.ast.ExprList>
+      <onyx.ast.Flwr>
+         <onyx.ast.ForAssignment varName="$i">
+            <onyx.ast.Operator name="op:to">
+               <onyx.ast.Constant datatype="onyx.types.Integer">3</onyx.ast.Constant>
+               <onyx.ast.Constant datatype="onyx.types.Integer">4</onyx.ast.Constant>
+            </onyx.ast.Operator>
+         </onyx.ast.ForAssignment>
+         <onyx.ast.ForAssignment varName="$j">
+            <onyx.ast.Operator name="op:to">
+               <onyx.ast.Constant datatype="onyx.types.Integer">5</onyx.ast.Constant>
+               <onyx.ast.Constant datatype="onyx.types.Integer">6</onyx.ast.Constant>
+            </onyx.ast.Operator>
+         </onyx.ast.ForAssignment>
+         <onyx.ast.Return>
+            <onyx.ast.ExprList>
+               <onyx.ast.Variable>$i</onyx.ast.Variable>
+               <onyx.ast.Variable>$j</onyx.ast.Variable>
+            </onyx.ast.ExprList>
+         </onyx.ast.Return>
+      </onyx.ast.Flwr>
+   </onyx.ast.ExprList>
+</onyx.ast.Query>
+

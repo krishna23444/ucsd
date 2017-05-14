@@ -1,0 +1,303 @@
+<html><head><title>P5 README</title></head>
+<body>
+<hr> <h2>
+<font color="#0000ff">
+Programming assignment #5 README:  CSE 11 Fall 2003
+</font>
+</h2> <hr>
+
+<p>
+Here's a description of the fifth programming assignment for CSE 11,
+Fall 2003.  In this assignment, you will write a "compiler" for a 
+simple programming language.  Along the way you will get experience
+with text file I/O and exception handling in Java.
+</p><p>
+&gt;&gt;&gt; Due deadline:  	Friday Nov 7 5:00pm
+</p><p>
+&gt;&gt;&gt; Required solution files:  aguac.java SyntaxError.java
+</p><p>
+
+This means that the files that contain your solution to the assignment
+must be turned in by the due deadline.    Use
+the bundleP5 script to turn in your assignment.
+ </p><p> 
+It's a good idea to plan to do the
+assignment well before the deadline; terminals and
+tutors can get very busy at the last minute.  
+In doing this assignment, it's your responsibility to understand the
+course rules for integrity of scholarship.
+ </p><p> 
+</p><h4> Getting started </h4> 
+First, make sure you've read chapters 8 and 9 of the
+textbook.  This assignment uses material introduced and discussed
+there.
+ <p>
+Next, create a directory named "P5" under your cs11 home directory.
+Your solution to this assignment should be turned in from that directory
+by the due date and time.  Use the bundleP5 script to do that.
+
+ </p><p>
+</p><h4> PROGRAM SPECIFICATIONS: aguac.java </h4> 
+
+As a computer scientist, you realize that many people find
+learning Java to be time-consuming and difficult.  So we have designed
+a simpler high-level language, Agua, which is easy to learn.  (It is called
+"Agua" because it is a lot weaker than Java.)  Here is
+an example of an Agua program:
+<pre> READ 4 NUMBERS
+ WRITE THE SUM
+</pre>
+
+
+That's it; no class definitions, let alone methods, variables, or conditional
+statements.  Agua is easy to understand, too.  That program, when
+run, prompts the user for 4 numbers typed at the terminal keyboard,
+and after those numbers are entered, it then prints out their sum to
+the terminal screen.
+ <p>
+Here's another Agua program:
+</p><pre> READ 20 NUMBERS
+ WRITE THE AVERAGE
+ WRITE THE SUM
+ READ 3 NUMBERS
+ WRITE THE PRODUCT
+ WRITE THE STANDARD DEVIATION
+</pre>
+
+
+When run, this program prompts the user for 20 numbers, and then
+prints out the average and sum of those numbers.  Then it prompts the
+user for 3 more numbers, and prints the product and standard
+deviation of those 3 numbers.
+ <p>
+So, Agua statements have a very simple syntax.  They can be of only 2
+types:  "input" statements, of the form
+</p><pre>	READ &lt;N&gt; NUMBERS
+</pre>
+where <tt>&lt;N&gt;</tt> 
+is a positive integer literal, and "output" statements of the form
+<pre>	WRITE THE &lt;OP&gt;
+</pre>
+
+where <tt>&lt;OP&gt;</tt> is one of SUM, AVERAGE, PRODUCT, or STANDARD
+DEVIATION.  So, there are
+always exactly 3 or 4 whitespace-delimited tokens in an Agua
+statement. There can be any amount of whitespace (space or tab characters)
+between the
+tokens in a statement, but every statement needs to be on its own line.
+There can be any number of whitespace-only lines between
+statements.  (It follows from these syntax rules that every line
+in an Agua source code file has either 0, 3, or 4 tokens.  If
+it has 3 or 4 tokens, the first
+token is either READ or WRITE; if the first token is WRITE, the second
+must be THE; etc., etc.  Anything that violates any of the
+syntax rules is a syntax error.)
+ <p>
+And the semantics of Agua statements are also simple.  An "input"
+statement  prompts the user
+for the given number of numbers, and reads
+them in.  The user must enter exactly that many numbers, one per line, 
+as well-formatted integer or floating literal
+constants.  For example, the input statement "READ 47 NUMBERS" means that
+the Agua program must output
+"ENTER 47 NUMBERS, ONE PER LINE:", and then read 47 lines of
+input, each with a number entered on it.
+ </p><p>
+An "output" statement describes and
+prints out the result of the specified
+operation SUM, AVERAGE,  PRODUCT, or STANDARD DEVIATION
+performed on the set of numbers read in by the most recent "input"
+statement.  For example, the output statement
+"WRITE THE AVERAGE" means that the Agua program must output
+"THE AVERAGE IS:", followed on the same line by the average of
+the numbers entered.
+(If a "output" statement occurs before any "input"
+statements, that is syntactically legal Agua, but the semantics are
+undefined.)
+ </p><p> But for Agua to be at all useful, there must be an Agua compiler
+to translate Agua programs into a form that a computer can understand.  That is
+the goal of this programming assignment.  The compilation of Agua
+programs will take two steps: First the Java program you write will
+translate an Agua program into a Java program that has the same
+semantics as the Agua program (that is, YOUR Java program will write
+another Java program!).  Then someone can use javac to compile that
+Java program to create a Java bytecode .class file that can be run.
+When it is run, it will read in numbers from the keyboard and print
+results to the console window, according to the semantics of the
+Agua program.
+ </p><p>
+In a file aguac.java in your P5 directory, write a public static
+void main method that
+will satisfy these specifications:
+</p><blockquote>
+  The program shall be useful as an Agua compiler.  When run, it
+  uses the first command line argument as the name
+  of an Agua source code file in the current working directory.
+  The file name must end with a ".agua" extension; if it doesn't,
+  the program will print an error message and exit.
+  If the file contains syntactically correct Agua code,
+  it translates it into a Java program, putting the Java code in a file
+  with the same name as the Agua source file, but with a ".java" extension.
+  If there is a syntax error in the Agua source file, a message describing
+  the first error in the file, and its line number in the file, should
+  be printed to standard output, and the program should exit.
+</blockquote>
+
+<h4> How to do this assignment </h4> 
+In solving this assignment, adopt the procedural programming paradigm.
+Define only static methods in the aguac class.  (You may also want
+to use some private static variables.)
+Top-down design and stepwise refinement are
+powerful software development techniques that you should use for
+this assignment.  Your program will be a command line, text-only,
+console program.
+ <p> A.  First, think about how to procedurally decompose the overall
+problem.  One decomposition is this: (1) Check to make sure that the Agua
+source file name is of the form &lt;SOMETHING&gt;.agua; (2) Create a
+BufferedReader object to read from that file; (3) Create a PrintWriter
+object to write to the file &lt;SOMETHING&gt;.java; (4) Translate from
+the .agua file to the .java file; (5) Close the PrintWriter.  In the
+procedural programming paradigm, you would write a private static
+method to solve each of these parts of the problem, and call them from
+your main method.
+ </p><p> All of these methods are quite simple to write, except (4).  So,
+complete all of them at this stage except for that one.  You should
+initially write your "doTranslation" method (it does not need to be called
+that) as a stub that just copies
+the Agua program in the file associated with the BufferedReader to the
+file associated with the PrintWriter, without yet doing any
+translation into Java.  This will let you test your program at an
+initial "coarse" level of refinement.
+ </p><p> B.  For the next level of refinement, notice that step (4) above,
+translating from the .agua file to the .java file, can itself be
+broken down into substeps: (4a) outputting a beginning part of a Java
+source code file that will be common to all translations from Agua; (4b)
+translating the particular Agua program to Java statements; and (4c)
+outputting an ending part of Java code that will be common to all Agua
+translations.  Here again, all 3 steps can be handled by 
+defining, and using static methods.  Steps (4a) and (4c) should be coded
+and tested completely at this level of refinement, because they
+are quite simple.  (4b) should be
+written now as a stub, which just copies the Agua file to the Java file,
+with each line preceded by a '//' to turn it into a comment.  
+Now, because of (4a) and (4c), the output .java file will
+contain real Java code, and will compile with javac (though the result won't
+do anything).
+ </p><p> C.  For the next level of refinement, decompose step (4b) above into
+subparts.  Here there are two types of Agua statement to process, and
+correspondingly two kinds of Java code to output in response.  (Also,
+to satisfy the specifications, you have to detect whether there is any
+syntax error in the Agua code.  You don't have to find all the errors, if
+there is more than one.  Your program can exit as soon as it finds and
+reports the first one.)  Code to handle each of these types of
+statement should be encapsulated in methods as well.
+ </p><p>
+With the job of translating Agua to Java spread out over several methods,
+it will be a win to use the exception-handling mechanisms of Java.  Define
+a class SyntaxError which extends Exception.  Define a constructor for this
+class
+that takes a String message.  (You may also define other methods
+if you want.)  When one of your methods
+detects an Agua syntax error in the source file, it should create and throw
+a SyntaxError object.  These should be caught in only one place (i.e.
+you should have ONLY ONE "catch (SyntaxError e)" in your entire aguac.java
+file.)  For full credit on this part of the assignment, you should report
+the line number of the .agua file on which the syntax error was detected.
+If there is more than one syntax error in the .agua file,
+only the first one needs to be detected.
+ </p><p>
+Now, when you run your program as, for example,
+</p><pre>java aguac prog1.agua
+</pre>
+if prog1.agua contains no syntax errors, it should
+produce a file prog1.java of Java code.  Inspect this file to see that it
+appears to be correct Java.  You should compile it with javac and run
+it to see if it really works as it's supposed to.
+<h4> Hints and other observations </h4> 
+ <p>
+0.  To be clear about the definition of "average" and "standard deviation":
+The average of a set of numbers is defined as the sum of the numbers
+in the set,
+divided by the number of numbers in the set.
+The standard deviation of a set of numbers is defined as the square root
+of the variance of the numbers; 
+the variance of a set of numbers is defined as the difference 
+between the average of the squares of the numbers and
+the square of the average of the numbers.
+(Standard deviation is a widely used statistical measure of how much
+a set of numbers 
+are spread out around their average;  a small standard deviation
+means the numbers are tightly grouped around their average.)
+
+ </p><p>
+1.
+In your main method header
+</p><pre>public static void main (String[] args) {
+</pre>
+<code>args</code> is an array of Strings. These are the arguments passed
+on the command line when the program is run by the java interpreter.
+So, the first command-line argument can be referred to as
+<pre>      args[0]
+</pre>
+which is a String.
+ <p>
+2.  When you open a .java file for output from your compiler, this will
+probably erase any existing file with that name in your current directory.
+Be careful.  For example, running <code>java aguac aguac.agua</code> 
+might be very bad for you.
+ </p><p> 3.  To output a correct Java translation of Agua code, you have
+to think a bit.  Use your knowledge of Java.  (But it is really not
+all that hard.  If you think you have to use arrays, you are thinking
+of a solution that is harder than it needs to be!)  A hint is  that since when
+you are translating an "input" statment you do not know how what
+"output" statments will follow, you may have to precompute what any
+"output" statement will require.
+ </p><p>
+4. 
+Remember that to put a double quote " in a string literal, precede it
+with a backslash: <tt> \" </tt>.  For example, the statement 
+</p><pre>System.out.println("He said \"wow\"");
+</pre>
+prints out
+<pre>He said "wow"
+</pre>
+ <p> 
+5.  You may find that the StringTokenizer class in the java.util
+package will be handy for this assignment.  
+ </p><p> 
+6.
+The file P5Solution.jar in ~/../public/P5/
+meet the specifications of
+this assignment.  If you have questions about what is required,
+it might be useful to run java -jar P5Solution.jar, passing it as argument
+the name of an Agua file to compile.
+Files prog1.agua and prog2.agua in that directory contain syntactically
+correct Agua programs you can use as examples in testing.  The files prog3.agua
+through prog7.agua contain syntax errors.  prog8.agua is a syntactically
+correct program (though its semantics are undefined, so the resulting
+translation may not do anything useful).
+ </p><p> 
+7.
+You can assume there will be a copy of SavitchIn.class in the directory
+where your Java translations of Agua programs run.  Note that 
+SavitchIn.readLineDouble() can read either integer literals or
+floating literals.
+
+ </p><h4>
+3.  Grading of assignment # 5
+ </h4>
+There are 20 possible points for this assignment.  Your assignment will
+be tested on a number of Agua source code files (including the 8 .agua files
+in the public directory).  Your score will be based on how many of
+them your solution works correctly on.
+
+To get full credit, the files you turn in must also be well commented
+and otherwise follow good Java programming style.
+ <p>
+~/../public/P5/P5Solution.jar contains a program that 
+meets the specifications of
+this assignment.  If you have questions about what is required by that
+part, it might be useful to run it.
+
+
+</p></body></html>

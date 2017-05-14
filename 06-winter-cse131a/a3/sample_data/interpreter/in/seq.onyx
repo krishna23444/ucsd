@@ -1,0 +1,5 @@
+declare function foo ( $a as onyx.types.Sequence ) { ( ) };
+
+ 
+
+foo ( let $i := 1 return $i)

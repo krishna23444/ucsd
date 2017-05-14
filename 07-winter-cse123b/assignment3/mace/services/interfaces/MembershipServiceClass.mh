@@ -1,0 +1,6 @@
+serviceclass Membership 
+{
+  virtual void setMembership( const MaceKey& groupId, const NodeSet& members );
+  virtual NodeSet getMembership( const MaceKey& groupId ) const;
+  virtual size_t getMembershipSize(const MaceKey& groupId) const;
+};

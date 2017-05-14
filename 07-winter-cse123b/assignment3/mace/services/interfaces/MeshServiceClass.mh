@@ -1,0 +1,13 @@
+serviceclass Mesh : Overlay {
+  virtual const NodeSet& getProactivePeers();
+  virtual const NodeSet& getReactivePeers();
+
+  virtual void leavePeer(const MaceKey& peer); // leave a proactive peer
+  virtual void closePeer(const MaceKey& peer); // close a reactive peer
+
+  virtual void advertise(const std::string& data, bool subscribe);
+  virtual void disableMeshAdjustment();
+  virtual void enableMeshAdjustment();
+
+  handlers MeshStructure;
+};

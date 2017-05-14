@@ -1,0 +1,23 @@
+PROGS = \
+\
+gml_scanner$(o) \
+gml_parser$(o) \
+gmlp$(o) \
+attach$(e) \
+change$(change) \
+replay$(replay) \
+replay-nice$(replay-nice) \
+bottleneck$(e) \
+cost-oracle$(cost-oracle) \
+know-theory$(know-theory) \
+genrand$(genrand) \
+spt-delay$(spt-delay) \
+multicast$(e) \
+good-mesh$(e) \
+stress$(e) \
+change_edge_bandwidth_generalized$(e) \
+change_intransitive_routing$(e) \
+
+
+#change_bandwidth$(e) \
+#change_route$(e) \

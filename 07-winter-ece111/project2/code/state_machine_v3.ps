@@ -1,0 +1,1121 @@
+%!PS-Adobe-2.0
+%%Creator: dot version 2.8 (Sat Feb 17 15:51:01 UTC 2007)
+%%For: (nitay) 
+%%Title: state_machine
+%%Pages: (atend)
+%%BoundingBox: 36 36 1244 1878
+%%EndComments
+save
+%%BeginProlog
+/DotDict 200 dict def
+DotDict begin
+
+/setupLatin1 {
+mark
+/EncodingVector 256 array def
+ EncodingVector 0
+
+ISOLatin1Encoding 0 255 getinterval putinterval
+EncodingVector 45 /hyphen put
+
+% Set up ISO Latin 1 character encoding
+/starnetISO {
+        dup dup findfont dup length dict begin
+        { 1 index /FID ne { def }{ pop pop } ifelse
+        } forall
+        /Encoding EncodingVector def
+        currentdict end definefont
+} def
+/Times-Roman starnetISO def
+/Times-Italic starnetISO def
+/Times-Bold starnetISO def
+/Times-BoldItalic starnetISO def
+/Helvetica starnetISO def
+/Helvetica-Oblique starnetISO def
+/Helvetica-Bold starnetISO def
+/Helvetica-BoldOblique starnetISO def
+/Courier starnetISO def
+/Courier-Oblique starnetISO def
+/Courier-Bold starnetISO def
+/Courier-BoldOblique starnetISO def
+cleartomark
+} bind def
+
+%%BeginResource: procset graphviz 0 0
+/coord-font-family /Times-Roman def
+/default-font-family /Times-Roman def
+/coordfont coord-font-family findfont 8 scalefont def
+
+/InvScaleFactor 1.0 def
+/set_scale {
+	dup 1 exch div /InvScaleFactor exch def
+	dup scale
+} bind def
+
+% styles
+/solid { [] 0 setdash } bind def
+/dashed { [9 InvScaleFactor mul dup ] 0 setdash } bind def
+/dotted { [1 InvScaleFactor mul 6 InvScaleFactor mul] 0 setdash } bind def
+/invis {/fill {newpath} def /stroke {newpath} def /show {pop newpath} def} bind def
+/bold { 2 setlinewidth } bind def
+/filled { } bind def
+/unfilled { } bind def
+/rounded { } bind def
+/diagonals { } bind def
+
+% hooks for setting color 
+/nodecolor { sethsbcolor } bind def
+/edgecolor { sethsbcolor } bind def
+/graphcolor { sethsbcolor } bind def
+/nopcolor {pop pop pop} bind def
+
+/beginpage {	% i j npages
+	/npages exch def
+	/j exch def
+	/i exch def
+	/str 10 string def
+	npages 1 gt {
+		gsave
+			coordfont setfont
+			0 0 moveto
+			(\() show i str cvs show (,) show j str cvs show (\)) show
+		grestore
+	} if
+} bind def
+
+/set_font {
+	findfont exch
+	scalefont setfont
+} def
+
+% draw aligned label in bounding box aligned to current point
+/alignedtext {			% width adj text
+	/text exch def
+	/adj exch def
+	/width exch def
+	gsave
+		width 0 gt {
+			text stringwidth pop adj mul 0 rmoveto
+		} if
+		[] 0 setdash
+		text show
+	grestore
+} def
+
+/boxprim {				% xcorner ycorner xsize ysize
+		4 2 roll
+		moveto
+		2 copy
+		exch 0 rlineto
+		0 exch rlineto
+		pop neg 0 rlineto
+		closepath
+} bind def
+
+/ellipse_path {
+	/ry exch def
+	/rx exch def
+	/y exch def
+	/x exch def
+	matrix currentmatrix
+	newpath
+	x y translate
+	rx ry scale
+	0 0 1 0 360 arc
+	setmatrix
+} bind def
+
+/endpage { showpage } bind def
+/showpage { } def
+
+/layercolorseq
+	[	% layer color sequence - darkest to lightest
+		[0 0 0]
+		[.2 .8 .8]
+		[.4 .8 .8]
+		[.6 .8 .8]
+		[.8 .8 .8]
+	]
+def
+
+/layerlen layercolorseq length def
+
+/setlayer {/maxlayer exch def /curlayer exch def
+	layercolorseq curlayer 1 sub layerlen mod get
+	aload pop sethsbcolor
+	/nodecolor {nopcolor} def
+	/edgecolor {nopcolor} def
+	/graphcolor {nopcolor} def
+} bind def
+
+/onlayer { curlayer ne {invis} if } def
+
+/onlayers {
+	/myupper exch def
+	/mylower exch def
+	curlayer mylower lt
+	curlayer myupper gt
+	or
+	{invis} if
+} def
+
+/curlayer 0 def
+
+%%EndResource
+%%EndProlog
+%%BeginSetup
+14 default-font-family set_font
+1 setmiterlimit
+% /arrowlength 10 def
+% /arrowwidth 5 def
+
+% make sure pdfmark is harmless for PS-interpreters other than Distiller
+/pdfmark where {pop} {userdict /pdfmark /cleartomark load put} ifelse
+% make '<<' and '>>' safe on PS Level 1 devices
+/languagelevel where {pop languagelevel}{1} ifelse
+2 lt {
+    userdict (<<) cvn ([) cvn load put
+    userdict (>>) cvn ([) cvn load put
+} if
+
+%%EndSetup
+%%Page: 1 1
+%%PageBoundingBox: 36 36 1244 1878
+%%PageOrientation: Portrait
+<< /PageSize [1208 1842] >> setpagedevice
+gsave
+36 36 1208 1842 boxprim clip newpath
+36 36 translate
+0 0 1 beginpage
+1.0000 set_scale
+4 4 translate 0 rotate
+[ /CropBox [36 36 1244 1878] /PAGE pdfmark
+0.000 0.000 1.000 graphcolor
+0.000 0.000 1.000 graphcolor
+newpath -6 -6 moveto
+-6 1840 lineto
+1206 1840 lineto
+1206 -6 lineto
+closepath
+fill
+0.000 0.000 1.000 graphcolor
+newpath -6 -6 moveto
+-6 1840 lineto
+1206 1840 lineto
+1206 -6 lineto
+closepath
+stroke
+0.000 0.000 0.000 graphcolor
+14.00 /Times-Roman set_font
+% start
+gsave 10 dict begin
+531 1738 170 96 ellipse_path
+stroke
+gsave 10 dict begin
+509 1789 moveto
+(START)
+[7.44 7.92 10.08 8.88 8.64]
+xshow
+507 1773 moveto
+( done=0)
+[3.6 6.96 6.96 6.96 6.24 7.92 6.96]
+xshow
+505 1757 moveto
+( count=0)
+[3.6 6.24 6.96 6.96 6.96 3.84 7.92 6.96]
+xshow
+519 1741 moveto
+( i=0)
+[3.6 3.84 7.92 6.96]
+xshow
+484 1725 moveto
+( j=seed_lsw[7:0])
+[3.6 3.84 7.92 5.52 6.24 6.24 6.96 6.96 3.84 5.52 10.08 4.56 6 3.84 6.96 4.56]
+xshow
+456 1709 moveto
+( for k=0 to 255: sbox[k]=k)
+[3.6 4.08 6.96 4.56 3.6 6.96 7.92 6.96 3.6 3.84 6.96 3.6 6.96 6.96 6.96 3.84 3.6 5.52 6.96 6.48 6.96 4.56 6.96 4.56 7.92 6.96]
+xshow
+407 1693 moveto
+( for k=0 to 3: seed[k]=seed_lsw[8*k+7:8*k])
+[3.6 4.08 6.96 4.56 3.6 6.96 7.92 6.96 3.6 3.84 6.96 3.6 6.96 3.84 3.6 5.52 6.24 6.24 6.96 4.56 6.96 4.56 7.92 5.52 6.24 6.24 6.96 6.96 3.84 5.52 10.08 4.56 6.96 6.96 6.96 7.92 6 3.84 6.96 6.96 6.96 4.56]
+xshow
+396 1677 moveto
+( for k=0 to 3: seed[k+4]=seed_msw[8*k+7:8*k])
+[3.6 4.08 6.96 4.56 3.6 6.96 7.92 6.96 3.6 3.84 6.96 3.6 6.96 3.84 3.6 5.52 6.24 6.24 6.96 4.56 6.96 7.92 6.96 4.56 7.92 5.52 6.24 6.24 6.96 6.96 10.8 5.52 10.08 4.56 6.96 6.96 6.96 7.92 6 3.84 6.96 6.96 6.96 4.56]
+xshow
+end grestore
+end grestore
+% construct_sbox
+gsave 10 dict begin
+132 1528 132 62 ellipse_path
+stroke
+gsave 10 dict begin
+69 1555 moveto
+(CONSTRUCT_SBOX)
+[9.12 10.08 10.08 7.44 8.64 8.64 10.08 9.36 8.64 6.96 7.68 9.12 9.36 10.08]
+xshow
+86 1539 moveto
+( sbox[i]=sbox[j])
+[3.6 5.52 6.96 6.48 6.96 4.56 3.84 4.56 7.92 5.52 6.96 6.48 6.96 4.56 3.84 4.56]
+xshow
+86 1523 moveto
+( sbox[j]=sbox[i])
+[3.6 5.52 6.96 6.48 6.96 4.56 3.84 4.56 7.92 5.52 6.96 6.48 6.96 4.56 3.84 4.56]
+xshow
+114 1507 moveto
+( i=i+1)
+[3.6 3.84 7.92 3.84 7.92 6.96]
+xshow
+25 1491 moveto
+( j=\(j+sbox[i+1]+seed[\(i+1\)%8]\)%256)
+[3.6 3.84 7.92 4.56 3.84 7.92 5.52 6.96 6.48 6.96 4.56 3.84 7.92 6.96 4.56 7.92 5.52 6.24 6.24 6.96 4.56 4.56 3.84 7.92 6.96 4.56 11.76 6.96 4.56 4.56 11.76 6.96 6.96 6.96]
+xshow
+end grestore
+end grestore
+% start->construct_sbox
+newpath 368 1711 moveto
+272 1691 164 1662 135 1624 curveto
+130 1617 126 1609 125 1600 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 128 1599 moveto
+123 1590 lineto
+122 1600 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 128 1599 moveto
+123 1590 lineto
+122 1600 lineto
+closepath
+stroke
+end grestore
+gsave 10 dict begin
+134 1611 moveto
+(start_encrypt=1)
+[5.28 4.08 6.24 4.8 3.84 6.96 6.24 6.96 6.24 4.8 6.96 6.96 3.84 7.92 6.96]
+xshow
+end grestore
+% construct_sbox->start
+newpath 195 1583 moveto
+215 1600 236 1617 247 1624 curveto
+286 1647 332 1668 376 1685 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 374 1688 moveto
+385 1689 lineto
+377 1682 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 374 1688 moveto
+385 1689 lineto
+377 1682 lineto
+closepath
+stroke
+end grestore
+gsave 10 dict begin
+246 1611 moveto
+(nreset=0)
+[6.96 4.56 6.24 5.52 6 3.84 7.92 6.96]
+xshow
+end grestore
+% construct_sbox->construct_sbox
+newpath 246 1559 moveto
+267 1555 282 1545 282 1528 curveto
+282 1514 272 1504 256 1499 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 256 1496 moveto
+246 1497 lineto
+255 1502 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 256 1496 moveto
+246 1497 lineto
+255 1502 lineto
+closepath
+stroke
+end grestore
+% done
+gsave 10 dict begin
+237 29 39 28 ellipse_path
+stroke
+gsave 10 dict begin
+216 32 moveto
+(DONE)
+[10.08 10.08 10.08 8.64]
+xshow
+213 16 moveto
+( done=1)
+[3.6 6.96 6.96 6.96 6.24 7.92 6.96]
+xshow
+end grestore
+end grestore
+% construct_sbox->done
+newpath 132 1466 moveto
+132 1438 132 1404 132 1374 curveto
+132 1374 132 1374 132 150 curveto
+132 108 168 74 197 53 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 200 55 moveto
+206 47 lineto
+196 50 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 200 55 moveto
+206 47 lineto
+196 50 lineto
+closepath
+stroke
+end grestore
+gsave 10 dict begin
+131 659 moveto
+(frame_size=0)
+[4.56 4.56 6.24 10.8 6.24 6.96 5.52 3.84 6.24 6.24 7.92 6.96]
+xshow
+end grestore
+% initialize_encryption
+gsave 10 dict begin
+368 1374 103 39 ellipse_path
+stroke
+gsave 10 dict begin
+284 1385 moveto
+(INITIALIZE_ENCRYPTION)
+[4.56 10.08 4.56 8.64 4.56 10.08 8.64 4.56 8.64 8.64 6.96 8.64 9.84 9.36 8.4 10.08 7.68 8.64 4.56 10.08 10.08]
+xshow
+356 1369 moveto
+( i=1)
+[3.6 3.84 7.92 6.96]
+xshow
+322 1353 moveto
+( j=sbox[1]%256)
+[3.6 3.84 7.92 5.52 6.96 6.48 6.96 4.56 6.96 4.56 11.76 6.96 6.96 6.96]
+xshow
+end grestore
+end grestore
+% construct_sbox->initialize_encryption
+newpath 209 1478 moveto
+241 1457 277 1433 308 1414 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 310 1417 moveto
+316 1408 lineto
+306 1411 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 310 1417 moveto
+316 1408 lineto
+306 1411 lineto
+closepath
+stroke
+end grestore
+gsave 10 dict begin
+270 1435 moveto
+(i=255)
+[3.84 7.92 6.96 6.96 6.96]
+xshow
+end grestore
+% done->start
+newpath 237 58 moveto
+237 82 237 118 237 150 curveto
+237 1308 237 1308 237 1308 curveto
+237 1355 235 1370 256 1414 curveto
+260 1423 265 1423 272 1432 curveto
+326 1499 331 1523 387 1590 curveto
+403 1609 421 1629 439 1648 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 436 1650 moveto
+446 1655 lineto
+441 1645 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 436 1650 moveto
+446 1655 lineto
+441 1645 lineto
+closepath
+stroke
+end grestore
+% initialize_encryption->start
+newpath 377 1414 moveto
+388 1458 408 1531 436 1590 curveto
+444 1607 453 1624 463 1640 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 460 1642 moveto
+468 1649 lineto
+466 1639 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 460 1642 moveto
+468 1649 lineto
+466 1639 lineto
+closepath
+stroke
+end grestore
+gsave 10 dict begin
+435 1523 moveto
+(nreset=0)
+[6.96 4.56 6.24 5.52 6 3.84 7.92 6.96]
+xshow
+end grestore
+% read_word
+gsave 10 dict begin
+400 1174 131 107 ellipse_path
+stroke
+gsave 10 dict begin
+356 1233 moveto
+(READ_WORD)
+[9.36 8.64 10.08 10.08 6.96 12.48 10.08 9.36 10.08]
+xshow
+358 1217 moveto
+( port_A_we=0)
+[3.6 6.96 6.96 4.8 3.84 6.96 10.08 6.96 9.6 6.24 7.92 6.96]
+xshow
+308 1201 moveto
+( port_A_addr=plain_addr+count)
+[3.6 6.96 6.96 4.8 3.84 6.96 10.08 6.96 6.24 6.96 6.96 4.56 7.92 6.96 3.84 6.24 3.84 6.96 6.96 6.24 6.96 6.96 4.56 7.92 6.24 6.96 6.96 6.96 3.84]
+xshow
+354 1185 moveto
+( sbox[i]=sbox[j])
+[3.6 5.52 6.96 6.48 6.96 4.56 3.84 4.56 7.92 5.52 6.96 6.48 6.96 4.56 3.84 4.56]
+xshow
+354 1169 moveto
+( sbox[j]=sbox[i])
+[3.6 5.52 6.96 6.48 6.96 4.56 3.84 4.56 7.92 5.52 6.96 6.48 6.96 4.56 3.84 4.56]
+xshow
+314 1153 moveto
+( index=\(sbox[i]+sbox[j]\)%256)
+[3.6 3.84 6.96 6.96 5.76 6.96 7.92 4.56 5.52 6.96 6.48 6.96 4.56 3.84 4.56 7.92 5.52 6.96 6.48 6.96 4.56 3.84 4.56 4.56 11.76 6.96 6.96 6.96]
+xshow
+361 1137 moveto
+( i=\(i+1\)%256)
+[3.6 3.84 7.92 4.56 3.84 7.92 6.96 4.56 11.76 6.96 6.96 6.96]
+xshow
+317 1121 moveto
+( j=\(j+sbox[\(i+1\)%256]\)%256)
+[3.6 3.84 7.92 4.56 3.84 7.92 5.52 6.96 6.48 6.96 4.56 4.56 3.84 7.92 6.96 4.56 11.76 6.96 6.96 6.96 4.56 4.56 11.76 6.96 6.96 6.96]
+xshow
+355 1105 moveto
+( count=count+1)
+[3.6 6.24 6.96 6.96 6.96 3.84 7.92 6.24 6.96 6.96 6.96 3.84 7.92 6.96]
+xshow
+end grestore
+end grestore
+% initialize_encryption->read_word
+newpath 374 1334 moveto
+376 1321 379 1306 381 1291 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 384 1291 moveto
+383 1281 lineto
+378 1290 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 384 1291 moveto
+383 1281 lineto
+378 1290 lineto
+closepath
+stroke
+end grestore
+% read_word->start
+newpath 455 1272 moveto
+465 1292 473 1313 480 1334 curveto
+489 1362 507 1522 520 1632 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 517 1632 moveto
+521 1642 lineto
+523 1632 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 517 1632 moveto
+521 1642 lineto
+523 1632 lineto
+closepath
+stroke
+end grestore
+gsave 10 dict begin
+495 1435 moveto
+(nreset=0)
+[6.96 4.56 6.24 5.52 6 3.84 7.92 6.96]
+xshow
+end grestore
+% encrypt_first_byte
+gsave 10 dict begin
+511 906 199 107 ellipse_path
+stroke
+gsave 10 dict begin
+435 965 moveto
+(ENCRYPT_FIRST_BYTE)
+[8.64 9.84 9.36 8.4 10.08 7.68 8.64 6.96 7.68 4.56 9.36 7.44 8.64 6.96 8.4 10.32 8.64 8.64]
+xshow
+351 949 moveto
+( port_A_data_in[7:0]=sbox[index]^port_A_data_out[7:0])
+[3.6 6.96 6.96 4.8 3.84 6.96 10.08 6.96 6.96 6.24 4.08 6.24 6.96 3.84 6.96 4.56 6 3.84 6.96 4.56 7.92 5.52 6.96 6.48 6.96 4.56 3.84 6.96 6.96 5.76 6.96 4.56 6.48 6.96 6.96 4.8 3.84 6.96 10.08 6.96 6.96 6.24 4.08 6.24 6.96 6.96 6.96 3.84 4.56 6 3.84 6.96 4.56]
+xshow
+380 933 moveto
+( port_A_data_in[31:8]=port_A_data_out[31:8])
+[3.6 6.96 6.96 4.8 3.84 6.96 10.08 6.96 6.96 6.24 4.08 6.24 6.96 3.84 6.96 4.56 6 6.96 3.84 6.96 4.56 7.92 6.96 6.96 4.8 3.84 6.96 10.08 6.96 6.96 6.24 4.08 6.24 6.96 6.96 6.96 3.84 4.56 6 6.96 3.84 6.96 4.56]
+xshow
+465 917 moveto
+( sbox[i]=sbox[j])
+[3.6 5.52 6.96 6.48 6.96 4.56 3.84 4.56 7.92 5.52 6.96 6.48 6.96 4.56 3.84 4.56]
+xshow
+465 901 moveto
+( sbox[j]=sbox[i])
+[3.6 5.52 6.96 6.48 6.96 4.56 3.84 4.56 7.92 5.52 6.96 6.48 6.96 4.56 3.84 4.56]
+xshow
+425 885 moveto
+( index=\(sbox[i]+sbox[j]\)%256)
+[3.6 3.84 6.96 6.96 5.76 6.96 7.92 4.56 5.52 6.96 6.48 6.96 4.56 3.84 4.56 7.92 5.52 6.96 6.48 6.96 4.56 3.84 4.56 4.56 11.76 6.96 6.96 6.96]
+xshow
+472 869 moveto
+( i=\(i+1\)%256)
+[3.6 3.84 7.92 4.56 3.84 7.92 6.96 4.56 11.76 6.96 6.96 6.96]
+xshow
+428 853 moveto
+( j=\(j+sbox[\(i+1\)%256]\)%256)
+[3.6 3.84 7.92 4.56 3.84 7.92 5.52 6.96 6.48 6.96 4.56 4.56 3.84 7.92 6.96 4.56 11.76 6.96 6.96 6.96 4.56 4.56 11.76 6.96 6.96 6.96]
+xshow
+466 837 moveto
+( count=count+1)
+[3.6 6.24 6.96 6.96 6.96 3.84 7.92 6.24 6.96 6.96 6.96 3.84 7.92 6.96]
+xshow
+end grestore
+end grestore
+% read_word->encrypt_first_byte
+newpath 442 1072 moveto
+449 1055 456 1038 463 1020 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 466 1022 moveto
+467 1011 lineto
+460 1019 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 466 1022 moveto
+467 1011 lineto
+460 1019 lineto
+closepath
+stroke
+end grestore
+% encrypt_first_byte->start
+newpath 541 1012 moveto
+553 1061 563 1120 563 1174 curveto
+563 1528 563 1528 563 1528 curveto
+563 1562 559 1599 554 1633 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 551 1633 moveto
+552 1643 lineto
+557 1634 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 551 1633 moveto
+552 1643 lineto
+557 1634 lineto
+closepath
+stroke
+end grestore
+gsave 10 dict begin
+562 1369 moveto
+(nreset=0)
+[6.96 4.56 6.24 5.52 6 3.84 7.92 6.96]
+xshow
+end grestore
+% write_word
+gsave 10 dict begin
+539 150 173 39 ellipse_path
+stroke
+gsave 10 dict begin
+491 161 moveto
+(WRITE_WORD)
+[13.2 9.36 4.56 8.64 8.64 6.96 12.48 10.08 9.36 10.08]
+xshow
+497 145 moveto
+( port_A_we=1)
+[3.6 6.96 6.96 4.8 3.84 6.96 10.08 6.96 9.6 6.24 7.92 6.96]
+xshow
+385 129 moveto
+( port_A_addr=cipher_addr+\(\(count-1\)&0xFFFFFFFC\))
+[3.6 6.96 6.96 4.8 3.84 6.96 10.08 6.96 6.24 6.96 6.96 4.56 7.92 6.24 3.84 6.96 6.96 6.24 4.56 6.96 6.24 6.96 6.96 4.56 7.92 4.56 4.56 6.24 6.96 6.96 6.96 3.84 4.56 6.96 4.56 10.8 6.96 6.96 7.68 7.68 7.68 7.68 7.68 7.68 7.68 9.36 4.56]
+xshow
+end grestore
+end grestore
+% encrypt_first_byte->write_word
+newpath 381 824 moveto
+361 806 344 784 332 760 curveto
+295 682 314 651 332 568 curveto
+363 424 455 272 505 197 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 508 199 moveto
+511 189 lineto
+502 195 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 508 199 moveto
+511 189 lineto
+502 195 lineto
+closepath
+stroke
+end grestore
+gsave 10 dict begin
+417 429 moveto
+(count=frame_size)
+[6.24 6.96 6.96 6.96 3.84 7.92 4.56 4.56 6.24 10.8 6.24 6.96 5.52 3.84 6.24 6.24]
+xshow
+end grestore
+% encrypt_second_byte
+gsave 10 dict begin
+544 664 203 96 ellipse_path
+stroke
+gsave 10 dict begin
+459 715 moveto
+(ENCRYPT_SECOND_BYTE)
+[8.64 9.84 9.36 8.4 10.08 7.68 8.64 6.96 7.68 8.64 9.12 10.08 10.08 10.08 6.96 8.4 10.32 8.64 8.64]
+xshow
+376 699 moveto
+( port_A_data_in[15:8]=sbox[index]^port_A_data_out[15:8])
+[3.6 6.96 6.96 4.8 3.84 6.96 10.08 6.96 6.96 6.24 4.08 6.24 6.96 3.84 6.96 4.56 6.48 6.96 3.84 6.96 4.56 7.92 5.52 6.96 6.48 6.96 4.56 3.84 6.96 6.96 5.76 6.96 4.56 6.48 6.96 6.96 4.8 3.84 6.96 10.08 6.96 6.96 6.24 4.08 6.24 6.96 6.96 6.96 3.84 4.56 6.48 6.96 3.84 6.96 4.56]
+xshow
+498 683 moveto
+( sbox[i]=sbox[j])
+[3.6 5.52 6.96 6.48 6.96 4.56 3.84 4.56 7.92 5.52 6.96 6.48 6.96 4.56 3.84 4.56]
+xshow
+498 667 moveto
+( sbox[j]=sbox[i])
+[3.6 5.52 6.96 6.48 6.96 4.56 3.84 4.56 7.92 5.52 6.96 6.48 6.96 4.56 3.84 4.56]
+xshow
+458 651 moveto
+( index=\(sbox[i]+sbox[j]\)%256)
+[3.6 3.84 6.96 6.96 5.76 6.96 7.92 4.56 5.52 6.96 6.48 6.96 4.56 3.84 4.56 7.92 5.52 6.96 6.48 6.96 4.56 3.84 4.56 4.56 11.76 6.96 6.96 6.96]
+xshow
+505 635 moveto
+( i=\(i+1\)%256)
+[3.6 3.84 7.92 4.56 3.84 7.92 6.96 4.56 11.76 6.96 6.96 6.96]
+xshow
+461 619 moveto
+( j=\(j+sbox[\(i+1\)%256]\)%256)
+[3.6 3.84 7.92 4.56 3.84 7.92 5.52 6.96 6.48 6.96 4.56 4.56 3.84 7.92 6.96 4.56 11.76 6.96 6.96 6.96 4.56 4.56 11.76 6.96 6.96 6.96]
+xshow
+499 603 moveto
+( count=count+1)
+[3.6 6.24 6.96 6.96 6.96 3.84 7.92 6.24 6.96 6.96 6.96 3.84 7.92 6.96]
+xshow
+end grestore
+end grestore
+% encrypt_first_byte->encrypt_second_byte
+newpath 526 798 moveto
+527 788 528 779 530 770 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 533 770 moveto
+531 760 lineto
+527 770 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 533 770 moveto
+531 760 lineto
+527 770 lineto
+closepath
+stroke
+end grestore
+% write_word->start
+newpath 572 189 moveto
+595 219 624 261 641 304 curveto
+677 398 613 448 674 530 curveto
+698 562 734 534 756 568 curveto
+868 744 751 830 751 1040 curveto
+751 1528 751 1528 751 1528 curveto
+751 1586 711 1633 664 1667 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 662 1664 moveto
+656 1673 lineto
+666 1670 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 662 1664 moveto
+656 1673 lineto
+666 1670 lineto
+closepath
+stroke
+end grestore
+gsave 10 dict begin
+791 901 moveto
+(nreset=0)
+[6.96 4.56 6.24 5.52 6 3.84 7.92 6.96]
+xshow
+end grestore
+% write_word->done
+newpath 453 116 moveto
+397 94 326 65 281 47 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 283 44 moveto
+272 43 lineto
+280 50 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 283 44 moveto
+272 43 lineto
+280 50 lineto
+closepath
+stroke
+end grestore
+gsave 10 dict begin
+395 79 moveto
+(count>=frame_size)
+[6.24 6.96 6.96 6.96 3.84 7.92 7.92 4.56 4.56 6.24 10.8 6.24 6.96 5.52 3.84 6.24 6.24]
+xshow
+end grestore
+% write_word->read_word
+newpath 414 177 moveto
+346 196 275 224 275 257 curveto
+275 906 275 906 275 906 curveto
+275 964 300 1025 328 1073 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 325 1075 moveto
+333 1082 lineto
+331 1072 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 325 1075 moveto
+333 1082 lineto
+331 1072 lineto
+closepath
+stroke
+end grestore
+% encrypt_second_byte->start
+newpath 708 721 moveto
+744 740 779 766 804 798 curveto
+834 836 828 856 828 906 curveto
+828 1528 828 1528 828 1528 curveto
+828 1605 761 1656 690 1689 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 689 1686 moveto
+681 1693 lineto
+692 1692 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 689 1686 moveto
+681 1693 lineto
+692 1692 lineto
+closepath
+stroke
+end grestore
+gsave 10 dict begin
+827 1303 moveto
+(nreset=0)
+[6.96 4.56 6.24 5.52 6 3.84 7.92 6.96]
+xshow
+end grestore
+% encrypt_second_byte->write_word
+newpath 543 568 moveto
+542 499 541 403 540 320 curveto
+539 279 539 234 539 200 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 543 200 moveto
+539 190 lineto
+536 200 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 543 200 moveto
+539 190 lineto
+536 200 lineto
+closepath
+stroke
+end grestore
+gsave 10 dict begin
+539 307 moveto
+(count=frame_size)
+[6.24 6.96 6.96 6.96 3.84 7.92 4.56 4.56 6.24 10.8 6.24 6.96 5.52 3.84 6.24 6.24]
+xshow
+end grestore
+% encrypt_third_byte
+gsave 10 dict begin
+892 434 209 96 ellipse_path
+stroke
+gsave 10 dict begin
+814 485 moveto
+(ENCRYPT_THIRD_BYTE)
+[8.64 9.84 9.36 8.4 10.08 7.68 8.64 6.96 8.64 10.08 4.56 9.36 10.08 6.96 8.4 10.32 8.64 8.64]
+xshow
+718 469 moveto
+( port_A_data_in[23:16]=sbox[index]^port_A_data_out[23:16])
+[3.6 6.96 6.96 4.8 3.84 6.96 10.08 6.96 6.96 6.24 4.08 6.24 6.96 3.84 6.96 4.56 6.96 6.96 3.84 6 6.96 4.56 7.92 5.52 6.96 6.48 6.96 4.56 3.84 6.96 6.96 5.76 6.96 4.56 6.48 6.96 6.96 4.8 3.84 6.96 10.08 6.96 6.96 6.24 4.08 6.24 6.96 6.96 6.96 3.84 4.56 6.96 6.96 3.84 6 6.96 4.56]
+xshow
+846 453 moveto
+( sbox[i]=sbox[j])
+[3.6 5.52 6.96 6.48 6.96 4.56 3.84 4.56 7.92 5.52 6.96 6.48 6.96 4.56 3.84 4.56]
+xshow
+846 437 moveto
+( sbox[j]=sbox[i])
+[3.6 5.52 6.96 6.48 6.96 4.56 3.84 4.56 7.92 5.52 6.96 6.48 6.96 4.56 3.84 4.56]
+xshow
+806 421 moveto
+( index=\(sbox[i]+sbox[j]\)%256)
+[3.6 3.84 6.96 6.96 5.76 6.96 7.92 4.56 5.52 6.96 6.48 6.96 4.56 3.84 4.56 7.92 5.52 6.96 6.48 6.96 4.56 3.84 4.56 4.56 11.76 6.96 6.96 6.96]
+xshow
+853 405 moveto
+( i=\(i+1\)%256)
+[3.6 3.84 7.92 4.56 3.84 7.92 6.96 4.56 11.76 6.96 6.96 6.96]
+xshow
+809 389 moveto
+( j=\(j+sbox[\(i+1\)%256]\)%256)
+[3.6 3.84 7.92 4.56 3.84 7.92 5.52 6.96 6.48 6.96 4.56 4.56 3.84 7.92 6.96 4.56 11.76 6.96 6.96 6.96 4.56 4.56 11.76 6.96 6.96 6.96]
+xshow
+847 373 moveto
+( count=count+1)
+[3.6 6.24 6.96 6.96 6.96 3.84 7.92 6.24 6.96 6.96 6.96 3.84 7.92 6.96]
+xshow
+end grestore
+end grestore
+% encrypt_second_byte->encrypt_third_byte
+newpath 662 586 moveto
+695 564 731 541 764 519 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 766 522 moveto
+772 513 lineto
+762 516 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 766 522 moveto
+772 513 lineto
+762 516 lineto
+closepath
+stroke
+end grestore
+% encrypt_third_byte->start
+newpath 892 530 moveto
+892 571 892 620 892 664 curveto
+892 1528 892 1528 892 1528 curveto
+892 1624 796 1676 703 1705 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 702 1702 moveto
+693 1708 lineto
+704 1708 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 702 1702 moveto
+693 1708 lineto
+704 1708 lineto
+closepath
+stroke
+end grestore
+gsave 10 dict begin
+891 1169 moveto
+(nreset=0)
+[6.96 4.56 6.24 5.52 6 3.84 7.92 6.96]
+xshow
+end grestore
+% encrypt_third_byte->write_word
+newpath 778 353 moveto
+754 333 730 310 710 286 curveto
+685 255 697 234 669 208 curveto
+661 200 653 194 643 188 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 644 185 moveto
+634 183 lineto
+641 191 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 644 185 moveto
+634 183 lineto
+641 191 lineto
+closepath
+stroke
+end grestore
+gsave 10 dict begin
+709 252 moveto
+(count=frame_size)
+[6.24 6.96 6.96 6.96 3.84 7.92 4.56 4.56 6.24 10.8 6.24 6.96 5.52 3.84 6.24 6.24]
+xshow
+end grestore
+% encrypt_fourth_byte
+gsave 10 dict begin
+1010 257 189 28 ellipse_path
+stroke
+gsave 10 dict begin
+926 260 moveto
+(ENCRYPT_FOURTH_BYTE)
+[8.64 9.84 9.36 8.4 10.08 7.68 8.64 6.96 7.44 10.08 10.08 8.88 8.64 10.08 6.96 8.4 10.32 8.64 8.64]
+xshow
+836 244 moveto
+( port_A_data_in[31:24]=sbox[index]^port_A_data_out[31:24])
+[3.6 6.96 6.96 4.8 3.84 6.96 10.08 6.96 6.96 6.24 4.08 6.24 6.96 3.84 6.96 4.56 6 6.96 3.84 6.96 6.96 4.56 7.92 5.52 6.96 6.48 6.96 4.56 3.84 6.96 6.96 5.76 6.96 4.56 6.48 6.96 6.96 4.8 3.84 6.96 10.08 6.96 6.96 6.24 4.08 6.24 6.96 6.96 6.96 3.84 4.56 6 6.96 3.84 6.96 6.96 4.56]
+xshow
+end grestore
+end grestore
+% encrypt_third_byte->encrypt_fourth_byte
+newpath 953 342 moveto
+965 325 976 308 985 294 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 988 296 moveto
+991 286 lineto
+982 292 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 988 296 moveto
+991 286 lineto
+982 292 lineto
+closepath
+stroke
+end grestore
+% encrypt_fourth_byte->start
+newpath 1057 285 moveto
+1076 298 1097 317 1110 338 curveto
+1132 375 1129 390 1129 434 curveto
+1129 1528 1129 1528 1129 1528 curveto
+1129 1618 881 1679 705 1711 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 704 1708 moveto
+695 1713 lineto
+705 1714 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 704 1708 moveto
+695 1713 lineto
+705 1714 lineto
+closepath
+stroke
+end grestore
+gsave 10 dict begin
+1128 1035 moveto
+(nreset=0)
+[6.96 4.56 6.24 5.52 6 3.84 7.92 6.96]
+xshow
+end grestore
+% encrypt_fourth_byte->write_word
+newpath 905 233 moveto
+836 218 745 197 672 180 curveto
+stroke
+gsave 10 dict begin
+solid
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 672 177 moveto
+662 178 lineto
+671 183 lineto
+closepath
+fill
+0.000 0.000 0.000 edgecolor
+newpath 672 177 moveto
+662 178 lineto
+671 183 lineto
+closepath
+stroke
+end grestore
+endpage
+showpage
+grestore
+%%PageTrailer
+%%EndPage: 1
+%%Trailer
+%%Pages: 1
+end
+restore
+%%EOF

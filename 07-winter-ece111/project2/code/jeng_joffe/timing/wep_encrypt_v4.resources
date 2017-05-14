@@ -1,0 +1,61 @@
+ 
+****************************************
+Report : resources
+Design : wep_encrypt_v4
+Version: V-2004.06-SP2
+Date   : Wed Feb  7 15:41:17 2007
+****************************************
+
+Resource Sharing Report for design wep_encrypt_v4 in file ./wep_encrypt_v4.v
+
+===============================================================================
+|          |              |            | Contained     |                      |
+| Resource | Module       | Parameters | Resources     | Contained Operations |
+===============================================================================
+| r1168    | DW01_inc     | width=8    |               | add_380 add_420      |
+| r1169    | DW01_add     | width=8    |               | add_1_root_add_390_2 |
+|          |              |            |               | add_447              |
+| r1189    | DW01_add     | width=8    |               | add_0_root_add_390_2 |
+| r1191    | DW01_add     | width=16   |               | add_406              |
+| r1193    | DW01_cmp2    | width=32   |               | gte_409              |
+| r1195    | DW01_add     | width=8    |               | add_419              |
+| r1197    | DW01_add     | width=32   |               | add_422              |
+| r1199    | DW01_cmp2    | width=32   |               | gte_422              |
+| r1201    | DW01_inc     | width=2    |               | add_430              |
+| r1203    | DW01_add     | width=16   |               | add_458              |
+| r1205    | DW01_add     | width=32   |               | add_459              |
+===============================================================================
+
+
+Implementation Report
+
+=============================================================================
+|                  |                  | Current          | Set              |
+| Cell             | Module           | Implementation   | Implementation   |
+=============================================================================
+| add_0_root_add_390_2 | DW01_add     | rpl              |                  |
+| add_406          | DW01_add         | rpl              |                  |
+| add_419          | DW01_add         | rpl              |                  |
+| add_422          | DW01_add         | rpl              |                  |
+| add_458          | DW01_add         | rpl              |                  |
+| add_459          | DW01_add         | rpl              |                  |
+| gte_409          | DW01_cmp2        | rpl              |                  |
+| gte_422          | DW01_cmp2        | rpl              |                  |
+| r1168            | DW01_inc         | rpl              |                  |
+| r1169            | DW01_add         | rpl              |                  |
+=============================================================================
+
+Multiplexor Report
+
+================================================================================
+| Cell                  | Width  | Data  | Select |         Reference          |
+================================================================================
+| C64655                | 8      | 256   | 8      | wep_encrypt_v4_MUX_OP_256_8_8_32
+                                                                               |
+| C64656                | 8      | 256   | 8      | wep_encrypt_v4_MUX_OP_256_8_8_31
+                                                                               |
+| C64657                | 8      | 256   | 8      | wep_encrypt_v4_MUX_OP_256_8_8
+                                                                               |
+| C64658                | 8      | 8     | 3      | wep_encrypt_v4_MUX_OP_8_3_8
+                                                                               |
+================================================================================

@@ -1,0 +1,10 @@
+//support Streaming where the app can inform the svc of sequence#s it 
+//is interested in receiving, and when a seq# will expire
+
+serviceclass RealtimeStreaming {
+  virtual void setNextToExpire(uint sequence, double when) { }
+  virtual void setMinimumInterested(uint minimumInterested) { }
+  virtual void setMaximumInterested(uint maximumInterested) { }
+   virtual void decodingDone() { }
+   virtual void decodingEpochDone(uint epochNum) { }
+};

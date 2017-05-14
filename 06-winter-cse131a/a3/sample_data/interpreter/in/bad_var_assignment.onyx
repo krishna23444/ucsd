@@ -1,0 +1,1 @@
+declare variable $a as onyx.types.Integer {"should fail"};

@@ -1,0 +1,97 @@
+MACE_PRINT_HOSTNAME_ONLY = 1
+# MACE_LOG_LEVEL = 1
+
+#USE_UDP_REORDER = 1
+#USE_UDP_ERRORS = 1
+USE_NET_ERRORS=0
+SIM_NODE_FAILURE=0
+
+#Largely unimportant options
+MACE_PORT=10201
+max_num_steps=5000
+#search_print_mask=0
+#search_print_mask=15
+search_print_mask=255
+#search_print_mask=4095
+PRINT_SEARCH_PREFIX=0
+USE_RANDOM_WALKS=1
+USE_GUSTO=1
+USE_STATE_HASHES=1
+#NUM_RANDOM_PATHS=60
+#MAX_PATHS=20
+#MAX_PATHS=200
+#MAX_PATHS=50000
+#MAX_PATHS=1000000
+
+COMPARE_CMC = 0
+RUN_CMC_MEM = 0
+RUN_DIVERGENCE_MONITOR = 1
+
+divergence_assert = 1
+
+#Which service to run
+#CHECKED_SERVICE=BrokenTree
+#CHECKED_SERVICE=Overcast
+
+#RandTree
+#How many nodes does the tree have?
+#num_nodes=4
+#queue_size=100000
+#CHECKED_SERVICE=RandTree
+
+#MaceTransport
+#num_nodes=2
+#queue_size=1000000
+#messageCount = 16
+#messageSize = 1600
+#useRTS = 1
+#CHECKED_SERVICE=MaceTransport
+
+#Pastry
+#num_nodes=3
+#queue_size=20
+#CHECKED_SERVICE=Pastry
+
+#Pastry
+num_nodes=20
+queue_size=40
+CHECKED_SERVICE=AsynchLCR
+
+#Trace options
+#TRACE_ALL=1
+#TRACE_SUBST=ERROR
+#TRACE_SUBST=::forward::(demux) ::deliver::(demux) ::requestFlushedNotification ::expire ::maceInit ::route (downcall) (upcall) (routine) (timer) Propert Quantification SimulatorUDPService logThread monitor __Simulator__ SimulateEventEnd SimulateEventBegin NumberGen getReadyNodes SimNetwork SimScheduler SimApplication SimTransportApp
+#TRACE_SIMULATOR=1
+#TRACE_STATE=1
+
+#Parameters for using the replay run -- the name of the file to provide the sequence (in VS format)
+#RANDOM_REPLAY_FILE=-
+#RANDOM_REPLAY_FILE=error1.path
+#RANDOM_REPLAY_FILE=error2.path
+
+#LAST_NAIL_REPLAY_FILE=error1.path
+
+#Parameters for using the state space search: Search depth and an optional sequence to start with.
+SEARCH_DEPTH=5
+#RANDOM_UTIL_PREFIX_FILE=prefix1.path
+#RANDOM_UTIL_PREFIX_SEARCH=1 2 1 2 1 0 1 3 1 0 2 2 2 0 0
+#RANDOM_UTIL_START_SEARCH=1 1 3 0 0 1 1 1 2 0 2 1 0 0 0
+#RANDOM_UTIL_START_SEARCH=1 2 1 2 1 0 1 3 1 0 2 2 2 0 0
+
+###############################################################################
+## Saved from prior runs, etc.
+
+#Depth searched so far for RandTree -- ring of peers
+#RANDOM_UTIL_START_SEARCH=0 0 0 0 0 2 0 0 4 0 4 0 1 1 1 5 1 1 3 1
+#num_nodes=6
+#SEARCH_DEPTH=20
+#max_num_steps=1000000
+#tree=RandTree
+
+#RandTree node joins but has no parent
+#SEARCH_DEPTH=15
+#RANDOM_UTIL_START_SEARCH=0 0 3 1 0 0 1 3 0 4 1 4 1 5 0
+#RANDOM_UTIL_START_SEARCH=0 1 4 5 8 9 7 12 13 10 11 14
+#RANDOM_UTIL_START_SEARCH=0 1 4 5 8 9 7 12 13 10 11
+#RANDOM_UTIL_START_SEARCH=0 1 4 5 8 9 7 12 13 10
+#RANDOM_UTIL_START_SEARCH=0 1 4 5 8 9 7 12 13

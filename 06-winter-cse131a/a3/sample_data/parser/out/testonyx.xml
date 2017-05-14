@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.ast.Query>
+   <onyx.ast.ExprList>
+      <onyx.ast.Flwr>
+         <onyx.ast.LetAssignment varName="$d">
+            <onyx.ast.FunctionCall name="document">
+               <onyx.ast.Constant datatype="onyx.types.String">book.xml</onyx.ast.Constant>
+            </onyx.ast.FunctionCall>
+         </onyx.ast.LetAssignment>
+         <onyx.ast.ForAssignment varName="$child">
+            <onyx.ast.FunctionCall name="children">
+               <onyx.ast.Variable>$d</onyx.ast.Variable>
+            </onyx.ast.FunctionCall>
+         </onyx.ast.ForAssignment>
+         <onyx.ast.Return>
+            <onyx.ast.Variable>$child</onyx.ast.Variable>
+         </onyx.ast.Return>
+      </onyx.ast.Flwr>
+   </onyx.ast.ExprList>
+</onyx.ast.Query>
+

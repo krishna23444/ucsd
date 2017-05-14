@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.error.SemanticError>
+   <DynamicError column="11" line="1">
+      <ErrorMessage>Function with prototype document(onyx.types.Integer) not found</ErrorMessage>
+      <PossibleMatch>onyx.types.Node document(onyx.types.String)</PossibleMatch>
+   </DynamicError>
+</onyx.error.SemanticError>
+

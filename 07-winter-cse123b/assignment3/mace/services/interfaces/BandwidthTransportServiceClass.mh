@@ -1,0 +1,10 @@
+typedef TransportServiceClass::Connection::type BandwidthDirection;
+
+serviceclass BandwidthTransport : Transport {
+  virtual void startSegment(const MaceKey& peer, BandwidthDirection bd);
+  virtual void endSegment(const MaceKey& peer, BandwidthDirection bd);
+  virtual double getBandwidth(const MaceKey& peer, BandwidthDirection bd);
+  virtual bool hasRoom(const MaceKey& peer);
+  virtual int queued(const MaceKey& peer);
+  virtual void setWindowSize(const MaceKey& peer);
+};

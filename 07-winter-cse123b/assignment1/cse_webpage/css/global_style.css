@@ -1,0 +1,48 @@
+
+/* BODY, LINKS */
+a:hover		{ color: #FF0000; }
+
+
+/* CONTENT */
+.head1 		{ font-size: 15px; font-family: verdana, arial, geneva, sans-serif; }
+.subhead1	{ font-size: 13px; font-family: verdana, arial, geneva, sans-serif; }
+.subhead2   { font-size: 10px; font-family: verdana, arial, geneva, sans-serif; }
+.body1		{ font-size: 12px; font-family: verdana, arial, geneva, sans-serif; }
+.body2		{ font-size: 10px; font-family: verdana, arial, geneva, sans-serif; }
+.body3		{ font-size: 8px; font-family: verdana, arial, geneva, sans-serif; }
+.news-anchors { font-size: 10px; font-family: verdana, arial, geneva, sans-serif; text-align: center; }
+
+/* NAVIGATION */
+.subnav   	{ font-size: 10px; font-family: verdana, arial, geneva, sans-serif; color: #333333; }
+.subnavon  	{ font-size: 10px; font-family: verdana, arial, geneva, sans-serif; color: #3399cc; }
+.footernav	{ font-size: 10px; font-family: verdana, arial, geneva, sans-serif; }
+.bread		{ font-size: 10px; font-family: verdana, arial, geneva, sans-serif; color: #3399cc; }
+.copyright	{ font-size: 9px; font-family: verdana, arial, geneva, sans-serif; }
+.legal		{ font-size: 11px; font-family: verdana, arial, geneva, sans-serif; }
+.addy		{ font-size: 9px; font-family: verdana, arial, geneva, sans-serif; }
+.pdfnote	{ font-size: 9px; font-family: verdana, arial, geneva, sans-serif; }
+
+
+/* FORMS */
+.button		{ font-weight: bold; font-family: verdana, arial, geneva, sans-serif; }
+.searchform	{ background-color: #ffffff; }
+.form		{ background-color: #efefef; }
+.form:focus { background-color: #ffffff; }
+
+/* INDENTS */
+.indent		{ margin-left: 20px; }
+
+/* extra stuff */
+
+/* the below isn't quite working in at least one table, where
+   I have to also add border="1px" to the <table> tag
+*/
+table.bordered {
+  border-width: 1px;
+  border-collapse: collapse;
+}
+table.bordered td {
+  border-width: 1px;
+  padding: 4px;
+}
+

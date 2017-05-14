@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.error.SemanticError>
+   <DynamicError column="6" line="1">
+      <ErrorMessage>Function with prototype op:numeric-add(onyx.types.Boolean,onyx.types.Integer) not found</ErrorMessage>
+      <PossibleMatch>onyx.types.Decimal op:numeric-add(onyx.types.Decimal,onyx.types.Decimal)</PossibleMatch>
+      <PossibleMatch>onyx.types.Integer op:numeric-add(onyx.types.Integer,onyx.types.Integer)</PossibleMatch>
+      <PossibleMatch>onyx.types.String op:numeric-add(onyx.types.String,onyx.types.String)</PossibleMatch>
+   </DynamicError>
+</onyx.error.SemanticError>
+

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.error.SemanticError>
+   <DynamicError column="10" line="2">"554jkl" is not a valid number</DynamicError>
+</onyx.error.SemanticError>

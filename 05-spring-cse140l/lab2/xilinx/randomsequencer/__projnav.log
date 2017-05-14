@@ -1,0 +1,492 @@
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "View HDL Functional Model".
+
+DRC Check completed: No Error found.
+Vhdl netlist file generated.
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do randomsequencer_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity randomsequencer
+# -- Compiling architecture behavioral of randomsequencer
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity randomsequencer_tbw
+# -- Compiling architecture testbench_arch of randomsequencer_tbw
+# vsim -lib work -t 1ps randomsequencer_tbw 
+# ** Error: License checkout has been disallowed because
+# only one session is allowed to run on an uncounted nodelock
+# license and an instance of ModelSim is already running with a
+# nodelocked license on this machine
+# Error loading design
+Error loading design
+ERROR: VSim failed to simulate annotated testbench
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do randomsequencer_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity randomsequencer
+# -- Compiling architecture behavioral of randomsequencer
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity randomsequencer_tbw
+# -- Compiling architecture testbench_arch of randomsequencer_tbw
+# vsim -lib work -t 1ps randomsequencer_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.randomsequencer_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.randomsequencer(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdpe(fdpe_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /randomsequencer_tbw/line__91 File: randomsequencer_tbw.ant
+# Break at randomsequencer_tbw.ant line 249
+# Stopped at randomsequencer_tbw.ant line 249 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do randomsequencer_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity randomsequencer
+# -- Compiling architecture behavioral of randomsequencer
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity randomsequencer_tbw
+# -- Compiling architecture testbench_arch of randomsequencer_tbw
+# vsim -lib work -t 1ps randomsequencer_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.randomsequencer_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.randomsequencer(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdpe(fdpe_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /randomsequencer_tbw/line__91 File: randomsequencer_tbw.ant
+# Break at randomsequencer_tbw.ant line 249
+# Stopped at randomsequencer_tbw.ant line 249 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+
+
+Started process "Synthesize".
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "G:/xilinx/projects/lab2/randomsequencer/randomsequencer.vhf" in Library work.
+Entity <randomsequencer> compiled.
+Entity <randomsequencer> (Architecture <BEHAVIORAL>) compiled.
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <randomsequencer> (Architecture <BEHAVIORAL>).
+    Set user-defined property "INIT =  1" for instance <XLXI_2> in unit <randomsequencer>.
+    Set user-defined property "INIT =  1" for instance <XLXI_3> in unit <randomsequencer>.
+    Set user-defined property "INIT =  1" for instance <XLXI_4> in unit <randomsequencer>.
+    Set user-defined property "INIT =  1" for instance <XLXI_5> in unit <randomsequencer>.
+Entity <randomsequencer> analyzed. Unit <randomsequencer> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <randomsequencer>.
+    Related source file is "G:/xilinx/projects/lab2/randomsequencer/randomsequencer.vhf".
+Unit <randomsequencer> synthesized.
+
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Advanced RAM inference ...
+Advanced multiplier inference ...
+Advanced Registered AddSub inference ...
+Dynamic shift register inference ...
+
+=========================================================================
+HDL Synthesis Report
+
+Found no macro
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <randomsequencer> ...
+Loading device for application Rf_Device from file '2v80.nph' in environment G:/xilinx/ise71.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block randomsequencer, actual ratio is 0.
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 2v80cs144-5 
+
+ Number of Slices:                       2  out of    512     0%  
+ Number of Slice Flip Flops:             4  out of   1024     0%  
+ Number of bonded IOBs:                  7  out of     92     7%  
+ Number of GCLKs:                        1  out of     16     6%  
+
+
+=========================================================================
+TIMING REPORT
+
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+CLK                                | BUFGP                  | 4     |
+-----------------------------------+------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -5
+
+   Minimum period: 2.278ns (Maximum Frequency: 438.982MHz)
+   Minimum input arrival time before clock: 1.576ns
+   Maximum output required time after clock: 5.020ns
+   Maximum combinational path delay: No path found
+
+=========================================================================
+
+
+
+
+Started process "Translate".
+
+
+Command Line: ngdbuild -intstyle ise -dd
+g:\xilinx\projects\lab2\randomsequencer/_ngo -nt timestamp -i -p xc2v80-cs144-5
+randomsequencer.ngc randomsequencer.ngd 
+
+Reading NGO file 'G:/xilinx/projects/lab2/randomsequencer/randomsequencer.ngc'
+...
+
+Checking timing specifications ...
+Checking expanded design ...
+
+NGDBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Writing NGD file "randomsequencer.ngd" ...
+
+Writing NGDBUILD log file "randomsequencer.bld"...
+
+NGDBUILD done.
+
+
+
+
+Started process "Map".
+
+Using target part "2v80cs144-5".
+Mapping design into LUTs...
+Running directed packing...
+Running delay-based LUT packing...
+Running related packing...
+
+Design Summary:
+Number of errors:      0
+Number of warnings:    0
+Logic Utilization:
+  Number of Slice Flip Flops:           4 out of   1,024    1%
+  Number of 4 input LUTs:               1 out of   1,024    1%
+Logic Distribution:
+  Number of occupied Slices:            4 out of     512    1%
+  Number of Slices containing only related logic:       4 out of       4  100%
+  Number of Slices containing unrelated logic:          0 out of       4    0%
+        *See NOTES below for an explanation of the effects of unrelated logic
+Total Number 4 input LUTs:              1 out of   1,024    1%
+
+  Number of bonded IOBs:                7 out of      92    7%
+  Number of GCLKs:                      1 out of      16    6%
+
+Total equivalent gate count for design:  41
+Additional JTAG gate count for IOBs:  336
+Peak Memory Usage:  100 MB
+
+NOTES:
+
+   Related logic is defined as being logic that shares connectivity - e.g. two
+   LUTs are "related" if they share common inputs.  When assembling slices,
+   Map gives priority to combine logic that is related.  Doing so results in
+   the best timing performance.
+
+   Unrelated logic shares no connectivity.  Map will only begin packing
+   unrelated logic into a slice once 99% of the slices are occupied through
+   related logic packing.
+
+   Note that once logic distribution reaches the 99% level through related
+   logic packing, this does not mean the device is completely utilized.
+   Unrelated logic packing will then begin, continuing until all usable LUTs
+   and FFs are occupied.  Depending on your timing budget, increased levels of
+   unrelated logic packing may adversely affect the overall timing performance
+   of your design.
+
+Mapping completed.
+See MAP report file "randomsequencer_map.mrp" for details.
+
+
+
+
+Started process "Place & Route".
+
+
+
+
+Constraints file: randomsequencer.pcf.
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "randomsequencer" is an NCD, version 3.1, device xc2v80, package cs144, speed
+-5
+
+Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000
+Celsius)
+Initializing voltage to 1.425 Volts. (default - Range: 1.425 to 1.575 Volts)
+
+
+Device speed data version:  "PRODUCTION 1.121 2005-02-23".
+
+
+Device Utilization Summary:
+
+   Number of BUFGMUXs                  1 out of 16      6%
+   Number of External IOBs             7 out of 92      7%
+      Number of LOCed IOBs             0 out of 7       0%
+
+   Number of SLICEs                    4 out of 512     1%
+
+
+Overall effort level (-ol):   Standard (set by user)
+Placer effort level (-pl):    Standard (set by user)
+Placer cost table entry (-t): 1
+Router effort level (-rl):    Standard (set by user)
+
+
+Starting Placer
+
+Phase 1.1
+Phase 1.1 (Checksum:9896a3) REAL time: 1 secs 
+
+Phase 2.31
+Phase 2.31 (Checksum:1312cfe) REAL time: 1 secs 
+
+Phase 3.2
+
+
+
+Phase 3.2 (Checksum:1c9c37d) REAL time: 1 secs 
+
+Phase 4.30
+Phase 4.30 (Checksum:26259fc) REAL time: 1 secs 
+
+Phase 5.3
+Phase 5.3 (Checksum:2faf07b) REAL time: 1 secs 
+
+Phase 6.5
+Phase 6.5 (Checksum:39386fa) REAL time: 1 secs 
+
+Phase 7.8
+.
+Phase 7.8 (Checksum:98a95d) REAL time: 1 secs 
+
+Phase 8.5
+Phase 8.5 (Checksum:4c4b3f8) REAL time: 1 secs 
+
+Phase 9.18
+Phase 9.18 (Checksum:55d4a77) REAL time: 1 secs 
+
+Phase 10.5
+Phase 10.5 (Checksum:5f5e0f6) REAL time: 1 secs 
+
+Phase 11.27
+Phase 11.27 (Checksum:68e7775) REAL time: 1 secs 
+
+Phase 12.24
+Phase 12.24 (Checksum:7270df4) REAL time: 1 secs 
+
+Writing design to file randomsequencer.ncd
+
+
+Total REAL time to Placer completion: 1 secs 
+Total CPU time to Placer completion: 0 secs 
+
+Starting Router
+
+Phase 1: 24 unrouted;       REAL time: 1 secs 
+
+Phase 2: 19 unrouted;       REAL time: 1 secs 
+
+Phase 3: 1 unrouted;       REAL time: 1 secs 
+
+Phase 4: 0 unrouted;       REAL time: 1 secs 
+
+
+Total REAL time to Router completion: 1 secs 
+Total CPU time to Router completion: 1 secs 
+
+Generating "PAR" statistics.
+
+**************************
+Generating Clock Report
+**************************
+
++---------------------+--------------+------+------+------------+-------------+
+|        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
++---------------------+--------------+------+------+------------+-------------+
+|           CLK_BUFGP |     BUFGMUX7P| No   |    4 |  0.000     |  0.651      |
++---------------------+--------------+------+------+------------+-------------+
+
+Generating Pad Report.
+
+All signals are completely routed.
+
+Total REAL time to PAR completion: 2 secs 
+Total CPU time to PAR completion: 1 secs 
+
+Peak Memory Usage:  67 MB
+
+Placement: Completed - No errors found.
+Routing: Completed - No errors found.
+
+Number of error messages: 0
+Number of warning messages: 0
+Number of info messages: 1
+
+Writing design to file randomsequencer.ncd
+
+
+
+PAR done!
+
+Started process "Generate Post-Place & Route Static Timing".
+
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "randomsequencer" is an NCD, version 3.1, device xc2v80, package cs144, speed
+-5
+
+Analysis completed Tue May 03 23:16:01 2005
+--------------------------------------------------------------------------------
+
+Generating Report ...
+
+Number of warnings: 0
+Total time: 2 secs 
+
+
+
+
+Started process "Generate Post-Place & Route Simulation Model".
+
+INFO:NetListWriters:635 - The generated VHDL netlist contains Xilinx SIMPRIM
+   simulation primitives and has to be used with SIMPRIM library for correct
+   compilation and simulation. 
+
+
+
+
+
+
+

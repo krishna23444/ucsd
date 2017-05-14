@@ -1,0 +1,60 @@
+- sockets api
+  - creating a socket
+    + int socket(int domain, int type, int protocol)
+      - domain = AF_INET, AF_UNIX
+      - type = SOCK_STREAM, SOCK_DGRAM
+  - passive open (on server)
+    + int bind(int socket, struct sockaddr* addr, int addr_len)
+      - can fail because port is in use, no permission, etc
+    + int listen(int socket, int backlog)
+      - tell operating system how much buffering to do while we're accepting
+        use something like 5 or 10
+    + int accept(int socket, struct sockaddr* addr, int addr_len)
+      - addr will get filled in with information of client making connection
+      - returns another file descriptor for the client socket
+    + int select(int n, fd_set* readfds, fd_set* writefds, fd_set* exceptfds,
+                 struct timeval* timeout)
+      - need to remember to reset fd_sets between calls
+  - client side
+    - active open
+      - int connect(int socket, struct sockaddr* addr, int addr_len)
+    - sending/receiving messages
+      - int send(int socket, char* msg  - client side
+        - active open
+          - int connect(int socket, struct sockaddr* addr, int addr_len)
+        - sending/receiving messages
+          - int send(int socket, char* msg, ...
+- multithreaded vs. multiprocess vs. event driven
+  - event driven usually efficient, no context switch overhead
+- layering
+  - encapsulate each layer in lower-layer format
+  - each protocol has its functionality, doesn't care about what's above/below
+- protocols
+  - agreement b/w two parties as to how information is transmitted
+- OSI moddel
+  - 7 layers
+    - physical: bits on the wire,
+    - data link: data framing over links
+    - network: routing/internetworking
+    - transport: reliable, ordered delivery
+    - session: interaction across presentation
+    - presentation: format conversion
+    - application: ultimate data destination
+  - has its faults
+    - where does security go?
+      - application: it knows whether encrytion should be used
+      - transport: SSH (SSL, TLS - transport layer security)
+      - network: IPSec
+      - data link: WEP
+      ... no one right answer, all answers are right, many options
+    - what about reliability?
+      - transport: TCP
+      - data link: 802.11 wireless
+  - standardized before it was implemented
+  - modular, but some boundaries arbitrary
+    - why seven layers?
+    - what is the session layer?
+    - much basic network functionality at multiple layers
+      - reliability
+      - flow control
+      - security

@@ -1,0 +1,4 @@
+set -tmpdir .
+elaborate
+-ifn memory16x8.prj
+-ifmt mixed

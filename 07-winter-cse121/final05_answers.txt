@@ -1,0 +1,58 @@
+1 a sometimes
+    idle vm only loses pages if memory is scarce in the system
+  b sometimes
+    it's random. process with most lottery tickets has most probability
+  c sometimes
+    may read unique items that are not in the cache 
+  d sometimes
+  e always
+  f always
+  g sometimes
+    belady's is optimal. lru may not be
+  h sometimes
+  i never
+  j sometimes
+
+2 a vmm doesn't know about os's applications. can't tell the difference between
+    an idle loop and a scientific computation.
+  b 
+  c
+  d
+  e used in microkernels to redirect system calls to the appropriate user-level
+    application. system calls to the kernel are trampolined back up to userland.
+
+3 a microkernels reduce abstractions used to a minimal set. exokernels remove
+    as many abstractions as possible and make the hardware visible to the user.
+  b mcpi = memory cycles per instruction. mach code used a lot of memory, which     means a large working set, which would cause more cache misses on the
+    application's side.
+  c
+  d
+  e
+  f
+  g
+
+4 a
+  b
+  c
+  d
+
+5 a
+  b
+  c
+  d
+
+6
+
+7 a
+  b
+  c
+  d
+
+8 a
+  b
+  c
+  d
+
+9 a
+  b
+  c

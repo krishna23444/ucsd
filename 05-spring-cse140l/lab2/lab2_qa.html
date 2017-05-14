@@ -1,0 +1,41 @@
+<meta name="generator" content="Namo WebEditor v6.0">
+<style type="text/css">
+<!--
+.style3 {font-size: 20px}
+.style5 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+}
+.style9 {
+	font-size: 36px;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+-->
+</style>
+<p class="style9"><a name="top"></a> Q&amp;A for Lab 2</p>
+<ol>
+    <li class="style3">	<span class="style3"><a href="#q1">What's flip-flop?</a></span></li>
+    <li class="style3">	<a href="#q2">What should be included in the report for each design?</a></li>
+    <li class="style3">	<a href="#q3">What's the exact function of each design?</a></li>
+    <li class="style3">	<a href="#q4">How to design the circuits?</a></li>
+    <li class="style3">	<a href="#q5">When a counter failed?</a></li>
+</ol>
+<ol>
+    <li>
+
+        <p><span class="style5"><a name="q1"></a>What's flip-flop?</span><br>Flip-flop is a kind of component which can hold the output unchanging with the data input but&nbsp;read the data at the clock edge. The first example is D flip-flop <b>FDCE</b>:<br><img src="qa_imgs/FDCE.JPG" width="139" height="129" border="0"><img src="qa_imgs/FDCE_tbl.JPG" width="551" height="157" border="0">&nbsp;<br>From the function table we know that when clock is enabled and jump from '0' to '1' D will be set to Q, otherwise Q keeps unchanged. CLR is used to set initial value '0' to the output Q. If the initial value is set to '1', it's <b>FDPE</b>:<br><img src="qa_imgs/FDPE.JPG" width="124" height="129" border="0"> &nbsp;<img src="qa_imgs/FDPE_tbl.JPG" width="545" height="154" border="0"><br>D flip-flop means the flip-flop reads data from a data input. There are also other flip-flops. Here is a toggle filp-flop <b>FTCE</b>:<br><img src="qa_imgs/FTCE.JPG" width="136" height="116" border="0">&nbsp;<img src="qa_imgs/FTCE_tbl.JPG" width="543" height="150" border="0"><br> The difference between D flip-flop and toggle flip-flop is that the new output value for toggle flip-flop is the inverse of previous value, not the value of data input. <br><br>For more information please refer the libraries guide: <a href="lib.pdf">Lib.pdf</a><br><a href="#top">Back to Top</a></p>
+    </li>
+    <li>
+
+        <p><span class="style5"><a name="q2"></a>What should be included in the report for each design?</span><br>In general there are four steps to finish one design: 1) design the circuit by drawing a schmetic diagram 2) verify the correctness by behavior simulation 3) find out the critical path by checking the timing report 4) demonstrate the critical path by post-place&amp;route simulation. Therefore we need these four parts in the report. <br><b>Schematic Diagram</b>:<br><img src="qa_imgs/schm.jpg" width="394" height="543" border="0">&nbsp;<br><b>Behavior simulation</b>:<br><img src="qa_imgs/behv_sim.jpg" width="1090" height="331" border="0"><br><br><b>Timing report</b>:<br><img src="qa_imgs/tim_rep.jpg" width="616" height="515" border="0"><br><br><b>Post-place&amp;route simulation timing diagram</b>:<br><img src="qa_imgs/tim_dig.jpg" width="1061" height="342" border="0"><br><a href="#top">Back to Top</a></p>
+    </li>
+    <li>
+        <p><span class="style5"><a name="q3"></a>What's the exact function of each design?</span><br>Refer to the <a href="04_27_05.ppt">slides</a> for the discussion hour on 4/27.</p>
+    </li>        <li>
+        <p><span class="style5"><a name="q4"></a>How to design the circuits?</span><br>Refer to the <a href="04_27_05.ppt">slides</a> for the discussion hour on 4/27.</p>
+    </li>    <li>
+
+        <p><a name="q5"></a><span class="style5">When a counter failed?</span><br>From the post-place&amp;route simulation we know that output signals are not valid as soon as clock jump from '0' to '1'. The worst delay could be small or large. To guarantee we don't mistake any unstable signal or miss any valid signal, a design rule of sequetnial logic is that all signals triggered by a positive clock edge must&nbsp;be valid before the next positive edge and until the next positive edge. Based on this concept, an&nbsp;asynchroneous counter failed means an&nbsp;ouput signal is not valid before the next positive clock edge. </p>
+    </li>
+</ol>

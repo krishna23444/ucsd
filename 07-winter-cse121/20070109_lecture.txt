@@ -1,0 +1,49 @@
+- www.cs.ucsd.edu/classes/wi07/cse121/
+- operating systems provide
+  - sharing & protection
+- every process has notion that it has all the memory = address space
+- each process only has access to its own address space = protection
+- address space
+  - mmu provides protection
+  - os sets up virtual address translation
+- don't use physical addressing b/c then you can't run AS0 code at AS2, use
+  relative addressing with an offset 
+- context switch = os sets up new translation
+  - messing with mmu needs protection
+  - kernel mode bit
+- app needs to do privileged thing, needs to toggle bit = system call
+- map kernel into address space of every process, now kernel doesn't require
+  jumping to another address space
+  - use segmentation to provide protection
+  - use shared memory to avoid lots of copies of kernels
+  - pc in right place when doing context switch
+- point where user memory ends and kernel starts determined by MMU
+- 3g/1g split b/w user and kernel
+- first part of code = loader, create first AS, copy kernel, run first process,
+  say init, in AS0
+- kernel has a stack per process, contents of stack changes with address space
+- all of this is simply to save overhead for system calls so you don't have to
+  switch AS b/w user-kernl switch (during system call, for example)
+- threading
+  - multiple threads = multiple stacks = multiple PC
+  - completely separate notion from AS, kernel thread above jumps between
+    adress spaces
+- process = standard way of protection, others exist, e.g. tasks
+- kernel-based = let kernel know about threads
+- user-based = kernel does not know, decides on process to run, than process
+  chooses thread to run
+  - don't really care for now, just know that one thread running on cpu
+- synchronization is needed within kernel, can get preempted while executing
+  kernel, but can have some time to clean up, get out of critical section
+  - couldn't do this in userspace b/c we don't trust them
+
+- reading papers
+  - look at abstract
+  - go over section headings
+  - intro, high level overview, implementation, analysis, conclusion
+  - highlight sections in architechture that doesn't make sense, go back later
+  - implementation might not make sense, but high level should
+  - go b/w evaluation and intro = does it solve the problem?
+    - did they do what they set out to achieve?
+    - understand what they're trying to solve
+  

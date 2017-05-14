@@ -1,0 +1,8 @@
+/* check for errors in code and transform Verilog to an intermediate format */
+analyze -f verilog t_latch.v
+
+/*  latch_example is the module name; transform intermediate format into design  */
+elaborate latch_example
+
+/* the following command will list Y_reg as a latch in the design */
+all_registers -level_sensitive   

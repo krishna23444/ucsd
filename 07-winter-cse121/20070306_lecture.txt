@@ -1,0 +1,125 @@
+- guest lecturer: geoff volker, xen
+- ibm did virtualization a long time ago
+  - wanted single isa across all their systems
+- in 90s people started becoming interested in xen again
+- carve up physical machine into virtual pieces and sell those
+- microsoft wanted to buy vmware, just like it bought office and rest of
+  things. vmware said 'screw you', microsoft bought another company and
+  competed with them
+- back then x86 last chip u'd choose to virtualize, not meant for it
+- nowadays intel/amd x86 chips are more virtualizable
+- paravirtualization = have to modify the operating system a little bit
+- latest version of xen, 3.0, is able to run operating systems without changes
+  as long as it is on intel/amd x86 chips
+- what xen wanted out of a virtualization system, requirements
+  - abi, can modify the os, but don't want to modify applications
+  - isolation -> untrusted, just like os provides this ability for programs,
+    vmm provides it between operating systems
+  - os w/ multiple apps, differ from denali which had a specialized virtual
+    machine for each application, wanted general os
+  - scale 100 vms per host, vmware scales to about 12, a dozen
+  - low overhead, from application's perspective any code os executes is just
+    overhead, and now we're adding another layer, so keep things minimal. make
+    a minimum amount of changes to os
+- vmware doesn't change guest os at all, xen modifies it a bit for performance
+- vmware rewrites os binaries to take care of special instructions which
+  normallly fail silently and make sure they trap into vmm
+- x86 is a hardware managed tlb, meaning when a page miss occurs, it's actualy
+  the hardware that walks the page tables and loads it. this makes it hard for
+  the software to virtualize memory since it is not in control of it all
+- accounting
+- what does xen do?
+  - dom0, domU, domU ...
+            |
+            v
+           xen
+  - os now runs at ring 1, not fully privileged, but still isolated from
+    applications, which run at ring 3. xen is now at ring 0.
+  - dom0 is our trusted domain, that is allowed to interact with all the
+    devices directly in order to manage things. this keeps vmm small b/c all
+    the device drivers and things are at dom0. when guest os at domU traps into
+    vmm, it goes to dom0 to handle the issue. dom0 is like a trusted linux.
+  - biggest problem of virtualization is we don't want to rewrite the whole
+    operating system. in xen model 
+  - syscall
+    - microkernels had a vector table that went to microkernel, and then back
+    - xen allows the guest os to register handlers and then has very light
+      overhead that just bounces back to that os when a syscall occurs
+    - still a problem with io b/c domU goes to vmm, which goes to dom0, and
+      then it all has to go back... longer control path
+  - cpu
+    - os runs as user app
+    - xen schedules domains on cpu using BVT scheduling algorithm
+      - ex. given 4 guest os's, not a simple 1/4 split, if one os is idle and
+        nt using its cpu resources, shift it to others
+    - hypervisor call for installing page table entries, io, etc. like syscall
+      but between guest os to xen vmm
+    - exceptions, interrupts
+      - 'normal' exceptions, like say divide by zero, can just go directly back
+        to the guest operating system
+      - interrupts always have to be handled by vmm cause it's hardware things.
+        xen replaces guest os hardware interrupt handlers with events from vmm
+  - time
+    - real = time system has been up
+    - virtual = scheduled time, amount of time guest os has been running on
+      cpu. if there's one guest os than this will be close to real time
+    - wall clock = offset to real time for actual current clock time
+  - virtual memory
+    - one of the hardest things to deal with because of the hardware managed
+      tlb. also because it is not tagged we have to do tlb flushes on switches
+    - modern x86 has virtual tags that allows identifying which guest os owns
+      the tlb entry. also modern x86 has layer between ring 0/1 which guest os
+      can run in so that special instructions will be taken care of and not
+      just fail silently
+    - os normally has complete control over mapping memory. now we're running
+      xen, so it's in charge, which means we can no longer allow guest os to
+      map memory however it likes
+    - guest os still has mappings directly to machne addresses, but every time
+      a guest os wants to update a pointer xen has to take over
+    - os has full access to tlb mappings, but in read only form. haven't
+      changed the guest os that much, it still has its page tables and can read
+      them as it likes, but when it updates them xen rewrites the mappings
+    - we modify guest os to make xen hypervisor call whenever it wants to
+      install a mapping
+    - shadow page tables
+      - three concepts = machine memory, physical memory, and virutal address
+        spaces. when you're not doing virtualization physical and machine
+        memory are effectively the same.
+      - physical memory is an illusion
+      - vmm keeps mappings from physical to machine memory, in vmware this is
+        called the pmap. we call it ptom, physical to machine
+      - no modifcation to guest os memory manager, it just uses physical memory
+        and vmm handles translating it to machine memory
+      - guest os page tables are not seen by hardware managed tlb
+      - vmm also keeps a vtom table, virtual to machine translations. these are
+        the page tables that the hardware uses
+      - this is where the notion of shadowing comes in. there are two sets of
+        page tables, one in guest os from virtual to physical, and one from
+        virtual memory to machine which is managed by vmm using ptom and used
+        by hardware so shadowing occurs
+    - default approach to memory is to split it up statically, say you have
+      1gig and 4 guest os's, give each 256mb
+    - xen tells each os they have 512mb of memory, and then uses balloon driver
+      to dynamically change it
+    - where does memory in an os go? either virtual memory for applications and
+      whatnot, or file buffer cache. now we add a balloon driver which steals
+      pages from vm/fbc so vmm can give it to other os's
+  - input/output
+    - at a high level, we cannot allow the guest os's to access devices
+      directly. same story as os to application
+    - use rings of commands = requests and responses. maintained by xen,
+      accessible by domU guest operating systems and dom0
+    - domU guest os makes request to read some device, erquest gets put in
+      ring. dom0 reads this request, makes the read, and puts the result in the
+      ring. it's like two producer/consumer pairs
+    - where to put the results of the i/o? the guest os passes the vmm a page
+      table to stick the read in data at, and dom0 writes there
+    - network
+      - guest os's have virtual ips
+      - when a packet comes in, it goes to dom0, which is like a machine that
+        has all the ips of all the guest os's. dom0 will demux the packet by
+        lookin up the ip and putting it on the ring for that guest os
+    - ring is more like big tables b/c requests and responses can happen in any
+      order, it's not a traditional fifo style producer-consumer
+    - disk and network i/o different cause disk data only comes in after a
+      request, but with network packets can come in at any time

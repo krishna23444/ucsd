@@ -1,0 +1,8 @@
+/* check for code errors and translate verilog to an intermediate format */
+analyze -format verilog clocked_loop.v
+
+/* build design from intermediate format */
+elaborate clocked_loop
+
+/* this command will result in a "no timing loops detected" message */
+report_timing -loops

@@ -1,0 +1,28 @@
+/*********************************************
+ *  P2PServiceClass.h
+ *  Mace generated on:
+ *  Tue May 30 12:54:31 2006
+ *********************************************/
+#ifndef _P2PSERVICECLASS_H
+#define _P2PSERVICECLASS_H
+#include "ServiceClass.h"
+#include "P2PHandler.h"
+
+
+class P2PServiceClass : public virtual ServiceClass {
+public:
+  static P2PServiceClass& NULL_;
+
+
+
+  virtual void joinP2P(MaceKey const & peerToJoin, double advertsiedBandwidth_kbps, short httpPort, std::string const & identity, registration_uid_t rid = -1){ }
+  virtual void leaveP2P(registration_uid_t rid = -1){ }
+  virtual uint queryP2P(std::string const & searchString, registration_uid_t rid = -1){ return 0; }
+  virtual registration_uid_t registerHandler(P2PHandler& handler, registration_uid_t rid = -1) { assert(0); }
+  virtual void unregisterHandler(P2PHandler& handler, registration_uid_t rid = -1) { assert(0); }
+  void unregisterUniqueHandler(P2PHandler& handler) { unregisterHandler(handler); }
+  virtual void registerUniqueHandler(P2PHandler& handler) { assert(0); }
+  virtual ~P2PServiceClass() { }
+};
+
+#endif // _P2PSERVICECLASS_H

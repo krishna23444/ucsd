@@ -1,0 +1,74 @@
+--------------------------------------------------------------------------------
+Release 7.1.01i Trace H.39
+Copyright (c) 1995-2005 Xilinx, Inc.  All rights reserved.
+
+G:/xilinx/ise71/bin/nt/trce.exe -ise
+g:\xilinx\projects\lab1\full_adder\Full_Adder.ise -intstyle ise -e 3 -l 3 -s 5
+-xml fourbit_adder fourbit_adder.ncd -o fourbit_adder.twr fourbit_adder.pcf
+
+
+Design file:              fourbit_adder.ncd
+Physical constraint file: fourbit_adder.pcf
+Device,speed:             xc2v80,-5 (PRODUCTION 1.121 2005-02-23, STEPPING level 1)
+Report level:             error report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:2698 - No timing constraints found, doing default enumeration.
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths
+   option. All paths that are not constrained will be reported in the
+   unconstrained paths section(s) of the report.
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Pad to Pad
+---------------+---------------+---------+
+Source Pad     |Destination Pad|  Delay  |
+---------------+---------------+---------+
+A<0>           |Co             |    8.792|
+A<0>           |S<0>           |    6.077|
+A<0>           |S<1>           |    7.145|
+A<0>           |S<2>           |    7.612|
+A<0>           |S<3>           |    9.148|
+A<1>           |Co             |    8.581|
+A<1>           |S<1>           |    7.361|
+A<1>           |S<2>           |    6.822|
+A<1>           |S<3>           |    8.937|
+A<2>           |Co             |    6.040|
+A<2>           |S<2>           |    7.841|
+A<2>           |S<3>           |    6.195|
+A<3>           |Co             |    5.869|
+A<3>           |S<3>           |    6.641|
+B<0>           |Co             |    9.044|
+B<0>           |S<0>           |    5.974|
+B<0>           |S<1>           |    7.263|
+B<0>           |S<2>           |    7.864|
+B<0>           |S<3>           |    9.400|
+B<1>           |Co             |    8.924|
+B<1>           |S<1>           |    7.841|
+B<1>           |S<2>           |    6.876|
+B<1>           |S<3>           |    9.280|
+B<2>           |Co             |    6.551|
+B<2>           |S<2>           |    7.927|
+B<2>           |S<3>           |    6.340|
+B<3>           |Co             |    5.816|
+B<3>           |S<3>           |    6.588|
+Ci             |Co             |    9.006|
+Ci             |S<0>           |    6.187|
+Ci             |S<1>           |    7.362|
+Ci             |S<2>           |    7.826|
+Ci             |S<3>           |    9.362|
+---------------+---------------+---------+
+
+Analysis completed Mon Apr 18 20:57:36 2005
+--------------------------------------------------------------------------------
+
+
+
+Peak Memory Usage: 75 MB

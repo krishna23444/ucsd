@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OnyxSource file="kw01.onyx">
+   <token column="1" id="2" line="1"/>
+   <token column="9" id="2" line="1"/>
+   <token column="17" id="3" line="1"/>
+   <token column="26" id="3" line="1"/>
+   <token column="-1" id="0" line="-1"/>
+</OnyxSource>
+

@@ -1,0 +1,7 @@
+#include "lib/mstring.h"
+
+handler DHTData {
+  virtual void dhtContainsKeyResult(const MaceKey& key, bool result) { }
+  virtual void dhtGetResult(const MaceKey& key, const mace::string& value, 
+			    bool found) { }
+}; // DHTDataHandler

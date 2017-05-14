@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.error.SemanticError>
+   <DynamicError>Top level sequence cannot contain mixed content: (1 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;String/&gt;
+)</DynamicError>
+</onyx.error.SemanticError>

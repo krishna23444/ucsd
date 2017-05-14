@@ -1,0 +1,73 @@
+<meta name="generator" content="Namo WebEditor v6.0">
+<style type="text/css">
+<!--
+.style9 {
+	font-size: 36px;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+.style11 {font-size: 20px; font-family: Verdana, Arial, Helvetica, sans-serif;}
+.style15 {font-size: 36px; font-family: Verdana, Arial, Helvetica, sans-serif; }
+.style17 {font-family: Verdana, Arial, Helvetica, sans-serif}
+.style18 {
+	color: #000099;
+	font-size: 20px;
+}
+.style19 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #000099;
+	font-size: 20px;
+}
+.style21 {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 18px;
+}
+.style22 {font-size: 20px; font-family: Geneva, Arial, Helvetica, sans-serif; }
+.style24 {font-family: Verdana, Arial, Helvetica, sans-serif; font-weight: bold; }
+.style25 {font-size: 20px}
+-->
+</style>
+<p class="style9"><a name="top"></a> <span class="style24">Q&amp;A for Lab 4</span></p>
+<p class="style15">Part I General Info </p>
+<p class="style11">1. <a href="05_18_05.ppt">Slides for 5/18 discussion session</a></p>
+<p class="style11">2. <a href="Lab4Tut.htm">Tutorials for Lab4</a></p>
+<p class="style15">Part II Q and A </p>
+<ol>
+    <li>
+        <h3 class="style19">How does a bus tap connect wires?</h3>
+    </li>
+    <p class="style22">A bus tap starts a branch from a bus. Conceptually bus tap doesn't connect wires, but extends some wires from a bus. Therefore the branch must be a subset of the source bus,&nbsp;and they must have the same name. Here are some examples. The left two are correct, but the last one is wrong. </p>
+    <p class="style22"><img src="qa_imgs/tap1.jpg" width="290" height="200" border="0"><img src="qa_imgs/tap2.jpg" width="290" height="200" border="0"><img src="qa_imgs/tap3.jpg" width="290" height="200" border="0"></p>
+    <p class="style22">To verify a bus tap, double click the bus tap, an object properties window will pop up. Check the names of connected nets. </p>
+    <p class="style22"><img src="qa_imgs/tapprop.jpg" width="479" height="387" border="0"></p>
+    <p class="style22">Because we cannot change wire name by bus tap, we use buffer BUF to connect two nets with different names. BUF has one single input and one single output, the output value always equals the input value. The following figure shows an example to let&nbsp;a single control signal drive the wires in a bus. </p>
+    <p class="style22"><img src="qa_imgs/c2bus.jpg" width="797" height="300" border="0"></p>
+    <li>
+        <h3 class="style19">How to create a bus from a wire?</h3>
+    </li>
+    <p class="style22">Xilinx tool let you create multiple instances of wire or element in a bundle. First let's create a bus from a single wire. Add a wire to&nbsp;the canvas:</p>
+    <p class="style22"><img src="qa_imgs/mulinst1.jpg" width="480" height="263" border="0"></p>
+    <p class="style22">Add the wire name w(4:0). you will see that the single wire becomes to a bus. </p>
+    <p class="style22"><img src="qa_imgs/mulinst2.jpg" width="480" height="263" border="0"></p>
+    <p class="style22">We can also create a bundle of elements. Add&nbsp;a BUF to&nbsp;the canvas:</p>
+    <p class="style22"><img src="qa_imgs/mulinst3.jpg" width="480" height="263" border="0"></p>
+    <p class="style22">Double click on the BUF, change the InstName to buf_in(4:0).</p>
+    <p class="style22"><img src="qa_imgs/mulinst4.jpg" width="479" height="387" border="0"></p>
+    <p class="style22">Then you will see that the single buffer becomes to multiple instances.</p>
+    <p class="style22"><img src="qa_imgs/mulinst5.jpg" width="480" height="263" border="0"></p>
+    <p class="style22">Finally you can add a bus at the output, and name it as v(4:0).</p>
+    <p class="style22"><img src="qa_imgs/mulinst6.jpg" width="480" height="263" border="0"></p>
+</ol>
+<ol start="3">
+    <li>
+        <h3 class="style19">How to check my design?</h3>
+    </li>
+</ol>
+<ol>
+    <p class="style22">Every time when you finish a schematic diagram, I recommand you check the design by &quot;Check Design Rules&quot;. Click on the design file in sources windows.&nbsp;</p>
+    <p class="style22"><img src="qa_imgs/designcheck.jpg" width="310" height="205" border="0"></p>
+    <p class="style22">In the Process View window you will find &quot;Check Design Rules&quot; in the Design Utilities category.</p>
+    <p class="style22"><img src="qa_imgs/designcheck2.jpg" width="310" height="208" border="0"></p>
+    <p class="style22">Double click on &quot;Check Design Rules&quot;, you will see the report in the messages windows. </p>
+    <p class="style22"><img src="qa_imgs/designcheck3.jpg" width="810" height="166" border="0"></p>
+    <p class="style22">&nbsp;</p>
+</ol>

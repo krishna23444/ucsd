@@ -1,0 +1,1391 @@
+# xst flow : RunXST
+datapath_summary.html
+# xst flow : RunXST
+datapath_summary.html
+# Schematic : View HDL Functional Model
+datapath.vhf
+datapath.cmd_log
+# Schematic : View HDL Functional Model
+memory16x8.vhf
+memory16x8.cmd_log
+# Schematic : View HDL Functional Model
+Mux5_3.vhf
+Mux5_3.cmd_log
+# XST (Creating Lso File) : 
+Mux5_3.lso
+# Check Syntax
+Mux5_3.stx
+# Schematic : View HDL Functional Model
+program_counter.vhf
+program_counter.cmd_log
+# XST (Creating Lso File) : 
+program_counter.lso
+# Check Syntax
+program_counter.stx
+# Schematic : PDCL (jhdparse)
+__projnav/Mux2_5bus_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/Mux3_5bus_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/Mux3_5bus_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/Mux3_5bus_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/Mux3_5bus_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/Mux3_5bus_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/Mux3_5bus_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+Mux3_5bus.vhf
+Mux3_5bus.cmd_log
+# XST (Creating Lso File) : 
+Mux3_5bus.lso
+# Check Syntax
+Mux3_5bus.stx
+# Schematic : PDCL (jhdparse)
+__projnav/Mux3_5bus_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/Mux3_5bus_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/Mux3_5bus_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+Mux3_5bus.vhf
+Mux3_5bus.cmd_log
+# XST (Creating Lso File) : 
+Mux3_5bus.lso
+# Check Syntax
+Mux3_5bus.stx
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+datapath.vhf
+datapath.cmd_log
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+datapath.vhf
+datapath.cmd_log
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+datapath.vhf
+datapath.cmd_log
+# Schematic : View HDL Functional Model
+datapath.vhf
+datapath.cmd_log
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+datapath.vhf
+datapath.cmd_log
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+datapath.vhf
+datapath.cmd_log
+# Schematic : View HDL Functional Model
+Mask5.vhf
+Mask5.cmd_log
+# XST (Creating Lso File) : 
+datapath.lso
+# Check Syntax
+datapath.stx
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+datapath.vhf
+datapath.cmd_log
+# XST (Creating Lso File) : 
+datapath.lso
+# Check Syntax
+datapath.stx
+# Schematic : PDCL (jhdparse)
+__projnav/memory16x8_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+memory16x8.vhf
+memory16x8.cmd_log
+# Schematic : PDCL (jhdparse)
+__projnav/memory16x8_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+Mux2_5bus.vhf
+Mux2_5bus.cmd_log
+# XST (Creating Lso File) : 
+Mux2_5bus.lso
+# Check Syntax
+Mux2_5bus.stx
+# Schematic : View HDL Functional Model
+memory16x8.vhf
+memory16x8.cmd_log
+# XST (Creating Lso File) : 
+memory16x8.lso
+# Check Syntax
+memory16x8.stx
+# Schematic : PDCL (jhdparse)
+__projnav/register_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/register_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/register_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/register_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/register_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/register5_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+register5.vhf
+register5.cmd_log
+# XST (Creating Lso File) : 
+register5.lso
+# Check Syntax
+register5.stx
+# Schematic : PDCL (jhdparse)
+__projnav/register5_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/register5_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/regs_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/regs_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/regs_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/regs_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/regs_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/regs_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/regs_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/regs_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/regs_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+regs.vhf
+regs.cmd_log
+# Schematic : View HDL Functional Model
+register5.vhf
+register5.cmd_log
+# XST (Creating Lso File) : 
+regs.lso
+# Check Syntax
+regs.stx
+# Schematic : PDCL (jhdparse)
+__projnav/regs_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+regs.vhf
+regs.cmd_log
+# XST (Creating Lso File) : 
+regs.lso
+# Check Syntax
+regs.stx
+# Schematic : PDCL (jhdparse)
+__projnav/regs_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+regs.vhf
+regs.cmd_log
+# XST (Creating Lso File) : 
+regs.lso
+# Check Syntax
+regs.stx
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+datapath.vhf
+datapath.cmd_log
+# XST (Creating Lso File) : 
+datapath.lso
+# Check Syntax
+datapath.stx
+# Schematic : PDCL (jhdparse)
+__projnav/machine_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/pcounter_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+pcounter.vhf
+pcounter.cmd_log
+# XST (Creating Lso File) : 
+pcounter.lso
+# Check Syntax
+pcounter.stx
+# Schematic : PDCL (jhdparse)
+__projnav/machine_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/machine_jhdparse_tcl.rsp
+# VHDL : Create Schematic Symbol
+__projnav/tb.rsp
+__projnav/vhd2spl.err
+# Schematic : PDCL (jhdparse)
+__projnav/machine_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+machine.vhf
+machine.cmd_log
+# XST (Creating Lso File) : 
+machine.lso
+# Check Syntax
+machine.stx
+# Check Syntax
+machine.stx
+# Check Syntax
+machine.stx
+# Check Syntax
+machine.stx
+# xst flow : RunXST
+machine_summary.html
+# Schematic : View HDL Functional Model
+machine.vhf
+machine.cmd_log
+# Schematic : View HDL Functional Model
+datapath.vhf
+datapath.cmd_log
+# Schematic : View HDL Functional Model
+Mask5.vhf
+Mask5.cmd_log
+# Schematic : View HDL Functional Model
+Mux3_5bus.vhf
+Mux3_5bus.cmd_log
+# Schematic : View HDL Functional Model
+regs.vhf
+regs.cmd_log
+# Schematic : View HDL Functional Model
+register5.vhf
+register5.cmd_log
+# Schematic : View HDL Functional Model
+Mux2_5bus.vhf
+Mux2_5bus.cmd_log
+# Schematic : View HDL Functional Model
+pcounter.vhf
+pcounter.cmd_log
+# Schematic : View HDL Functional Model
+memory16x8.vhf
+memory16x8.cmd_log
+# XST (Creating Lso File) : 
+machine.lso
+# Check Syntax
+machine.stx
+# Check Syntax
+machine.stx
+# Check Syntax
+machine.stx
+# Check Syntax
+machine.stx
+# Check Syntax
+machine.stx
+# Check Syntax
+machine.stx
+# Check Syntax
+machine.stx
+# Check Syntax
+machine.stx
+# Check Syntax
+machine.stx
+# VHDL : Create Schematic Symbol
+__projnav/tb.rsp
+__projnav/vhd2spl.err
+# VHDL : Create Schematic Symbol
+__projnav/tb.rsp
+__projnav/vhd2spl.err
+# VHDL : Create Schematic Symbol
+__projnav/tb.rsp
+__projnav/vhd2spl.err
+# VHDL : Create Schematic Symbol
+__projnav/tb.rsp
+__projnav/vhd2spl.err
+# Schematic : PDCL (jhdparse)
+__projnav/machine_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/machine_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/machine_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/machine_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+machine.vhf
+machine.cmd_log
+# XST (Creating Lso File) : 
+machine.lso
+# Check Syntax
+machine.stx
+# XST (Creating Lso File) : 
+machine.lso
+# Check Syntax
+machine.stx
+# XST (Creating Lso File) : 
+machine.lso
+# Check Syntax
+machine.stx
+# Schematic : PDCL (jhdparse)
+__projnav/memory16x8_jhdparse_tcl.rsp
+# Bencher : Creating project file
+mach_test_bencher.prj
+# ProjNav -> New Source -> TBW
+mach_test.vhw
+mach_test.ano
+mach_test.tfw
+mach_test.ant
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# Schematic : View HDL Functional Model
+memory16x8.vhf
+memory16x8.cmd_log
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Update Bencher Waveform
+__projnav/updateTBW_tcl.rsp
+mach_test.vhw
+mach_test.ano
+mach_test.tfw
+mach_test.ant
+# ModelSim : Generate Expected Simulation Results
+mach_test.ado
+mach_test.ano
+# Bencher : Creating project file
+mach_test_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Schematic : PDCL (jhdparse)
+__projnav/machine_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/machine_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+machine.vhf
+machine.cmd_log
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Update Bencher Waveform
+__projnav/updateTBW_tcl.rsp
+mach_test.vhw
+mach_test.ano
+mach_test.tfw
+mach_test.ant
+# XST (Creating Lso File) : 
+machine.lso
+# xst flow : RunXST
+machine_summary.html
+# xst flow : RunXST
+machine.syr
+machine.prj
+machine.sprj
+machine.ana
+machine.stx
+machine.cmd_log
+machine.ngc
+machine.ngr
+# Implmentation : Translate
+__projnav/ednTOngd_tcl.rsp
+"g:\xilinx\projects\lab4/_ngo"
+machine.ngd
+machine_ngdbuild.nav
+machine.bld
+.untf
+machine.cmd_log
+# Implementation : Map
+machine_summary.html
+# Implementation : Map
+machine_map.ncd
+machine.ngm
+machine.pcf
+machine.nc1
+machine.mrp
+machine_map.mrp
+machine.mdf
+machine.cmd_log
+MAP_NO_GUIDE_FILE_CPF "machine"
+machine_map.ngm
+# Implmentation : Post-Place & Route Timing
+__projnav/ncdTOtwr_tcl.rsp
+machine.twr
+machine.twx
+machine.tsi
+machine.cmd_log
+# Implementation : Place & Route
+machine_summary.html
+# Implmentation : Place & Route
+__projnav/nc1TOncd_tcl.rsp
+machine.ncd
+machine.par
+machine.pad
+machine_pad.txt
+machine_pad.csv
+machine.pad_txt
+machine.dly
+reportgen.log
+machine.xpi
+machine.grf
+machine.itr
+machine_last_par.ncd
+machine.placed_ncd_tracker
+machine.routed_ncd_tracker
+machine.cmd_log
+PAR_NO_GUIDE_FILE_CPF "machine"
+# Implementation : Generate Post-Place & Route Simulation Model
+machine_timesim.vhd
+machine_timesim.nlf
+machine.vhdsim_par
+machine.par_nlf
+machine.cmd_log
+machine_timesim.vhd
+machine_timesim.sdf
+machine_timesim.sdf
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+mach_test.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+mach_test.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# VHDL : Create Schematic Symbol
+__projnav/tb.rsp
+__projnav/vhd2spl.err
+# Schematic : View HDL Functional Model
+datapath.vhf
+datapath.cmd_log
+# XST (Creating Lso File) : 
+machine.lso
+# Check Syntax
+machine.stx
+machine.ngc
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+datapath.vhf
+datapath.cmd_log
+# XST (Creating Lso File) : 
+machine.lso
+# Check Syntax
+machine.stx
+machine.ngc
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Schematic : PDCL (jhdparse)
+__projnav/machine_jhdparse_tcl.rsp
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# Schematic : View HDL Functional Model
+machine.vhf
+machine.cmd_log
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Update Bencher Waveform
+__projnav/updateTBW_tcl.rsp
+mach_test.vhw
+mach_test.ano
+mach_test.tfw
+mach_test.ant
+# ModelSim : Generate Expected Simulation Results
+mach_test.ado
+mach_test.ano
+# Bencher : Creating project file
+mach_test_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+mach_test.ado
+mach_test.ano
+# Bencher : Creating project file
+mach_test_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# XST (Creating Lso File) : 
+machine.lso
+# xst flow : RunXST
+machine_summary.html
+# xst flow : RunXST
+machine.syr
+machine.prj
+machine.sprj
+machine.ana
+machine.stx
+machine.cmd_log
+machine.ngc
+machine.ngr
+# Implmentation : Translate
+__projnav/ednTOngd_tcl.rsp
+"g:\xilinx\projects\lab4/_ngo"
+machine.ngd
+machine_ngdbuild.nav
+machine.bld
+.untf
+machine.cmd_log
+# Implementation : Map
+machine_summary.html
+# Implementation : Map
+machine_map.ncd
+machine.ngm
+machine.pcf
+machine.nc1
+machine.mrp
+machine_map.mrp
+machine.mdf
+machine.cmd_log
+MAP_NO_GUIDE_FILE_CPF "machine"
+machine_map.ngm
+# Implmentation : Post-Place & Route Timing
+__projnav/ncdTOtwr_tcl.rsp
+machine.twr
+machine.twx
+machine.tsi
+machine.cmd_log
+# Implementation : Place & Route
+machine_summary.html
+# Implmentation : Place & Route
+__projnav/nc1TOncd_tcl.rsp
+machine.ncd
+machine.par
+machine.pad
+machine_pad.txt
+machine_pad.csv
+machine.pad_txt
+machine.dly
+reportgen.log
+machine.xpi
+machine.grf
+machine.itr
+machine_last_par.ncd
+machine.placed_ncd_tracker
+machine.routed_ncd_tracker
+machine.cmd_log
+PAR_NO_GUIDE_FILE_CPF "machine"
+# Implementation : Generate Post-Place & Route Simulation Model
+machine_timesim.vhd
+machine_timesim.nlf
+machine.vhdsim_par
+machine.par_nlf
+machine.cmd_log
+machine_timesim.vhd
+machine_timesim.sdf
+machine_timesim.sdf
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+mach_test.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+mach_test.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+mach_test.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+mach_test.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Schematic : PDCL (jhdparse)
+__projnav/Mux3_5bus_v2_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/Mux3_5bus_v2_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/Mux3_5bus_v2_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/Mux3_5bus_v2_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+datapath.vhf
+datapath.cmd_log
+# Schematic : View HDL Functional Model
+Mux3_5bus_v2.vhf
+Mux3_5bus_v2.cmd_log
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Update Bencher Waveform
+__projnav/updateTBW_tcl.rsp
+mach_test.vhw
+mach_test.ano
+mach_test.tfw
+mach_test.ant
+# XST (Creating Lso File) : 
+machine.lso
+# xst flow : RunXST
+machine_summary.html
+# xst flow : RunXST
+machine.syr
+machine.prj
+machine.sprj
+machine.ana
+machine.stx
+machine.cmd_log
+machine.ngc
+machine.ngr
+# Implmentation : Translate
+__projnav/ednTOngd_tcl.rsp
+"g:\xilinx\projects\lab4/_ngo"
+machine.ngd
+machine_ngdbuild.nav
+machine.bld
+.untf
+machine.cmd_log
+# Implementation : Map
+machine_summary.html
+# Implementation : Map
+machine_map.ncd
+machine.ngm
+machine.pcf
+machine.nc1
+machine.mrp
+machine_map.mrp
+machine.mdf
+machine.cmd_log
+MAP_NO_GUIDE_FILE_CPF "machine"
+machine_map.ngm
+# Implmentation : Post-Place & Route Timing
+__projnav/ncdTOtwr_tcl.rsp
+machine.twr
+machine.twx
+machine.tsi
+machine.cmd_log
+# Implementation : Place & Route
+machine_summary.html
+# Implmentation : Place & Route
+__projnav/nc1TOncd_tcl.rsp
+machine.ncd
+machine.par
+machine.pad
+machine_pad.txt
+machine_pad.csv
+machine.pad_txt
+machine.dly
+reportgen.log
+machine.xpi
+machine.grf
+machine.itr
+machine_last_par.ncd
+machine.placed_ncd_tracker
+machine.routed_ncd_tracker
+machine.cmd_log
+PAR_NO_GUIDE_FILE_CPF "machine"
+# Implementation : Generate Post-Place & Route Simulation Model
+machine_timesim.vhd
+machine_timesim.nlf
+machine.vhdsim_par
+machine.par_nlf
+machine.cmd_log
+machine_timesim.vhd
+machine_timesim.sdf
+machine_timesim.sdf
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+mach_test.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+mach_test.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+mach_test.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+mach_test.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Schematic : View HDL Functional Model
+datapath.vhf
+datapath.cmd_log
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Update Bencher Waveform
+__projnav/updateTBW_tcl.rsp
+mach_test.vhw
+mach_test.ano
+mach_test.tfw
+mach_test.ant
+# ModelSim : Generate Expected Simulation Results
+mach_test.ado
+mach_test.ano
+# Bencher : Creating project file
+mach_test_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# XST (Creating Lso File) : 
+machine.lso
+# xst flow : RunXST
+machine_summary.html
+# xst flow : RunXST
+machine.syr
+machine.prj
+machine.sprj
+machine.ana
+machine.stx
+machine.cmd_log
+machine.ngc
+machine.ngr
+# Implmentation : Translate
+__projnav/ednTOngd_tcl.rsp
+"g:\xilinx\projects\lab4/_ngo"
+machine.ngd
+machine_ngdbuild.nav
+machine.bld
+.untf
+machine.cmd_log
+# Implementation : Map
+machine_summary.html
+# Implementation : Map
+machine_map.ncd
+machine.ngm
+machine.pcf
+machine.nc1
+machine.mrp
+machine_map.mrp
+machine.mdf
+machine.cmd_log
+MAP_NO_GUIDE_FILE_CPF "machine"
+machine_map.ngm
+# Implmentation : Post-Place & Route Timing
+__projnav/ncdTOtwr_tcl.rsp
+machine.twr
+machine.twx
+machine.tsi
+machine.cmd_log
+# Implementation : Place & Route
+machine_summary.html
+# Implmentation : Place & Route
+__projnav/nc1TOncd_tcl.rsp
+machine.ncd
+machine.par
+machine.pad
+machine_pad.txt
+machine_pad.csv
+machine.pad_txt
+machine.dly
+reportgen.log
+machine.xpi
+machine.grf
+machine.itr
+machine_last_par.ncd
+machine.placed_ncd_tracker
+machine.routed_ncd_tracker
+machine.cmd_log
+PAR_NO_GUIDE_FILE_CPF "machine"
+# Implementation : Generate Post-Place & Route Simulation Model
+machine_timesim.vhd
+machine_timesim.nlf
+machine.vhdsim_par
+machine.par_nlf
+machine.cmd_log
+machine_timesim.vhd
+machine_timesim.sdf
+machine_timesim.sdf
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+mach_test.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+mach_test.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Schematic : PDCL (jhdparse)
+__projnav/Mux3_5bus_v2_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+Mux3_5bus_v2.vhf
+Mux3_5bus_v2.cmd_log
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Update Bencher Waveform
+__projnav/updateTBW_tcl.rsp
+mach_test.vhw
+mach_test.ano
+mach_test.tfw
+mach_test.ant
+# XST (Creating Lso File) : 
+machine.lso
+# xst flow : RunXST
+machine_summary.html
+# xst flow : RunXST
+machine.syr
+machine.prj
+machine.sprj
+machine.ana
+machine.stx
+machine.cmd_log
+machine.ngc
+machine.ngr
+# Implmentation : Translate
+__projnav/ednTOngd_tcl.rsp
+"g:\xilinx\projects\lab4/_ngo"
+machine.ngd
+machine_ngdbuild.nav
+machine.bld
+.untf
+machine.cmd_log
+# Implementation : Map
+machine_summary.html
+# Implementation : Map
+machine_map.ncd
+machine.ngm
+machine.pcf
+machine.nc1
+machine.mrp
+machine_map.mrp
+machine.mdf
+machine.cmd_log
+MAP_NO_GUIDE_FILE_CPF "machine"
+machine_map.ngm
+# Implmentation : Post-Place & Route Timing
+__projnav/ncdTOtwr_tcl.rsp
+machine.twr
+machine.twx
+machine.tsi
+machine.cmd_log
+# Implementation : Place & Route
+machine_summary.html
+# Implmentation : Place & Route
+__projnav/nc1TOncd_tcl.rsp
+machine.ncd
+machine.par
+machine.pad
+machine_pad.txt
+machine_pad.csv
+machine.pad_txt
+machine.dly
+reportgen.log
+machine.xpi
+machine.grf
+machine.itr
+machine_last_par.ncd
+machine.placed_ncd_tracker
+machine.routed_ncd_tracker
+machine.cmd_log
+PAR_NO_GUIDE_FILE_CPF "machine"
+# Implementation : Generate Post-Place & Route Simulation Model
+machine_timesim.vhd
+machine_timesim.nlf
+machine.vhdsim_par
+machine.par_nlf
+machine.cmd_log
+machine_timesim.vhd
+machine_timesim.sdf
+machine_timesim.sdf
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+mach_test.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+mach_test.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Update Bencher Waveform
+__projnav/updateTBW_tcl.rsp
+mach_test.vhw
+mach_test.ano
+mach_test.tfw
+mach_test.ant
+# XST (Creating Lso File) : 
+machine.lso
+# xst flow : RunXST
+machine_summary.html
+# xst flow : RunXST
+machine.syr
+machine.prj
+machine.sprj
+machine.ana
+machine.stx
+machine.cmd_log
+machine.ngc
+machine.ngr
+# Implmentation : Translate
+__projnav/ednTOngd_tcl.rsp
+"g:\xilinx\projects\lab4/_ngo"
+machine.ngd
+machine_ngdbuild.nav
+machine.bld
+.untf
+machine.cmd_log
+# Implementation : Map
+machine_summary.html
+# Implementation : Map
+machine_map.ncd
+machine.ngm
+machine.pcf
+machine.nc1
+machine.mrp
+machine_map.mrp
+machine.mdf
+machine.cmd_log
+MAP_NO_GUIDE_FILE_CPF "machine"
+machine_map.ngm
+# Implmentation : Post-Place & Route Timing
+__projnav/ncdTOtwr_tcl.rsp
+machine.twr
+machine.twx
+machine.tsi
+machine.cmd_log
+# Implementation : Place & Route
+machine_summary.html
+# Implmentation : Place & Route
+__projnav/nc1TOncd_tcl.rsp
+machine.ncd
+machine.par
+machine.pad
+machine_pad.txt
+machine_pad.csv
+machine.pad_txt
+machine.dly
+reportgen.log
+machine.xpi
+machine.grf
+machine.itr
+machine_last_par.ncd
+machine.placed_ncd_tracker
+machine.routed_ncd_tracker
+machine.cmd_log
+PAR_NO_GUIDE_FILE_CPF "machine"
+# Implementation : Generate Post-Place & Route Simulation Model
+machine_timesim.vhd
+machine_timesim.nlf
+machine.vhdsim_par
+machine.par_nlf
+machine.cmd_log
+machine_timesim.vhd
+machine_timesim.sdf
+machine_timesim.sdf
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+mach_test.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+mach_test.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Schematic : PDCL (jhdparse)
+__projnav/memory16x8_jhdparse_tcl.rsp
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Schematic : View HDL Functional Model
+memory16x8.vhf
+memory16x8.cmd_log
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Update Bencher Waveform
+__projnav/updateTBW_tcl.rsp
+mach_test.vhw
+mach_test.ano
+mach_test.tfw
+mach_test.ant
+# XST (Creating Lso File) : 
+machine.lso
+# xst flow : RunXST
+machine_summary.html
+# xst flow : RunXST
+machine.syr
+machine.prj
+machine.sprj
+machine.ana
+machine.stx
+machine.cmd_log
+machine.ngc
+machine.ngr
+# Implmentation : Translate
+__projnav/ednTOngd_tcl.rsp
+"g:\xilinx\projects\lab4/_ngo"
+machine.ngd
+machine_ngdbuild.nav
+machine.bld
+.untf
+machine.cmd_log
+# Implementation : Map
+machine_summary.html
+# Implementation : Map
+machine_map.ncd
+machine.ngm
+machine.pcf
+machine.nc1
+machine.mrp
+machine_map.mrp
+machine.mdf
+machine.cmd_log
+MAP_NO_GUIDE_FILE_CPF "machine"
+machine_map.ngm
+# Implmentation : Post-Place & Route Timing
+__projnav/ncdTOtwr_tcl.rsp
+machine.twr
+machine.twx
+machine.tsi
+machine.cmd_log
+# Implementation : Place & Route
+machine_summary.html
+# Implmentation : Place & Route
+__projnav/nc1TOncd_tcl.rsp
+machine.ncd
+machine.par
+machine.pad
+machine_pad.txt
+machine_pad.csv
+machine.pad_txt
+machine.dly
+reportgen.log
+machine.xpi
+machine.grf
+machine.itr
+machine_last_par.ncd
+machine.placed_ncd_tracker
+machine.routed_ncd_tracker
+machine.cmd_log
+PAR_NO_GUIDE_FILE_CPF "machine"
+# Implementation : Generate Post-Place & Route Simulation Model
+machine_timesim.vhd
+machine_timesim.nlf
+machine.vhdsim_par
+machine.par_nlf
+machine.cmd_log
+machine_timesim.vhd
+machine_timesim.sdf
+machine_timesim.sdf
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+mach_test.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+mach_test.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# XST (Creating Lso File) : 
+truthtbl.lso
+# xst flow : RunXST
+truthtbl_summary.html
+# xst flow : RunXST
+truthtbl.syr
+truthtbl.prj
+truthtbl.sprj
+truthtbl.ana
+truthtbl.stx
+truthtbl.cmd_log
+truthtbl.ngc
+truthtbl.ngr
+# Implmentation : Translate
+__projnav/ednTOngd_tcl.rsp
+"g:\xilinx\projects\lab4/_ngo"
+truthtbl.ngd
+truthtbl_ngdbuild.nav
+truthtbl.bld
+.untf
+truthtbl.cmd_log
+# Implementation : Map
+truthtbl_summary.html
+# Implementation : Map
+truthtbl_map.ncd
+truthtbl.ngm
+truthtbl.pcf
+truthtbl.nc1
+truthtbl.mrp
+truthtbl_map.mrp
+truthtbl.mdf
+truthtbl.cmd_log
+MAP_NO_GUIDE_FILE_CPF "truthtbl"
+truthtbl_map.ngm
+# Implmentation : Post-Place & Route Timing
+__projnav/ncdTOtwr_tcl.rsp
+truthtbl.twr
+truthtbl.twx
+truthtbl.tsi
+truthtbl.cmd_log
+# Implementation : Place & Route
+truthtbl_summary.html
+# Implmentation : Place & Route
+__projnav/nc1TOncd_tcl.rsp
+truthtbl.ncd
+truthtbl.par
+truthtbl.pad
+truthtbl_pad.txt
+truthtbl_pad.csv
+truthtbl.pad_txt
+truthtbl.dly
+reportgen.log
+truthtbl.xpi
+truthtbl.grf
+truthtbl.itr
+truthtbl_last_par.ncd
+truthtbl.placed_ncd_tracker
+truthtbl.routed_ncd_tracker
+truthtbl.cmd_log
+PAR_NO_GUIDE_FILE_CPF "truthtbl"
+# Implmentation : View/Edit Placed Design (Floorplanner)
+truthtbl.mfp
+# Implmentation : View/Edit Placed Design (Floorplanner)
+machine.mfp
+# xst flow : RunXST
+machine_summary.html
+# Implmentation : View/Edit Placed Design (Floorplanner)
+machine.mfp
+# Implmentation : View/Edit Placed Design (Floorplanner)
+truthtbl.mfp
+# Bencher : Creating project file
+mach_test_bencher.prj
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# xst flow : RunXST
+machine_summary.html
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+mach_test.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+mach_test.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Schematic : PDCL (jhdparse)
+__projnav/memory16x8_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+memory16x8.vhf
+memory16x8.cmd_log
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Update Bencher Waveform
+__projnav/updateTBW_tcl.rsp
+mach_test.vhw
+mach_test.ano
+mach_test.tfw
+mach_test.ant
+# ModelSim : Generate Expected Simulation Results
+mach_test.ado
+mach_test.ano
+# Bencher : Creating project file
+mach_test_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# XST (Creating Lso File) : 
+machine.lso
+# xst flow : RunXST
+machine_summary.html
+# xst flow : RunXST
+machine.syr
+machine.prj
+machine.sprj
+machine.ana
+machine.stx
+machine.cmd_log
+truthtbl.ngc
+machine.ngc
+truthtbl.ngr
+machine.ngr
+# Implmentation : Translate
+__projnav/ednTOngd_tcl.rsp
+"g:\xilinx\projects\lab4/_ngo"
+machine.ngd
+machine_ngdbuild.nav
+machine.bld
+.untf
+machine.cmd_log
+# Implementation : Map
+machine_summary.html
+# Implementation : Map
+machine_map.ncd
+machine.ngm
+machine.pcf
+machine.nc1
+machine.mrp
+machine_map.mrp
+machine.mdf
+machine.cmd_log
+MAP_NO_GUIDE_FILE_CPF "machine"
+machine_map.ngm
+# Implmentation : Post-Place & Route Timing
+__projnav/ncdTOtwr_tcl.rsp
+machine.twr
+machine.twx
+machine.tsi
+machine.cmd_log
+# Implementation : Place & Route
+machine_summary.html
+# Implmentation : Place & Route
+__projnav/nc1TOncd_tcl.rsp
+machine.ncd
+machine.par
+machine.pad
+machine_pad.txt
+machine_pad.csv
+machine.pad_txt
+machine.dly
+reportgen.log
+machine.xpi
+machine.grf
+machine.itr
+machine_last_par.ncd
+machine.placed_ncd_tracker
+machine.routed_ncd_tracker
+machine.cmd_log
+PAR_NO_GUIDE_FILE_CPF "machine"
+# Implementation : Generate Post-Place & Route Simulation Model
+machine_timesim.vhd
+machine_timesim.nlf
+machine.vhdsim_par
+machine.par_nlf
+machine.cmd_log
+machine_timesim.vhd
+machine_timesim.sdf
+machine_timesim.sdf
+# Bencher : Creating project file
+mach_test_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+mach_test.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+mach_test.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# xst flow : RunXST
+machine_summary.html
+# Schematic : PDCL (jhdparse)
+__projnav/machine_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+machine.vhf
+machine.cmd_log
+# XST (Creating Lso File) : 
+machine.lso
+# xst flow : RunXST
+machine_summary.html
+# xst flow : RunXST
+machine.syr
+machine.prj
+machine.sprj
+machine.ana
+machine.stx
+machine.cmd_log
+truthtbl.ngc
+machine.ngc
+truthtbl.ngr
+machine.ngr
+# Implmentation : Translate
+__projnav/ednTOngd_tcl.rsp
+"g:\xilinx\projects\lab4/_ngo"
+machine.ngd
+machine_ngdbuild.nav
+machine.bld
+.untf
+machine.cmd_log
+# Implementation : Map
+machine_summary.html
+# Implementation : Map
+machine_map.ncd
+machine.ngm
+machine.pcf
+machine.nc1
+machine.mrp
+machine_map.mrp
+machine.mdf
+machine.cmd_log
+MAP_NO_GUIDE_FILE_CPF "machine"
+machine_map.ngm
+# Implmentation : Post-Place & Route Timing
+__projnav/ncdTOtwr_tcl.rsp
+machine.twr
+machine.twx
+machine.tsi
+machine.cmd_log
+# Implementation : Place & Route
+machine_summary.html
+# Implmentation : Place & Route
+__projnav/nc1TOncd_tcl.rsp
+machine.ncd
+machine.par
+machine.pad
+machine_pad.txt
+machine_pad.csv
+machine.pad_txt
+machine.dly
+reportgen.log
+machine.xpi
+machine.grf
+machine.itr
+machine_last_par.ncd
+machine.placed_ncd_tracker
+machine.routed_ncd_tracker
+machine.cmd_log
+PAR_NO_GUIDE_FILE_CPF "machine"
+# Implmentation : Post-Place & Route Timing
+__projnav/ncdTOtwr_tcl.rsp
+machine.twr
+machine.twx
+machine.tsi
+machine.cmd_log
+# Schematic : PDCL (jhdparse)
+__projnav/memory16x8_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/regs_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/datapath_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/Mux3_5bus_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/machine_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/Mux3_5bus_v2_jhdparse_tcl.rsp
+# xst flow : RunXST
+machine_summary.html
+# Schematic : PDCL (jhdparse)
+__projnav/memory16x8_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/register5_jhdparse_tcl.rsp
+# Bencher : Creating project file
+mach_test_bencher.prj

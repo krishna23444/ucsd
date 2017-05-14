@@ -1,0 +1,995 @@
+%!PS-Adobe-3.0
+%%BoundingBox: 24 24 588 768
+%%Title: Enscript Output
+%%For: Calvin Hubble
+%%Creator: GNU enscript 1.6.1
+%%CreationDate: Tue Jan 16 20:15:22 2007
+%%Orientation: Landscape
+%%Pages: (atend)
+%%DocumentMedia: Letter 612 792 0 () ()
+%%DocumentNeededResources: (atend)
+%%EndComments
+%%BeginProlog
+%%BeginResource: procset Enscript-Prolog 1.6 1
+%
+% Procedures.
+%
+
+/_S {	% save current state
+  /_s save def
+} def
+/_R {	% restore from saved state
+  _s restore
+} def
+
+/S {	% showpage protecting gstate
+  gsave
+  showpage
+  grestore
+} bind def
+
+/MF {	% fontname newfontname -> -	make a new encoded font
+  /newfontname exch def
+  /fontname exch def
+
+  /fontdict fontname findfont def
+  /newfont fontdict maxlength dict def
+
+  fontdict {
+    exch
+    dup /FID eq {
+      % skip FID pair
+      pop pop
+    } {
+      % copy to the new font dictionary
+      exch newfont 3 1 roll put
+    } ifelse
+  } forall
+
+  newfont /FontName newfontname put
+
+  % insert only valid encoding vectors
+  encoding_vector length 256 eq {
+    newfont /Encoding encoding_vector put
+  } if
+
+  newfontname newfont definefont pop
+} def
+
+/SF { % fontname width height -> -	set a new font
+  /height exch def
+  /width exch def
+
+  findfont
+  [width 0 0 height 0 0] makefont setfont
+} def
+
+/SUF { % fontname width height -> -	set a new user font
+  /height exch def
+  /width exch def
+
+  /F-gs-user-font MF
+  /F-gs-user-font width height SF
+} def
+
+/M {moveto} bind def
+/s {show} bind def
+
+/Box {	% x y w h -> -			define box path
+  /d_h exch def /d_w exch def /d_y exch def /d_x exch def
+  d_x d_y  moveto
+  d_w 0 rlineto
+  0 d_h rlineto
+  d_w neg 0 rlineto
+  closepath
+} def
+
+/bgs {	% x y height blskip gray str -> -	show string with bg color
+  /str exch def
+  /gray exch def
+  /blskip exch def
+  /height exch def
+  /y exch def
+  /x exch def
+
+  gsave
+    x y blskip sub str stringwidth pop height Box
+    gray setgray
+    fill
+  grestore
+  x y M str s
+} def
+
+% Highlight bars.
+/highlight_bars {	% nlines lineheight output_y_margin gray -> -
+  gsave
+    setgray
+    /ymarg exch def
+    /lineheight exch def
+    /nlines exch def
+
+    % This 2 is just a magic number to sync highlight lines to text.
+    0 d_header_y ymarg sub 2 sub translate
+
+    /cw d_output_w cols div def
+    /nrows d_output_h ymarg 2 mul sub lineheight div cvi def
+
+    % for each column
+    0 1 cols 1 sub {
+      cw mul /xp exch def
+
+      % for each rows
+      0 1 nrows 1 sub {
+        /rn exch def
+        rn lineheight mul neg /yp exch def
+        rn nlines idiv 2 mod 0 eq {
+	  % Draw highlight bar.  4 is just a magic indentation.
+	  xp 4 add yp cw 8 sub lineheight neg Box fill
+	} if
+      } for
+    } for
+
+  grestore
+} def
+
+% Line highlight bar.
+/line_highlight {	% x y width height gray -> -
+  gsave
+    /gray exch def
+    Box gray setgray fill
+  grestore
+} def
+
+% Column separator lines.
+/column_lines {
+  gsave
+    .1 setlinewidth
+    0 d_footer_h translate
+    /cw d_output_w cols div def
+    1 1 cols 1 sub {
+      cw mul 0 moveto
+      0 d_output_h rlineto stroke
+    } for
+  grestore
+} def
+
+% Column borders.
+/column_borders {
+  gsave
+    .1 setlinewidth
+    0 d_footer_h moveto
+    0 d_output_h rlineto
+    d_output_w 0 rlineto
+    0 d_output_h neg rlineto
+    closepath stroke
+  grestore
+} def
+
+% Do the actual underlay drawing
+/draw_underlay {
+  ul_style 0 eq {
+    ul_str true charpath stroke
+  } {
+    ul_str show
+  } ifelse
+} def
+
+% Underlay
+/underlay {	% - -> -
+  gsave
+    0 d_page_h translate
+    d_page_h neg d_page_w atan rotate
+
+    ul_gray setgray
+    ul_font setfont
+    /dw d_page_h dup mul d_page_w dup mul add sqrt def
+    ul_str stringwidth pop dw exch sub 2 div ul_h_ptsize -2 div moveto
+    draw_underlay
+  grestore
+} def
+
+/user_underlay {	% - -> -
+  gsave
+    ul_x ul_y translate
+    ul_angle rotate
+    ul_gray setgray
+    ul_font setfont
+    0 0 ul_h_ptsize 2 div sub moveto
+    draw_underlay
+  grestore
+} def
+
+% Page prefeed
+/page_prefeed {		% bool -> -
+  statusdict /prefeed known {
+    statusdict exch /prefeed exch put
+  } {
+    pop
+  } ifelse
+} def
+
+% Wrapped line markers
+/wrapped_line_mark {	% x y charwith charheight type -> -
+  /type exch def
+  /h exch def
+  /w exch def
+  /y exch def
+  /x exch def
+
+  type 2 eq {
+    % Black boxes (like TeX does)
+    gsave
+      0 setlinewidth
+      x w 4 div add y M
+      0 h rlineto w 2 div 0 rlineto 0 h neg rlineto
+      closepath fill
+    grestore
+  } {
+    type 3 eq {
+      % Small arrows
+      gsave
+        .2 setlinewidth
+        x w 2 div add y h 2 div add M
+        w 4 div 0 rlineto
+        x w 4 div add y lineto stroke
+
+        x w 4 div add w 8 div add y h 4 div add M
+        x w 4 div add y lineto
+	w 4 div h 8 div rlineto stroke
+      grestore
+    } {
+      % do nothing
+    } ifelse
+  } ifelse
+} def
+
+% EPSF import.
+
+/BeginEPSF {
+  /b4_Inc_state save def    		% Save state for cleanup
+  /dict_count countdictstack def	% Count objects on dict stack
+  /op_count count 1 sub def		% Count objects on operand stack
+  userdict begin
+  /showpage { } def
+  0 setgray 0 setlinecap
+  1 setlinewidth 0 setlinejoin
+  10 setmiterlimit [ ] 0 setdash newpath
+  /languagelevel where {
+    pop languagelevel
+    1 ne {
+      false setstrokeadjust false setoverprint
+    } if
+  } if
+} bind def
+
+/EndEPSF {
+  count op_count sub { pos } repeat	% Clean up stacks
+  countdictstack dict_count sub { end } repeat
+  b4_Inc_state restore
+} bind def
+
+% Check PostScript language level.
+/languagelevel where {
+  pop /gs_languagelevel languagelevel def
+} {
+  /gs_languagelevel 1 def
+} ifelse
+%%EndResource
+%%BeginResource: procset Enscript-Encoding-88591 1.6 1
+/encoding_vector [
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/space        	/exclam       	/quotedbl     	/numbersign   	
+/dollar       	/percent      	/ampersand    	/quoteright   	
+/parenleft    	/parenright   	/asterisk     	/plus         	
+/comma        	/hyphen       	/period       	/slash        	
+/zero         	/one          	/two          	/three        	
+/four         	/five         	/six          	/seven        	
+/eight        	/nine         	/colon        	/semicolon    	
+/less         	/equal        	/greater      	/question     	
+/at           	/A            	/B            	/C            	
+/D            	/E            	/F            	/G            	
+/H            	/I            	/J            	/K            	
+/L            	/M            	/N            	/O            	
+/P            	/Q            	/R            	/S            	
+/T            	/U            	/V            	/W            	
+/X            	/Y            	/Z            	/bracketleft  	
+/backslash    	/bracketright 	/asciicircum  	/underscore   	
+/quoteleft    	/a            	/b            	/c            	
+/d            	/e            	/f            	/g            	
+/h            	/i            	/j            	/k            	
+/l            	/m            	/n            	/o            	
+/p            	/q            	/r            	/s            	
+/t            	/u            	/v            	/w            	
+/x            	/y            	/z            	/braceleft    	
+/bar          	/braceright   	/tilde        	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/space        	/exclamdown   	/cent         	/sterling     	
+/currency     	/yen          	/brokenbar    	/section      	
+/dieresis     	/copyright    	/ordfeminine  	/guillemotleft	
+/logicalnot   	/hyphen       	/registered   	/macron       	
+/degree       	/plusminus    	/twosuperior  	/threesuperior	
+/acute        	/mu           	/paragraph    	/bullet       	
+/cedilla      	/onesuperior  	/ordmasculine 	/guillemotright	
+/onequarter   	/onehalf      	/threequarters	/questiondown 	
+/Agrave       	/Aacute       	/Acircumflex  	/Atilde       	
+/Adieresis    	/Aring        	/AE           	/Ccedilla     	
+/Egrave       	/Eacute       	/Ecircumflex  	/Edieresis    	
+/Igrave       	/Iacute       	/Icircumflex  	/Idieresis    	
+/Eth          	/Ntilde       	/Ograve       	/Oacute       	
+/Ocircumflex  	/Otilde       	/Odieresis    	/multiply     	
+/Oslash       	/Ugrave       	/Uacute       	/Ucircumflex  	
+/Udieresis    	/Yacute       	/Thorn        	/germandbls   	
+/agrave       	/aacute       	/acircumflex  	/atilde       	
+/adieresis    	/aring        	/ae           	/ccedilla     	
+/egrave       	/eacute       	/ecircumflex  	/edieresis    	
+/igrave       	/iacute       	/icircumflex  	/idieresis    	
+/eth          	/ntilde       	/ograve       	/oacute       	
+/ocircumflex  	/otilde       	/odieresis    	/divide       	
+/oslash       	/ugrave       	/uacute       	/ucircumflex  	
+/udieresis    	/yacute       	/thorn        	/ydieresis    	
+] def
+%%EndResource
+%%EndProlog
+%%BeginSetup
+%%IncludeResource: font Courier-Bold
+%%IncludeResource: font Courier
+/HFpt_w 10 def
+/HFpt_h 10 def
+/Courier-Bold /HF-gs-font MF
+/HF /HF-gs-font findfont [HFpt_w 0 0 HFpt_h 0 0] makefont def
+/Courier /F-gs-font MF
+/F-gs-font 7 7 SF
+/#copies 1 def
+% Pagedevice definitions:
+gs_languagelevel 1 gt {
+  <<
+    /PageSize [612 792] 
+  >> setpagedevice
+} if
+%%BeginResource: procset Enscript-Header-enscript 1.6 1
+%%IncludeResource: font Times-Bold
+%%IncludeResource: font Times-Roman
+
+% Fonts.
+/Times-Bold /HeaderFont-Bold MF
+/HeaderDateF /HeaderFont-Bold findfont 12 scalefont def
+
+/Times-Roman /HeaderFont-Times MF
+/HeaderHDRF /HeaderFont-Times findfont 14 scalefont def
+
+/HeaderPageNumF /Helvetica-Bold findfont 28.8 scalefont def
+
+/do_header {	% print enscript header
+  gsave
+    d_header_x d_header_y translate
+
+    % light bar
+    0 0 d_header_w d_header_h 2 div Box
+    .95 setgray fill
+
+    % dark gray boxes
+    /dbw d_header_h 2 mul def	% dark box width
+    /dbc .7 def			% dark box color
+
+    % left dark box.
+    0 0 dbw d_header_h Box
+    dbc setgray fill
+
+    0 setgray 
+    HeaderDateF setfont
+    moddatestr dup stringwidth pop dbw exch sub 2 div 
+    d_header_h 2 div 2 add moveto show
+    modtimestr dup stringwidth pop dbw exch sub 2 div 
+    d_header_h 5 div moveto show
+
+    % right dark box
+    d_header_w dbw sub 0 dbw d_header_h Box
+    dbc setgray fill
+
+    HeaderPageNumF setfont
+    1 setgray
+    pagenumstr dup
+    stringwidth pop dbw exch sub 2 div d_header_w dbw sub add
+    d_header_h .2 mul moveto show
+
+    % filename
+    0 setgray 
+    HeaderHDRF setfont
+    d_header_w fname stringwidth pop sub 2 div d_header_h 8 div moveto
+    fname show
+
+    % user supplied header string.
+    user_header_p {
+      /h d_header_h 8 div 5 mul def
+
+      % Implement strict enscript compatibility.
+      user_header_center_str () eq user_header_right_str () eq and {
+        d_header_w user_header_left_str stringwidth pop sub 2 div 
+        h moveto user_header_left_str show
+      } {
+        dbw 5 add h moveto user_header_left_str show
+
+        d_header_w user_header_center_str stringwidth pop sub 2 div 
+        h moveto user_header_center_str show
+
+	d_header_w dbw sub 5 sub user_header_right_str stringwidth pop
+	sub h moveto user_header_right_str show
+      } ifelse
+    } if
+
+  grestore
+} def
+%%EndResource
+/d_page_w 744 def
+/d_page_h 564 def
+/d_header_x 0 def
+/d_header_y 528 def
+/d_header_w 744 def
+/d_header_h 36 def
+/d_footer_x 0 def
+/d_footer_y 0 def
+/d_footer_w 744 def
+/d_footer_h 0 def
+/d_output_w 744 def
+/d_output_h 528 def
+/cols 2 def
+%%EndSetup
+%%Page: (1) 1
+%%BeginPageSetup
+_S
+90 rotate
+24 -588 translate
+/pagenum 1 def
+/fname (week2.txt) def
+/fdir () def
+/ftail (week2.txt) def
+% User defined strings:
+/pagenumstr (1) def
+/moddatestr (01/16/07) def
+/modtimestr (20:13:52) def
+/user_header_p false def
+%%EndPageSetup
+column_lines
+column_borders
+do_header
+5 518 M
+(Calvin Hubble) s
+5 510 M
+(Winter 2007) s
+5 502 M
+(CSE 123b ) s
+5 494 M
+(Week 1 \(delayed -> 2\)) s
+5 478 M
+(Administrative) s
+5 470 M
+(--------------) s
+5 462 M
+(my email - chubble@cs.ucsd.edu) s
+5 454 M
+(my OH - Wed. 1-3 B250A EBU-3 \(cse building\) or by appt.) s
+5 438 M
+(Today: Sockets and Webservers) s
+5 414 M
+(Pre-class quiz ... how comforable are people with the following:) s
+5 406 M
+(--------------) s
+5 398 M
+(CSE123A how many people took it?) s
+5 390 M
+(CSE120 how many people took it?) s
+5 382 M
+(C/C++) s
+5 374 M
+(Socket programming) s
+5 366 M
+(Multi-threaded programming) s
+5 358 M
+(Networking protocols ) s
+5 350 M
+(           IP) s
+5 342 M
+(           TCP \(including flow control, congestion control\)) s
+5 334 M
+(           UDP) s
+5 326 M
+(           etc.) s
+5 318 M
+(Linux hacking) s
+5 294 M
+(Sockets) s
+5 286 M
+(-------) s
+5 270 M
+(Basic idea - provides the abstraction of a file \(file descriptor\) for) s
+5 262 M
+(network communication.  Writes/reads on this file descriptor will) s
+5 254 M
+(result in sending/receiving data.) s
+5 230 M
+(Byte ordering: ) s
+5 222 M
+(                <---- Increasing memory address) s
+5 214 M
+(                Address A+1          Address A) s
+5 206 M
+(               ------------------------------------) s
+5 198 M
+(little-endian  | high-order byte | low-order byte |) s
+5 190 M
+(               ------------------------------------) s
+5 174 M
+(                        MSB      |      LSB) s
+5 166 M
+(               ) s
+5 158 M
+(                Increasing memory address ---->) s
+5 150 M
+(                Address A            Address A+1) s
+5 142 M
+(               ------------------------------------) s
+5 134 M
+(big-endian     | high-order byte | low-order byte |) s
+5 126 M
+(               ------------------------------------) s
+5 102 M
+(network byte order vs. host byte order) s
+5 86 M
+(Internet protocols \(network byte order\) - big-endian byte order ) s
+5 78 M
+(host byte order - machine dependent \(Intel etc. uses little-endian\)) s
+5 62 M
+(useful functions between changing byte orders-) s
+5 54 M
+(ntohs / htons  \(short - 16 bits\)) s
+5 46 M
+(ntohl / htonl  \(long - 32 bits\)) s
+5 22 M
+(Some basic data structures) s
+5 6 M
+(struct in_addr {) s
+377 518 M
+(       in_addr_t s_addr;  // 32-bit IPv4 address, network byte order) s
+377 510 M
+(};) s
+377 494 M
+(\(in_addr_t is normally <--> uint32_t  ... i.e. unsigned int\)) s
+377 478 M
+(struct sockaddr {) s
+377 470 M
+(    unsigned short    sa_family;    // address family, AF_xxx) s
+377 462 M
+(    char              sa_data[14];  // 14 bytes of protocol address) s
+377 454 M
+(}; ) s
+377 438 M
+(struct sockaddr_in {) s
+377 430 M
+(    short int          sin_family;  // Address family) s
+377 422 M
+(    unsigned short int sin_port;    // Port number) s
+377 414 M
+(    struct in_addr     sin_addr;    // Internet address) s
+377 406 M
+(    unsigned char      sin_zero[8]; // Same size as struct sockaddr) s
+377 398 M
+(}; ) s
+377 382 M
+(Basic socket functions) s
+377 366 M
+(Server:) s
+377 358 M
+(socket\(\) -> bind\(\) -> listen -> accept\(\) -> write\(\) <--> read\(\) --> close) s
+377 342 M
+(Client) s
+377 334 M
+(socket\(\) -> connect\(\) -> write\(\) -> read\(\) -> close\(\)) s
+377 318 M
+(int socket\(int domain, int type, int protocol\); ) s
+377 310 M
+(    domain - we will use AF_INET for everything in this class) s
+377 302 M
+(    type - SOCK_STREAM \(tcp\) / SOCK_DGRAM \(udp\) for this class) s
+377 294 M
+(    protocol - \(i always set this to 0, chooses based on type\)) s
+377 278 M
+( returns a socket descriptor) s
+377 262 M
+(int bind\(int sockfd, struct sockaddr *my_addr, int addrlen\); ) s
+377 254 M
+(    sockfd - socket descriptor returned from socket\(\)) s
+377 246 M
+(    my_addr - sockaddr data structure \(we will use sockaddr_in above\)) s
+377 238 M
+(    addrlen - sizeof\(struct sockaddr\)) s
+377 222 M
+(int connect\(int sockfd, struct sockaddr *serv_addr, int addrlen\); ) s
+377 206 M
+(int listen\(int sockfd, int backlog\); ) s
+377 198 M
+(    backlog - how many pending connections to queue up) s
+377 182 M
+(int accept\(int sockfd, struct sockaddr *addr, socklen_t *addrlen\); ) s
+377 174 M
+(    sockfd - listen socket descriptor that has a queue) s
+377 166 M
+(    addr - see above) s
+377 158 M
+(    addrlen - pointer to a length ... set it to sizeof\(struct sockaddr_in\)) s
+377 150 M
+(    returns - a new descriptor!  or -1 on error) s
+377 134 M
+(int send\(int sockfd, const void *msg, int len, int flags\); ) s
+377 118 M
+(int recv\(int sockfd, void *buf, int len, unsigned int flags\); ) s
+377 110 M
+(    return value = 0 if orderly shutdown was performed, -1 on error) s
+377 86 M
+(Code snippit - connecting to google webserver \(taken from beej kinda\)) s
+377 78 M
+(...) s
+377 70 M
+(    struct sockaddr_in dest_addr;   // will hold the destination addr) s
+377 54 M
+(    sockfd = socket\(PF_INET, SOCK_STREAM, 0\); // do some error checking!) s
+377 38 M
+(    dest_addr.sin_family = AF_INET;          // host byte order) s
+377 30 M
+(    dest_addr.sin_port = htons\(80\);   // short, network byte order) s
+377 22 M
+(    dest_addr.sin_addr.s_addr = inet_addr\("www.google.com"\);) s
+377 14 M
+(    memset\(&\(dest_addr.sin_zero\), 0, 8\);  // zero the rest of the struct) s
+377 6 M
+(    connect\(sockfd, \(struct sockaddr *\)&dest_addr, sizeof\(struct sockaddr\)\);) s
+_R
+S
+%%Page: (2) 2
+%%BeginPageSetup
+_S
+90 rotate
+24 -588 translate
+/pagenum 2 def
+/fname (week2.txt) def
+/fdir () def
+/ftail (week2.txt) def
+% User defined strings:
+/pagenumstr (2) def
+/moddatestr (01/16/07) def
+/modtimestr (20:13:52) def
+/user_header_p false def
+%%EndPageSetup
+column_lines
+column_borders
+do_header
+5 518 M
+(...) s
+5 502 M
+(Sample code - a webserver that returns the string "foo") s
+5 486 M
+(* PLEASE ERROR CHECK IN REALITY OTHERWISE LIFE WILL HURT *) s
+5 478 M
+(#include <stdio.h>) s
+5 470 M
+(#include <stdlib.h>) s
+5 462 M
+(#include <string.h>) s
+5 454 M
+(#include <sys/types.h>) s
+5 446 M
+(#include <sys/socket.h>) s
+5 438 M
+(#include <netinet/in.h>) s
+5 430 M
+(#include <arpa/inet.h>) s
+5 422 M
+(int main\(\)) s
+5 414 M
+({) s
+5 406 M
+(  int listenfd, acceptedfd, size;) s
+5 398 M
+(  struct sockaddr_in bindAddr;) s
+5 390 M
+(  struct sockaddr_in clientAddr;  ) s
+5 382 M
+(  ) s
+5 374 M
+(  char message[] = "this is a message\\n";) s
+5 358 M
+(  listenfd = socket\(AF_INET, SOCK_STREAM, 0\);) s
+5 350 M
+(  bindAddr.sin_family = AF_INET;) s
+5 342 M
+(  bindAddr.sin_port = htons\(8889\);) s
+5 334 M
+(  bindAddr.sin_addr.s_addr = INADDR_ANY; // Automatically fills with my IP  ) s
+5 326 M
+(  memset\(&\(bindAddr.sin_zero\), 0, 8\);) s
+5 318 M
+(  ) s
+5 310 M
+(  bind\(listenfd, \(struct sockaddr *\)&bindAddr, sizeof\(struct sockaddr\)\);) s
+5 302 M
+(  listen\(listenfd, 1\);) s
+5 294 M
+(  ) s
+5 286 M
+(  size = sizeof\(struct sockaddr_in\);) s
+5 278 M
+(  acceptedfd = accept\(listenfd, \(struct sockaddr *\)&clientAddr,  ) s
+5 270 M
+(                      \(socklen_t *\)&size\);) s
+5 262 M
+(  send\(acceptedfd, message, 20, 0\);) s
+5 254 M
+(  close\(acceptedfd\);) s
+5 246 M
+(  return 0;  ) s
+5 238 M
+(}) s
+5 222 M
+(what happens :) s
+5 206 M
+(~]$ telnet localhost 8889) s
+5 198 M
+(Trying 127.0.0.1...) s
+5 190 M
+(Connected to localhost.localdomain \(127.0.0.1\).) s
+5 182 M
+(Escape character is '^]'.) s
+5 174 M
+(this is a message) s
+5 166 M
+(Connection closed by foreign host.) s
+5 134 M
+(Webserver Goodness) s
+5 126 M
+(------------------) s
+5 110 M
+(Basic idea \(from web page\)) s
+5 102 M
+(Forever loop:) s
+5 94 M
+(Listen for connections) s
+5 86 M
+(    Accept new connection from incoming client) s
+5 78 M
+(    Parse HTTP/1.0 request) s
+5 70 M
+(    Ensure well-formed request \(return error otherwise\)) s
+5 62 M
+(    Determine if target file exists and if permissions are set ) s
+5 54 M
+(              properly \(return error otherwise\)) s
+5 46 M
+(    Transmit contents of file to connect \(by performing reads ) s
+5 38 M
+(             on the file and writes on the socket\)) s
+5 30 M
+(    Close the connection) s
+377 518 M
+(Multi-threaded / Multi-process) s
+377 510 M
+(--------------) s
+377 494 M
+(* Basic idea : have your original thread/process listen for) s
+377 486 M
+(connections, for each new connection spawn a new thread/process) s
+377 470 M
+(* File descriptors are shared by child processes/threads ... code) s
+377 462 M
+(  would look like this:) s
+377 446 M
+(socket\(\)) s
+377 438 M
+(bind\(\)) s
+377 430 M
+(listen\(\)) s
+377 422 M
+(fd = accept\(\);) s
+377 414 M
+(fork\(\)) s
+377 406 M
+(\(in child process/thread\)) s
+377 398 M
+(    read requests from fd) s
+377 390 M
+(    respond) s
+377 382 M
+(    etc.) s
+377 374 M
+(    quit) s
+377 366 M
+(loop) s
+377 350 M
+(how do u know if you are in the child process or in the parent!? - ) s
+377 334 M
+(  fork\(\) - returns the PID of the child.  If you are in the child's) s
+377 326 M
+(  process it will return a 0 ... for example) s
+377 310 M
+(pid = fork\(\);) s
+377 302 M
+(if\(pid == 0\)) s
+377 294 M
+(  printf\("I am in the child!"\);) s
+377 286 M
+(else if \(pid > 0\)) s
+377 278 M
+(  printf\("I am in the parent with pid of %d\\n", pid\);) s
+377 270 M
+(else) s
+377 262 M
+(  /* something went wrong */) s
+377 230 M
+(Single-threaded / event driven) s
+377 222 M
+(------------------------------) s
+377 214 M
+(* Usually higher performance \(talk about later\)) s
+377 198 M
+(* Can be more complicated, but if you are doing anything else) s
+377 190 M
+(  systems/netowrking related you will run into this, so useful) s
+377 174 M
+(* Idea - use non-blocking sockets ... read data when we can, send data) s
+377 166 M
+(  when we can ... all of this is done in a select loop) s
+377 158 M
+(  ) s
+377 150 M
+(* How to make a socket nonblocking: fcntl\(socketFd, F_SETFL, O_NONBLOCK\);) s
+377 126 M
+(int select\(int n, fd_set *readfds, fd_set *writefds,) s
+377 118 M
+(           fd_set *exceptfds, struct timeval *timeout\);) s
+377 110 M
+(FD_SET\(int fd, fd_set *set\);) s
+377 102 M
+(FD_CLR\(int fd, fd_set *set\);) s
+377 94 M
+(FD_ISSET\(int fd, fd_set *set\);) s
+377 86 M
+(FD_ZERO\(fd_set *set\);) s
+377 70 M
+(Basic select loop:) s
+377 54 M
+(while\(1\)) s
+377 46 M
+({) s
+377 38 M
+(  select\(n, &readSet, &writeSet, NULL, &timeOut\);) s
+377 30 M
+(  for every open socket s) s
+377 22 M
+(    if \(s in readSet\)) s
+377 14 M
+(       read data from s and handle it \(if 0 bytes are read socket is closed\)) s
+377 6 M
+(    if \(s in writeSet\)) s
+_R
+S
+%%Page: (3) 3
+%%BeginPageSetup
+_S
+90 rotate
+24 -588 translate
+/pagenum 3 def
+/fname (week2.txt) def
+/fdir () def
+/ftail (week2.txt) def
+% User defined strings:
+/pagenumstr (3) def
+/moddatestr (01/16/07) def
+/modtimestr (20:13:52) def
+/user_header_p false def
+%%EndPageSetup
+column_lines
+column_borders
+do_header
+5 518 M
+(       write data to s if there is any pending data) s
+5 502 M
+(    handle any timeouts) s
+5 494 M
+(}) s
+5 478 M
+(Things to keep in mind - select will change your read and write sets) s
+5 470 M
+(to update which sockets are available for read/write.  Keep a master) s
+5 462 M
+(read and master write set around and update this accordingly) s
+5 446 M
+(If s is the listen socket and becomes available, that means there is) s
+5 438 M
+(an incoming connection ... handle it with accept and add this new) s
+5 430 M
+(socket to your read set.) s
+5 414 M
+(Caveats:) s
+5 406 M
+(--------) s
+5 398 M
+(File permissions:) s
+5 390 M
+(     * Is there global read access?) s
+5 374 M
+(     * does the directory have read access?  \(don't worry about) s
+5 366 M
+(       recursive directories ... I will just check the current one\)) s
+5 342 M
+(ht access ) s
+5 334 M
+(   ) s
+5 326 M
+(   format\(this is all that I will check\):) s
+5 318 M
+(      allow from {10.0.0.0, all, ieng9, ieng9.ucsd.edu}) s
+5 310 M
+(      deny from {{10.0.0.0, all, ieng9, ieng9.ucsd.edu}) s
+5 294 M
+(   Rules should be applied in order ... e.g.) s
+5 286 M
+(         deny from all) s
+5 278 M
+(         allow from 192.168.0.1) s
+5 270 M
+(   This should deny from all ips EXCEPT 192.168.0.1) s
+5 254 M
+(   I will only check .htaccess files for the directory ) s
+5 238 M
+(http 1.0 / 1.1) s
+5 222 M
+(headers) s
+5 206 M
+(   You need to handle content headers \(some webservers are smart) s
+5 198 M
+(   ... but I will check anyways.) s
+5 182 M
+(   Since the requirement asks you to correctly fetch the cse webpage,) s
+5 174 M
+(   explicitly support the following:) s
+5 166 M
+(              text/HTML, image/{jpeg, jpg, gif}, text/css, ) s
+5 158 M
+(              application/x-javascript, text/txt) s
+5 142 M
+(   HTTP 1.1 specify you NEED to include the Host request header) s
+5 134 M
+(   \(http/1.0 does not require headers\).) s
+5 118 M
+(   GET / HTTP/1.0  - this is a valid HTTP request) s
+5 110 M
+(   ) s
+5 102 M
+(   GET / HTTP/1.1 - this is an invalid HTTP request) s
+5 86 M
+(lines should be terminated with '\\r\\n') s
+5 70 M
+(There are more ) s
+5 54 M
+(Last words : PLEASE follow the basic directions \(name of executable,) s
+5 46 M
+(supported options etc.\)  See website for details.) s
+_R
+S
+%%Trailer
+%%Pages: 3
+%%DocumentNeededResources: font Times-Roman Courier-Bold Courier 
+%%+ font Times-Bold 
+%%EOF

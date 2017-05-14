@@ -1,0 +1,2557 @@
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "View HDL Functional Model".
+
+DRC Check completed: No Error found.
+Vhdl netlist file generated.
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# ** Error: asyncounter.vhf(139): No actual specified for clr.
+# ** Error: asyncounter.vhf(174): VHDL Compiler exiting
+# ** Error: g:/xilinx/modelsim/win32xoem/vcom failed.
+# Executing ONERROR command at macro ./asyncounter_tbw.ado line 10
+ERROR: VSim failed to simulate annotated testbench
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "View HDL Functional Model".
+
+DRC Check completed: No Error found.
+Vhdl netlist file generated.
+
+
+
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_tbw
+# -- Compiling architecture testbench_arch of asyncounter_tbw
+# vsim -lib work -t 1ps asyncounter_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter(behavioral)
+# Loading work.ftce_mxilinx_asyncounter(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /asyncounter_tbw/line__154 File: asyncounter_tbw.ant
+# Break at asyncounter_tbw.ant line 363
+# Stopped at asyncounter_tbw.ant line 363 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_tbw
+# -- Compiling architecture testbench_arch of asyncounter_tbw
+# vsim -lib work -t 1ps asyncounter_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter(behavioral)
+# Loading work.ftce_mxilinx_asyncounter(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /asyncounter_tbw/line__154 File: asyncounter_tbw.ant
+# Break at asyncounter_tbw.ant line 362
+# Stopped at asyncounter_tbw.ant line 362 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_tbw
+# -- Compiling architecture testbench_arch of asyncounter_tbw
+# vsim -lib work -t 1ps asyncounter_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter(behavioral)
+# Loading work.ftce_mxilinx_asyncounter(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /asyncounter_tbw/line__154 File: asyncounter_tbw.ant
+# Break at asyncounter_tbw.ant line 362
+# Stopped at asyncounter_tbw.ant line 362 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_tbw
+# -- Compiling architecture testbench_arch of asyncounter_tbw
+# vsim -lib work -t 1ps asyncounter_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter(behavioral)
+# Loading work.ftce_mxilinx_asyncounter(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /asyncounter_tbw/line__154 File: asyncounter_tbw.ant
+# Break at asyncounter_tbw.ant line 352
+# Stopped at asyncounter_tbw.ant line 352 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "View HDL Functional Model".
+
+DRC Check completed: No Error found.
+Vhdl netlist file generated.
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_tbw
+# -- Compiling architecture testbench_arch of asyncounter_tbw
+# vsim -lib work -t 1ps asyncounter_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter(behavioral)
+# Loading work.ftce_mxilinx_asyncounter(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /asyncounter_tbw/line__154 File: asyncounter_tbw.ant
+# Break at asyncounter_tbw.ant line 352
+# Stopped at asyncounter_tbw.ant line 352 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_tbw
+# -- Compiling architecture testbench_arch of asyncounter_tbw
+# vsim -lib work -t 1ps asyncounter_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter(behavioral)
+# Loading work.ftce_mxilinx_asyncounter(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /asyncounter_tbw/line__154 File: asyncounter_tbw.ant
+# Break at asyncounter_tbw.ant line 332
+# Stopped at asyncounter_tbw.ant line 332 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "View HDL Functional Model".
+
+DRC Check completed: No Error found.
+Vhdl netlist file generated.
+
+
+
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_tbw
+# -- Compiling architecture testbench_arch of asyncounter_tbw
+# vsim -lib work -t 1ps asyncounter_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter(behavioral)
+# Loading work.ftce_mxilinx_asyncounter(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /asyncounter_tbw/line__154 File: asyncounter_tbw.ant
+# Break at asyncounter_tbw.ant line 332
+# Stopped at asyncounter_tbw.ant line 332 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+
+
+Started process "Synthesize".
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "G:/xilinx/projects/lab2/asyncounter/asyncounter.vhf" in Library work.
+Entity <FTCE_MXILINX_asyncounter> compiled.
+Entity <FTCE_MXILINX_asyncounter> (Architecture <BEHAVIORAL>) compiled.
+Entity <asyncounter> compiled.
+Entity <asyncounter> (Architecture <BEHAVIORAL>) compiled.
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <asyncounter> (Architecture <BEHAVIORAL>).
+    Set user-defined property "HU_SET =  XLXI_2_0" for instance <XLXI_2> in unit <asyncounter>.
+    Set user-defined property "HU_SET =  XLXI_3_1" for instance <XLXI_3> in unit <asyncounter>.
+    Set user-defined property "HU_SET =  XLXI_4_2" for instance <XLXI_4> in unit <asyncounter>.
+    Set user-defined property "HU_SET =  XLXI_5_3" for instance <XLXI_5> in unit <asyncounter>.
+Entity <asyncounter> analyzed. Unit <asyncounter> generated.
+
+Analyzing Entity <FTCE_MXILINX_asyncounter> (Architecture <behavioral>).
+    Set user-defined property "INIT =  0" for instance <I_36_35> in unit <FTCE_MXILINX_asyncounter>.
+    Set user-defined property "RLOC =  X0Y0" for instance <I_36_35> in unit <FTCE_MXILINX_asyncounter>.
+Entity <FTCE_MXILINX_asyncounter> analyzed. Unit <FTCE_MXILINX_asyncounter> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <FTCE_MXILINX_asyncounter>.
+    Related source file is "G:/xilinx/projects/lab2/asyncounter/asyncounter.vhf".
+Unit <FTCE_MXILINX_asyncounter> synthesized.
+
+
+Synthesizing Unit <asyncounter>.
+    Related source file is "G:/xilinx/projects/lab2/asyncounter/asyncounter.vhf".
+Unit <asyncounter> synthesized.
+
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Advanced RAM inference ...
+Advanced multiplier inference ...
+Advanced Registered AddSub inference ...
+Dynamic shift register inference ...
+
+=========================================================================
+HDL Synthesis Report
+
+Found no macro
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <asyncounter> ...
+
+Optimizing unit <FTCE_MXILINX_asyncounter> ...
+Loading device for application Rf_Device from file '2v80.nph' in environment G:/xilinx/ise71.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block asyncounter, actual ratio is 0.
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 2v80cs144-5 
+
+ Number of Slices:                       4  out of    512     0%  
+ Number of Slice Flip Flops:             4  out of   1024     0%  
+ Number of bonded IOBs:                  8  out of     92     8%  
+ Number of GCLKs:                        1  out of     16     6%  
+
+
+=========================================================================
+TIMING REPORT
+
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+CLK                                | BUFGP                  | 1     |
+XLXI_2/I_36_35:Q                   | NONE                   | 1     |
+XLXI_3/I_36_35:Q                   | NONE                   | 1     |
+XLXI_4/I_36_35:Q                   | NONE                   | 1     |
+-----------------------------------+------------------------+-------+
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+
+Timing Summary:
+---------------
+Speed Grade: -5
+
+   Minimum period: 2.278ns (Maximum Frequency: 438.982MHz)
+   Minimum input arrival time before clock: 2.522ns
+   Maximum output required time after clock: 5.020ns
+   Maximum combinational path delay: No path found
+
+=========================================================================
+
+
+
+
+Started process "Translate".
+
+
+Command Line: ngdbuild -intstyle ise -dd
+g:\xilinx\projects\lab2\asyncounter/_ngo -nt timestamp -i -p xc2v80-cs144-5
+asyncounter.ngc asyncounter.ngd 
+
+Reading NGO file 'G:/xilinx/projects/lab2/asyncounter/asyncounter.ngc' ...
+
+Checking timing specifications ...
+Checking expanded design ...
+
+NGDBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Writing NGD file "asyncounter.ngd" ...
+
+Writing NGDBUILD log file "asyncounter.bld"...
+
+NGDBUILD done.
+
+
+
+
+Started process "Map".
+
+Using target part "2v80cs144-5".
+Mapping design into LUTs...
+Running directed packing...
+Running delay-based LUT packing...
+Running related packing...
+
+Design Summary:
+Number of errors:      0
+Number of warnings:    0
+Logic Utilization:
+  Number of Slice Flip Flops:           4 out of   1,024    1%
+  Number of 4 input LUTs:               4 out of   1,024    1%
+Logic Distribution:
+  Number of occupied Slices:            4 out of     512    1%
+  Number of Slices containing only related logic:       4 out of       4  100%
+  Number of Slices containing unrelated logic:          0 out of       4    0%
+        *See NOTES below for an explanation of the effects of unrelated logic
+Total Number 4 input LUTs:              4 out of   1,024    1%
+
+  Number of bonded IOBs:                8 out of      92    8%
+  Number of GCLKs:                      1 out of      16    6%
+
+   Number of RPM macros:            4
+Total equivalent gate count for design:  59
+Additional JTAG gate count for IOBs:  384
+Peak Memory Usage:  100 MB
+
+NOTES:
+
+   Related logic is defined as being logic that shares connectivity - e.g. two
+   LUTs are "related" if they share common inputs.  When assembling slices,
+   Map gives priority to combine logic that is related.  Doing so results in
+   the best timing performance.
+
+   Unrelated logic shares no connectivity.  Map will only begin packing
+   unrelated logic into a slice once 99% of the slices are occupied through
+   related logic packing.
+
+   Note that once logic distribution reaches the 99% level through related
+   logic packing, this does not mean the device is completely utilized.
+   Unrelated logic packing will then begin, continuing until all usable LUTs
+   and FFs are occupied.  Depending on your timing budget, increased levels of
+   unrelated logic packing may adversely affect the overall timing performance
+   of your design.
+
+Mapping completed.
+See MAP report file "asyncounter_map.mrp" for details.
+
+
+
+
+Started process "Place & Route".
+
+
+
+
+Constraints file: asyncounter.pcf.
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "asyncounter" is an NCD, version 3.1, device xc2v80, package cs144, speed -5
+
+Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000
+Celsius)
+Initializing voltage to 1.425 Volts. (default - Range: 1.425 to 1.575 Volts)
+
+
+Device speed data version:  "PRODUCTION 1.121 2005-02-23".
+
+
+Device Utilization Summary:
+
+   Number of BUFGMUXs                  1 out of 16      6%
+   Number of External IOBs             8 out of 92      8%
+      Number of LOCed IOBs             0 out of 8       0%
+
+   Number of SLICEs                    4 out of 512     1%
+
+
+Overall effort level (-ol):   Standard (set by user)
+Placer effort level (-pl):    Standard (set by user)
+Placer cost table entry (-t): 1
+Router effort level (-rl):    Standard (set by user)
+
+
+Starting Placer
+
+Phase 1.1
+Phase 1.1 (Checksum:9896a6) REAL time: 1 secs 
+
+Phase 2.31
+Phase 2.31 (Checksum:1312cfe) REAL time: 1 secs 
+
+Phase 3.2
+
+
+
+Phase 3.2 (Checksum:1c9c37d) REAL time: 1 secs 
+
+Phase 4.30
+Phase 4.30 (Checksum:26259fc) REAL time: 1 secs 
+
+Phase 5.3
+Phase 5.3 (Checksum:2faf07b) REAL time: 1 secs 
+
+Phase 6.5
+Phase 6.5 (Checksum:39386fa) REAL time: 1 secs 
+
+Phase 7.8
+.
+Phase 7.8 (Checksum:98a7b9) REAL time: 1 secs 
+
+Phase 8.5
+Phase 8.5 (Checksum:4c4b3f8) REAL time: 1 secs 
+
+Phase 9.18
+Phase 9.18 (Checksum:55d4a77) REAL time: 1 secs 
+
+Phase 10.5
+Phase 10.5 (Checksum:5f5e0f6) REAL time: 1 secs 
+
+Phase 11.27
+Phase 11.27 (Checksum:68e7775) REAL time: 1 secs 
+
+Phase 12.24
+Phase 12.24 (Checksum:7270df4) REAL time: 1 secs 
+
+Writing design to file asyncounter.ncd
+
+
+Total REAL time to Placer completion: 1 secs 
+Total CPU time to Placer completion: 0 secs 
+
+Starting Router
+
+Phase 1: 30 unrouted;       REAL time: 1 secs 
+
+Phase 2: 28 unrouted;       REAL time: 1 secs 
+
+Phase 3: 4 unrouted;       REAL time: 1 secs 
+
+Phase 4: 0 unrouted;       REAL time: 1 secs 
+
+
+WARNING:CLK Net:D0_OBUF
+may have excessive skew because 1 CLK pins and 2 NON_CLK pins
+failed to route using a CLK template.
+
+WARNING:CLK Net:D1_OBUF
+may have excessive skew because 1 CLK pins and 2 NON_CLK pins
+failed to route using a CLK template.
+
+WARNING:CLK Net:D2_OBUF
+may have excessive skew because 1 CLK pins and 2 NON_CLK pins
+failed to route using a CLK template.
+
+Total REAL time to Router completion: 1 secs 
+Total CPU time to Router completion: 0 secs 
+
+Generating "PAR" statistics.
+
+**************************
+Generating Clock Report
+**************************
+
++---------------------+--------------+------+------+------------+-------------+
+|        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
++---------------------+--------------+------+------+------------+-------------+
+|           CLK_BUFGP |     BUFGMUX7P| No   |    1 |  0.000     |  0.655      |
++---------------------+--------------+------+------+------------+-------------+
+|             D0_OBUF |         Local|      |    3 |  0.000     |  0.661      |
++---------------------+--------------+------+------+------------+-------------+
+|             D1_OBUF |         Local|      |    3 |  0.000     |  0.661      |
++---------------------+--------------+------+------+------------+-------------+
+|             D2_OBUF |         Local|      |    3 |  0.000     |  1.227      |
++---------------------+--------------+------+------+------------+-------------+
+
+Generating Pad Report.
+
+All signals are completely routed.
+
+Total REAL time to PAR completion: 2 secs 
+Total CPU time to PAR completion: 1 secs 
+
+Peak Memory Usage:  67 MB
+
+Placement: Completed - No errors found.
+Routing: Completed - No errors found.
+
+Number of error messages: 0
+Number of warning messages: 0
+Number of info messages: 1
+
+Writing design to file asyncounter.ncd
+
+
+
+PAR done!
+
+Started process "Generate Post-Place & Route Static Timing".
+
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "asyncounter" is an NCD, version 3.1, device xc2v80, package cs144, speed -5
+
+Analysis completed Tue May 03 02:54:40 2005
+--------------------------------------------------------------------------------
+
+Generating Report ...
+
+Number of warnings: 0
+Total time: 1 secs 
+
+
+
+
+Started process "Generate Post-Place & Route Simulation Model".
+
+INFO:NetListWriters:635 - The generated VHDL netlist contains Xilinx SIMPRIM
+   simulation primitives and has to be used with SIMPRIM library for correct
+   compilation and simulation. 
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "Place & Route".
+
+
+
+
+Constraints file: asyncounter.pcf.
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "asyncounter" is an NCD, version 3.1, device xc2v80, package cs144, speed -5
+
+Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000
+Celsius)
+Initializing voltage to 1.425 Volts. (default - Range: 1.425 to 1.575 Volts)
+
+
+Device speed data version:  "PRODUCTION 1.121 2005-02-23".
+
+
+Device Utilization Summary:
+
+   Number of BUFGMUXs                  1 out of 16      6%
+   Number of External IOBs             8 out of 92      8%
+      Number of LOCed IOBs             0 out of 8       0%
+
+   Number of SLICEs                    4 out of 512     1%
+
+
+Overall effort level (-ol):   Standard (set by user)
+Placer effort level (-pl):    Standard (set by user)
+Placer cost table entry (-t): 1
+Router effort level (-rl):    Standard (set by user)
+
+
+Starting Placer
+
+Phase 1.1
+Phase 1.1 (Checksum:9896a6) REAL time: 0 secs 
+
+Phase 2.31
+Phase 2.31 (Checksum:1312cfe) REAL time: 0 secs 
+
+Phase 3.2
+
+
+
+Phase 3.2 (Checksum:1c9c37d) REAL time: 0 secs 
+
+Phase 4.30
+Phase 4.30 (Checksum:26259fc) REAL time: 0 secs 
+
+Phase 5.3
+Phase 5.3 (Checksum:2faf07b) REAL time: 0 secs 
+
+Phase 6.5
+Phase 6.5 (Checksum:39386fa) REAL time: 0 secs 
+
+Phase 7.8
+.
+Phase 7.8 (Checksum:98a7b9) REAL time: 0 secs 
+
+Phase 8.5
+Phase 8.5 (Checksum:4c4b3f8) REAL time: 1 secs 
+
+Phase 9.18
+Phase 9.18 (Checksum:55d4a77) REAL time: 1 secs 
+
+Phase 10.5
+Phase 10.5 (Checksum:5f5e0f6) REAL time: 1 secs 
+
+Phase 11.27
+Phase 11.27 (Checksum:68e7775) REAL time: 1 secs 
+
+Phase 12.24
+Phase 12.24 (Checksum:7270df4) REAL time: 1 secs 
+
+Writing design to file asyncounter.ncd
+
+
+Total REAL time to Placer completion: 1 secs 
+Total CPU time to Placer completion: 0 secs 
+
+Starting Router
+
+Phase 1: 30 unrouted;       REAL time: 1 secs 
+
+Phase 2: 28 unrouted;       REAL time: 1 secs 
+
+Phase 3: 4 unrouted;       REAL time: 1 secs 
+
+Phase 4: 0 unrouted;       REAL time: 1 secs 
+
+
+WARNING:CLK Net:D0_OBUF
+may have excessive skew because 1 CLK pins and 2 NON_CLK pins
+failed to route using a CLK template.
+
+WARNING:CLK Net:D1_OBUF
+may have excessive skew because 1 CLK pins and 2 NON_CLK pins
+failed to route using a CLK template.
+
+WARNING:CLK Net:D2_OBUF
+may have excessive skew because 1 CLK pins and 2 NON_CLK pins
+failed to route using a CLK template.
+
+Total REAL time to Router completion: 1 secs 
+Total CPU time to Router completion: 0 secs 
+
+Generating "PAR" statistics.
+
+**************************
+Generating Clock Report
+**************************
+
++---------------------+--------------+------+------+------------+-------------+
+|        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
++---------------------+--------------+------+------+------------+-------------+
+|           CLK_BUFGP |     BUFGMUX7P| No   |    1 |  0.000     |  0.655      |
++---------------------+--------------+------+------+------------+-------------+
+|             D0_OBUF |         Local|      |    3 |  0.000     |  0.661      |
++---------------------+--------------+------+------+------------+-------------+
+|             D1_OBUF |         Local|      |    3 |  0.000     |  0.661      |
++---------------------+--------------+------+------+------------+-------------+
+|             D2_OBUF |         Local|      |    3 |  0.000     |  1.227      |
++---------------------+--------------+------+------+------------+-------------+
+
+Generating Pad Report.
+
+All signals are completely routed.
+
+Total REAL time to PAR completion: 1 secs 
+Total CPU time to PAR completion: 1 secs 
+
+Peak Memory Usage:  67 MB
+
+Placement: Completed - No errors found.
+Routing: Completed - No errors found.
+
+Number of error messages: 0
+Number of warning messages: 0
+Number of info messages: 1
+
+Writing design to file asyncounter.ncd
+
+
+
+PAR done!
+
+Started process "Generate Post-Place & Route Static Timing".
+
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "asyncounter" is an NCD, version 3.1, device xc2v80, package cs144, speed -5
+
+Analysis completed Tue May 03 02:58:31 2005
+--------------------------------------------------------------------------------
+
+Generating Report ...
+
+Number of warnings: 0
+Total time: 1 secs 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw_critical.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_tbw_critical
+# -- Compiling architecture testbench_arch of asyncounter_tbw_critical
+# vsim -lib work -t 1ps asyncounter_tbw_critical 
+# ** Error: License checkout has been disallowed because
+# only one session is allowed to run on an uncounted nodelock
+# license and an instance of ModelSim is already running with a
+# nodelocked license on this machine
+# Error loading design
+Error loading design
+ERROR: VSim failed to simulate annotated testbench
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw_critical.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_tbw_critical
+# -- Compiling architecture testbench_arch of asyncounter_tbw_critical
+# vsim -lib work -t 1ps asyncounter_tbw_critical 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter_tbw_critical(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter(behavioral)
+# Loading work.ftce_mxilinx_asyncounter(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /asyncounter_tbw_critical/line__154 File: asyncounter_tbw_critical.ant
+# Break at asyncounter_tbw_critical.ant line 166
+# Stopped at asyncounter_tbw_critical.ant line 166 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw_critical.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_tbw_critical
+# -- Compiling architecture testbench_arch of asyncounter_tbw_critical
+# vsim -lib work -t 1ps asyncounter_tbw_critical 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter_tbw_critical(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter(behavioral)
+# Loading work.ftce_mxilinx_asyncounter(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /asyncounter_tbw_critical/line__154 File: asyncounter_tbw_critical.ant
+# Break at asyncounter_tbw_critical.ant line 166
+# Stopped at asyncounter_tbw_critical.ant line 166 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "Generate Post-Place & Route Simulation Model".
+
+INFO:NetListWriters:635 - The generated VHDL netlist contains Xilinx SIMPRIM
+   simulation primitives and has to be used with SIMPRIM library for correct
+   compilation and simulation. 
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw_critical.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_tbw_critical
+# -- Compiling architecture testbench_arch of asyncounter_tbw_critical
+# vsim -lib work -t 1ps asyncounter_tbw_critical 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter_tbw_critical(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter(behavioral)
+# Loading work.ftce_mxilinx_asyncounter(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /asyncounter_tbw_critical/line__154 File: asyncounter_tbw_critical.ant
+# Break at asyncounter_tbw_critical.ant line 166
+# Stopped at asyncounter_tbw_critical.ant line 166 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw_critical.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_tbw_critical
+# -- Compiling architecture testbench_arch of asyncounter_tbw_critical
+# vsim -lib work -t 1ps asyncounter_tbw_critical 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter_tbw_critical(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter(behavioral)
+# Loading work.ftce_mxilinx_asyncounter(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /asyncounter_tbw_critical/line__154 File: asyncounter_tbw_critical.ant
+# Break at asyncounter_tbw_critical.ant line 166
+# Stopped at asyncounter_tbw_critical.ant line 166 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw_critical.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_tbw_critical
+# -- Compiling architecture testbench_arch of asyncounter_tbw_critical
+# vsim -lib work -t 1ps asyncounter_tbw_critical 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter_tbw_critical(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter(behavioral)
+# Loading work.ftce_mxilinx_asyncounter(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /asyncounter_tbw_critical/line__154 File: asyncounter_tbw_critical.ant
+# Break at asyncounter_tbw_critical.ant line 200
+# Stopped at asyncounter_tbw_critical.ant line 200 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw_critical.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_tbw_critical
+# -- Compiling architecture testbench_arch of asyncounter_tbw_critical
+# vsim -lib work -t 1ps asyncounter_tbw_critical 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter_tbw_critical(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter(behavioral)
+# Loading work.ftce_mxilinx_asyncounter(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /asyncounter_tbw_critical/line__154 File: asyncounter_tbw_critical.ant
+# Break at asyncounter_tbw_critical.ant line 177
+# Stopped at asyncounter_tbw_critical.ant line 177 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw_critical.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_tbw_critical
+# -- Compiling architecture testbench_arch of asyncounter_tbw_critical
+# vsim -lib work -t 1ps asyncounter_tbw_critical 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter_tbw_critical(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter(behavioral)
+# Loading work.ftce_mxilinx_asyncounter(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /asyncounter_tbw_critical/line__154 File: asyncounter_tbw_critical.ant
+# Break at asyncounter_tbw_critical.ant line 184
+# Stopped at asyncounter_tbw_critical.ant line 184 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw_critical.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_tbw_critical
+# -- Compiling architecture testbench_arch of asyncounter_tbw_critical
+# vsim -lib work -t 1ps asyncounter_tbw_critical 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter_tbw_critical(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter(behavioral)
+# Loading work.ftce_mxilinx_asyncounter(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /asyncounter_tbw_critical/line__154 File: asyncounter_tbw_critical.ant
+# Break at asyncounter_tbw_critical.ant line 200
+# Stopped at asyncounter_tbw_critical.ant line 200 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw_critical.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_tbw_critical
+# -- Compiling architecture testbench_arch of asyncounter_tbw_critical
+# vsim -lib work -t 1ps asyncounter_tbw_critical 
+# ** Error: License checkout has been disallowed because
+# only one session is allowed to run on an uncounted nodelock
+# license and an instance of ModelSim is already running with a
+# nodelocked license on this machine
+# Error loading design
+Error loading design
+ERROR: VSim failed to simulate annotated testbench
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw_critical.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_tbw_critical
+# -- Compiling architecture testbench_arch of asyncounter_tbw_critical
+# vsim -lib work -t 1ps asyncounter_tbw_critical 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter_tbw_critical(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter(behavioral)
+# Loading work.ftce_mxilinx_asyncounter(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /asyncounter_tbw_critical/line__154 File: asyncounter_tbw_critical.ant
+# Break at asyncounter_tbw_critical.ant line 193
+# Stopped at asyncounter_tbw_critical.ant line 193 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw_critical.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_tbw_critical
+# -- Compiling architecture testbench_arch of asyncounter_tbw_critical
+# vsim -lib work -t 1ps asyncounter_tbw_critical 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter_tbw_critical(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter(behavioral)
+# Loading work.ftce_mxilinx_asyncounter(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /asyncounter_tbw_critical/line__154 File: asyncounter_tbw_critical.ant
+# Break at asyncounter_tbw_critical.ant line 192
+# Stopped at asyncounter_tbw_critical.ant line 192 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw_critical.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_tbw_critical
+# -- Compiling architecture testbench_arch of asyncounter_tbw_critical
+# vsim -lib work -t 1ps asyncounter_tbw_critical 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter_tbw_critical(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter(behavioral)
+# Loading work.ftce_mxilinx_asyncounter(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /asyncounter_tbw_critical/line__154 File: asyncounter_tbw_critical.ant
+# Break at asyncounter_tbw_critical.ant line 191
+# Stopped at asyncounter_tbw_critical.ant line 191 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_tbw
+# -- Compiling architecture testbench_arch of asyncounter_tbw
+# vsim -lib work -t 1ps asyncounter_tbw 
+# ** Error: License checkout has been disallowed because
+# only one session is allowed to run on an uncounted nodelock
+# license and an instance of ModelSim is already running with a
+# nodelocked license on this machine
+# Error loading design
+Error loading design
+ERROR: VSim failed to simulate annotated testbench
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_tbw
+# -- Compiling architecture testbench_arch of asyncounter_tbw
+# vsim -lib work -t 1ps asyncounter_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter(behavioral)
+# Loading work.ftce_mxilinx_asyncounter(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /asyncounter_tbw/line__154 File: asyncounter_tbw.ant
+# Break at asyncounter_tbw.ant line 332
+# Stopped at asyncounter_tbw.ant line 332 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter
+# -- Compiling entity asyncounter
+# -- Compiling architecture behavioral of asyncounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_tbw
+# -- Compiling architecture testbench_arch of asyncounter_tbw
+# vsim -lib work -t 1ps asyncounter_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter(behavioral)
+# Loading work.ftce_mxilinx_asyncounter(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /asyncounter_tbw/line__154 File: asyncounter_tbw.ant
+# Break at asyncounter_tbw.ant line 332
+# Stopped at asyncounter_tbw.ant line 332 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "View HDL Functional Model".
+
+ERROR:DesignEntry:239 - Incorrect bus tap at (1808 96, 1808 192); destination
+   branch "XLXN_55" is not part of the source branch "D(7:0)".
+WARNING:DesignEntry:216 - Net "XLXN_33" is connected to load pins and/or I/O
+   markers, but not connected to any source pin or I/O marker.
+WARNING:DesignEntry:216 - Net "D(3)" is connected to load pins and/or I/O
+   markers, but not connected to any source pin or I/O marker.
+Error: 
+Process "View HDL Functional Model" did not complete.
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "View HDL Functional Model".
+
+ERROR:DesignEntry:239 - Incorrect bus tap at (1808 96, 1808 192); destination
+   branch "XLXN_55" is not part of the source branch "D(7:0)".
+WARNING:DesignEntry:216 - Net "D(3)" is connected to load pins and/or I/O
+   markers, but not connected to any source pin or I/O marker.
+Error: 
+Process "View HDL Functional Model" did not complete.
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "View HDL Functional Model".
+
+DRC Check completed: No Error found.
+Vhdl netlist file generated.
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter8_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter_8
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter_8
+# -- Compiling entity asyncounter_8
+# -- Compiling architecture behavioral of asyncounter_8
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter8_tbw
+# -- Compiling architecture testbench_arch of asyncounter8_tbw
+# vsim -lib work -t 1ps asyncounter8_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter8_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter_8(behavioral)
+# Loading work.ftce_mxilinx_asyncounter_8(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1012 ns  Iteration: 0  Process: /asyncounter8_tbw/line__112 File: asyncounter8_tbw.ant
+# Break at asyncounter8_tbw.ant line 118
+# Stopped at asyncounter8_tbw.ant line 118 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter8_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter_8
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter_8
+# -- Compiling entity asyncounter_8
+# -- Compiling architecture behavioral of asyncounter_8
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter8_tbw
+# -- Compiling architecture testbench_arch of asyncounter8_tbw
+# vsim -lib work -t 1ps asyncounter8_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter8_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter_8(behavioral)
+# Loading work.ftce_mxilinx_asyncounter_8(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 532 ns  Iteration: 0  Process: /asyncounter8_tbw/line__112 File: asyncounter8_tbw.ant
+# Break at asyncounter8_tbw.ant line 126
+# Stopped at asyncounter8_tbw.ant line 126 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter8_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter_8
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter_8
+# -- Compiling entity asyncounter_8
+# -- Compiling architecture behavioral of asyncounter_8
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter8_tbw
+# -- Compiling architecture testbench_arch of asyncounter8_tbw
+# vsim -lib work -t 1ps asyncounter8_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter8_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter_8(behavioral)
+# Loading work.ftce_mxilinx_asyncounter_8(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 532 ns  Iteration: 0  Process: /asyncounter8_tbw/line__112 File: asyncounter8_tbw.ant
+# Break at asyncounter8_tbw.ant line 127
+# Stopped at asyncounter8_tbw.ant line 127 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do asyncounter_8tbwb.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_asyncounter_8
+# -- Compiling architecture behavioral of ftce_mxilinx_asyncounter_8
+# -- Compiling entity asyncounter_8
+# -- Compiling architecture behavioral of asyncounter_8
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_8tbwb
+# -- Compiling architecture testbench_arch of asyncounter_8tbwb
+# vsim -lib work -t 1ps asyncounter_8tbwb 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter_8tbwb(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.asyncounter_8(behavioral)
+# Loading work.ftce_mxilinx_asyncounter_8(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.inv(inv_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 532 ns  Iteration: 0  Process: /asyncounter_8tbwb/line__112 File: asyncounter_8tbwb.ant
+# Break at asyncounter_8tbwb.ant line 128
+# Stopped at asyncounter_8tbwb.ant line 128 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+Started process "Synthesize".
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "G:/xilinx/projects/lab2/asyncounter/asyncounter_8.vhf" in Library work.
+Entity <FTCE_MXILINX_asyncounter_8> compiled.
+Entity <FTCE_MXILINX_asyncounter_8> (Architecture <BEHAVIORAL>) compiled.
+Entity <asyncounter_8> compiled.
+Entity <asyncounter_8> (Architecture <BEHAVIORAL>) compiled.
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <asyncounter_8> (Architecture <BEHAVIORAL>).
+    Set user-defined property "HU_SET =  XLXI_2_0" for instance <XLXI_2> in unit <asyncounter_8>.
+    Set user-defined property "HU_SET =  XLXI_3_1" for instance <XLXI_3> in unit <asyncounter_8>.
+    Set user-defined property "HU_SET =  XLXI_4_2" for instance <XLXI_4> in unit <asyncounter_8>.
+    Set user-defined property "HU_SET =  XLXI_5_3" for instance <XLXI_5> in unit <asyncounter_8>.
+    Set user-defined property "HU_SET =  XLXI_10_4" for instance <XLXI_10> in unit <asyncounter_8>.
+    Set user-defined property "HU_SET =  XLXI_11_5" for instance <XLXI_11> in unit <asyncounter_8>.
+    Set user-defined property "HU_SET =  XLXI_12_6" for instance <XLXI_12> in unit <asyncounter_8>.
+    Set user-defined property "HU_SET =  XLXI_13_7" for instance <XLXI_13> in unit <asyncounter_8>.
+Entity <asyncounter_8> analyzed. Unit <asyncounter_8> generated.
+
+Analyzing Entity <FTCE_MXILINX_asyncounter_8> (Architecture <behavioral>).
+    Set user-defined property "INIT =  0" for instance <I_36_35> in unit <FTCE_MXILINX_asyncounter_8>.
+    Set user-defined property "RLOC =  X0Y0" for instance <I_36_35> in unit <FTCE_MXILINX_asyncounter_8>.
+Entity <FTCE_MXILINX_asyncounter_8> analyzed. Unit <FTCE_MXILINX_asyncounter_8> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <FTCE_MXILINX_asyncounter_8>.
+    Related source file is "G:/xilinx/projects/lab2/asyncounter/asyncounter_8.vhf".
+Unit <FTCE_MXILINX_asyncounter_8> synthesized.
+
+
+Synthesizing Unit <asyncounter_8>.
+    Related source file is "G:/xilinx/projects/lab2/asyncounter/asyncounter_8.vhf".
+Unit <asyncounter_8> synthesized.
+
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Advanced RAM inference ...
+Advanced multiplier inference ...
+Advanced Registered AddSub inference ...
+Dynamic shift register inference ...
+
+=========================================================================
+HDL Synthesis Report
+
+Found no macro
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <asyncounter_8> ...
+
+Optimizing unit <FTCE_MXILINX_asyncounter_8> ...
+Loading device for application Rf_Device from file '2v80.nph' in environment G:/xilinx/ise71.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block asyncounter_8, actual ratio is 1.
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 2v80cs144-5 
+
+ Number of Slices:                       8  out of    512     1%  
+ Number of Slice Flip Flops:             8  out of   1024     0%  
+ Number of bonded IOBs:                 12  out of     92    13%  
+ Number of GCLKs:                        1  out of     16     6%  
+
+
+=========================================================================
+TIMING REPORT
+
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+CLK                                | BUFGP                  | 1     |
+XLXI_2/I_36_35:Q                   | NONE                   | 1     |
+XLXI_3/I_36_35:Q                   | NONE                   | 1     |
+XLXI_4/I_36_35:Q                   | NONE                   | 1     |
+XLXI_5/I_36_35:Q                   | NONE                   | 1     |
+XLXI_13/I_36_35:Q                  | NONE                   | 1     |
+XLXI_10/I_36_35:Q                  | NONE                   | 1     |
+XLXI_12/I_36_35:Q                  | NONE                   | 1     |
+-----------------------------------+------------------------+-------+
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+
+Timing Summary:
+---------------
+Speed Grade: -5
+
+   Minimum period: 2.278ns (Maximum Frequency: 438.982MHz)
+   Minimum input arrival time before clock: 2.602ns
+   Maximum output required time after clock: 5.020ns
+   Maximum combinational path delay: No path found
+
+=========================================================================
+
+
+
+
+Started process "Translate".
+
+
+Command Line: ngdbuild -intstyle ise -dd
+g:\xilinx\projects\lab2\asyncounter/_ngo -nt timestamp -i -p xc2v80-cs144-5
+asyncounter_8.ngc asyncounter_8.ngd 
+
+Reading NGO file 'G:/xilinx/projects/lab2/asyncounter/asyncounter_8.ngc' ...
+
+Checking timing specifications ...
+Checking expanded design ...
+
+NGDBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Writing NGD file "asyncounter_8.ngd" ...
+
+Writing NGDBUILD log file "asyncounter_8.bld"...
+
+NGDBUILD done.
+
+
+
+
+Started process "Map".
+
+Using target part "2v80cs144-5".
+Mapping design into LUTs...
+Running directed packing...
+Running delay-based LUT packing...
+Running related packing...
+
+Design Summary:
+Number of errors:      0
+Number of warnings:    0
+Logic Utilization:
+  Number of Slice Flip Flops:           8 out of   1,024    1%
+  Number of 4 input LUTs:               8 out of   1,024    1%
+Logic Distribution:
+  Number of occupied Slices:            8 out of     512    1%
+  Number of Slices containing only related logic:       8 out of       8  100%
+  Number of Slices containing unrelated logic:          0 out of       8    0%
+        *See NOTES below for an explanation of the effects of unrelated logic
+Total Number 4 input LUTs:              8 out of   1,024    1%
+
+  Number of bonded IOBs:               12 out of      92   13%
+  Number of GCLKs:                      1 out of      16    6%
+
+   Number of RPM macros:            8
+Total equivalent gate count for design:  115
+Additional JTAG gate count for IOBs:  576
+Peak Memory Usage:  100 MB
+
+NOTES:
+
+   Related logic is defined as being logic that shares connectivity - e.g. two
+   LUTs are "related" if they share common inputs.  When assembling slices,
+   Map gives priority to combine logic that is related.  Doing so results in
+   the best timing performance.
+
+   Unrelated logic shares no connectivity.  Map will only begin packing
+   unrelated logic into a slice once 99% of the slices are occupied through
+   related logic packing.
+
+   Note that once logic distribution reaches the 99% level through related
+   logic packing, this does not mean the device is completely utilized.
+   Unrelated logic packing will then begin, continuing until all usable LUTs
+   and FFs are occupied.  Depending on your timing budget, increased levels of
+   unrelated logic packing may adversely affect the overall timing performance
+   of your design.
+
+Mapping completed.
+See MAP report file "asyncounter_8_map.mrp" for details.
+
+
+
+
+Started process "Place & Route".
+
+
+
+
+Constraints file: asyncounter_8.pcf.
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "asyncounter_8" is an NCD, version 3.1, device xc2v80, package cs144, speed
+-5
+
+Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000
+Celsius)
+Initializing voltage to 1.425 Volts. (default - Range: 1.425 to 1.575 Volts)
+
+
+Device speed data version:  "PRODUCTION 1.121 2005-02-23".
+
+
+Device Utilization Summary:
+
+   Number of BUFGMUXs                  1 out of 16      6%
+   Number of External IOBs            12 out of 92     13%
+      Number of LOCed IOBs             0 out of 12      0%
+
+   Number of SLICEs                    8 out of 512     1%
+
+
+Overall effort level (-ol):   Standard (set by user)
+Placer effort level (-pl):    Standard (set by user)
+Placer cost table entry (-t): 1
+Router effort level (-rl):    Standard (set by user)
+
+
+Starting Placer
+
+Phase 1.1
+Phase 1.1 (Checksum:9896be) REAL time: 1 secs 
+
+Phase 2.31
+Phase 2.31 (Checksum:1312cfe) REAL time: 1 secs 
+
+Phase 3.2
+
+
+
+Phase 3.2 (Checksum:1c9c37d) REAL time: 1 secs 
+
+Phase 4.30
+Phase 4.30 (Checksum:26259fc) REAL time: 1 secs 
+
+Phase 5.3
+Phase 5.3 (Checksum:2faf07b) REAL time: 1 secs 
+
+Phase 6.5
+Phase 6.5 (Checksum:39386fa) REAL time: 1 secs 
+
+Phase 7.8
+.
+Phase 7.8 (Checksum:98aeb2) REAL time: 1 secs 
+
+Phase 8.5
+Phase 8.5 (Checksum:4c4b3f8) REAL time: 1 secs 
+
+Phase 9.18
+Phase 9.18 (Checksum:55d4a77) REAL time: 1 secs 
+
+Phase 10.5
+Phase 10.5 (Checksum:5f5e0f6) REAL time: 1 secs 
+
+Phase 11.27
+Phase 11.27 (Checksum:68e7775) REAL time: 1 secs 
+
+Phase 12.24
+Phase 12.24 (Checksum:7270df4) REAL time: 1 secs 
+
+Writing design to file asyncounter_8.ncd
+
+
+Total REAL time to Placer completion: 1 secs 
+Total CPU time to Placer completion: 0 secs 
+
+Starting Router
+
+Phase 1: 58 unrouted;       REAL time: 1 secs 
+
+Phase 2: 56 unrouted;       REAL time: 1 secs 
+
+Phase 3: 3 unrouted;       REAL time: 1 secs 
+
+Phase 4: 0 unrouted;       REAL time: 1 secs 
+
+
+WARNING:CLK Net:D_0_OBUF
+may have excessive skew because 1 CLK pins and 2 NON_CLK pins
+failed to route using a CLK template.
+
+WARNING:CLK Net:D_1_OBUF
+may have excessive skew because 1 CLK pins and 2 NON_CLK pins
+failed to route using a CLK template.
+
+WARNING:CLK Net:D_2_OBUF
+may have excessive skew because 1 CLK pins and 2 NON_CLK pins
+failed to route using a CLK template.
+
+WARNING:CLK Net:D_3_OBUF
+may have excessive skew because 1 CLK pins and 2 NON_CLK pins
+failed to route using a CLK template.
+
+WARNING:CLK Net:D_4_OBUF
+may have excessive skew because 1 CLK pins and 2 NON_CLK pins
+failed to route using a CLK template.
+
+WARNING:CLK Net:D_5_OBUF
+may have excessive skew because 1 CLK pins and 2 NON_CLK pins
+failed to route using a CLK template.
+
+WARNING:CLK Net:D_6_OBUF
+may have excessive skew because 1 CLK pins and 2 NON_CLK pins
+failed to route using a CLK template.
+
+Total REAL time to Router completion: 1 secs 
+Total CPU time to Router completion: 0 secs 
+
+Generating "PAR" statistics.
+
+**************************
+Generating Clock Report
+**************************
+
++---------------------+--------------+------+------+------------+-------------+
+|        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
++---------------------+--------------+------+------+------------+-------------+
+|           CLK_BUFGP |     BUFGMUX7P| No   |    1 |  0.000     |  0.653      |
++---------------------+--------------+------+------+------------+-------------+
+|            D_0_OBUF |         Local|      |    3 |  0.000     |  1.186      |
++---------------------+--------------+------+------+------------+-------------+
+|            D_1_OBUF |         Local|      |    3 |  0.000     |  0.718      |
++---------------------+--------------+------+------+------------+-------------+
+|            D_2_OBUF |         Local|      |    3 |  0.000     |  0.930      |
++---------------------+--------------+------+------+------------+-------------+
+|            D_3_OBUF |         Local|      |    3 |  0.000     |  0.948      |
++---------------------+--------------+------+------+------------+-------------+
+|            D_4_OBUF |         Local|      |    3 |  0.000     |  0.945      |
++---------------------+--------------+------+------+------------+-------------+
+|            D_5_OBUF |         Local|      |    3 |  0.000     |  0.664      |
++---------------------+--------------+------+------+------------+-------------+
+|            D_6_OBUF |         Local|      |    3 |  0.000     |  0.945      |
++---------------------+--------------+------+------+------------+-------------+
+
+Generating Pad Report.
+
+All signals are completely routed.
+
+Total REAL time to PAR completion: 1 secs 
+Total CPU time to PAR completion: 1 secs 
+
+Peak Memory Usage:  67 MB
+
+Placement: Completed - No errors found.
+Routing: Completed - No errors found.
+
+Number of error messages: 0
+Number of warning messages: 0
+Number of info messages: 1
+
+Writing design to file asyncounter_8.ncd
+
+
+
+PAR done!
+
+Started process "Generate Post-Place & Route Static Timing".
+
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "asyncounter_8" is an NCD, version 3.1, device xc2v80, package cs144, speed
+-5
+
+Analysis completed Wed May 04 00:28:05 2005
+--------------------------------------------------------------------------------
+
+Generating Report ...
+
+Number of warnings: 0
+Total time: 1 secs 
+
+
+
+
+Started process "Generate Post-Place & Route Simulation Model".
+
+INFO:NetListWriters:635 - The generated VHDL netlist contains Xilinx SIMPRIM
+   simulation primitives and has to be used with SIMPRIM library for correct
+   compilation and simulation. 
+
+
+
+
+
+
+

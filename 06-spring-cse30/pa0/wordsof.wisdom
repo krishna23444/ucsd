@@ -1,0 +1,77 @@
+From cs30staff-request@ieng9.ucsd.edu  Tue Oct 15 14:56:09 2002
+Return-Path: <cs30staff-request@ieng9.ucsd.edu>
+Delivered-To: cs30x@ieng9.ucsd.edu
+Received: by ieng9.ucsd.edu (Postfix)
+	id 3BBFAC84B; Tue, 15 Oct 2002 14:56:09 -0700 (PDT)
+Delivered-To: cs30staff-list@ieng9.ucsd.edu
+Received: by ieng9.ucsd.edu (Postfix, from userid 60001)
+	id 3185AC852; Tue, 15 Oct 2002 14:56:09 -0700 (PDT)
+Delivered-To: cs30staff@ieng9.ucsd.edu
+Received: by ieng9.ucsd.edu (Postfix, from userid 1255)
+	id 16CBBC84C; Tue, 15 Oct 2002 14:56:09 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by ieng9.ucsd.edu (Postfix) with ESMTP id 10CCFC84B
+	for <cs30staff@ieng9.ucsd.edu>; Tue, 15 Oct 2002 14:56:09 -0700 (PDT)
+Date: Tue, 15 Oct 2002 14:56:08 -0700 (PDT)
+From: Jonathan <cs30x3@ieng9.ucsd.edu>
+Reply-To: cs30x3@ieng9.ucsd.edu
+To: cs30staff@ieng9.ucsd.edu
+Subject: PA0 grading help
+Message-ID: <Pine.GSO.4.40.0210151455080.29948-100000@ieng9.ucsd.edu>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Status: R
+Content-Length: 2731
+
+Some words of wisdom from Jonathan to help make your life easier:
+
+Be sure to nail the students on their style now when it doesn't cost much
+pointwise, and let them know what is expected of them in terms of style
+(no more than 80 chars per line, function headers, file headers, inline
+comments, good and consistent indentation following the guideline supplied
+at the end of the pa1 write-up,and anything else like that).
+
+For those who have not graded for this class before:
+
+You will be given several tools to assist with your grading.  You will
+have two scripts in your ~/Assignments/pa0 directory (which is where all
+the files to grade are as well) called "mailer" and "extract."  For each
+file, there is a line that contains "cs30x[a-b]*" in the middle of it.
+You need to change the [a-b] part to be the range of students that you
+are grading (you might have some cs30xf's and some cs30xe's for example,
+so you would make it "cs30x[e-f]*").  Then you can run the "extract"
+script (by typing the name of the script) and it will unzip and untar the
+program files for each of the students you need to grade.  The "mailer"
+script is for use when you have finished grading all of your students.
+When all of their grades are recored, and their guidelines complete, then
+you can run the mailer script to send the students their grades.
+
+You will also have a file called "cs30x??.grades" in which you should
+recored the grades for each student (for me to collect later) when you
+finish them.
+
+Within each subdirectory of ~/Assignments/pa0 there will be a
+cs30x??.diffs, cs30x??.output, and "guideline" file.  The *.diffs file
+shows the student's output with a "<" in front of it and the correct
+output with a ">" in front of it.  You should compare any differences and
+make sure that they are really different before taking off any points for
+correctness.  There is only one test case for this assignment, and it
+should only be different on the line with their name and the one with
+their birthday (as the code was given out in class).  If you don't know
+how to read the diff file, email me and we'll set a time to meet and go
+over them.
+
+The *.output file is broken up by test case as well.  Each one has the
+complete output from the student and the correct output (labeled as such)
+for you to compare.  You can use either the *.output, *.diffs, or both as
+you see fit to determine if the student passed their test cases.
+
+The guideline file will have a list of all the things that they can lose
+points for and how much to take off for each thing.  You should change
+this file to reflect where they lost points as it will be attached to the
+email sent to them with their grade.
+
+
+Please let me know if you have any questions,
+Desiree
+

@@ -1,0 +1,87 @@
+Nitay Joffe
+2/20/2007
+CSE 121: Modern Operating Systems
+
+1.
+  a) The infinite sized file cache does not do anything to prevent crashing, so
+     the Rio File System Cache, which helps recover data from crashing, is
+     still useful.
+
+  b) Direct corruption is when a series of events causes a procedure, which is
+     usually non-IO, to accidentally write data to a file. Indirect corruption
+     is when a series of events causes a procedure to call an IO operation with
+     the wrong parameters. Checksums are used on each memory block in the file
+     buffer cache to detect direct corruption. Memtest is a special workload
+     whose actions and data are known at all times that is used to detect
+     indirect corruption.  They are both needed because checksums are a low
+     level tool while memtest is a high level one. Memtest can detect both
+     direct and indirect types of errors, but in order to know the data at all
+     times, it requires a lower level tool, like checksums. Checksums can only
+     detect direct errors because indirect ones will have a matching checksum.
+
+2.
+  a) The minage parameter tells the minimum age that is required to survive an
+     epoch. This information is used when a machine P that needs to page out
+     its page A is going to discard it or write it out to disk right then and
+     there, or pass it on to another machine. The theory is that if the page
+     is old enough that it is going to get kicked out during this epoch anyways,
+     there is no reason to pass it around. If the minage parameter is
+     miscalculated, you could have tons of unnecessary swapping of pages that
+     should be booted out, or paging out of data that wouldn't actually be
+     affected by the current epoch.
+
+  b) The initiator receives a list of oldest pages with their ages from each
+     machine in the cluster, and from all these lists computes the weights of
+     each machine along with the overall minage for the epoch. If there is only
+     reference bit information available to each machine, as opposed to some
+     timestamp, than the initiator can get a rough estimate of the oldest pages
+     for each machine, and the relative age of the pages (using something like
+     NRU). It won't have accurate age information, so the calculation of the
+     minage will not be accurate. The entire global LRU will be an accumulated 
+     approximation since each local LRU using reference bits is already an
+     approximation.
+
+3.
+  a) The file access stream is ABBA. The cache size is one, and the amount of
+     time it takes to read a block is also one. At the beginning, A is
+     prefetched. While A is read in, the second letter, B, is prefetched. Now
+     if we don't follow rule 3, we would prefetch the next letter not in the
+     cache, which is the fourth letter, A. This would cause a cache miss on the
+     third letter, B. The last character, that is the fourth A, is read in
+     without a cache miss as expected. In the case where rule 3 is followed
+     however, we notice that the third letter, B, is going to come up before
+     the fourth A, so we don't prefetch the A. Now the third letter is a cache
+     hit, and while it is read from the cache, we can prefetch the fourth A.
+     Following rule 3 eliminated a cache miss, and therefore breaking the rule
+     is not optimal.
+
+  b) request | cache4 | cache3 | cache2 | cache1 | cache0
+     --------|--------|--------|--------|--------|-------
+       b13   |  b25   |  c21   |  c05   |  b05   |  b13
+       c07   |  b25   |  c21   |  c05   |  c07   |  b13   (b05 -> b25)
+       b05   |  b05   |  c21   |  c05   |  c07   |  b13
+       a21   |  b05   |  c21   |  a21   |  c07   |  b13   (c05 -> c21)
+       c05   |  b05   |  c05   |  a21   |  c07   |  b13
+       a13   |  a13   |  c05   |  a21   |  c07   |  b13   (b05 -> b13)
+       c11   |  a13   |  c05   |  a21   |  c07   |  c11
+       c31   |  a13   |  c31   |  a21   |  c07   |  c11   (c05 -> c07)
+
+4.
+  a)
+    (a) p(T1) = 0,   p(T2) = 1/2, p(T3) = 1/10, p(T4) = 2/5
+    (b) p(T1) = 1/8, p(T2) = 3/8, p(T3) = 1/5,  p(T4) = 3/10
+
+  b) The lottery scheduler is good for the Monte-Carlo algorithm because it can
+     dynamically alter the ticket value of each experiment. When an experiment
+     has a high error, its ticket value is increased, which means it will be
+     executed more often, thus allowing it to catch up to its lower error
+     friends. As it reaches the lower error value of the other experiments, its
+     ticket value will be decreased. This negative feedback system will reach
+     equilibrium eventually because it puts a high effect on a change from the
+     norm. In order to mimick this behavior using a traditional priority based
+     scheduler, we would either have to allow the application to change its
+     own priority, or design the operating system to understand this algorithm,
+     listen to the results, and alter the priority accordingly. The first
+     solution is bad because it puts trust in the user, and the second is
+     impractical in general, but may be completely fine if, say, you're writing
+     an operating system specifically for Monte-Carlo algorithm computations.

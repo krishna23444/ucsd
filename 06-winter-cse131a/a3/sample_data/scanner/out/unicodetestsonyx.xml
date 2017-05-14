@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OnyxSource file="myTests/new.onyx">
+   <token column="1" id="45" line="1">Hex Unicode 0x41 should output A: A</token>
+   <token column="1" id="45" line="2">Dec Unicode 65 should output A: A</token>
+   <token column="1" id="45" line="3">Hex Unicode outputs a: a</token>
+   <token column="1" id="45" line="4">Dec Unicode outputs a: a</token>
+   <token column="1" id="45" line="5">NOT UNICODE: &amp;#65</token>
+   <token column="1" id="45" line="6">NOT a STRINGLITERAL: </token>
+   <token column="-1" id="0" line="-1"/>
+</OnyxSource>

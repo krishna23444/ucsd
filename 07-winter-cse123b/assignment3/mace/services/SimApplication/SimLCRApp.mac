@@ -1,0 +1,48 @@
+service SimLCRApp;
+
+provides SimApplication;
+
+trace = med;
+
+services {
+  LeaderElection e;
+}
+
+states {
+  elected;
+}
+
+constructor_parameters {
+  bool _shouldBeElected = false;  
+}
+
+state_variables {
+  bool shouldBeElected = _shouldBeElected;
+}
+
+transitions {
+  
+  //Assumes maceInit called automatically
+  downcall eventsWaiting() {
+    return false;
+  }
+
+  upcall notifyLeader(const MaceKey& m) {
+    if(state == init) {
+      state = elected;
+    }
+    else {
+      ASSERT(false);
+    }
+  }
+  
+}
+
+properties {
+  safety {
+    onlyLeaderElected : \forall n \in \nodes: { n.state = elected \implies n.shouldBeElected };
+  }
+  liveness {
+    leaderLive : \forall n \in \nodes: { n.state = elected \iff n.shouldBeElected };
+  }
+}

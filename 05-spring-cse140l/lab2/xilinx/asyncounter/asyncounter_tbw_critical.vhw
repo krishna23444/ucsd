@@ -1,0 +1,235 @@
+--------------------------------------------------------------------------------
+-- Copyright (c) 1995-2003 Xilinx, Inc.
+-- All Right Reserved.
+--------------------------------------------------------------------------------
+--   ____  ____ 
+--  /   /\/   / 
+-- /___/  \  /    Vendor: Xilinx 
+-- \   \   \/     Version : 7.1.01i
+--  \   \         Application : ISE WebPACK
+--  /   /         Filename : asyncounter_tbw_critical.vhw
+-- /___/   /\     Timestamp : Tue May 03 03:11:49 2005
+-- \   \  /  \ 
+--  \___\/\___\ 
+--
+--Command: 
+--Design Name: asyncounter_tbw_critical
+--Device: Xilinx
+--
+
+library UNISIM;
+use UNISIM.Vcomponents.ALL;
+library ieee;
+use ieee.std_logic_1164.ALL;
+use ieee.numeric_std.ALL;
+USE IEEE.STD_LOGIC_TEXTIO.ALL;
+USE STD.TEXTIO.ALL;
+
+ENTITY asyncounter_tbw_critical IS
+END asyncounter_tbw_critical;
+
+ARCHITECTURE testbench_arch OF asyncounter_tbw_critical IS
+    FILE RESULTS: TEXT OPEN WRITE_MODE IS "results.txt";
+
+    COMPONENT asyncounter
+        PORT (
+            CLK : In std_logic;
+            CLK_CE : In std_logic;
+            CLR : In std_logic;
+            VCC : In std_logic;
+            D0 : Out std_logic;
+            D1 : Out std_logic;
+            D2 : Out std_logic;
+            D3 : Out std_logic
+        );
+    END COMPONENT;
+
+    SIGNAL CLK : std_logic := '0';
+    SIGNAL CLK_CE : std_logic := '1';
+    SIGNAL CLR : std_logic := '0';
+    SIGNAL VCC : std_logic := '1';
+    SIGNAL D0 : std_logic := '0';
+    SIGNAL D1 : std_logic := '0';
+    SIGNAL D2 : std_logic := '0';
+    SIGNAL D3 : std_logic := '0';
+
+    SHARED VARIABLE TX_ERROR : INTEGER := 0;
+    SHARED VARIABLE TX_OUT : LINE;
+
+    BEGIN
+        UUT : asyncounter
+        PORT MAP (
+            CLK => CLK,
+            CLK_CE => CLK_CE,
+            CLR => CLR,
+            VCC => VCC,
+            D0 => D0,
+            D1 => D1,
+            D2 => D2,
+            D3 => D3
+        );
+
+        PROCESS
+            PROCEDURE CHECK_D0(
+                next_D0 : std_logic;
+                TX_TIME : INTEGER
+            ) IS
+                VARIABLE TX_STR : String(1 to 4096);
+                VARIABLE TX_LOC : LINE;
+                BEGIN
+                IF (D0 /= next_D0) THEN
+                    STD.TEXTIO.write(TX_LOC, string'("Error at time="));
+                    STD.TEXTIO.write(TX_LOC, TX_TIME);
+                    STD.TEXTIO.write(TX_LOC, string'("ns D0="));
+                    IEEE.STD_LOGIC_TEXTIO.write(TX_LOC, D0);
+                    STD.TEXTIO.write(TX_LOC, string'(", Expected = "));
+                    IEEE.STD_LOGIC_TEXTIO.write(TX_LOC, next_D0);
+                    STD.TEXTIO.write(TX_LOC, string'(" "));
+                    TX_STR(TX_LOC.all'range) := TX_LOC.all;
+                    STD.TEXTIO.writeline(RESULTS, TX_LOC);
+                    STD.TEXTIO.Deallocate(TX_LOC);
+                    ASSERT (FALSE) REPORT TX_STR SEVERITY ERROR;
+                    TX_ERROR := TX_ERROR + 1;
+                END IF;
+            END;
+            PROCEDURE CHECK_D1(
+                next_D1 : std_logic;
+                TX_TIME : INTEGER
+            ) IS
+                VARIABLE TX_STR : String(1 to 4096);
+                VARIABLE TX_LOC : LINE;
+                BEGIN
+                IF (D1 /= next_D1) THEN
+                    STD.TEXTIO.write(TX_LOC, string'("Error at time="));
+                    STD.TEXTIO.write(TX_LOC, TX_TIME);
+                    STD.TEXTIO.write(TX_LOC, string'("ns D1="));
+                    IEEE.STD_LOGIC_TEXTIO.write(TX_LOC, D1);
+                    STD.TEXTIO.write(TX_LOC, string'(", Expected = "));
+                    IEEE.STD_LOGIC_TEXTIO.write(TX_LOC, next_D1);
+                    STD.TEXTIO.write(TX_LOC, string'(" "));
+                    TX_STR(TX_LOC.all'range) := TX_LOC.all;
+                    STD.TEXTIO.writeline(RESULTS, TX_LOC);
+                    STD.TEXTIO.Deallocate(TX_LOC);
+                    ASSERT (FALSE) REPORT TX_STR SEVERITY ERROR;
+                    TX_ERROR := TX_ERROR + 1;
+                END IF;
+            END;
+            PROCEDURE CHECK_D2(
+                next_D2 : std_logic;
+                TX_TIME : INTEGER
+            ) IS
+                VARIABLE TX_STR : String(1 to 4096);
+                VARIABLE TX_LOC : LINE;
+                BEGIN
+                IF (D2 /= next_D2) THEN
+                    STD.TEXTIO.write(TX_LOC, string'("Error at time="));
+                    STD.TEXTIO.write(TX_LOC, TX_TIME);
+                    STD.TEXTIO.write(TX_LOC, string'("ns D2="));
+                    IEEE.STD_LOGIC_TEXTIO.write(TX_LOC, D2);
+                    STD.TEXTIO.write(TX_LOC, string'(", Expected = "));
+                    IEEE.STD_LOGIC_TEXTIO.write(TX_LOC, next_D2);
+                    STD.TEXTIO.write(TX_LOC, string'(" "));
+                    TX_STR(TX_LOC.all'range) := TX_LOC.all;
+                    STD.TEXTIO.writeline(RESULTS, TX_LOC);
+                    STD.TEXTIO.Deallocate(TX_LOC);
+                    ASSERT (FALSE) REPORT TX_STR SEVERITY ERROR;
+                    TX_ERROR := TX_ERROR + 1;
+                END IF;
+            END;
+            PROCEDURE CHECK_D3(
+                next_D3 : std_logic;
+                TX_TIME : INTEGER
+            ) IS
+                VARIABLE TX_STR : String(1 to 4096);
+                VARIABLE TX_LOC : LINE;
+                BEGIN
+                IF (D3 /= next_D3) THEN
+                    STD.TEXTIO.write(TX_LOC, string'("Error at time="));
+                    STD.TEXTIO.write(TX_LOC, TX_TIME);
+                    STD.TEXTIO.write(TX_LOC, string'("ns D3="));
+                    IEEE.STD_LOGIC_TEXTIO.write(TX_LOC, D3);
+                    STD.TEXTIO.write(TX_LOC, string'(", Expected = "));
+                    IEEE.STD_LOGIC_TEXTIO.write(TX_LOC, next_D3);
+                    STD.TEXTIO.write(TX_LOC, string'(" "));
+                    TX_STR(TX_LOC.all'range) := TX_LOC.all;
+                    STD.TEXTIO.writeline(RESULTS, TX_LOC);
+                    STD.TEXTIO.Deallocate(TX_LOC);
+                    ASSERT (FALSE) REPORT TX_STR SEVERITY ERROR;
+                    TX_ERROR := TX_ERROR + 1;
+                END IF;
+            END;
+            BEGIN
+                -- -------------  Current Time:  10ns
+                WAIT FOR 10 ns;
+                CHECK_D0('1', 10);
+                -- -------------------------------------
+                -- -------------  Current Time:  20ns
+                WAIT FOR 10 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  40ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  50ns
+                WAIT FOR 10 ns;
+                CHECK_D0('0', 50);
+                CHECK_D1('1', 50);
+                -- -------------------------------------
+                -- -------------  Current Time:  60ns
+                WAIT FOR 10 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  80ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  90ns
+                WAIT FOR 10 ns;
+                CHECK_D0('1', 90);
+                -- -------------------------------------
+                -- -------------  Current Time:  100ns
+                WAIT FOR 10 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  120ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  130ns
+                WAIT FOR 10 ns;
+                CHECK_D0('0', 130);
+                CHECK_D1('0', 130);
+                CHECK_D2('1', 130);
+                -- -------------------------------------
+                -- -------------  Current Time:  140ns
+                WAIT FOR 10 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  160ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  170ns
+                WAIT FOR 10 ns;
+                CHECK_D0('1', 170);
+                WAIT FOR 830 ns;
+
+                IF (TX_ERROR = 0) THEN
+                    STD.TEXTIO.write(TX_OUT, string'("No errors or warnings"));
+                    STD.TEXTIO.writeline(RESULTS, TX_OUT);
+                    ASSERT (FALSE) REPORT
+                      "Simulation successful (not a failure).  No problems detected."
+                      SEVERITY FAILURE;
+                ELSE
+                    STD.TEXTIO.write(TX_OUT, TX_ERROR);
+                    STD.TEXTIO.write(TX_OUT,
+                        string'(" errors found in simulation"));
+                    STD.TEXTIO.writeline(RESULTS, TX_OUT);
+                    ASSERT (FALSE) REPORT "Errors found during simulation"
+                         SEVERITY FAILURE;
+                END IF;
+            END PROCESS;
+
+    END testbench_arch;
+

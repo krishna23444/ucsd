@@ -1,0 +1,56 @@
+CSE 121 Project 1: A Simple Unix Inode Style Filesystem
+
+This is a Unix style Inode filesystem with a 512 byte blocksize.
+
+The operations supported are mount, unmount, mkdir, create, rename, delete,
+getattr, readdir, read, and write. In particular, directory deletions, although
+they might "work", are not properly handled because the space for the items in
+the directory is not reclaimed.
+
+Most of the original header information given in the assignment has been moved
+to io.h. This module, io.{h,c}, also defines helpful wrappers around the
+dread/dwrite functions given.
+
+Each inode takes up 64 bytes of space, so there are eight inodes per block.
+There are 12 direct pointers, and one single, double, and triple pointers.
+This means the maximum file size supported by this filesystem is 2113676
+blocks, or 1082202112 bytes. The amount of inodes on the disk is hardcoded in
+superblock.c and preallocated to the disk size in blocks divided by 32.
+
+Finding a free inode or data block is handled using a free list. The superblock
+has a pointer to the first free inode number (not block, there are multiple
+inodes per block), and the first free data block. Every free inode or data
+block points to the next free item of that type, or has an INVALID pointer,
+which indicates there is no more free space available of that type. When a free
+inode or block is needed, the information of the next available free item of
+that type is copied and written to the superblock, and the first item is
+returned. This is exactly like moving the head of a linked list forward by one
+item while returning the original first item.
+
+Writes to disk happen such that data is always written out before any point
+(e.g. inode metadata or directory entry). This means that there shouldn't ever
+be a pointer to corrupt/invalid data. When a crash occurs, you may lose some
+data because the crash occured in between a adata block write and its metadata
+update, but the filesystem shold never get corrupted because of it. Corruption
+notification information is written to the superblock, but right now no actual
+filesystem check/recovery occurs on a mount after a crash. This means any lost
+data that occured from a crash (because the metadata was not updated), is gone.
+
+This filesystem is probably not the most optimized thing you'll run across
+since I developed it with a focus on clear design and easy maintainability. In
+particular, adding a block_number -> block_data cache in io.c and a path ->
+block_number cache would greatly improve performance.
+
+The code is not as well commented as it should be, but I tried to use
+human readable verbose naming to make things clear. You should have received a
+documentation folder with the tarball (called doc/). This folder has detailed
+doxygen output with call graphs that are very helpful for understand what is
+going on. To look at it, simply open a web browser to:
+  <code_directory>/doc/html/index.html
+
+I tested the filesystem as much as I could, but like always, there is too much
+to do and too little time. As such, there might be some corner cases I forgot
+to consider, but as a whole it should be in good shape.
+
+Enjoy,
+ -n

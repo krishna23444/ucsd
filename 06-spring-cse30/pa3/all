@@ -1,0 +1,493 @@
+/*
+ * pa3.h
+ */
+
+void printEnglish( long num );
+void printIntBinary( long num );
+void printFPBinary( float num );
+void printBase( long num, int base );
+
+
+/*
+ * main.c
+ */
+
+#include <errno.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#include "pa3.h"
+
+#define BASE8 8
+#define BASE10 10
+#define BASE16 16
+
+/* Needed for assembly routines to use fprintf/stderr */
+FILE *stdError = stderr;  
+
+int
+main( int argc, char *argv[] ) {
+
+   int i;
+   long num;
+   float fpnum;
+   char *endptr;
+   char *dotptr;
+
+   for ( i = 1; i < argc; ++i ) {
+
+      (void) printf( "\n%s\n\n", argv[i] );
+
+      if ( (dotptr = strchr( argv[i], '.' )) == NULL ) {  
+
+         /* It is an int number */
+
+	 errno = 0;
+         num = strtol( argv[i], &endptr, BASE10 );
+	 if (errno != 0 ) {
+	    (void) fprintf( stderr, "\t" );
+	    perror( argv[i] );
+	    (void) fprintf( stderr, "\n" );
+	    continue;
+	 }
+	 if ( *endptr != '\0' ) {
+	    (void) fprintf( stderr, "\t%s is not a valid integer", argv[i]);
+	    (void) printf( "\n\n" );
+	    continue;
+         }
+	 (void) printf( "The number spelled out in English [using printEnglish()]:\n\n\t" );
+         if ( num < 0 ) {
+            (void) printf( "minus " );
+            printEnglish( -num );
+         } else
+            printEnglish( num );
+         (void) printf( "\n\n" );
+
+	 (void) printf( "The number displayed in binary [using printIntBinary()]:\n\n\t" );
+         printIntBinary( num ); 
+         (void) printf( "\n\n" );
+
+	 (void) printf( "The number displayed in octal [using printBase()]:\n\n\t" );
+	 if ( num < 0 ) {
+	    (void) printf( "-0" );
+	    printBase( -num, BASE8 );
+	 } else {
+	    (void) printf( "0" );
+            printBase( num, BASE8 );
+	 }
+         (void) printf( "\n\n" );
+
+	 (void) printf( "The number displayed in decimal [using printBase()]:\n\n\t" );
+         if ( num < 0 ) {
+            (void) printf( "-" );
+            printBase( -num, BASE10 );
+         } else
+            printBase( num, BASE10 );
+         (void) printf( "\n\n" );
+
+	 (void) printf( "The number displayed in hex [using printBase()]:\n\n\t" );
+         if ( num < 0 ) {
+            (void) printf( "-0x" );
+            printBase( -num, BASE16 );
+         } else {
+            (void) printf( "0x" );
+            printBase( num, BASE16 );
+	 }
+
+	 (void) printf( "\n\n" );
+      
+      } else {  
+
+         /* It is a FP number */
+
+         errno = 0;
+         fpnum = strtod( argv[i], &endptr );
+         if ( errno != 0 ) {
+	    (void) fprintf( stderr, "\t" );
+            perror( argv[i] );
+	    (void) fprintf( stderr, "\n" );
+	    continue;
+	 }
+	 if ( *endptr != '\0' ) {
+	    (void) fprintf( stderr, "\t%s is not a valid floating point "
+	                            "number.", argv[i] );
+	    (void) printf( "\n\n" );
+	    continue;
+	 }
+	 (void) printf( "The number spelled out in English [using printEnglish()]:\n\n\t" );
+         
+#ifdef NOTDEF
+	 {
+	    void *ptr = &fpnum;
+	    printf("%x\n", *(int *)ptr );
+	 }
+#endif
+
+         *dotptr = '\0';  /* Slam a '\0' to terminate int part of FP value */
+
+         num = strtol( argv[i], &endptr, BASE10 );
+
+         /* Spell out in English the part to the left of the decimal point */
+         if ( fpnum < 0 ) {
+            (void) printf( "minus " );
+            printEnglish( -num );
+         } else 
+            printEnglish( num );
+
+         (void) printf( "dot " );
+
+         /* Spell out the part to the right of the decimal point */
+
+         /*
+          * Handle any leading zeros in the fraction part since any leading
+          * zeros in an int will be lost when we try to print it in English
+          */
+
+         while ( *++dotptr == '0' )
+            (void) printf( "zero " );
+
+	 if ( *dotptr != '\0' ) {
+            num = strtol( dotptr, &endptr, BASE10 );
+            printEnglish( num );
+         }
+
+         (void) printf( "\n\n" );
+	 (void) printf( "The number displayed in binary [using printFPBinary()]:\n\n\t" );
+         printFPBinary( fpnum );
+
+	 (void) printf( "\n\n" );
+          
+      } /* end else */
+
+   } /* end for loop */
+
+   return(0);
+
+}
+
+/*
+ * printBase.s
+ * 
+ * void printBase( long num, int base );
+ *
+ */
+
+	.global	printBase
+
+	.section ".rodata"
+
+fmt:	.asciz	"%c"
+
+errfmt:	.asciz	"\tprintBase: Invalid base %d; Valid range (%d - %d).\n\n"
+
+/*
+ * char *digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+ */
+
+digits:	
+	.asciz	"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+
+	.section ".text"
+
+	rt_digit_offset = -4
+	MIN_BASE = 2
+	MAX_BASE = 36
+
+printBase:
+	save	%sp, (-92 + rt_digit_offset) & -8, %sp
+
+	/* Check the base range */
+	cmp	%i1, MIN_BASE
+	bl	errorBase
+	nop
+
+	cmp	%i1, MAX_BASE
+	ble	baseOK
+	nop
+
+	/* Print error and return */
+errorBase:
+	set	stdError, %o0
+	ld	[%o0], %o0
+	set	errfmt, %o1
+	mov	%i1, %o2
+	mov	MIN_BASE, %o3
+	mov	MAX_BASE, %o4
+	call	fprintf
+	nop
+
+	ret
+	restore
+
+	/* Base is OKAY */
+baseOK:
+	mov	%i0, %o0
+	call	.rem
+!	nop
+	mov	%i1, %o1
+
+	st	%o0, [%fp + rt_digit_offset]	! rt_digit = num % base
+
+	mov	%i0, %o0
+	call	.div
+!	nop
+	mov	%i1, %o1
+
+	/*
+         * result of (num/base) is in %o0 and ready as param for next recursion
+	 */
+
+	cmp	%o0, 0
+	be	no_recursion
+	nop
+
+	call	printBase, 2
+	nop
+
+no_recursion:
+
+	set	digits, %l0			! digits
+	ld	[%fp + rt_digit_offset], %l1	! rt_digit
+	add	%l0, %l1, %o1			! digits + rt_digit
+	ldub	[%o1], %o1			! *(words + rt_digit)
+	set	fmt, %o0
+	call	printf, 2
+	nop
+
+	ret
+	restore
+
+/*
+ * printEnglish.s
+ * 
+ * void printEnglish( long num );
+ *
+ */
+
+	.global	printEnglish
+
+	.section ".rodata"
+
+fmt:	.asciz	"%s "
+
+zero:	.asciz	"zero"
+one:	.asciz	"one"
+two:	.asciz	"two"
+three:	.asciz	"three"
+four:	.asciz	"four"
+five:	.asciz	"five"
+six:	.asciz	"six"
+seven:	.asciz	"seven"
+eight:	.asciz	"eight"
+nine:	.asciz	"nine"
+
+/*
+ * char *words[] = { "zero", "one", "two", "three", "four", "five",
+ *                   "six", "seven", "eight", "nine" };
+ */
+	.align 4
+words:	
+	.word zero, one, two, three, four, five, six, seven, eight, nine
+
+
+	.section ".text"
+
+	rt_digit_offset = -4
+
+printEnglish:
+	save	%sp, (-92 + rt_digit_offset) & -8, %sp
+
+	mov	%i0, %o0
+	call	.rem
+	mov	10, %o1
+
+	st	%o0, [%fp + rt_digit_offset]	! rt_digit = num % 10
+
+	mov	%i0, %o0
+	call	.div
+	mov	10, %o1
+
+	/*
+         * result of (num / 10) is in %o0 and ready as param for next recursion
+	 */
+
+	cmp	%o0, 0
+	be	no_recursion
+	nop
+
+	call	printEnglish, 1			! recurse
+	nop
+
+no_recursion:
+
+	set	words, %l0			! words
+	ld	[%fp + rt_digit_offset], %l1	! rt_digit
+	sll	%l1, 2, %l1			! rt_digit * 4
+	add	%l0, %l1, %o1			! word + rt_digit * 4
+	ld	[%o1], %o1			! *(words + rt_digit * 4)
+	set	fmt, %o0
+	call	printf, 2
+	nop
+
+	ret
+	restore
+
+/*
+ * printFPBinary.s
+ *
+ * void printFPBinary( float f );
+ *
+ *  1 bit for sign
+ *  8 bits of exponent
+ * 23 bits of mantissa/fraction
+ *
+ * x xxxxxxxx xxxxxxxxxxxxxxxxxxxxxxx
+ *
+ * %l0 - bit mask that gets shifted down to test the bits for 0 or 1
+ * %l1 - counter for outputting a space between the parts of the FP
+ *
+ */
+
+	.global	printFPBinary
+
+	.section	".rodata"
+
+fmt:    .asciz  "%d"
+fmt_sp: .asciz  " "
+
+	.section	".text"
+
+printFPBinary:
+
+	save	%sp, (-92) & -8, %sp
+
+	set     0x80000000, %l0         ! sign bit mask	
+
+/* Can use these bit masks as one way to do this
+   Can also use shifts left and right to isolate these parts of the FP
+	set     0x7F800000, %l2         ! exponent mask	
+	set     0x007FFFFF, %l3         ! mantissa mask	
+*/
+
+        btst    %l0, %i0 
+        bne     sign_one
+!       nop
+        mov     1, %o1                  ! assume bit is a 1
+
+        clr     %o1
+sign_one:
+        set     fmt, %o0
+        call    printf, 2
+        nop
+
+        set     fmt_sp, %o0             ! output a space between sign bit and
+        call    printf, 1		! exponent bits
+        nop
+
+        mov     8, %l1                  ! counter for outputing a space
+					! after the 8 bits of exponent
+
+        srl     %l0, 1, %l0		! shift mask bit down one position
+					! to test the exponent bits
+
+exp_loop:
+        btst    %l0, %i0 
+        bne     exp_one
+!       nop
+        mov     1, %o1                  ! assume bit is a 1
+
+        clr     %o1
+exp_one:
+        set     fmt, %o0
+        call    printf, 2
+!       nop
+
+        srl     %l0, 1, %l0		! shift mask bit down one position
+					! we are walking down the exp. bits
+        deccc   %l1
+        bne     exp_loop
+        nop
+
+        set     fmt_sp, %o0             ! output a space between exponent and
+        call    printf, 1		! mantissa/fraction bits
+        nop
+
+        mov     23, %l1                 ! counter for remaining mantissa bits
+
+mantissa_loop:
+        btst    %l0, %i0 
+        bne     mantissa_one
+!       nop
+        mov     1, %o1                  ! assume bit is a 1
+
+        clr     %o1
+mantissa_one:
+        set     fmt, %o0
+        call    printf, 2
+!       nop
+
+        srl     %l0, 1, %l0		! shift mask bit down one position
+					! we are walking down the mantissa bits
+        deccc   %l1
+        bne     mantissa_loop
+        nop
+
+
+	ret
+	restore
+
+/*
+ * printIntBinary.s
+ */
+
+	.global	printIntBinary
+
+	.section ".rodata"
+
+fmt:	.asciz	"%d"
+fmt_sp:	.asciz	" "
+
+
+	.section ".text"
+
+printIntBinary:
+	save	%sp, (-92) & -8, %sp
+
+	set	0x80000000, %l0		! mask
+
+	mov	4, %l1			! counter for outputing a space
+
+
+loop:
+	btst	%l0, %i0 
+	bne	one
+!	nop
+	mov	1, %o1			! assume bit is a 1
+
+	clr	%o1
+one:
+	set	fmt, %o0
+	call	printf, 2
+	nop
+
+	deccc	%l1
+	bne	no_space
+	nop
+
+	set	fmt_sp, %o0		! output a space every 4 bits
+	call	printf, 1
+	nop
+
+	mov	4, %l1			! reset counter
+
+no_space:
+	srl	%l0, 1, %l0
+	tst	%l0
+	bne	loop
+	nop
+
+	ret
+	restore
+

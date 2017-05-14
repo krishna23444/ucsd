@@ -1,0 +1,22 @@
+Release 7.1.01i ngdbuild H.39
+Copyright (c) 1995-2005 Xilinx, Inc.  All rights reserved.
+
+Command Line: ngdbuild -intstyle ise -dd
+g:\xilinx\projects\lab2\i_s_to_p_shiftregister/_ngo -nt timestamp -i -p
+xc2v80-cs144-5 shiftreg.ngc shiftreg.ngd 
+
+Reading NGO file 'G:/xilinx/projects/lab2/i_s_to_p_shiftregister/shiftreg.ngc'
+...
+
+Checking timing specifications ...
+Checking expanded design ...
+
+NGDBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Total memory usage is 59420 kilobytes
+
+Writing NGD file "shiftreg.ngd" ...
+
+Writing NGDBUILD log file "shiftreg.bld"...

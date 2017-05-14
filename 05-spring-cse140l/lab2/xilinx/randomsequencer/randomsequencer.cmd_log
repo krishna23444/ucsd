@@ -1,0 +1,7 @@
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w randomsequencer.sch randomsequencer.vhf
+xst -intstyle ise -ifn __projnav/randomsequencer.xst -ofn randomsequencer.syr
+ngdbuild -intstyle ise -dd "g:\xilinx\projects\lab2\randomsequencer/_ngo" -nt timestamp -i  -p xc2v80-cs144-5 randomsequencer.ngc randomsequencer.ngd
+map -intstyle ise -p xc2v80-cs144-5 -cm area -pr b -k 4 -c 100 -tx off -o randomsequencer_map.ncd randomsequencer.ngd randomsequencer.pcf
+par -w -intstyle ise -ol std -t 1 randomsequencer_map.ncd randomsequencer.ncd randomsequencer.pcf
+trce -intstyle ise -e 3 -l 3 -s 5 -xml randomsequencer randomsequencer.ncd -o randomsequencer.twr randomsequencer.pcf
+netgen -intstyle ise -s 5   -pcf randomsequencer.pcf -rpw 100 -tpw 0 -ar Structure -xon true -w -ofmt vhdl -sim randomsequencer.ncd randomsequencer_timesim.vhd

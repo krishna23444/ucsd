@@ -1,0 +1,82 @@
+/* Sample Project 2 Synopsys Design Compiler synthesis script with 25 ns constraint */
+
+/* . represents the directory that you are running dc_shell in; sets the search path there to look for files. */    
+/*search_path={".","/acsnfs3/software/synopsys-2002.05-SP2/libraries/syn"}  */ 
+search_path={".","/acsnfs3/software/synopsys-V-2004.06-SP2/libraries/syn"}
+target_library={class.db}
+
+link_library={class.db}
+
+local_link_library={class.db}
+
+
+/*  Set the information to be displayed by dc_shell when the compile command is executed. */ 
+/*  cpu=the cpu time used by the dc_shell process;  mem=the amount of memory used;  area=design area;  elap_time=elapsed time.  */
+compile_log_format="%cpu %mem %area %elap_time"
+
+
+/*  Check for errors in wep_encrypt_v3.v, translate verilog to an intermediate format, and write messages to file. */
+analyze -f verilog wep_encrypt_v3.v > wep_encrypt_v3.analyze
+
+
+/*  Build design using a generic library from intermediate format and write messages to file.  */
+elaborate wep_encrypt_v3 > wep_encrypt_v3.elaborate
+
+
+/*  The module name is wep_encrypt_v3; set the current_design to wep_encrypt_v3.  */
+current_design wep_encrypt_v3
+
+
+/* Obtain a report to see if there are any combinational loops. */
+report_timing -loops > wep_encrypt_v3_loops
+
+
+/* Check for unwanted latches */
+all_registers -level_sensitive > wep_encrypt_v3_latches
+
+
+/* Check design for warnings and write output to file  */   
+check_design > wep_encrypt_v3_warnings
+
+
+/*  uniquify removes multiple-instantiated hierarchy in the design by creating a unique design for each cell instance. */ 
+/* this command is only needed if there are multiple instantiations of a module */
+uniquify -force 
+
+
+/* minimize area */
+set_max_area 0.0
+
+
+/*  The create_clock command is used on a synchronous design to specify the clock port and set a constraint. In this case, 25 ns. */
+/*  A constraint is a design goal for the compile command for the (maximum combinational path delay + library setup time).  */
+/*  The clock port in the wep_encrypt_v3 module is clk.  */
+create_clock clk -period 25 
+
+
+/* The design is mapped to cells from the TSMC technology library and optimized.  */
+compile -map_effort high > wep_encrypt_v3.compile 
+
+
+/* Write an area report. */
+/* Divide the total area by 1, the area of a two-input nand gate, to obtain the area in units of gates. */
+report_area > wep_encrypt_v3.area
+
+
+/* Write a timing (maximum [combinational path delay + setup time] in nanoseconds) report to file. */
+report_timing > wep_encrypt_v3.timing
+
+
+/* Write a report listing the number of adders, muxes, and other cells used in the design. */ 
+report_reference > wep_encrypt_v3.reference
+
+
+/* Write a report listing the number and type of designware adders and muxes implemented in the design. */ 
+report_resources > wep_encrypt_v3.resources
+
+
+/* save the design in Synopsys internal database format to wep_encrypt_v3.db file */
+write wep_encrypt_v3 
+
+
+exit

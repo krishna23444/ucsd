@@ -1,0 +1,7 @@
+DIRS = common TritonShare_nogui TritonShare_gui modelchecker
+
+include ../commondirs.mk
+
+clean : cleandirs
+cleaner : cleanerdirs
+.cvsignore : 

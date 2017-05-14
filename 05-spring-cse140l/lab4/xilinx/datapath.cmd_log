@@ -1,0 +1,14 @@
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w datapath.sch datapath.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w datapath.sch datapath.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w datapath.sch datapath.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w datapath.sch datapath.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w datapath.sch datapath.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w datapath.sch datapath.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w datapath.sch datapath.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w datapath.sch datapath.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w datapath.sch datapath.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w datapath.sch datapath.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w datapath.sch datapath.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w datapath.sch datapath.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w datapath.sch datapath.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w datapath.sch datapath.vhf

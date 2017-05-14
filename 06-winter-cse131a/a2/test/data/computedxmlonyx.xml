@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.ast.Query>
+   <onyx.ast.ExprList>
+      <onyx.ast.Flwr>
+         <onyx.ast.LetAssignment varName="$x">
+            <onyx.ast.Constant datatype="onyx.types.String">foo</onyx.ast.Constant>
+         </onyx.ast.LetAssignment>
+         <onyx.ast.LetAssignment varName="$y">
+            <onyx.ast.Constant datatype="onyx.types.String">baz</onyx.ast.Constant>
+         </onyx.ast.LetAssignment>
+         <onyx.ast.LetAssignment varName="$at1">
+            <onyx.ast.FunctionCall name="addAttribute">
+               <onyx.ast.FunctionCall name="attrenv"/>
+               <onyx.ast.Variable>$y</onyx.ast.Variable>
+               <onyx.ast.Constant datatype="onyx.types.String">4</onyx.ast.Constant>
+            </onyx.ast.FunctionCall>
+         </onyx.ast.LetAssignment>
+         <onyx.ast.LetAssignment varName="$tn1">
+            <onyx.ast.FunctionCall name="tnode">
+               <onyx.ast.Variable>$x</onyx.ast.Variable>
+               <onyx.ast.Variable>$at1</onyx.ast.Variable>
+               <onyx.ast.Constant datatype="onyx.types.String">8</onyx.ast.Constant>
+            </onyx.ast.FunctionCall>
+         </onyx.ast.LetAssignment>
+         <onyx.ast.LetAssignment varName="$at2">
+            <onyx.ast.FunctionCall name="addAttribute">
+               <onyx.ast.FunctionCall name="attrenv"/>
+               <onyx.ast.Constant datatype="onyx.types.String">baz</onyx.ast.Constant>
+               <onyx.ast.Constant datatype="onyx.types.String">4</onyx.ast.Constant>
+            </onyx.ast.FunctionCall>
+         </onyx.ast.LetAssignment>
+         <onyx.ast.LetAssignment varName="$tn2">
+            <onyx.ast.FunctionCall name="tnode">
+               <onyx.ast.Constant datatype="onyx.types.String">hoo</onyx.ast.Constant>
+               <onyx.ast.Variable>$at2</onyx.ast.Variable>
+               <onyx.ast.Constant datatype="onyx.types.String">88</onyx.ast.Constant>
+            </onyx.ast.FunctionCall>
+         </onyx.ast.LetAssignment>
+         <onyx.ast.Return>
+            <onyx.ast.ExprList>
+               <onyx.ast.Variable>$tn1</onyx.ast.Variable>
+               <onyx.ast.Variable>$tn2</onyx.ast.Variable>
+            </onyx.ast.ExprList>
+         </onyx.ast.Return>
+      </onyx.ast.Flwr>
+   </onyx.ast.ExprList>
+</onyx.ast.Query>
+

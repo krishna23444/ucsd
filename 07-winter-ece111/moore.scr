@@ -1,0 +1,71 @@
+/*  moore.scr */
+
+/*  Check for code errors and translate verilog to intermediate format */
+analyze -f verilog moore.v > moore.analyze.results 
+
+
+/*  Build design in Synopsys generic library  */
+elaborate moore > moore.elaborate.results 
+
+/* Check design for warnings (the file, moore.warnings.0, should be an empty file, signifying no warnings).  */
+check_design > moore.warnings.0
+
+/*  The module name is moore; set the current_design to moore.  */
+current_design=moore
+
+
+/*  The create_clock command is a required command used on a synchronous design to specify the clock port and set a constraint. In this case, 0.8 ns. */
+/*  A constraint is a design goal for the compile command for the (maximum combinational path delay + setup time).  */
+/*  The clock port in the moore module is CLK.  */
+create_clock  CLK  -period  0.8
+
+
+/* The design is optimized and mapped to cells from the TSMC technology library */
+compile -map_effort medium > moore.compile.0.messages 
+
+
+/* set_fsm_state_vector is used to identify the flip-flops in the design which hold the current state of the fsm */
+current_design=moore
+set_fsm_state_vector {CURRENT_STATE_reg[0],CURRENT_STATE_reg[1]}
+
+
+/* Group the flips flops and their associated combinational logic into a separate level of hierarchy to help isolate the fsm from the rest of the design */
+group -fsm -design_name fsm_moore
+
+
+current_design=fsm_moore
+
+
+/*  Set the state encoding to binary  */
+set_fsm_encoding_style binary 
+
+
+/* Extract a state-machine representation and write extract messages to file */
+extract > extract.messages
+
+
+/*  The create_clock command is used on a synchronous design to set a constraint. In this case, 0.8 ns. */
+create_clock  CLK  -period  0.8
+
+
+/* Map the design from generic library cells to cells from the TSMC technology library and then optimize the design; write compile messages to file */
+compile -map_effort medium > moore.compile.messages
+
+
+/* Write reports to file */
+report_area > moore.area.report
+report_timing > moore.timing.report
+report_fsm > moore.fsm.report
+
+
+/* Create a postscript schematic file, moore.ps (there will be font and symbol warnings which is ok) */
+create_schematic
+plot -output moore + .ps
+
+
+/* Check design for warnings (the file, moore.warnings, should be an empty file, signifying no warnings).  */
+check_design > moore.warnings1
+
+
+/* Write design in Synopsys internal database format to moore.db */
+write moore

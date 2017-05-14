@@ -1,0 +1,117 @@
+From cs30staff-request@ieng9.ucsd.edu  Tue Oct 15 20:08:03 2002
+Return-Path: <cs30staff-request@ieng9.ucsd.edu>
+Delivered-To: cs30x@ieng9.ucsd.edu
+Received: by ieng9.ucsd.edu (Postfix)
+	id A9581C830; Tue, 15 Oct 2002 20:08:03 -0700 (PDT)
+Delivered-To: cs30staff-list@ieng9.ucsd.edu
+Received: by ieng9.ucsd.edu (Postfix, from userid 60001)
+	id 94CF3C83C; Tue, 15 Oct 2002 20:08:03 -0700 (PDT)
+Delivered-To: cs30staff@ieng9.ucsd.edu
+Received: by ieng9.ucsd.edu (Postfix, from userid 1255)
+	id 767E0C835; Tue, 15 Oct 2002 20:08:03 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by ieng9.ucsd.edu (Postfix) with ESMTP id 73582C830
+	for <cs30staff@ieng9.ucsd.edu>; Tue, 15 Oct 2002 20:08:03 -0700 (PDT)
+Date: Tue, 15 Oct 2002 20:08:03 -0700 (PDT)
+From: Desiree <cs30x3@ieng9.ucsd.edu>
+Reply-To: cs30x3@ieng9.ucsd.edu
+To: cs30staff@ieng9.ucsd.edu
+Subject: mailer & extractor
+Message-ID: <Pine.GSO.4.40.0210152003060.8242-300000@ieng9.ucsd.edu>
+MIME-Version: 1.0
+Content-Type: MULTIPART/MIXED; BOUNDARY="-559023410-851401618-1034737683=:8242"
+Status: R
+Content-Length: 3192
+
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
+  Send mail to mime@docserver.cac.washington.edu for more info.
+
+---559023410-851401618-1034737683=:8242
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+
+Hi everyone,
+
+Here are the mailer and the extractor scripts that you need to extract the
+tar files in every student directory and then to mail them at the end.
+Please make sure to edit these two files so that they include the range of
+logins of the students that were assigned to you.
+I am really not sure why they were not mailed originally or how to attach
+them to the generic email... one more thing to figure out before next
+assignment:)
+
+Thanks for your help and patience,
+Desiree
+
+PS: I attached and pasted the scripts below. The two versions are
+identical.
+##################################################################
+extract:
+##################################################################
+#!/usr/bin/ksh
+
+#extract:
+#unzips and untars students assignments
+
+ls -d cs30x[a-z]* | while read dir
+do
+        cd $dir
+
+        #extracts the files
+        gunzip -c *.gz | tar xvf -
+
+        cd ..
+done
+
+###################################################################
+mailer:
+###################################################################
+#!/usr/bin/ksh
+
+#mailer script:  run this when you are all done grading your students.
+#you need to have a grading guideline in each students directory with
+#the students score.
+
+ls -d cs30x[a-z]* | while read dir
+do
+        cd $dir
+
+        print Mailing $dir...
+        print
+        #change pa0 grade in future assignments
+        cat guideline $dir.output | mailx -s "PA0 Grade" $dir
+
+        cd ..
+done
+#######################################################################
+
+---559023410-851401618-1034737683=:8242
+Content-Type: TEXT/PLAIN; charset=US-ASCII; name=extract
+Content-Transfer-Encoding: BASE64
+Content-ID: <Pine.GSO.4.40.0210152008030.8242@ieng9.ucsd.edu>
+Content-Description: 
+Content-Disposition: attachment; filename=extract
+
+IyEvdXNyL2Jpbi9rc2gNCg0KI2V4dHJhY3Q6DQojdW56aXBzIGFuZCB1bnRh
+cnMgc3R1ZGVudHMgYXNzaWdubWVudHMNCg0KbHMgLWQgY3MzMHhbYS16XSog
+fCB3aGlsZSByZWFkIGRpcg0KZG8NCgljZCAkZGlyDQoNCgkjZXh0cmFjdHMg
+dGhlIGZpbGVzDQoJZ3VuemlwIC1jICouZ3ogfCB0YXIgeHZmIC0NCg0KCWNk
+IC4uDQpkb25lDQo=
+---559023410-851401618-1034737683=:8242
+Content-Type: TEXT/PLAIN; charset=US-ASCII; name=mailer
+Content-Transfer-Encoding: BASE64
+Content-ID: <Pine.GSO.4.40.0210152008031.8242@ieng9.ucsd.edu>
+Content-Description: 
+Content-Disposition: attachment; filename=mailer
+
+IyEvdXNyL2Jpbi9rc2gNCg0KI21haWxlciBzY3JpcHQ6ICBydW4gdGhpcyB3
+aGVuIHlvdSBhcmUgYWxsIGRvbmUgZ3JhZGluZyB5b3VyIHN0dWRlbnRzLg0K
+I3lvdSBuZWVkIHRvIGhhdmUgYSBncmFkaW5nIGd1aWRlbGluZSBpbiBlYWNo
+IHN0dWRlbnRzIGRpcmVjdG9yeSB3aXRoDQojdGhlIHN0dWRlbnRzIHNjb3Jl
+Lg0KDQpscyAtZCBjczMweFthLXpdKiB8IHdoaWxlIHJlYWQgZGlyDQpkbw0K
+CWNkICRkaXINCg0KCXByaW50IE1haWxpbmcgJGRpci4uLg0KCXByaW50DQoJ
+I2NoYW5nZSBwYTAgZ3JhZGUgaW4gZnV0dXJlIGFzc2lnbm1lbnRzDQoJY2F0
+IGd1aWRlbGluZSAkZGlyLm91dHB1dCB8IG1haWx4IC1zICJQQTAgR3JhZGUi
+ICRkaXINCg0KCWNkIC4uDQpkb25lDQo=
+---559023410-851401618-1034737683=:8242--
+

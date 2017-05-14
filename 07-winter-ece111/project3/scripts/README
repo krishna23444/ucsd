@@ -1,0 +1,54 @@
+This directory contains all the scripts and configuration files for running
+the cosimulation with Seamless CVE. The files in this directory are as 
+follows:
+
+config.cve	: This is the configuration file for Seamless CVE. When cve
+		  is launched then it reads in this configuration file and
+		  executes the instructions therein. This configuration file
+		  does the following major things:
+
+		  1. Invokes the Hardware Simulator which in our case is
+		     ModelSimEE using the "simulate logic {vsim ..}" command.
+
+		  2. Registers the "Seamlessized" (i.e. Seamless compatible)
+		     memories with Seamless. In this design we have replaced
+		     the hardware memories with these Seamlessized memories.
+		     This is done so that we can use
+		     memory and time optimization to speed up the simulation
+		     when accessing these memories. 
+	
+		  3. Registers the ARM946E-S CPU model with Seamless.
+
+		  4. Invokes the Software Instruction Set Simulator for the
+		     ARM946E-S processor and the XRAY Debugger which will execute 
+		     the software program using the "setup sw ..." command.
+
+		  5. Labels the different address ranges according to the type
+		     of memory which is mapped to that range using the 
+		     "map label .." command.
+
+		  6. Declares the illegal address ranges. Your program should
+		     not contain any accesses to these address ranges.
+		     
+		  7. Defines the mapping between the seamlessized memory 
+		     instances (which are registered in step 2.) and the address
+		     ranges using the "map memory instance .." command.
+
+		  8. Turn off all optimizations.
+
+wave.do		: This is a dofile for ModelSimSE. It is executed when the HW
+		  simulator is invoked by Seamless. It essentially pulls up 
+		  the wave window of the hw simulator with the signals defined
+		  in this file.
+
+xray.inc	: This is an include file for the XRAY debugger. It is executed
+		  when the XRAY debugger is invoked by Seamless. It includes the
+		  file MAC_test.inc
+
+MAC_test.inc	: This is an include file for the XRAY debugger and is included
+		  by the xray.inc file. This file is executed when the XRAY 
+		  debugger is invoked by Seamless. It essentially loads the 
+		  executable software program (in our case MAC_test.x) into 
+		  XRAY and also defines a couple of breakpoint macros.
+
+ru		: run script to start coverification.

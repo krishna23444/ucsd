@@ -1,0 +1,4424 @@
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "View HDL Functional Model".
+
+DRC Check completed: No Error found.
+Vhdl netlist file generated.
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "View HDL Functional Model".
+
+DRC Check completed: No Error found.
+Vhdl netlist file generated.
+
+
+
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do full_adder_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# ** Error: (vcom-19) Failed to access library 'unisim' at "g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim".
+# No such file or directory. (errno = ENOENT)
+# ** Error: g:/xilinx/modelsim/win32xoem/vcom failed.
+# Executing ONERROR command at macro ./full_adder_tbw.ado line 10
+ERROR: VSim failed to simulate annotated testbench
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do full_adder_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# ** Error: (vcom-19) Failed to access library 'unisim' at "g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim".
+# No such file or directory. (errno = ENOENT)
+# ** Error: g:/xilinx/modelsim/win32xoem/vcom failed.
+# Executing ONERROR command at macro ./full_adder_tbw.ado line 10
+ERROR: VSim failed to simulate annotated testbench
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do full_adder_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# ** Error: (vcom-19) Failed to access library 'unisim' at "g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim".
+# No such file or directory. (errno = ENOENT)
+# ** Error: g:/xilinx/modelsim/win32xoem/vcom failed.
+# Executing ONERROR command at macro ./full_adder_tbw.ado line 10
+ERROR: VSim failed to simulate annotated testbench
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do full_adder_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# ** Error: (vcom-19) Failed to access library 'unisim' at "g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim".
+# No such file or directory. (errno = ENOENT)
+# ** Error: g:/xilinx/modelsim/win32xoem/vcom failed.
+# Executing ONERROR command at macro ./full_adder_tbw.ado line 10
+ERROR: VSim failed to simulate annotated testbench
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do full_adder_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# ** Error: (vcom-19) Failed to access library 'unisim' at "g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim".
+# No such file or directory. (errno = ENOENT)
+# ** Error: g:/xilinx/modelsim/win32xoem/vcom failed.
+# Executing ONERROR command at macro ./full_adder_tbw.ado line 10
+ERROR: VSim failed to simulate annotated testbench
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do full_adder_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity full_adder_tbw
+# -- Compiling architecture testbench_arch of full_adder_tbw
+# vsim -lib work -t 1ps full_adder_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.full_adder_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.full_adder(behavioral)
+# Loading work.half_adder(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and2(and2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or2(or2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /full_adder_tbw/line__111 File: full_adder_tbw.ant
+# Break at full_adder_tbw.ant line 119
+# Stopped at full_adder_tbw.ant line 119 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do full_adder_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity full_adder_tbw
+# -- Compiling architecture testbench_arch of full_adder_tbw
+# vsim -lib work -t 1ps full_adder_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.full_adder_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.full_adder(behavioral)
+# Loading work.half_adder(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and2(and2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or2(or2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /full_adder_tbw/line__111 File: full_adder_tbw.ant
+# Break at full_adder_tbw.ant line 120
+# Stopped at full_adder_tbw.ant line 120 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+
+
+Started process "Synthesize".
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "G:/xilinx/projects/lab1/Full_Adder/half_adder.vhf" in Library work.
+Entity <half_adder> compiled.
+Entity <half_adder> (Architecture <BEHAVIORAL>) compiled.
+Compiling vhdl file "G:/xilinx/projects/lab1/Full_Adder/full_adder.vhf" in Library work.
+Entity <full_adder> compiled.
+Entity <full_adder> (Architecture <BEHAVIORAL>) compiled.
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <full_adder> (Architecture <BEHAVIORAL>).
+Entity <full_adder> analyzed. Unit <full_adder> generated.
+
+Analyzing Entity <half_adder> (Architecture <behavioral>).
+Entity <half_adder> analyzed. Unit <half_adder> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <half_adder>.
+    Related source file is "G:/xilinx/projects/lab1/Full_Adder/half_adder.vhf".
+Unit <half_adder> synthesized.
+
+
+Synthesizing Unit <full_adder>.
+    Related source file is "G:/xilinx/projects/lab1/Full_Adder/full_adder.vhf".
+Unit <full_adder> synthesized.
+
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Advanced RAM inference ...
+Advanced multiplier inference ...
+Advanced Registered AddSub inference ...
+Dynamic shift register inference ...
+
+=========================================================================
+HDL Synthesis Report
+
+Found no macro
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <full_adder> ...
+Loading device for application Rf_Device from file '2v80.nph' in environment G:/xilinx/ise71.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block full_adder, actual ratio is 0.
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 2v80cs144-5 
+
+ Number of bonded IOBs:                  5  out of     92     5%  
+
+
+=========================================================================
+TIMING REPORT
+
+
+Clock Information:
+------------------
+No clock signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -5
+
+   Minimum period: No path found
+   Minimum input arrival time before clock: No path found
+   Maximum output required time after clock: No path found
+   Maximum combinational path delay: 7.880ns
+
+=========================================================================
+
+
+
+
+Started process "Translate".
+
+
+Command Line: ngdbuild -intstyle ise -dd g:\xilinx\projects\lab1\full_adder/_ngo
+-nt timestamp -i -p xc2v80-cs144-5 full_adder.ngc full_adder.ngd 
+
+Reading NGO file 'G:/xilinx/projects/lab1/Full_Adder/full_adder.ngc' ...
+
+Checking timing specifications ...
+Checking expanded design ...
+
+NGDBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Writing NGD file "full_adder.ngd" ...
+
+Writing NGDBUILD log file "full_adder.bld"...
+
+NGDBUILD done.
+
+
+
+
+Started process "Map".
+
+Using target part "2v80cs144-5".
+Mapping design into LUTs...
+Running directed packing...
+Running delay-based LUT packing...
+Running related packing...
+
+Design Summary:
+Number of errors:      0
+Number of warnings:    0
+Logic Utilization:
+  Number of 4 input LUTs:               2 out of   1,024    1%
+Logic Distribution:
+  Number of occupied Slices:            1 out of     512    1%
+  Number of Slices containing only related logic:       1 out of       1  100%
+  Number of Slices containing unrelated logic:          0 out of       1    0%
+        *See NOTES below for an explanation of the effects of unrelated logic
+Total Number 4 input LUTs:              2 out of   1,024    1%
+
+  Number of bonded IOBs:                5 out of      92    5%
+
+Total equivalent gate count for design:  12
+Additional JTAG gate count for IOBs:  240
+Peak Memory Usage:  100 MB
+
+NOTES:
+
+   Related logic is defined as being logic that shares connectivity - e.g. two
+   LUTs are "related" if they share common inputs.  When assembling slices,
+   Map gives priority to combine logic that is related.  Doing so results in
+   the best timing performance.
+
+   Unrelated logic shares no connectivity.  Map will only begin packing
+   unrelated logic into a slice once 99% of the slices are occupied through
+   related logic packing.
+
+   Note that once logic distribution reaches the 99% level through related
+   logic packing, this does not mean the device is completely utilized.
+   Unrelated logic packing will then begin, continuing until all usable LUTs
+   and FFs are occupied.  Depending on your timing budget, increased levels of
+   unrelated logic packing may adversely affect the overall timing performance
+   of your design.
+
+Mapping completed.
+See MAP report file "full_adder_map.mrp" for details.
+
+
+
+
+Started process "Place & Route".
+
+
+
+
+Constraints file: full_adder.pcf.
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "full_adder" is an NCD, version 3.1, device xc2v80, package cs144, speed -5
+
+Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000
+Celsius)
+Initializing voltage to 1.425 Volts. (default - Range: 1.425 to 1.575 Volts)
+
+
+Device speed data version:  "PRODUCTION 1.121 2005-02-23".
+
+
+Device Utilization Summary:
+
+   Number of External IOBs             5 out of 92      5%
+      Number of LOCed IOBs             0 out of 5       0%
+
+   Number of SLICEs                    1 out of 512     1%
+
+
+Overall effort level (-ol):   Standard (set by user)
+Placer effort level (-pl):    Standard (set by user)
+Placer cost table entry (-t): 1
+Router effort level (-rl):    Standard (set by user)
+
+
+Starting Placer
+
+Phase 1.1
+Phase 1.1 (Checksum:98968b) REAL time: 1 secs 
+
+Phase 2.31
+Phase 2.31 (Checksum:1312cfe) REAL time: 1 secs 
+
+Phase 3.2
+
+
+Phase 3.2 (Checksum:1c9c37d) REAL time: 1 secs 
+
+Phase 4.30
+Phase 4.30 (Checksum:26259fc) REAL time: 1 secs 
+
+Phase 5.3
+Phase 5.3 (Checksum:2faf07b) REAL time: 1 secs 
+
+Phase 6.5
+Phase 6.5 (Checksum:39386fa) REAL time: 1 secs 
+
+Phase 7.8
+.
+Phase 7.8 (Checksum:989eb3) REAL time: 1 secs 
+
+Phase 8.5
+Phase 8.5 (Checksum:4c4b3f8) REAL time: 1 secs 
+
+Phase 9.18
+Phase 9.18 (Checksum:55d4a77) REAL time: 1 secs 
+
+Phase 10.5
+Phase 10.5 (Checksum:5f5e0f6) REAL time: 1 secs 
+
+Phase 11.27
+Phase 11.27 (Checksum:68e7775) REAL time: 1 secs 
+
+Phase 12.24
+Phase 12.24 (Checksum:7270df4) REAL time: 1 secs 
+
+Writing design to file full_adder.ncd
+
+
+Total REAL time to Placer completion: 1 secs 
+Total CPU time to Placer completion: 1 secs 
+
+Starting Router
+
+Phase 1: 8 unrouted;       REAL time: 2 secs 
+
+Phase 2: 8 unrouted;       REAL time: 2 secs 
+
+Phase 3: 0 unrouted;       REAL time: 2 secs 
+
+Phase 4: 0 unrouted;       REAL time: 2 secs 
+
+
+Total REAL time to Router completion: 2 secs 
+Total CPU time to Router completion: 1 secs 
+
+Generating "PAR" statistics.
+
+Generating Pad Report.
+
+All signals are completely routed.
+
+Total REAL time to PAR completion: 2 secs 
+Total CPU time to PAR completion: 1 secs 
+
+Peak Memory Usage:  67 MB
+
+Placement: Completed - No errors found.
+Routing: Completed - No errors found.
+
+Number of error messages: 0
+Number of warning messages: 0
+Number of info messages: 1
+
+Writing design to file full_adder.ncd
+
+
+
+PAR done!
+
+Started process "Generate Post-Place & Route Static Timing".
+
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "full_adder" is an NCD, version 3.1, device xc2v80, package cs144, speed -5
+
+Analysis completed Mon Apr 18 17:53:43 2005
+--------------------------------------------------------------------------------
+
+Generating Report ...
+
+Number of warnings: 0
+Total time: 1 secs 
+
+
+
+
+Started process "Generate Post-Place & Route Simulation Model".
+
+INFO:NetListWriters:635 - The generated VHDL netlist contains Xilinx SIMPRIM
+   simulation primitives and has to be used with SIMPRIM library for correct
+   compilation and simulation. 
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do full_adder_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity full_adder_tbw
+# -- Compiling architecture testbench_arch of full_adder_tbw
+# vsim -lib work -t 1ps full_adder_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.full_adder_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.full_adder(behavioral)
+# Loading work.half_adder(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and2(and2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or2(or2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /full_adder_tbw/line__111 File: full_adder_tbw.ant
+# Break at full_adder_tbw.ant line 153
+# Stopped at full_adder_tbw.ant line 153 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "View HDL Functional Model".
+
+DRC Check completed: No Error found.
+Vhdl netlist file generated.
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do fourbit_adder_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity fourbit_adder_tbw
+# -- Compiling architecture testbench_arch of fourbit_adder_tbw
+# vsim -lib work -t 1ps fourbit_adder_tbw 
+# ** Error: License checkout has been disallowed because
+# only one session is allowed to run on an uncounted nodelock
+# license and an instance of ModelSim is already running with a
+# nodelocked license on this machine
+# Error loading design
+Error loading design
+ERROR: VSim failed to simulate annotated testbench
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do fourbit_adder_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity fourbit_adder_tbw
+# -- Compiling architecture testbench_arch of fourbit_adder_tbw
+# vsim -lib work -t 1ps fourbit_adder_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.fourbit_adder_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.fourbit_adder(behavioral)
+# Loading work.full_adder(behavioral)
+# Loading work.half_adder(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and2(and2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or2(or2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 4 us  Iteration: 0  Process: /fourbit_adder_tbw/line__189 File: fourbit_adder_tbw.ant
+# Break at fourbit_adder_tbw.ant line 412
+# Stopped at fourbit_adder_tbw.ant line 412 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+
+
+Started process "Synthesize".
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "G:/xilinx/projects/lab1/Full_Adder/half_adder.vhf" in Library work.
+Architecture behavioral of Entity half_adder is up to date.
+Compiling vhdl file "G:/xilinx/projects/lab1/Full_Adder/full_adder.vhf" in Library work.
+Architecture behavioral of Entity full_adder is up to date.
+Compiling vhdl file "G:/xilinx/projects/lab1/Full_Adder/fourbit_adder.vhf" in Library work.
+Entity <fourbit_adder> compiled.
+Entity <fourbit_adder> (Architecture <BEHAVIORAL>) compiled.
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <fourbit_adder> (Architecture <BEHAVIORAL>).
+Entity <fourbit_adder> analyzed. Unit <fourbit_adder> generated.
+
+Analyzing Entity <full_adder> (Architecture <behavioral>).
+Entity <full_adder> analyzed. Unit <full_adder> generated.
+
+Analyzing Entity <half_adder> (Architecture <behavioral>).
+Entity <half_adder> analyzed. Unit <half_adder> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <half_adder>.
+    Related source file is "G:/xilinx/projects/lab1/Full_Adder/half_adder.vhf".
+Unit <half_adder> synthesized.
+
+
+Synthesizing Unit <full_adder>.
+    Related source file is "G:/xilinx/projects/lab1/Full_Adder/full_adder.vhf".
+Unit <full_adder> synthesized.
+
+
+Synthesizing Unit <fourbit_adder>.
+    Related source file is "G:/xilinx/projects/lab1/Full_Adder/fourbit_adder.vhf".
+Unit <fourbit_adder> synthesized.
+
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Advanced RAM inference ...
+Advanced multiplier inference ...
+Advanced Registered AddSub inference ...
+Dynamic shift register inference ...
+
+=========================================================================
+HDL Synthesis Report
+
+Found no macro
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <fourbit_adder> ...
+Loading device for application Rf_Device from file '2v80.nph' in environment G:/xilinx/ise71.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block fourbit_adder, actual ratio is 0.
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 2v80cs144-5 
+
+ Number of bonded IOBs:                 14  out of     92    15%  
+
+
+=========================================================================
+TIMING REPORT
+
+
+Clock Information:
+------------------
+No clock signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -5
+
+   Minimum period: No path found
+   Minimum input arrival time before clock: No path found
+   Maximum output required time after clock: No path found
+   Maximum combinational path delay: 13.352ns
+
+=========================================================================
+
+
+
+
+Started process "Translate".
+
+
+Command Line: ngdbuild -intstyle ise -dd g:\xilinx\projects\lab1\full_adder/_ngo
+-nt timestamp -i -p xc2v80-cs144-5 fourbit_adder.ngc fourbit_adder.ngd 
+
+Reading NGO file 'G:/xilinx/projects/lab1/Full_Adder/fourbit_adder.ngc' ...
+
+Checking timing specifications ...
+Checking expanded design ...
+
+NGDBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Writing NGD file "fourbit_adder.ngd" ...
+
+Writing NGDBUILD log file "fourbit_adder.bld"...
+
+NGDBUILD done.
+
+
+
+
+Started process "Map".
+
+Using target part "2v80cs144-5".
+Mapping design into LUTs...
+Running directed packing...
+Running delay-based LUT packing...
+Running related packing...
+
+Design Summary:
+Number of errors:      0
+Number of warnings:    0
+Logic Utilization:
+  Number of 4 input LUTs:              11 out of   1,024    1%
+Logic Distribution:
+  Number of occupied Slices:            7 out of     512    1%
+  Number of Slices containing only related logic:       7 out of       7  100%
+  Number of Slices containing unrelated logic:          0 out of       7    0%
+        *See NOTES below for an explanation of the effects of unrelated logic
+Total Number 4 input LUTs:             11 out of   1,024    1%
+
+  Number of bonded IOBs:               14 out of      92   15%
+
+Total equivalent gate count for design:  66
+Additional JTAG gate count for IOBs:  672
+Peak Memory Usage:  100 MB
+
+NOTES:
+
+   Related logic is defined as being logic that shares connectivity - e.g. two
+   LUTs are "related" if they share common inputs.  When assembling slices,
+   Map gives priority to combine logic that is related.  Doing so results in
+   the best timing performance.
+
+   Unrelated logic shares no connectivity.  Map will only begin packing
+   unrelated logic into a slice once 99% of the slices are occupied through
+   related logic packing.
+
+   Note that once logic distribution reaches the 99% level through related
+   logic packing, this does not mean the device is completely utilized.
+   Unrelated logic packing will then begin, continuing until all usable LUTs
+   and FFs are occupied.  Depending on your timing budget, increased levels of
+   unrelated logic packing may adversely affect the overall timing performance
+   of your design.
+
+Mapping completed.
+See MAP report file "fourbit_adder_map.mrp" for details.
+
+
+
+
+Started process "Place & Route".
+
+
+
+
+Constraints file: fourbit_adder.pcf.
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "fourbit_adder" is an NCD, version 3.1, device xc2v80, package cs144, speed
+-5
+
+Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000
+Celsius)
+Initializing voltage to 1.425 Volts. (default - Range: 1.425 to 1.575 Volts)
+
+
+Device speed data version:  "PRODUCTION 1.121 2005-02-23".
+
+
+Device Utilization Summary:
+
+   Number of External IOBs            14 out of 92     15%
+      Number of LOCed IOBs             0 out of 14      0%
+
+   Number of SLICEs                    7 out of 512     1%
+
+
+Overall effort level (-ol):   Standard (set by user)
+Placer effort level (-pl):    Standard (set by user)
+Placer cost table entry (-t): 1
+Router effort level (-rl):    Standard (set by user)
+
+
+Starting Placer
+
+Phase 1.1
+Phase 1.1 (Checksum:9896a9) REAL time: 0 secs 
+
+Phase 2.31
+Phase 2.31 (Checksum:1312cfe) REAL time: 0 secs 
+
+Phase 3.2
+
+
+Phase 3.2 (Checksum:1c9c37d) REAL time: 0 secs 
+
+Phase 4.30
+Phase 4.30 (Checksum:26259fc) REAL time: 0 secs 
+
+Phase 5.3
+Phase 5.3 (Checksum:2faf07b) REAL time: 0 secs 
+
+Phase 6.5
+Phase 6.5 (Checksum:39386fa) REAL time: 0 secs 
+
+Phase 7.8
+.
+Phase 7.8 (Checksum:98f403) REAL time: 0 secs 
+
+Phase 8.5
+Phase 8.5 (Checksum:4c4b3f8) REAL time: 0 secs 
+
+Phase 9.18
+Phase 9.18 (Checksum:55d4a77) REAL time: 0 secs 
+
+Phase 10.5
+Phase 10.5 (Checksum:5f5e0f6) REAL time: 0 secs 
+
+Phase 11.27
+Phase 11.27 (Checksum:68e7775) REAL time: 0 secs 
+
+Phase 12.24
+Phase 12.24 (Checksum:7270df4) REAL time: 0 secs 
+
+Writing design to file fourbit_adder.ncd
+
+
+Total REAL time to Placer completion: 0 secs 
+Total CPU time to Placer completion: 0 secs 
+
+Starting Router
+
+Phase 1: 38 unrouted;       REAL time: 0 secs 
+
+Phase 2: 38 unrouted;       REAL time: 0 secs 
+
+Phase 3: 12 unrouted;       REAL time: 0 secs 
+
+Phase 4: 0 unrouted;       REAL time: 0 secs 
+
+
+Total REAL time to Router completion: 0 secs 
+Total CPU time to Router completion: 0 secs 
+
+Generating "PAR" statistics.
+
+Generating Pad Report.
+
+All signals are completely routed.
+
+Total REAL time to PAR completion: 1 secs 
+Total CPU time to PAR completion: 1 secs 
+
+Peak Memory Usage:  67 MB
+
+Placement: Completed - No errors found.
+Routing: Completed - No errors found.
+
+Number of error messages: 0
+Number of warning messages: 0
+Number of info messages: 1
+
+Writing design to file fourbit_adder.ncd
+
+
+
+PAR done!
+
+Started process "Generate Post-Place & Route Static Timing".
+
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "fourbit_adder" is an NCD, version 3.1, device xc2v80, package cs144, speed
+-5
+
+Analysis completed Mon Apr 18 18:23:49 2005
+--------------------------------------------------------------------------------
+
+Generating Report ...
+
+Number of warnings: 0
+Total time: 1 secs 
+
+
+
+
+Started process "Generate Post-Place & Route Simulation Model".
+
+INFO:NetListWriters:635 - The generated VHDL netlist contains Xilinx SIMPRIM
+   simulation primitives and has to be used with SIMPRIM library for correct
+   compilation and simulation. 
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "View HDL Functional Model".
+
+DRC Check completed: No Error found.
+Vhdl netlist file generated.
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do fourbit_adder_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity fourbit_adder_tbw
+# -- Compiling architecture testbench_arch of fourbit_adder_tbw
+# vsim -lib work -t 1ps fourbit_adder_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.fourbit_adder_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.fourbit_adder(behavioral)
+# Loading work.full_adder(behavioral)
+# Loading work.half_adder(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and2(and2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or2(or2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /fourbit_adder_tbw/line__189 File: fourbit_adder_tbw.ant
+# Break at fourbit_adder_tbw.ant line 257
+# Stopped at fourbit_adder_tbw.ant line 257 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+Started process "Synthesize".
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "G:/xilinx/projects/lab1/Full_Adder/half_adder.vhf" in Library work.
+Architecture behavioral of Entity half_adder is up to date.
+Compiling vhdl file "G:/xilinx/projects/lab1/Full_Adder/full_adder.vhf" in Library work.
+Architecture behavioral of Entity full_adder is up to date.
+Compiling vhdl file "G:/xilinx/projects/lab1/Full_Adder/fourbit_adder.vhf" in Library work.
+Entity <fourbit_adder> compiled.
+Entity <fourbit_adder> (Architecture <behavioral>) compiled.
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <fourbit_adder> (Architecture <behavioral>).
+Entity <fourbit_adder> analyzed. Unit <fourbit_adder> generated.
+
+Analyzing Entity <full_adder> (Architecture <behavioral>).
+Entity <full_adder> analyzed. Unit <full_adder> generated.
+
+Analyzing Entity <half_adder> (Architecture <behavioral>).
+Entity <half_adder> analyzed. Unit <half_adder> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <half_adder>.
+    Related source file is "G:/xilinx/projects/lab1/Full_Adder/half_adder.vhf".
+Unit <half_adder> synthesized.
+
+
+Synthesizing Unit <full_adder>.
+    Related source file is "G:/xilinx/projects/lab1/Full_Adder/full_adder.vhf".
+Unit <full_adder> synthesized.
+
+
+Synthesizing Unit <fourbit_adder>.
+    Related source file is "G:/xilinx/projects/lab1/Full_Adder/fourbit_adder.vhf".
+Unit <fourbit_adder> synthesized.
+
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Advanced RAM inference ...
+Advanced multiplier inference ...
+Advanced Registered AddSub inference ...
+Dynamic shift register inference ...
+
+=========================================================================
+HDL Synthesis Report
+
+Found no macro
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <fourbit_adder> ...
+Loading device for application Rf_Device from file '2v80.nph' in environment G:/xilinx/ise71.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block fourbit_adder, actual ratio is 0.
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 2v80cs144-5 
+
+ Number of bonded IOBs:                 14  out of     92    15%  
+
+
+=========================================================================
+TIMING REPORT
+
+
+Clock Information:
+------------------
+No clock signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -5
+
+   Minimum period: No path found
+   Minimum input arrival time before clock: No path found
+   Maximum output required time after clock: No path found
+   Maximum combinational path delay: 13.352ns
+
+=========================================================================
+
+
+
+
+Started process "Translate".
+
+
+Command Line: ngdbuild -intstyle ise -dd g:\xilinx\projects\lab1\full_adder/_ngo
+-nt timestamp -i -p xc2v80-cs144-5 fourbit_adder.ngc fourbit_adder.ngd 
+
+Reading NGO file 'G:/xilinx/projects/lab1/Full_Adder/fourbit_adder.ngc' ...
+
+Checking timing specifications ...
+Checking expanded design ...
+
+NGDBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Writing NGD file "fourbit_adder.ngd" ...
+
+Writing NGDBUILD log file "fourbit_adder.bld"...
+
+NGDBUILD done.
+
+
+
+
+Started process "Map".
+
+Using target part "2v80cs144-5".
+Mapping design into LUTs...
+Running directed packing...
+Running delay-based LUT packing...
+Running related packing...
+
+Design Summary:
+Number of errors:      0
+Number of warnings:    0
+Logic Utilization:
+  Number of 4 input LUTs:              11 out of   1,024    1%
+Logic Distribution:
+  Number of occupied Slices:            7 out of     512    1%
+  Number of Slices containing only related logic:       7 out of       7  100%
+  Number of Slices containing unrelated logic:          0 out of       7    0%
+        *See NOTES below for an explanation of the effects of unrelated logic
+Total Number 4 input LUTs:             11 out of   1,024    1%
+
+  Number of bonded IOBs:               14 out of      92   15%
+
+Total equivalent gate count for design:  66
+Additional JTAG gate count for IOBs:  672
+Peak Memory Usage:  100 MB
+
+NOTES:
+
+   Related logic is defined as being logic that shares connectivity - e.g. two
+   LUTs are "related" if they share common inputs.  When assembling slices,
+   Map gives priority to combine logic that is related.  Doing so results in
+   the best timing performance.
+
+   Unrelated logic shares no connectivity.  Map will only begin packing
+   unrelated logic into a slice once 99% of the slices are occupied through
+   related logic packing.
+
+   Note that once logic distribution reaches the 99% level through related
+   logic packing, this does not mean the device is completely utilized.
+   Unrelated logic packing will then begin, continuing until all usable LUTs
+   and FFs are occupied.  Depending on your timing budget, increased levels of
+   unrelated logic packing may adversely affect the overall timing performance
+   of your design.
+
+Mapping completed.
+See MAP report file "fourbit_adder_map.mrp" for details.
+
+
+
+
+Started process "Place & Route".
+
+
+
+
+Constraints file: fourbit_adder.pcf.
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "fourbit_adder" is an NCD, version 3.1, device xc2v80, package cs144, speed
+-5
+
+Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000
+Celsius)
+Initializing voltage to 1.425 Volts. (default - Range: 1.425 to 1.575 Volts)
+
+
+Device speed data version:  "PRODUCTION 1.121 2005-02-23".
+
+
+Device Utilization Summary:
+
+   Number of External IOBs            14 out of 92     15%
+      Number of LOCed IOBs             0 out of 14      0%
+
+   Number of SLICEs                    7 out of 512     1%
+
+
+Overall effort level (-ol):   Standard (set by user)
+Placer effort level (-pl):    Standard (set by user)
+Placer cost table entry (-t): 1
+Router effort level (-rl):    Standard (set by user)
+
+
+Starting Placer
+
+Phase 1.1
+Phase 1.1 (Checksum:9896a9) REAL time: 0 secs 
+
+Phase 2.31
+Phase 2.31 (Checksum:1312cfe) REAL time: 0 secs 
+
+Phase 3.2
+
+
+Phase 3.2 (Checksum:1c9c37d) REAL time: 0 secs 
+
+Phase 4.30
+Phase 4.30 (Checksum:26259fc) REAL time: 0 secs 
+
+Phase 5.3
+Phase 5.3 (Checksum:2faf07b) REAL time: 0 secs 
+
+Phase 6.5
+Phase 6.5 (Checksum:39386fa) REAL time: 0 secs 
+
+Phase 7.8
+.
+Phase 7.8 (Checksum:98f403) REAL time: 0 secs 
+
+Phase 8.5
+Phase 8.5 (Checksum:4c4b3f8) REAL time: 0 secs 
+
+Phase 9.18
+Phase 9.18 (Checksum:55d4a77) REAL time: 0 secs 
+
+Phase 10.5
+Phase 10.5 (Checksum:5f5e0f6) REAL time: 0 secs 
+
+Phase 11.27
+Phase 11.27 (Checksum:68e7775) REAL time: 0 secs 
+
+Phase 12.24
+Phase 12.24 (Checksum:7270df4) REAL time: 0 secs 
+
+Writing design to file fourbit_adder.ncd
+
+
+Total REAL time to Placer completion: 0 secs 
+Total CPU time to Placer completion: 0 secs 
+
+Starting Router
+
+Phase 1: 38 unrouted;       REAL time: 0 secs 
+
+Phase 2: 38 unrouted;       REAL time: 0 secs 
+
+Phase 3: 12 unrouted;       REAL time: 0 secs 
+
+Phase 4: 0 unrouted;       REAL time: 0 secs 
+
+
+Total REAL time to Router completion: 0 secs 
+Total CPU time to Router completion: 0 secs 
+
+Generating "PAR" statistics.
+
+Generating Pad Report.
+
+All signals are completely routed.
+
+Total REAL time to PAR completion: 1 secs 
+Total CPU time to PAR completion: 1 secs 
+
+Peak Memory Usage:  67 MB
+
+Placement: Completed - No errors found.
+Routing: Completed - No errors found.
+
+Number of error messages: 0
+Number of warning messages: 0
+Number of info messages: 1
+
+Writing design to file fourbit_adder.ncd
+
+
+
+PAR done!
+
+Started process "Generate Post-Place & Route Static Timing".
+
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "fourbit_adder" is an NCD, version 3.1, device xc2v80, package cs144, speed
+-5
+
+Analysis completed Mon Apr 18 18:41:08 2005
+--------------------------------------------------------------------------------
+
+Generating Report ...
+
+Number of warnings: 0
+Total time: 1 secs 
+
+
+
+
+Started process "Generate Post-Place & Route Simulation Model".
+
+INFO:NetListWriters:635 - The generated VHDL netlist contains Xilinx SIMPRIM
+   simulation primitives and has to be used with SIMPRIM library for correct
+   compilation and simulation. 
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do fourbit_adder_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity fourbit_adder_tbw
+# -- Compiling architecture testbench_arch of fourbit_adder_tbw
+# vsim -lib work -t 1ps fourbit_adder_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.fourbit_adder_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.fourbit_adder(behavioral)
+# Loading work.full_adder(behavioral)
+# Loading work.half_adder(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and2(and2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or2(or2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 800 ns  Iteration: 0  Process: /fourbit_adder_tbw/line__189 File: fourbit_adder_tbw.ant
+# Break at fourbit_adder_tbw.ant line 248
+# Stopped at fourbit_adder_tbw.ant line 248 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do fourbit_adder_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity fourbit_adder_tbw
+# -- Compiling architecture testbench_arch of fourbit_adder_tbw
+# vsim -lib work -t 1ps fourbit_adder_tbw 
+# ** Error: License checkout has been disallowed because
+# only one session is allowed to run on an uncounted nodelock
+# license and an instance of ModelSim is already running with a
+# nodelocked license on this machine
+# Error loading design
+Error loading design
+ERROR: VSim failed to simulate annotated testbench
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do fourbit_adder_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity fourbit_adder_tbw
+# -- Compiling architecture testbench_arch of fourbit_adder_tbw
+# vsim -lib work -t 1ps fourbit_adder_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.fourbit_adder_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.fourbit_adder(behavioral)
+# Loading work.full_adder(behavioral)
+# Loading work.half_adder(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and2(and2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or2(or2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1600 ns  Iteration: 0  Process: /fourbit_adder_tbw/line__189 File: fourbit_adder_tbw.ant
+# Break at fourbit_adder_tbw.ant line 301
+# Stopped at fourbit_adder_tbw.ant line 301 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do fourbit_adder_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity fourbit_adder_tbw
+# -- Compiling architecture testbench_arch of fourbit_adder_tbw
+# vsim -lib work -t 1ps fourbit_adder_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.fourbit_adder_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.fourbit_adder(behavioral)
+# Loading work.full_adder(behavioral)
+# Loading work.half_adder(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and2(and2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or2(or2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 51200 ns  Iteration: 0  Process: /fourbit_adder_tbw/line__189 File: fourbit_adder_tbw.ant
+# Break at fourbit_adder_tbw.ant line 469
+# Stopped at fourbit_adder_tbw.ant line 469 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do fourbit_adder_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity fourbit_adder_tbw
+# -- Compiling architecture testbench_arch of fourbit_adder_tbw
+# vsim -lib work -t 1ps fourbit_adder_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.fourbit_adder_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.fourbit_adder(behavioral)
+# Loading work.full_adder(behavioral)
+# Loading work.half_adder(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and2(and2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or2(or2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 51200 ns  Iteration: 0  Process: /fourbit_adder_tbw/line__189 File: fourbit_adder_tbw.ant
+# Break at fourbit_adder_tbw.ant line 2749
+# Stopped at fourbit_adder_tbw.ant line 2749 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do fourbit_adder_delay.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity fourbit_adder_delay
+# -- Compiling architecture testbench_arch of fourbit_adder_delay
+# vsim -lib work -t 1ps fourbit_adder_delay 
+# ** Error: License checkout has been disallowed because
+# only one session is allowed to run on an uncounted nodelock
+# license and an instance of ModelSim is already running with a
+# nodelocked license on this machine
+# Error loading design
+Error loading design
+ERROR: VSim failed to simulate annotated testbench
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do fourbit_adder_delay.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity fourbit_adder_delay
+# -- Compiling architecture testbench_arch of fourbit_adder_delay
+# vsim -lib work -t 1ps fourbit_adder_delay 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.fourbit_adder_delay(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.fourbit_adder(behavioral)
+# Loading work.full_adder(behavioral)
+# Loading work.half_adder(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and2(and2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or2(or2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /fourbit_adder_delay/line__189 File: fourbit_adder_delay.ant
+# Break at fourbit_adder_delay.ant line 205
+# Stopped at fourbit_adder_delay.ant line 205 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do fourbit_adder_delay.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity fourbit_adder_delay
+# -- Compiling architecture testbench_arch of fourbit_adder_delay
+# vsim -lib work -t 1ps fourbit_adder_delay 
+# ** Error: License checkout has been disallowed because
+# only one session is allowed to run on an uncounted nodelock
+# license and an instance of ModelSim is already running with a
+# nodelocked license on this machine
+# Error loading design
+Error loading design
+ERROR: VSim failed to simulate annotated testbench
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do fourbit_adder_delay.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity fourbit_adder_delay
+# -- Compiling architecture testbench_arch of fourbit_adder_delay
+# vsim -lib work -t 1ps fourbit_adder_delay 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.fourbit_adder_delay(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.fourbit_adder(behavioral)
+# Loading work.full_adder(behavioral)
+# Loading work.half_adder(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and2(and2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or2(or2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /fourbit_adder_delay/line__189 File: fourbit_adder_delay.ant
+# Break at fourbit_adder_delay.ant line 195
+# Stopped at fourbit_adder_delay.ant line 195 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do fourbit_adder_delay.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity fourbit_adder_delay
+# -- Compiling architecture testbench_arch of fourbit_adder_delay
+# vsim -lib work -t 1ps fourbit_adder_delay 
+# ** Error: License checkout has been disallowed because
+# only one session is allowed to run on an uncounted nodelock
+# license and an instance of ModelSim is already running with a
+# nodelocked license on this machine
+# Error loading design
+Error loading design
+ERROR: VSim failed to simulate annotated testbench
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do fourbit_adder_delay.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity fourbit_adder_delay
+# -- Compiling architecture testbench_arch of fourbit_adder_delay
+# vsim -lib work -t 1ps fourbit_adder_delay 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.fourbit_adder_delay(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.fourbit_adder(behavioral)
+# Loading work.full_adder(behavioral)
+# Loading work.half_adder(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and2(and2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or2(or2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /fourbit_adder_delay/line__189 File: fourbit_adder_delay.ant
+# Break at fourbit_adder_delay.ant line 198
+# Stopped at fourbit_adder_delay.ant line 198 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "View HDL Functional Model".
+
+DRC Check completed: No Error found.
+Vhdl netlist file generated.
+
+
+
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do fourbit_adder_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity fourbit_adder_tbw
+# -- Compiling architecture testbench_arch of fourbit_adder_tbw
+# ** Error: fourbit_adder_tbw.ant(44): Expected length is 4; string length is 0.
+# ** Error: fourbit_adder_tbw.ant(45): Expected length is 4; string length is 0.
+# ** Error: fourbit_adder_tbw.ant(46): near "'": syntax error
+# ** Error: g:/xilinx/modelsim/win32xoem/vcom failed.
+# Executing ONERROR command at macro ./fourbit_adder_tbw.ado line 13
+ERROR: VSim failed to simulate annotated testbench
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do fourbit_adder_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity fourbit_adder_tbw
+# -- Compiling architecture testbench_arch of fourbit_adder_tbw
+# ** Error: fourbit_adder_tbw.ant(44): Expected length is 4; string length is 0.
+# ** Error: fourbit_adder_tbw.ant(45): Expected length is 4; string length is 0.
+# ** Error: fourbit_adder_tbw.ant(46): near "'": syntax error
+# ** Error: g:/xilinx/modelsim/win32xoem/vcom failed.
+# Executing ONERROR command at macro ./fourbit_adder_tbw.ado line 13
+ERROR: VSim failed to simulate annotated testbench
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do fourbit_adder_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity fourbit_adder_tbw
+# -- Compiling architecture testbench_arch of fourbit_adder_tbw
+# ** Error: fourbit_adder_tbw.ant(44): Expected length is 4; string length is 0.
+# ** Error: fourbit_adder_tbw.ant(45): Expected length is 4; string length is 0.
+# ** Error: fourbit_adder_tbw.ant(46): near "'": syntax error
+# ** Error: g:/xilinx/modelsim/win32xoem/vcom failed.
+# Executing ONERROR command at macro ./fourbit_adder_tbw.ado line 13
+ERROR: VSim failed to simulate annotated testbench
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do fourbit_adder_busses.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity fourbit_adder_busses
+# -- Compiling architecture testbench_arch of fourbit_adder_busses
+# vsim -lib work -t 1ps fourbit_adder_busses 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.fourbit_adder_busses(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.fourbit_adder(behavioral)
+# Loading work.full_adder(behavioral)
+# Loading work.half_adder(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and2(and2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or2(or2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /fourbit_adder_busses/line__111 File: fourbit_adder_busses.ant
+# Break at fourbit_adder_busses.ant line 154
+# Stopped at fourbit_adder_busses.ant line 154 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+Started process "Synthesize".
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "G:/xilinx/projects/lab1/Full_Adder/half_adder.vhf" in Library work.
+Architecture behavioral of Entity half_adder is up to date.
+Compiling vhdl file "G:/xilinx/projects/lab1/Full_Adder/full_adder.vhf" in Library work.
+Architecture behavioral of Entity full_adder is up to date.
+Compiling vhdl file "G:/xilinx/projects/lab1/Full_Adder/fourbit_adder.vhf" in Library work.
+Entity <fourbit_adder> compiled.
+Entity <fourbit_adder> (Architecture <behavioral>) compiled.
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <fourbit_adder> (Architecture <behavioral>).
+Entity <fourbit_adder> analyzed. Unit <fourbit_adder> generated.
+
+Analyzing Entity <full_adder> (Architecture <behavioral>).
+Entity <full_adder> analyzed. Unit <full_adder> generated.
+
+Analyzing Entity <half_adder> (Architecture <behavioral>).
+Entity <half_adder> analyzed. Unit <half_adder> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <half_adder>.
+    Related source file is "G:/xilinx/projects/lab1/Full_Adder/half_adder.vhf".
+Unit <half_adder> synthesized.
+
+
+Synthesizing Unit <full_adder>.
+    Related source file is "G:/xilinx/projects/lab1/Full_Adder/full_adder.vhf".
+Unit <full_adder> synthesized.
+
+
+Synthesizing Unit <fourbit_adder>.
+    Related source file is "G:/xilinx/projects/lab1/Full_Adder/fourbit_adder.vhf".
+Unit <fourbit_adder> synthesized.
+
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Advanced RAM inference ...
+Advanced multiplier inference ...
+Advanced Registered AddSub inference ...
+Dynamic shift register inference ...
+
+=========================================================================
+HDL Synthesis Report
+
+Found no macro
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <fourbit_adder> ...
+Loading device for application Rf_Device from file '2v80.nph' in environment G:/xilinx/ise71.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block fourbit_adder, actual ratio is 0.
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 2v80cs144-5 
+
+ Number of bonded IOBs:                 14  out of     92    15%  
+
+
+=========================================================================
+TIMING REPORT
+
+
+Clock Information:
+------------------
+No clock signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -5
+
+   Minimum period: No path found
+   Minimum input arrival time before clock: No path found
+   Maximum output required time after clock: No path found
+   Maximum combinational path delay: 13.352ns
+
+=========================================================================
+
+
+
+
+Started process "Translate".
+
+
+Command Line: ngdbuild -intstyle ise -dd g:\xilinx\projects\lab1\full_adder/_ngo
+-nt timestamp -i -p xc2v80-cs144-5 fourbit_adder.ngc fourbit_adder.ngd 
+
+Reading NGO file 'G:/xilinx/projects/lab1/Full_Adder/fourbit_adder.ngc' ...
+
+Checking timing specifications ...
+Checking expanded design ...
+
+NGDBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Writing NGD file "fourbit_adder.ngd" ...
+
+Writing NGDBUILD log file "fourbit_adder.bld"...
+
+NGDBUILD done.
+
+
+
+
+Started process "Map".
+
+Using target part "2v80cs144-5".
+Mapping design into LUTs...
+Running directed packing...
+Running delay-based LUT packing...
+Running related packing...
+
+Design Summary:
+Number of errors:      0
+Number of warnings:    0
+Logic Utilization:
+  Number of 4 input LUTs:              11 out of   1,024    1%
+Logic Distribution:
+  Number of occupied Slices:            7 out of     512    1%
+  Number of Slices containing only related logic:       7 out of       7  100%
+  Number of Slices containing unrelated logic:          0 out of       7    0%
+        *See NOTES below for an explanation of the effects of unrelated logic
+Total Number 4 input LUTs:             11 out of   1,024    1%
+
+  Number of bonded IOBs:               14 out of      92   15%
+
+Total equivalent gate count for design:  66
+Additional JTAG gate count for IOBs:  672
+Peak Memory Usage:  100 MB
+
+NOTES:
+
+   Related logic is defined as being logic that shares connectivity - e.g. two
+   LUTs are "related" if they share common inputs.  When assembling slices,
+   Map gives priority to combine logic that is related.  Doing so results in
+   the best timing performance.
+
+   Unrelated logic shares no connectivity.  Map will only begin packing
+   unrelated logic into a slice once 99% of the slices are occupied through
+   related logic packing.
+
+   Note that once logic distribution reaches the 99% level through related
+   logic packing, this does not mean the device is completely utilized.
+   Unrelated logic packing will then begin, continuing until all usable LUTs
+   and FFs are occupied.  Depending on your timing budget, increased levels of
+   unrelated logic packing may adversely affect the overall timing performance
+   of your design.
+
+Mapping completed.
+See MAP report file "fourbit_adder_map.mrp" for details.
+
+
+
+
+Started process "Place & Route".
+
+
+
+
+Constraints file: fourbit_adder.pcf.
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "fourbit_adder" is an NCD, version 3.1, device xc2v80, package cs144, speed
+-5
+
+Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000
+Celsius)
+Initializing voltage to 1.425 Volts. (default - Range: 1.425 to 1.575 Volts)
+
+
+Device speed data version:  "PRODUCTION 1.121 2005-02-23".
+
+
+Device Utilization Summary:
+
+   Number of External IOBs            14 out of 92     15%
+      Number of LOCed IOBs             0 out of 14      0%
+
+   Number of SLICEs                    7 out of 512     1%
+
+
+Overall effort level (-ol):   Standard (set by user)
+Placer effort level (-pl):    Standard (set by user)
+Placer cost table entry (-t): 1
+Router effort level (-rl):    Standard (set by user)
+
+
+Starting Placer
+
+Phase 1.1
+Phase 1.1 (Checksum:9896a9) REAL time: 1 secs 
+
+Phase 2.31
+Phase 2.31 (Checksum:1312cfe) REAL time: 1 secs 
+
+Phase 3.2
+
+
+Phase 3.2 (Checksum:1c9c37d) REAL time: 1 secs 
+
+Phase 4.30
+Phase 4.30 (Checksum:26259fc) REAL time: 1 secs 
+
+Phase 5.3
+Phase 5.3 (Checksum:2faf07b) REAL time: 1 secs 
+
+Phase 6.5
+Phase 6.5 (Checksum:39386fa) REAL time: 1 secs 
+
+Phase 7.8
+.
+Phase 7.8 (Checksum:98f403) REAL time: 1 secs 
+
+Phase 8.5
+Phase 8.5 (Checksum:4c4b3f8) REAL time: 1 secs 
+
+Phase 9.18
+Phase 9.18 (Checksum:55d4a77) REAL time: 1 secs 
+
+Phase 10.5
+Phase 10.5 (Checksum:5f5e0f6) REAL time: 1 secs 
+
+Phase 11.27
+Phase 11.27 (Checksum:68e7775) REAL time: 1 secs 
+
+Phase 12.24
+Phase 12.24 (Checksum:7270df4) REAL time: 1 secs 
+
+Writing design to file fourbit_adder.ncd
+
+
+Total REAL time to Placer completion: 1 secs 
+Total CPU time to Placer completion: 0 secs 
+
+Starting Router
+
+Phase 1: 38 unrouted;       REAL time: 1 secs 
+
+Phase 2: 38 unrouted;       REAL time: 1 secs 
+
+Phase 3: 8 unrouted;       REAL time: 1 secs 
+
+Phase 4: 0 unrouted;       REAL time: 1 secs 
+
+
+Total REAL time to Router completion: 1 secs 
+Total CPU time to Router completion: 0 secs 
+
+Generating "PAR" statistics.
+
+Generating Pad Report.
+
+All signals are completely routed.
+
+Total REAL time to PAR completion: 1 secs 
+Total CPU time to PAR completion: 1 secs 
+
+Peak Memory Usage:  67 MB
+
+Placement: Completed - No errors found.
+Routing: Completed - No errors found.
+
+Number of error messages: 0
+Number of warning messages: 0
+Number of info messages: 1
+
+Writing design to file fourbit_adder.ncd
+
+
+
+PAR done!
+
+Started process "Generate Post-Place & Route Static Timing".
+
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "fourbit_adder" is an NCD, version 3.1, device xc2v80, package cs144, speed
+-5
+
+Analysis completed Mon Apr 18 20:18:02 2005
+--------------------------------------------------------------------------------
+
+Generating Report ...
+
+Number of warnings: 0
+Total time: 1 secs 
+
+
+
+
+Started process "Generate Post-Place & Route Simulation Model".
+
+INFO:NetListWriters:635 - The generated VHDL netlist contains Xilinx SIMPRIM
+   simulation primitives and has to be used with SIMPRIM library for correct
+   compilation and simulation. 
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "View HDL Functional Model".
+
+DRC Check completed: No Error found.
+Vhdl netlist file generated.
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "View HDL Functional Model".
+
+ERROR:DesignEntry:215 - Net "A(0)" is an illegal name, because there is no
+   corresponding bit bus for this bit bus member.
+ERROR:DesignEntry:215 - Net "B(0)" is an illegal name, because there is no
+   corresponding bit bus for this bit bus member.
+ERROR:DesignEntry:215 - Net "A(1)" is an illegal name, because there is no
+   corresponding bit bus for this bit bus member.
+ERROR:DesignEntry:215 - Net "B(1)" is an illegal name, because there is no
+   corresponding bit bus for this bit bus member.
+ERROR:DesignEntry:215 - Net "A(2)" is an illegal name, because there is no
+   corresponding bit bus for this bit bus member.
+ERROR:DesignEntry:215 - Net "B(2)" is an illegal name, because there is no
+   corresponding bit bus for this bit bus member.
+ERROR:DesignEntry:215 - Net "A(3)" is an illegal name, because there is no
+   corresponding bit bus for this bit bus member.
+ERROR:DesignEntry:215 - Net "B(3)" is an illegal name, because there is no
+   corresponding bit bus for this bit bus member.
+ERROR:DesignEntry:215 - Net "S(0)" is an illegal name, because there is no
+   corresponding bit bus for this bit bus member.
+ERROR:DesignEntry:215 - Net "S(1)" is an illegal name, because there is no
+   corresponding bit bus for this bit bus member.
+ERROR:DesignEntry:215 - Net "S(2)" is an illegal name, because there is no
+   corresponding bit bus for this bit bus member.
+ERROR:DesignEntry:215 - Net "S(3)" is an illegal name, because there is no
+   corresponding bit bus for this bit bus member.
+ERROR:DesignEntry:20 - Pin "A(3:0)" is connected to a bus of a different width.
+ERROR:DesignEntry:20 - Pin "B(3:0)" is connected to a bus of a different width.
+ERROR:DesignEntry:20 - Pin "S(3:0)" is connected to a bus of a different width.
+ERROR:DesignEntry:20 - Pin "A(3:0)" is connected to a bus of a different width.
+ERROR:DesignEntry:20 - Pin "B(3:0)" is connected to a bus of a different width.
+ERROR:DesignEntry:20 - Pin "S(3:0)" is connected to a bus of a different width.
+ERROR:DesignEntry:20 - Pin "A(3:0)" is connected to a bus of a different width.
+ERROR:DesignEntry:20 - Pin "B(3:0)" is connected to a bus of a different width.
+ERROR:DesignEntry:20 - Pin "S(3:0)" is connected to a bus of a different width.
+ERROR:DesignEntry:20 - Pin "A(3:0)" is connected to a bus of a different width.
+ERROR:DesignEntry:20 - Pin "B(3:0)" is connected to a bus of a different width.
+ERROR:DesignEntry:20 - Pin "S(3:0)" is connected to a bus of a different width.
+Error: 
+Process "View HDL Functional Model" did not complete.
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "View HDL Functional Model".
+
+DRC Check completed: No Error found.
+Vhdl netlist file generated.
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do sixteenbit_adder_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity sixteenbit_adder
+# -- Compiling architecture behavioral of sixteenbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity sixteenbit_adder_tbw
+# -- Compiling architecture testbench_arch of sixteenbit_adder_tbw
+# vsim -lib work -t 1ps sixteenbit_adder_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.sixteenbit_adder_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.sixteenbit_adder(behavioral)
+# Loading work.fourbit_adder(behavioral)
+# Loading work.full_adder(behavioral)
+# Loading work.half_adder(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and2(and2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or2(or2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /sixteenbit_adder_tbw/line__111 File: sixteenbit_adder_tbw.ant
+# Break at sixteenbit_adder_tbw.ant line 144
+# Stopped at sixteenbit_adder_tbw.ant line 144 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+
+
+Started process "Synthesize".
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "G:/xilinx/projects/lab1/Full_Adder/half_adder.vhf" in Library work.
+Architecture behavioral of Entity half_adder is up to date.
+Compiling vhdl file "G:/xilinx/projects/lab1/Full_Adder/full_adder.vhf" in Library work.
+Architecture behavioral of Entity full_adder is up to date.
+Compiling vhdl file "G:/xilinx/projects/lab1/Full_Adder/fourbit_adder.vhf" in Library work.
+Architecture behavioral of Entity fourbit_adder is up to date.
+Compiling vhdl file "G:/xilinx/projects/lab1/Full_Adder/sixteenbit_adder.vhf" in Library work.
+Entity <sixteenbit_adder> compiled.
+Entity <sixteenbit_adder> (Architecture <BEHAVIORAL>) compiled.
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <sixteenbit_adder> (Architecture <BEHAVIORAL>).
+Entity <sixteenbit_adder> analyzed. Unit <sixteenbit_adder> generated.
+
+Analyzing Entity <fourbit_adder> (Architecture <behavioral>).
+Entity <fourbit_adder> analyzed. Unit <fourbit_adder> generated.
+
+Analyzing Entity <full_adder> (Architecture <behavioral>).
+Entity <full_adder> analyzed. Unit <full_adder> generated.
+
+Analyzing Entity <half_adder> (Architecture <behavioral>).
+Entity <half_adder> analyzed. Unit <half_adder> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <half_adder>.
+    Related source file is "G:/xilinx/projects/lab1/Full_Adder/half_adder.vhf".
+Unit <half_adder> synthesized.
+
+
+Synthesizing Unit <full_adder>.
+    Related source file is "G:/xilinx/projects/lab1/Full_Adder/full_adder.vhf".
+Unit <full_adder> synthesized.
+
+
+Synthesizing Unit <fourbit_adder>.
+    Related source file is "G:/xilinx/projects/lab1/Full_Adder/fourbit_adder.vhf".
+Unit <fourbit_adder> synthesized.
+
+
+Synthesizing Unit <sixteenbit_adder>.
+    Related source file is "G:/xilinx/projects/lab1/Full_Adder/sixteenbit_adder.vhf".
+Unit <sixteenbit_adder> synthesized.
+
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Advanced RAM inference ...
+Advanced multiplier inference ...
+Advanced Registered AddSub inference ...
+Dynamic shift register inference ...
+
+=========================================================================
+HDL Synthesis Report
+
+Found no macro
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <sixteenbit_adder> ...
+Loading device for application Rf_Device from file '2v80.nph' in environment G:/xilinx/ise71.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block sixteenbit_adder, actual ratio is 0.
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 2v80cs144-5 
+
+ Number of bonded IOBs:                 50  out of     92    54%  
+
+
+=========================================================================
+TIMING REPORT
+
+
+Clock Information:
+------------------
+No clock signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -5
+
+   Minimum period: No path found
+   Minimum input arrival time before clock: No path found
+   Maximum output required time after clock: No path found
+   Maximum combinational path delay: 35.240ns
+
+=========================================================================
+
+
+
+
+Started process "Translate".
+
+
+Command Line: ngdbuild -intstyle ise -dd g:\xilinx\projects\lab1\full_adder/_ngo
+-nt timestamp -i -p xc2v80-cs144-5 sixteenbit_adder.ngc sixteenbit_adder.ngd 
+
+Reading NGO file 'G:/xilinx/projects/lab1/Full_Adder/sixteenbit_adder.ngc' ...
+
+Checking timing specifications ...
+Checking expanded design ...
+
+NGDBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Writing NGD file "sixteenbit_adder.ngd" ...
+
+Writing NGDBUILD log file "sixteenbit_adder.bld"...
+
+NGDBUILD done.
+
+
+
+
+Started process "Map".
+
+Using target part "2v80cs144-5".
+Mapping design into LUTs...
+Running directed packing...
+Running delay-based LUT packing...
+Running related packing...
+
+Design Summary:
+Number of errors:      0
+Number of warnings:    0
+Logic Utilization:
+  Number of 4 input LUTs:              47 out of   1,024    4%
+Logic Distribution:
+  Number of occupied Slices:           25 out of     512    4%
+  Number of Slices containing only related logic:      25 out of      25  100%
+  Number of Slices containing unrelated logic:          0 out of      25    0%
+        *See NOTES below for an explanation of the effects of unrelated logic
+Total Number 4 input LUTs:             47 out of   1,024    4%
+
+  Number of bonded IOBs:               50 out of      92   54%
+
+Total equivalent gate count for design:  282
+Additional JTAG gate count for IOBs:  2,400
+Peak Memory Usage:  100 MB
+
+NOTES:
+
+   Related logic is defined as being logic that shares connectivity - e.g. two
+   LUTs are "related" if they share common inputs.  When assembling slices,
+   Map gives priority to combine logic that is related.  Doing so results in
+   the best timing performance.
+
+   Unrelated logic shares no connectivity.  Map will only begin packing
+   unrelated logic into a slice once 99% of the slices are occupied through
+   related logic packing.
+
+   Note that once logic distribution reaches the 99% level through related
+   logic packing, this does not mean the device is completely utilized.
+   Unrelated logic packing will then begin, continuing until all usable LUTs
+   and FFs are occupied.  Depending on your timing budget, increased levels of
+   unrelated logic packing may adversely affect the overall timing performance
+   of your design.
+
+Mapping completed.
+See MAP report file "sixteenbit_adder_map.mrp" for details.
+
+
+
+
+Started process "Place & Route".
+
+
+
+
+Constraints file: sixteenbit_adder.pcf.
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "sixteenbit_adder" is an NCD, version 3.1, device xc2v80, package cs144,
+speed -5
+
+Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000
+Celsius)
+Initializing voltage to 1.425 Volts. (default - Range: 1.425 to 1.575 Volts)
+
+
+Device speed data version:  "PRODUCTION 1.121 2005-02-23".
+
+
+Device Utilization Summary:
+
+   Number of External IOBs            50 out of 92     54%
+      Number of LOCed IOBs             0 out of 50      0%
+
+   Number of SLICEs                   25 out of 512     4%
+
+
+Overall effort level (-ol):   Standard (set by user)
+Placer effort level (-pl):    Standard (set by user)
+Placer cost table entry (-t): 1
+Router effort level (-rl):    Standard (set by user)
+
+
+Starting Placer
+
+Phase 1.1
+Phase 1.1 (Checksum:989715) REAL time: 0 secs 
+
+Phase 2.31
+Phase 2.31 (Checksum:1312cfe) REAL time: 0 secs 
+
+Phase 3.2
+
+
+Phase 3.2 (Checksum:1c9c37d) REAL time: 0 secs 
+
+Phase 4.30
+Phase 4.30 (Checksum:26259fc) REAL time: 0 secs 
+
+Phase 5.3
+Phase 5.3 (Checksum:2faf07b) REAL time: 0 secs 
+
+Phase 6.5
+Phase 6.5 (Checksum:39386fa) REAL time: 0 secs 
+
+Phase 7.8
+.
+Phase 7.8 (Checksum:996bc7) REAL time: 0 secs 
+
+Phase 8.5
+Phase 8.5 (Checksum:4c4b3f8) REAL time: 0 secs 
+
+Phase 9.18
+Phase 9.18 (Checksum:55d4a77) REAL time: 0 secs 
+
+Phase 10.5
+Phase 10.5 (Checksum:5f5e0f6) REAL time: 0 secs 
+
+Phase 11.27
+Phase 11.27 (Checksum:68e7775) REAL time: 0 secs 
+
+Phase 12.24
+Phase 12.24 (Checksum:7270df4) REAL time: 0 secs 
+
+Writing design to file sixteenbit_adder.ncd
+
+
+Total REAL time to Placer completion: 0 secs 
+Total CPU time to Placer completion: 0 secs 
+
+Starting Router
+
+Phase 1: 158 unrouted;       REAL time: 1 secs 
+
+Phase 2: 158 unrouted;       REAL time: 1 secs 
+
+Phase 3: 34 unrouted;       REAL time: 1 secs 
+
+Phase 4: 0 unrouted;       REAL time: 1 secs 
+
+
+Total REAL time to Router completion: 1 secs 
+Total CPU time to Router completion: 0 secs 
+
+Generating "PAR" statistics.
+
+Generating Pad Report.
+
+All signals are completely routed.
+
+Total REAL time to PAR completion: 1 secs 
+Total CPU time to PAR completion: 1 secs 
+
+Peak Memory Usage:  67 MB
+
+Placement: Completed - No errors found.
+Routing: Completed - No errors found.
+
+Number of error messages: 0
+Number of warning messages: 0
+Number of info messages: 1
+
+Writing design to file sixteenbit_adder.ncd
+
+
+
+PAR done!
+
+Started process "Generate Post-Place & Route Static Timing".
+
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "sixteenbit_adder" is an NCD, version 3.1, device xc2v80, package cs144,
+speed -5
+
+Analysis completed Mon Apr 18 20:37:00 2005
+--------------------------------------------------------------------------------
+
+Generating Report ...
+
+Number of warnings: 0
+Total time: 1 secs 
+
+
+
+
+Started process "Generate Post-Place & Route Simulation Model".
+
+INFO:NetListWriters:635 - The generated VHDL netlist contains Xilinx SIMPRIM
+   simulation primitives and has to be used with SIMPRIM library for correct
+   compilation and simulation. 
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "Generate Primetime Netlist".
+
+Release 7.1.01i - netgen H.39
+Copyright (c) 1995-2005 Xilinx, Inc.  All rights reserved.
+
+Command Line: netgen -sta -w sixteenbit_adder.ncd sixteenbit_adder_sta.v  
+
+Read and Annotate design 'sixteenbit_adder.ncd' ...
+Flattening design ...
+Processing design ... 
+  Preping design's networks ...
+  Preping design's macros ...
+Writing Verilog SDF file 'sixteenbit_adder_sta.sdf' ...
+Writing Verilog netlist file 'sixteenbit_adder_sta.v' ...
+Writing PCS file 'sixteenbit_adder_sta.pcs' ...
+Number of warnings: 0
+Total memory usage is 61576 kilobytes
+
+Created netgen log file 'sixteenbit_adder_sta.nlf'.
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "Place & Route".
+
+
+
+
+Constraints file: sixteenbit_adder.pcf.
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "sixteenbit_adder" is an NCD, version 3.1, device xc2v80, package cs144,
+speed -5
+
+Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000
+Celsius)
+Initializing voltage to 1.425 Volts. (default - Range: 1.425 to 1.575 Volts)
+
+
+Device speed data version:  "PRODUCTION 1.121 2005-02-23".
+
+
+Device Utilization Summary:
+
+   Number of External IOBs            50 out of 92     54%
+      Number of LOCed IOBs             0 out of 50      0%
+
+   Number of SLICEs                   25 out of 512     4%
+
+
+Overall effort level (-ol):   Standard (set by user)
+Placer effort level (-pl):    Standard (set by user)
+Placer cost table entry (-t): 1
+Router effort level (-rl):    Standard (set by user)
+
+
+Starting Placer
+
+Phase 1.1
+Phase 1.1 (Checksum:989715) REAL time: 0 secs 
+
+Phase 2.31
+Phase 2.31 (Checksum:1312cfe) REAL time: 0 secs 
+
+Phase 3.2
+
+
+Phase 3.2 (Checksum:1c9c37d) REAL time: 0 secs 
+
+Phase 4.30
+Phase 4.30 (Checksum:26259fc) REAL time: 0 secs 
+
+Phase 5.3
+Phase 5.3 (Checksum:2faf07b) REAL time: 0 secs 
+
+Phase 6.5
+Phase 6.5 (Checksum:39386fa) REAL time: 0 secs 
+
+Phase 7.8
+.
+Phase 7.8 (Checksum:996bc7) REAL time: 0 secs 
+
+Phase 8.5
+Phase 8.5 (Checksum:4c4b3f8) REAL time: 0 secs 
+
+Phase 9.18
+Phase 9.18 (Checksum:55d4a77) REAL time: 0 secs 
+
+Phase 10.5
+Phase 10.5 (Checksum:5f5e0f6) REAL time: 0 secs 
+
+Phase 11.27
+Phase 11.27 (Checksum:68e7775) REAL time: 0 secs 
+
+Phase 12.24
+Phase 12.24 (Checksum:7270df4) REAL time: 0 secs 
+
+Writing design to file sixteenbit_adder.ncd
+
+
+Total REAL time to Placer completion: 0 secs 
+Total CPU time to Placer completion: 0 secs 
+
+Starting Router
+
+Phase 1: 158 unrouted;       REAL time: 0 secs 
+
+Phase 2: 158 unrouted;       REAL time: 0 secs 
+
+Phase 3: 34 unrouted;       REAL time: 1 secs 
+
+Phase 4: 0 unrouted;       REAL time: 1 secs 
+
+
+Total REAL time to Router completion: 1 secs 
+Total CPU time to Router completion: 0 secs 
+
+Generating "PAR" statistics.
+
+Generating Pad Report.
+
+All signals are completely routed.
+
+Total REAL time to PAR completion: 1 secs 
+Total CPU time to PAR completion: 1 secs 
+
+Peak Memory Usage:  67 MB
+
+Placement: Completed - No errors found.
+Routing: Completed - No errors found.
+
+Number of error messages: 0
+Number of warning messages: 0
+Number of info messages: 1
+
+Writing design to file sixteenbit_adder.ncd
+
+
+
+PAR done!
+
+Started process "Generate Post-Place & Route Static Timing".
+
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "sixteenbit_adder" is an NCD, version 3.1, device xc2v80, package cs144,
+speed -5
+
+Analysis completed Mon Apr 18 20:45:03 2005
+--------------------------------------------------------------------------------
+
+Generating Report ...
+
+Number of warnings: 0
+Total time: 1 secs 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "Generate Primetime Netlist".
+
+Release 7.1.01i - netgen H.39
+Copyright (c) 1995-2005 Xilinx, Inc.  All rights reserved.
+
+Command Line: netgen -sta -w sixteenbit_adder.ncd sixteenbit_adder_sta.v  
+
+Read and Annotate design 'sixteenbit_adder.ncd' ...
+Flattening design ...
+Processing design ... 
+  Preping design's networks ...
+  Preping design's macros ...
+Writing Verilog SDF file 'sixteenbit_adder_sta.sdf' ...
+Writing Verilog netlist file 'sixteenbit_adder_sta.v' ...
+Writing PCS file 'sixteenbit_adder_sta.pcs' ...
+Number of warnings: 0
+Total memory usage is 61576 kilobytes
+
+Created netgen log file 'sixteenbit_adder_sta.nlf'.
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do fourbit_adder_busses.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity fourbit_adder_busses
+# -- Compiling architecture testbench_arch of fourbit_adder_busses
+# vsim -lib work -t 1ps fourbit_adder_busses 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.fourbit_adder_busses(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.fourbit_adder(behavioral)
+# Loading work.full_adder(behavioral)
+# Loading work.half_adder(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and2(and2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or2(or2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /fourbit_adder_busses/line__111 File: fourbit_adder_busses.ant
+# Break at fourbit_adder_busses.ant line 164
+# Stopped at fourbit_adder_busses.ant line 164 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "Place & Route".
+
+
+
+
+Constraints file: fourbit_adder.pcf.
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "fourbit_adder" is an NCD, version 3.1, device xc2v80, package cs144, speed
+-5
+
+Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000
+Celsius)
+Initializing voltage to 1.425 Volts. (default - Range: 1.425 to 1.575 Volts)
+
+
+Device speed data version:  "PRODUCTION 1.121 2005-02-23".
+
+
+Device Utilization Summary:
+
+   Number of External IOBs            14 out of 92     15%
+      Number of LOCed IOBs             0 out of 14      0%
+
+   Number of SLICEs                    7 out of 512     1%
+
+
+Overall effort level (-ol):   Standard (set by user)
+Placer effort level (-pl):    Standard (set by user)
+Placer cost table entry (-t): 1
+Router effort level (-rl):    Standard (set by user)
+
+
+Starting Placer
+
+Phase 1.1
+Phase 1.1 (Checksum:9896a9) REAL time: 1 secs 
+
+Phase 2.31
+Phase 2.31 (Checksum:1312cfe) REAL time: 1 secs 
+
+Phase 3.2
+
+
+Phase 3.2 (Checksum:1c9c37d) REAL time: 1 secs 
+
+Phase 4.30
+Phase 4.30 (Checksum:26259fc) REAL time: 1 secs 
+
+Phase 5.3
+Phase 5.3 (Checksum:2faf07b) REAL time: 1 secs 
+
+Phase 6.5
+Phase 6.5 (Checksum:39386fa) REAL time: 1 secs 
+
+Phase 7.8
+.
+Phase 7.8 (Checksum:98f403) REAL time: 1 secs 
+
+Phase 8.5
+Phase 8.5 (Checksum:4c4b3f8) REAL time: 1 secs 
+
+Phase 9.18
+Phase 9.18 (Checksum:55d4a77) REAL time: 1 secs 
+
+Phase 10.5
+Phase 10.5 (Checksum:5f5e0f6) REAL time: 1 secs 
+
+Phase 11.27
+Phase 11.27 (Checksum:68e7775) REAL time: 1 secs 
+
+Phase 12.24
+Phase 12.24 (Checksum:7270df4) REAL time: 1 secs 
+
+Writing design to file fourbit_adder.ncd
+
+
+Total REAL time to Placer completion: 1 secs 
+Total CPU time to Placer completion: 0 secs 
+
+Starting Router
+
+Phase 1: 38 unrouted;       REAL time: 1 secs 
+
+Phase 2: 38 unrouted;       REAL time: 1 secs 
+
+Phase 3: 8 unrouted;       REAL time: 1 secs 
+
+Phase 4: 0 unrouted;       REAL time: 1 secs 
+
+
+Total REAL time to Router completion: 1 secs 
+Total CPU time to Router completion: 0 secs 
+
+Generating "PAR" statistics.
+
+Generating Pad Report.
+
+All signals are completely routed.
+
+Total REAL time to PAR completion: 1 secs 
+Total CPU time to PAR completion: 1 secs 
+
+Peak Memory Usage:  67 MB
+
+Placement: Completed - No errors found.
+Routing: Completed - No errors found.
+
+Number of error messages: 0
+Number of warning messages: 0
+Number of info messages: 1
+
+Writing design to file fourbit_adder.ncd
+
+
+
+PAR done!
+
+Started process "Generate Post-Place & Route Static Timing".
+
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "fourbit_adder" is an NCD, version 3.1, device xc2v80, package cs144, speed
+-5
+
+Analysis completed Mon Apr 18 20:57:36 2005
+--------------------------------------------------------------------------------
+
+Generating Report ...
+
+Number of warnings: 0
+Total time: 1 secs 
+
+
+
+
+Started process "Generate Post-Place & Route Simulation Model".
+
+INFO:NetListWriters:635 - The generated VHDL netlist contains Xilinx SIMPRIM
+   simulation primitives and has to be used with SIMPRIM library for correct
+   compilation and simulation. 
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do fourbit_adder_delay.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity fourbit_adder_delay
+# -- Compiling architecture testbench_arch of fourbit_adder_delay
+# vsim -lib work -t 1ps fourbit_adder_delay 
+# ** Error: License checkout has been disallowed because
+# only one session is allowed to run on an uncounted nodelock
+# license and an instance of ModelSim is already running with a
+# nodelocked license on this machine
+# Error loading design
+Error loading design
+ERROR: VSim failed to simulate annotated testbench
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do fourbit_adder_delay.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity fourbit_adder_delay
+# -- Compiling architecture testbench_arch of fourbit_adder_delay
+# vsim -lib work -t 1ps fourbit_adder_delay 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.fourbit_adder_delay(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.fourbit_adder(behavioral)
+# Loading work.full_adder(behavioral)
+# Loading work.half_adder(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and2(and2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or2(or2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /fourbit_adder_delay/line__111 File: fourbit_adder_delay.ant
+# Break at fourbit_adder_delay.ant line 123
+# Stopped at fourbit_adder_delay.ant line 123 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "View HDL Functional Model".
+
+DRC Check completed: No Error found.
+Vhdl netlist file generated.
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+
+
+Started process "Synthesize".
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "G:/xilinx/projects/lab1/Full_Adder/half_adder.vhf" in Library work.
+Architecture behavioral of Entity half_adder is up to date.
+Compiling vhdl file "G:/xilinx/projects/lab1/Full_Adder/full_adder.vhf" in Library work.
+Architecture behavioral of Entity full_adder is up to date.
+Compiling vhdl file "G:/xilinx/projects/lab1/Full_Adder/fourbit_adder.vhf" in Library work.
+Architecture behavioral of Entity fourbit_adder is up to date.
+Compiling vhdl file "G:/xilinx/projects/lab1/Full_Adder/sixteenbit_adder.vhf" in Library work.
+Entity <sixteenbit_adder> compiled.
+Entity <sixteenbit_adder> (Architecture <behavioral>) compiled.
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <sixteenbit_adder> (Architecture <behavioral>).
+Entity <sixteenbit_adder> analyzed. Unit <sixteenbit_adder> generated.
+
+Analyzing Entity <fourbit_adder> (Architecture <behavioral>).
+Entity <fourbit_adder> analyzed. Unit <fourbit_adder> generated.
+
+Analyzing Entity <full_adder> (Architecture <behavioral>).
+Entity <full_adder> analyzed. Unit <full_adder> generated.
+
+Analyzing Entity <half_adder> (Architecture <behavioral>).
+Entity <half_adder> analyzed. Unit <half_adder> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <half_adder>.
+    Related source file is "G:/xilinx/projects/lab1/Full_Adder/half_adder.vhf".
+Unit <half_adder> synthesized.
+
+
+Synthesizing Unit <full_adder>.
+    Related source file is "G:/xilinx/projects/lab1/Full_Adder/full_adder.vhf".
+Unit <full_adder> synthesized.
+
+
+Synthesizing Unit <fourbit_adder>.
+    Related source file is "G:/xilinx/projects/lab1/Full_Adder/fourbit_adder.vhf".
+Unit <fourbit_adder> synthesized.
+
+
+Synthesizing Unit <sixteenbit_adder>.
+    Related source file is "G:/xilinx/projects/lab1/Full_Adder/sixteenbit_adder.vhf".
+Unit <sixteenbit_adder> synthesized.
+
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Advanced RAM inference ...
+Advanced multiplier inference ...
+Advanced Registered AddSub inference ...
+Dynamic shift register inference ...
+
+=========================================================================
+HDL Synthesis Report
+
+Found no macro
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <sixteenbit_adder> ...
+Loading device for application Rf_Device from file '2v80.nph' in environment G:/xilinx/ise71.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block sixteenbit_adder, actual ratio is 0.
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 2v80cs144-5 
+
+ Number of bonded IOBs:                 50  out of     92    54%  
+
+
+=========================================================================
+TIMING REPORT
+
+
+Clock Information:
+------------------
+No clock signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -5
+
+   Minimum period: No path found
+   Minimum input arrival time before clock: No path found
+   Maximum output required time after clock: No path found
+   Maximum combinational path delay: 35.240ns
+
+=========================================================================
+
+
+
+
+Started process "Translate".
+
+
+Command Line: ngdbuild -intstyle ise -dd g:\xilinx\projects\lab1\full_adder/_ngo
+-nt timestamp -i -p xc2v80-cs144-5 sixteenbit_adder.ngc sixteenbit_adder.ngd 
+
+Reading NGO file 'G:/xilinx/projects/lab1/Full_Adder/sixteenbit_adder.ngc' ...
+
+Checking timing specifications ...
+Checking expanded design ...
+
+NGDBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Writing NGD file "sixteenbit_adder.ngd" ...
+
+Writing NGDBUILD log file "sixteenbit_adder.bld"...
+
+NGDBUILD done.
+
+
+
+
+Started process "Map".
+
+Using target part "2v80cs144-5".
+Mapping design into LUTs...
+Running directed packing...
+Running delay-based LUT packing...
+Running related packing...
+
+Design Summary:
+Number of errors:      0
+Number of warnings:    0
+Logic Utilization:
+  Number of 4 input LUTs:              47 out of   1,024    4%
+Logic Distribution:
+  Number of occupied Slices:           25 out of     512    4%
+  Number of Slices containing only related logic:      25 out of      25  100%
+  Number of Slices containing unrelated logic:          0 out of      25    0%
+        *See NOTES below for an explanation of the effects of unrelated logic
+Total Number 4 input LUTs:             47 out of   1,024    4%
+
+  Number of bonded IOBs:               50 out of      92   54%
+
+Total equivalent gate count for design:  282
+Additional JTAG gate count for IOBs:  2,400
+Peak Memory Usage:  100 MB
+
+NOTES:
+
+   Related logic is defined as being logic that shares connectivity - e.g. two
+   LUTs are "related" if they share common inputs.  When assembling slices,
+   Map gives priority to combine logic that is related.  Doing so results in
+   the best timing performance.
+
+   Unrelated logic shares no connectivity.  Map will only begin packing
+   unrelated logic into a slice once 99% of the slices are occupied through
+   related logic packing.
+
+   Note that once logic distribution reaches the 99% level through related
+   logic packing, this does not mean the device is completely utilized.
+   Unrelated logic packing will then begin, continuing until all usable LUTs
+   and FFs are occupied.  Depending on your timing budget, increased levels of
+   unrelated logic packing may adversely affect the overall timing performance
+   of your design.
+
+Mapping completed.
+See MAP report file "sixteenbit_adder_map.mrp" for details.
+
+
+
+
+Started process "Place & Route".
+
+
+
+
+Constraints file: sixteenbit_adder.pcf.
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "sixteenbit_adder" is an NCD, version 3.1, device xc2v80, package cs144,
+speed -5
+
+Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000
+Celsius)
+Initializing voltage to 1.425 Volts. (default - Range: 1.425 to 1.575 Volts)
+
+
+Device speed data version:  "PRODUCTION 1.121 2005-02-23".
+
+
+Device Utilization Summary:
+
+   Number of External IOBs            50 out of 92     54%
+      Number of LOCed IOBs             0 out of 50      0%
+
+   Number of SLICEs                   25 out of 512     4%
+
+
+Overall effort level (-ol):   Standard (set by user)
+Placer effort level (-pl):    Standard (set by user)
+Placer cost table entry (-t): 1
+Router effort level (-rl):    Standard (set by user)
+
+
+Starting Placer
+
+Phase 1.1
+Phase 1.1 (Checksum:989715) REAL time: 0 secs 
+
+Phase 2.31
+Phase 2.31 (Checksum:1312cfe) REAL time: 0 secs 
+
+Phase 3.2
+
+
+Phase 3.2 (Checksum:1c9c37d) REAL time: 0 secs 
+
+Phase 4.30
+Phase 4.30 (Checksum:26259fc) REAL time: 0 secs 
+
+Phase 5.3
+Phase 5.3 (Checksum:2faf07b) REAL time: 0 secs 
+
+Phase 6.5
+Phase 6.5 (Checksum:39386fa) REAL time: 0 secs 
+
+Phase 7.8
+.
+Phase 7.8 (Checksum:996bc7) REAL time: 0 secs 
+
+Phase 8.5
+Phase 8.5 (Checksum:4c4b3f8) REAL time: 0 secs 
+
+Phase 9.18
+Phase 9.18 (Checksum:55d4a77) REAL time: 0 secs 
+
+Phase 10.5
+Phase 10.5 (Checksum:5f5e0f6) REAL time: 0 secs 
+
+Phase 11.27
+Phase 11.27 (Checksum:68e7775) REAL time: 0 secs 
+
+Phase 12.24
+Phase 12.24 (Checksum:7270df4) REAL time: 0 secs 
+
+Writing design to file sixteenbit_adder.ncd
+
+
+Total REAL time to Placer completion: 0 secs 
+Total CPU time to Placer completion: 0 secs 
+
+Starting Router
+
+Phase 1: 158 unrouted;       REAL time: 1 secs 
+
+Phase 2: 158 unrouted;       REAL time: 1 secs 
+
+Phase 3: 34 unrouted;       REAL time: 1 secs 
+
+Phase 4: 0 unrouted;       REAL time: 1 secs 
+
+
+Total REAL time to Router completion: 1 secs 
+Total CPU time to Router completion: 0 secs 
+
+Generating "PAR" statistics.
+
+Generating Pad Report.
+
+All signals are completely routed.
+
+Total REAL time to PAR completion: 1 secs 
+Total CPU time to PAR completion: 1 secs 
+
+Peak Memory Usage:  67 MB
+
+Placement: Completed - No errors found.
+Routing: Completed - No errors found.
+
+Number of error messages: 0
+Number of warning messages: 0
+Number of info messages: 1
+
+Writing design to file sixteenbit_adder.ncd
+
+
+
+PAR done!
+
+Started process "Generate Post-Place & Route Static Timing".
+
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "sixteenbit_adder" is an NCD, version 3.1, device xc2v80, package cs144,
+speed -5
+
+Analysis completed Mon Apr 18 21:11:05 2005
+--------------------------------------------------------------------------------
+
+Generating Report ...
+
+Number of warnings: 0
+Total time: 1 secs 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do sixteenbit_delay.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity sixteenbit_adder
+# -- Compiling architecture behavioral of sixteenbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity sixteenbit_delay
+# -- Compiling architecture testbench_arch of sixteenbit_delay
+# vsim -lib work -t 1ps sixteenbit_delay 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.sixteenbit_delay(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.sixteenbit_adder(behavioral)
+# Loading work.fourbit_adder(behavioral)
+# Loading work.full_adder(behavioral)
+# Loading work.half_adder(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and2(and2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or2(or2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /sixteenbit_delay/line__111 File: sixteenbit_delay.ant
+# Break at sixteenbit_delay.ant line 123
+# Stopped at sixteenbit_delay.ant line 123 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do sixteenbit_delay.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity half_adder
+# -- Compiling architecture behavioral of half_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity full_adder
+# -- Compiling architecture behavioral of full_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity fourbit_adder
+# -- Compiling architecture behavioral of fourbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity sixteenbit_adder
+# -- Compiling architecture behavioral of sixteenbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity sixteenbit_delay
+# -- Compiling architecture testbench_arch of sixteenbit_delay
+# vsim -lib work -t 1ps sixteenbit_delay 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.sixteenbit_delay(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.sixteenbit_adder(behavioral)
+# Loading work.fourbit_adder(behavioral)
+# Loading work.full_adder(behavioral)
+# Loading work.half_adder(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and2(and2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or2(or2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /sixteenbit_delay/line__111 File: sixteenbit_delay.ant
+# Break at sixteenbit_delay.ant line 123
+# Stopped at sixteenbit_delay.ant line 123 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "Generate Post-Place & Route Simulation Model".
+
+INFO:NetListWriters:635 - The generated VHDL netlist contains Xilinx SIMPRIM
+   simulation primitives and has to be used with SIMPRIM library for correct
+   compilation and simulation. 
+
+
+
+
+
+
+

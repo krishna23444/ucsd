@@ -1,0 +1,2 @@
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w pcounter.sch pcounter.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w pcounter.sch pcounter.vhf

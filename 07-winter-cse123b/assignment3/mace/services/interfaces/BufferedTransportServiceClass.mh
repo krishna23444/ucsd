@@ -1,0 +1,94 @@
+/* 
+ * BufferedTransportServiceClass.mh : part of the Mace toolkit for building distributed systems
+ * 
+ * Copyright (c) 2006, Charles Killian, James W. Anderson, Ryan Braud
+ * All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ * 
+ *    * Redistributions of source code must retain the above copyright
+ *      notice, this list of conditions and the following disclaimer.
+ *    * Redistributions in binary form must reproduce the above copyright
+ *      notice, this list of conditions and the following disclaimer in
+ *      the documentation and/or other materials provided with the
+ *      distribution.
+ *    * Neither the names of Duke University nor The University of
+ *      California, San Diego, nor the names of the authors or contributors
+ *      may be used to endorse or promote products derived from
+ *      this software without specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
+ * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * 
+ * ----END-OF-LEGAL-STUFF---- */
+#include "TransportServiceClass.h"
+
+struct TimeValueStat {
+public:
+  TimeValueStat() : time(0), value(0) { }
+  TimeValueStat(uint64_t t, size_t v) : time(t), value(v) { }
+  uint64_t time;
+  size_t value;
+};
+
+struct BufferStatistics {
+public:
+  BufferStatistics(uint64_t w = 0, size_t s = 0, size_t ws = 0) :
+    window(w), sum(s), windowSum(ws) { }
+  typedef mace::deque<TimeValueStat> HistoryList;
+  uint64_t window;
+  size_t sum;
+  size_t windowSum;
+  HistoryList history;
+
+  void append(size_t v) {
+    uint64_t now = Util::timeu();
+    while (!history.empty() && (now - window > history.front().time)) {
+      windowSum -= history.front().value;
+      history.pop_front();
+    }
+    history.push_back(TimeValueStat(now, v));
+    sum += v;
+    windowSum += v;
+  }
+
+};
+
+typedef boost::shared_ptr<BufferStatistics> BufferStatisticsPtr;
+
+serviceclass BufferedTransport : Transport {
+  virtual bool canSend(const MaceKey& peer);
+  virtual size_t availableBufferSize(const MaceKey& peer);
+  virtual size_t outgoingBufferedDataSize(const MaceKey& peer);
+  virtual size_t incomingBufferedDataSize(const MaceKey& peer);
+  virtual void setWindowSize(const MaceKey& peer, uint64_t microsec);
+  virtual void setQueueSize(const MaceKey& peer, size_t size, size_t threshold = UINT_MAX);
+  virtual const BufferStatisticsPtr getStatistics(const MaceKey& peer, TransportServiceClass::Connection::type d);
+  virtual void requestToSend(const MaceKey& peer);
+  virtual size_t bufferedDataSize();
+  virtual bool hasBufferedData();
+  virtual bool hasOutgoingBufferedData();
+  virtual size_t outgoingBufferedDataSize();
+  // atomic route with requestToSend scheduled when false is returned
+  virtual bool routeRTS(const MaceKey& dest, const std::string& s);
+  virtual void requestFlushedNotification() [syncname=flush; type=broadcast; callback=notifyFlushed];
+  handlers ConnectionStatus;
+
+  mace services {
+    method_remappings {
+      uses {
+	downcall_routeRTS(const MaceKey&, const Message& -> const std::string&, registration_uid_t);
+      }
+    }
+  }
+};
+

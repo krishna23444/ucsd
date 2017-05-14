@@ -1,0 +1,897 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>UCSD CSE - Systems and Networking</title> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><title>UCSD Department of Computer Science and Engineering - CSE Home</title> <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type" /><meta content="en" http-equiv="content-language" /><meta content="text/css" http-equiv="content-style-type" /><meta content="no" http-equiv="imagetoolbar" /><meta content="Computer Science, engineering, ucsd, faculty, students, Jacobs School, San Diego, University" name="keywords" /><meta content="UCSD Department of Computer Science and Engineering" name="description" /><meta content="UCSD Department of Computer Science and Engineering" name="organization" /><meta content="0.0" name="pageno" />
+<link type="text/css" href="css/sysnet_style.css" rel="stylesheet">
+<link type="text/css" href="css/sysnet_pubs.css" rel="stylesheet">
+<link media="screen" type="text/css" href="css/global_style.css" rel="stylesheet" />
+<script type="text/javascript" language="JavaScript" src="javascript/global_functions.js"> </script><script language="JavaScript" type="text/javascript">
+<!--
+        var NS4, IE, DOMstandard, CSScapable;
+        NS4 = (document.layers) ? 1 : 0;
+        IE = (document.all) ? 1 : 0;
+        DOMstandard = (document.getElementById) ? 1 : 0;
+        CSScapable = (NS4 || IE || DOMstandard) ? 1 : 0;
+        if(CSScapable)
+        {
+          if(NS4)
+              document.write('<link type="text/css" href="css/ns_style.css" rel="stylesheet" />');
+            else
+  	      document.write('<link media="screen" type="text/css" href="css/dom_style.css" rel="stylesheet" />');
+            }
+//-->
+          </script><script type="text/javascript" language="javascript"><!--
+      if(window.event + "" == "undefined") event = null;
+      function HM_f_PopUp(){return false};
+      function HM_f_PopDown(){return false};
+      popUp = HM_f_PopUp;
+      popDown = HM_f_PopDown;
+      //--></script><script type="text/javascript" language="JavaScript1.2"><!--           
+      HM_PG_MenuWidth = 150;
+      HM_PG_FontFamily = "verdana, arial, geneva, san-serif";
+      HM_PG_FontSize = 7;
+      HM_PG_FontBold = 0;
+      HM_PG_FontItalic = 0;
+      HM_PG_FontColor = "#003366";
+      HM_PG_FontColorOver = "#FFFFFF";
+      HM_PG_BGColor = "#FFFFFF";
+      HM_PG_BGColorOver = "#003366";
+      HM_PG_ItemPadding = 4;
+      
+      HM_PG_BorderWidth = 1;
+      HM_PG_BorderColor = "#006699";
+      HM_PG_BorderStyle = "solid";
+      HM_PG_SeparatorSize = 1;
+      HM_PG_SeparatorColor = "#FFFFFF";
+      
+      HM_PG_ImageSrc = "HM_More_black_right.gif";
+      HM_PG_ImageSrcLeft = "HM_More_black_left.gif";
+      HM_PG_ImageSrcOver = "HM_More_white_right.gif";
+      HM_PG_ImageSrcLeftOver = "HM_More_white_left.gif";
+      
+      HM_PG_ImageSize = 5;
+      HM_PG_ImageHorizSpace = 0;
+      HM_PG_ImageVertSpace = 2;
+      
+      HM_PG_KeepHilite = true; 
+      HM_PG_ClickStart = 0;
+      HM_PG_ClickKill = false;
+      HM_PG_ChildOverlap = 20;
+      HM_PG_ChildOffset = 10;
+      HM_PG_ChildPerCentOver = null;
+      HM_PG_TopSecondsVisible = .5;
+      HM_PG_StatusDisplayBuild =0;
+           HM_PG_StatusDisplayLink = 0;
+      HM_PG_UponDisplay = null;
+      HM_PG_UponHide = null;
+      HM_PG_RightToLeft = 0;
+      
+      HM_PG_CreateTopOnly = 0;
+      HM_PG_ShowLinkCursor = 1;
+      HM_PG_NSFontOver = true;
+      
+      window.name = "homepage";
+      //HM_a_TreesToBuild = []
+
+//--></script></head><body link="#006699" vlink="#006699" alink="#006699" marginwidth="0" marginheight="0" topmargin="0" leftmargin="0" rightmargin="0" style="background: #ffffff url(/images/IMG_bgimg.gif) no-repeat"><a name="top"> </a><script type="text/javascript" language="JavaScript">
+<!--
+
+      logotopon = new Image(187,29);
+      logotopon.src = "/images/H_logo_top_over.gif";
+      logotopoff = new Image(187,29);
+      logotopoff.src = "/images/H_logo_top.gif";
+      logobottomon = new Image(187,18);
+      logobottomon.src = "/images/H_logo_bottom_over.gif";
+      logobottomoff = new Image(187,18);
+      logobottomoff.src = "/images/H_logo_bottom.gif";
+      headeron = new Image(573,47);
+      headeron.src = "/images/H_header_on.gif";
+      headeroff = new Image(573,47);
+      headeroff.src = "/images/H_header_off.gif";
+        
+//-->
+</script><table bgcolor="#efefef" cellpadding="0" cellspacing="0" border="0" width="760"><tr><td valign="top" width="187"><a onmouseout="Off('logotop')" onmouseover="On('logotop'); return true" href="http://www.ucsd.edu"><img border="0" width="187" height="29" src="/images/H_logo_top.gif" name="logotop" alt="UCSD Main Website" /></a><a onmouseout="Off('logobottom')" onmouseover="On('logobottom'); return true" href="http://www.jacobsschool.ucsd.edu"><img border="0" width="187" height="18" src="/images/H_logo_bottom.gif" name="logobottom" alt="UCSD Jacobs School" /></a></td><td valign="top" width="573"><a onmouseout="Off('header')" onmouseover="On('header'); return true" href="/index.php"><img border="0" width="573" height="47" src="/images/H_header_off.gif" name="header" alt="Department of Computer Science and Engineering" /></a></td></tr></table><table cellpadding="0" cellspacing="0" border="0" width="760"><tr><td valign="top" width="82"><a onmouseout="Off('aboutcse');HM_f_PopDown('HM_Menu1',event);" href="/aboutcse/deptoverview.html" onmouseover="HM_f_PopUp('HM_Menu1',event); On('aboutcse'); window.status='About CSE'; return true"><img border="0" width="82" height="54" src="/images/HN_aboutcse.gif" name="aboutcse" alt="About CSE" /></a></td><td valign="top" width="85"><a onmouseout="Off('csepeople');HM_f_PopDown('HM_Menu2',event);" href="/csepeople/csepeoplehome.html" onmouseover="HM_f_PopUp('HM_Menu2',event); On('csepeople'); window.status='CSE People'; return true"><img border="0" width="85" height="54" src="/images/HN_csepeople.gif" name="csepeople" alt="CSE People" /></a></td><td valign="top" width="108"><a onmouseout="Off('faculty');HM_f_PopDown('HM_Menu3',event);" href="/facresearch/facultyresearch.html" onmouseover="HM_f_PopUp('HM_Menu3',event); On('faculty'); window.status='Faculty'; return true"><img border="0" width="108" height="54" src="/images/HN_faculty.gif" name="faculty" alt="Faculty" /></a></td><td valign="top" width="109"><a onmouseout="Off('graduate');HM_f_PopDown('HM_Menu4',event);" href="/gradedu/gradeduhome.html" onmouseover="HM_f_PopUp('HM_Menu4',event); On('graduate'); window.status='Graduate Education'; return true"><img border="0" width="109" height="54" src="/images/HN_graduate.gif" name="graduate" alt="Graduate Education" /></a></td><td valign="top" width="140"><a onmouseout="Off('undergraduate');HM_f_PopDown('HM_Menu5',event);" href="/undergrad/undergradeduhome.html" onmouseover="HM_f_PopUp('HM_Menu5',event); On('undergraduate'); window.status='Undergrduate Education'; return true"><img border="0" width="140" height="54" src="/images/HN_undergraduate.gif" name="undergraduate" alt="Undergrduate Education" /></a></td><td valign="top" width="142"><a onmouseout="Off('deptadmin');HM_f_PopDown('HM_Menu6',event);" href="/deptadmin/index.php" onmouseover="HM_f_PopUp('HM_Menu6',event); On('deptadmin'); window.status='Department Administration'; return true"><img border="0" width="142" height="54" src="/images/HN_deptadmin.gif" name="deptadmin" alt="Department Administration" /></a></td><td valign="top" width="94"><a onmouseout="Off('contactcse');HM_f_PopDown('HM_Menu7',event);" href="/aboutcse/contactinfo.html" onmouseover="HM_f_PopUp('HM_Menu7',event); On('contactcse'); window.status='Contact CSE'; return true"><img border="0" width="94" height="54" src="/images/HN_contactcse.gif" name="contactcse" alt="Contact CSE" /></a></td></tr></table><script language="JavaScript" type="text/javascript">aboutcseon = new Image(82,54);
+aboutcseon.src = "/images/HNR_aboutcse.gif";
+aboutcseoff = new Image(82,54);
+aboutcseoff.src = "/images/HN_aboutcse.gif";
+csepeopleon = new Image(85,54);
+csepeopleon.src = "/images/HNR_csepeople.gif";
+csepeopleoff = new Image(85,54);
+csepeopleoff.src = "/images/HN_csepeople.gif";
+facultyon = new Image(108,54);
+facultyon.src = "/images/HNR_faculty.gif";
+facultyoff = new Image(108,54);
+facultyoff.src = "/images/HN_faculty.gif";
+graduateon = new Image(109,54);
+graduateon.src = "/images/HNR_graduate.gif";
+graduateoff = new Image(109,54);
+graduateoff.src = "/images/HN_graduate.gif";
+undergraduateon = new Image(140,54);
+undergraduateon.src = "/images/HNR_undergraduate.gif";
+undergraduateoff = new Image(140,54);
+undergraduateoff.src = "/images/HN_undergraduate.gif";
+deptadminon = new Image(142,54);
+deptadminon.src = "/images/HNR_deptadmin.gif";
+deptadminoff = new Image(142,54);
+deptadminoff.src = "/images/HN_deptadmin.gif";
+contactcseon = new Image(94,54);
+contactcseon.src = "/images/HNR_contactcse.gif";
+contactcseoff = new Image(94,54);
+contactcseoff.src = "/images/HN_contactcse.gif";
+</script>
+
+<table border="0" cellspacing="0" width="760" id="AutoNumber1" cellpadding="7">
+  <tr>
+    <td width="11" height="1" bgcolor="#EFEFEF">&nbsp;</td>
+    <td height="1" width="673" bgcolor="#EFEFEF">&nbsp;</td>
+    <td width="12" bgcolor="#EFEFEF" height="1">&nbsp;</td>
+  </tr>
+<tr>
+<td align="left" valign="top" width="11" bgcolor="#EFEFEF">
+&nbsp;</td>
+<td align="left" valign="top"> 
+
+
+<div align="center">
+  <center>
+  <table border="0" cellspacing="1">
+    <tr>
+      <td width="100%" align="center" height="132">
+      <font face="Verdana">
+      <img alt="Systems and Networking" border="0" src="images/sysnet-title-image.gif" width="540" height="129">&nbsp;&nbsp;
+      </font>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+
+<p><font face="Verdana" size="2">The systems and networking group at UCSD engages in a wide range of 
+experimental and theoretical research. Our current projects span fault-tolerant 
+networks and systems, high-speed router design, storage system design, network 
+measurement and traffic analysis, peer-to-peer system design, network security, 
+mobile code architectures, high-performance cluster computing, and wireless 
+networking. Our group consists of 10 faculty and over 60 graduate students and 
+research staff, and is supported by over $12 million in research funds from 
+government and industrial sources.</font></p>
+
+<table border="0" cellspacing="1" width="95%">
+  <tr>
+    <td width="100%" align="center"><font face="Verdana" size="2"><b>
+    <a href="#Faculty" style="text-decoration: none">People</a></b><font color="#006699">&nbsp;|<font color="#006699">&nbsp; </font> <b>
+    <a href="#News" style="text-decoration: none">News</a></b><font color="#006699">&nbsp;|<font color="#006699">&nbsp; </font> <b>
+    <a href="#Publications" style="text-decoration: none">Publications</a></b><font color="#006699">&nbsp;|<font color="#006699">&nbsp; </font> <b>
+    <a href="#Projects" style="text-decoration: none">Projects &amp; Labs</a></b><font color="#006699">&nbsp;|<font color="#006699">&nbsp; </font> <b>
+    <a style="text-decoration: none" href="#Sponsors">Sponsors</a></b><font color="#006699">&nbsp; </font>|<font color="#006699">&nbsp; </font> <b>
+    <a style="text-decoration: none" href="http://sysnet.ucsd.edu/group">Internal</a></b></td>
+  </tr>
+</table>
+<!-- END OF LOCAL PAGE CONTENT.  MODIFY ABOVE 
+<p>
+<center>
+<h5><font color="#006699"><b>Job Opportunity</b></font>: The Systems and Networking group is recruiting for a Research System Programmer.  More information and application materials can be found <a href="http://joblink.ucsd.edu/bulletin/job.html?cat=new&job_id=37656">here</a>.</h5>
+</center>
+</p>
+-->
+<h4 style="margin-bottom: 4"><a name="Faculty">Faculty</a></h4><div align="right">
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="97%">
+    <tr>
+      <td width="11%">&nbsp;</td>
+      <td width="33%">
+    <a href="http://www.cs.ucsd.edu/~burkhard">Walter Burkhard</a><br>
+    <a href="http://www-csag.ucsd.edu/individual/achien/achien.html">Andrew A. Chien</a><br> 
+    <a href="http://www.caida.org/~kc">kc claffy (adjunct) </a><br>
+    <a href="http://www.cs.ucsd.edu/~marzullo">Keith Marzullo</a><br>
+    <a href="http://www.cs.ucsd.edu/~pasquale">Joseph Pasquale</a><br>
+
+      </td>
+      <td width="11%">&nbsp;</td>
+      <td width="33%">
+    <a href="http://www.cs.ucsd.edu/~savage">Stefan Savage</a><br>
+    <a href="http://www.cs.ucsd.edu/~snoeren">Alex C. Snoeren</a><br>
+    <a href="http://www.cs.ucsd.edu/~vahdat">Amin Vahdat</a><br>
+    <a href="http://www.cs.ucsd.edu/~varghese">George Varghese</a><br>
+    <a href="http://www.cs.ucsd.edu/~voelker">Geoffrey M. Voelker</a>
+      </td>
+      <td width="12%">&nbsp;</td>
+    </tr>
+  </table>
+</div>
+<h4 style="margin-bottom: 4"><font face="Verdana">PhD Students</font></h4>
+<div align="right">
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="97%">
+    <tr>
+      <td width="25%" align="left" valign="top">
+<!-- records
+Mikhail -> Alex
+Jeannie -> Amin
+James -> Amin
+Alvin -> Alex
+Greg Bruno -> Keith
+Justin Burke -> Amin
+Ryan Braud -> Amin
+Yu-Chung -> Stefan/Geoff
+Mike Fisk -> George
+Diwaker Gupta -> Amin
+Richard Huang -> Andrew
+Chris -> Stefan/GEoff
+Chip Killian -> Amin
+Ramana Kompella -> Alex/George
+Kirill Levchenko -> Mohan (but w/Stefan & Geoff)
+Dinysios Logothetis -> Andrew
+Justin Ma -> Stefan
+Priya Mahadevan -> Amin
+Yanhua Mao -> Keith
+Alper Mizrak -> Stefan/Keith
+David Moore -> Stefan/Geoff
+Marti Motoyama -> George?
+Barath Raghavan -> Alex
+Sriram Ramabhadran -> Joe
+Sumeet Singh -> Stefan/George
+Nut -> Andrew
+Frank Uyeda -> George/Amin
+Verkaik -> Alex
+Kashi -> Amin
+Vrable -> Geoff/Stefan
+Meg Walred-Sullivan-> Amin
+Weigle -> Andrew
+Ryan Wu -> Andrew
+
+-->
+    Mikhail Afanasyev<br>
+    <a href="http://www.cs.ucsd.edu/~jalbrecht/">Jeannie Albrecht</a><br>
+    <a href="http://www.cs.ucsd.edu/~jwanderson/">James Anderson</a><br>
+    <a href="http://www.cs.ucsd.edu/~aauyoung/">Alvin AuYoung</a><br>
+    Greg Bruno<br>
+    <a href="http://www-csag.ucsd.edu/individual/jburke/">Justin Burke</a><br>
+    <a href="http://www.cs.ucsd.edu/~rbraud/">Ryan Braud</a><br>
+    <a href="http://www.cs.ucsd.edu/~ycheng">Yu-Chung Cheng</a><br>
+    <a href="http://public.lanl.gov/mfisk/">Mike Fisk</a><br>
+
+      </td><td width="25%" align="left" valign="top">
+    <a href="http://www.cs.ucsd.edu/~dgupta/">Diwaker Gupta</a><br>
+    <a href="http://www.cs.ucsd.edu/~ryhuang/">Richard Huang</a><br>
+    <a href="http://www.cs.ucsd.edu/~ckanich/">Chris Kanich</a><br>
+    <a href="http://www.cs.ucsd.edu/~ckillian/">Chip Killian</a><br>
+    <a href="http://www.cs.ucsd.edu/~rkompell/">Ramana Kompella</a><br>
+    <a href="http://www.cs.ucsd.edu/~klevchen/">Kirill Levchenko</a><br>
+
+    <a href="http://www-csag.ucsd.edu/individual/dlogo/">Dionysios Logothetis</a><br>
+    <a href="http://www.cs.ucsd.edu/~jtma/">Justin Ma<br>
+    <a href="http://sysnet.ucsd.edu/~pmahadevan/">Priya Mahadevan</a><br>
+
+      </td><td width="25%" align="left" valign="top">
+
+    <a href="http://www.cs.ucsd.edu/~yamao">Yanhua Mao</a><br>
+    <a href="http://www.cs.ucsd.edu/~jmccullo">John McCullough</a><br>
+    <a href="http://ramp.ucsd.edu/~mmcnett/">Marvin McNett</a><br>
+    <a href="http://www.cs.ucsd.edu/~amizrak/">Alper Mizrak</a><br>
+    <a href="http://www.caida.org/~dmoore/">David Moore</a><br>
+    Marti Motoyama<br>
+    <a href="http://www.cs.ucsd.edu/users/braghava/">Barath Raghavan</font></br>
+    <a href="http://www.cs.ucsd.edu/~nramabha/">Sriram Ramabhadran</a><br>
+    <a href="http://www.cs.ucsd.edu/~susingh/">Sumeet Singh</a><br>
+
+      </td><td width="25%" align="left" valign="top">
+    <a href="http://www.cs.ucsd.edu/~ntaesomb/">Nut Taesombut</a><br>
+    <a href="http://www.cs.ucsd.edu/~fuyeda/">Frank Uyeda</a><br>
+    <a href="http://www.cs.ucsd.edu/~pverkaik">Patrick Verkaik</a><br>
+    <a href="http://www.cs.ucsd.edu/~kvishwanath/">Kashi Vishwanath</a><br>
+    <a href="http://www.cs.ucsd.edu/~mvrable/">Michael Vrable</a><br>
+    <a href="http://www.cs.ucsd.edu/~mwalraed/">Meg Walraed-Sullivan</a><br>
+    <a href="http://www-csag.ucsd.edu/individual/ehw/">Eric Weigle</a><br>
+    <a href="http://www-csag.ucsd.edu/individual/xwu/">Xinran (Ryan) Wu</a><br>
+    <a href="http://www.cs.ucsd.edu/~q5zhang/">Qing Zhang</a><br>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<h4 style="margin-bottom: 4"><font face="Verdana">MS Students</font></h4>
+<div align="right">
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="97%">
+    <tr>
+      <td width="25%" align="left" valign="top">
+<!-- records
+Anderson -> Geoff
+Genevieve -> Joe (in USC Ph.D)
+Fleizach -> Geoff
+Ming -> Geoff
+Christoper Yap -> Amin
+-->
+
+    <a href="http://www.cs.ucsd.edu/~dsa001/">David Anderson</a><br>
+    Genevieve Bartlett<br>
+    <a href="http://www.cs.ucsd.edu/~cfleizac">Chris Fleizach</a><br>
+
+      </td><td width="25%" align="left" valign="top">
+    <a href="http://www.cse.ucsd.edu/users/mwookawa/"> Ming Woo-Kawaguchi</a><br>
+    <a href="http://www.cs.ucsd.edu/users/ckintana/">Carmelo Kintana</a><br>
+
+    <a href="http://www.cs.ucsd.edu/~nschear/">Nabil Schear</a><br>
+
+      </td><td width="25%" align="left" valign="top">
+    Nick Topilski<br>
+    Christopher Yap<br>
+      </td>
+
+    </tr>
+  </table>
+</div>
+
+<!-- undergraduates -->
+
+<h4 style="margin-bottom: 4"><font face="Verdana">Postdocs</font></h4>
+<div align="right">
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="97%">
+    <tr>
+
+      <td width="33%">
+      <a href="http://www-csag.ucsd.edu/individual/yskee/">Yang-Suk Kee</a><br>
+
+      </td>
+      <td width="33%">&nbsp;</td>
+      <td width="33%">&nbsp;</td>
+    </tr>
+  </table>
+</div>
+
+<h4 style="margin-bottom: 4"><font face="Verdana">Research Staff</font></h4>
+<div align="right">
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="97%">
+    <tr>
+      <td width="33%">
+      <a href="http://www.cs.ucsd.edu/csepeople/staffhomepages/BrustA.html">Adam Brust</a><br>
+      <a href="http://xed.ucsd.edu/">Chris X. Edwards</a><br>
+      </td><td width="33%">
+
+      <a href="http://www.cs.ucsd.edu/~hutches/">David Hutches</a><br>
+      <a href="http://www.caida.org/~cshannon/">Colleen Shannon</a><br>
+
+      </td><td width="34%">
+      <a href="http://www.cs.ucsd.edu/~kyocum/">Ken Yocum</a><br>
+      </td>
+
+    </tr>
+  </table>
+</div>
+
+<h4 style="margin-bottom: 4"><font face="Verdana">Administrative Staff</font></h4>
+<div align="right">
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="97%">
+    <tr>
+      <td width="34%" align="left" valign="top">
+	<a href="http://www.cs.ucsd.edu/csepeople/staffhomepages/PanikM.html">Michelle Panik</a> (for CSL)
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+<h4 style="margin-bottom: 4"><font face="Verdana">Recent Alumni</font></h4>
+<div align="right">
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="97%">
+
+
+    <tr><td>
+   <a href="http://www.cs.berkeley.edu/~davidopp/">David Oppenheimer</a> (PostDoc, 2005-2006 -> Google)<br>
+    <a href="http://www.cs.ucsd.edu/~xzhang/">Xianan Zhang</a> (Ph.D., 2006) -> VMWare <br>
+    <a href="http://www.cs.ucsd.edu/~ktati/">Kiran Tati</a> (Ph.D., 2006) -> VMWare<br>
+    <a href="http://www-csag.ucsd.edu/individual/huaxia/">Huaxia Xia</a> (Ph.D., 2006) -> Google<br>
+    <a href="http://ramp.ucsd.edu/~bellardo/">John Bellardo</a> (Ph.D., 2006) -> Cal Poly SLO<br>
+    <a href="http://www.cs.ucsd.edu/~flavio/">Flavio Junqueira</a> (Ph.D., 2006) -> Yahoo Research<br>
+    <a href="http://www.cs.ucsd.edu/~eyhung/">Eugene Hung</a> (Ph.D., 2006) -> IBM <br>
+    <a href="http://www.cs.ucsd.edu/~teixeira/">Renata Teixeira</a> (Ph.D., 2005) -> CNRS Researcher @ Laboratoire d'informatique de Paris 6 (Lip6)<br>
+    </td></tr>
+
+    <tr><td>
+    <a href="http://www.cs.ucsd.edu/~lbent">Leeann Bent</a> (Ph.D., 2005) -> Google <br>
+    </td></tr>
+
+    <tr><td>
+    <a href="http://www-csag.ucsd.edu/individual/wj/">Ju (Tony) Wang</a> (Ph.D., 2005) -> Ask.com<br>
+    </td></tr>
+
+    <tr><td>
+    <a href="http://www-csag.ucsd.edu/individual/lxin/">Xin (Paff) Liu</a> (Ph.D., 2005) -> Ask.com<br>
+    </td></tr>
+
+    <tr><td>
+    <a href="http://www.cs.wisc.edu/~cestan/">Cristian Estan</a> (Ph.D., 2003) -> University of Wisconsin
+   </td></tr>
+    <tr><td>
+   <a href="http://ramp.ucsd.edu/~rbhagwan/">Ranjita Bhagwan</a> (Ph.D., 2004) -> IBM Research
+    </td></tr>
+    <tr><td>
+    <a href="http://www.cs.ucsd.edu/~jsteinbe/">Jesse Steinberg</a> (Ph.D., 2004) -> Northrop Grumman Mission Systems
+    </td></tr>
+    <tr><td>
+    <a href="http://www.cs.ucsd.edu/~dzagorod/">Dmitrii Zagorodnov</a> (Ph.D., 2004) -> Postdoc University of Tromso, Norway -> Postdoc UCSB
+    </td></tr>
+
+    <tr><td>
+    <a href="http://www.cs.ucsd.edu/~baboescu/">Florin Baboescu</a> (Ph.D., 2003) -> Cisco -> Qualcomm
+    </td></tr>
+
+    <tr><td>
+    <a href="http://www.cs.ucsd.edu/~abalacha/">Anand Balachandran</a> (Ph.D., 2003) -> Intel Research -> Microsoft
+    </td></tr>
+
+    <tr><td>
+    <a href="http://www.cs.indiana.edu/~connelly/">Kay Connelly</a> (Ph.D., 2003) -> Indiana University
+    </td></tr>
+
+    <tr><td>
+    &nbsp;
+    </td></tr>
+
+    <tr><td>
+    <a href="http://www.cs.ucsd.edu/~j2chen">Jay Chen</a> (M.S.,
+2006) -> NYU PhD program
+    </td></tr>
+
+    <tr><td>
+    Troy Timble (M.S., 2006) -> Google
+    </td></tr>
+
+    <tr><td>
+    <a href="http://www.cs.ucsd.edu/~ctuttle">Chris Tuttle</a> (M.S.,
+2006) -> Google
+    </td></tr>
+
+
+    <tr><td>
+    <a href="http://www.cs.ucsd.edu/users/iramani/">Ishwar Ramani</a> (M.S., 2005) -> Juniper Networks
+    </td></tr>
+
+    <tr><td>
+    <a href="http://www-csag.ucsd.edu/individual/lrivera/">Luis Rivera</a> (M.S., 2005) -> Verimatrix
+    </td></tr>
+    <tr><td>
+    John Ehrhart (M.S., 2005) -> Amazon
+    </td></tr>
+    <tr><td>
+    Josh Opos (M.S., 2005)
+    </td></tr>
+
+
+
+    <tr><td>
+    Michael Sirivianos (M.S., 2004) -> U.C. Irvine Ph.D. program
+    </td></tr>
+
+    <tr><td>
+    <a href="http://www.cs.ucsd.edu/~jkrasnow/">Jason Krasnow</a> (M.S., 2004) -> Motorola
+    </td></tr>
+
+    <tr><td>
+    Erik VandeKieft (M.S., 2004) -> IBM
+    </td></tr>
+
+    <tr><td>
+    <a href="http://www.cs.ucsd.edu/~newhouse/">Travis Newhouse</a> (M.S., 2004) -> Netsift -> Cisco
+    </td></tr>
+
+    <tr><td>
+    <a href="http://www.cs.ucsd.edu/~rbharadw/">Rajiv Bharadwaja</a> (M.S., 2004) -> Microsoft
+    </td></tr>
+
+    <tr><td>
+    Doug Brown (M.S., 2003) -> NYU Law School
+    </td></tr>
+
+    <tr><td>
+    <a href="http://www.cs.ucsd.edu/~aojha/">Aditya Ojha</a> (M.S., 2003) -> Sun Microsystems -> Cisco
+    </td></tr>
+
+    <tr><td>
+    <a href="http://www.cs.ucsd.edu/~vikumar/">Vineet Kumar</a> (M.S., 2003) -> CMU Tepper School of Business Ph.D. program </td></tr>
+
+
+    <tr><td>
+    Ping Guan (M.S., 2003) -> Qualcomm
+    </td></tr>
+
+    <tr><td>
+    Harsha Narayan (M.S., 2003) -> UT Austin Ph.D. program
+    </td></tr>
+
+    <tr><td>
+    Jie (Cliff) Wei -> UCLA Ph.D. program
+    </td></tr>
+
+    <tr><td>
+    &nbsp;
+    </td></tr>
+
+    <tr><td>
+      <a href="http://ramp.ucsd.edu/~dkostic">Dejan Kosti&#263;</a> (Visitor/Duke Ph.D. student, 2003-2005) -> <a href="http://ic.epfl.ch/">EPFL</a><br>
+      <a href="http://www.cs.duke.edu/~fu/">Yun Fu </a>(Visitor/Duke Ph.D. student, 2003-2004) -> Yahoo!<br>
+      <a href="http://www.cs.washington.edu/homes/lazowska/">Edward D. Lazowska</a> (Sabbatical, 2002) -> University of Washington<br>
+      <a href="http://www.amrita.edu/about/vc-bio.htm">Venkat Rangan</a> (Faculty 1989-2005) -> Amrita Vishwa Vidyapeetham<br>
+    </td></tr>
+
+  </table>
+</div>
+
+
+
+<h4 style="margin-bottom: 4"><font face="Verdana"><a name="News">News</a></font></h4>
+<div align="right">
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="97%">
+    <tr>
+
+      <td width="100%" height="257">
+
+<p> (2006-2007) We have a bunch of our SysNet students who will be hitting the job market this year.  At the Ph.D. level this includes: <a href="http://www.cs.ucsd.edu/~jalbrecht/">Jeannie Albrecht</a>, <a href="http://www.cs.ucsd.edu/~ycheng">Yu-Chung Cheng</a>, <a href="http://www.cs.ucsd.edu/~rkompell/">Ramana Kompella</a>, <a href="http://sysnet.ucsd.edu/~pmahadevan/">Priya Mahadevan</a>, <a href="http://www.cs.ucsd.edu/~amizrak/">Alper Mizrak</a>, <a href="http://www.cs.ucsd.edu/~nramabha/">Sriram Ramabhadran</a> and <a href="http://www-csag.ucsd.edu/individual/ehw/">Eric Weigle</a>.  At the M.S. level we have: <a href="http://www.cs.ucsd.edu/~dsa001/">David Anderson</a> and <a href="http://www.cs.ucsd.edu/~cfleizac">Chris Fleizach</a>.  If you're looking to hire great systems builders, researchers and educators check these folks out!
+
+<p> (12/14/06) <a href="http://sysnet.ucsd.edu/~davidopp/">David Oppenheimer</a> will be taking a position at Google.  Congrats David!
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>(11/28/06) <a
+href="http://www.cs.ucsd.edu/~xzhang">Xianan Zhang</a>
+successfully defended her thesis today.  She returns to VmWare,
+where she already started over the summer.  Congratulations, Xianan!
+</td>
+<td width=101><img alt ="Xianan" src="images/xianan.gif" width=91 border="1"></td>
+</tr></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width=105><img alt ="Kiran" src="images/kiran.gif" width=85 border="1"></td>
+<td>(11/21/06) <a href="http://sysnet.ucsd.edu/~ktati/">Kiran Tati</a>
+successfully defended his thesis and will be joining VmWare in January.
+Congratulations, Kiran!
+</td>
+</tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>(9/21/06) <a
+href="http://www-csag.ucsd.edu/individual/huaxia/">Huaxia Xia</a>
+successfully defended his thesis today.  Huaxia will soon be starting
+at Google. Congratulations, Huaxia!
+</td>
+<td width=101><img alt ="Huaxia" src="images/huaxia.jpg" width=91 border="1"></td>
+</tr></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width=105><img alt ="Allie" src="images/allie.jpg" width=85 border="1"></td>
+<td>(9/11/06) <a href="http://sysnet.ucsd.edu/~mmcnett/">Marvin and Karin McNett</a> accepted delivery of 7.5 lb, 21 inch Alana Cristina McNett (Allie) early
+this morning.  Congrats Marvin and Karin, and welcome Allie!
+</td>
+</tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>(9/8/06) <a href="http://www.cs.ucsd.edu/~susingh/">Sumeet Singh</a> 
+has been named  one of the top 35 innovators under 35 by MIT Technology Review magazine.  Read the full <a href="http://www.jacobsschool.ucsd.edu/news_events/releases/release.sfe?id=566">release</a> here.  Congrats Summeet!
+</td>
+<td><img alt ="Sumeet" src="images/sumeet.jpg" width=125 noheight=83 border="0"></td>
+</tr></table>
+
+<p> (9/1/06) <a href="http://www.cs.ucsd.edu/~flavio/">Flavio
+Junqueira</a> has been awarded the UCSD Departmental Dissertation award. Congrats Flavio!</p> 
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>(8/8/06) Angus joins Alex and Christine and the larger
+Systems and Networking family.
+</td>
+<td><img alt ="Angus" src="images/angus.jpg" width=70 border="0"></td>
+</tr></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width=125><img alt ="John" src="images/bellardo.jpg" width=91 noheight=119 border="0"></td>
+<td>(7/27/06) <a href="http://ramp.ucsd.edu/~bellardo/">John
+Bellardo</a> sucessfully defended his dissertation research today -- exchanging his black hat for a tassel.  <i>Doctor</i> Bellardo will be starting a tenure-track position at Cal Poly starting in September.  Congrats John! 
+</td>
+ 
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>(7/7/06) <a href="http://www.cs.ucsd.edu/~teixeira/">Renata Teixeira</a> 
+accepted a prestigious position as a tenured researcher for the
+<a href="http://www.cnrs.fr/index.html">Centre National de la Recherche Scientifique (CNRS)</a>.  
+She will remain located at the <a
+href="http://www.lip6.fr/en/index.html">Laboratoire d'informatique de
+Paris 6</a>.
+Congratulations, Renata!
+</td>
+<td><img alt ="Renata" src="images/renata.jpg" width=71 noheight=113 border="0"></td>
+</tr></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width=90><img alt ="David" src="images/dsa001.jpg" width=71 noheight=113 border="0"></td>
+<td>
+(6/27/06) <a href="http://www.cse.ucsd.edu/users/dsa001/">David
+Anderson</a> was awarded an <a href="http://www.afcea.org/">AFCEA
+Lockheed Martin Graduate Scholarship for Science and Technology</a>.
+Congratulations, David!
+</td>
+</tr></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td> (6/25/06) <a href="http://www.cs.ucsd.edu/~flavio/">Flavio
+Junqueira</a> was awarded a <a
+href="http://cordis.europa.eu/improving/fellowships/home.htm">Marie
+Curie Incoming International Fellowship</a>.  Congratulations, Flavio!
+</td>
+<td><img alt ="Flavio" src="images/flavio.jpg" width=71 noheight=113 border="0"></td>
+</tr></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width=130><img alt ="Barath" src="images/barath.jpg" width=100 noheight=113 border="0"></td>
+<td>
+(6/9/06) <a href="http://www.cs.ucsd.edu/~braghava/">Barath
+Raghavan</a> has been awarded a Woolley Graduate Leadership
+Fellowship by the Jacobs School recognizing his academic achievements
+and service to the
+department.  Congrats Barath!
+</td>
+</tr></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>(5/15/06) <a href="http://www.cs.ucsd.edu/~flavio/">Flavio Junqueria</a> sucessfully defended his thesis and will be leaving us to join Yahoo Research in Barcelona.  Congrants Flavio! (expect vistors)
+</td>
+<td><img alt ="Flavio" src="images/flavio.jpg" width=71 noheight=113 border="0"></td>
+</tr></table>
+
+<p> (5/5/06) The May 6th episode of the primetime CBS series <a href="http://www.cbs.com/primetime/numb3rs/"><i>Numb3rs</i></a> featured aspects of our 2001 <a href="http://www.cs.ucsd.edu/~savage/papers/UsenixSec01.pdf">Inferring Internet Denial of Service Activity</a> paper.  The title of the episode, "Backscatter", is a reference to the <i>backscatter analysis</i> technique we developed and the <a href="http://www.cbs.com/primetime/numb3rs/ti/activities/Act4_Graphs_Backscatter_final.pdf">student activities</a> for the episode directly reference our results.  
+<p> (5/1/06) <a
+href="http://www.acm.org/sigcomm/sigcomm2006/">SIGCOMM</a>
+notifications are out and five UCSD-authored papers were accepted
+(breaking our previous record of four papers from '03).  Congrats to everyone and see you this September in Pisa!
+<p> (4/1/06) Again, in the <i>confirming-what-we-already-know</i>
+department, <a href="http://www.usnews.com/">U.S. News and World
+Report</a> today released their reputation rankings of graduate
+programs in computer science (last ranked in 2002).  UCSD's Systems
+specialty rose to 9th nationally (UCSD was ranked in the top 20 in all
+CS specialties) and the department as a
+whole rose to 13th.  UCSD's rapid rise in the rankings over the last
+decade is <i>unmatched</i> among departments in the top 30.  Congrats
+everyone -- keep up the good work!
+<p> (3/31/06) NSF announced today the results of the <a href="https://www.fastlane.nsf.gov/grfp/AwardeeList.do?method=loadAwardeeList">2006 NSF Graduate Fellowship</a> competition.  <a href="http://www.cs.ucsd.edu/~mvrable">Michael Vrable</a> was recognized as a fellow and <a href="http://www.cs.ucsd.edu/~jtma">Justin Ma</a> was awarded an honorable mention.  Congrats to Michael and Justin!
+
+<!-- was include file="news/2004.html" -->
+
+      <p><a href="news.html"><font color="#0000FF">
+      <b>[News Archive]</b></font></a></p>
+
+      </td>
+    </tr>
+  </table>
+</div>
+<h4 style="margin-bottom: 4"><font face="Verdana">
+<a name="Publications">Recent 
+Publications</a></font></h4>
+<div align="right">
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="97%">
+    <tr>
+      <td width="100%">
+
+<span class="title">Detection and Localization of Network Black Holes</span>, <span class="author"><a href="http://www.cs.ucsd.edu/~rkompell/">Ramana Rao Kompella</a>, Jennifer Yates, Albert Greenberg, and <a href="http://www.cs.ucsd.edu/~snoeren/">Alex C. Snoeren</a></span>, 
+<span class="biblio"><a href="http://www.ieee-infocom.org/2007/">Proceedings of the IEEE Infocom Conference</a></span>, Anchorage, AK, May 2007.<br>
+</p>
+
+<span class="title">A Performance Analysis of Indirect Routing</span>, <span class="author">Joshua Opos, <a href="http://www.cs.ucsd.edu/~nramabha/">Sriram Ramabhadran</a>, Andrew Terry, <a href="http://www.cs.ucsd.edu/~pasquale">Joe Pasquale</a>, <a href="http://www.cs.ucsd.edu/~snoeren/">Alex C. Snoeren</a>, and <a href="http://www.cs.ucsd.edu/~vahdat/">Amin Vahdat</a></span>, 
+<span class="biblio"><a href="http://www.ipdps.org/">Proceedings of the IEEE International Parallel and Distributed Processing Symposium</a></span>, Long Beach, CA, March 2007.<br>
+</p>
+
+<span class="title">A Resource Allocation Problem in Replicated P2P Storage Systems</span>, <span class="author"><a href="http://www.cs.ucsd.edu/~nramabha/">Sriram Ramabhadran</a> and <a href="http://www.cs.ucsd.edu/~pasquale">Joseph Pasquale</a></span>, 
+<span class="biblio"><a href="http://web-minds.consorzio-cini.it/hot-p2p-07/">Fourth International Workshop on Hot Topics in Peer-to-Peer Systems (Hot-P2P)</a></span>, Long Beach, CA, March 2007.<br>
+</p>
+
+<span class="title">The Stratified Round Robin Scheduler: Design, Analysis and Implementation</span>, <span class="author"><a href="http://www.cs.ucsd.edu/~nramabha/">Sriram Ramabhadran</a> and <a href="http://www.cs.ucsd.edu/~pasquale">Joseph Pasquale</a></span>, 
+<span class="biblio"><a href="http://www.acm.org/ton/">IEEE/ACM Transactions on Networking</a></span>, December 2006.<br>
+</p>
+
+<span class="title"><a href="http://www.cs.ucsd.edu/~snoeren/papers/decongestion-hotnets06.pdf">Decongestion Control</a></span>, <span class="author"><a href="http://www.cs.ucsd.edu/~braghava/">Barath Raghavan</a> and <a href="http://www.cs.ucsd.edu/~snoeren/">Alex C. Snoeren</a></span>, 
+<span class="biblio"><a href="http://www.acm.org/sigs/sigcomm/HotNets-V/">Proceedings of the 5th ACM Workshop on Hot Topics in Networks (HotNets-V)</a></span>, Irvine, CA, November 2006.<br>
+</p>
+
+<span class="title">Service Portability: Why HTTP Redirect is the Model for the Future</span>, <span class="author"><a href="http://www.cs.ucsd.edu/~susingh/">Sumeet Singh</a>, Scott Shenker, and <a href="http://www.cs.ucsd.edu/~varghese">George Varghese</a></span>, 
+<span class="biblio"><a href="http://www.acm.org/sigs/sigcomm/HotNets-V/">Proceedings of the 5th ACM Workshop on Hot Topics in Networks (HotNets-V)</a></span>, Irvine, CA, November 2006.<br>
+</p>
+
+<span class="title">Glavlit: Preventing Exfiltration at Wire Speed</span>, <span class="author">Nabil Schear, Carmelo Kintana, Qing Zhang, and <a href="http://www.cs.ucsd.edu/~vahdat/">Amin Vahdat</a></span>, 
+<span class="biblio"><a href="http://www.acm.org/sigs/sigcomm/HotNets-V/">Proceedings of the 5th ACM Workshop on Hot Topics in Networks (HotNets-V)</a></span>, Irvine, CA, November 2006.<br>
+</p>
+
+<span class="title">Enforcing Performance Isolation Across Virtual
+                  Machines in Xen</span>, <span class="author"><a href="http://www.cs.ucsd.edu/~dgupta/">Diwaker Gupta</a>, Ludmila Cherkasova, and <a href="http://www.cs.ucsd.edu/~vahdat/">Amin Vahdat</a></span>, 
+<span class="biblio"><a href="http://2006.middleware-conference.org/">Proceedings of the ACM/IFIP/USENIX Middleware Conference</a></span>, Melbourne, Australia, November 2006.<br>
+</p>
+
+<span class="title">Optimizing Grid Site Manager Performance with
+                  Virtual Machines</span>, <span class="author">Ludmila Cherkasova, <a href="http://www.cs.ucsd.edu/~dgupta/">Diwaker Gupta</a>, Eygene Ryabinkin, Roman Kurakin, Vladimir Dobretsov, and <a href="http://www.cs.ucsd.edu/~vahdat/">Amin Vahdat</a></span>, 
+<span class="biblio"><a href="http://www.usenix.org/events/worlds06/">Proceedings of the 3rd USENIX Workshop on Real, Large Distributed Systems (WORLDS)</a></span>, Seattle, WA, December 2006.<br>
+</p>
+
+<span class="title"><a href="http://www.cse.ucsd.edu/groups/sysnet/miscpapers/xfiOSDI.pdf">Asgard: Software Guards for System Address Spaces</a></span>, <span class="author">Martin Abadi, Mihiai Budiu, Ulfar Erlingsson, George Necula, and <a href="http://www.cs.ucsd.edu/~mvrable/">Michael Vrable</a></span>, 
+<span class="biblio"><a href="http://www.usenix.org/events/osdi06/">Proceedings of the 7th ACM/USENIX Symposium on Operating System Design and Implementation (OSDI)</a></span>, Seattle, WA, November 2006.<br>
+</p>
+
+<span class="title"><a href="http://www.cse.ucsd.edu/~savage/papers/IMCCell06.pdf">Automated Protocol Inference: Unexpected Means of Identifying Protocols</a></span>, <span class="author"><a href="http://www.cs.ucsd.edu/~jtma/">Justin Ma</a>, <a href="http://www.cs.ucsd.edu/~klevchen/">Kirill Levchenko</a>, Cristian Kriebich, <a href="http://www.cs.ucsd.edu/~savage/">Stefan Savage</a>, and <a href="http://www.cs.ucsd.edu/~voelker/">Geoffrey M. Voelker</a></span>, 
+<span class="biblio"><a href="http://www.imconf.net/imc-2006/">Proceedings of the ACM Internet Measurement Conference</a></span>, Rio de Janeiro, Brazil, October 2006.<br>
+</p>
+
+<span class="title"><a href="http://www.cse.ucsd.edu/~savage/papers/IMCDiversity06.pdf">Finding Diversity in Remote Code Injection Exploits</a></span>, <span class="author"><a href="http://www.cs.ucsd.edu/~jtma/">Justin Ma</a>, John Dunagan, Helen J. Wang, <a href="http://www.cs.ucsd.edu/~savage/">Stefan Savage</a>, and <a href="http://www.cs.ucsd.edu/~voelker/">Geoffrey M. Voelker</a></span>, 
+<span class="biblio"><a href="http://www.imconf.net/imc-2006/">Proceedings of the ACM Internet Measurement Conference</a></span>, Rio de Janeiro, Brazil, October 2006.<br>
+</p>
+
+<span class="title">Source and channel coding trade-offs for a pulsed quality video encoder</span>, <span class="author">Vijay Chellappa, Pamela C. Cosman, and <a href="http://www.cs.ucsd.edu/~voelker/">Geoffrey M. Voelker</a></span>, 
+<span class="biblio">Proceedings of the 40th Asilomar Conference on Signals, Systems and Computers</span>, Pacific Grove, CA, October 2006.<br>
+</p>
+
+<span class="title"><a href="http://www.cse.ucsd.edu/~savage/papers/Sigcomm06.pdf">Jigsaw: Solving the Puzzle of Enterprise 802.11 Analysis</a></span>, <span class="author"><a href="http://www.cs.ucsd.edu/~ycheng/">Yu-Chung Cheng</a>, <a href="http://ramp.ucsd.edu/~bellardo/">John Bellardo</a>, Peter Benko, <a href="http://www.cs.ucsd.edu/~snoeren/">Alex C. Snoeren</a>, <a href="http://www.cs.ucsd.edu/~voelker/">Geoffrey M. Voelker</a>, and <a href="http://www.cs.ucsd.edu/~savage/">Stefan Savage</a></span>, 
+<span class="biblio"><a href="http://www.acm.org/sigcomm/sigcomm2006/">Proceedings of the ACM SIGCOMM Conference</a></span>, Pisa, Italy, September 2006.<br>
+</p>
+
+<span class="title"><a href="http://www.cs.ucsd.edu/~vahdat/papers/degcor-sigcomm06.pdf">Systematic Topology Analysis and Generation Using Degree Correlations</a></span>, <span class="author"><a href="http://sysnet.ucsd.edu/~pmahadevan/">Priya Mahadevan</a>, Dmitri Krioukov, Kevin Fall, and <a href="http://www.cs.ucsd.edu/~vahdat/">Amin Vahdat</a></span>, 
+<span class="biblio"><a href="http://www.acm.org/sigcomm/sigcomm2006/">Proceedings of the ACM SIGCOMM Conference</a></span>, Pisa, Italy, September 2006.<br>
+</p>
+
+<span class="title">Detecting Evasion Attacks at High Speeds without Reassembly</span>, <span class="author"><a href="http://www.cs.ucsd.edu/~varghese">George Varghese</a>, Andy Fingerhut, and Flavio Bonomi</span>, 
+<span class="biblio"><a href="http://www.acm.org/sigcomm/sigcomm2006/">Proceedings of the ACM SIGCOMM Conference</a></span>, Pisa, Italy, September 2006.<br>
+</p>
+
+<span class="title"><a href="http://www.cs.ucsd.edu/~vahdat/papers/traffic-sigcomm06.pdf">Realistic and Responsive Network Traffic Generation</a></span>, <span class="author"><a href="http://www.cs.ucsd.edu/~kvishwanath/">Kashi Vishwanath</a> and <a href="http://www.cs.ucsd.edu/~vahdat/">Amin Vahdat</a></span>, 
+<span class="biblio"><a href="http://www.acm.org/sigcomm/sigcomm2006/">Proceedings of the ACM SIGCOMM Conference</a></span>, Pisa, Italy, September 2006.<br>
+</p>
+
+<span class="title">Compact Approximate Representations of Concurrent State Machines for Network Applications</span>, <span class="author">Flavio Bonomi, Michael Mitzenmacher, Rina Panigrahy, Sushil Singh, and <a href="http://www.cs.ucsd.edu/~varghese">George Varghese</a></span>, 
+<span class="biblio"><a href="http://www.acm.org/sigcomm/sigcomm2006/">Proceedings of the ACM SIGCOMM Conference</a></span>, Pisa, Italy, September 2006.<br>
+</p>
+
+<span class="title"><a href="http://www.cse.ucsd.edu/~snoeren/papers/coi-lsad06.pdf">PRIMED: A Community-of-Interest-Based DDoS Mitigation System</a></span>, <span class="author"><a href="http://www.cs.ucsd.edu/~pverkaik/">Patrick Verkaik</a>, Oliver Spatscheck, Jacobus van der Merwe, and <a href="http://www.cs.ucsd.edu/~snoeren/">Alex C. Snoeren</a></span>, 
+<span class="biblio"><a href="http://lsad.ethz.ch">Proceedings of the ACM SIGCOMM Workshop on Large Scale Attack Defense</a></span>, Pisa, Italy, September 2006.<br>
+</p>
+
+
+
+      </td>
+    </tr>
+    <tr>
+      <td width="100%"><font face="Verdana"><br>
+      <b><font size="2" color="#008000">
+      <a style="text-decoration: none" href="pubs.html"><font color="#0000FF">[Publication 
+      Archive]</font></a></font></b></font></td>
+    </tr>
+  </table>
+</div>
+<h4 style="margin-bottom: 4"><font face="Verdana"><a name="Projects">Projects</a></font></h4>
+<div align="right">
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="97%">
+    <tr>
+      <td width="100%"><font face="Verdana" size="2">
+      <a href="http://fwgrid.ucsd.edu">Fast Wired and Wireless Grid (FWGrid)</a><br>
+      <a href="http://activeweb.ucsd.edu">Active Web</a><br>
+<!--      <a href="http://ramp.ucsd.edu/" nostyle="text-decoration: none">Reliable Adaptive       Multipath Networks (RAMP)</a><br> -->
+      <a href="http://www.ccied.org">Internet Epidemiology and Defenses (CCIED)</a><br>
+      <a href="http://sysnet.ucsd.edu/wireless">Wireless Research</a><br>
+      <a href="http://www.ial.ucsd.edu/classification/" style="text-decoration: none">Packet Classification Repository</a><br>
+      <a href="http://usher.ucsd.edu">Usher</a><br>
+      <a href="http://ramp.ucsd.edu/projects/recall/" style="text-decoration: none">Total Recall</a><br>
+      <a href="http://ramp.ucsd.edu/platypus/" style="text-decoration: none">Platypus</a><br>
+      <a href="http://ramp.ucsd.edu/projects/plush/" style="text-decoration: none">PLuSH</a><br>
+      <a href="http://ramp.ucsd.edu/sparta/" style="text-decoration: none">Scheduled Power and Rate Adaptation (SPARTA)</a><br>
+      <a href="http://ial.ucsd.edu/AutoFocus/" style="text-decoration: none">AutoFocus</a></font>
+</td>
+    </tr>
+  </table>
+</div>
+<h4 style="margin-bottom: 4"><font face="Verdana">Labs</font></h4>
+<div align="right">
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="97%">
+    <tr>
+      <td width="100%">
+<p style="margin-top: 0; margin-bottom: 0">
+<font face="Verdana" size="2">Computer Systems Lab (Pasquale, Savage, Snoeren, Vahdat, Voelker)</font></p>
+<p style="margin-top: 0; margin-bottom: 0"><font face="Verdana" size="2">
+<a href="http://www.ial.ucsd.edu/" style="text-decoration: none">
+Internet Algorithmics Lab</a> (Varghese)</font></p>
+<p style="margin-top: 0; margin-bottom: 0"><font face="Verdana" size="2">
+<a href="http://www-csag.ucsd.edu/" style="text-decoration: none">
+Concurrent Systems Architecture Group</a> (Chien)</font></p>
+<p style="margin-top: 0; margin-bottom: 0">
+<font face="Verdana" size="2">
+<a href="http://www.cs.ucsd.edu/groups/gemini/" style="text-decoration: none">Gemini Storage Systems 
+Laboratory</a> (Burkhard)</font></p>
+<p style="margin-top: 0; margin-bottom: 0">
+<font face="Verdana" size="2">Grizullo Lab (Marzullo)</font></p>
+      </td>
+    </tr>
+  </table>
+</div>
+<h4 style="margin-bottom: 4"><font face="Verdana">Affiliations</font></h4>
+<table border="0" cellpadding="2" cellspacing="1" width="100%">
+  <tr>
+    <td align="center">
+    <a href="http://cns.ucsd.edu">
+    <img alt="Center for Networked Systems (CNS)" src="images/logo-cns.gif" border=0 align=absmiddle width=51 height=45></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="http://www.caida.org">
+    <img alt="Cooperative Association for Internet Data Analysis (CAIDA)" src="images/logo_caida.gif" border="0" align="absmiddle" width="65" height="45"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="http://cwc.ucsd.edu">
+    <img alt="Center for Wireless Communications (CWC)" src="images/logo_cwc.gif" border="0" align="absmiddle" width="65" height="45"></a><b><a href="http://cwc.ucsd.edu">CWC</a></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="http://www.sdsc.edu">
+    <img alt="San Diego Super Computer Center (SDSC)" src="images/logo_sdsc.gif" border="0" align="absmiddle" width="65" height="45"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="http://www.calit2.net">
+    <img alt="California Institute for Telecommunications and Information Technology (Cal-IT2)" src="images/logo-calit2.gif" border="0" align="absmiddle" width="65" height="33"></a>&nbsp;<b><a href="http://www.calit2.net">CalIT(2)</a></td>
+  </tr>
+  </table>
+
+<h4 style="margin-bottom: 4"><font face="Verdana"><a name="Sponsors">Sponsors</a></font></h4>
+<table border="0" cellpadding="2" cellspacing="1" width="100%">
+  <tr><td width="100%" align="center" valign="baseline">
+    <a href="http://www.darpa.mil"><img alt="Defense Advanced Research Projects Agency (DARPA)" border="0" src="images/logo-darpa.gif" width="91" height="48"></a>&nbsp;
+    <a href="http://www.nsf.gov"><img alt="National Science Foundation (NSF)" border="0" src="images/logo-nsf.gif" width="48" height="48"></a>&nbsp;
+    <a href="http://www.nist.gov"><img alt="National Institute of Standards (NIST)" border="0" src="images/logo-nist.gif" width="113" height="48"></a>&nbsp;
+  </td></tr>
+
+  <tr><td width="100%" align="center" valign="baseline">
+    <a href="http://www.att.com"><img alt="AT&amp;T" border="0" src="images/logo-att.gif" width="87" height="48"></a>&nbsp;
+    <a href="http://www.ibm.com"><img alt="IBM" border="0" src="images/logo-ibm.gif" width="89" height="40"></a>&nbsp;
+    <a href="http://www.microsoft.com"><img alt="Microsoft" border="0" src="images/logo-ms.gif" width="134" height="48"></a>&nbsp;
+    <a href="http://www.hp.com"><img alt="Hewlett-Packard (HP)" border="0" src="images/logo-hp.gif" width="60" height="48"></a>&nbsp;
+    <a href="http://www.intel.com"><img alt="Intel" border="0" src="images/logo-intel.gif" width="73" height="41"></a>
+
+  </td></tr>
+
+  </table>
+
+
+
+<!--                                                                -->
+<!-- END OF LOCAL PAGE CONTENT.  MODIFY ABOVE -->
+<!--                                                                -->
+</td>
+<td align="left" valign="top" width="11" bgcolor="#EFEFEF"> 
+&nbsp;</td>
+</tr>
+<tr>
+<td align="left" valign="top" width="11" height="1" bgcolor="#EFEFEF">
+&nbsp;</td>
+<td align="left" valign="top" height="1" bgcolor="#EFEFEF"> 
+&nbsp;</td>
+<td align="left" valign="top" width="11" height="1" bgcolor="#EFEFEF"> 
+&nbsp;</td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="552"><tr><td bgcolor="#efefef" valign="top" width="552"><img border="0" width="552" height="12" src="/images/space.gif" alt="spacer gif"></td></tr></table><table cellpadding="0" cellspacing="0" border="0" width="552"><tr><td bgcolor="#efefef" valign="top" width="12"><img border="0" width="12" height="1" src="/images/space.gif" alt="spacer gif"></td></tr></table><table cellpadding="0" cellspacing="0" border="0" width="760"><tr><td bgcolor="#efefef" valign="top" width="760"><img border="0" width="760" height="12" src="/images/space.gif" alt="spacer gif"></td></tr></table><table cellpadding="0" cellspacing="0" border="0" width="760"><tr><td bgcolor="#003366" valign="top" align="center" width="760"><font class="addy" color="#ffffff" size="-2" face="verdana, arial, geneva, san-serif">9500 Gilman Drive, La Jolla, CA 92093-0114<br></font></td></tr><tr><td bgcolor="#efefef" valign="top" width="760"><img border="0" width="760" height="12" src="/images/space.gif" alt="spacer gif"></td></tr><tr><td bgcolor="#efefef" align="center" width="760"><font class="footernav" color="#003366" size="-2" face="verdana, arial, geneva, san-serif"><b><a href="/aboutcse/deptoverview.html">About CSE</a></b> | 
+          <b><a href="/csepeople/csepeoplehome.html">CSE People</a></b> | 
+          <b><a href="/facresearch/facultyresearch.html">Faculty &amp; Research</a></b> | 
+          <b><a href="/gradedu/gradeduhome.html">Graduate Education</a></b> | 
+          <b><a href="/undergrad/undergradeduhome.html">Undergraduate Education</a></b><br><b><a href="/deptadmin/index.php">Department Administration</a></b> | 
+          <b><a href="/aboutcse/contactinfo.html">Contact CSE</a></b> | 
+          <b><a href="/home/help/index.html">Help</a></b> | 
+          <b><a href="/home/search.html">Search</a></b> | 
+          <b><a href="/home/help/sitemap.html">Site map</a></b> |
+          <b><a href="/index.php">Home</a></b><br><a href="mailto:webmaster@cse.ucsd.edu">webmaster@cse.ucsd.edu</a><br></font><a href="http://www.ucsd.edu/"><img border="0" width="379" height="25" src="/images/IMG_footer.gif" alt="Official web page of the University of California, San Diego" class="inlineimage"></a></td></tr><tr><td bgcolor="#efefef" align="center" width="760"><font class="copyright" color="#003366" size="-2" face="verdana, arial, geneva, san-serif">
+          Copyright 
+          &copy;
+          2003 Regents of the University of California.  All rights reserved.
+          
+          
+        </font></td></tr><tr><td bgcolor="#efefef" valign="top" width="760"><img border="0" width="760" height="15" src="/images/space.gif" alt="spacer gif"></td></tr></table>
+<script type="text/javascript" src="javascript/HM_Loader.js" language="JavaScript1.2"></script>
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-362358-2";
+urchinTracker();
+</script>
+</body></html>
+

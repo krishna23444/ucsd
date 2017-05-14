@@ -1,0 +1,7 @@
+V2 4
+FL G:/xilinx/projects/lab2/i_s_to_p_shiftregister/shiftreg.vhf 2005/05/03.01:31:38 H.38
+EN work/SHIFTREG 1115109245        FL G:/xilinx/projects/lab2/i_s_to_p_shiftregister/shiftreg.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/SHIFTREG/BEHAVIORAL 1115109246 \
+      FL G:/xilinx/projects/lab2/i_s_to_p_shiftregister/shiftreg.vhf \
+      EN work/SHIFTREG 1115109245 CP FDCE

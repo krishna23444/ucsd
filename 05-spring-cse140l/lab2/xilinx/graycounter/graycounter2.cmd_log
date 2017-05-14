@@ -1,0 +1,9 @@
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w graycounter2.sch graycounter2.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w graycounter2.sch graycounter2.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w graycounter2.sch graycounter2.vhf
+xst -intstyle ise -ifn __projnav/graycounter2.xst -ofn graycounter2.syr
+ngdbuild -intstyle ise -dd "g:\xilinx\projects\lab2\graycounter/_ngo" -nt timestamp -i  -p xc2v80-cs144-5 graycounter2.ngc graycounter2.ngd
+map -intstyle ise -p xc2v80-cs144-5 -cm area -pr b -k 4 -c 100 -tx off -o graycounter2_map.ncd graycounter2.ngd graycounter2.pcf
+par -w -intstyle ise -ol std -t 1 graycounter2_map.ncd graycounter2.ncd graycounter2.pcf
+trce -intstyle ise -e 3 -l 3 -s 5 -xml graycounter2 graycounter2.ncd -o graycounter2.twr graycounter2.pcf
+trce -intstyle ise -e 3 -l 3 -s 5 -xml graycounter2 graycounter2.ncd -o graycounter2.twr graycounter2.pcf

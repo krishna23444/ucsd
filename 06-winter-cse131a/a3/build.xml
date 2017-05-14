@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<project name="onyx_interpreter" default="all" basedir=".">
+  <!-- project directories -->
+  <property name="src" value="${basedir}" />
+  <property name="build" value="bin" />
+  <property name="doc" value="doc" />
+  <property name="lib" value="lib" />
+  <property name="test" value="test" />
+
+  <!-- scanner and parser language description filenames -->
+  <property name="scanner" value="scanner.jflex" />
+  <property name="parser" value="parser.cup" />
+
+  <!-- scan and parse script executable -->
+  <property name="scan.exe" value="scan" />
+  <property name="parse.exe" value="parse" />
+  <property name="onyxi.exe" value="onyxi" />
+
+  <!-- classpath structure for targets to reference -->
+  <path id="cpath">
+    <fileset dir="${lib}">
+      <include name="**/*.jar" />
+    </fileset>
+  </path>
+
+  <!--
+  <taskdef name="jflex" classname="JFlex.anttask.JFlexTask"
+           classpathref="cpath" />
+  <taskdef name="cup" classname="java_cup.anttask.CUPTask"
+           classpathref="cpath" />
+  -->
+
+  <!-- start of targets/rules -->
+  <target name="all" depends="test" description="create everything">
+  </target>
+
+  <target name="clean" description="delete generated files">
+    <delete>
+      <fileset dir="${build}" includes="**/*.class" />
+      <fileset dir="${src}" includes="Parser.java,sym.java,Scanner.java" />
+    </delete>
+  </target>
+
+  <target name="new" depends="clean,all" />
+
+  <target name="init">
+    <mkdir dir="${build}" />
+  </target>
+
+
+  <target name="doc" description="generate javadoc">
+    <javadoc sourcepath="${src}" destdir="${doc}" />
+  </target>
+
+  <target name="jflex" description="run jflex to generate scanner">
+    <!--
+    <exec command="jflex" >
+      <arg file="${scanner}"/>
+     </exec>
+     -->
+  </target>
+
+  <target name="cup" description="run cup to generate parser">
+    <java classname="java_cup.Main" fork="true" classpathref="cpath">
+      <arg value="-parser" />
+      <arg value="Parser" />
+      <arg file="${parser}" />   
+    </java>   
+  </target>
+
+
+  <target name="compile" depends="init,jflex,cup">
+    <javac srcdir="${src}" includes="*.java" destdir="${build}"
+           classpathref="cpath" />
+  </target>
+
+  <target name="compile-tests" depends="compile">
+    <javac srcdir="${test}" destdir="${build}" classpathref="cpath" />
+  </target>
+
+  <target name="${scan.exe}" depends="compile">
+  </target>
+
+  <target name="${parse.exe}" depends="compile">
+  </target>
+
+  <target name="${onyxi.exe}" depends="compile">
+  </target>
+
+
+  <target name="test" depends="compile-tests">
+    <java classname="AllTests" classpathref="cpath" />
+    <!-- 
+    <junit haltonfailure="no" printsummary="yes">
+      <classpath>
+        <path refid="cpath" />
+      </classpath>
+      <test name="AllTests" />
+    </junit>
+    -->
+  </target>
+</project>

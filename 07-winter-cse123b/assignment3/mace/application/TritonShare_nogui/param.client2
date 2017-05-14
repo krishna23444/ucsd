@@ -1,0 +1,6 @@
+peer=gutshot
+peer_port=5555
+bandwidth=10
+share=share1
+http_port=8889
+MACE_PORT=5556

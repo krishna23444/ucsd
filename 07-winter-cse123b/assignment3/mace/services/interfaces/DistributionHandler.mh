@@ -1,0 +1,12 @@
+#include "lib/MaceKey.h"
+#include "lib/mstring.h"
+#include "NetworkErrorHandler.h"
+
+handler Distribution {
+
+  virtual mace::string getBlock(const MaceKey& dest, uint id);
+  virtual void deliverBlock(const MaceKey& source, uint id, 
+			    const mace::string& block, int inFront,
+			    int64_t timeSpent);
+  virtual void blockSent(const MaceKey& dest, uint id);
+};

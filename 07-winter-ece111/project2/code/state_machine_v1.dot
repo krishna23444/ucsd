@@ -1,0 +1,84 @@
+digraph state_machine {
+
+  start [label="START\n \
+port_A_clk=clk\n \
+done=0\n \
+count=0\n \
+i=0\n \
+j=seed_lsw[7:0]\n \
+for k=0 to 255: sbox[k]=k\n \
+for k=0 to 3: seed[k]=seed_lsw[8*k+7:8*k]\n \
+for k=0 to 3: seed[k+4]=seed_msw[8*k+7:8*k]"]
+  start -> construct_sbox [label="start_encrypt=1"]
+
+  construct_sbox [label="CONSTRUCT_SBOX\n \
+sbox[i]=sbox[j]\n \
+sbox[j]=sbox[i]\n \
+i++\n \
+j=(j+sbox[i+1]+seed[(i+1)%8])%256"]
+  construct_sbox -> start [label="nreset=0"]
+  construct_sbox -> read_word [label="i=255"]
+
+  read_word [label="READ_WORD\n \
+i=1\n \
+j=sbox[1]%256\n \
+port_A_we=0\n \
+port_A_addr=plain_addr+count"]
+  read_word -> start [label="nreset=0"]
+  read_word -> done [label="count>=frame_size"]
+  read_word -> encrypt_first_byte
+
+  encrypt_first_byte [label="ENCRYPT_FIRST_BYTE\n \
+port_A_data_in[7:0]=sbox[(sbox[i]+sbox[j])%256]^port_A_data_in[7:0]\n \
+port_A_data_in[31:8]=port_A_data_out[31:8]\n \
+sbox[i]=sbox[j]\n \
+sbox[j]=sbox[i]\n \
+i=(i+1)%256\n \
+j=(j+sbox[(i+1)%256])%256\n \
+count++"]
+  encrypt_first_byte -> start [label="nreset=0"]
+  encrypt_first_byte -> write_word [label="count+1>=frame_size"]
+  encrypt_first_byte -> encrypt_second_byte 
+
+  encrypt_second_byte [label="ENCRYPT_SECOND_BYTE\n \
+port_A_data_in[15:8]=sbox[(sbox[i]+sbox[j])%256]^port_A_data_in[15:8]\n \
+sbox[i]=sbox[j]\n \
+sbox[j]=sbox[i]\n \
+i=(i+1)%256\n \
+j=(j+sbox[(i+1)%256])%256\n \
+count++"]
+  encrypt_second_byte -> start [label="nreset=0"]
+  encrypt_second_byte -> write_word [label="count+1>=frame_size"]
+  encrypt_second_byte -> encrypt_third_byte 
+
+  encrypt_third_byte [label="ENCRYPT_THIRD_BYTE\n \
+port_A_data_in[23:16]=sbox[(sbox[i]+sbox[j])%256]^port_A_data_in[23:16]\n \
+sbox[i]=sbox[j]\n \
+sbox[j]=sbox[i]\n \
+i=(i+1)%256\n \
+j=(j+sbox[(i+1)%256])%256\n \
+count++"]
+  encrypt_third_byte -> start [label="nreset=0"]
+  encrypt_third_byte -> write_word [label="count+1>=frame_size"]
+  encrypt_third_byte -> encrypt_fourth_byte 
+
+  encrypt_fourth_byte [label="ENCRYPT_FOURTH_BYTE\n \
+port_A_data_in[31:24]=sbox[(sbox[i]+sbox[j])%256]^port_A_data_in[31:24]\n \
+sbox[i]=sbox[j]\n \
+sbox[j]=sbox[i]\n \
+i=(i+1)%256\n \
+j=(j+sbox[(i+1)%256])%256\n \
+count++"]
+  encrypt_fourth_byte -> start [label="nreset=0"]
+  encrypt_fourth_byte -> write_word
+
+  write_word [label="WRITE_WORD\n \
+port_A_we=1\n \
+port_A_addr=cipher_addr+((count-1)&0xFFFFFFFC)"]
+  write_word -> start [label="nreset=0"]
+  write_word -> read_word
+
+  done [label="DONE\n \
+done=1"]
+  done -> start
+}

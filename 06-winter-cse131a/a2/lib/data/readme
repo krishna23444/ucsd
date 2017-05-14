@@ -1,0 +1,31 @@
+1/30/06 : 3:40 PM
+We have re-posted all the tests.
+There have been some subtle changes to some of the files.
+Consequently, you should  delete any copies that you have made, and retest...
+
+1/31/06 :  12:18 PM
+
+
+Two new tests have been posted 
+	fl3.onyx
+	l2.onyx
+
+Sat Feb  4 02:20:34 PST 2006
+
+Many more tests added, also with syntax errors; some previous
+tests output has been corrected:
+non typed functions, variable and parameter have now onyx.tyes.AnyType
+the body of the programs is always inside an ExprList node
+
+2/8/06 : 4:45 PM
+
+Two test cases added. Some test output has been corrected:
+The body of programs are still always inside an ExprList.
+The parameters of function calls are not enclosed in an ExprList node.
+ExprLists are flattened.
+
+There are two new test cases that show these behaviors:
+- elflat.onyx
+- fnelarg.onyx
+
+

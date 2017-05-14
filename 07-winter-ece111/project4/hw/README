@@ -1,0 +1,13 @@
+This directory contains the HW blocks of the entire system.
+The files in this directory are:
+
+A946_mod.v 		: Processor model generated from Platform Express
+PxAhbMem.v 		: SRAM memory model generated from Platform Express
+PxDecoder_AHB_1_1407810334_module.v : Decoder implemented the interconnection logic, generated from Platform Express
+test3.v 		: Top level file for the entire system intantiating all the componenets.
+pxdefault_tb.v 		: Testbench file instantiating the system to be simulated.
+modelsim.ini		: Modelsim initialization file
+compile			: Compile script to compile design for simulation
+			  The work directory is created in the directory 
+			  above this.
+

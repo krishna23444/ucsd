@@ -1,0 +1,133 @@
+lec1 - Introduction;
+  Structure and requirements of the course;
+  Fast overview of computers, programming, and Unix.
+
+lec2 - (Reading: Savitch Ch. 1 and part of Ch. 2)
+  Writing, compiling, and running programs in Java;
+  Kinds of programming errors;
+  Variables, identifiers, and declarations;
+  primitive types, with literals;
+  Console I/O;
+  A first look at OOP.
+
+lec3 - (Reading: Savitch, parts of Ch. 2 , 3, and 4)
+  Numeric operators and the String concatenation operator;
+  The assignment operator and assignment statements;
+  Programming and logic;
+  Comparison operators and boolean operators;
+  Conditional statements;
+  Iteration;
+  Methods: parameters and return values.
+ 
+lec4 - (Reading: Savitch, part of Ch. 2, Ch. 4, and Ch. 5)
+  Comments in code and coding style;
+  Procedural and object- oriented programming;
+  Designing classes for object- oriented programming;
+  Abstract Data Types (ADT's);
+  Instance variables and instance methods;
+  Variable and method visibility;
+  Constructors;
+  The 'this' variable;
+  Variables of reference type vs. variables of primitive type.
+
+lec5 - (Reading: Savitch, parts of Ch. 4 and Ch. 5)
+  Variable visibility;
+  Arguments passed by value and by reference;
+  ADT's, visibility, and object- oriented design;
+  Equality testing with == and equals();
+  Java wrapper classes;
+  Methods for parsing text.
+
+lec6 - (Reading: Savitch, parts of Ch 2 through 5)
+  Mixing data types in numerical expressions and assignment;
+  Casts;
+  Operator precedence and associativity;
+  Increment and decrement operators;
+  Loop invariants;
+  Variable lifetime;
+  Software design in two paradigms;
+  Software testing: stubs and drivers;
+  Tracing for debugging.
+
+lec7 - (Reading: Savitch, Ch. 3 and 8)
+  Exceptions and exception handling;
+  Creating and throwing exceptions;
+  try-catch blocks;
+  throws-clause declarations;
+  Exception handling in SavitchIn.
+
+lec8 - (Reading: Savitch, Ch. 7)
+  Objects, classes, and inheritance;
+  Visibility and inheritance;
+  Overriding methods;
+  Dynamic method binding and the Java type system.
+
+lec9 - (Reading: Savitch, Ch. 7)
+  Constructors, inheritance, this() and super();
+  Instance methods, inheritance, and overriding;
+  Java's Object class;
+  Overriding vs. overloading;
+  Static members and inheritance;
+  Instance variables, inheritance, and variable hiding.
+
+lec10 - (Reading: Savitch, Ch. 9)
+  File I/O;
+  Text files, binary files;
+  Important classes in the java.io package;
+  The containment pattern in OOP;
+  Text file output: PrintWriter, FileWriter;
+  Text file input: BufferedReader, FileReader;
+  StringTokenizer.
+
+lec11 - (Reading: Savitch, Ch. 9 and Ch. 12)
+  I/O streams reviewed;
+  Binary file I/O: DataInputStream, DataOutputStream;
+  Buffering;
+  The File class;
+  GUI programming, Swing, JFC, and the AWT;
+  Components and Containers;
+  JPanel and Graphics objects;
+  JLabels, JButtons, and JTextFields.
+
+lec12 - (Reading: Savitch, Ch. 12)
+  Layout Managers;
+  Event-driven programming;
+  Listeners and events;
+  ActionEvent and WindowEvent;
+  ActionListener, WindowListener, and WindowAdapter.
+
+lec13 - (Reading: Savitch, Ch. 14)
+  Inner classes;
+  Anonymous inner classes as event handlers;
+  MouseEvent, MouseListener, MouseAdapter.
+
+lec14 - (Reading: Savitch, Ch. 6)
+  Arrays;
+  Declaring and creating arrays;
+  Indexing; Array initialization;
+  Arrays as arguments and as returned values;
+  Multidimensional arrays.
+
+lec15 - (Reading: Savitch, Ch. 6 and Ch 10)
+  Comment translation;
+  Sorting;
+  Searching;
+  Partially filled arrays;
+  Parallel arrays;
+  Ragged and triangular arrays;
+  Arrays and the Java type system;
+  The Vector class.
+
+lec16 - (Reading: Savitch, Ch. 13 for Applets, Appendix 10 for Javadoc)
+  Generic sorting and the java.util.Comparator interface;
+  Applets and HTML;
+  Javadoc.
+
+lec17 - Packages;
+  Package naming, and CLASSPATH;
+  Multithreaded programming;
+  Synchronized statements and synchronized methods.
+
+lec18 - Compile-time and run-time type checking;
+  Type checking and dynamic method binding;
+  Review.

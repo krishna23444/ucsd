@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.ast.Query>
+   <onyx.ast.FunctionDeclaration datatype="onyx.types.AnyType" funcName="f">
+      <onyx.ast.Constant datatype="onyx.types.Integer">1</onyx.ast.Constant>
+   </onyx.ast.FunctionDeclaration>
+   <onyx.ast.FunctionDeclaration datatype="onyx.types.AnyType" funcName="g">
+      <onyx.ast.Constant datatype="onyx.types.Integer">2</onyx.ast.Constant>
+   </onyx.ast.FunctionDeclaration>
+   <onyx.ast.FunctionDeclaration datatype="onyx.types.AnyType" funcName="h">
+      <onyx.ast.Constant datatype="onyx.types.Integer">3</onyx.ast.Constant>
+   </onyx.ast.FunctionDeclaration>
+   <onyx.ast.ExprList>
+      <onyx.ast.Operator name="op:numeric-add">
+         <onyx.ast.Operator name="op:numeric-add">
+            <onyx.ast.FunctionCall name="f"/>
+            <onyx.ast.FunctionCall name="g"/>
+         </onyx.ast.Operator>
+         <onyx.ast.FunctionCall name="h"/>
+      </onyx.ast.Operator>
+   </onyx.ast.ExprList>
+</onyx.ast.Query>
+

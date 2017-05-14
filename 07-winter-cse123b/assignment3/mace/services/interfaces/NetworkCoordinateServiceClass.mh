@@ -1,0 +1,9 @@
+#include "mvector.h"
+
+typedef mace::vector<double> CoordType;
+
+serviceclass NetworkCoordinate {
+  virtual mace::pair<CoordType, int> vivaldi_request_vc();
+  virtual double vivaldi_my_distance_to(CoordType ct);
+  handlers NetworkCoordinateData;
+}; // NetworkCoordinateServiceClass

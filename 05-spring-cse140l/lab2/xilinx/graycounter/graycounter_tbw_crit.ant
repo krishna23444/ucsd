@@ -1,0 +1,153 @@
+--------------------------------------------------------------------------------
+-- Copyright (c) 1995-2003 Xilinx, Inc.
+-- All Right Reserved.
+--------------------------------------------------------------------------------
+--   ____  ____ 
+--  /   /\/   / 
+-- /___/  \  /    Vendor: Xilinx 
+-- \   \   \/     Version : 7.1.01i
+--  \   \         Application : ISE WebPACK
+--  /   /         Filename : graycounter_tbw_crit.ant
+-- /___/   /\     Timestamp : Tue May 03 22:58:59 2005
+-- \   \  /  \ 
+--  \___\/\___\ 
+--
+--Command: 
+--Design Name: graycounter_tbw_crit
+--Device: Xilinx
+--
+
+library UNISIM;
+use UNISIM.Vcomponents.ALL;
+library ieee;
+use ieee.std_logic_1164.ALL;
+use ieee.numeric_std.ALL;
+USE IEEE.STD_LOGIC_TEXTIO.ALL;
+USE STD.TEXTIO.ALL;
+
+ENTITY graycounter_tbw_crit IS
+END graycounter_tbw_crit;
+
+ARCHITECTURE testbench_arch OF graycounter_tbw_crit IS
+    FILE RESULTS: TEXT OPEN WRITE_MODE IS "G:\xilinx\projects\lab2\graycounter\graycounter_tbw_crit.ano";
+
+    COMPONENT graycounter
+        PORT (
+            CLK : In std_logic;
+            CLK_CE : In std_logic;
+            CLR : In std_logic;
+            D : Out std_logic_vector (3 DownTo 0)
+        );
+    END COMPONENT;
+
+    SIGNAL CLK : std_logic := '0';
+    SIGNAL CLK_CE : std_logic := '1';
+    SIGNAL CLR : std_logic := '1';
+    SIGNAL D : std_logic_vector (3 DownTo 0) := "0000";
+
+    SHARED VARIABLE TX_ERROR : INTEGER := 0;
+    SHARED VARIABLE TX_OUT : LINE;
+
+    BEGIN
+        UUT : graycounter
+        PORT MAP (
+            CLK => CLK,
+            CLK_CE => CLK_CE,
+            CLR => CLR,
+            D => D
+        );
+
+        PROCESS    -- Annotation process
+            VARIABLE TX_TIME : INTEGER := 0;
+
+            PROCEDURE ANNOTATE_D(
+                TX_TIME : INTEGER
+            ) IS
+                VARIABLE TX_STR : String(1 to 4096);
+                VARIABLE TX_LOC : LINE;
+            BEGIN
+                STD.TEXTIO.write(TX_LOC, string'("Annotate["));
+                STD.TEXTIO.write(TX_LOC, TX_TIME);
+                STD.TEXTIO.write(TX_LOC, string'(", D, "));
+                IEEE.STD_LOGIC_TEXTIO.write(TX_LOC, D);
+                STD.TEXTIO.write(TX_LOC, string'("]"));
+                TX_STR(TX_LOC.all'range) := TX_LOC.all;
+                STD.TEXTIO.writeline(RESULTS, TX_LOC);
+                STD.TEXTIO.Deallocate(TX_LOC);
+            END;
+        BEGIN
+            WAIT for 1 fs;
+            ANNOTATE_D(0);
+            ANNO_LOOP : LOOP
+                WAIT for 10 ns;
+                TX_TIME := TX_TIME + 10;
+                ANNOTATE_D(TX_TIME);
+                WAIT for 10 ns;
+                TX_TIME := TX_TIME + 10;
+            END LOOP ANNO_LOOP;
+        END PROCESS;
+
+        PROCESS
+            BEGIN
+                -- -------------  Current Time:  100ns
+                WAIT FOR 100 ns;
+                CLR <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  120ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  160ns
+                WAIT FOR 40 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  180ns
+                WAIT FOR 20 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  200ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  220ns
+                WAIT FOR 20 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  240ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  260ns
+                WAIT FOR 20 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  280ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  300ns
+                WAIT FOR 20 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  320ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  340ns
+                WAIT FOR 20 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  360ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                WAIT FOR 640 ns;
+
+                STD.TEXTIO.write(TX_OUT, string'("Total[]"));
+                STD.TEXTIO.writeline(RESULTS, TX_OUT);
+                ASSERT (FALSE) REPORT
+                    "Success! Simulation for annotation completed"
+                    SEVERITY FAILURE;
+            END PROCESS;
+
+    END testbench_arch;
+

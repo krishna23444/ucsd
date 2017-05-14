@@ -1,0 +1,97 @@
+/**************************************************************************
+			Guideline for PA1
+
+Points Breakdown:
+----------------
+
+                MAX        AWARDED
+README:         10         10
+
+COMPILING:      10         10
+
+STYLE:          30         30
+
+CORRECTNESS:    50         50
+
+EXTRA CREDIT:    5          0
+=================================
+TOTAL          105         100
+
+
+Details:
+
+README:                                               MAX          AWARDED
+------                                               ------        -------
+
+o High level description of what the program does.      2             2
+
+o How to compile it                                     1             1
+
+o How to run it (give an example).
+
+o An example of normal output and where that normal     2             2
+  output goes 
+
+o An example of abnormal/error output and where         2             2
+  that error output goes (stderr usually).
+
+o How they tested their program (what test values they  3             3
+  used to test normal and error states)
+
+
+COMPILING:                                           MAX           DEDUCTED
+                                                     DEDUCTIBLE
+--------                                             ----          -------
+
+o -1 for every warning                                -10            0 
+  (look at the output file 
+   eg. warnings about return value being ignored
+   for the printf variety)
+
+
+STYLE and COMMENTING:                                MAX            DEDUCTED
+                                                     DEDUCTIBLE
+--------------------                                 ----           -------
+                                                     -30
+
+o -4 for poor/inconsistent indentation                -8             0 
+  (-4 for C, -4 for assem)
+
+o -2 for not using perror to report error             -2             0
+  messages concerning errno
+
+o -2 for not sending error message to stderr          -2             0
+
+o -2 for using magic/hardcoded numbers                -2             0
+  (for eg not using #defines for Min and        
+  Max Range, number of quiz scores )
+
+o -1 for missing file header                          -7             0
+
+o -1 for missing function header                      -7             0
+
+o -1 for no inline comments                           -7             0
+
+
+CORRECTNESS:                                         MAX           DEDUCTED
+                                                     DEDUCTIBLE
+-----------                                         -----         --------
+                                                      -50             0
+
+o -10 for each function that is written in C that
+  is supposed to be written in assembly
+
+-5 per failed test case                                    
+All together 10 test cases. 
+When taking off points, please indicate the test case
+that the program failed to work on
+   
+
+
+EXTRA CREDIT:                                       MAX           AWARDED
+-------------                                       -----        ---------
++0.5 for each nop filled.                             5              0
+
+Do not award points for frivolous fills
+and also for unecessary creation of delay slots
+**************************************************************************/

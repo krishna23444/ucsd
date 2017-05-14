@@ -1,0 +1,10 @@
+#!/bin/ksh
+vlog full.adder.v
+echo "Press Enter to continue."
+read answer
+vlog h4ba.v
+echo "Press Enter to continue."
+read answer
+vlog tb.h4ba.v
+echo "Press Enter to continue."
+read answer

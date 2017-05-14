@@ -1,0 +1,39 @@
+/*  fibonacci_calculator.scr */
+
+
+/*  Check for errors in fibonacci_calculator.v, translate verilog to an intermediate format, and write messages to file. */
+analyze -f verilog fibonacci_calculator.v > fibonacci.analyze 
+
+
+/*  Build design from intermediate format and write messages to file.  */
+elaborate fibonacci_calculator > fibonacci.elaborate
+
+
+/*  The module name is fibonacci_calculator; set the current_design to fibonacci_calculator.  */
+current_design fibonacci_calculator  
+
+/*  uniquify removes multiple-instantiated hierarchy in the design by creating a unique design for each cell instance. */ 
+/* this command is only needed if there are multiple instantiations of a module */
+uniquify -force 
+
+/*  The create_clock command is used on a synchronous design to specify the clock port and set a constraint. In this case, 8 ns. */
+/*  A constraint is a design goal for the compile command for the (maximum combinational path delay + library setup time).  */
+/*  The clock port in the fibonacci_calculator module is clk.  */
+create_clock clk -period 8 
+
+
+/* The design is mapped to cells from the TSMC technology library and optimized.  */
+compile -map_effort medium > fibonacci.compile 
+
+
+/* Write an area report. */
+/* Divide the total area by 5.1, the area of a two-input nand gate, to obtain the area in units of gates. */
+report_area > fibonacci.area
+
+
+/* Write a timing (maximum combinational path delay in nanoseconds) report to file. */
+report_timing > fibonacci.timing
+
+
+/* save the design in Synopsys internal database format to fibonacci_calculator.db file */
+write fibonacci_calculator 

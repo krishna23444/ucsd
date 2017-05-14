@@ -1,0 +1,7 @@
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w full_adder.sch full_adder.vhf
+xst -intstyle ise -ifn __projnav/full_adder.xst -ofn full_adder.syr
+ngdbuild -intstyle ise -dd "g:\xilinx\projects\lab1\full_adder/_ngo" -nt timestamp -i  -p xc2v80-cs144-5 full_adder.ngc full_adder.ngd
+map -intstyle ise -p xc2v80-cs144-5 -cm area -pr b -k 4 -c 100 -tx off -o full_adder_map.ncd full_adder.ngd full_adder.pcf
+par -w -intstyle ise -ol std -t 1 full_adder_map.ncd full_adder.ncd full_adder.pcf
+trce -intstyle ise -e 3 -l 3 -s 5 -xml full_adder full_adder.ncd -o full_adder.twr full_adder.pcf
+netgen -intstyle ise -s 5   -pcf full_adder.pcf -rpw 100 -tpw 0 -ar Structure -xon true -w -ofmt vhdl -sim full_adder.ncd full_adder_timesim.vhd

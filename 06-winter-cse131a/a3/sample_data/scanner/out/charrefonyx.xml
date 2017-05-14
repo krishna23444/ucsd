@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OnyxSource file="charref.onyx">
+   <token column="1" id="45" line="1">This is difficult &amp; confusing.</token>
+   <token column="1" id="45" line="2">She said, "Go away."</token>
+   <token column="1" id="45" line="3">Isn't this so much &gt; than you thought it would be?</token>
+   <token column="1" id="45" line="4">4 is definitely &lt; than 5.</token>
+   <token column="1" id="45" line="5">Decimal character reference: "å" Coincidentally, this is used in Norwegian.</token>
+   <token column="1" id="45" line="6">Correct hex character refs: å, å, Incorrect: &amp;#Xe5;, &amp;#XE5;</token>
+   <token column="1" id="45" line="7">CyrИllИc I's.</token>
+   <token column="1" id="45" line="8">Chinese character for water with semicolon: 水.</token>
+   <token column="1" id="45" line="9">Chinese character for water without semicolon: &amp;#x6c34.</token>
+   <token column="1" id="45" line="10">Some incorrect references: &amp;x34Ab;, &amp;#FFBA9;, &amp;#X34A;, &amp;234;, &amp;#xDF3A</token>
+   <token column="1" id="45" line="11">More incorrect references: &amp;#5432, &amp;blah;, &amp;#blah;, &amp;#xblah;</token>
+   <token column="1" id="45" line="12">And more: &amp;boo, &amp;#boo, &amp;#xboo</token>
+   <token column="-1" id="0" line="-1"/>
+</OnyxSource>

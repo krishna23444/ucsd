@@ -1,0 +1,743 @@
+<html xmlns:str="http://exslt.org/strings" lang="en">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CSE 120 Fall 2006: Project 2</title> 
+<meta content="text/html; charset=UTF-8" http-equiv="content-type">
+<meta content="en" http-equiv="content-language">
+<meta content="text/css" http-equiv="content-style-type">
+<meta content="no" http-equiv="imagetoolbar">
+<meta content="Computer Science, engineering, ucsd, faculty, students, Jacobs School, San Diego, University" name="keywords">
+<meta content="UCSD Department of Computer Science and Engineering" name="description">
+<meta content="UCSD Department of Computer Science and Engineering" name="organization">
+<meta content="4.3.4.0" name="pageno">
+<link media="screen" type="text/css" href="http://www.cs.ucsd.edu/classes/css/global_style.css" rel="stylesheet">
+<script type="text/javascript" language="JavaScript" src="http://www.cs.ucsd.edu/classes/javascript/global_functions.js"> </script><script language="JavaScript" type="text/javascript">
+<!--
+        var NS4, IE, DOMstandard, CSScapable;
+        NS4 = (document.layers) ? 1 : 0;
+        IE = (document.all) ? 1 : 0;
+        DOMstandard = (document.getElementById) ? 1 : 0;
+        CSScapable = (NS4 || IE || DOMstandard) ? 1 : 0;
+        if(CSScapable)
+        {
+          if(NS4)
+            document.write('<link type="text/css" href="../../../css/ns_style.css" rel="stylesheet">');
+            else
+  	      document.write('<link media="screen" type="text/css" href="../../../css/dom_style.css" rel="stylesheet">');
+            }
+//-->
+          </script>
+<html xmlns:str="http://exslt.org/strings" lang="en">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CSE 120 Fall 2006: Project 2</title> 
+
+<base href="">
+
+<meta content="text/html; charset=UTF-8" http-equiv="content-type">
+<meta content="en" http-equiv="content-language">
+<meta content="text/css" http-equiv="content-style-type">
+<meta content="no" http-equiv="imagetoolbar">
+<meta content="Computer Science, engineering, ucsd, faculty, students, Jacobs School, San Diego, University" name="keywords">
+<meta content="UCSD Department of Computer Science and Engineering" name="description">
+<meta content="UCSD Department of Computer Science and Engineering" name="organization">
+<meta content="4.3.4.0" name="pageno">
+<link media="screen" type="text/css" href="http://www.cs.ucsd.edu/css/global_style.css" rel="stylesheet">
+<script type="text/javascript" language="JavaScript" src="http://www.cs.ucsd.edu/javascript/global_functions.js"> </script><script language="JavaScript" type="text/javascript">
+<!--
+        var NS4, IE, DOMstandard, CSScapable;
+        NS4 = (document.layers) ? 1 : 0;
+        IE = (document.all) ? 1 : 0;
+        DOMstandard = (document.getElementById) ? 1 : 0;
+        CSScapable = (NS4 || IE || DOMstandard) ? 1 : 0;
+        if(CSScapable)
+        {
+          if(NS4)
+            document.write('<link type="text/css" href="../../../css/ns_style.css" rel="stylesheet">');
+            else
+  	      document.write('<link media="screen" type="text/css" href="../../../css/dom_style.css" rel="stylesheet">');
+block            }
+//-->
+          </script>
+</head>
+<body link="#006699" vlink="#800000" alink="#FF0000" marginwidth="0" marginheight="0" topmargin="0" leftmargin="0" rightmargin="0" style="background: #ffffff url(../../../images/IMG_bgimg.gif) no-repeat">
+<a name="top"> </a><script type="text/javascript" language="JavaScript">
+<!--
+
+      logotopon = new Image(187,29);
+      logotopon.src = "../../../images/H_logo_top_over.gif";
+      logotopoff = new Image(187,29);
+      logotopoff.src = "../../../images/H_logo_top.gif";
+      logobottomon = new Image(187,18);
+      logobottomon.src = "../../../images/H_logo_bottom_over.gif";
+      logobottomoff = new Image(187,18);
+      logobottomoff.src = "../../../images/H_logo_bottom.gif";
+      headeron = new Image(573,47);
+      headeron.src = "../../../images/H_header_on.gif";
+      headeroff = new Image(573,47);
+      headeroff.src = "../../../images/H_header_off.gif";
+        
+//-->
+</script>
+<table bgcolor="#efefef" cellpadding="0" cellspacing="0" border="0" width="760">
+<tr>
+<td valign="top" width="187"><a onmouseout="Off('logotop')" onmouseover="On('logotop'); return true" href="http://www.ucsd.edu"><img border="0" width="187" height="29" src="http://www.cs.ucsd.edu/images/H_logo_top.gif" name="logotop" alt="UCSD Main Website"></a><a onmouseout="Off('logobottom')" onmouseover="On('logobottom'); return true" href="http://www.jacobsschool.ucsd.edu"><img border="0" width="187" height="18" src="http://www.cs.ucsd.edu/images/H_logo_bottom.gif" name="logobottom" alt="UCSD Jacobs School"></a></td><td valign="top" width="573"><a onmouseout="Off('header')" onmouseover="On('header'); return true" href="http://www.cs.ucsd.edu/index.php"><img border="0" width="573" height="47" src="http://www.cs.ucsd.edu/images/H_header_off.gif" name="header" alt="Department of Computer Science and Engineering"></a></td>
+</tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" width="760">
+<tr>
+<td bgcolor="#efefef" valign="top" width="760"><img border="0" width="1" height="12" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="760">
+<tr>
+<td bgcolor="#efefef" valign="top" width="12"><img border="0" width="12" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" bgcolor="#efefef" width="172">
+<table cellpadding="0" cellspacing="0" border="0" width="172">
+<tr><td bgcolor="#ffffff" valign="top" colspan="4" width="172">
+<a href="../index.html"><img border="0" width="172" height="38" src="../120.gif" alt="CSE 120"></a></td></tr
+<tr>
+<td bgcolor="#cccccc" valign="top" width="1"><img border="0" width="1" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#ffffff" valign="top" width="6"><img border="0" width="6" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#ffffff" valign="top" width="159">
+<table border="0" cellpadding="0" cellspacing="0" width="159">
+<tr>
+<td colspan="3" width="159"><img border="0" width="1" height="10" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<td valign="top" width="9"></td><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="../general.html"><b>Course Overview</b></a></font></td>
+</tr>
+<tr>
+<td valign="top" width="9"><img border="0" width="9" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="../general.html#structure"><b>Structure</b></a></font></td>
+</tr>
+<tr>
+<td valign="top" width="9"><img border="0" width="9" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="../general.html#grading"><b>Grading</b></a></font></td>
+</tr>
+<tr>
+<td valign="top" width="9"><img border="0" width="9" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="../general.html#collaboration"><b>Collaboration</b></a></font></td>
+</tr>
+<tr>
+<td valign="top" width="9"><img border="0" width="9" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="../general.html#books"><b>Useful books</b></a></font></td>
+</tr>
+<tr>
+<td colspan="3" width="159"><img border="0" width="159" height="5" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<td valign="top" width="9"><img border="0" width="9" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="../schedule.html"><b>Schedule</b></a></font></td>
+</tr>
+<tr>
+<td colspan="3" width="159"><img border="0" width="159" height="5" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<td valign="top" width="9"><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="index.html"><b>Projects</b></a></font></td>
+</tr>
+<tr>
+<td colspan="3" width="159"><img border="0" width="159" height="5" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<td valign="top" width="9"><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</td>
+<td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="../homework/index.html"><b>Homeworks</b></a></font></td>
+</tr>
+<tr>
+<td colspan="3" width="159"><img border="0" width="159" height="5" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<td valign="top" width="9"><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><b><a href="http://webboard.ucsd.edu">WebBoard</a></b></font></td>
+</tr>
+<tr>
+<td colspan="3" width="159"><img border="0" width="159" height="5" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+</td><td bgcolor="#ffffff" valign="top" width="6"><img border="0" width="6" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="172">
+<tr>
+<td bgcolor="#efefef" valign="top" width="172"><img border="0" width="172" height="12" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="172">
+<tr>
+<td valign="top" colspan="6" width="172"><img border="0" width="172" height="26" src="http://www.cs.ucsd.edu/images/DA_IMG_search.gif" alt="Search"></td>
+</tr>
+<tr>
+<td bgcolor="#cccccc" valign="top" width="1"><img border="0" width="1" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#ffffff" valign="top" width="1"><img border="0" width="1" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#eff5ef" valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#eff5ef" valign="top" width="159">
+<br>
+<form onsubmit="return check_search_form(this)" id="site_search" name="site_search" method="post" action="http://www.cs.ucsd.edu/cgi-bin/htsearch">
+<input value="htdig" name="config" type="hidden"><input value="" name="restrict" type="hidden"><input value="" name="exclude" type="hidden"><input maxlength="50" size="15" class="searchform" id="search" name="words" alt="search" type="text">&nbsp;&nbsp;<input type="image" name="searchnow" width="34" height="17" border="0" alt="search" align="top" src="http://www.cs.ucsd.edu/images/IMG_gobutton.gif">
+</form>
+<font class="body2" size="-2" face="verdana, arial, geneva, san-serif"><a href="http://www.cs.ucsd.edu/home/search.html"><b>Advanced search</b></a>&nbsp;&nbsp;</font><img border="0" width="8" height="5" src="http://www.cs.ucsd.edu/images/IMG_arrows.gif" alt="arrows gif" class="inlineimage"><br>
+<br>
+<img border="0" width="159" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#eff5ef" valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" bgcolor="#ffffff" width="1"><img border="0" width="1" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<td valign="top" colspan="6" bgcolor="#ffffff" width="172"><img border="0" width="172" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="172">
+<tr>
+<td bgcolor="#efefef" valign="top" width="172"><img border="0" width="172" height="12" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+</td><td bgcolor="#efefef" valign="top" width="12"><img border="0" width="12" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#efefef" valign="top" width="552">
+<table cellpadding="0" cellspacing="0" border="0" width="552">
+<tr>
+<td bgcolor="#cc9966" valign="top" colspan="3" width="552"><img border="0" width="552" height="15" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+
+<tr>
+<td bgcolor="#ffffff" valign="top" width="20"><img border="0" width="20" height="5" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#ffffff" valign="top" width="512"><font class="body1" size="-1" face="verdana,arial, geneva, sans-serif"></font><img border="0" width="360" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#ffffff" valign="top" width="20"><img border="0" width="20" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+
+<tr>
+<td bgcolor="#ffffff" valign="top" width="20"><img border="0" width="20" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td> <td bgcolor="#ffffff" valign="top" width="512">
+
+<font class="body1" size="-1" face="verdana,arial, geneva, sans-serif">
+<h3>
+Nachos Project 2: Multiprogramming
+</h3>
+
+<p><i>Due: <strike>Tuesday, November 14th, at Midnight.</strike></i>
+<font color=red>Thursday, November 16th, at Midnight</font></p>
+
+<p>The second phase of Nachos is to support multiprogramming. As in
+the first assignment, we give you some of the code you need and your
+job is to complete the system and enhance it.</p>
+
+<p>Up to now, all the code you have written for Nachos has been part
+of the operating system kernel. In a real operating system the kernel
+not only uses its procedures internally, but also allows user-level
+programs to access some of its routines via system calls. An
+executing user program is a process. In this project you will modify
+Nachos to support multiple processes, using system calls to have
+processes request services from the kernel.</p>
+
+<p> Since your kernel does not trust user programs to execute safely,
+    the kernel and the (simulated) hardware will work together to protect
+    the system from damage by malicious or buggy user programs. To this
+    end, you will implement simple versions of key mechanisms found in
+    real operating system kernels: virtual addressing, protected system
+    calls and kernel exception handling. Virtual addressing prevents user processes from accessing
+    kernel data structures or the memory of other programs; your kernel
+    will use process page tables to safely allow multiple processes to
+    reside in memory at the same time. With protected system calls and
+    exceptions, all entries into the kernel funnel through a single kernel
+    routine, "ExceptionHandler"; you will ''bullet-proof'' this routine so
+    that buggy or malicious user programs cannot cause the kernel to crash
+    or behave inappropriately.  Finally, your kernel will use preemptive
+    scheduling to share the simulated CPU fairly among the active user
+    processes, so that no process can take over the system. All of these
+    protection mechanisms require cooperation between the hardware and the
+    operating system kernel software. Your implementation will be based on
+    "hardware" support in the Nachos MIPS simulator, which resembles a
+    real MIPS processor.</p>
+
+    <p> If all processes are created by other processes, then who creates
+    the first user process? The operating system kernel creates this
+    process itself as part of its initialization sequence. This is
+    bootstrapping. You can "boot" the Nachos kernel by running nachos
+    with the -x option (x for "execute"), giving the name of an initial
+    program to run as the initial process. The Nachos release implements
+    the -x option by calling StartProcess in progtest.c to handcraft the
+    initial process and execute the initial program within it. The initial
+    process may then create other processes, which may create other
+    processes...and so on.</p>
+
+    <p>The first step is to read and understand the part of the system we
+    have written for you. The code that you will have to look at and
+    modify is spread over several directories. There are some kernel files
+    in "userprog", a few additional machine simulation files in "machine",
+    and a stub file system in "filesys". The user programs are in "test",
+    and utilities to generate a Nachos loadable executable are in
+    "bin". Since Nachos executes MIPS instructions (and there aren't very
+            many MIPS machines left!), we also provide you with a cross-compiler.  The
+    cross-compiler runs on Linux and Solaris and compiles user programs
+    into MIPS format.</p>
+
+    <p>The code we provide can run only a single user-level "C" program at
+    a time.  As a test case, we've provided you with a trivial user
+    program, "halt".  All "halt" does is to turn around and ask the
+    operating system to shut the machine down. To run the "halt" program,
+    make and then run Nachos in the "userprog" directory:</p>
+
+<blockquote><pre>% cd userprog
+% ./nachos -x ../test/halt</pre></blockquote>
+
+    <p> Trace what happens as the user program gets loaded, runs, and
+    invokes a system call.</p>
+
+    <p>As with the previous assignment, you may find Narten's <a
+    href="http://www.cs.duke.edu/~chase/cps110/nachos-guide/">Road Map to
+    Nachos</a> and <a
+    href="http://www.cs.duke.edu/~chase/cps110/nachos-guide/nachos.17.html#pgfId=997488">Nachos
+    System Call Interface</a> helpful. Also, you can change the
+    <b>constants</b> in "machine.h" if it helps you design better test
+    cases. For example, you can change the amount of "physical memory"
+    allocated by Nachos. Note that the code for this part of the project
+    is enabled by the USER_PROGRAM compiler macro. </p>
+
+    <p>The files for this assignment include:</p>
+
+    <ul>
+    <li><b>progtest.cc</b>
+    - test routines for running user programs.</li>
+    <li><b>addrspace.h,
+    addrspace.cc</b>  create an address space in which to run a user program,
+    and load the program from disk.</li>
+    <li><b>syscall.h</b>
+
+    the system call interface: kernel procedures that user programs can
+    invoke.</li>
+    <li><b>exception.cc</b>
+    the handler for system calls and other user-level exceptions, such as
+    page faults. In the code we supply, only the halt system call is
+    supported.</li>
+    <li><b>bitmap.h,
+    bitmap.cc --</b> routines for manipulating bitmaps (this might be useful for
+            keeping track of physical page frames)</li>
+    <li><b>filesys.h,
+    openfile.h </b>(found in the filesys directory) -- a stub defining the
+    Nachos file system routines. For this project, we have implemented the
+    Nachos file system by directly making the corresponding calls to the UNIX
+    file system; this is so that you need to debug only one thing at a time. </li>
+
+    <li><b>translate.h,
+    translate.cc </b>-- translation table routines.&nbsp; In the code we supply,
+    we assume that every virtual address is the same as its physical address --
+    this restricts us to running one user program at a time.&nbsp; You will
+    generalize this to allow multiple user programs to be run concurrently.&nbsp;
+    We will not ask you to implement virtual memory support until project
+    3; for now, every page must be in physical memory.</li>
+    <li><b>machine.h,
+    machine.cc </b>-- emulates the part of the machine that executes user
+    programs: main memory, processor registers, etc.</li>
+    <li><b>mipssim.cc</b>-- emulates the integer instruction set of a MIPS R2/3000 processor.</li>
+
+    <li><b>console.h,
+    console.cc </b>-- emulates a terminal device using UNIX files. A terminal is
+    (i) byte oriented, (ii) incoming bytes can be read and written at the same
+    time, and (iii) bytes arrive asynchronously (as a result of user
+            keystrokes), without being explicitly requested.</li>
+    </ul>
+
+    <p>In this assignment we are giving you a simulated CPU that models a
+    real CPU. In fact, the simulated CPU is the same as the real CPU (a
+            MIPS chip), but we cannot just run user programs as regular UNIX
+    processes because we want complete control over how many instructions
+    are executed at a time, how the address spaces work, and how
+    interrupts and exceptions (including system calls) are handled.</p>
+
+    <p>Our simulator can run normal programs compiled from C -- see the
+    Makefile in the 'test' subdirectory for an example.  The compiled
+    programs must be linked with some special flags, and then converted
+    into Nachos format using the program ''coff2noff'' (which we
+            supply). The only caveat is that floating-point operations are not
+    supported.</p>
+
+    <ol>
+
+    <li> [25 pts] Implement system call handling and multiprogramming.  To
+    support multiprogramming, you must support some of the system calls
+    defined in syscall.h: Exec, and Exit.  You can also
+    implement thread fork and yield for extra credit (see below).  We have
+    provided you an assembly-language routine, ''syscall'', to provide a
+    way of invoking a system call from a C routine (UNIX has something
+            similar -- try 'man syscall'). Note that the routine 'StartProcess' in
+    progtest.cc may be of use to you in implementing the `exec' system
+    call.
+
+    <!-- You will also need to implement a detach system call for this
+    project.  You can imagine that if a process is forked and is never
+    joined, we won't know when to clean up its state.  It is the forking
+    thread's responsibility to make the detach system call to ensure that,
+    when the forked thread finishes, the OS can clean up all the state if
+    the forked thread is not to be joined.  This detach system call can be
+    implemented by passing the process ID of the forked thread as the
+    argument, which the OS will then use to adjust the forked threads PCB
+    appropriately.  To implement this reasonably, only the forking thread
+    should be allowed to make a detach system call that affects a forked
+    thread. -->
+
+    <p> First, you will need basic facilities to load processes into the
+    memory of the simulated machine. Spend a few minutes studying the
+    AddrSpace class, and look at how the StartProcess procedure uses the
+    AddrSpace class methods to create a new process, initialize its memory
+    from an executable file, and start the calling thread running user
+    code in the new process context. The current code for AddrSpace and
+    StartProcess works OK, but it assumes that there is only one
+    program/process running at a time (started with StartProcess from main
+            via the nachos -x option), and that all of the machine's memory is
+    allocated to that process. Your first job is to generalize this code
+    to implement the Exec system call for the general case in which
+    multiple processes are active simultaneously.</p>
+
+    <p> Implement a memory manager module to allow your kernel to allocate
+    page frames of the simulated machine's memory for specific processes,
+    and to keep track of which frames are free and which are in use
+    (cf. bitmap.h). You might want to implement a
+    <b>thread-safe</b> Table class that will help you with your
+    implementation of AddrSpace.  The Table class will store a collection
+    of untyped object pointers indexed by integers in the range
+    [0...size-1], and support the following methods:</p>
+
+
+<pre>/* Create a table to hold at most "size" entries. */
+Table(int size) 
+
+/* Allocate a table slot for "object", returning the 
+   "index" of the allocated entry; otherwise, return -1
+    if no free slots are available. */
+int Alloc(void *object)
+
+/* Retrieve the object from table slot at "index", or NULL
+   if that slot has not been allocated. */
+void *Get(int index) 
+
+/* Free the table slot at index. */
+void Release(int index)</pre>
+
+    <p> Modify AddrSpace to allow multiple processes to be resident in the
+    machine memory at the same time.  The default AddrSpace constructor
+    code assumes that all of the machine memory is free, and it loads the
+    new process contiguously starting at page frame 0. You must modify
+    this scheme to use your memory manager to allocate page frames for the
+    new process, and load the process code and data into those allocated
+    page frames (which are not typically contiguous). For now it is
+    acceptable to fail and return an error (0) from Exec if there is not
+    enough free total machine memory to load the executable file.</p>
+
+    <p> Note: to cleanly handle these failures, you will need to move the
+    AddrSpace loading code out of the constructor and into a new AddrSpace
+    method that can return an error. It is poor programming practice to
+    put code that can fail into a class constructor, as the Nachos
+    designers have done in this release.  If necessary, update
+    StartProcess to use your new AddrSpace interface so that you do not
+    break the Nachos -x option.  Modify AddrSpace to call the memory
+    manager to release the pages allocated to a process when the process
+    is destroyed.  Make sure your AddrSpace code also releases any frames
+    allocated to the process in the case where it discovers that it does
+    not have enough memory to load the entire process.</p>
+
+    <p> <a href="addrspace.html">[Geoff Voelker's Tips on getting started]</a></p>
+
+    <p>
+    <ul>
+    <li> <a href="array.c">array.c</a> -- sample program testing loading code and data (note the use of Exit)
+    </ul></p>
+
+    <li> [25 pts] Next, use these new facilities to implement the Exec and Exit
+    system calls as defined in the <a
+    href="http://www.cs.duke.edu/~chase/cps110/nachos-guide/nachos.17.html#pgfId=997488">Nachos
+    System Call Interface</a> and in userprog/syscall.h. If an executing
+    user processes requests a system call (by executing a trap
+            instruction) the machine will transfer control to your kernel by
+    calling ExceptionHandler in exception.cc. Your kernel code must
+    extract the system call identifier and the arguments from the machine
+    registers, decode them, and call internal procedures that implement
+    the system call.  You may impose a reasonable limit on the maximum
+    size of a file name.  Also, use of Machine:ReadMem and Machine:WriteMem
+    is not forbidden as the comment in machine.h implies.
+
+    <p> When an Exec call returns, your kernel should have created a new
+    process and started a new thread executing within it to run the
+    specified program. At this point, do not concern yourself with setting
+    up OpenFileIds.  For now, you will be able to run user programs, but
+    they will not be able to read any input or write any output.  For
+    Exec, you must copy the filename argument from user memory into kernel
+    memory safely, so that a malicious or buggy user process cannot crash
+your kernel or violate security. The filename string address (char*)
+    passed into the kernel as an argument is a process virtual address; in
+    order for the kernel to access the filename it must locate the
+    characters in the kernel address space (i.e., in the machine's
+            physical "main memory" array) by examining the page table for the
+    process. In particular, your kernel must handle the case where the
+    filename string crosses user page boundaries and resides in
+    noncontiguous physical memory. You must also detect an illegal string
+    address or a string that runs off the end of the user's address space
+    without a terminating null character. Your kernel should handle these
+    cases by returning an error (SpaceId 0) from the Exec system call.</p>
+
+
+    <p> Exec must return a unique process identifier (SpaceId), which can
+    be used as an argument to Join.  Your kernel will need to keep a table
+    of active processes, and you may find the Table class described above
+    useful here, too.  You may find it convenient to implement process
+    exit as an internal kernel procedure called by the Exit system call
+    handler, rather than calling the lower-level procedures directly from
+    ExceptionHandler. This will make it easier to kill a process from
+    inside the kernel (e.g., if the process has some kind of fatal error),
+    by calling the internal exit primitive from another kernel procedure
+    (e.g., ExceptionHandler) in the target process context. In general,
+    this kind of careful internal decomposition will save you from
+    reinventing and redebugging wheels, and it is always good practice.</p>
+
+    <p> In your Exit system call hander, print out the status value
+    passed as the parameter.  This will aid in debugging and testing.</p>
+
+    <p> As with the Memory Manager, you can declare a global pointer to
+    the process table and initialize it in StartProcess (since
+            StartProcess only runs once, and runs before any processes start).</p>
+
+    <p>
+    <ul>
+    <li> <a href="exittest.c">exittest.c</a> -- sample program testing Exit
+    <li> <a href="exectest.c">exectest.c</a> -- sample program testing Exec and Exit
+    </ul>
+    </p>
+
+    <p> [10 pts] Write test programs that test multiprogramming: Exec,
+    Exit, and your AddrSpace implementation.  You should make sure that
+    Exec cleanly handles problem cases where the program string argument
+    is invalid for some reason -- bad string address, does not end in a
+    null character, and specifies a filename that does not exist.  You
+    should also test the boundaries of AddrSpace -- trying load a program
+    that doesn't fit into physical memory, being able to load many
+    programs one after the other (i.e., AddrSpace releases memory when a
+            process goes away so it can be reused again).</p>
+
+    <p> <a href="exec.html">[More of Voelker's tips on getting started]</a></p>
+
+    
+    <li> [10 pts] The current version of the "exec" system call does not
+    provide any way for the user program to pass parameters or arguments
+    to the newly created address space. UNIX does allow this, for
+    instance, to pass in command line arguments to the new address
+    space. Implement this feature.
+
+    <p> There are two steps to get this done.  First, you need a new
+    signature for Exec so that you can give it the arguments to be passed
+    to the new process.  Second, you need to figure out how to pass those
+    arguments to that process.</p>
+
+    <p> 1. Change the signature of Exec to be the following:</p>
+
+<pre>SpaceId Exec(char *name, int argc, char **argv, int willJoin);</pre>
+
+    <p> "name" is the filename as before, "argc" is the number of
+    arguments, "argv" is the array of argument strings, and "willJoin"
+    determines whether this process will be joined by another.  The
+    semantics of argc and argv are exactly like standard C.  The semantics
+    of the "willJoin" argument are the same as for Nachos threads --
+    non-zero means that a process will eventually Join on the one being
+    Exec'ed.  If you do not implement the Join system call, you should
+    pass in "0" for this argument.</p>
+
+    <p> You will need to change the declaration of Exec in syscall.h, and
+    you will need to change your test programs to use this new version of
+    Exec.  If a program does not pass in arguments to the new process,
+    just pass in zero for argc, argv, and willJoin.</p>
+
+    <p> 2. To pass in the arguments to the created process, you need to do
+    two things.  First, you need to copy the arguments into the process'
+    address space.  Second, you need to setup the machine so that, when
+    the process starts executing, the argc and argv arguments are passed
+    into the main() routine of the program.</p>
+
+    <p> NOTE: When you construct the arguments to the child process,
+    include as the first argument (argv[0]) the program name (the "name"
+            argument passed as the first argument to Exec).  This follows C
+    conventions.</p>
+
+    <p> Before you can copy in the arguments, you need to create some
+    space for them.  To do this, grow the process' virtual address space
+    by some amount (e.g., just like the address space is grown to
+    accomodate the user stack).  You decide how much (and document this in
+    your writeup), and make sure that you check that the arguments do not
+    overflow this region.  Don't make it too large, though, or you will
+    consume too much physical memory.  Then copy the arguments into that
+    region of the virtual address space (this is the opposite of reading
+    system call arguments out of the virtual address space).</p>
+
+    <p> To setup the machine so that the process is started with the
+    arguments, you can assume that the arguments to main use the same set
+    of registers as the arguments passed in from system calls (i.e., same
+    calling convention).  The comments at the top of ExceptionHandler
+    describe which registers to use.</p>
+
+    <p> NOTE: To test this, you will need to create a test program that
+    has arguments in its main routine:</p>
+
+<pre>int
+main(int argc, char *argv[])
+{
+    // e.g., check to make sure that the arguments are valid...
+}</pre>
+
+<p> You do not need to support command line arguments to the first
+process that is started when nachos starts, just processes that are
+Exec()ed.</p>
+
+
+<li> [20 pts] Implement the "read" and "write" system
+calls for console reads and writes (not for file reads and writes).
+To support the system calls that access the console device, you will
+probably find it helpful to implement a ''SynchConsole'' class that
+provides the abstraction of synchronous access to the console (i.e., a
+        read on the SynchConsole blocks the thread until a character is
+        available).  ''progtest.cc'' has the beginnings of a SynchConsole
+implementation.  You might find it useful to peek into the
+filesys/synchdisk.{cc,h} files to use the SynchDisk class as a further
+example.
+
+<p>
+An example program that uses Read and Write that is slightly less
+complicated than shell is <a href="echo.c">echo</a>.</p>
+
+
+<li> [10 pts] Bullet-proof your kernel. Implement the Nachos kernel
+code to handle user program exceptions that are not system calls. The
+machine (or simulator) raises an exception whenever it is unable to
+execute the next user instruction, e.g., because of an attempt to
+reference an illegal address, a privileged or illegal instruction or
+operand, or an arithmetic underflow or overflow condition. The
+kernel's role is to handle these exceptions in a reasonable way, i.e.,
+by printing an error message and killing the process rather than
+crashing the whole system. Note: an ASSERT that crashes Nachos is a
+reasonable response to a bug within your Nachos kernel, but it not an
+acceptable response to a user program exception.</p>
+
+<p> Create user-level test programs to verify that your exception
+    handling code works properly, both for a single process and for
+    Exec'ed processes.  You do not have to create programs to test every
+    exception -- AddressErrorException and IllegalInstrException are
+    sufficient.</p>
+
+    
+
+    <li> (Extra Credit) [4 pts] Implement the "join" system call.  Join
+    takes one argument, the SpaceId of the process that the caller wants
+    to wait for.  The process to be Joined must have been Exec'ed with its
+    willJoin argument set to non-zero.  Join returns the process status
+    (Exit) code of the process that was Joined.  Return -65535 from Join
+    to signify an error (e.g., the SpaceId passed to the Join system call
+            is invalid).  Demonstrate that your implementation of Join works
+    correctly with test programs.</p>
+
+    
+    <li> (Extra Credit) [4 pts] Implement interprocess communication using
+    pipes (requires support for "read" and "write" system calls).  This
+    will redirect the output of one process to the input of another.
+    Since you are not required to implement file reads and writes, this
+    will be the only way to pass information to a process, aside from
+    command line arguments.  An example of a unix pipe would be "program1
+    | program2". In this example, program1 would normally output text to
+    the standard output, but the pipe will redirect this output to the
+    input of program2.  program2 would normally take its input from a
+    file.  This problem will require some imagination since files do not
+    exist, but should not be too difficult to implement.
+
+    <p> When implementing pipes, implement them according to the
+    specification in the Duke Nachos pages: <a
+    href="http://www.cs.duke.edu/courses/spring01/cps110//nachos-guide/nachos.1a.html#pgfId=1003113">Pipes</a>.
+    The only twist is that we are going to have to overload the "willJoin"
+    parameter to Exec to pass in values for "pipectrl".  Change your Exec
+    implementation to interpret willJoin as follows:</p>
+
+    <p>
+    &nbsp; willJoin & 0x1: child will be Joined <br>
+    &nbsp; willJoin & 0x2: bind stdout to a pipe <br>
+
+    &nbsp; willJoin & 0x4: bind stdin to a pipe <br>
+    </p>
+
+    <p> In other words, for a child that will not be Joined willJoin=0x2
+    corresponds to pipectrl=1, willJoin=0x6 corresponds to pipectrl=2, and
+    willJoin=0x4 corresponds to pipectrl=3.</p>
+
+    <p>
+    <ul>
+    <li> <a href="pipetest.c">pipetest.c</a> -- sample program testing pipes
+    </ul>
+    </p>
+
+    <p> Note: You do not need to support pipes for the first process that
+    starts up with Nachos.</p>
+
+
+    
+    <li> (Extra Credit) [4 pts] Implement multithreaded user
+    programs. Implement the thread fork() and yield() system calls to
+    allow a user program to fork a thread to call a routine in the same
+    address space, and then ping-pong between threads.&nbsp; (Hint: you
+            will need to change the kernel to allocate memory in the user address
+            space for each thread stack.)
+
+    <!-- have exit only terminate the calling thread...otherwise it is a
+    mess to try and clean up all -->
+
+    </ol>
+
+    <h4>Submitting The Project</h4>
+
+    <p> As with project 1, we would like a short paper write-up describing
+    what changes you made, how well they worked, how you tested your
+    changes, and how each group member contributed to the project.  Please
+    include this writeup in your <b>userprog</b> directory.  As with
+    project 1, use CVS to turn in your project:</p>
+
+<blockquote><pre>% cvs rtag -F project2 nachos-3.4</pre></blockquote>
+
+
+<img border="0" width="360" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#ffffff" valign="top" width="20"><img border="0" width="20" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<td bgcolor="#ffffff" valign="top" width="20"><img border="0" width="20" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#ffffff" colspan="2" valign="top" width="532"><font class="body2" size="-2" face="verdana,arial, geneva, sans-serif"><a href="project2.html#top"><b>back to top ^</b></a>
+<br>
+</font><img border="0" width="532" height="12" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="552">
+<tr>
+<td bgcolor="#efefef" valign="top" width="552"><img border="0" width="552" height="12" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+</td><td bgcolor="#efefef" valign="top" width="12"><img border="0" width="12" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="760">
+<tr>
+<td bgcolor="#efefef" valign="top" width="760"><img border="0" width="760" height="12" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="760">
+<tr>
+<td bgcolor="#003366" valign="top" align="center" width="760"><font class="addy" color="#ffffff" size="-2" face="verdana, arial, geneva, san-serif">9500 Gilman Drive, La Jolla, CA 92093-0114<br>
+</font></td>
+</tr>
+<tr>
+<td bgcolor="#efefef" valign="top" width="760"><img border="0" width="760" height="12" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<td bgcolor="#efefef" align="center" width="760"><font class="footernav" color="#003366" size="-2" face="verdana, arial, geneva, san-serif"><b><a href="http://www.cs.ucsd.edu/aboutcse/deptoverview.html">About CSE</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/csepeople/csepeoplehome.html">CSE People</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/facresearch/facultyresearch.html">Faculty &amp; Research</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/gradedu/gradeduhome.html">Graduate Education</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/undergrad/undergradeduhome.html">Undergraduate Education</a></b>
+<br>
+<b><a href="http://www.cs.ucsd.edu/deptadmin/index.php">Department Administration</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/aboutcse/contactinfo.html">Contact CSE</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/home/help/index.html">Help</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/home/search.html">Search</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/progress/progressroot.html">Site map</a></b> |
+          <b><a href="http://www.cs.ucsd.edu/index.php">Home</a></b>
+<br>
+<a href="mailto:snoeren@cs.ucsd.edu">snoeren@cs.ucsd.edu</a>
+<br>
+</font><a href="http://www.ucsd.edu/"><img border="0" width="379" height="25" src="http://www.cs.ucsd.edu/images/IMG_footer.gif" alt="Official web page of the University of California, San Diego" class="inlineimage"></a></td>
+</tr>
+<tr>
+<td bgcolor="#efefef" align="center" width="760"><font class="copyright" color="#003366" size="-2" face="verdana, arial, geneva, san-serif">
+          Copyright 
+          &copy;
+          2002 Regents of the University of California.  All rights reserved.
+          
+          
+        </font></td>
+</tr>
+<tr>
+<td bgcolor="#efefef" valign="top" width="760"><img border="0" width="760" height="15" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+</body>
+</html>
+
+

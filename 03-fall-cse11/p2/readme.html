@@ -1,0 +1,326 @@
+<html><head><title>P2 README</title></head>
+<body>
+<hr> <h2>
+<font color="#0000ff">
+Programming assignment #2:  CSE 11 Fall 2003
+</font>
+</h2> <hr>
+
+<p>
+Here's a description of the second programming assignment for CSE 11,
+Fall 2003.  In this assignment, you will design, implement, and
+test an Abstract Data Type (ADT) in Java.  Along the
+way you'll get experience with the object-oriented programming
+concepts of instance methods, instance variables, and
+creating and using objects.
+</p><p>
+&gt;&gt;&gt; Due deadline:  	Wed Oct 15 12:00noon
+</p><p>
+&gt;&gt;&gt; Required solution files:  Rational.java, TestRational.java
+</p><p>
+
+This means that the files that contain your solution to the assignment
+must be turned in by the due deadline.  Use
+the bundleP2 script to turn in your assignment.
+ </p><p> 
+It's a good idea to plan to do the
+assignment well before the deadline; terminals and
+tutors can get very busy at the last minute.  
+ </p><p> 
+For this and subsequent assignments, you do NOT see a tutor in the
+lab to get it graded.  Instead, your turned-in assignment will be
+graded by the CSE 11 staff within 10 days after the due deadline, and
+your grade will be emailed to your cs11 account.  Some turned-in assignments
+will be graded before others are; don't worry if yours isn't graded right
+away.  If you turned it in, it will be graded within 10 days after the 
+due deadline.
+ </p><p> 
+In doing this assignment, it's your responsibility to understand the
+course rules for integrity of scholarship.
+ </p><p> 
+</p><h4> 1: Getting started </h4> 
+First, read Chapters 4 and 5 of the
+textbook.  This assignment uses material introduced and discussed
+there.
+ <p>
+Next, create a directory named "P2" under your cs11 home directory.
+Your solution to this assignment should be turned in from that directory
+by the due date and time.  Use the bundleP2 script to do that.
+
+ </p><p>
+This assignment involves implementing an ADT with a specified user interface.
+Be sure you pay special
+attention to what is required in terms of the visibility,
+name, return type, and number and type of arguments for the public methods of
+the class you will be writing.  Those are essential aspects of the interface
+you are implementing.
+
+ </p><p>
+
+</p><h4> 2: Rational.java </h4> 
+In this assignment, you will implement and test an Abstract Data Type
+(ADT) designed to represent rational numbers (i.e. fractions) and some
+operations on them.  You will implement the ADT as a Java class named
+Rational, and you'll implement a test driver for your class as a public
+static main method in a file TestRational.java.  Java doesn't come
+with a Rational type, so in creating this "user-defined type"
+you will be extending
+the Java language, adding functionality it did not already have.
+
+ <p> A Rational object is supposed to represent a rational number,
+a concept you are familiar with from elementary mathematics.
+Any particular rational number has as its state, or properties,
+the values of its numerator and its denominator.  Implement this state
+as instance variables of type long (this will permit a Rational object
+to be potentially more numerically precise than using
+a single 64-bit double variable to represent a fraction).
+Follow the usual rules of ADT design and make these variables private.
+ </p><p>
+As for behavior, or operations that should be part of the public interface
+of the Rational ADT:  
+ </p><p>
+Define 3 public constructors:  a default constructor that initializes the
+object to have a numerator of 0 and a denominator of 1; a constructor
+that takes one argument of type long, and initializes the numerator
+to that value, and the denominator to 1; and a constructor that takes
+two arguments of type long, for the initial numerator and denominator
+value respectively.  The two-argument constructor should permit
+creating a Rational with zero denominator.
+ </p><p>
+Define public 2 accessor methods: getNumerator() and getDenominator(), that
+return (as a long) the "top" (i.e., numerator) and "bottom"
+(i.e., denominator) of the Rational
+object, respectively.
+ </p><p>
+Rationals are intuitively a numeric type, so the Rational ADT should
+provide operations corresponding to the binary numeric operations
+add, subtract, multiply, and divide.  Implement these as public instance
+methods with those names, spelled precisely the same.
+Each of these methods should take one
+argument, a Rational object, and return a new Rational object as a result
+of the operation.  So, as an example,
+</p><pre>Rational r1 = new Rational(3,4);
+Rational r2 = new Rational(1,4);
+Rational r3 = r1.subtract(r2);
+</pre>
+should make r3 point to a Rational object that represents a value
+which is equal to 1/2 (for example, a Rational with numerator
+8 and denominator 16).  None of these
+numeric methods should have any side effects (that is, they should not
+print anything, or change anything about the calling or argument
+object).
+ <p>
+Define a public instance method toString(), which takes no argument,
+and returns a String precisely representing the contents of the object.
+With Rational objects, this means the value of the
+numerator, followed by the slash character,
+followed by the value of the denominator, with no spaces.
+Continuing the above example,
+</p><pre>System.out.print(r1.toString())
+</pre>
+should print 
+<pre>3/4
+</pre>
+(with no spaces).
+ <p>
+Also define a public instance method toDouble(), taking no argument,
+which returns the numerical value of the calling object as a double
+(or, at least, as close as can be represented in a double).
+ </p><p>
+In addition, define a public instance method equals(), which takes
+one argument of type Object, and returns boolean true if and
+only if the argument
+and the calling object are Rationals with the same numeric value.
+(They do not have to have the same numerator and denominator!  E.g.
+1/2 and 2/4 are equal.)  See the "Hints and other remarks" section
+to see how to do this.
+ </p><p> Finally, define a public void instance method reduce(), which
+takes no argument.  reduce() is the only public method of this ADT
+(besides the constructors) that changes anything about the calling
+object: it puts the numerator and denominator of the calling object in
+"normalized" or "reduced" form.
+ </p><p> The normalized or 
+reduced form of a fraction is a rational form in which the
+numerator and denominator have no common factors greater than 1 (a
+common factor is an integer that divides both the numerator and
+denominator with remainder zero), and the denominator is nonnegative.
+For example, 200/300 in reduced form is 2/3; 81/-36 in reduced form is
+-9/4.
+ </p><p> This method is algorithmically the most complicated in this
+assignment, so it is especially important to think clearly first about
+an algorithm that will solve the problem.  Keep in mind the definition
+of reduced form, and consider how to eliminate all common factors
+greater than 1 from the numerator and denominator of a fraction, while
+keeping track of the sign correctly.
+ </p><p>
+One way to do this (as you probably learned in school) is to make a
+list of the prime factors of the numerator and the denominator, and
+then "cancel common factors".  However, translating this algorithm
+directly into Java requires knowing how to use arrays, lists, or
+vectors, and we haven't learned that yet.  It's not a particularly
+efficient algorithm, anyway.
+ </p><p>
+Fortunately, it is not necessary to first create lists of all the factors;
+it is only necessary to find the greatest common divisor (GCD) of the
+numerator and denominator.  (The GCD is equal to the product of all the
+common prime factors.)    If the numerator and denominator are
+positive, the GCD can't be larger than the smaller of the two, and you
+can exhaustively iterate through 
+all the possibilities.  (Actually, this approach
+isn't terribly efficient, either, and it will take a very long time
+to run on some inputs.  You may have learned
+somewhere Euclid's algorithm for finding the GCD of two numbers, which
+somewhat more efficient yet; you can use it here, but only
+if you understand it!)
+ </p><p>
+Once you come up with an algorithm to find the reduced form of a
+fraction, translating it into Java to implement the reduce() method
+is not so hard.  (You will find the
+while-loop and if-else statements and the modulus operator % useful.)
+ </p><p>
+
+</p><h4> 3: TestRational.java </h4> 
+Whenever you are implementing an ADT (or writing any software,
+actually), you have to test your implementation
+to try to make sure it works correctly.  One common practice in Java
+is to have a public static void main method in the same class that is
+implementing the ADT, which is written to act as a test driver.  
+However, in this
+assignment, you will put your test driver program in another class,
+in a file named TestRational.java.
+ <p>
+Your test driver should prompt the user for some values to use for
+numerators and denominators, and then it should create Rational objects
+and call their methods to test them, and print out the results.
+TestRational must fully test the Rational class, by creating
+Rational objects and calling their instance methods.  The way it
+formats its output, reports errors, etc. is up to you,
+as long as it permits thoroughly testing all features of the
+Rational ADT.  You can cd to
+~/../public/P2 and run java -jar P2Solution.jar to see what
+acceptable test driver for this assignment might look like when testing a
+correct Rational class.  
+
+ </p><h4>Hints and other remarks </h4> 
+<ol>
+<li> 
+Be sure all class and method names are spelled and defined 
+exactly as required;
+your assignment will be graded in large part by linking to a test driver which
+will expect them to be spelled as specified in this README file, with
+visibility, 
+number and type and ordering of arguments as specified, etc.  If they
+aren't, they're wrong.  You should be able to check yourself 
+that your solution meets this part
+of the interface specification.  However for this assignment we are
+also providing an automatic interface checker for you.  To use it,
+ you can copy CheckRationalInterface.jar
+from the ~/../public/P2 directory to your P2 directory, and run
+java -jar CheckRationalInterface.jar.
+ <p>
+Of course your methods must also work correctly.  This is especially
+important for the constructors and accessors, since these must be correct
+in order to correctly test the others.
+ </p><p> Also note that no Rational method should take keyboard
+input, or print anything to the terminal screen.  (Your TestRational
+test driver will take keyboard input and print results, but no
+Rational method ever should.)  In general, you want an ADT to be as
+generally useful as possible; this usually means being able to use it
+to do computations even when there is no keyboard or terminal display.
+</p><p></p></li><li> 
+For each method, think carefully first about the algorithm you'll use for
+that method, and only then start writing code.
+<p></p></li><li> 
+Your numerical methods should be efficient.  It is not necessary
+to fully or partially normalize the result of every numeric operation, 
+nor is it desirable to do so, because it may appreciably slow the operation.
+<p></p></li><li> 
+The equals() method must be declared to take one argument, of type
+Object.  Why should it do that, instead of taking an argument of type
+Rational?  The reason has to do with class derivation and inheritance, and
+will be explained in detail later in the course.  However, it's not too
+early to get in the habit of defining this kind of equals() method for your
+classes.  
+ <p>
+Since the formal parameter to the equals method is of type Object, an
+instance of <i>any</i> class (but not any primitive type) 
+can be passed as actual argument; and also
+the null pointer <code>null</code> can be passed.  We can consider these cases:
+ </p><p> a.  If a null pointer is passed, equals() should return false (a
+Rational can never be equal to null).  Java's <code>==</code> comparison
+operator is useful for checking this.
+ </p><p> b.  If something other than a Rational object is passed as
+argument, equals() should return false (a Rational object can never be equal
+to something that is not even a Rational object).  Java's 
+<code>instanceof</code> operator is useful for checking this.
+ </p><p> c.  Otherwise, the equals() method should access the instance variables
+of the calling object and the argument object, and return true or false
+as appropriate.  However, the formal parameter needs to be cast to type
+Rational, before the numerator and denominator instance variables can
+be accessed. 
+ </p><p>
+So, your equals method can have a form something like this:
+</p><pre>public boolean equals(Object other) {
+	if (other == null) return false;
+	if (! (other instanceof Rational) ) return false;
+	Rational rother = (Rational) other; 
+	// now check if this object has same "state" as rother...
+
+}
+</pre>
+
+<p></p></li><li> 
+You may define as many private instance methods ("helper
+functions") in the Rational class as you want, if your "top-down"
+design suggests you should.  However, you shouldn't provide any
+public methods other than the ones required by the specification
+given above.
+<p></p></li><li> 
+You should allow Rationals with zero denominator to be
+created, and toString() and the accessor methods should work correctly
+with such Rationals.  However, the results of using a zero-denominator
+Rational in a numerical operation, or the result of reducing it, are
+undefined (as is the result of dividing by a Rational that has zero
+numerator).  That means that any kind of runtime error can happen in
+these cases, or any value may be returned.  You
+shouldn't do anything to prevent this in your Rational methods; it will
+be up to the user of the Rational class to avoid these cases, or to
+handle whatever happens in a way that the user decides is appropriate.
+<p></p></li><li> 
+On this assignment, you will lose points if your code is
+poorly commented or otherwise uses bad style.  The style and
+commenting guidelines in Chapter 2 of the textbook are good ones to follow.  In
+addition, make sure your lines of code are shorter than 80 characters
+(longer statements should be nicely broken with linebreaks, 
+or should be re-written as
+a sequence of shorter statements), and make sure no extra control
+characters (e.g., ^M's) appear in your source code files as the result
+of binary file transfers from incompatible operating systems.
+</li></ol>
+
+
+ <h4>
+Grading of assignment # 2
+ </h4> 
+
+There are 20 possible points for this assignment:
+<pre>a.   3 points for the 3 constructors  (these need to be correct to test the others!)
+
+b.   2 points for the 2 accessor functions  (likewise!)  
+
+c.   4 points for the 4 numerical methods
+
+d.   one point each for the equals, toString, and toDouble methods
+
+e.   4 points for the normalization method
+
+f.   4 points for the test driver
+
+
+</pre>
+
+In each case, doing a part of the assignment requires that your program
+compiles, runs correctly, is well-written and commented.
+
+
+</body></html>

@@ -1,0 +1,10 @@
+serviceclass P2P {
+  virtual void joinP2P(const MaceKey & peerToJoin, 
+            		       double advertsiedBandwidth_kbps, short httpPort,
+                       const std::string& identity) { }
+  virtual void leaveP2P() { }
+  virtual uint queryP2P(const std::string& searchString) { return 0; }
+
+  handlers P2P;
+};
+

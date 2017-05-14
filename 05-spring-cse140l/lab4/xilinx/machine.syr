@@ -1,0 +1,602 @@
+Release 7.1.01i - xst H.39
+Copyright (c) 1995-2005 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to __projnav
+CPU : 0.00 / 6.96 s | Elapsed : 0.00 / 5.00 s
+ 
+--> Parameter xsthdpdir set to ./xst
+CPU : 0.00 / 6.96 s | Elapsed : 0.00 / 5.00 s
+ 
+--> Reading design: machine.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) HDL Analysis
+  4) HDL Synthesis
+  5) Advanced HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Low Level Synthesis
+  7) Final Report
+     7.1) Device utilization summary
+     7.2) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "machine.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "machine"
+Output Format                      : NGC
+Target Device                      : xc2v80-5-cs144
+
+---- Source Options
+Top Module Name                    : machine
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+FSM Style                          : lut
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+ROM Style                          : Auto
+Mux Extraction                     : YES
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : YES
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+Resource Sharing                   : YES
+Multiplier Style                   : auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 500
+Add Generic Clock Buffer(BUFG)     : 16
+Register Duplication               : YES
+Equivalent register Removal        : YES
+Slice Packing                      : YES
+Pack IO Registers into IOBs        : auto
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : NO
+Global Optimization                : AllClockNets
+RTL Output                         : Yes
+Write Timing Constraints           : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : maintain
+Slice Utilization Ratio            : 100
+Slice Utilization Ratio Delta      : 5
+
+---- Other Options
+lso                                : machine.lso
+Read Cores                         : YES
+cross_clock_analysis               : NO
+verilog2001                        : YES
+safe_implementation                : No
+Optimize Instantiated Primitives   : NO
+tristate2logic                     : Yes
+use_clock_enable                   : Yes
+use_sync_set                       : Yes
+use_sync_reset                     : Yes
+enable_auto_floorplanning          : No
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "G:/xilinx/projects/lab4/Mux2_5bus.vhf" in Library work.
+Architecture behavioral of Entity m2_1_mxilinx_mux2_5bus is up to date.
+Architecture behavioral of Entity mux2_5bus is up to date.
+Compiling vhdl file "G:/xilinx/projects/lab4/register5.vhf" in Library work.
+Architecture behavioral of Entity register5 is up to date.
+Compiling vhdl file "G:/xilinx/projects/lab4/Mask5.vhf" in Library work.
+Architecture behavioral of Entity mask5 is up to date.
+Compiling vhdl file "G:/xilinx/projects/lab4/Mux3_5bus_v2.vhf" in Library work.
+Architecture behavioral of Entity mux3_5bus_v2 is up to date.
+Compiling vhdl file "G:/xilinx/projects/lab4/datapath.vhf" in Library work.
+Architecture behavioral of Entity add8_mxilinx_datapath is up to date.
+Architecture behavioral of Entity m2_1_mxilinx_datapath is up to date.
+Architecture behavioral of Entity brlshft8_mxilinx_datapath is up to date.
+Architecture behavioral of Entity compm8_mxilinx_datapath is up to date.
+Architecture behavioral of Entity datapath is up to date.
+Compiling vhdl file "G:/xilinx/projects/lab4/regs.vhf" in Library work.
+Architecture behavioral of Entity regs is up to date.
+Compiling vhdl file "G:/xilinx/projects/lab4/pcounter.vhf" in Library work.
+Architecture behavioral of Entity ftce_mxilinx_pcounter is up to date.
+Architecture behavioral of Entity cb4ce_mxilinx_pcounter is up to date.
+Architecture behavioral of Entity pcounter is up to date.
+Compiling vhdl file "G:/xilinx/projects/lab4/memory16x8.vhf" in Library work.
+Architecture behavioral of Entity memory16x8 is up to date.
+Compiling vhdl file "G:/xilinx/projects/lab4/truthtbl.vhd" in Library work.
+Architecture behavioral of Entity truthtbl is up to date.
+Compiling vhdl file "G:/xilinx/projects/lab4/machine.vhf" in Library work.
+Entity <machine> compiled.
+Entity <machine> (Architecture <behavioral>) compiled.
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <machine> (Architecture <behavioral>).
+Entity <machine> analyzed. Unit <machine> generated.
+
+Analyzing Entity <datapath> (Architecture <behavioral>).
+WARNING:Xst:753 - "G:/xilinx/projects/lab4/datapath.vhf" line 1071: Unconnected output port 'CO' of component 'ADD8_MXILINX_datapath'.
+    Set user-defined property "HU_SET =  XLXI_2_26" for instance <XLXI_2> in unit <datapath>.
+WARNING:Xst:753 - "G:/xilinx/projects/lab4/datapath.vhf" line 1079: Unconnected output port 'O5' of component 'BRLSHFT8_MXILINX_datapath'.
+WARNING:Xst:753 - "G:/xilinx/projects/lab4/datapath.vhf" line 1079: Unconnected output port 'O6' of component 'BRLSHFT8_MXILINX_datapath'.
+WARNING:Xst:753 - "G:/xilinx/projects/lab4/datapath.vhf" line 1079: Unconnected output port 'O7' of component 'BRLSHFT8_MXILINX_datapath'.
+    Set user-defined property "HU_SET =  XLXI_3_25" for instance <XLXI_3> in unit <datapath>.
+WARNING:Xst:753 - "G:/xilinx/projects/lab4/datapath.vhf" line 1100: Unconnected output port 'GT' of component 'COMPM8_MXILINX_datapath'.
+    Set user-defined property "HU_SET =  XLXI_4_24" for instance <XLXI_4> in unit <datapath>.
+Entity <datapath> analyzed. Unit <datapath> generated.
+
+Analyzing Entity <ADD8_MXILINX_datapath> (Architecture <behavioral>).
+    Set user-defined property "RLOC =  X0Y0" for instance <I_36_16> in unit <ADD8_MXILINX_datapath>.
+    Set user-defined property "RLOC =  X0Y0" for instance <I_36_17> in unit <ADD8_MXILINX_datapath>.
+    Set user-defined property "RLOC =  X0Y1" for instance <I_36_18> in unit <ADD8_MXILINX_datapath>.
+    Set user-defined property "RLOC =  X0Y1" for instance <I_36_19> in unit <ADD8_MXILINX_datapath>.
+    Set user-defined property "RLOC =  X0Y2" for instance <I_36_20> in unit <ADD8_MXILINX_datapath>.
+    Set user-defined property "RLOC =  X0Y2" for instance <I_36_21> in unit <ADD8_MXILINX_datapath>.
+    Set user-defined property "RLOC =  X0Y3" for instance <I_36_22> in unit <ADD8_MXILINX_datapath>.
+    Set user-defined property "RLOC =  X0Y3" for instance <I_36_23> in unit <ADD8_MXILINX_datapath>.
+    Set user-defined property "RLOC =  X0Y0" for instance <I_36_55> in unit <ADD8_MXILINX_datapath>.
+    Set user-defined property "RLOC =  X0Y1" for instance <I_36_58> in unit <ADD8_MXILINX_datapath>.
+    Set user-defined property "RLOC =  X0Y1" for instance <I_36_62> in unit <ADD8_MXILINX_datapath>.
+    Set user-defined property "RLOC =  X0Y2" for instance <I_36_63> in unit <ADD8_MXILINX_datapath>.
+    Set user-defined property "RLOC =  X0Y3" for instance <I_36_64> in unit <ADD8_MXILINX_datapath>.
+    Set user-defined property "RLOC =  X0Y3" for instance <I_36_107> in unit <ADD8_MXILINX_datapath>.
+    Set user-defined property "RLOC =  X0Y2" for instance <I_36_110> in unit <ADD8_MXILINX_datapath>.
+    Set user-defined property "RLOC =  X0Y0" for instance <I_36_111> in unit <ADD8_MXILINX_datapath>.
+Entity <ADD8_MXILINX_datapath> analyzed. Unit <ADD8_MXILINX_datapath> generated.
+
+Analyzing Entity <BRLSHFT8_MXILINX_datapath> (Architecture <behavioral>).
+    Set user-defined property "HU_SET =  I_MO0_17" for instance <I_MO0> in unit <BRLSHFT8_MXILINX_datapath>.
+    Set user-defined property "HU_SET =  I_MO1_18" for instance <I_MO1> in unit <BRLSHFT8_MXILINX_datapath>.
+    Set user-defined property "HU_SET =  I_MO2_19" for instance <I_MO2> in unit <BRLSHFT8_MXILINX_datapath>.
+    Set user-defined property "HU_SET =  I_MO3_20" for instance <I_MO3> in unit <BRLSHFT8_MXILINX_datapath>.
+    Set user-defined property "HU_SET =  I_MO4_21" for instance <I_MO4> in unit <BRLSHFT8_MXILINX_datapath>.
+    Set user-defined property "HU_SET =  I_MO5_22" for instance <I_MO5> in unit <BRLSHFT8_MXILINX_datapath>.
+    Set user-defined property "HU_SET =  I_MO6_23" for instance <I_MO6> in unit <BRLSHFT8_MXILINX_datapath>.
+    Set user-defined property "HU_SET =  I_MO7_15" for instance <I_MO7> in unit <BRLSHFT8_MXILINX_datapath>.
+    Set user-defined property "HU_SET =  I_M01_12" for instance <I_M01> in unit <BRLSHFT8_MXILINX_datapath>.
+    Set user-defined property "HU_SET =  I_M12_13" for instance <I_M12> in unit <BRLSHFT8_MXILINX_datapath>.
+    Set user-defined property "HU_SET =  I_M23_14" for instance <I_M23> in unit <BRLSHFT8_MXILINX_datapath>.
+    Set user-defined property "HU_SET =  I_M34_11" for instance <I_M34> in unit <BRLSHFT8_MXILINX_datapath>.
+    Set user-defined property "HU_SET =  I_M45_8" for instance <I_M45> in unit <BRLSHFT8_MXILINX_datapath>.
+    Set user-defined property "HU_SET =  I_M56_9" for instance <I_M56> in unit <BRLSHFT8_MXILINX_datapath>.
+    Set user-defined property "HU_SET =  I_M67_10" for instance <I_M67> in unit <BRLSHFT8_MXILINX_datapath>.
+    Set user-defined property "HU_SET =  I_M70_16" for instance <I_M70> in unit <BRLSHFT8_MXILINX_datapath>.
+    Set user-defined property "HU_SET =  I_O0_0" for instance <I_O0> in unit <BRLSHFT8_MXILINX_datapath>.
+    Set user-defined property "HU_SET =  I_O1_1" for instance <I_O1> in unit <BRLSHFT8_MXILINX_datapath>.
+    Set user-defined property "HU_SET =  I_O2_7" for instance <I_O2> in unit <BRLSHFT8_MXILINX_datapath>.
+    Set user-defined property "HU_SET =  I_O3_6" for instance <I_O3> in unit <BRLSHFT8_MXILINX_datapath>.
+    Set user-defined property "HU_SET =  I_O4_5" for instance <I_O4> in unit <BRLSHFT8_MXILINX_datapath>.
+    Set user-defined property "HU_SET =  I_O5_4" for instance <I_O5> in unit <BRLSHFT8_MXILINX_datapath>.
+    Set user-defined property "HU_SET =  I_O6_3" for instance <I_O6> in unit <BRLSHFT8_MXILINX_datapath>.
+    Set user-defined property "HU_SET =  I_O7_2" for instance <I_O7> in unit <BRLSHFT8_MXILINX_datapath>.
+Entity <BRLSHFT8_MXILINX_datapath> analyzed. Unit <BRLSHFT8_MXILINX_datapath> generated.
+
+Analyzing Entity <M2_1_MXILINX_datapath> (Architecture <behavioral>).
+Entity <M2_1_MXILINX_datapath> analyzed. Unit <M2_1_MXILINX_datapath> generated.
+
+Analyzing Entity <COMPM8_MXILINX_datapath> (Architecture <behavioral>).
+Entity <COMPM8_MXILINX_datapath> analyzed. Unit <COMPM8_MXILINX_datapath> generated.
+
+Analyzing Entity <Mask5> (Architecture <behavioral>).
+Entity <Mask5> analyzed. Unit <Mask5> generated.
+
+Analyzing Entity <Mux3_5bus_v2> (Architecture <behavioral>).
+Entity <Mux3_5bus_v2> analyzed. Unit <Mux3_5bus_v2> generated.
+
+Analyzing Entity <Mux2_5bus> (Architecture <behavioral>).
+    Set user-defined property "HU_SET =  XLXI_2_0" for instance <XLXI_2> in unit <Mux2_5bus>.
+    Set user-defined property "HU_SET =  XLXI_4_1" for instance <XLXI_4> in unit <Mux2_5bus>.
+    Set user-defined property "HU_SET =  XLXI_5_2" for instance <XLXI_5> in unit <Mux2_5bus>.
+    Set user-defined property "HU_SET =  XLXI_6_3" for instance <XLXI_6> in unit <Mux2_5bus>.
+    Set user-defined property "HU_SET =  XLXI_7_4" for instance <XLXI_7> in unit <Mux2_5bus>.
+Entity <Mux2_5bus> analyzed. Unit <Mux2_5bus> generated.
+
+Analyzing Entity <M2_1_MXILINX_Mux2_5bus> (Architecture <behavioral>).
+Entity <M2_1_MXILINX_Mux2_5bus> analyzed. Unit <M2_1_MXILINX_Mux2_5bus> generated.
+
+Analyzing Entity <regs> (Architecture <behavioral>).
+    Set user-defined property "INIT =  0" for instance <GE_FLG> in unit <regs>.
+    Set user-defined property "INIT =  0" for instance <OV_FLG> in unit <regs>.
+Entity <regs> analyzed. Unit <regs> generated.
+
+Analyzing Entity <Register5> (Architecture <behavioral>).
+    Set user-defined property "INIT =  0" for instance <XLXI_1> in unit <Register5>.
+    Set user-defined property "INIT =  0" for instance <XLXI_2> in unit <Register5>.
+    Set user-defined property "INIT =  0" for instance <XLXI_3> in unit <Register5>.
+    Set user-defined property "INIT =  0" for instance <XLXI_4> in unit <Register5>.
+    Set user-defined property "INIT =  0" for instance <XLXI_5> in unit <Register5>.
+Entity <Register5> analyzed. Unit <Register5> generated.
+
+Analyzing Entity <pcounter> (Architecture <behavioral>).
+WARNING:Xst:753 - "G:/xilinx/projects/lab4/pcounter.vhf" line 251: Unconnected output port 'CEO' of component 'CB4CE_MXILINX_pcounter'.
+WARNING:Xst:753 - "G:/xilinx/projects/lab4/pcounter.vhf" line 251: Unconnected output port 'TC' of component 'CB4CE_MXILINX_pcounter'.
+    Set user-defined property "HU_SET =  XLXI_1_4" for instance <XLXI_1> in unit <pcounter>.
+Entity <pcounter> analyzed. Unit <pcounter> generated.
+
+Analyzing Entity <CB4CE_MXILINX_pcounter> (Architecture <behavioral>).
+    Set user-defined property "HU_SET =  I_Q0_0" for instance <I_Q0> in unit <CB4CE_MXILINX_pcounter>.
+    Set user-defined property "HU_SET =  I_Q1_1" for instance <I_Q1> in unit <CB4CE_MXILINX_pcounter>.
+    Set user-defined property "HU_SET =  I_Q2_2" for instance <I_Q2> in unit <CB4CE_MXILINX_pcounter>.
+    Set user-defined property "HU_SET =  I_Q3_3" for instance <I_Q3> in unit <CB4CE_MXILINX_pcounter>.
+Entity <CB4CE_MXILINX_pcounter> analyzed. Unit <CB4CE_MXILINX_pcounter> generated.
+
+Analyzing Entity <FTCE_MXILINX_pcounter> (Architecture <behavioral>).
+    Set user-defined property "INIT =  0" for instance <I_36_35> in unit <FTCE_MXILINX_pcounter>.
+    Set user-defined property "RLOC =  X0Y0" for instance <I_36_35> in unit <FTCE_MXILINX_pcounter>.
+Entity <FTCE_MXILINX_pcounter> analyzed. Unit <FTCE_MXILINX_pcounter> generated.
+
+Analyzing Entity <memory16x8> (Architecture <behavioral>).
+    Set user-defined property "INIT =  1948" for instance <XLXI_1> in unit <memory16x8>.
+    Set user-defined property "INIT =  1A94" for instance <XLXI_9> in unit <memory16x8>.
+    Set user-defined property "INIT =  17B2" for instance <XLXI_14> in unit <memory16x8>.
+    Set user-defined property "INIT =  0102" for instance <XLXI_15> in unit <memory16x8>.
+    Set user-defined property "INIT =  0422" for instance <XLXI_16> in unit <memory16x8>.
+    Set user-defined property "INIT =  0404" for instance <XLXI_18> in unit <memory16x8>.
+    Set user-defined property "INIT =  0406" for instance <XLXI_19> in unit <memory16x8>.
+    Set user-defined property "INIT =  0000" for instance <XLXI_20> in unit <memory16x8>.
+Entity <memory16x8> analyzed. Unit <memory16x8> generated.
+
+Analyzing Entity <truthtbl> (Architecture <behavioral>).
+Entity <truthtbl> analyzed. Unit <truthtbl> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <FTCE_MXILINX_pcounter>.
+    Related source file is "G:/xilinx/projects/lab4/pcounter.vhf".
+Unit <FTCE_MXILINX_pcounter> synthesized.
+
+
+Synthesizing Unit <CB4CE_MXILINX_pcounter>.
+    Related source file is "G:/xilinx/projects/lab4/pcounter.vhf".
+Unit <CB4CE_MXILINX_pcounter> synthesized.
+
+
+Synthesizing Unit <Register5>.
+    Related source file is "G:/xilinx/projects/lab4/register5.vhf".
+Unit <Register5> synthesized.
+
+
+Synthesizing Unit <M2_1_MXILINX_Mux2_5bus>.
+    Related source file is "G:/xilinx/projects/lab4/Mux2_5bus.vhf".
+Unit <M2_1_MXILINX_Mux2_5bus> synthesized.
+
+
+Synthesizing Unit <Mux2_5bus>.
+    Related source file is "G:/xilinx/projects/lab4/Mux2_5bus.vhf".
+Unit <Mux2_5bus> synthesized.
+
+
+Synthesizing Unit <M2_1_MXILINX_datapath>.
+    Related source file is "G:/xilinx/projects/lab4/datapath.vhf".
+Unit <M2_1_MXILINX_datapath> synthesized.
+
+
+Synthesizing Unit <Mux3_5bus_v2>.
+    Related source file is "G:/xilinx/projects/lab4/Mux3_5bus_v2.vhf".
+Unit <Mux3_5bus_v2> synthesized.
+
+
+Synthesizing Unit <Mask5>.
+    Related source file is "G:/xilinx/projects/lab4/Mask5.vhf".
+Unit <Mask5> synthesized.
+
+
+Synthesizing Unit <COMPM8_MXILINX_datapath>.
+    Related source file is "G:/xilinx/projects/lab4/datapath.vhf".
+Unit <COMPM8_MXILINX_datapath> synthesized.
+
+
+Synthesizing Unit <BRLSHFT8_MXILINX_datapath>.
+    Related source file is "G:/xilinx/projects/lab4/datapath.vhf".
+Unit <BRLSHFT8_MXILINX_datapath> synthesized.
+
+
+Synthesizing Unit <ADD8_MXILINX_datapath>.
+    Related source file is "G:/xilinx/projects/lab4/datapath.vhf".
+WARNING:Xst:653 - Signal <dummy> is used but never assigned. Tied to value 0.
+Unit <ADD8_MXILINX_datapath> synthesized.
+
+
+Synthesizing Unit <truthtbl>.
+    Related source file is "G:/xilinx/projects/lab4/truthtbl.vhd".
+    Found 1-bit 8-to-1 multiplexer for signal <ov_en>.
+    Found 1-bit 8-to-1 multiplexer for signal <R3_en>.
+    Found 1-bit 8-to-1 multiplexer for signal <clr>.
+    Found 1-bit 8-to-1 multiplexer for signal <R2_sel>.
+    Found 1-bit 8-to-1 multiplexer for signal <ge_en>.
+    Found 2-bit 8-to-1 multiplexer for signal <shf_of>.
+    Found 1-bit 8-to-1 multiplexer for signal <R2_en>.
+    Found 1-bit 8-to-1 multiplexer for signal <R1_en>.
+    Found 2-bit 8-to-1 multiplexer for signal <sel>.
+    Summary:
+	inferred  11 Multiplexer(s).
+Unit <truthtbl> synthesized.
+
+
+Synthesizing Unit <memory16x8>.
+    Related source file is "G:/xilinx/projects/lab4/memory16x8.vhf".
+Unit <memory16x8> synthesized.
+
+
+Synthesizing Unit <pcounter>.
+    Related source file is "G:/xilinx/projects/lab4/pcounter.vhf".
+Unit <pcounter> synthesized.
+
+
+Synthesizing Unit <regs>.
+    Related source file is "G:/xilinx/projects/lab4/regs.vhf".
+Unit <regs> synthesized.
+
+
+Synthesizing Unit <datapath>.
+    Related source file is "G:/xilinx/projects/lab4/datapath.vhf".
+WARNING:Xst:646 - Signal <S<7:5>> is assigned but never used.
+Unit <datapath> synthesized.
+
+
+Synthesizing Unit <machine>.
+    Related source file is "G:/xilinx/projects/lab4/machine.vhf".
+Unit <machine> synthesized.
+
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Advanced RAM inference ...
+Advanced multiplier inference ...
+Advanced Registered AddSub inference ...
+Dynamic shift register inference ...
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Multiplexers                     : 9
+ 1-bit 8-to-1 multiplexer          : 7
+ 2-bit 8-to-1 multiplexer          : 2
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <machine> ...
+
+Optimizing unit <datapath> ...
+
+Optimizing unit <FTCE_MXILINX_pcounter> ...
+
+Optimizing unit <ADD8_MXILINX_datapath> ...
+
+Optimizing unit <COMPM8_MXILINX_datapath> ...
+
+Optimizing unit <BRLSHFT8_MXILINX_datapath> ...
+
+Optimizing unit <M2_1_MXILINX_datapath> ...
+
+Optimizing unit <M2_1_MXILINX_Mux2_5bus> ...
+
+Optimizing unit <CB4CE_MXILINX_pcounter> ...
+Loading device for application Rf_Device from file '2v80.nph' in environment G:/xilinx/ise71.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block machine, actual ratio is 3.
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : machine.ngr
+Top Level Output File Name         : machine
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : NO
+
+Design Statistics
+# IOs                              : 32
+
+Macro Statistics :
+# Multiplexers                     : 9
+#      1-bit 8-to-1 multiplexer    : 7
+#      2-bit 8-to-1 multiplexer    : 2
+
+Cell Usage :
+# BELS                             : 224
+#      AND2                        : 48
+#      AND2b1                      : 47
+#      AND3                        : 3
+#      AND3b1                      : 8
+#      AND4                        : 3
+#      BUF                         : 10
+#      GND                         : 2
+#      INV                         : 1
+#      LUT2                        : 3
+#      LUT3                        : 6
+#      LUT4                        : 2
+#      MUXCY                       : 1
+#      MUXCY_D                     : 1
+#      MUXCY_L                     : 6
+#      OR2                         : 47
+#      OR4                         : 2
+#      ROM16X1                     : 8
+#      VCC                         : 1
+#      XNOR2                       : 4
+#      XOR2                        : 13
+#      XORCY                       : 8
+# FlipFlops/Latches                : 21
+#      FDCE                        : 4
+#      FDRE                        : 17
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 31
+#      IBUF                        : 2
+#      OBUF                        : 29
+# Logical                          : 3
+#      NOR2                        : 3
+# Others                           : 8
+#      FMAP                        : 8
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 2v80cs144-5 
+
+ Number of Slices:                      22  out of    512     4%  
+ Number of Slice Flip Flops:            21  out of   1024     2%  
+ Number of 4 input LUTs:                19  out of   1024     1%  
+ Number of bonded IOBs:                 32  out of     92    34%  
+ Number of GCLKs:                        1  out of     16     6%  
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+clk                                | BUFGP                  | 21    |
+-----------------------------------+------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -5
+
+   Minimum period: 13.151ns (Maximum Frequency: 76.040MHz)
+   Minimum input arrival time before clock: 1.596ns
+   Maximum output required time after clock: 6.692ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 13.151ns (frequency: 76.040MHz)
+  Total number of paths / destination ports: 1822 / 55
+-------------------------------------------------------------------------
+Delay:               13.151ns (Levels of Logic = 19)
+  Source:            XLXI_3/XLXI_1/I_Q0/I_36_35 (FF)
+  Destination:       XLXI_2/Reg3/XLXI_3 (FF)
+  Source Clock:      clk rising
+  Destination Clock: clk rising
+
+  Data Path: XLXI_3/XLXI_1/I_Q0/I_36_35 to XLXI_2/Reg3/XLXI_3
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDCE:C->Q            14   0.494   0.850  I_36_35 (Q)
+     end scope: 'I_Q0'
+     end scope: 'XLXI_3/XLXI_1'
+     ROM16X1:A0->O        10   0.642   0.951  XLXI_4/XLXI_14 (inst_5_OBUF)
+     LUT4:I1->O           16   0.382   0.870  shf_of<0>1 (shf_of<0>)
+     begin scope: 'XLXI_1/XLXI_3'
+     begin scope: 'I_M01'
+     AND2b1:I0->O          1   0.382   0.450  I_36_7 (M0)
+     OR2:I1->O             2   0.382   0.610  I_36_8 (O)
+     end scope: 'I_M01'
+     begin scope: 'I_MO0'
+     AND2b1:I1->O          1   0.382   0.450  I_36_7 (M0)
+     OR2:I1->O             2   0.382   0.610  I_36_8 (O)
+     end scope: 'I_MO0'
+     begin scope: 'I_O0'
+     AND2b1:I1->O          1   0.382   0.450  I_36_7 (M0)
+     OR2:I1->O             1   0.382   0.450  I_36_8 (O)
+     end scope: 'I_O0'
+     end scope: 'XLXI_1/XLXI_3'
+     begin scope: 'XLXI_1/XLXI_55/XLXI_1/XLXI_7'
+     AND2b1:I1->O          1   0.382   0.450  I_36_7 (M0)
+     OR2:I1->O             1   0.382   0.450  I_36_8 (O)
+     end scope: 'XLXI_1/XLXI_55/XLXI_1/XLXI_7'
+     begin scope: 'XLXI_1/XLXI_55/XLXI_2/XLXI_7'
+     AND2b1:I1->O          1   0.382   0.450  I_36_7 (M0)
+     OR2:I1->O             1   0.382   0.450  I_36_8 (O)
+     end scope: 'XLXI_1/XLXI_55/XLXI_2/XLXI_7'
+     FDRE:D                    0.322          XLXI_2/Reg3/XLXI_5
+    ----------------------------------------
+    Total                     13.151ns (5.660ns logic, 7.491ns route)
+                                       (43.0% logic, 57.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
+  Total number of paths / destination ports: 4 / 4
+-------------------------------------------------------------------------
+Offset:              1.596ns (Levels of Logic = 2)
+  Source:            clk_en (PAD)
+  Destination:       XLXI_3/XLXI_1/I_Q0/I_36_35 (FF)
+  Destination Clock: clk rising
+
+  Data Path: clk_en to XLXI_3/XLXI_1/I_Q0/I_36_35
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             5   0.718   0.670  clk_en_IBUF (clk_en_IBUF)
+     begin scope: 'XLXI_3/XLXI_1'
+     begin scope: 'I_Q0'
+     FDCE:CE                   0.208          I_36_35
+    ----------------------------------------
+    Total                      1.596ns (0.926ns logic, 0.670ns route)
+                                       (58.0% logic, 42.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
+  Total number of paths / destination ports: 53 / 29
+-------------------------------------------------------------------------
+Offset:              6.692ns (Levels of Logic = 3)
+  Source:            XLXI_3/XLXI_1/I_Q0/I_36_35 (FF)
+  Destination:       inst<7> (PAD)
+  Source Clock:      clk rising
+
+  Data Path: XLXI_3/XLXI_1/I_Q0/I_36_35 to inst<7>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDCE:C->Q            14   0.494   0.850  I_36_35 (Q)
+     end scope: 'I_Q0'
+     end scope: 'XLXI_3/XLXI_1'
+     ROM16X1:A0->O        12   0.642   0.810  XLXI_4/XLXI_1 (inst_7_OBUF)
+     OBUF:I->O                 3.896          inst_7_OBUF (inst<7>)
+    ----------------------------------------
+    Total                      6.692ns (5.032ns logic, 1.660ns route)
+                                       (75.2% logic, 24.8% route)
+
+=========================================================================
+CPU : 15.90 / 23.55 s | Elapsed : 16.00 / 22.00 s
+ 
+--> 
+
+Total memory usage is 98264 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    9 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+

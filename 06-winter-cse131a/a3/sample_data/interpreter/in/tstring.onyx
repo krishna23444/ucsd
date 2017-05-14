@@ -1,0 +1,3 @@
+let $a:= attrenv()
+let $e := tnode("Node",$a,"String")
+return string($e)

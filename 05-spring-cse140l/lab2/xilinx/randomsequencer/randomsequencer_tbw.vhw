@@ -1,0 +1,331 @@
+--------------------------------------------------------------------------------
+-- Copyright (c) 1995-2003 Xilinx, Inc.
+-- All Right Reserved.
+--------------------------------------------------------------------------------
+--   ____  ____ 
+--  /   /\/   / 
+-- /___/  \  /    Vendor: Xilinx 
+-- \   \   \/     Version : 7.1.01i
+--  \   \         Application : ISE WebPACK
+--  /   /         Filename : randomsequencer_tbw.vhw
+-- /___/   /\     Timestamp : Tue May 03 23:15:30 2005
+-- \   \  /  \ 
+--  \___\/\___\ 
+--
+--Command: 
+--Design Name: randomsequencer_tbw
+--Device: Xilinx
+--
+
+library UNISIM;
+use UNISIM.Vcomponents.ALL;
+library ieee;
+use ieee.std_logic_1164.ALL;
+use ieee.numeric_std.ALL;
+USE IEEE.STD_LOGIC_TEXTIO.ALL;
+USE STD.TEXTIO.ALL;
+
+ENTITY randomsequencer_tbw IS
+END randomsequencer_tbw;
+
+ARCHITECTURE testbench_arch OF randomsequencer_tbw IS
+    FILE RESULTS: TEXT OPEN WRITE_MODE IS "results.txt";
+
+    COMPONENT randomsequencer
+        PORT (
+            CLK : In std_logic;
+            CLK_CE : In std_logic;
+            PRE : In std_logic;
+            D : Out std_logic_vector (3 DownTo 0)
+        );
+    END COMPONENT;
+
+    SIGNAL CLK : std_logic := '0';
+    SIGNAL CLK_CE : std_logic := '1';
+    SIGNAL PRE : std_logic := '1';
+    SIGNAL D : std_logic_vector (3 DownTo 0) := "1111";
+
+    SHARED VARIABLE TX_ERROR : INTEGER := 0;
+    SHARED VARIABLE TX_OUT : LINE;
+
+    BEGIN
+        UUT : randomsequencer
+        PORT MAP (
+            CLK => CLK,
+            CLK_CE => CLK_CE,
+            PRE => PRE,
+            D => D
+        );
+
+        PROCESS
+            PROCEDURE CHECK_D(
+                next_D : std_logic_vector (3 DownTo 0);
+                TX_TIME : INTEGER
+            ) IS
+                VARIABLE TX_STR : String(1 to 4096);
+                VARIABLE TX_LOC : LINE;
+                BEGIN
+                IF (D /= next_D) THEN
+                    STD.TEXTIO.write(TX_LOC, string'("Error at time="));
+                    STD.TEXTIO.write(TX_LOC, TX_TIME);
+                    STD.TEXTIO.write(TX_LOC, string'("ns D="));
+                    IEEE.STD_LOGIC_TEXTIO.write(TX_LOC, D);
+                    STD.TEXTIO.write(TX_LOC, string'(", Expected = "));
+                    IEEE.STD_LOGIC_TEXTIO.write(TX_LOC, next_D);
+                    STD.TEXTIO.write(TX_LOC, string'(" "));
+                    TX_STR(TX_LOC.all'range) := TX_LOC.all;
+                    STD.TEXTIO.writeline(RESULTS, TX_LOC);
+                    STD.TEXTIO.Deallocate(TX_LOC);
+                    ASSERT (FALSE) REPORT TX_STR SEVERITY ERROR;
+                    TX_ERROR := TX_ERROR + 1;
+                END IF;
+            END;
+            BEGIN
+                -- -------------  Current Time:  60ns
+                WAIT FOR 60 ns;
+                CLK <= '0';
+                PRE <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  70ns
+                WAIT FOR 10 ns;
+                CHECK_D("1110", 70);
+                -- -------------------------------------
+                -- -------------  Current Time:  80ns
+                WAIT FOR 10 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  100ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  110ns
+                WAIT FOR 10 ns;
+                CHECK_D("1100", 110);
+                -- -------------------------------------
+                -- -------------  Current Time:  120ns
+                WAIT FOR 10 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  140ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  150ns
+                WAIT FOR 10 ns;
+                CHECK_D("1000", 150);
+                -- -------------------------------------
+                -- -------------  Current Time:  160ns
+                WAIT FOR 10 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  180ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  190ns
+                WAIT FOR 10 ns;
+                CHECK_D("0001", 190);
+                -- -------------------------------------
+                -- -------------  Current Time:  200ns
+                WAIT FOR 10 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  220ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  230ns
+                WAIT FOR 10 ns;
+                CHECK_D("0010", 230);
+                -- -------------------------------------
+                -- -------------  Current Time:  240ns
+                WAIT FOR 10 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  260ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  270ns
+                WAIT FOR 10 ns;
+                CHECK_D("0100", 270);
+                -- -------------------------------------
+                -- -------------  Current Time:  280ns
+                WAIT FOR 10 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  300ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  310ns
+                WAIT FOR 10 ns;
+                CHECK_D("1001", 310);
+                -- -------------------------------------
+                -- -------------  Current Time:  320ns
+                WAIT FOR 10 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  340ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  350ns
+                WAIT FOR 10 ns;
+                CHECK_D("0011", 350);
+                -- -------------------------------------
+                -- -------------  Current Time:  360ns
+                WAIT FOR 10 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  380ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  390ns
+                WAIT FOR 10 ns;
+                CHECK_D("0110", 390);
+                -- -------------------------------------
+                -- -------------  Current Time:  400ns
+                WAIT FOR 10 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  420ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  430ns
+                WAIT FOR 10 ns;
+                CHECK_D("1101", 430);
+                -- -------------------------------------
+                -- -------------  Current Time:  440ns
+                WAIT FOR 10 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  460ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  470ns
+                WAIT FOR 10 ns;
+                CHECK_D("1010", 470);
+                -- -------------------------------------
+                -- -------------  Current Time:  480ns
+                WAIT FOR 10 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  500ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  510ns
+                WAIT FOR 10 ns;
+                CHECK_D("0101", 510);
+                -- -------------------------------------
+                -- -------------  Current Time:  520ns
+                WAIT FOR 10 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  540ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  550ns
+                WAIT FOR 10 ns;
+                CHECK_D("1011", 550);
+                -- -------------------------------------
+                -- -------------  Current Time:  560ns
+                WAIT FOR 10 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  580ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  590ns
+                WAIT FOR 10 ns;
+                CHECK_D("0111", 590);
+                -- -------------------------------------
+                -- -------------  Current Time:  600ns
+                WAIT FOR 10 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  620ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  630ns
+                WAIT FOR 10 ns;
+                CHECK_D("1111", 630);
+                -- -------------------------------------
+                -- -------------  Current Time:  640ns
+                WAIT FOR 10 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  660ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  670ns
+                WAIT FOR 10 ns;
+                CHECK_D("1110", 670);
+                -- -------------------------------------
+                -- -------------  Current Time:  680ns
+                WAIT FOR 10 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  700ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  710ns
+                WAIT FOR 10 ns;
+                CHECK_D("1100", 710);
+                -- -------------------------------------
+                -- -------------  Current Time:  720ns
+                WAIT FOR 10 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  740ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  750ns
+                WAIT FOR 10 ns;
+                CHECK_D("1000", 750);
+                -- -------------------------------------
+                -- -------------  Current Time:  760ns
+                WAIT FOR 10 ns;
+                CLK <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  780ns
+                WAIT FOR 20 ns;
+                CLK <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  790ns
+                WAIT FOR 10 ns;
+                CHECK_D("0001", 790);
+                -- -------------------------------------
+                -- -------------  Current Time:  800ns
+                WAIT FOR 10 ns;
+                CLK <= '1';
+                WAIT FOR 200 ns;
+
+                IF (TX_ERROR = 0) THEN
+                    STD.TEXTIO.write(TX_OUT, string'("No errors or warnings"));
+                    STD.TEXTIO.writeline(RESULTS, TX_OUT);
+                    ASSERT (FALSE) REPORT
+                      "Simulation successful (not a failure).  No problems detected."
+                      SEVERITY FAILURE;
+                ELSE
+                    STD.TEXTIO.write(TX_OUT, TX_ERROR);
+                    STD.TEXTIO.write(TX_OUT,
+                        string'(" errors found in simulation"));
+                    STD.TEXTIO.writeline(RESULTS, TX_OUT);
+                    ASSERT (FALSE) REPORT "Errors found during simulation"
+                         SEVERITY FAILURE;
+                END IF;
+            END PROCESS;
+
+    END testbench_arch;
+

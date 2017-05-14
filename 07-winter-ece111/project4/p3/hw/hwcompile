@@ -1,0 +1,17 @@
+#!/bin/csh -f
+                                                                                                                                  
+#rm -rf work
+#vlib work
+#vmap work work
+
+rm -rf ../work
+vlib ../work
+vmap work ../work
+                                                                                                                                  
+
+vlog $CVE_HOME/vlog/arm946e_sr1.v
+vlog ./A946_mod.v
+vlog ./pxAhbMem.v
+vlog ./PxDecoder_AHB_1_1407810334_module.v
+vlog ./test3.v
+vlog ./pxdefault_tb.v 

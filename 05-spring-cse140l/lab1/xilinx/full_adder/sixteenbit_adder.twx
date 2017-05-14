@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE twReport [
+<!ELEMENT twReport (twHead, (twWarn | twDebug | twInfo)*, twBody, twSum?, twFoot, twClientInfo?)>
+<!ELEMENT twHead (twExecVer?, twCopyright, twCmdLine?, twDesign?, twPCF?, twDevInfo, twRptInfo, twEnvVar*)>
+<!ELEMENT twExecVer (#PCDATA)>
+<!ELEMENT twCopyright (#PCDATA)>
+<!ELEMENT twCmdLine (#PCDATA)>
+<!ELEMENT twDesign (#PCDATA)>
+<!ELEMENT twPCF (#PCDATA)>
+<!ELEMENT twDevInfo (twDevName, twSpeedGrade, twSpeedVer?)>
+<!ELEMENT twDevName (#PCDATA)>
+<!ATTLIST twDevInfo arch CDATA #IMPLIED>
+<!ELEMENT twSpeedGrade (#PCDATA)>
+<!ELEMENT twSpeedVer (#PCDATA)>
+<!ELEMENT twRptInfo (twItemLimit?, (twUnconst, twUnconstLimit?)?)>
+<!ATTLIST twRptInfo twRptLvl (twErr | twVerbose | twTerseErr | twSum | twTimeGrp) #REQUIRED>
+<!ATTLIST twRptInfo twAdvRpt  (TRUE | FALSE) "FALSE">
+<!ATTLIST twRptInfo twTimeUnits (twPsec | twNsec | twUsec | twMsec | twSec) "twNsec">
+<!ATTLIST twRptInfo twFreqUnits (twGHz | twMHz | twHz) "twMHz">
+<!ELEMENT twItemLimit (#PCDATA)>
+<!ELEMENT twUnconst EMPTY>
+<!ELEMENT twUnconstLimit (#PCDATA)>
+<!ELEMENT twEnvVar EMPTY>
+<!ATTLIST twEnvVar name CDATA #REQUIRED>
+<!ATTLIST twEnvVar description CDATA #REQUIRED>
+<!ELEMENT twWarn (#PCDATA)>
+<!ELEMENT twInfo (#PCDATA)>
+<!ELEMENT twDebug (#PCDATA)>
+<!ELEMENT twBody (twDerating?, (twSumRpt | twVerboseRpt | twErrRpt | twTerseErrRpt | twTimeGrpRpt), twNonDedClks?)>
+<!ATTLIST twBody twFastPaths CDATA #IMPLIED>
+<!ELEMENT twDerating (twProc?, twTemp?, twVolt?)>
+<!ELEMENT twProc (#PCDATA)>
+<!ELEMENT twTemp (#PCDATA)>
+<!ELEMENT twVolt (#PCDATA)>
+<!ELEMENT twSumRpt (twConstList?, twUnmetConstCnt?, twDebug*, twDataSheet?, twClkTbl?)>
+<!ELEMENT twErrRpt (twCycles?, (twConst | twTIG)*, twUnmetConstCnt?, twDataSheet?, twClkTbl?, twTimeGrp*)>
+<!ELEMENT twTerseErrRpt (twConstList, twUnmetConstCnt?, twDataSheet?, twClkTbl?)>
+<!ELEMENT twVerboseRpt (twCycles?, (twConst | twTIG)*, twUnmetConstCnt?, twDataSheet?, twClkTbl?, twTimeGrp*)>
+<!ELEMENT twCycles (twSigConn+)>
+<!ATTLIST twCycles twNum CDATA #REQUIRED>
+<!ELEMENT twSigConn (twSig, twDriver, twLoad)>
+<!ELEMENT twSig (#PCDATA)>
+<!ELEMENT twDriver (#PCDATA)>
+<!ELEMENT twLoad (#PCDATA)> 
+<!ELEMENT twConst (twConstHead, ((twPathRpt*, twPathRptBanner, twPathRpt*) |  (twPathRpt*, twRacePathRpt?) |  (twNetRpt*)))>
+<!ATTLIST twConst twConstType (twPathConst | twNetConst) "twPathConst">
+<!ELEMENT twConstHead (twConstName, twItemCnt, twErrCntSetup, twErrCntHold, twMinPer?, twMaxDel?, twMaxFreq?, twMaxNetDel?, twMaxNetSkew?, twMinOff?, twMaxOff?)>
+<!ELEMENT twConstName (#PCDATA)>
+<!ELEMENT twItemCnt (#PCDATA)>
+<!ELEMENT twErrCnt (#PCDATA)>
+<!ELEMENT twErrCntSetup (#PCDATA)>
+<!ELEMENT twErrCntHold (#PCDATA)>
+<!ATTLIST twErrCntHold twRaceChecked (TRUE | FALSE) "FALSE">
+<!ELEMENT twMinPer (#PCDATA) >
+<!ELEMENT twFootnote EMPTY>
+<!ATTLIST twFootnote number CDATA #REQUIRED>
+<!ELEMENT twMaxDel (#PCDATA)>
+<!ELEMENT twMaxFreq (#PCDATA)>
+<!ELEMENT twMinOff (#PCDATA)>
+<!ELEMENT twMaxOff (#PCDATA)>
+<!ELEMENT twTIG (twTIGHead, (twPathRpt*,twRacePathRpt?))>
+<!ELEMENT twTIGHead (twTIGName, twInstantiated, twBlocked)>
+<!ELEMENT twTIGName (#PCDATA)>
+<!ELEMENT twInstantiated (#PCDATA)>
+<!ELEMENT twBlocked (#PCDATA)>
+<!ELEMENT twRacePathRpt (twRacePath+)>
+<!ELEMENT twPathRpt (twUnconstPath | twConstPath | twUnconstOffIn | twConstOffIn | twUnconstOffOut | twConstOffOut | twModOffOut)>
+<!ELEMENT twUnconstPath (twTotDel, twSrc, twDest,  (twDel, twSUTime)?, twTotPathDel?, twClkSkew?, tw2Phase?, twClkUncert?, twDetPath?)>
+<!ELEMENT twTotDel (#PCDATA)>
+<!ELEMENT twSrc (#PCDATA)>
+<!ATTLIST twSrc BELType CDATA #IMPLIED>
+<!ELEMENT twDest (#PCDATA)>
+<!ATTLIST twDest BELType CDATA #IMPLIED>
+<!ELEMENT twDel (#PCDATA)>
+<!ELEMENT twSUTime (#PCDATA)>
+<!ELEMENT twTotPathDel (#PCDATA)>
+<!ELEMENT twClkSkew (#PCDATA)>
+<!ELEMENT twClkSkew (#PCDATA)>
+<!ELEMENT twConstPath (twSlack, twSrc, twDest, twTotPathDel?, twClkSkew?, twDelConst, tw2Phase?, twClkUncert?, twDetPath?)>
+<!ATTLIST twConstPath twDataPathType CDATA "twDataPathMaxDelay">
+<!ATTLIST twConstPath constType (period | fromto | unknown) "unknown">
+<!ELEMENT twSlack (#PCDATA)>
+<!ELEMENT twDelConst (#PCDATA)>
+<!ELEMENT tw2Phase EMPTY>
+<!ELEMENT twRacePath (twSlack, twSrc, twDest, twClkSkew, twDelConst?, twClkUncert?, twDetPath)>
+<!ELEMENT twPathRptBanner (#PCDATA)>
+<!ELEMENT twUnconstOffIn (twOff, twSrc, twDest, twGuaranteed?, twClkUncert?, (twDataPath, twClkPath)?)>
+<!ELEMENT twOff (#PCDATA)>
+<!ELEMENT twGuaranteed EMPTY>
+<!ELEMENT twConstOffIn (twSlack, twSrc, twDest, ((twClkDel, twClkSrc, twClkDest) | twGuarInSetup), twOff, twOffSrc, twOffDest, twClkUncert?, (twDataPath, twClkPath)?)>
+<!ATTLIST twConstOffIn twDataPathType CDATA "twDataPathMaxDelay">
+<!ATTLIST twConstOffIn twDurationNotSpecified CDATA #IMPLIED>
+<!ELEMENT twClkDel (#PCDATA)>
+<!ELEMENT twClkSrc (#PCDATA)>
+<!ELEMENT twClkDest (#PCDATA)>
+<!ELEMENT twGuarInSetup (#PCDATA)>
+<!ELEMENT twOffSrc (#PCDATA)>
+<!ELEMENT twOffDest (#PCDATA)>
+<!ELEMENT twUnconstOffOut (twOff, twSrc, twDest, twClkUncert?, (twClkPath, twDataPath)?)>
+<!ELEMENT twConstOffOut (twSlack, twSrc, twDest, twClkDel, twClkSrc, twClkDest, twDataDel, twDataSrc, twDataDest, twOff, twOffSrc, twOffDest, twClkUncert?, (twClkPath, twDataPath)?)>
+<!ATTLIST twConstOffOut twDataPathType CDATA "twDataPathMaxDelay">
+<!ELEMENT twDataDel (#PCDATA)>
+<!ELEMENT twDataSrc (#PCDATA)>
+<!ELEMENT twDataDest (#PCDATA)>
+<!ELEMENT twModOffOut (twSlack, twDest, twDataDel, twDataSrc, twDataDest, twClkUncert?, twDataPath?)>
+<!ELEMENT twDetPath (twSrc, twDest, twLogLvls, twSrcSite, twSrcClk?, twPathDel*, (twLogDel, twRouteDel, twTotDel)?, twDestClk?, (twPctLog, twPctRoute)?)>
+<!ATTLIST twDetPath maxSiteLen CDATA #IMPLIED>
+<!ELEMENT twDataPath (twSrc, twDest, twLogLvls, twSrcSite, twSrcClk?, twPathDel*, (twLogDel, twRouteDel, twTotDel)?, twDestClk?, (twPctLog, twPctRoute)?)>
+<!ATTLIST twDataPath maxSiteLen CDATA #IMPLIED>
+<!ELEMENT twClkPath (twSrc, twDest, twLogLvls, twSrcSite, twSrcClk?, twPathDel*, (twLogDel, twRouteDel, twTotDel)?, twDestClk?, (twPctLog, twPctRoute)?)>
+<!ATTLIST twClkPath maxSiteLen CDATA #IMPLIED>
+<!ELEMENT twLogLvls (#PCDATA)>
+<!ELEMENT twSrcSite (#PCDATA)>
+<!ELEMENT twSrcClk (#PCDATA)>
+<!ATTLIST twSrcClk twEdge (twRising | twFalling) "twRising">
+<!ATTLIST twSrcClk twArriveTime CDATA #IMPLIED>
+<!ATTLIST twSrcClk twClkRes CDATA #IMPLIED>
+<!ELEMENT twPathDel (twSite, twDelType, twFanCnt?, twDelInfo?, twComp, twNet?, twBEL*)>
+<!ATTLIST twPathDel twHoldTime (TRUE | FALSE) "FALSE">
+<!ELEMENT twDelInfo (#PCDATA)>
+<!ATTLIST twDelInfo twEdge (twRising | twFalling | twIndet) #REQUIRED>
+<!ATTLIST twDelInfo twAcc (twRouted | twEst | twApprox) "twRouted">
+<!ELEMENT twSite (#PCDATA)>
+<!ELEMENT twDelType (#PCDATA)>
+<!ELEMENT twFanCnt (#PCDATA)>
+<!ELEMENT twComp (#PCDATA)>
+<!ELEMENT twNet (#PCDATA)>
+<!ELEMENT twBEL (#PCDATA)>
+<!ELEMENT twLogDel (#PCDATA)>
+<!ELEMENT twRouteDel (#PCDATA)>
+<!ELEMENT twDestClk (#PCDATA)>
+<!ATTLIST twDestClk twEdge (twRising | twFalling) "twRising">
+<!ATTLIST twDestClk twArriveTime CDATA #IMPLIED>
+<!ATTLIST twDestClk twClkRes CDATA #IMPLIED>
+<!ELEMENT twPctLog (#PCDATA)>
+<!ELEMENT twPctRoute (#PCDATA)>
+<!ELEMENT twNetRpt (twDelNet | twSlackNet | twSkewNet)>
+<!ELEMENT twDelNet (twDel, twNet, twDetNet?)>
+<!ELEMENT twSlackNet (twSlack, twNet, twDel, twNotMet?, twTimeConst, twAbsSlack, twDetNet?)>
+<!ELEMENT twTimeConst (#PCDATA)>
+<!ELEMENT twAbsSlack (#PCDATA)>
+<!ELEMENT twSkewNet (twSlack, twNet, twSkew, twNotMet?, twTimeConst, twAbsSlack, twDetSkewNet?)>
+<!ELEMENT twSkew (#PCDATA)>
+<!ELEMENT twDetNet (twNetDel*)>
+<!ELEMENT twNetDel (twSrc, twDest, twNetDelInfo)>
+<!ELEMENT twNetDelInfo (#PCDATA)>
+<!ATTLIST twNetDelInfo twAcc (twRouted | twEst | twApprox) "twRouted">
+<!ELEMENT twDetSkewNet (twNetSkew*)>
+<!ELEMENT twNetSkew (twSrc, twDest, twNetDelInfo, twSkew)>
+<!ELEMENT twConstList (twConstListItem)*>
+<!ELEMENT twConstListItem (twConstName, twNotMet?, twReqVal?, twActVal?, twLogLvls?)> 
+<!ATTLIST twConstListItem twUnits (twTime | twFreq) "twTime">
+<!ELEMENT twNotMet EMPTY>
+<!ELEMENT twReqVal (#PCDATA)>
+<!ELEMENT twActVal (#PCDATA)>
+<!ELEMENT twTimeGrp (twTimeGrpName, twCompList?, twBELList?, twMacList?, twBlockList?, twSigList?, twPinList?)>
+<!ELEMENT twTimeGrpName (#PCDATA)>
+<!ELEMENT twCompList (twCompName+)>
+<!ELEMENT twCompName (#PCDATA)>
+<!ELEMENT twSigList (twSigName+)>
+<!ELEMENT twSigName (#PCDATA)>
+<!ELEMENT twBELList (twBELName+)>
+<!ELEMENT twBELName (#PCDATA)>
+<!ELEMENT twBlockList (twBlockName+)>
+<!ELEMENT twBlockName (#PCDATA)>
+<!ELEMENT twMacList (twMacName+)>
+<!ELEMENT twMacName (#PCDATA)>
+<!ELEMENT twPinList (twPinName+)>
+<!ELEMENT twPinName (#PCDATA)>
+<!ELEMENT twUnmetConstCnt (#PCDATA)>
+<!ELEMENT twDataSheet (twSUH2ClkList*, (twClk2PadList|twClk2OutList)*, twClk2SUList*, twPad2PadList?)>
+<!ATTLIST twDataSheet twNameLen CDATA #REQUIRED>
+<!ELEMENT twSUH2ClkList (twDest, twSUH2Clk+)>
+<!ATTLIST twSUH2ClkList twDestWidth CDATA #IMPLIED>
+<!ATTLIST twSUH2ClkList twPhaseWidth CDATA #IMPLIED>
+<!ELEMENT twSUH2Clk (twSrc, twSUHTime, twSUHTime?)>
+<!ELEMENT twSUHTime (twSU2ClkTime?,twH2ClkTime?)>
+<!ATTLIST twSUHTime twInternalClk CDATA #IMPLIED>
+<!ATTLIST twSUHTime twClkPhase CDATA #IMPLIED>
+<!ELEMENT twSU2ClkTime (#PCDATA)>
+<!ATTLIST twSU2ClkTime twEdge (twRising | twFalling | twIndet) #REQUIRED>
+<!ELEMENT twH2ClkTime (#PCDATA)>
+<!ATTLIST twH2ClkTime twEdge (twRising | twFalling | twIndet) #REQUIRED>
+<!ELEMENT twClk2PadList (twSrc, twClk2Pad+)>
+<!ELEMENT twClk2Pad (twDest, twTime)>
+<!ELEMENT twTime (#PCDATA)>
+<!ATTLIST twTime twEdge (twRising | twFalling | twIndet) #REQUIRED>
+<!ELEMENT twClk2OutList (twSrc, twClk2Out+)>
+<!ATTLIST twClk2OutList twDestWidth CDATA #REQUIRED>
+<!ATTLIST twClk2OutList twPhaseWidth CDATA #REQUIRED>
+<!ELEMENT twClk2Out EMPTY>
+<!ATTLIST twClk2Out twOutPad CDATA #REQUIRED>
+<!ATTLIST twClk2Out twMinTime CDATA #REQUIRED>
+<!ATTLIST twClk2Out twMinEdge CDATA #REQUIRED>
+<!ATTLIST twClk2Out twMaxTime CDATA #REQUIRED>
+<!ATTLIST twClk2Out twMaxEdge CDATA #REQUIRED>
+<!ATTLIST twClk2Out twInternalClk CDATA #REQUIRED>
+<!ATTLIST twClk2Out twClkPhase CDATA #REQUIRED>
+<!ELEMENT twClk2SUList (twDest, twClk2SU+)>
+<!ATTLIST twClk2SUList twDestWidth CDATA #IMPLIED>
+<!ELEMENT twClk2SU (twSrc, twRiseRise?, twFallRise?, twRiseFall?, twFallFall?)>
+<!ELEMENT twRiseRise (#PCDATA)>
+<!ELEMENT twFallRise (#PCDATA)>
+<!ELEMENT twRiseFall (#PCDATA)>
+<!ELEMENT twFallFall (#PCDATA)>
+<!ELEMENT twPad2PadList (twPad2Pad+)>
+<!ATTLIST twPad2PadList twSrcWidth CDATA #IMPLIED>
+<!ATTLIST twPad2PadList twDestWidth CDATA #IMPLIED>
+<!ELEMENT twPad2Pad (twSrc, twDest, twDel)>
+<!ELEMENT twNonDedClks ((twWarn | twInfo), twNonDedClk+)>
+<!ELEMENT twNonDedClk (#PCDATA)>
+<!ELEMENT twSum ( twErrCnt, twScore, twConstCov, twStats)>
+<!ELEMENT twScore (#PCDATA)>
+<!ELEMENT twConstCov (twPathCnt, twNetCnt, twConnCnt, twPct?)>
+<!ELEMENT twPathCnt (#PCDATA)>
+<!ELEMENT twNetCnt (#PCDATA)>
+<!ELEMENT twConnCnt (#PCDATA)>
+<!ELEMENT twPct (#PCDATA)>
+<!ELEMENT twStats ( twMinPer?, twFootnote?, twMaxFreq?, twMaxCombDel?, twMaxFromToDel?, twMaxNetDel?, twMaxNetSkew?, twMaxInAfterClk?, twMinInBeforeClk?, twMaxOutBeforeClk?, twMinOutAfterClk?, (twInfo | twWarn)*)>
+<!ELEMENT twMaxCombDel (#PCDATA)>
+<!ELEMENT twMaxFromToDel (#PCDATA)>
+<!ELEMENT twMaxNetDel (#PCDATA)>
+<!ELEMENT twMaxNetSkew (#PCDATA)>
+<!ELEMENT twMaxInAfterClk (#PCDATA)>
+<!ELEMENT twMinInBeforeClk (#PCDATA)>
+<!ELEMENT twMaxOutBeforeClk (#PCDATA)>
+<!ELEMENT twMinOutAfterClk (#PCDATA)>
+<!ELEMENT twFoot (twFootnoteExplanation*, twTimestamp)>
+<!ELEMENT twTimestamp (#PCDATA)>
+<!ELEMENT twFootnoteExplanation EMPTY>
+<!ATTLIST twFootnoteExplanation number CDATA #REQUIRED>
+<!ATTLIST twFootnoteExplanation text CDATA #REQUIRED>
+<!ELEMENT twClientInfo (twClientName, twAttrList?)>
+<!ELEMENT twClientName (#PCDATA)>
+<!ELEMENT twAttrList (twAttrListItem)*>
+<!ELEMENT twAttrListItem (twName, twValue*)>
+<!ELEMENT twName (#PCDATA)>
+<!ELEMENT twValue (#PCDATA)>
+]>
+<twReport><twHead><twExecVer>Release 7.1.01i Trace H.39</twExecVer><twCopyright>Copyright (c) 1995-2005 Xilinx, Inc.  All rights reserved.</twCopyright><twCmdLine>G:/xilinx/ise71/bin/nt/trce.exe -ise
+g:\xilinx\projects\lab1\full_adder\Full_Adder.ise -intstyle ise -e 3 -l 3 -s 5
+-xml sixteenbit_adder sixteenbit_adder.ncd -o sixteenbit_adder.twr
+sixteenbit_adder.pcf
+
+</twCmdLine><twDesign>sixteenbit_adder.ncd</twDesign><twPCF>sixteenbit_adder.pcf</twPCF><twDevInfo arch="virtex2"><twDevName>xc2v80</twDevName><twSpeedGrade>-5</twSpeedGrade><twSpeedVer>PRODUCTION 1.121 2005-02-23, STEPPING level 1</twSpeedVer></twDevInfo><twRptInfo twRptLvl="twErr"></twRptInfo><twEnvVar name="NONE" description="No environment variables were set" /></twHead><twInfo>INFO:Timing:2698 - No timing constraints found, doing default enumeration.</twInfo><twInfo>INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths option. All paths that are not constrained will be reported in the unconstrained paths section(s) of the report.</twInfo><twBody><twErrRpt><twDataSheet twNameLen="15"><twPad2PadList twSrcWidth = "5" twDestWidth = "5"><twPad2Pad><twSrc>A&lt;0&gt;</twSrc><twDest>Co</twDest><twDel>18.227</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;0&gt;</twSrc><twDest>S&lt;0&gt;</twDest><twDel>6.194</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;0&gt;</twSrc><twDest>S&lt;10&gt;</twDest><twDel>14.169</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;0&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>14.854</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;0&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>15.010</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;0&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>17.503</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;0&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>17.719</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;0&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>18.281</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;0&gt;</twSrc><twDest>S&lt;1&gt;</twDest><twDel>6.395</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;0&gt;</twSrc><twDest>S&lt;2&gt;</twDest><twDel>6.884</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;0&gt;</twSrc><twDest>S&lt;3&gt;</twDest><twDel>7.328</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;0&gt;</twSrc><twDest>S&lt;4&gt;</twDest><twDel>8.588</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;0&gt;</twSrc><twDest>S&lt;5&gt;</twDest><twDel>9.621</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;0&gt;</twSrc><twDest>S&lt;6&gt;</twDest><twDel>10.248</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;0&gt;</twSrc><twDest>S&lt;7&gt;</twDest><twDel>12.104</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;0&gt;</twSrc><twDest>S&lt;8&gt;</twDest><twDel>11.630</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;0&gt;</twSrc><twDest>S&lt;9&gt;</twDest><twDel>12.227</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;10&gt;</twSrc><twDest>Co</twDest><twDel>9.679</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;10&gt;</twSrc><twDest>S&lt;10&gt;</twDest><twDel>7.112</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;10&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>6.218</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;10&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>6.462</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;10&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>8.955</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;10&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>9.171</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;10&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>9.733</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;11&gt;</twSrc><twDest>Co</twDest><twDel>8.844</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;11&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>7.081</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;11&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>5.688</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;11&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>8.120</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;11&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>8.336</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;11&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>8.898</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;12&gt;</twSrc><twDest>Co</twDest><twDel>7.689</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;12&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>8.076</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;12&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>7.707</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;12&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>7.181</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;12&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>7.743</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;13&gt;</twSrc><twDest>Co</twDest><twDel>7.183</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;13&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>7.518</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;13&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>6.373</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;13&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>7.237</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;14&gt;</twSrc><twDest>Co</twDest><twDel>6.265</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;14&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>6.691</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;14&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>6.245</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;15&gt;</twSrc><twDest>Co</twDest><twDel>6.063</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;15&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>6.733</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;1&gt;</twSrc><twDest>Co</twDest><twDel>17.887</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;1&gt;</twSrc><twDest>S&lt;10&gt;</twDest><twDel>13.829</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;1&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>14.514</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;1&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>14.670</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;1&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>17.163</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;1&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>17.379</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;1&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>17.941</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;1&gt;</twSrc><twDest>S&lt;1&gt;</twDest><twDel>6.788</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;1&gt;</twSrc><twDest>S&lt;2&gt;</twDest><twDel>6.129</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;1&gt;</twSrc><twDest>S&lt;3&gt;</twDest><twDel>6.988</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;1&gt;</twSrc><twDest>S&lt;4&gt;</twDest><twDel>8.248</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;1&gt;</twSrc><twDest>S&lt;5&gt;</twDest><twDel>9.281</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;1&gt;</twSrc><twDest>S&lt;6&gt;</twDest><twDel>9.908</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;1&gt;</twSrc><twDest>S&lt;7&gt;</twDest><twDel>11.764</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;1&gt;</twSrc><twDest>S&lt;8&gt;</twDest><twDel>11.290</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;1&gt;</twSrc><twDest>S&lt;9&gt;</twDest><twDel>11.887</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;2&gt;</twSrc><twDest>Co</twDest><twDel>16.684</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;2&gt;</twSrc><twDest>S&lt;10&gt;</twDest><twDel>12.626</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;2&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>13.311</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;2&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>13.467</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;2&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>15.960</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;2&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>16.176</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;2&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>16.738</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;2&gt;</twSrc><twDest>S&lt;2&gt;</twDest><twDel>7.061</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;2&gt;</twSrc><twDest>S&lt;3&gt;</twDest><twDel>5.845</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;2&gt;</twSrc><twDest>S&lt;4&gt;</twDest><twDel>7.045</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;2&gt;</twSrc><twDest>S&lt;5&gt;</twDest><twDel>8.078</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;2&gt;</twSrc><twDest>S&lt;6&gt;</twDest><twDel>8.705</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;2&gt;</twSrc><twDest>S&lt;7&gt;</twDest><twDel>10.561</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;2&gt;</twSrc><twDest>S&lt;8&gt;</twDest><twDel>10.087</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;2&gt;</twSrc><twDest>S&lt;9&gt;</twDest><twDel>10.684</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;3&gt;</twSrc><twDest>Co</twDest><twDel>16.644</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;3&gt;</twSrc><twDest>S&lt;10&gt;</twDest><twDel>12.586</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;3&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>13.271</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;3&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>13.427</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;3&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>15.920</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;3&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>16.136</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;3&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>16.698</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;3&gt;</twSrc><twDest>S&lt;3&gt;</twDest><twDel>6.829</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;3&gt;</twSrc><twDest>S&lt;4&gt;</twDest><twDel>6.584</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;3&gt;</twSrc><twDest>S&lt;5&gt;</twDest><twDel>8.038</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;3&gt;</twSrc><twDest>S&lt;6&gt;</twDest><twDel>8.665</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;3&gt;</twSrc><twDest>S&lt;7&gt;</twDest><twDel>10.521</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;3&gt;</twSrc><twDest>S&lt;8&gt;</twDest><twDel>10.047</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;3&gt;</twSrc><twDest>S&lt;9&gt;</twDest><twDel>10.644</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;4&gt;</twSrc><twDest>Co</twDest><twDel>15.037</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;4&gt;</twSrc><twDest>S&lt;10&gt;</twDest><twDel>10.979</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;4&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>11.664</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;4&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>11.820</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;4&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>14.313</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;4&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>14.529</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;4&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>15.091</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;4&gt;</twSrc><twDest>S&lt;4&gt;</twDest><twDel>7.410</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;4&gt;</twSrc><twDest>S&lt;5&gt;</twDest><twDel>5.709</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;4&gt;</twSrc><twDest>S&lt;6&gt;</twDest><twDel>7.058</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;4&gt;</twSrc><twDest>S&lt;7&gt;</twDest><twDel>8.914</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;4&gt;</twSrc><twDest>S&lt;8&gt;</twDest><twDel>8.440</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;4&gt;</twSrc><twDest>S&lt;9&gt;</twDest><twDel>9.037</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;5&gt;</twSrc><twDest>Co</twDest><twDel>13.974</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;5&gt;</twSrc><twDest>S&lt;10&gt;</twDest><twDel>9.916</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;5&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>10.601</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;5&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>10.757</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;5&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>13.250</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;5&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>13.466</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;5&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>14.028</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;5&gt;</twSrc><twDest>S&lt;5&gt;</twDest><twDel>6.275</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;5&gt;</twSrc><twDest>S&lt;6&gt;</twDest><twDel>5.995</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;5&gt;</twSrc><twDest>S&lt;7&gt;</twDest><twDel>7.851</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;5&gt;</twSrc><twDest>S&lt;8&gt;</twDest><twDel>7.377</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;5&gt;</twSrc><twDest>S&lt;9&gt;</twDest><twDel>7.974</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;6&gt;</twSrc><twDest>Co</twDest><twDel>12.792</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;6&gt;</twSrc><twDest>S&lt;10&gt;</twDest><twDel>8.734</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;6&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>9.419</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;6&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>9.575</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;6&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>12.068</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;6&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>12.284</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;6&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>12.846</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;6&gt;</twSrc><twDest>S&lt;6&gt;</twDest><twDel>7.323</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;6&gt;</twSrc><twDest>S&lt;7&gt;</twDest><twDel>6.609</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;6&gt;</twSrc><twDest>S&lt;8&gt;</twDest><twDel>6.195</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;6&gt;</twSrc><twDest>S&lt;9&gt;</twDest><twDel>6.792</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;7&gt;</twSrc><twDest>Co</twDest><twDel>12.592</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;7&gt;</twSrc><twDest>S&lt;10&gt;</twDest><twDel>8.534</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;7&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>9.219</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;7&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>9.375</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;7&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>11.868</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;7&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>12.084</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;7&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>12.646</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;7&gt;</twSrc><twDest>S&lt;7&gt;</twDest><twDel>7.118</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;7&gt;</twSrc><twDest>S&lt;8&gt;</twDest><twDel>5.688</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;7&gt;</twSrc><twDest>S&lt;9&gt;</twDest><twDel>6.592</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;8&gt;</twSrc><twDest>Co</twDest><twDel>11.816</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;8&gt;</twSrc><twDest>S&lt;10&gt;</twDest><twDel>7.758</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;8&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>8.443</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;8&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>8.599</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;8&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>11.092</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;8&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>11.308</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;8&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>11.870</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;8&gt;</twSrc><twDest>S&lt;8&gt;</twDest><twDel>7.011</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;8&gt;</twSrc><twDest>S&lt;9&gt;</twDest><twDel>5.861</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;9&gt;</twSrc><twDest>Co</twDest><twDel>10.854</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;9&gt;</twSrc><twDest>S&lt;10&gt;</twDest><twDel>6.494</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;9&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>7.481</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;9&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>7.637</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;9&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>10.130</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;9&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>10.346</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;9&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>10.908</twDel></twPad2Pad><twPad2Pad><twSrc>A&lt;9&gt;</twSrc><twDest>S&lt;9&gt;</twDest><twDel>7.564</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;0&gt;</twSrc><twDest>Co</twDest><twDel>18.112</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;0&gt;</twSrc><twDest>S&lt;0&gt;</twDest><twDel>6.097</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;0&gt;</twSrc><twDest>S&lt;10&gt;</twDest><twDel>14.054</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;0&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>14.739</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;0&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>14.895</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;0&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>17.388</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;0&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>17.604</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;0&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>18.166</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;0&gt;</twSrc><twDest>S&lt;1&gt;</twDest><twDel>5.976</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;0&gt;</twSrc><twDest>S&lt;2&gt;</twDest><twDel>6.769</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;0&gt;</twSrc><twDest>S&lt;3&gt;</twDest><twDel>7.213</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;0&gt;</twSrc><twDest>S&lt;4&gt;</twDest><twDel>8.473</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;0&gt;</twSrc><twDest>S&lt;5&gt;</twDest><twDel>9.506</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;0&gt;</twSrc><twDest>S&lt;6&gt;</twDest><twDel>10.133</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;0&gt;</twSrc><twDest>S&lt;7&gt;</twDest><twDel>11.989</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;0&gt;</twSrc><twDest>S&lt;8&gt;</twDest><twDel>11.515</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;0&gt;</twSrc><twDest>S&lt;9&gt;</twDest><twDel>12.112</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;10&gt;</twSrc><twDest>Co</twDest><twDel>9.525</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;10&gt;</twSrc><twDest>S&lt;10&gt;</twDest><twDel>7.051</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;10&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>6.218</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;10&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>6.308</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;10&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>8.801</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;10&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>9.017</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;10&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>9.579</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;11&gt;</twSrc><twDest>Co</twDest><twDel>9.059</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;11&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>7.296</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;11&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>5.901</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;11&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>8.335</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;11&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>8.551</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;11&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>9.113</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;12&gt;</twSrc><twDest>Co</twDest><twDel>7.772</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;12&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>8.498</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;12&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>6.945</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;12&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>7.264</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;12&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>7.826</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;13&gt;</twSrc><twDest>Co</twDest><twDel>7.164</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;13&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>7.924</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;13&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>6.720</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;13&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>7.218</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;14&gt;</twSrc><twDest>Co</twDest><twDel>6.305</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;14&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>7.037</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;14&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>6.356</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;15&gt;</twSrc><twDest>Co</twDest><twDel>5.877</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;15&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>6.547</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;1&gt;</twSrc><twDest>Co</twDest><twDel>18.290</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;1&gt;</twSrc><twDest>S&lt;10&gt;</twDest><twDel>14.232</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;1&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>14.917</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;1&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>15.073</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;1&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>17.566</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;1&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>17.782</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;1&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>18.344</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;1&gt;</twSrc><twDest>S&lt;1&gt;</twDest><twDel>6.884</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;1&gt;</twSrc><twDest>S&lt;2&gt;</twDest><twDel>6.370</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;1&gt;</twSrc><twDest>S&lt;3&gt;</twDest><twDel>7.391</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;1&gt;</twSrc><twDest>S&lt;4&gt;</twDest><twDel>8.651</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;1&gt;</twSrc><twDest>S&lt;5&gt;</twDest><twDel>9.684</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;1&gt;</twSrc><twDest>S&lt;6&gt;</twDest><twDel>10.311</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;1&gt;</twSrc><twDest>S&lt;7&gt;</twDest><twDel>12.167</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;1&gt;</twSrc><twDest>S&lt;8&gt;</twDest><twDel>11.693</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;1&gt;</twSrc><twDest>S&lt;9&gt;</twDest><twDel>12.290</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;2&gt;</twSrc><twDest>Co</twDest><twDel>16.634</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;2&gt;</twSrc><twDest>S&lt;10&gt;</twDest><twDel>12.576</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;2&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>13.261</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;2&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>13.417</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;2&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>15.910</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;2&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>16.126</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;2&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>16.688</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;2&gt;</twSrc><twDest>S&lt;2&gt;</twDest><twDel>7.318</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;2&gt;</twSrc><twDest>S&lt;3&gt;</twDest><twDel>6.161</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;2&gt;</twSrc><twDest>S&lt;4&gt;</twDest><twDel>6.995</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;2&gt;</twSrc><twDest>S&lt;5&gt;</twDest><twDel>8.028</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;2&gt;</twSrc><twDest>S&lt;6&gt;</twDest><twDel>8.655</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;2&gt;</twSrc><twDest>S&lt;7&gt;</twDest><twDel>10.511</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;2&gt;</twSrc><twDest>S&lt;8&gt;</twDest><twDel>10.037</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;2&gt;</twSrc><twDest>S&lt;9&gt;</twDest><twDel>10.634</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;3&gt;</twSrc><twDest>Co</twDest><twDel>16.392</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;3&gt;</twSrc><twDest>S&lt;10&gt;</twDest><twDel>12.334</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;3&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>13.019</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;3&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>13.175</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;3&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>15.668</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;3&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>15.884</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;3&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>16.446</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;3&gt;</twSrc><twDest>S&lt;3&gt;</twDest><twDel>6.482</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;3&gt;</twSrc><twDest>S&lt;4&gt;</twDest><twDel>6.178</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;3&gt;</twSrc><twDest>S&lt;5&gt;</twDest><twDel>7.786</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;3&gt;</twSrc><twDest>S&lt;6&gt;</twDest><twDel>8.413</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;3&gt;</twSrc><twDest>S&lt;7&gt;</twDest><twDel>10.269</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;3&gt;</twSrc><twDest>S&lt;8&gt;</twDest><twDel>9.795</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;3&gt;</twSrc><twDest>S&lt;9&gt;</twDest><twDel>10.392</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;4&gt;</twSrc><twDest>Co</twDest><twDel>15.084</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;4&gt;</twSrc><twDest>S&lt;10&gt;</twDest><twDel>11.026</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;4&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>11.711</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;4&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>11.867</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;4&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>14.360</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;4&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>14.576</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;4&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>15.138</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;4&gt;</twSrc><twDest>S&lt;4&gt;</twDest><twDel>7.517</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;4&gt;</twSrc><twDest>S&lt;5&gt;</twDest><twDel>5.877</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;4&gt;</twSrc><twDest>S&lt;6&gt;</twDest><twDel>7.105</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;4&gt;</twSrc><twDest>S&lt;7&gt;</twDest><twDel>8.961</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;4&gt;</twSrc><twDest>S&lt;8&gt;</twDest><twDel>8.487</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;4&gt;</twSrc><twDest>S&lt;9&gt;</twDest><twDel>9.084</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;5&gt;</twSrc><twDest>Co</twDest><twDel>14.084</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;5&gt;</twSrc><twDest>S&lt;10&gt;</twDest><twDel>10.026</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;5&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>10.711</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;5&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>10.867</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;5&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>13.360</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;5&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>13.576</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;5&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>14.138</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;5&gt;</twSrc><twDest>S&lt;5&gt;</twDest><twDel>6.446</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;5&gt;</twSrc><twDest>S&lt;6&gt;</twDest><twDel>6.105</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;5&gt;</twSrc><twDest>S&lt;7&gt;</twDest><twDel>7.961</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;5&gt;</twSrc><twDest>S&lt;8&gt;</twDest><twDel>7.487</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;5&gt;</twSrc><twDest>S&lt;9&gt;</twDest><twDel>8.084</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;6&gt;</twSrc><twDest>Co</twDest><twDel>13.211</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;6&gt;</twSrc><twDest>S&lt;10&gt;</twDest><twDel>9.153</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;6&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>9.838</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;6&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>9.994</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;6&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>12.487</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;6&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>12.703</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;6&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>13.265</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;6&gt;</twSrc><twDest>S&lt;6&gt;</twDest><twDel>7.438</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;6&gt;</twSrc><twDest>S&lt;7&gt;</twDest><twDel>6.722</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;6&gt;</twSrc><twDest>S&lt;8&gt;</twDest><twDel>6.614</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;6&gt;</twSrc><twDest>S&lt;9&gt;</twDest><twDel>7.211</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;7&gt;</twSrc><twDest>Co</twDest><twDel>12.647</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;7&gt;</twSrc><twDest>S&lt;10&gt;</twDest><twDel>8.589</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;7&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>9.274</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;7&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>9.430</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;7&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>11.923</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;7&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>12.139</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;7&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>12.701</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;7&gt;</twSrc><twDest>S&lt;7&gt;</twDest><twDel>7.306</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;7&gt;</twSrc><twDest>S&lt;8&gt;</twDest><twDel>6.171</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;7&gt;</twSrc><twDest>S&lt;9&gt;</twDest><twDel>6.647</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;8&gt;</twSrc><twDest>Co</twDest><twDel>11.901</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;8&gt;</twSrc><twDest>S&lt;10&gt;</twDest><twDel>7.843</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;8&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>8.528</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;8&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>8.684</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;8&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>11.177</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;8&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>11.393</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;8&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>11.955</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;8&gt;</twSrc><twDest>S&lt;8&gt;</twDest><twDel>6.880</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;8&gt;</twSrc><twDest>S&lt;9&gt;</twDest><twDel>5.671</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;9&gt;</twSrc><twDest>Co</twDest><twDel>10.910</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;9&gt;</twSrc><twDest>S&lt;10&gt;</twDest><twDel>6.486</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;9&gt;</twSrc><twDest>S&lt;11&gt;</twDest><twDel>7.537</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;9&gt;</twSrc><twDest>S&lt;12&gt;</twDest><twDel>7.693</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;9&gt;</twSrc><twDest>S&lt;13&gt;</twDest><twDel>10.186</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;9&gt;</twSrc><twDest>S&lt;14&gt;</twDest><twDel>10.402</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;9&gt;</twSrc><twDest>S&lt;15&gt;</twDest><twDel>10.964</twDel></twPad2Pad><twPad2Pad><twSrc>B&lt;9&gt;</twSrc><twDest>S&lt;9&gt;</twDest><twDel>7.617</twDel></twPad2Pad><twPad2Pad><twSrc>Ci</twSrc><twDest>Co</twDest><twDel>18.259</twDel></twPad2Pad><twPad2Pad><twSrc>Ci</twSrc><twDest>S&lt;0&gt;</twDest><twDel>5.949</twDel></twPad2Pad><twPad2Pad><twSrc>Ci</twSrc><twDest>S&lt;10&gt;</twDest><twDel>14.201</twDel></twPad2Pad><twPad2Pad><twSrc>Ci</twSrc><twDest>S&lt;11&gt;</twDest><twDel>14.886</twDel></twPad2Pad><twPad2Pad><twSrc>Ci</twSrc><twDest>S&lt;12&gt;</twDest><twDel>15.042</twDel></twPad2Pad><twPad2Pad><twSrc>Ci</twSrc><twDest>S&lt;13&gt;</twDest><twDel>17.535</twDel></twPad2Pad><twPad2Pad><twSrc>Ci</twSrc><twDest>S&lt;14&gt;</twDest><twDel>17.751</twDel></twPad2Pad><twPad2Pad><twSrc>Ci</twSrc><twDest>S&lt;15&gt;</twDest><twDel>18.313</twDel></twPad2Pad><twPad2Pad><twSrc>Ci</twSrc><twDest>S&lt;1&gt;</twDest><twDel>6.430</twDel></twPad2Pad><twPad2Pad><twSrc>Ci</twSrc><twDest>S&lt;2&gt;</twDest><twDel>6.916</twDel></twPad2Pad><twPad2Pad><twSrc>Ci</twSrc><twDest>S&lt;3&gt;</twDest><twDel>7.360</twDel></twPad2Pad><twPad2Pad><twSrc>Ci</twSrc><twDest>S&lt;4&gt;</twDest><twDel>8.620</twDel></twPad2Pad><twPad2Pad><twSrc>Ci</twSrc><twDest>S&lt;5&gt;</twDest><twDel>9.653</twDel></twPad2Pad><twPad2Pad><twSrc>Ci</twSrc><twDest>S&lt;6&gt;</twDest><twDel>10.280</twDel></twPad2Pad><twPad2Pad><twSrc>Ci</twSrc><twDest>S&lt;7&gt;</twDest><twDel>12.136</twDel></twPad2Pad><twPad2Pad><twSrc>Ci</twSrc><twDest>S&lt;8&gt;</twDest><twDel>11.662</twDel></twPad2Pad><twPad2Pad><twSrc>Ci</twSrc><twDest>S&lt;9&gt;</twDest><twDel>12.259</twDel></twPad2Pad></twPad2PadList></twDataSheet></twErrRpt></twBody><twFoot><twTimestamp>Mon Apr 18 21:11:05 2005</twTimestamp></twFoot><twClientInfo><twClientName>Trace</twClientName><twAttrList><twAttrListItem><twName>Trace Settings</twName><twValue>
+
+Peak Memory Usage: 75 MB
+</twValue></twAttrListItem></twAttrList></twClientInfo></twReport>

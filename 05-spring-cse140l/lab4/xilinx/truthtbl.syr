@@ -1,0 +1,249 @@
+Release 7.1.01i - xst H.39
+Copyright (c) 1995-2005 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to __projnav
+CPU : 0.00 / 0.25 s | Elapsed : 0.00 / 0.00 s
+ 
+--> Parameter xsthdpdir set to ./xst
+CPU : 0.00 / 0.25 s | Elapsed : 0.00 / 0.00 s
+ 
+--> Reading design: truthtbl.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) HDL Analysis
+  4) HDL Synthesis
+  5) Advanced HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Low Level Synthesis
+  7) Final Report
+     7.1) Device utilization summary
+     7.2) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "truthtbl.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "truthtbl"
+Output Format                      : NGC
+Target Device                      : xc2v80-5-cs144
+
+---- Source Options
+Top Module Name                    : truthtbl
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+FSM Style                          : lut
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+ROM Style                          : Auto
+Mux Extraction                     : YES
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : YES
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+Resource Sharing                   : YES
+Multiplier Style                   : auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 500
+Add Generic Clock Buffer(BUFG)     : 16
+Register Duplication               : YES
+Equivalent register Removal        : YES
+Slice Packing                      : YES
+Pack IO Registers into IOBs        : auto
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : NO
+Global Optimization                : AllClockNets
+RTL Output                         : Yes
+Write Timing Constraints           : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : maintain
+Slice Utilization Ratio            : 100
+Slice Utilization Ratio Delta      : 5
+
+---- Other Options
+lso                                : truthtbl.lso
+Read Cores                         : YES
+cross_clock_analysis               : NO
+verilog2001                        : YES
+safe_implementation                : No
+Optimize Instantiated Primitives   : NO
+tristate2logic                     : Yes
+use_clock_enable                   : Yes
+use_sync_set                       : Yes
+use_sync_reset                     : Yes
+enable_auto_floorplanning          : No
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "G:/xilinx/projects/lab4/truthtbl.vhd" in Library work.
+Architecture behavioral of Entity truthtbl is up to date.
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <truthtbl> (Architecture <behavioral>).
+Entity <truthtbl> analyzed. Unit <truthtbl> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <truthtbl>.
+    Related source file is "G:/xilinx/projects/lab4/truthtbl.vhd".
+    Found 1-bit 8-to-1 multiplexer for signal <clr>.
+    Found 1-bit 8-to-1 multiplexer for signal <R1_en>.
+    Found 1-bit 8-to-1 multiplexer for signal <R2_en>.
+    Found 1-bit 8-to-1 multiplexer for signal <R2_sel>.
+    Found 1-bit 8-to-1 multiplexer for signal <R3_en>.
+    Found 1-bit 8-to-1 multiplexer for signal <ov_en>.
+    Found 1-bit 8-to-1 multiplexer for signal <ge_en>.
+    Found 2-bit 8-to-1 multiplexer for signal <sel>.
+    Found 2-bit 8-to-1 multiplexer for signal <shf_of>.
+    Summary:
+	inferred  11 Multiplexer(s).
+Unit <truthtbl> synthesized.
+
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Advanced RAM inference ...
+Advanced multiplier inference ...
+Advanced Registered AddSub inference ...
+Dynamic shift register inference ...
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Multiplexers                     : 9
+ 1-bit 8-to-1 multiplexer          : 7
+ 2-bit 8-to-1 multiplexer          : 2
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <truthtbl> ...
+Loading device for application Rf_Device from file '2v80.nph' in environment G:/xilinx/ise71.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block truthtbl, actual ratio is 1.
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : truthtbl.ngr
+Top Level Output File Name         : truthtbl
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : NO
+
+Design Statistics
+# IOs                              : 16
+
+Macro Statistics :
+# Multiplexers                     : 9
+#      1-bit 8-to-1 multiplexer    : 7
+#      2-bit 8-to-1 multiplexer    : 2
+
+Cell Usage :
+# BELS                             : 11
+#      LUT2                        : 3
+#      LUT3                        : 6
+#      LUT4                        : 2
+# IO Buffers                       : 16
+#      IBUF                        : 5
+#      OBUF                        : 11
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 2v80cs144-5 
+
+ Number of Slices:                       6  out of    512     1%  
+ Number of 4 input LUTs:                11  out of   1024     1%  
+ Number of bonded IOBs:                 16  out of     92    17%  
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+No clock signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -5
+
+   Minimum period: No path found
+   Minimum input arrival time before clock: No path found
+   Maximum output required time after clock: No path found
+   Maximum combinational path delay: 6.484ns
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default path analysis
+  Total number of paths / destination ports: 32 / 11
+-------------------------------------------------------------------------
+Delay:               6.484ns (Levels of Logic = 3)
+  Source:            D<7> (PAD)
+  Destination:       R3_en (PAD)
+
+  Data Path: D<7> to R3_en
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            11   0.718   1.038  D_7_IBUF (D_7_IBUF)
+     LUT2:I0->O            1   0.382   0.450  sel<0>1 (sel_0_OBUF)
+     OBUF:I->O                 3.896          sel_0_OBUF (sel<0>)
+    ----------------------------------------
+    Total                      6.484ns (4.996ns logic, 1.488ns route)
+                                       (77.1% logic, 22.9% route)
+
+=========================================================================
+CPU : 3.59 / 3.86 s | Elapsed : 3.00 / 3.00 s
+ 
+--> 
+
+Total memory usage is 95192 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    0 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+

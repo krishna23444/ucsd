@@ -1,0 +1,110 @@
+% 
+% installing.tex : part of the Mace toolkit for building distributed systems
+% 
+% Copyright (c) 2006, James W. Anderson, Charles Killian, Ryan Braud, Amin Vahdat
+% All rights reserved.
+% 
+% Redistribution and use in source and binary forms, with or without
+% modification, are permitted provided that the following conditions are met:
+% 
+%    * Redistributions of source code must retain the above copyright
+%      notice, this list of conditions and the following disclaimer.
+%    * Redistributions in binary form must reproduce the above copyright
+%      notice, this list of conditions and the following disclaimer in
+%      the documentation and/or other materials provided with the
+%      distribution.
+%    * Neither the names of Duke University nor The University of
+%      California, San Diego, nor the names of the authors or contributors
+%      may be used to endorse or promote products derived from
+%      this software without specific prior written permission.
+% 
+% THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+% AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+% IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+% DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
+% FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+% DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+% SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+% CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+% OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
+% USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+% 
+% ----END-OF-LEGAL-STUFF----
+\section{Getting and Installing Mace}
+\label{sec:installing}
+
+\subsection{Mace dependencies}
+
+Mace requires the following system software packages:
+
+\begin{description}
+
+\item[gcc/g++] The GNU C and C++ compilers.  Mace officially supports GCC
+  version 3.4, 4.0, and 4.1.  It has in the past worked with a few GCC
+  version 3.3.X systems, but most frequently causes internal compiler
+  segmentation faults.  Using at least version 3.4 is highly
+  recommended.  This should also be accompanied with GNU Make.
+
+\item[perl] Perl version 5.8 or greater.  Additionally, Class-MakeMethods and Parse-RecDescent modules are needed.
+%TODO: I don't think people need to get these anymore, with mace-extras,
+%right?
+
+\item[system libraries] libpthread, libm, libcrypto, libstdc++, and libssl.
+
+\item[libboost] Used in a few places for shared pointers and lexical casting.
+
+\item[lgrind] For making the documentation from the source files, beautifying 
+  the source code.  Also needs LaTeX.
+
+\end{description}
+
+Mace has been tested on Debian GNU/Linux and CentOS.
+
+% XXX
+% Chip, what else should we write here about platforms?
+
+
+\subsection{Getting the Mace source code}
+\label{sec:downloading}
+
+Mace is Open Source Software which is be published under a BSD-style license.
+The latest Mace source code release can be found at the following URL: \\
+
+\href{http://mace.ucsd.edu/release}{http://mace.ucsd.edu/release} \\
+
+Download this file and save it in the directory where you will be
+doing your development.
+
+To take full advantage of Mace, you should also download the Mace-extras
+package (includes code licensed under the GPL), available at the same URL. \\
+
+In particular, a sha1 implementation exists in the mace-extras package, though
+it is released under a BSD compatible license.  Without this code, a simple
+``hash'' will be computed instead.
+
+\subsection{Installing Mace}
+\label{sec:unpacking}
+
+Currently, the Mace distribution does not require the installation of any
+Mace-related files outside of the Mace source tree.  All development using Mace
+can be done inside the source tree.
+
+To unpack and build the Mace distribution with the mace-extras package, us the
+following commands (latest is replaced by the version string from the version
+downloaded):
+
+\begin{screen}
+\command{$ tar -xvzf mace-latest.tar.gz
+$ tar -xvzf mace-extras-latest.tar.gz
+$ mv mace-extras mace
+$ cd mace
+$ make
+}
+\end{screen}
+%$
+
+This will build the Mace libraries (described in
+\S~\ref{sec:lib}), services
+(\S~\ref{sec:packaged-services}), and applications
+(\S~\ref{sec:applications}).
+

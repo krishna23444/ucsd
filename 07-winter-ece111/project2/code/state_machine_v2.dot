@@ -1,0 +1,53 @@
+digraph state_machine {
+  start [label="START\n \
+done=0\n \
+count=0\n \
+i=0\n \
+j=seed_lsw[7:0]\n \
+for k=0 to 255: sbox[k]=k\n \
+for k=0 to 3: seed[k]=seed_lsw[8*k+7:8*k]\n \
+for k=0 to 3: seed[k+4]=seed_msw[8*k+7:8*k]"]
+  start -> construct_sbox [label="start_encrypt=1"]
+
+  construct_sbox [label="CONSTRUCT_SBOX\n \
+sbox[i]=sbox[j]\n \
+sbox[j]=sbox[i]\n \
+i++\n \
+j=(j+sbox[i+1]+seed[(i+1)%8])%256"]
+  construct_sbox -> start [label="nreset=0"]
+  construct_sbox -> read_word [label="i=255"]
+
+  read_word [label="READ_WORD\n \
+i=1\n \
+j=sbox[1]%256\n \
+byte_count=0\n \
+port_A_we=0\n \
+port_A_addr=plain_addr+count"]
+  read_word -> start [label="nreset=0"]
+  read_word -> done [label="count>=frame_size"]
+  read_word -> encrypt_byte
+
+  encrypt_byte [label="ENCRYPT_BYTE\n \
+port_A_data_in[byte_count*8+7:byte_count*8]=sbox[(sbox[i]+sbox[j])%256] \
+  ^port_A_data_in[byte_count*8+7:byte_count*8]\n \
+sbox[i]=sbox[j]\n \
+sbox[j]=sbox[i]\n \
+i=(i+1)%256\n \
+j=(j+sbox[(i+1)%256])%256\n \
+byte_count++"]
+  encrypt_byte -> start [label="nreset=0"]
+  encrypt_byte -> write_word [label="count+byte_count+1=frame_size"]
+  encrypt_byte -> write_word [label="byte_count=3"]
+  encrypt_byte -> encrypt_byte
+
+  write_word [label="WRITE_WORD\n \
+port_A_we=1\n \
+port_A_addr=cipher_addr+count\n \
+count+=4"]
+  write_word -> start [label="nreset=0"]
+  write_word -> read_word
+
+  done [label="DONE\n \
+done=1"]
+  done -> start
+}

@@ -1,0 +1,47 @@
+--------------------------------------------------------------------------------
+Release 7.1.01i Trace H.39
+Copyright (c) 1995-2005 Xilinx, Inc.  All rights reserved.
+
+G:/xilinx/ise71/bin/nt/trce.exe -ise
+g:\xilinx\projects\lab1\full_adder\Full_Adder.ise -intstyle ise -e 3 -l 3 -s 5
+-xml full_adder full_adder.ncd -o full_adder.twr full_adder.pcf
+
+
+Design file:              full_adder.ncd
+Physical constraint file: full_adder.pcf
+Device,speed:             xc2v80,-5 (PRODUCTION 1.121 2005-02-23, STEPPING level 1)
+Report level:             error report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:2698 - No timing constraints found, doing default enumeration.
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths
+   option. All paths that are not constrained will be reported in the
+   unconstrained paths section(s) of the report.
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Pad to Pad
+---------------+---------------+---------+
+Source Pad     |Destination Pad|  Delay  |
+---------------+---------------+---------+
+A              |Co             |    6.107|
+A              |S              |    6.134|
+B              |Co             |    6.403|
+B              |S              |    6.428|
+Ci             |Co             |    6.352|
+Ci             |S              |    6.320|
+---------------+---------------+---------+
+
+Analysis completed Mon Apr 18 17:53:43 2005
+--------------------------------------------------------------------------------
+
+
+
+Peak Memory Usage: 74 MB

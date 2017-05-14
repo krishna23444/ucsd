@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root node="0">
+	<tree/>
+	<child parent="0" node="1">
+	   <gchildren>
+		<child parent="1" node="4"/>
+		<child parent="1" node="5"/>
+		<child parent="1" node="6"/>
+	   </gchildren>	
+	</child>
+	<child parent="0" node="2">
+		<gchild parent="2" node="7"/>
+                <child parent="2" node="8"/>
+                <child parent="2" node="9"/>
+	</child>
+	<child parent="0" node="3">
+		<child parent="3" node="10"/>
+                <child parent="3" node="11"/>
+                <child parent="3" node="12"/>
+	</child>
+</root>

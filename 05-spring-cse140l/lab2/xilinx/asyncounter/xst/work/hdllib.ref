@@ -1,0 +1,8 @@
+AR asyncounter behavioral G:/xilinx/projects/lab2/asyncounter/asyncounter.vhf sub00/vhpl03 1115114063
+AR ftce_mxilinx_asyncounter behavioral G:/xilinx/projects/lab2/asyncounter/asyncounter.vhf sub00/vhpl01 1115114061
+AR ftce_mxilinx_asyncounter_8 behavioral G:/xilinx/projects/lab2/asyncounter/asyncounter_8.vhf sub00/vhpl05 1115191669
+EN asyncounter_8 NULL G:/xilinx/projects/lab2/asyncounter/asyncounter_8.vhf sub00/vhpl06 1115191670
+EN asyncounter NULL G:/xilinx/projects/lab2/asyncounter/asyncounter.vhf sub00/vhpl02 1115114062
+EN ftce_mxilinx_asyncounter_8 NULL G:/xilinx/projects/lab2/asyncounter/asyncounter_8.vhf sub00/vhpl04 1115191668
+EN ftce_mxilinx_asyncounter NULL G:/xilinx/projects/lab2/asyncounter/asyncounter.vhf sub00/vhpl00 1115114060
+AR asyncounter_8 behavioral G:/xilinx/projects/lab2/asyncounter/asyncounter_8.vhf sub00/vhpl07 1115191671

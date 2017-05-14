@@ -1,0 +1,45 @@
+Running PRESTO HDLC
+Loading db file '/acsnfs3/software/synopsys-V-2004.06-SP2/libraries/syn/standard.sldb'
+Loading db file '/acsnfs3/software/synopsys-V-2004.06-SP2/libraries/syn/gtech.db'
+Loading db file '/acsnfs3/software/synopsys-V-2004.06-SP2/libraries/syn/class.db'
+
+Statistics for case statements in always block at line 94 in file
+	'./wep_encrypt_v4.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            98            |    auto/auto     |
+|           431            |    auto/auto     |
+===============================================
+Warning:  ./wep_encrypt_v4.v:390: Potential simulation-synthesis mismatch if index exceeds size of array 'seed'. (ELAB-349)
+
+Inferred memory devices in process
+	in routine wep_encrypt_v4 line 94 in file
+		'./wep_encrypt_v4.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    port_A_we_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+| port_A_data_in_reg  | Flip-flop |  32   |  N  | N  | N  | N  | N  | N  | N  |
+|        j_reg        | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|   port_A_addr_reg   | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+|   byte_count_reg    | Flip-flop |   2   |  Y  | N  | N  | N  | N  | N  | N  |
+|      sbox_reg       | Flip-flop | 2048  |  N  | N  | N  | N  | N  | N  | N  |
+|        i_reg        | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|      done_reg       | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|      seed_reg       | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|      index_reg      | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|  current_state_reg  | Flip-flop |   4   |  N  | N  | N  | N  | N  | N  | N  |
+|      count_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Statistics for MUX_OPs
+=============================================================
+|  block name/line   | Inputs | Outputs | # sel inputs | MB |
+=============================================================
+| wep_encrypt_v4/378 |  256   |    8    |      8       | N  |
+| wep_encrypt_v4/379 |  256   |    8    |      8       | N  |
+| wep_encrypt_v4/433 |  256   |    8    |      8       | N  |
+| wep_encrypt_v4/390 |   8    |    8    |      3       | N  |
+=============================================================
+Presto compilation completed successfully.
+Current design is now 'wep_encrypt_v4'

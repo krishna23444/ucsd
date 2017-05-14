@@ -1,0 +1,1 @@
+for $i in (3,4,5) let $j := 3, $k := $i where $i!=$j return $k

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OnyxSource file="flwr.onyx">
+   <token column="1" id="58" line="1"/>
+   <token column="5" id="10" line="1">$i</token>
+   <token column="8" id="49" line="1"/>
+   <token column="11" id="43" line="1">3</token>
+   <token column="13" id="16" line="1"/>
+   <token column="16" id="43" line="1">6</token>
+   <token column="1" id="57" line="2"/>
+   <token column="5" id="10" line="2">$j</token>
+   <token column="8" id="50" line="2"/>
+   <token column="11" id="10" line="2">$i</token>
+   <token column="14" id="31" line="2"/>
+   <token column="16" id="43" line="2">7</token>
+   <token column="1" id="48" line="3"/>
+   <token column="8" id="10" line="3">$i</token>
+   <token column="11" id="33" line="3"/>
+   <token column="13" id="10" line="3">$j</token>
+   <token column="-1" id="0" line="-1"/>
+</OnyxSource>
+

@@ -1,0 +1,7 @@
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w shiftreg.sch shiftreg.vhf
+xst -intstyle ise -ifn __projnav/shiftreg.xst -ofn shiftreg.syr
+ngdbuild -intstyle ise -dd "g:\xilinx\projects\lab2\i_s_to_p_shiftregister/_ngo" -nt timestamp -i  -p xc2v80-cs144-5 shiftreg.ngc shiftreg.ngd
+map -intstyle ise -p xc2v80-cs144-5 -cm area -pr b -k 4 -c 100 -tx off -o shiftreg_map.ncd shiftreg.ngd shiftreg.pcf
+par -w -intstyle ise -ol std -t 1 shiftreg_map.ncd shiftreg.ncd shiftreg.pcf
+trce -intstyle ise -e 3 -l 3 -s 5 -xml shiftreg shiftreg.ncd -o shiftreg.twr shiftreg.pcf
+netgen -intstyle ise -s 5   -pcf shiftreg.pcf -rpw 100 -tpw 0 -ar Structure -xon true -w -ofmt vhdl -sim shiftreg.ncd shiftreg_timesim.vhd

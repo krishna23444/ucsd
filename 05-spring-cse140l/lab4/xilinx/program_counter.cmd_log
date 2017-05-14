@@ -1,0 +1,1 @@
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w program_counter.sch program_counter.vhf

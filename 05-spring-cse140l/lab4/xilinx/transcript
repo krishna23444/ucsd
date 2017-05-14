@@ -1,0 +1,151 @@
+# Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+# do mach_test.tdo 
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vital_timing
+# -- Loading package vcomponents
+# -- Loading package vital_primitives
+# -- Loading package textio
+# -- Loading package vpackage
+# -- Compiling entity machine
+# -- Compiling architecture structure of machine
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vital_timing
+# -- Loading package vcomponents
+# -- Loading package vital_primitives
+# -- Loading package textio
+# -- Loading package vpackage
+# -- Loading package std_logic_textio
+# -- Compiling entity mach_test
+# -- Compiling architecture testbench_arch of mach_test
+# vsim -lib work -sdfmax /UUT=machine_timesim.sdf -t 1ps mach_test 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../vital2000.vital_timing(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../vital2000.vital_primitives(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.vpackage(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.mach_test(testbench_arch)
+# Loading work.machine(structure)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_buf_pp(x_buf_pp_v)
+# Loading machine_timesim.sdf
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_xor2(x_xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_mux2(x_mux2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_lut4(x_lut4_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_and2(x_and2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_zero(x_zero_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_inv_pp(x_inv_pp_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_tri_pp(x_tri_pp_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_bufgmux(x_bufgmux_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_sff(x_sff_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_ff(x_ff_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_or2(x_or2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_one(x_one_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_roc(x_roc_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_toc(x_toc_v)
+# ** Note: (vsim-3587) SDF Backannotation Successfully Completed.
+#    Time: 0 ps  Iteration: 0  Region: /mach_test  File: mach_test.timesim_vhw
+# .main_pane.mdi.interior.cs.vm.paneset.cli_0.wf.clip.cs
+# .main_pane.workspace
+# .main_pane.signals.interior.cs
+# ** Error: Error at time=13ns inst=UUU00U00, Expected = 00000000 
+#    Time: 13 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=73ns inst=00000000, Expected = 00110101 
+#    Time: 73 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=73ns pc=0000, Expected = 0001 
+#    Time: 73 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=93ns inst=00000000, Expected = 01000110 
+#    Time: 93 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=93ns pc=0000, Expected = 0010 
+#    Time: 93 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=93ns R1=00000, Expected = 10101 
+#    Time: 93 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=113ns inst=00000000, Expected = 10000000 
+#    Time: 113 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=113ns pc=0000, Expected = 0011 
+#    Time: 113 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=113ns R2=00000, Expected = 00110 
+#    Time: 113 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=133ns inst=00110101, Expected = 01100000 
+#    Time: 133 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=133ns pc=0001, Expected = 0100 
+#    Time: 133 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=133ns R3=00000, Expected = 11011 
+#    Time: 133 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=153ns inst=01000110, Expected = 00100001 
+#    Time: 153 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=153ns pc=0010, Expected = 0101 
+#    Time: 153 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=153ns R2=00000, Expected = 11011 
+#    Time: 153 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=173ns pc=0011, Expected = 0110 
+#    Time: 173 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=173ns R1=10101, Expected = 00001 
+#    Time: 173 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=193ns pc=0100, Expected = 0111 
+#    Time: 193 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=193ns R3=11011, Expected = 11100 
+#    Time: 193 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=213ns inst=00100001, Expected = 10110000 
+#    Time: 213 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=213ns pc=0101, Expected = 1000 
+#    Time: 213 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=213ns R2=11011, Expected = 11100 
+#    Time: 213 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=233ns inst=10000000, Expected = 01100000 
+#    Time: 233 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=233ns pc=0110, Expected = 1001 
+#    Time: 233 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=233ns R3=11011, Expected = 10000 
+#    Time: 233 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=253ns inst=01100000, Expected = 00100111 
+#    Time: 253 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=253ns pc=0111, Expected = 1010 
+#    Time: 253 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=253ns R2=11011, Expected = 10000 
+#    Time: 253 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=273ns inst=10110000, Expected = 11000000 
+#    Time: 273 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=273ns pc=1000, Expected = 1011 
+#    Time: 273 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=273ns R1=00001, Expected = 00111 
+#    Time: 273 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=293ns inst=01100000, Expected = 11100000 
+#    Time: 293 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=293ns pc=1001, Expected = 1100 
+#    Time: 293 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=313ns inst=00100111, Expected = 00000000 
+#    Time: 313 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=313ns pc=1010, Expected = 1101 
+#    Time: 313 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=313ns R3=10000, Expected = 00000 
+#    Time: 313 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=333ns pc=1011, Expected = 1110 
+#    Time: 333 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=333ns R1=00111, Expected = 00000 
+#    Time: 333 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=333ns R2=10000, Expected = 00000 
+#    Time: 333 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=353ns pc=1100, Expected = 1111 
+#    Time: 353 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=373ns pc=1101, Expected = 0000 
+#    Time: 373 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=393ns inst=00000000, Expected = 00110101 
+#    Time: 393 ns  Iteration: 0  Instance: /mach_test
+# ** Error: Error at time=393ns pc=1110, Expected = 0001 
+#    Time: 393 ns  Iteration: 0  Instance: /mach_test
+# ** Failure: Errors found during simulation
+#    Time: 420 ns  Iteration: 0  Process: /mach_test/line__92 File: mach_test.timesim_vhw
+# Break at mach_test.timesim_vhw line 366
+# Simulation Breakpoint: Break at mach_test.timesim_vhw line 366
+# MACRO ./mach_test.tdo PAUSED at line 14
+# WARNING: No extended dataflow License exists
+# WARNING: No extended dataflow License exists
+# WARNING: No extended dataflow License exists

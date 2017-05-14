@@ -1,0 +1,1 @@
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w half_adder.sch half_adder.vhf

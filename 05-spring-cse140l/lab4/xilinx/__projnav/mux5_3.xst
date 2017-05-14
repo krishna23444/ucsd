@@ -1,0 +1,4 @@
+set -tmpdir .
+elaborate
+-ifn Mux5_3.prj
+-ifmt mixed

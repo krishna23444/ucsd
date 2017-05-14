@@ -1,0 +1,62 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fibonacci_calculator
+Version: V-2004.06-SP2
+Date   : Mon Jan 22 17:08:20 2007
+****************************************
+
+Operating Conditions: 
+Wire Load Model Mode: top
+
+  Startpoint: b_reg[9] (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: b_reg[15] (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fibonacci_calculator
+                     05x05                 class
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  b_reg[9]/CP (FD1)                                       0.00       0.00 r
+  b_reg[9]/Q (FD1)                                        1.81       1.81 f
+  add_35/B[9] (fibonacci_calculator_DW01_add_16_0)        0.00       1.81 f
+  add_35/U116/Z (ND2I)                                    0.25       2.07 r
+  add_35/U114/Z (ND2I)                                    0.20       2.27 f
+  add_35/U100/Z (IVI)                                     0.24       2.51 r
+  add_35/U99/Z (ND2I)                                     0.12       2.63 f
+  add_35/U15/Z (AO3)                                      1.19       3.82 r
+  add_35/U93/Z (ND2I)                                     0.12       3.94 f
+  add_35/U89/Z (ND2I)                                     0.30       4.24 r
+  add_35/U84/Z (IVI)                                      0.12       4.36 f
+  add_35/U80/Z (ND2I)                                     0.30       4.66 r
+  add_35/U65/Z (IVI)                                      0.12       4.78 f
+  add_35/U14/Z (AO6)                                      1.18       5.96 r
+  add_35/U54/Z (ND2I)                                     0.19       6.15 f
+  add_35/U53/Z (ENI)                                      0.42       6.57 f
+  add_35/SUM[15] (fibonacci_calculator_DW01_add_16_0)     0.00       6.57 f
+  U106/Z (ND2I)                                           0.25       6.83 r
+  U105/Z (ND2I)                                           0.12       6.95 f
+  b_reg[15]/D (FD1)                                       0.00       6.95 f
+  data arrival time                                                  6.95
+
+  clock clk (rise edge)                                   8.00       8.00
+  clock network delay (ideal)                             0.00       8.00
+  b_reg[15]/CP (FD1)                                      0.00       8.00 r
+  library setup time                                     -0.80       7.20
+  data required time                                                 7.20
+  --------------------------------------------------------------------------
+  data required time                                                 7.20
+  data arrival time                                                 -6.95
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.25
+
+

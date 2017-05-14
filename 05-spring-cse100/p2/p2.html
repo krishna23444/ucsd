@@ -1,0 +1,378 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <title>P2 README</title></head>
+
+<body>
+<hr>
+<h2><font color="#0000ff">Programming assignment #2: CSE 100 Spring
+2005
+</font></h2>
+<hr>
+<p> Here's a description of the second programming assignment for CSE
+100, Spring 2005. In this assignment, you will write two alternative
+implementations of part of the Java Collections API, and write a
+benchmarking program that compares them to an existing implementation. </p>
+<p>&gt;&gt;&gt; Due Mon Apr 25, 6:00pm </p>
+<p>&gt;&gt;&gt; Required solution files: TreapSet.java,
+SkipListSet.java,
+TestSets.java, TestSets.txt, together with any files in the
+current working directory that match the patterns TreapSet*.java,
+SkipListSet*.java </p>
+<p> The files that contain your solution to the
+assignment must be turned in by the due deadline. </p>
+<p> To turn in your assignment, log in to your account on ieng9; prep
+cs100s; cd to the account containing your solution files; and run the
+command <code>bundleP2</code>. Follow the dialog. This will bundle
+together and turn in only files matching the "Required solution files"
+pattern
+shown above.
+Make sure that these are the files you want to turn in! </p>
+<p> If you are working in a team of 2 students, turn in your
+assignment from <em>one</em> of your two accounts only. In your
+source code files, clearly document the names and login names of the
+authors (using the javadoc <code>@author</code> tag in each javadoc
+class comment is a good way to do that).
+Remember that if you worked together with someone on your previous
+assignment,
+you must work with someone else this time, or work alone. </p>
+<p>It's a good idea to plan to do the assignment well before the
+deadlines; terminals and tutors can get very busy at the last minute. </p>
+<p>In doing this assignment, it's your responsibility to understand the
+course rules for integrity of scholarship.
+</p>
+<h3>1.&nbsp; Getting started </h3>
+Read Pugh's paper on skip lists, and Aragon and Seidel's paper on
+treaps. Also, read these sections of Weiss's textbook:
+4.4.1 on AVL single rotations; 10.4.2 on skip lists;
+12.5 on treaps; and Appendix B on the Collections API.
+This assignment uses those concepts. You may find
+lecture notes and discussion sections helpful as well.<br>
+<br>
+In this assignment, you will be defining and using classes that make
+use of <span style="font-style: italic;">Java generics</span>.&nbsp;
+Generics, introduced in JDK 1.5, permit type parameterization of
+classes and methods using a syntax similar to that of C++
+templates.
+The features of Java generics are described briefly <a href="http://java.sun.com/developer/technicalArticles/J2SE/generics/">
+in this article</a>, and explained at greater length in
+<a href="http://java.sun.com/j2se/1.5/pdf/generics-tutorial.pdf">in
+this
+tutorial (PDF format)</a>.&nbsp;&nbsp;&nbsp; Review those documents
+before
+continuing; the requirements below assume familiarity with that
+material.<br>
+<p>Create a directory named P2 under the home directory for your
+class account on ieng9. Your files should be bundled from that
+directory using the bundleP2 script before the due time for the
+assignment. </p>
+<h3>2.&nbsp; Implementing the Java Collections Framework </h3>
+<p> JDK versions since 1.2 provide a powerful, high-level data
+structures library in the "Collections Framework". This framework
+defines several interfaces, and defines some classes that implement
+those
+interfaces. The Collections classes and interfaces are in the
+<code>java.util</code> package.&nbsp; Since JDK 1.5 these interfaces
+are generic, and your implementations will be generic, i.e.
+parameterized by the type of objects they contain.<br>
+</p>
+<p>These are the Collection Framework's main interfaces:
+</p>
+<ul>
+  <li> <code>Collection&lt;E&gt;</code>: A group of elements of type <code>E</code>.
+No assumptions are made about the
+order of the collection (if any), or whether it may contain duplicate
+elements.&nbsp; Extends the <code>Iterable&lt;E&gt;</code><code></code>
+interface. </li>
+  <li> <code>Set&lt;E&gt;</code>: A group of elements of type <code>E</code>
+following
+the familiar set abstraction. No duplicate elements permitted. May or
+may not be ordered. Extends the <code>Collection&lt;E&gt;</code>
+interface. </li>
+  <li> <code>List&lt;E&gt;</code>: Ordered collection of elements of
+type <code>E</code>, also known as a sequence. Duplicates are
+generally permitted. Allows positional access. Extends the <code>Collection&lt;E&gt;</code>
+interface. </li>
+  <li> <code>Map&lt;K,V&gt;</code>: A mapping from keys of type <code>K</code>
+to values of type <code>V</code>;
+also known as a
+"table" or "dictionary". Each key can map to at most one
+value. (Note: does not extend Collection.) </li>
+</ul>
+In addition, there
+are sorted versions of the
+<code>Set</code> and <code>Map</code> interfaces:
+<ul>
+  <li> <code>SortedSet&lt;E&gt;</code>: A set whose elements are of
+type <code>E</code> and
+which are automatically
+sorted, either in their natural ordering (see the <code>Comparable</code>
+interface), or by a <code>Comparator</code>
+object provided when a <code>SortedSet</code> instance is
+created. Extends the <code>Set&lt;E&gt;</code> interface. </li>
+  <li> <code>SortedMap&lt;K,V&gt;</code>: A map from keys of type <code>K</code>
+to values of type <code>V</code></li>
+  <li><code></code>&nbsp;whose mapping is
+automatically sorted by key, either in the keys' natural ordering or
+by a Comparator provided when a SortedMap instance is created. Extends
+the <code>Map&lt;K,V&gt;</code> interface. </li>
+</ul>
+The Collections Framework also includes some classes that implement
+the abovementioned interfaces:
+<ul>
+  <li> <code>HashSet&lt;E&gt;</code>: implements <code>Set&lt;E&gt;</code>,
+using a hash table </li>
+  <li> <code>TreeSet&lt;E&gt;</code>: implements <code>SortedSet&lt;E&gt;</code>
+(and so also implments <code>Set&lt;E&gt;</code>), using a red-black
+tree </li>
+  <li> <code>HashMap&lt;K,V&gt;</code>: implements <code>Map&lt;K,V&gt;</code>,
+using a hash table </li>
+  <li> <code>TreeMap&lt;K,V&gt;</code>: implements <code>SortedMap&lt;K,V&gt;</code>,
+using a red-black tree </li>
+  <li> <code>ArrayList&lt;E&gt;</code>, <code>LinkedList&lt;E&gt;</code>:
+implement <code>List&lt;E&gt;</code>, using an array and a linked list
+respectively </li>
+</ul>
+In addition, the old <code>java.util.Hashtable</code> class from the
+1.0 and 1.1 JDK's is slightly rewritten to implement <code>Map</code>,
+and
+<code>java.util.Vector</code> is declared to implement
+<code>List</code>, and in 1.5 these containers are also generic.
+<p>Any class that implements the the <code>Set&lt;E&gt;</code>
+interface must provide definitions of these methods:
+</p>
+<pre>public interface Set&lt;E&gt; extends Collection&lt;E&gt; {<br>  public boolean add(E o);<br>  public boolean addAll(Collection&lt;? extends E&gt; c);<br>  public void clear();<br>  public boolean contains(Object o);<br>  public boolean containsAll(Collection&lt;?&gt; c);<br>  public boolean isEmpty();<br>  public Iterator&lt;E&gt; iterator();<br>  public boolean remove(Object o);<br>  public boolean removeAll(Collection&lt;?&gt; c);<br>  public boolean retainAll(Collection&lt;?&gt; c);<br>  public int size();<br>  public Object[] toArray();<br>  public &lt;T&gt;<t> T[] toArray(T[] a);<br>}<br></t></pre>
+and the <code>SortedSet&lt;E&gt;</code> interface adds these:
+<pre>public interface SortedSet&lt;E&gt; extends Set&lt;E&gt; {<br>  public Comparator&lt;? super E&gt; comparator();<br>  public E first();<br>  public SortedSet<e> headSet(E toElement);<br>  public E last();<br>  public SortedSet subSet(E fromElement, E toElement);<br>  public SortedSet tailSet(E fromElement);<br>}<br></e></pre>
+The documentation for the <code>SortedSet&lt;E&gt;</code> interface
+imposes further requirements on any class that implements it. These are
+not enforced by
+the compiler (and cannot be, given how the Java language is defined),
+but programmers are expected to follow them:
+<ol>
+  <li> It must have a default constructor, and a constructor that takes
+one argument of type <code>Comparator&lt;? super E&gt;</code>. </li>
+  <li> If the <code>SortedSet&lt;E&gt;</code> is created using the
+default
+constructor, all contained objects must implement the <code>Comparable&lt;E&gt;</code>
+interface, and all comparisons are done using the contained
+objects' <code>compareTo()</code> methods (this is called the "natural
+ordering"). </li>
+  <li> If the <code>SortedSet&lt;E&gt;</code> is created using the
+constructor that
+takes a <code>Comparator&lt;? super E&gt;</code> argument, all
+comparisons are done using that <code>Comparator</code>'s <code>compare()</code>
+method. </li>
+  <li> The <code>Iterator&lt;E&gt;</code> returned by the <code>iterator()</code>
+method of a <code>SortedSet&lt;E&gt;</code>
+must
+iterate through the <code>SortedSet&lt;E&gt;</code> in order from
+smallest to
+largest, according to the "natural ordering" or the <code>Comparator</code>'s
+ordering, as appropriate. </li>
+</ol>
+<p>In this assignment, you will define two generic classes that
+implement the
+<code>SortedSet&lt;E&gt;</code> interface. Your <code>TreapSet&lt;E&gt;</code>
+class will
+use a treap-based randomized search tree; your <code>SkipListSet&lt;E&gt;</code>
+class
+will use a nondeterministic skip list. You will collect benchmarks
+comparing these to the "reference"
+<code>java.util.TreeSet&lt;E&gt;</code> implementation. </p>
+<p>Note: Though your <code>TreapSet&lt;E&gt;</code> and <code>SkipListSet&lt;E&gt;</code>
+classes
+must declare themselves to implement the <code>SortedSet&lt;E&gt;</code>
+interface, for this
+assignment
+the only methods (besides the constructors) that we will test are
+these:
+</p>
+<pre>  public boolean add(E o);<br>  public void clear();<br>  public boolean contains(Object o);<br>  public boolean isEmpty();<br>  public Iterator&lt;E&gt; iterator();<br>  public boolean remove(Object o);<br>  public int size();<br>  public Comparator&lt;? super E&gt; comparator();<br>  public E first();<br>  public E last();<br>  public Object[] toArray();<br></pre>
+All the others need to be defined, but can just be defined as stubs
+that throw an <code>UnsupportedOperationException</code>, and should
+be commented
+as such.
+<h3>3.&nbsp; Benchmarking: TestSets.java, TestSets.txt </h3>
+Red-black trees provide guaranteed O(log N) performance for add,
+remove, and contains operations, but the add and remove operations are
+quite tricky to code correctly. Pugh (for SkipLists) and Aragon and
+Seidel (for treaps) claim that their datastructures are approximately
+as efficient as highly optimized red-black
+trees, while being much easier to implement. Here, you will
+investigate these claims experimentally.
+<p>Write a java program <code>TestSets</code> that tests the
+performance
+of the three <code>SortedSet</code> implementations. Interpret
+"performance" to mean "how many comparisons were required to do a
+<code>contains</code> operation, for successful and unsuccessful
+lookups, in the best, worst, and average case". You can use an instance
+of the
+<code>CountingComparator</code> class (source in <code>~/../public/P2</code>)
+to count comparisons. If your TreapSet class is coded correctly, the
+number of comparisons will be equal to the number of nodes on the
+path from the root of the tree to the node that contained the key you
+were looking for (in the case of a successful find), or to the null
+reference that terminated the search (in the case of an unsuccessful
+find). Thus, these measurements can tell you the height of the tree
+(from the maximum number of comparisons), and something about how full
+it is (from the minimum and average number of
+comparisons).
+Analogous properties apply in the case of the SkipListSet class. </p>
+<p> Collect your observations for a range of values of
+<code>N</code>. For comparison purposes it is interesting to use values
+of N of the form 2^H
+- 1, since that many keys could be stored in an ideal, completely
+filled binary search tree of height H-1, and the performance for such a
+tree can easily be derived analytically.
+Generate N distinct key values, and <code>add</code>
+them to the <code>SortedSet</code> you are testing. Then do a
+<code>contains</code> lookup for each of them (successful lookup); and
+a contains lookup for N keys that are not in the
+<code>SortedSet</code> (unsuccessful lookup), but are ordered among
+the keys that are there (i.e. don't use test keys that all smaller or
+all larger than the ones in the SortedSet because that would give
+skewed results). You should do this several times for each N, to make
+sure that the statistics are meaningful. Your program should output
+the results in a nice tabular form; for example: </p>
+<pre> <br>Successful finds; number of comparisons MIN/AVG/MAX: <br>Statistics collected over 16384/N runs, for each N.<br>		MysterySet1	MysterySet2	MysterySet3<br>N=00007: 	01/03/04 	01/03/07 	01/03/07<br>N=00015: 	01/04/06 	01/04/11 	01/04/13<br>N=00031: 	01/05/08 	01/05/14 	01/06/19<br>N=00063: 	01/06/10 	01/07/16 	01/07/21<br>N=00127: 	01/07/12 	01/08/19 	01/08/26<br>N=00255: 	01/08/14 	01/09/23 	01/10/28<br>N=00511: 	01/09/16 	01/11/23 	01/12/31<br>N=01023: 	01/10/18 	01/12/24 	01/13/29<br>N=02047: 	01/11/20 	01/14/28 	01/15/35<br>N=04095: 	01/12/22 	01/15/29 	01/15/35<br>N=08191: 	01/13/24 	01/16/34 	01/17/40<br>N=16383: 	01/14/26 	01/18/34 	01/18/38<br><br>Unsuccessful finds; Number of comparisons MIN/AVG/MAX:<br>Statistics collected over 16384/N runs, for each N.<br>		MysterySet1	MysterySet2	MysterySet3<br>N=00007: 	02/03/04 	01/04/07 	01/04/07<br>N=00015: 	03/04/06 	01/05/11 	01/05/14<br>N=00031: 	04/05/08 	01/06/15 	01/06/19<br>N=00063: 	05/06/10 	01/08/17 	01/08/24<br>N=00127: 	06/07/12 	02/09/20 	01/10/30<br>N=00255: 	07/08/14 	02/10/21 	01/11/27<br>N=00511: 	08/09/16 	02/12/22 	02/12/35<br>N=01023: 	09/10/18 	03/13/27 	02/14/33<br>N=02047: 	10/11/20 	03/14/29 	04/15/38<br>N=04095: 	11/12/22 	03/16/28 	04/17/35<br>N=08191: 	12/13/24 	04/17/33 	04/19/39<br>N=16383: 	13/14/26 	06/19/34 	05/21/37<br></pre>
+<p>Collect the output of your benchmarking program into a file <code>TestSets.txt</code>
+which you will turn in with your
+source code files. In <code>TestSets.txt</code>, include one or two
+paragraphs of clear English in which you interpret the data you
+collected,
+answering these questions:
+Do all the implementations follow a O(log N) cost curve, in average and
+worst case?
+If so, what are the approximate constant factors hidden inside the O()?
+How do these
+structures compare to a perfectly balanced, completely filled
+binary search tree? To a completely unbalanced binary search tree (i.e.
+a linked list)? To an "average" BST (see the average case analysis
+for successful finds in Lecture 5)?
+</p>
+<h3>4.&nbsp; Notes and hints </h3>
+<ol>
+  <li> Along with the TestSets files,
+you must turn in files SkipListSet.java and TreapSet.java. You may also
+turn in other java source code files with names
+that start with "SkipListSet" and
+"TreapSet"; for example you might want to have TreapSetNode.java or
+TreapSetIterator.java which contain definitions of classes related to
+TreapSet. Alternatively, Node and Iterator classes could be defined as
+private inner classes. </li>
+  <li> Be sure to read the official documentation (<a href="http://java.sun.com/j2se/1.5/docs/api/index.html">available
+online</a>) of
+the methods in the generic <code>SortedSet</code> and <code>Iterator</code>
+interfaces, so
+you
+understand their semantics. Otherwise, it will be a miracle if you
+implement them correctly. </li>
+  <li> The implementation of <code>iterator()</code> method should
+have
+advantages
+over <code>toArray()</code>. For example, it should be much more
+efficient to iterate over say just the first 10 elements of a
+1,000,000 element TreapSet using an Iterator than to use toArray()
+and look at only the first 10 elements of the result.
+Also, remove()
+in an Iterator should be constant-time if possible, and so more
+efficient
+than a remove() in the backing collection, which does a full lookup of
+the element to remove before removing it. The Iterator should "know"
+which
+element to remove() without having to search the backing collection at
+all. </li>
+  <li>If you still have questions about what the <code>SortedSet</code>
+operations
+require, you could create an instance of <code>java.util.TreeSet&lt;E&gt;</code>
+for some type <code>E</code>
+and call its methods. In
+addition, the source
+code for <code>TreeSet</code> (and for <code>TreeMap</code>, which it
+uses)
+is available for download as part of the 1.5 JDK, and for your
+convenience also copied to <code>~/../public/P2/</code>
+on ieng9, if you want to see what a well-written red-black tree
+implementation looks like in Java.&nbsp;&nbsp; </li>
+  <li> Source code for a Treap class is available in Weiss's book, and
+online under <code>public/WeissCode/DataStructures</code>. You can
+start
+with that, if you find it convenient. The Pugh and Aragon and Seidel
+papers
+contain Algol-like source code; Weiss's Treap class code is essentially
+a Java translation of the Aragon and Seidel published code. You will
+need to modify the provided code quite extensively (it may be easier
+to code from scratch). For example, the Weiss Treap code
+calls the compareTo() method up to twice as many times as necessary; it
+never makes use of a contained Comparator; etc. </li>
+  <li> The <code>add</code> and <code>contains</code> methods are the
+easiest to implement, and they are all you need in order to run the
+benchmarks. You probably should do that first. The <code>iterator</code>
+method, which involves implementing all the <code>Iterator</code>
+methods
+including <code>remove</code>, is probably the hardest. </li>
+  <li> If you are working in a team of 2 developers, you might decide
+to
+have
+one work on <code>TreapSet</code> and one on <code>SkipListSet</code>.
+Be aware however that both of you will be expected to know about
+implementation details of both these structures (for example, on
+exams).</li>
+  <li>Generics were introduced into Java to permit more extensive
+compile-time type checking;&nbsp; the ideal is to have all possible
+type errors detectedby the compiler.&nbsp; Some type-parameterized code
+cannot be proved typesafe by the compiler, however, and in those cases the
+1.5 compiler issues a warning about "unchecked" or "unsafe" operations.
+&nbsp; (This just means that so far as the compiler can tell there
+might be type errors that will be detected at runtime instead of
+compile-time.)&nbsp; Details of these warnings can be seen&nbsp; by
+using the<span style="font-family: monospace;"> -Xlint:unchecked</span>
+flag to the compiler.&nbsp; You should work to reduce the number of
+these warnings but in some circumstances it is impossible to eliminate
+them (in fact the official standard java.util classes themselves do not
+compile without warnings).&nbsp; If any of your methods might throw a
+ClassCastException at runtime, this should be documented in a <span style="font-family: monospace;">@throws </span>clause in the Javadoc
+comments for the method.</li>
+  <li>Other nice feature sof Java 1.5 are automatic boxing and unboxing
+of primitive types, and a new iteration syntax for containers that
+implement the <span style="font-family: monospace;">Iterable</span>
+interface.&nbsp; For example, previously you might write something like<br>
+    <br>
+    <span style="font-family: monospace;">TreapSet t = new TreapSet();<br>
+t.add(new Integer(1)); t.add(new Integer(2)); t.add(new Integer(3));<br>
+int sum = 0;<br>
+for(Iterator i = t.iterator(); i.hasNext();) <br>
+&nbsp;&nbsp;&nbsp; sum += ((Integer)i.next()).intValue();<br>
+System.out.println("Total: " + sum);<br>
+    <br>
+    </span>but in 1.5, this can be simplified to<br>
+    <br>
+    <span style="font-family: monospace;">TreapSet&lt;Integer&gt; t =
+new TreapSet&lt;Integer&gt;();<br>
+t.add(1); t.add(2); t.add(3);&nbsp; // automatic boxing<br>
+int sum = 0;<br>
+for(int i: t) // new iteration syntax<br>
+&nbsp;&nbsp;&nbsp; sum += i;&nbsp; // automatic unboxing<br>
+System.out.println("Total: " + sum);<br>
+    </span><br>
+  </li>
+  <li>To avoid missing some very basic things about what is involved
+in
+implementing the SortedSet interface, there is a simple test driver
+that you can use: Copy ~/../public/P2/SomeP2Checks.java
+to your working directory, compile it, and run it. If it compiles and
+runs with no problems, then you probably have some of the most basic
+things
+right about your SkipListSet and TreapSet. If it does not, you should
+definitely concentrate on fixing what's wrong. </li>
+</ol>
+<h4>Grading</h4>
+There are 25 possible points on the assignment. If your solution
+files do not compile and link error-free, you will recieve 0 points
+for this assignment. We will compile your code by unbundling your
+files and running the command <code>javac TestSets.java</code> using
+the cs100s environment on ieng9. To get full credit, design, style and
+comments (including javadoc comments) count. We will generate your
+documentation with the command <code>javadoc -author *.java</code>.
+<pre>8 points for your TreapSet implementation<br>10 points for your SkipListSet implementation<br>7 points for your TestSets benchmark program, and analysis writeup in TestSets.txt<br> <p><br></p></pre>
+</body></html>

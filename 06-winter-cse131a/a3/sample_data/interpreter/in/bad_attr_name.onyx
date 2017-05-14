@@ -1,0 +1,2 @@
+declare variable $var { attrenv() };
+addAttribute($var, "key dsf", "value")

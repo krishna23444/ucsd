@@ -1,0 +1,465 @@
+<html><head><title>P3 README</title></head>
+<body>
+<hr> <h2>
+<font color="#0000ff">
+Programming assignment #3:  CSE 11 Fall 2003
+</font>
+</h2> <hr>
+
+<p>
+Here's a description of the third programming assignment for CSE 11,
+Fall 2003.  In this assignment, you will get more experience with
+object-oriented programming by designing, implementing, and
+testing Java classes.
+</p><p>
+&gt;&gt;&gt; Due deadline:  	Wed Oct 22 12:00noon
+</p><p>
+&gt;&gt;&gt; Required solution files:  Person.java Account.java ElevenDollar.java
+</p><p>
+
+This means that the files that contain your solution to the assignment
+must be turned in by the due deadline.  Use
+the bundleP3 script to turn in your assignment.
+ </p><p> 
+It's a good idea to plan to do the
+assignment well before the deadline; terminals and
+tutors can get very busy at the last minute.  
+ </p><p> 
+In doing this assignment, it's your responsibility to understand the
+course rules for integrity of scholarship.
+ </p><p> 
+</p><h4> 1: Getting started: Background </h4> 
+
+Make sure you've read in the textbook up through chapter 5.  In addition, 
+have a look at this link before continuing:
+<a href="http://uazu.net/money/lietaer.html">http://uazu.net/money/lietaer.html</a>.
+ <p>
+Money is not a neutral concept--it can be both positive, as in Japan's
+fureai kippu, and negative, as some think the dollar has become.  In this
+project we will create a currency completely online with a program, and
+attempt to make use of it.
+ </p><p>
+Currency, as is noted in the above link, is based on trust.  When you pay
+someone dollars for a gallon of milk ($3.95, the last time I bought
+one), they trust the dollar.  They believe that someone else will give
+them goods and services for that same dollar.  They place faith in the
+dollar, and without this faith the currency is useless.  No amount of
+counterfeit-proofing or security measures can force someone to believe in
+the dollar--they must do so on their own to make it valuable.
+ </p><p>
+The CSE 11 class will be creating a currency called the 11-dollar, similar to
+the time-dollar.  We will set the value of this currency by telling you
+what to expect from it, and how much faith you can put into it.  An
+11-dollar is worth a favor from a fellow CS11 student.  It is worth
+getting someone a Peenya Kowlada, or a copy of lecture notes.  It is worth
+an hour of additional debugging aid, or getting some Schlotsky's takeout
+for someone before heading to the labs.  It is approximately worth the
+same as an hour of your time.
+ </p><p>
+You will not be forced to use this currency--if someone wants your time
+from you and wants to pay you in 11-dollars, you are not forced to accept.
+But if you do, someone else may wish to reciprocate in the future, when
+they have some time to spare.
+ </p><p>
+The nature of this currency will promote its
+use, and eventually an 11-dollar may be preferred over an ordinary
+dollar, because every time one is spent, it is through a favor to a
+fellow student.  For those of you that have seen the movie "Pay It
+Forward," this is a method to promote favors without making it appear
+like charity.  Instead it has more the feeling of an equal trade.
+ </p><p>
+No money will be printed--it's difficult to create physical
+currency that could avoid fraud.  Instead a database will hold the
+accounts of all CS11 students.  In this project you will write a program
+to access this database, and keep records of your 11-dollars.
+ </p><p>
+The class will provide a server on the sunpal machines to handle accounts
+of each student.  Accounts will be seeded with five 11-dollars each, to
+represent the five hours of spare time we expect you to have after this
+class is through with you. ;)
+Staff will have accounts as well, but may not charge for duties they would
+ordinarily perform.  They are already being paid for their efforts in
+ordinary dollars.
+ </p><p>
+A few caveats before we get into the project itself:
+</p><ol>
+<li> 
+   Don't do anything silly.  That is, please use your own judgment when
+using 11-dollars.  Don't drive to Tijuana for any number of 11-dollars.
+Don't buy copious amounts of alcohol for 11-dollars.  Don't lend your
+brand-new Mercedes to someone for 11-dollars.  Instead, start small.  I
+suggest everyone's first expenditure/earning should be edible.  Offer to
+make cookies for your friends for an 11-dollar.  Give things that are
+expendable or things you can make.
+
+</li><li> 
+   This doesn't change the integrity of scholarship rules.  Don't use
+the 11-dollar to have someone write your code.  And likewise, don't
+perform a favor for someone that involves writing their code for them.
+
+</li><li> 
+   But have fun.  This currency is to build community, not competition.
+It's about encouraging people to make use of their time, by assigning it a
+value.  If you want a makefile tutorial, for instance, but don't have time
+for to read up about it, post on the webboard that you're willing to pay
+11-dollars if someone could write you a handy something-or-other.  If you
+need someone to review concepts with you after class, feel free to ask
+someone.  Draw a picture for 11-dollars.  Write a story.  Sub for someone
+in a intervarsity game.  Make a greeting card.  Host an anime-watching
+night.  Teach someone how to DDR.  Or Lindy-hop.  Or break-dance.
+
+</li><li> 
+   Try it!  You have to try it at least to test your code.  Who knows, it might turn into something really good.
+
+
+</li></ol>
+<h4> 2: The Project </h4> 
+
+The usual details apply.  Create a P3 directory in your home directory
+where you'll keep all your files related to this project.  When finished
+use bundleP3 to submit.
+ <p>
+This assignment, like the previous two, require your classes and methods
+to be implemented according to given specifications.  Make sure your
+method signatures match those given.
+ </p><p>
+When finished, your program will function as this sample run describes.
+User input is in 
+<code><i><b>bold italics</b></i></code>
+; program output is in <code>plain teletype font.</code>
+
+</p><pre>
+[cs11f7@sunpal] <i><b>java ElevenDollar</b></i>
+Welcome to the 11-dollar banking system
+A)Retrieve personal information
+B)Update your personal information
+C)Check your balance
+D)Transfer money to another account
+X)Exit
+<i><b>A</b></i>
+Which user?(Leave blank to retrieve your own)
+<i><b>cs11f</b></i>
+Nickname:The Professor
+Secret Password:*SECRET*
+Welcome to the 11-dollar banking system
+A)Retrieve personal information
+B)Update your personal information
+C)Check your balance
+D)Transfer money to another account
+X)Exit
+<i><b>A</b></i>
+Which user?(Leave blank to retrieve your own)
+
+Nickname:SomeStudent
+Secret Password:11takes_time
+Welcome to the 11-dollar banking system
+A)Retrieve personal information
+B)Update your personal information
+C)Check your balance
+D)Transfer money to another account
+X)Exit
+<i><b>B</b></i>
+New Nickname?
+<i><b>SupercoolStudent</b></i>
+New Password?
+<i><b>11isgr8</b></i>
+UPDATE CONFIRMED
+Welcome to the 11-dollar banking system
+A)Retrieve personal information
+B)Update your personal information
+C)Check your balance
+D)Transfer money to another account
+X)Exit
+<i><b>C</b></i>
+You have 5.00 dollars.
+Welcome to the 11-dollar banking system
+A)Retrieve personal information
+B)Update your personal information
+C)Check your balance
+D)Transfer money to another account
+X)Exit
+<i><b>D</b></i>
+To which account will you transfer?
+<i><b>cs11f</b></i>
+How much money?
+<i><b>.20</b></i>
+Optional comment?
+<i><b>Professor Tax</b></i>
+TRANSACTION CONFIRMED
+Welcome to the 11-dollar banking system
+A)Retrieve personal information
+B)Update your personal information
+C)Check your balance
+D)Transfer money to another account
+X)Exit
+<i><b>C</b></i>
+You have 4.80 dollars.
+X
+
+</pre>
+
+If everything was implemented correctly, the owner
+of account cs11f should be .20 11-dollars (that is, 20 11-cents) richer.
+ <p>
+For each menu choice, your program will communicate to the central server, 
+sending
+and receiving information about your account.  Communication will
+performed through Strings, which are sent and received through a single
+method in a class ElevenClient.  This class will be given to you--through
+the magic of abstraction you will need no knowledge of the details of how
+the server or the network is implemented.
+
+</p><h4>3: ElevenClient</h4>
+
+
+ElevenClient.class is in the public/P3 directory, and is written for you.  It
+contains one method, which has the following signature:
+<pre>public static String sendMessage(String msg)
+</pre>
+
+Call this method when you wish to communicate to the server.  It will
+return the server's response as a String. All messages are Strings.
+The format for the argument is:  a transaction type,
+followed by a number of additional pieces the tab character ('\t') in between
+them.  The following is a list of Strings the server will understand, and
+their expected replies.
+
+<pre>BALANCE
+</pre>
+  requests the user's balance.  Server replies with "BALANCE IS [amount]"
+ <br> <br>
+<pre>TRANSFER\t[username]\t[amount]\t[comment]
+</pre>
+  give money to another user.  Server replies with "TRANSACTION CONFIRMED"
+ <br><br>
+<pre>GETINFO
+</pre>
+  get your personal information.  Server replies with
+"YOURINFO\t[nickname]\t[password]"
+ <br><br>
+<pre>GETINFO\t[username]
+</pre>
+  get another user's info.  Server replies with
+"USERINFO\t[nickname]\t*SECRET*".  Note that because this user isn't you,
+you don't get their password.
+ <br><br>
+<pre>UPDATEINFO\t[nickname]\t[password]
+</pre>
+  update stored information.  Server replies with "UPDATE CONFIRMED"
+ <br><br>
+ <p>
+Note that <code>[amount]</code> in these strings is an integer
+number representing 11-cents; so 500 represents five 11-dollars.  (The
+square brackets [] are notation; they don't actually appear in these strings.)
+ </p><p>
+Note also that the client depends on the fact that you are logged into a sunpal
+machine with your class account.  Otherwise the server will be unable to
+find and recognize your account.
+ </p><p>
+The server also may reply "ERROR" to any of these requests for a number of
+reasons, such as a malformed request, an attempt to transfer more money
+than you have, not being logged into your sunpal account when running the
+client, and having invalid arguments.
+ </p><p>
+Finally, note that the two different GETINFO messages have have different
+returns--one returns YOURINFO and the other returns USERINFO.
+
+
+
+</p><h4> 4: Person.java </h4> 
+
+We'll be putting the concept of objects to use here.  You'll be
+representing yourself as an object, and keep your personal information in
+this class.  This will be a convenient way to keep multiple pieces of
+information together.  This is also a flexible way of organizing
+state--should you need to know more or less about a Person, you can modify
+this class.
+ <p>
+For this class you will be defining two constructors:
+</p><pre>public Person(String nickname, String password)
+</pre>
+   Stores the nickname and password in instance variables.
+<br><br>
+<pre>public Person(String netString)
+</pre>
+   The netString expected is of the format "[username]\t[password]".
+Parses this string and stores the username and password in instance
+variables.
+<br><br>
+There will be the usual complement of accessor and mutator
+methods to retrieve and modify the values:
+
+<pre>public String getNickname()
+
+</pre>
+   Returns the nickname
+<br><br>
+<pre>public String getPassword()
+</pre>
+   Returns the password
+<br><br>
+<pre>public void setNickname(String nickname)
+</pre>
+   Sets the nickname to the String passed in
+<br><br>
+<pre>public void setPassword(String password)
+</pre>
+   Sets the password to the String passed in
+<br><br>
+
+There will also be an equals method to compare with other objects:
+
+<pre>public boolean equals (Object other)
+</pre>
+   Checks to see if the object passed in is a Person, and has the same
+nickname and password as the Person this was called on.
+<br><br>
+
+And a toString() method, so you can easily see a Person's contents.
+<pre>public String toString()
+</pre>
+   Returns a string of "Nickname:" followed by the nickname, a newline,
+and then "Password:" followed by the password. (No added spaces!)
+Suitable for printing to the screen.
+<br><br>
+
+You will also write a netString() method, which will make it easier to
+build the message you will be sending over the network.
+<pre>public String netString()
+</pre>
+   Returns a concatenation of the nickname followed by a tab and then the
+password.
+<br><br>
+Dividing the problem up in this manner has additional benefits besides
+flexibility--you can test your Person object by itself, and should you add
+or modify methods later, it will be very easy to find and fix your bugs.
+It is therefore good practice to add a main function and perform a simple
+test of your Person class before moving on.
+
+<h4> 5: Account.java </h4> 
+
+An account represents a user's bank account on the server.  All
+communication with the server occurs in this class.
+ <p>
+An account needs information stored in a Person to function, so it makes
+sense to store a Person inside an Account.  As for methods, there are
+three things you can do to an account--namely, update the user
+information, check its balance, and transfer money to another account.
+ </p><p>
+Your Account class will hold one Person object in it, one constructor, and
+three methods.
+ </p><p>
+Constructor:
+</p><pre>public Account()
+</pre>
+   Create an new account.  Ask the server to retrieve your name and
+password, and stores this in a Person variable.
+<br><br>
+Methods:
+<pre>public Person getInformation()
+</pre>
+   Sends a GETINFO request to the server.  Parses the reply and returns a
+new Person object with its name and password initialized.
+<br><br>
+<pre>public Person getInformation(String username)
+</pre>
+   Sends a GETINFO request to the server with one argument.  Parses the
+reply and returns a Person object.  Note that the password replied by the
+server will be "*SECRET*"
+<br><br>
+<pre>public String updateInformation(String newNick, String newPass)
+</pre>
+   Modifies the local Person information to match newNick and newPass.
+Afterwards it will send an UPDATEINFO transaction to the server and return
+the server's reply.
+<br><br>
+<pre>public double checkBalance()
+</pre>
+   Sends a BALANCE request to the server.  It returns the balance,
+modified to have two decimal places.  If the server returns ERROR, then
+checkBalance() should return -1.0.
+<br><br>
+<pre>public String transferToAcct(String user, double amount, String comment)
+</pre>
+   Sends a TRANSFER request to the server, requesting amount funds to be
+transferred to the user.  The comment part of the request
+will be stored in the server's database.  The server's reply is returned.
+Remember that you must convert amount to a format that ElevenClient will
+understand--that is, an amount of 4.92 should be converted to 492 before
+placed in the message string.  If the input has more than two decimal
+places, round those off (i.e. an input of 4.915 will be converted to 492 as
+well).
+<br><br>
+
+Again, when finished with this class, attempt to test out its features
+with a main method.  I suggest you print out the Strings at first, instead
+of sending them to ElevenClient.  This way you can make sure they match
+the format suggested, without throwing random things at the server.
+
+<h4>6: ElevenDollar.java</h4>
+
+Now that you have these two pieces, a third class will provide a simple
+user interface to them.  The algorithm will be simple--Create an Account
+object,
+and then display a menu and use a switch construct very similar to
+FiWizard in P1.  See the sample run for an example of what it should do.
+
+<h4>7: Hints</h4>
+<ol>
+<li> 
+Start early.  Or at least, try not to start late.
+</li><li> 
+Read the README twice.  Often times questions are answered in the
+README, and reading it twice may reduce any misconceptions you might have
+about the assignment.
+</li><li> 
+Test your program by transferring money to a classmate, and asking them
+to transfer it back.  You may also transfer money to yourself, although
+your balance won't change.  Remember you must be logged in to a sunpal
+machine, either physically or through SSH for ElevenClient to send
+messages appropriately.
+</li><li> 
+Much of your work will go into String construction and modification.  If
+you've never seen the online documentation for Strings, take a look--it
+has a lot of useful features.  The java documentation can be found at
+http://java.sun.com/j2se/1.4.2/docs/api/.  Look for java.lang.String.
+</li><li> 
+Note that Account.java handles all communication with the server and
+ElevenDollar.java handles all input from the user.  Ensure that this
+is so!  If you're putting a sendMessage in ElevenDollar or a readLine
+in Account, it's in the wrong spot.
+</li><li> 
+  This is in general good design.  If, for instance, we wanted to run a
+batch of transactions from a file, we could simply replace ElevenDollar.
+If on the other hand, we wanted to run on a different server, we could
+replace Account.java.  Modularity like this is a Good Idea, and
+improves both readability and reusability.
+
+</li></ol>
+
+
+
+
+
+ <h4>
+Grading of assignment #3
+ </h4> 
+
+
+There are 20 possible points for this assignment, broken down as follows:
+<pre>a.   4 points for your Person class
+
+b.   12 points for your Account class
+
+c.   4 points for your ElevenDollar class
+
+
+</pre>
+
+In each case, doing a part of the assignment means that your code
+compiles, runs correctly, satisfies the specifications,
+is well-written and commented.
+
+
+
+</body></html>

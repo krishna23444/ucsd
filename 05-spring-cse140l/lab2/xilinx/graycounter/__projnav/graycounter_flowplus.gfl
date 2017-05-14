@@ -1,0 +1,12 @@
+# XST flow : Creating project file
+graycounter.prj
+# xst flow : RunXST
+graycounter.prj
+__projnav/graycounter.xst
+./xst
+# XST flow : Creating project file
+graycounter2.prj
+# xst flow : RunXST
+graycounter2.prj
+__projnav/graycounter2.xst
+./xst

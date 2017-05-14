@@ -1,0 +1,43 @@
+# do gc2_tbw.ado 
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_graycounter2
+# -- Compiling architecture behavioral of ftce_mxilinx_graycounter2
+# -- Compiling entity graycounter2
+# -- Compiling architecture behavioral of graycounter2
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity gc2_tbw
+# -- Compiling architecture testbench_arch of gc2_tbw
+# vsim -lib work -t 1ps gc2_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.gc2_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.graycounter2(behavioral)
+# Loading work.ftce_mxilinx_graycounter2(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xnor4(xnor4_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and3b2(and3b2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and3(and3_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or2(or2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /gc2_tbw/line__91 File: gc2_tbw.ant
+# Break at gc2_tbw.ant line 256
+# Stopped at gc2_tbw.ant line 256 

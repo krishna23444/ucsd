@@ -1,0 +1,128 @@
+# Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+# do asyncounter_8tbwb.tdo 
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vital_timing
+# -- Loading package vcomponents
+# -- Loading package vital_primitives
+# -- Loading package textio
+# -- Loading package vpackage
+# -- Compiling entity asyncounter_8
+# -- Compiling architecture structure of asyncounter_8
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vital_timing
+# -- Loading package vcomponents
+# -- Loading package vital_primitives
+# -- Loading package textio
+# -- Loading package vpackage
+# -- Loading package std_logic_textio
+# -- Compiling entity asyncounter_8tbwb
+# -- Compiling architecture testbench_arch of asyncounter_8tbwb
+# vsim -lib work -sdfmax /UUT=asyncounter_8_timesim.sdf -t 1ps asyncounter_8tbwb 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../vital2000.vital_timing(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../vital2000.vital_primitives(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.vpackage(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.asyncounter_8tbwb(testbench_arch)
+# Loading work.asyncounter_8(structure)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_buf_pp(x_buf_pp_v)
+# Loading asyncounter_8_timesim.sdf
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_inv_pp(x_inv_pp_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_tri_pp(x_tri_pp_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_bufgmux(x_bufgmux_v)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_lut4(x_lut4_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_ff(x_ff_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_or2(x_or2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_one(x_one_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_zero(x_zero_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_roc(x_roc_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_toc(x_toc_v)
+# ** Note: (vsim-3587) SDF Backannotation Successfully Completed.
+#    Time: 0 ps  Iteration: 0  Region: /asyncounter_8tbwb  File: asyncounter_8tbwb.timesim_vhw
+# .main_pane.mdi.interior.cs.vm.paneset.cli_0.wf.clip.cs
+# .main_pane.workspace
+# .main_pane.signals.interior.cs
+# ** Error: Error at time=7ns D=UUUUUUUU, Expected = 00000000 
+#    Time: 7 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=115ns D=00000000, Expected = 00000001 
+#    Time: 115 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=127ns D=00000001, Expected = 00000010 
+#    Time: 127 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=139ns D=00000010, Expected = 00000011 
+#    Time: 139 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=151ns D=00000011, Expected = 00000100 
+#    Time: 151 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=163ns D=00000100, Expected = 00000101 
+#    Time: 163 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=175ns D=00000101, Expected = 00000110 
+#    Time: 175 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=187ns D=00000110, Expected = 00000111 
+#    Time: 187 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=199ns D=00000111, Expected = 00001000 
+#    Time: 199 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=211ns D=00001000, Expected = 00001001 
+#    Time: 211 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=223ns D=00001001, Expected = 00001010 
+#    Time: 223 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=235ns D=00001010, Expected = 00001011 
+#    Time: 235 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=247ns D=00001011, Expected = 00001100 
+#    Time: 247 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=259ns D=00001100, Expected = 00001101 
+#    Time: 259 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=271ns D=00001101, Expected = 00001110 
+#    Time: 271 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=283ns D=00001110, Expected = 00001111 
+#    Time: 283 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=295ns D=00001111, Expected = 00010000 
+#    Time: 295 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=307ns D=00000000, Expected = 00010001 
+#    Time: 307 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=319ns D=00010001, Expected = 00010010 
+#    Time: 319 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=331ns D=00010010, Expected = 00010011 
+#    Time: 331 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=343ns D=00010011, Expected = 00010100 
+#    Time: 343 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=355ns D=00010100, Expected = 00010101 
+#    Time: 355 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=367ns D=00010101, Expected = 00010110 
+#    Time: 367 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=379ns D=00010110, Expected = 00010111 
+#    Time: 379 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=391ns D=00010111, Expected = 00011000 
+#    Time: 391 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=403ns D=00011000, Expected = 00011001 
+#    Time: 403 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=415ns D=00011001, Expected = 00011010 
+#    Time: 415 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=427ns D=00011010, Expected = 00011011 
+#    Time: 427 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=439ns D=00011011, Expected = 00011100 
+#    Time: 439 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=451ns D=00011100, Expected = 00011101 
+#    Time: 451 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=463ns D=00011101, Expected = 00011110 
+#    Time: 463 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=475ns D=00011110, Expected = 00011111 
+#    Time: 475 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=487ns D=00011111, Expected = 00100000 
+#    Time: 487 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=499ns D=00010000, Expected = 00100001 
+#    Time: 499 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Error: Error at time=511ns D=00100001, Expected = 00100010 
+#    Time: 511 ns  Iteration: 0  Instance: /asyncounter_8tbwb
+# ** Failure: Errors found during simulation
+#    Time: 532 ns  Iteration: 0  Process: /asyncounter_8tbwb/line__77 File: asyncounter_8tbwb.timesim_vhw
+# Break at asyncounter_8tbwb.timesim_vhw line 260
+# Simulation Breakpoint: Break at asyncounter_8tbwb.timesim_vhw line 260
+# MACRO ./asyncounter_8tbwb.tdo PAUSED at line 14

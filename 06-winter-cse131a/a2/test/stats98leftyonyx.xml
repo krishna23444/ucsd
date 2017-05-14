@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.ast.Query>
+   <onyx.ast.FunctionDeclaration datatype="onyx.types.Sequence" funcName="getDescendantOrSelfByTagName">
+      <onyx.ast.ArgumentDeclaration datatype="onyx.types.AnyType" varName="$node"/>
+      <onyx.ast.ArgumentDeclaration datatype="onyx.types.AnyType" varName="$tagname"/>
+      <onyx.ast.ExprList>
+         <onyx.ast.IfThenElseExpr>
+            <onyx.ast.Operator name="op:equals">
+               <onyx.ast.FunctionCall name="tagname">
+                  <onyx.ast.Variable>$node</onyx.ast.Variable>
+               </onyx.ast.FunctionCall>
+               <onyx.ast.Variable>$tagname</onyx.ast.Variable>
+            </onyx.ast.Operator>
+            <onyx.ast.Variable>$node</onyx.ast.Variable>
+         </onyx.ast.IfThenElseExpr>
+         <onyx.ast.IfThenElseExpr>
+            <onyx.ast.FunctionCall name="isENode">
+               <onyx.ast.Variable>$node</onyx.ast.Variable>
+            </onyx.ast.FunctionCall>
+            <onyx.ast.Flwr>
+               <onyx.ast.ForAssignment varName="$child">
+                  <onyx.ast.FunctionCall name="children">
+                     <onyx.ast.Variable>$node</onyx.ast.Variable>
+                  </onyx.ast.FunctionCall>
+               </onyx.ast.ForAssignment>
+               <onyx.ast.Return>
+                  <onyx.ast.FunctionCall name="getDescendantOrSelfByTagName">
+                     <onyx.ast.Variable>$child</onyx.ast.Variable>
+                     <onyx.ast.Variable>$tagname</onyx.ast.Variable>
+                  </onyx.ast.FunctionCall>
+               </onyx.ast.Return>
+            </onyx.ast.Flwr>
+         </onyx.ast.IfThenElseExpr>
+      </onyx.ast.ExprList>
+   </onyx.ast.FunctionDeclaration>
+   <onyx.ast.FunctionDeclaration datatype="onyx.types.Sequence" funcName="getChildrenByTagName">
+      <onyx.ast.ArgumentDeclaration datatype="onyx.types.AnyType" varName="$node"/>
+      <onyx.ast.ArgumentDeclaration datatype="onyx.types.AnyType" varName="$tagname"/>
+      <onyx.ast.IfThenElseExpr>
+         <onyx.ast.FunctionCall name="isENode">
+            <onyx.ast.Variable>$node</onyx.ast.Variable>
+         </onyx.ast.FunctionCall>
+         <onyx.ast.Flwr>
+            <onyx.ast.ForAssignment varName="$child">
+               <onyx.ast.FunctionCall name="children">
+                  <onyx.ast.Variable>$node</onyx.ast.Variable>
+               </onyx.ast.FunctionCall>
+            </onyx.ast.ForAssignment>
+            <onyx.ast.Where>
+               <onyx.ast.Operator name="op:equals">
+                  <onyx.ast.FunctionCall name="tagname">
+                     <onyx.ast.Variable>$child</onyx.ast.Variable>
+                  </onyx.ast.FunctionCall>
+                  <onyx.ast.Variable>$tagname</onyx.ast.Variable>
+               </onyx.ast.Operator>
+            </onyx.ast.Where>
+            <onyx.ast.Return>
+               <onyx.ast.Variable>$child</onyx.ast.Variable>
+            </onyx.ast.Return>
+         </onyx.ast.Flwr>
+      </onyx.ast.IfThenElseExpr>
+   </onyx.ast.FunctionDeclaration>
+   <onyx.ast.ExprList>
+      <onyx.ast.Flwr>
+         <onyx.ast.LetAssignment varName="$players">
+            <onyx.ast.FunctionCall name="getDescendantOrSelfByTagName">
+               <onyx.ast.FunctionCall name="document">
+                  <onyx.ast.Constant datatype="onyx.types.String">xmldata/stats_1998.xml</onyx.ast.Constant>
+               </onyx.ast.FunctionCall>
+               <onyx.ast.Constant datatype="onyx.types.String">PLAYER</onyx.ast.Constant>
+            </onyx.ast.FunctionCall>
+         </onyx.ast.LetAssignment>
+         <onyx.ast.ForAssignment varName="$player">
+            <onyx.ast.Variable>$players</onyx.ast.Variable>
+         </onyx.ast.ForAssignment>
+         <onyx.ast.LetAssignment varName="$throws">
+            <onyx.ast.FunctionCall name="getChildrenByTagName">
+               <onyx.ast.Variable>$player</onyx.ast.Variable>
+               <onyx.ast.Constant datatype="onyx.types.String">THROWS</onyx.ast.Constant>
+            </onyx.ast.FunctionCall>
+         </onyx.ast.LetAssignment>
+         <onyx.ast.LetAssignment varName="$position">
+            <onyx.ast.FunctionCall name="getChildrenByTagName">
+               <onyx.ast.Variable>$player</onyx.ast.Variable>
+               <onyx.ast.Constant datatype="onyx.types.String">POSITION</onyx.ast.Constant>
+            </onyx.ast.FunctionCall>
+         </onyx.ast.LetAssignment>
+         <onyx.ast.LetAssignment varName="$surname">
+            <onyx.ast.FunctionCall name="getChildrenByTagName">
+               <onyx.ast.Variable>$player</onyx.ast.Variable>
+               <onyx.ast.Constant datatype="onyx.types.String">SURNAME</onyx.ast.Constant>
+            </onyx.ast.FunctionCall>
+         </onyx.ast.LetAssignment>
+         <onyx.ast.LetAssignment varName="$textcontent">
+            <onyx.ast.Operator name="op:numeric-add">
+               <onyx.ast.Operator name="op:numeric-add">
+                  <onyx.ast.FunctionCall name="string">
+                     <onyx.ast.FunctionCall name="first">
+                        <onyx.ast.Variable>$position</onyx.ast.Variable>
+                     </onyx.ast.FunctionCall>
+                  </onyx.ast.FunctionCall>
+                  <onyx.ast.Constant datatype="onyx.types.String"> </onyx.ast.Constant>
+               </onyx.ast.Operator>
+               <onyx.ast.FunctionCall name="string">
+                  <onyx.ast.FunctionCall name="first">
+                     <onyx.ast.Variable>$surname</onyx.ast.Variable>
+                  </onyx.ast.FunctionCall>
+               </onyx.ast.FunctionCall>
+            </onyx.ast.Operator>
+         </onyx.ast.LetAssignment>
+         <onyx.ast.LetAssignment varName="$tn">
+            <onyx.ast.FunctionCall name="tnode">
+               <onyx.ast.Constant datatype="onyx.types.String">lefty</onyx.ast.Constant>
+               <onyx.ast.FunctionCall name="attrenv"/>
+               <onyx.ast.Variable>$textcontent</onyx.ast.Variable>
+            </onyx.ast.FunctionCall>
+         </onyx.ast.LetAssignment>
+         <onyx.ast.Where>
+            <onyx.ast.Operator name="op:and">
+               <onyx.ast.Operator name="op:greater-than">
+                  <onyx.ast.FunctionCall name="length">
+                     <onyx.ast.Variable>$throws</onyx.ast.Variable>
+                  </onyx.ast.FunctionCall>
+                  <onyx.ast.Constant datatype="onyx.types.Integer">0</onyx.ast.Constant>
+               </onyx.ast.Operator>
+               <onyx.ast.IfThenElseExpr>
+                  <onyx.ast.FunctionCall name="isTNode">
+                     <onyx.ast.FunctionCall name="first">
+                        <onyx.ast.Variable>$throws</onyx.ast.Variable>
+                     </onyx.ast.FunctionCall>
+                  </onyx.ast.FunctionCall>
+                  <onyx.ast.Operator name="op:equals">
+                     <onyx.ast.FunctionCall name="string">
+                        <onyx.ast.FunctionCall name="first">
+                           <onyx.ast.Variable>$throws</onyx.ast.Variable>
+                        </onyx.ast.FunctionCall>
+                     </onyx.ast.FunctionCall>
+                     <onyx.ast.Constant datatype="onyx.types.String">Left</onyx.ast.Constant>
+                  </onyx.ast.Operator>
+                  <onyx.ast.Constant datatype="onyx.types.Boolean">false</onyx.ast.Constant>
+               </onyx.ast.IfThenElseExpr>
+            </onyx.ast.Operator>
+         </onyx.ast.Where>
+         <onyx.ast.Return>
+            <onyx.ast.Variable>$tn</onyx.ast.Variable>
+         </onyx.ast.Return>
+      </onyx.ast.Flwr>
+   </onyx.ast.ExprList>
+</onyx.ast.Query>

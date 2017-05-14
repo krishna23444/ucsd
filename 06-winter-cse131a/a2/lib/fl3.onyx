@@ -1,0 +1,5 @@
+declare function f($a as onyx.types.Integer, $b)
+{ let $z := $a + 1
+ return $z
+};
+f(3,4)

@@ -1,0 +1,3 @@
+vhdl work "register5.vhf"
+vhdl work "Mux2_5bus.vhf"
+vhdl work "regs.vhf"

@@ -1,0 +1,30 @@
+Group:
+	Erik Buchanan
+		ebuchana@ucsd.edu
+		A05479081
+	Nitay Joffe
+		njoffe@ucsd.edu
+		A05229402
+
+We used the multi-thread approach, because it's more efficient than
+multi-process, and it's way cooler than event-driven.  Each thread deals
+with a new connection.
+
+Our dynamic persistent connection starts at 2 minutes for a single thread 
+running, and is reduced linearly by 10 seconds for each additional thread 
+running.  Thus, the more people connected, the less time each gets to hold
+its connection open.
+
+We process an .htaccess file in the document_root directory, if one exists,
+and allow or block IPs, hostnames, or all accordingly.  Only complete IPs are
+supported.  All files being served are governed by the one .htaccess file, 
+if it exists.
+
+The server runs on ieng6, but ieng9 lacks some of the libraries that it
+requires.
+
+We support the desired filetypes.  The server functions properly in every
+way specified by the assignment, to the best of our knowledge.
+
+-Erik and Nitay
+

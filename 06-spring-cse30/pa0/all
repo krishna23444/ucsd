@@ -1,0 +1,243 @@
+/*
+ * Filename: pa0.h
+ * Author: Joe Jane Student
+ * Userid: cs30xzz
+ * Description: Function prototypes and defines for PA0
+ * Date: Jan. 10, 2001
+ * Sources of Help: List all the people, books, websites, etc. that you
+ *                  used to help you write the code in this source file.
+ */
+
+/* #defines used in PA0 */
+
+/* User-defined types used in PA0 */
+
+struct birthDateInfo {
+   char *month;
+   unsigned int day;
+   unsigned int year;
+};
+
+/* Function prototypes for the C and assembly routines used in PA0 */
+
+void printHello( char *string );
+
+void printBirthDateInfo( struct birthDateInfo *bDayInfo );
+
+int sum3( int a, int b, int c );
+
+/*
+ * Filename: main.c
+ * Author: Joe Jane Student
+ * Userid: cs30xzz
+ * Description: Example C program for pa0.  It calls a couple of functions
+ *		written in assembly and C as examples of function calls and
+ *		parameter passing in C and SPARC assembly (also known as
+ *		the language's and architecture's calling conventions).
+ * Date: Jan. 10, 2001
+ * Sources of Help: List all the people, books, websites, etc. that you
+ *                  used to help you write the code in this source file.
+ */ 
+
+/*
+ * Header files included here.
+ * Std C Lib header files first, then local headers.
+ */
+#include <stdio.h>
+
+#include "pa0.h"
+
+/*
+ * Function name: main()
+ * Function prototype: int main( int argc, char *argv[] );
+ *				or
+ *                     int main( void ); if no command line processing.
+ * Description: C main driver which calls C and SPARC assembly routines to
+ *		print a greeting with the student's name and birthday and
+ *		summing three ints.
+ * Parameters: No command line args expected.
+ * Side Effects: Outputs greeting with student's name, birthday, and the
+ *		 sum of three ints.
+ * Error Conditions: None.
+ * Return Value: 0 indicating successful execution.
+ */
+
+int
+main( void ) {
+
+    char *name = "Joe Jane Student";	/* Your name to print */
+    struct birthDateInfo bDayInfo;		/* Your birthday info */
+    int x1 = 1,				/* Some values to sum */
+	x2 = 2,
+	x3 = 3;
+
+    bDayInfo.day = 17;
+    bDayInfo.year = 1978;
+    bDayInfo.month = "December";
+
+    /*
+     * Print the greeting with your name
+     */
+    printHello( name );	
+
+    /*
+     * Print your birthday
+     * printBirthDateInfo() takes a pointer to the birthDateInfo struct
+     */
+    printBirthDateInfo( &bDayInfo );	
+
+    /*
+     * Now sum the 3 local int variables and print the result
+     */
+    (void) printf( "The sum of %d, %d, and %d = %d\n", x1, x2, x3,
+		   sum3( x1, x2, x3 ) );
+
+    return( 0 );
+}
+
+/*
+ * Filename: printBirthDateInfo.c
+ * Author: Joe Jane Student
+ * Userid: cs30xzz
+ * Description: Example C routine to print out the birthdate info
+ *              (month day, year) using a pointer to a structure.
+ *              Called from main()
+ * Date: Jan. 10, 2001
+ * Sources of Help: List all the people, books, websites, etc. that you
+ *                  used to help you write the code in this source file.
+ */
+
+#include <stdio.h>
+#include "pa0.h"
+ 
+/*
+ * Function name: printBirthDateInfo()
+ * Function prototype:
+ *    void printBirthDateInfo( struct birthDateInfo *bDayInfo );
+ * Description: Prints to stdout the month, day, and year members of a
+ *              struct birthDateInfo node.
+ * Parameters: 
+ *      arg1: struct birthDateInfo *bDayInfo -- pointer to the
+ *	      birthDateInfo struct which should be printed.
+ * Side Effects: Outputs the student's birthday info.
+ * Error Conditions: Checks to make sure arg1 is not NULL.
+ *                   No checks to ensure struct data are correct type/values.
+ * Return Value: None.
+ */
+
+void 
+printBirthDateInfo( struct birthDateInfo *bDayInfoPtr){
+   if ( bDayInfoPtr != NULL )
+      (void) printf( "My birth date is: %s %d, %d\n",
+		     bDayInfoPtr->month,
+		     bDayInfoPtr->day,
+		     bDayInfoPtr->year );
+}
+
+/*
+ * Filename: printHello.s
+ * Author: Joe Jane Student
+ * Userid: cs30xzz
+ * Description: Example SPARC assembly routine to print out a greeting followed
+ *		by a string (student's name) passed in as an argument
+ *		to this function.
+ *              Called from main()
+ * Date: Jan. 10, 2001
+ * Sources of Help: List all the people, books, websites, etc. that you
+ *                  used to help you write the code in this source file.
+ */ 
+
+        .global	printHello	! Declares the symbol to be globally visible so
+				! we can call this function from other modules.
+
+        .section ".data"	! The data segment begins here
+
+fmt:    			! The format string to printf()
+	.asciz  "Hello, my name is: %s\n"
+
+
+        .section ".text"	! The text segment begins here
+
+/*
+ * Function name: printHello()
+ * Function prototype: void printHello( char *str );
+ * Description: Prints to stdout a greeting string and the argument
+ *              with a terminating newline via printf()
+ * Parameters: 
+ *	arg 1: char *str -- the string to print after the greeting
+ *
+ * Side Effects: Outputs greeting with string supplied as argument.
+ * Error Conditions: None. [Arg 1 is not checked to ensure it is not NULL.]
+ * Return Value: None
+ *
+ * Registers Used:
+ *	%i0 - arg 1 -- the string (char *) passed in to this function
+ *
+ *	%o0 - param 1 to printf() -- format string
+ *	%o1 - param 2 to printf() -- copy of arg 1 being passed in
+ */
+
+printHello:
+	save	%sp, -96, %sp	! Save caller's window; if different than -96
+				! then comment on how that value was calculated.
+
+	set	fmt, %o0	! Parameter 1 to printf() goes in register %o0
+	mov	%i0, %o1	! Parameter 2 to printf() goes in register %o1
+	call	printf, 2	! Make function call specifying # of params
+	nop			! Delay slot for call instruction
+
+	ret			! Return from subroutine
+	restore			! Restore caller's window; in "ret" delay slot
+
+/*
+ * Filename: sum3.s
+ * Author: Joe Jane Student
+ * Userid: cs30xzz
+ * Description: Example SPARC assembly routine to sum 3 arguments and
+ *              return the sum.
+ *              Called from main()
+ * Date: Jan. 10, 2001
+ * Sources of Help: List all the people, books, websites, etc. that you
+ *                  used to help you write the code in this source file.
+ */ 
+
+        .global	sum3		! Declares the symbol to be globally visible so
+				! we can call this function from other modules.
+
+        .section ".text"	! The text segment begins here
+
+/*
+ * Function name: sum3()
+ * Function prototype: int sum3( int a, int b, int c );
+ * Description: Sums 3 int arguments and returns the sum.
+ * Parameters: 
+ *	arg 1: int a -- 1st number to sum.
+ *	arg 2: int b -- 2nd number to sum.
+ *	arg 3: int c -- 3rd number to sum.
+ *
+ * Side Effects: None.
+ * Error Conditions: None
+ * Return Value: Sum of the 3 arguments.
+ *
+ * Registers Used:
+ *	%i0 - arg 1 -- 1st number to sum; also used to return the sum.
+ *	%i1 - arg 2 -- 2nd number to sum.
+ *	%i2 - arg 3 -- 3rd number to sum.
+ *
+ *	%l0 - scratch local reg. to store intermediate addition results
+ */
+
+sum3:
+	save	%sp, -96, %sp	! Save caller's window; if different than -96
+				! then comment on how that value was calculated.
+
+	add	%i0, %i1, %l0	! Add 1st two args, store result in a local reg
+				! %l0 = %i0 + %i1
+	add	%l0, %i2, %l0	! Add 2nd arg to result above
+				! %l0 = %l0 + %i2
+
+	mov	%l0, %i0	! Return value goes in %i0
+
+	ret			! Return from subroutine
+	restore			! Restore caller's window; in "ret" delay slot
+

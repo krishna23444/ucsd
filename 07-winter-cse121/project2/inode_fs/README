@@ -1,0 +1,10 @@
+The mkfs formats the file disk file. It takes two arguments: disk file and size of disk
+(in 512 blocks).
+
+Inode.c implements a file sytem similar to the impementation of early FFS 
+(with out cylinder groups and without space locality). The Inode.h have
+the directory entry structure that store the file name (max 28 bytes), 
+a boolean to indicate the whether the entry is a regular file or directory 
+and inode number if the entry is a regular file, first data block number if 
+the entry is a directory. Each data block of directory stores
+14 file entries and a pointer to the next data block.

@@ -1,0 +1,56 @@
+# Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+# do sixteenbit_delay.tdo 
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vital_timing
+# -- Loading package vcomponents
+# -- Loading package vital_primitives
+# -- Loading package textio
+# -- Loading package vpackage
+# -- Compiling entity sixteenbit_adder
+# -- Compiling architecture structure of sixteenbit_adder
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity sixteenbit_delay
+# -- Compiling architecture testbench_arch of sixteenbit_delay
+# vsim -lib work -sdfmax /UUT=sixteenbit_adder_timesim.sdf -t 1ps sixteenbit_delay 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.sixteenbit_delay(testbench_arch)
+# Loading g:\xilinx\modelsim\win32xoem/../vital2000.vital_timing(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../vital2000.vital_primitives(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.vpackage(body)
+# Loading work.sixteenbit_adder(structure)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_buf_pp(x_buf_pp_v)
+# Loading sixteenbit_adder_timesim.sdf
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_tri_pp(x_tri_pp_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_inv_pp(x_inv_pp_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_lut4(x_lut4_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_one(x_one_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_roc(x_roc_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_toc(x_toc_v)
+# ** Note: (vsim-3587) SDF Backannotation Successfully Completed.
+#    Time: 0 ps  Iteration: 0  Region: /sixteenbit_delay  File: sixteenbit_delay.timesim_vhw
+# .main_pane.mdi.interior.cs.vm.paneset.cli_0.wf.clip.cs
+# .main_pane.workspace
+# .main_pane.signals.interior.cs
+# ** Error: Error at time=150ns S=0111111111111110, Expected = 1000000000000000 
+#    Time: 150 ns  Iteration: 0  Instance: /sixteenbit_delay
+# ** Failure: Errors found during simulation
+#    Time: 1 us  Iteration: 0  Process: /sixteenbit_delay/line__62 File: sixteenbit_delay.timesim_vhw
+# Break at sixteenbit_delay.timesim_vhw line 126
+# Simulation Breakpoint: Break at sixteenbit_delay.timesim_vhw line 126
+# MACRO ./sixteenbit_delay.tdo PAUSED at line 14
+# WARNING: No extended dataflow License exists

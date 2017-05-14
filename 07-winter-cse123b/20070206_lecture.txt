@@ -1,0 +1,52 @@
+- protocol for data that has a deadline (like voice)
+  - on top of ip
+  - acknowledgements not so important anymore
+  - not on topp of tcp, no reason to connect, etc
+  - directly on top ip? or udp? new layer 4 protocol on top ofo ip, or leverage
+    abilities of udp
+    - ip: host to host communication
+    - udp: process to proceess communication, adds port numbers
+    - bunch of advantages to udp (port numbers), but not much disadvantages
+      like with tcp
+  - needs to be generic, not just skype, support a bunch of read time apps
+  - one solution, design your own header information for real time application
+  - ex. sample 8khz, i.e. 8 thousand times per second, each sample contains 125
+    microseconds of information, therefore we care about the timestamp
+  - timestamp is relative to sample rate, so can just use ticks
+  - time very important for synchronizing signals, like audio and video
+  - want to know encoding/decoding scheme, but still don't want to put all this
+    information in, so use somemap with id's for standard coding schemes
+  - do we put coding scheme information in every packet header?
+    - probably don't want to, too much overhead, should just put it in header
+      for the whole file, or some sort of bigger unit
+  - separate protocol to negotiate coding abilities
+  - udp doesn't handle congestion, whereas tcp is (most important thing of it)
+    - add a layer of congestion response above udp for our protocol
+    - main problem is with real time communication there's a fixed amount of
+      time to send/receive the data
+    - ex. send 200 packets, find out only 4 get through
+      - tell application to use a harsher coding scheme, change sample rate ...
+  - use two channels, back to back, one for real time data, another for control
+    data, like percentage of packets that were received
+    - header for rtp now has very little information
+      - timestamp
+      - sequence number, disambiguate lost packets
+
+- network service architecture
+  - wan router -> firewall -> load balancing switch -> ethernet switches
+  - load balancing switch operates on layer 4 or layer 7 information
+    - rewrites packet headers to point to meaningful internal address
+    - knows about load of all the machines b/c all traffic goes through it
+  - traditional way to think of web services = 3 tiers
+    1. http (front end)
+    2. application servers
+    3. storage tier (fileserver/database)
+  - load balancing switch maps external virtual ips to internal machines
+- can't log in to load balancing switch for security standpoint
+
+- email
+  - one of the first and most popular applications
+  - user agent = end user program
+  - message transfer agent (mta) = communicate with host and transmit/receive
+    emails, acts as both client and server
+  - mail exchanger = takes care of mail for a server

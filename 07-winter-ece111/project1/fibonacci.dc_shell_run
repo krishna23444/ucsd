@@ -1,0 +1,83 @@
+[synopsys] e3327-1.ucsd.edu% dc_shell
+
+                        DC Professional (TM)
+                           DC Expert (TM)
+                            DC Ultra (TM)
+                         VHDL Compiler (TM)
+                          HDL Compiler (TM)
+                        Library Compiler (TM)
+                         Power Compiler (TM)
+                          DFT Compiler (TM)
+                            BSD Compiler
+                      DesignWare Developer (TM)
+
+          Version V-2004.06-SP2 for sparc64 -- Aug 25, 2004
+              Copyright (c) 1988-2004 by Synopsys, Inc.
+                         ALL RIGHTS RESERVED
+
+This program is proprietary and confidential information of Synopsys, Inc.
+and may be used and disclosed only as authorized in a license agreement
+controlling such use and disclosure.
+
+Initializing...
+dc_shell> include fibonacci_calculator.scr
+/*  fibonacci_calculator.scr */
+
+
+/*  Check for errors in fibonacci_calculator.v, translate verilog to an intermediate format, and write messages to file. */
+analyze -f verilog fibonacci_calculator.v > fibonacci.analyze
+1
+
+
+/*  Build design from intermediate format and write messages to file.  */
+elaborate fibonacci_calculator > fibonacci.elaborate
+1
+
+
+/*  The module name is fibonacci_calculator;
+ set the current_design to fibonacci_calculator.  */
+current_design fibonacci_calculator
+Current design is 'fibonacci_calculator'.
+{"fibonacci_calculator"}
+
+/*  uniquify removes multiple-instantiated hierarchy in the design by creating a unique design for each cell instance. */
+/* this command is only needed if there are multiple instantiations of a module */
+uniquify -force
+1
+
+/*  The create_clock command is used on a synchronous design to specify the clock port and set a constraint. In this case, 8 ns. */
+/*  A constraint is a design goal for the compile command for the (maximum combinational path delay + library setup time).  */
+/*  The clock port in the fibonacci_calculator module is clk.  */
+create_clock clk -period 8
+Performing create_clock on port 'clk'.
+1
+
+
+/* The design is mapped to cells from the TSMC technology library and optimized.  */
+compile -map_effort medium > fibonacci.compile
+1
+
+
+/* Write an area report. */
+/* Divide the total area by 5.1, the area of a two-input nand gate, to obtain the area in units of gates. */
+report_area > fibonacci.area
+1
+
+
+/* Write a timing (maximum combinational path delay in nanoseconds) report to file. */
+report_timing > fibonacci.timing
+1
+
+
+/* save the design in Synopsys internal database format to fibonacci_calculator.db file */
+write fibonacci_calculator
+Information: Writing synthetic library implementations for design 'fibonacci_calculator'.
+        Use "write -no_implicit" to get just the design. (UID-172)
+Writing to file /home/solaris/ieng9/oce/47/njoffe/project1/fibonacci_calculator.db
+Writing to file /home/solaris/ieng9/oce/47/njoffe/project1/fibonacci_calculator_DW01_dec_5_1.db
+Writing to file /home/solaris/ieng9/oce/47/njoffe/project1/fibonacci_calculator_DW01_add_16_0.db
+Writing to file /home/solaris/ieng9/oce/47/njoffe/project1/fibonacci_calculator_DW01_dec_5_0.db
+1
+1
+
+dc_shell>

@@ -1,0 +1,2214 @@
+/**
+ *  Implementation of the Bullet protocol
+ *
+ *  Adolfo Rodriguez
+ *  Dejan Kostic
+ */
+
+#include "adolfo_filter.h"
+#include "smooth_filter.h"
+#include "working_set.h"
+#include "content_map.h"
+#include "candidate_set.h"
+#include "download_app.h"
+#include "download_encoded.h"
+//  #define LATE_CLOSING 1
+#define SMALL 1
+#define MOVING 1
+//  #define VARIABLE_PEERS 1
+#if VARIABLE_PEERS
+#undef SMALL
+#endif
+
+typedef unsigned char uchar;
+
+//  #define TRACE_KEY 1
+
+protocol bullet_vtec uses randtree
+
+addressing ip
+
+trace_off
+
+constants {
+  int BULLET_MAX_PEERS_allocate = 20;
+//    int BULLET_MAX_PEERS = 10;
+  int BULLET_MAX_CHILDREN = 10;
+  int BULLET_MAX_CANDS = 10;
+  int BULLET_REFRESH_INTERVAL = 4;
+  int BULLET_DECISION_INTERVAL = 5;
+  int BULLET_PRINTER_INTERVAL = 1;
+  int BULLET_START_RANSUB = 1;
+  int BULLET_NORMAL_RANSUB = 5;
+  int BULLET_SHORT_RANSUB = 1;
+  int BULLET_DATA_PARALLEL = 2;
+  int BULLET_DATA_PARENT = 1;
+  double BULLET_CLOSING_RATIO = 0.5;
+  int BULLET_STRAT_DISJOINT=1;
+  int BULLET_STRAT_SPLITTER=2;
+  int BULLET_STRAT_STREAMTOALL=3;
+  int BULLET_STRAT_TRY=4;
+  int BULLET_STRAT_ONCE=5;
+  int BULLET_STRAT_COLOR = 6;
+  int BULLET_DISSEMINATE_BULLET = 0;
+  int BULLET_DISSEMINATE_TREE = 1;
+  int BULLET_DISSEMINATE_MESH = 2;
+}
+
+node_types {
+  source;
+  receiver;
+}
+
+states {
+  joined;
+}
+
+neighbor_types {
+  receivers_from_me BULLET_MAX_PEERS_allocate {
+    double last_refresh;
+    int sent_this_refresh;
+    double reported_total_bandwidth;
+    double reported_peer_bandwidth;
+    bloom_filter recipient_digest;
+//      bitmap_digest recipient_digest;
+    int parent_last;
+    int parallel_last;
+    list<int> keys;
+    double start_time;
+    double round_started_time;
+    double round_completed_time;
+    short session;
+    short mod_max;
+    short modulo;
+    int handle;
+    int handle_partial;
+    int starting_sequence;
+  }
+  downloaders_from_me BULLET_MAX_PEERS_allocate {
+    int blah;
+  }
+  downloaders_to_me BULLET_MAX_PEERS_allocate {
+    int blah;
+  }
+  senders_to_me BULLET_MAX_PEERS_allocate {
+    adolfo_filter arrivals;
+    adolfo_filter useful;
+    int data_count;
+    int total_data_count;
+    int useful_count;
+    int total_useful_count;
+    double start_time;
+    double round_started_time;
+    double round_completed_time;
+    int handle;	    
+    int handle_partial;
+    short session;
+    int responded;
+  }
+  ransub_parent 1 {
+    adolfo_filter arrivals;
+    adolfo_filter useful;
+  }
+  ransub_children BULLET_MAX_CHILDREN {
+    int sent;
+    int gas_sent;   // only for statistics
+    int not_sent;
+    double bandwidth_factor;  // called limiting_factor in the paper
+    double density; // called sending_factor in the paper
+    bloom_filter kid_digest;
+//      bitmap_digest kid_digest;
+    int seq;
+    int represents;
+    candidate_set<cand_bullet_summary_ticket> gathered;
+  }
+}
+
+messages {
+  PRIORITY_HIGHEST collect {
+    int sequence;
+    int descendants;
+    candidate_set<cand_bullet_summary_ticket> mycollect;
+  }
+  PRIORITY_HIGHEST distribute {
+    int sequence;
+    int population;
+    candidate_set<cand_bullet_summary_ticket> mydistribute;
+  }
+  PRIORITY_HIGH update_sender {
+    int low_key;
+    int high_key;
+    short mod;
+    short mod_max;
+    double total_bandwidth;
+    double peer_bandwidth;
+//      flat_bloom filter;
+//      flat_bitmap filter;
+    short session;
+  }
+
+
+  PRIORITY_HIGH update_sender_small {
+    int low_key;
+    int high_key;
+    short mod;
+    short mod_max;
+    double total_bandwidth;
+    double peer_bandwidth;
+    flat_bloom_small filter;
+//      flat_bitmap_small filter;
+    short session;
+  }
+  PRIORITY_HIGH request_denied {
+  }
+  PRIORITY_HIGH request_accepted {
+  }
+  PRIORITY_HIGH update_parent {
+    flat_bloom filter;
+//     flat_bitmap   filter;
+  }
+  PRIORITY_HIGH remove_to_sender {
+  }
+  PRIORITY_HIGH remove_to_receiver {
+  }
+  PRIORITY_HIGH ask {
+    int key_seq;	    
+  }
+  PRIORITY_HIGHEST  start_download {
+    int handle;	    
+    short modulo;
+    short mod_max;
+//      int modulo;	    
+    int key_starting;	    
+    double total_bandwidth;
+    double peer_bandwidth;
+  }
+ 
+  PRIORITY_HIGH  partial_download {
+    int handle;	    
+    short mod;
+    short mod_max;
+    double total_bandwidth;
+    double peer_bandwidth;
+//      flat_bloom filter;
+//      flat_bitmap filter;
+    int low_key;
+    int high_key;
+    short session;
+  }
+
+
+  PRIORITY_MED papa_data {
+    short comm_type;
+    short disseminate_type;
+    int key_seq;
+  }
+  PRIORITY_LOW peer_data {
+    uchar comm_type;
+    uchar disseminate_type;
+    short last;
+    int key_seq;
+  }
+  PRIORITY_MED collect_data { 
+    int receiver;
+    int sender;
+    int comm_type;
+    int priority;
+  }
+  PRIORITY_LOW download_data {
+    short last;
+    int handle;
+    int sequence;
+  }
+
+}
+
+state_variables {	 
+  char * got_msg nodump;
+  int got_from;
+  int got_key;
+  int got_type;
+  int got_size;
+  int got_last;
+  int got_disseminate_type;
+  int multicast_success_code;
+  adolfo_filter master;
+  adolfo_filter master_useful;
+  adolfo_filter master_download;
+  adolfo_filter forwarding;
+
+  receivers_from_me getters;
+  downloaders_from_me download_receivers;
+  downloaders_to_me download_senders;
+  senders_to_me givers;
+  int curkey;
+  working_set working_file;
+  working_set parent_file;
+  working_set parallel_file;
+  smooth_filter smooth_bandwidth;
+  timer refresh BULLET_REFRESH_INTERVAL;
+  timer decision BULLET_DECISION_INTERVAL;
+  timer printer BULLET_PRINTER_INTERVAL;
+  timer sending;
+  ransub_parent myparent;
+  ransub_children mychildren;
+  int sequence;
+  int total_received;
+  int total_expected;
+  int population;
+  int descendants;
+  int collect_expired;
+  int collect_missing;
+  candidate_set<cand_bullet_summary_ticket> curset;
+  timer ransub;
+  char * cached_msg;
+  char * small_filters;
+  char * small_filters1; // 1 less than max peers
+  int growing_senders;
+  short session;
+  char * color_table;
+  int color_count;
+  double application_spacing;
+  int bullet_strategy;
+  int data_packet_size;
+  int downloading_handle;
+  int receiving_handle;
+  int downloading_from;
+  char * rejected_char;
+  short mod_max;
+  int inbound_capacity;
+  int outbound_capacity;
+  int to_close;
+  content_map contents;
+  int BULLET_MAX_PEERS_receivers;
+  int BULLET_MAX_PEERS_senders;
+  int BULLET_MAX_PEERS_downloaders_from_me ;
+  int BULLET_MAX_PEERS_downloaders_to_me;
+}	  
+
+transitions {
+
+  init API init {
+    BULLET_MAX_PEERS_receivers = 10;
+    BULLET_MAX_PEERS_senders = 10;
+    BULLET_MAX_PEERS_downloaders_from_me = 3;
+    BULLET_MAX_PEERS_downloaders_to_me = 4;
+    
+    application_spacing = (double)(parameters.getint("data_packet_size")) *8/(1000.0*(double) parameters.getint("streaming_rate"));
+    bullet_strategy = parameters.getint("bullet_strategy");
+#if USE_WS_STORE
+    working_file.set_store(1000, 
+			  parameters.getint("data_packet_size"), 
+			  "/tmp/bullet_store");
+#endif
+    to_close = 0;
+    curkey = 0;
+    sequence = 0;
+    session = 1;
+    total_received = 0;
+    collect_missing = 0;
+    growing_senders = 1;
+    mod_max = 0;
+    downloading_handle = receiving_handle = downloading_from = 0;
+    cached_msg = (char *) malloc(parameters.getint("data_packet_size"));	
+#if SMALL
+    small_filters = (char *)new bloom_filter*[BULLET_MAX_PEERS_senders];
+    bloom_filter** filter_array = (bloom_filter**) small_filters;
+    for (int i = 0; i < BULLET_MAX_PEERS_senders ;i++ )
+      {
+	filter_array[i] = (bloom_filter* ) new bloom_filter(BLOOM_SIZE_SMALL);
+	printf("small[%d]=%x\n", i, filter_array[i]);
+      }
+    small_filters1 = (char *)new bloom_filter*[BULLET_MAX_PEERS_senders-1];
+    filter_array = (bloom_filter**) small_filters1;
+    for (int i = 0; i < BULLET_MAX_PEERS_senders-1 ;i++ ) // -1
+      {
+	filter_array[i] = (bloom_filter* ) new bloom_filter(BLOOM_SIZE_SMALL);
+	printf("small1[%d]=%x\n", i, filter_array[i]);
+      }
+#endif
+    state_change(joined);
+
+    data_packet_size = parameters.getint("data_packet_size");
+    debug_macro ("bullet_strategy: %d\n", bullet_strategy);
+    debug_macro ("application_spacing: %f\n", application_spacing);
+
+      timer_resched(decision, BULLET_DECISION_INTERVAL);
+    timer_resched(printer, BULLET_PRINTER_INTERVAL);
+    if ( source_ == me )
+    {
+      neighbor_add (myparent, 0);
+      replay_experiment();
+      timer_resched(ransub, BULLET_START_RANSUB);	
+    }
+    else
+    {
+      replay_init();
+      timer_resched(refresh, BULLET_REFRESH_INTERVAL);
+    }
+    rejected_char = (char *)new list<int>();
+
+    read_capacity_file();
+#if VARIABLE_PEERS
+    //dmk: testing
+    if (outbound_capacity > 800)
+      {
+	BULLET_MAX_PEERS_receivers += (outbound_capacity-800)*0.004;
+	if (BULLET_MAX_PEERS_receivers > BULLET_MAX_PEERS_allocate)
+	  BULLET_MAX_PEERS_receivers = BULLET_MAX_PEERS_allocate;
+      }
+
+    BULLET_MAX_PEERS_downloaders_from_me = 0.4*BULLET_MAX_PEERS_receivers;
+    if (inbound_capacity > 800)
+      {
+	BULLET_MAX_PEERS_senders += (inbound_capacity-800)*0.004;
+	if (BULLET_MAX_PEERS_senders > BULLET_MAX_PEERS_allocate)
+	  BULLET_MAX_PEERS_senders = BULLET_MAX_PEERS_allocate;
+      }
+
+    BULLET_MAX_PEERS_downloaders_to_me = 0.4*BULLET_MAX_PEERS_senders;
+#endif
+printf("BULLET_MAX_PEERS_senders: %d\n", BULLET_MAX_PEERS_receivers);
+
+printf("BULLET_MAX_PEERS_downloaders_to_me: %d\n", BULLET_MAX_PEERS_downloaders_to_me);
+printf("BULLET_MAX_PEERS_receivers: %d\n", BULLET_MAX_PEERS_receivers);
+
+printf("BULLET_MAX_PEERS_downloaders_from_me: %d\n", BULLET_MAX_PEERS_downloaders_from_me);
+
+  }
+
+// ---------------------------------------------- 
+// refresh
+// ---------------------------------------------- 
+
+  joined timer refresh {
+    int mysize;
+    unsigned char *my_filter = (unsigned char*)working_file.export_digest(mysize);
+
+//      if (my_filter->tab_size != BLOOM_SIZE) {
+//        printf("Receiver: something is wrong with your filter %x with size %d\n", my_filter, my_filter->tab_size);
+//        exit(90);
+//      }
+    session ++;
+    if (session<0)
+      {
+	session = 1;
+      }
+    int downloaders = 0;// neighbor_size (download_senders);
+    int responded = 0;// neighbor_size (download_senders);
+    foreach_neighbor (neighbor_senders_to_me*, givuh, givers) {
+      if (givuh-> handle)  downloaders ++;
+#if LATE_CLOSING
+      if (givuh-> responded)  
+#endif
+	responded ++;
+    }
+    if  (downloaders !=  neighbor_size (download_senders))
+      abort ();
+    mod_max = neighbor_size(givers) + 1;
+//      int effective_givers = neighbor_size(givers) -  downloaders;
+    int effective_givers = responded -  downloaders;
+    if (neighbor_size(givers)) {
+      int piece = (working_file.get_last() - working_file.get_earliest())/ effective_givers;
+      sprintf(trace_buf_, "Receiver: dividing range %d (%d - %d)between %d senders\n", 
+          working_file.get_last() - working_file.get_earliest(),
+          working_file.get_earliest(), working_file.get_last(),
+          effective_givers); 
+      trace_print();
+      int starting =  working_file.get_earliest();
+      int sender_num=0;
+      neighbor_ransub_parent * papa= neighbor_random (myparent);
+      double parent_bandwidth = papa->arrivals.get_value();
+
+      foreach_neighbor (neighbor_senders_to_me*, givuh, givers) {
+	if (givuh-> handle && !givuh-> handle_partial)
+	  {
+	    int modvald = 1 + ((sender_num) % mod_max);
+	    int highest = my_app->get_highest_sequence(givuh-> handle);
+	    if (highest == 0)
+	      {
+		highest = 1; //means we haven't seen any data from this segment
+	      }
+	    else
+	      {
+		highest += 2000;//just skip anything that might be coming in from the source&others;
+	      }
+	    route_start_download(givuh->ipaddr, givuh-> handle, modvald, mod_max, highest , master_useful.get_value(), givuh->useful.get_value(), 0, 0, -1); 
+	  debug_macro ("refreshing %d (out of %d): %.8x starting %d (%d/%d) %d\n", givuh-> handle, neighbor_size (download_senders), givuh->ipaddr, highest, modvald,  mod_max, sender_num);
+	  }
+	else if (
+//  		 session % 2 && 
+		 givuh-> handle && givuh-> handle_partial)
+	  {
+	    int count = 0;
+	    //find out how many are sending this handle
+	    int mine = 0;
+	    foreach_neighbor (neighbor_senders_to_me*, givuh2, givers) {
+	      if (givuh2-> ipaddr == givuh-> ipaddr)
+		mine = count;
+	      if (givuh2-> handle == givuh-> handle&& givuh2-> handle_partial)
+		count ++;
+	    }
+	    mod_max = count;
+	    int modvald = (mine+session) % mod_max;
+	    
+	    int mysize1;
+	    download_state*  state = my_app->get_state (givuh->handle);
+    
+	    unsigned char *my_filter1 = (unsigned char *)((download_encoded*)state->info)->working_file.export_digest(mysize1);
+	    route_partial_download(givuh->ipaddr, givuh-> handle, modvald, mod_max, master_useful.get_value(), givuh->useful.get_value(),/* *(flat_bloom*)my_filter1,*/ ((download_encoded*)state->info)->working_file.get_earliest(), 9999999,session, my_filter1, mysize1, -1); 
+	    delete [] my_filter1;
+
+	    debug_macro ("partially %d (out of %d): %.8x (%d/%d) %d\n", givuh-> handle, neighbor_size (download_senders), givuh->ipaddr, modvald,  mod_max, sender_num);
+	  }
+	else // no handle
+#if LATE_CLOSING
+	  if (givuh-> responded && effective_givers > 0)
+#endif
+	  {
+	    int ending = working_file.get_last();
+	    if (parent_bandwidth == 0) ending = 9999999;
+
+	    int modval = (sender_num+session) % effective_givers;
+	    //  	int modval = (sender_num+sequence) % neighbor_size(givers);
+	    sprintf(trace_buf_, "Filter: sending to %x mod %d max %d low %d high %d\n", givuh->ipaddr, modval, effective_givers, starting, ending);
+	    trace_print();
+	    givuh->round_started_time = curtime;
+	    givuh->round_completed_time = 0;
+
+	    { 
+#if SMALL
+	      //dmk:  affected by downloads
+	      if (effective_givers == BULLET_MAX_PEERS_senders||
+		  effective_givers == BULLET_MAX_PEERS_senders-1)
+		{
+
+		  bloom_filter** filter_array = NULL;
+
+		  if (effective_givers == BULLET_MAX_PEERS_senders)
+		    {
+		      filter_array = (bloom_filter**) small_filters;
+		    } 
+		  else if (effective_givers == BULLET_MAX_PEERS_senders-1)
+		    {
+		      filter_array = (bloom_filter**) small_filters1;
+		    }
+
+		  filter_array[modval]->prune_up_to(starting);
+		  sprintf(trace_buf_,"starting: %d filter[%d]=%x: %d items %d \n", starting, modval, filter_array[modval], filter_array[modval]->get_lowest_sequence (), filter_array[modval]->get_items () );
+		  trace_print();
+
+		  unsigned char* buffer = new unsigned char [filter_array[modval]->size_compacted_in_bytes()];
+		  filter_array[modval]->serialize( buffer);
+		  sprintf(trace_buf_,"filter[%d]=%x: %d peers \n", modval, filter_array[modval], effective_givers);
+		  trace_print();
+
+		  route_update_sender_small(givuh->ipaddr, filter_array[modval]->get_lowest_sequence (), /*9999999*/ ending, modval, effective_givers, master_useful.get_value(), givuh->useful.get_value(), *(flat_bloom_small*)buffer, session, 0, 0, -1);
+		  delete [] buffer;
+		}
+	      else // dmk
+#endif
+		{
+
+#if USE_BLOOM 
+		  route_update_sender(givuh->ipaddr, starting, /*9999999*/ ending, modval, effective_givers, master_useful.get_value(), givuh->useful.get_value(), session, my_filter, mysize, -1);
+#else
+		  route_update_sender(givuh->ipaddr, starting, ending, modval, effective_givers, master_useful.get_value(), givuh->useful.get_value(), *(flat_bitmap*)my_filter, session, 0, 0, -1);
+#endif
+		}
+	    }
+	  }
+#if LATE_CLOSING
+	if(givuh->responded)
+#endif
+	  sender_num++;
+      }
+    }
+    if (neighbor_size(myparent)) {
+      neighbor_ransub_parent *papa = neighbor_random(myparent);
+      if (papa->ipaddr != source_)
+	{
+#if USE_BLOOM 
+	  route_update_parent(papa->ipaddr, *(flat_bloom*)my_filter, 0, 0, -1);
+#else
+	  route_update_parent(papa->ipaddr, *(flat_bitmap*)my_filter, 0, 0, -1);
+#endif      
+
+	}
+    }
+    unsigned char *temp = (unsigned char *)my_filter;
+    delete [] temp;
+  }
+  
+// ---------------------------------------------- 
+// update_sender
+// ---------------------------------------------- 
+  joined recv update_sender {
+    neighbor_receivers_from_me *guy;
+
+    if (!accept_getter (from)) return;
+
+    guy = neighbor_entry (getters, from);
+    guy->last_refresh = curtime;
+    guy->session = field(session);
+    guy->round_started_time = curtime;
+    guy->sent_this_refresh = 0;
+    guy->  handle = 0;
+    guy->handle_partial = 0;
+    guy->reported_total_bandwidth = field(total_bandwidth);
+    guy->reported_peer_bandwidth = field(peer_bandwidth);
+//      guy->recipient_digest.import( (unsigned char *)&(field(filter)));  
+    guy->keys.clear();
+    if (msg)
+      {
+	guy->recipient_digest.import( (unsigned char *) msg);  
+	parent_file.get_modulo_keys(guy->keys, (digest &)guy->recipient_digest, field(low_key), field(high_key), field(mod), field(mod_max) );
+	parallel_file.get_modulo_keys(guy->keys, (digest &)guy->recipient_digest, field(low_key), field(high_key), field(mod), field(mod_max));    
+      }
+    sprintf(trace_buf_, "Filter: updated_N(%d) for %x keys %d, low %d high %d mod %d max %d\n", guy->session, from, guy->keys.size(), field(low_key), field(high_key), field(mod), field(mod_max));
+#if MOVING
+    if (guy->keys.size()==0  && field(low_key)!=0 &&  field(high_key)!=0)
+      route_peer_data( guy->ipaddr, 
+		       COMM_TYPE_MULTICAST, 
+		       0, -guy->session, 0, 0, 
+		       0, -1);   
+#endif      
+
+    trace_print();
+
+  }
+
+// ---------------------------------------------- 
+// update_sender_small
+// ---------------------------------------------- 
+  joined recv update_sender_small {
+    neighbor_receivers_from_me *guy;
+
+    if (!accept_getter (from)) return;
+
+    guy = neighbor_entry (getters, from);
+    guy->session = field(session);
+    guy->round_started_time = curtime;
+    guy->last_refresh = curtime;
+    guy->sent_this_refresh = 0;
+    guy->  handle = 0;
+    guy->handle_partial = 0;
+    guy->reported_total_bandwidth = field(total_bandwidth);
+    guy->reported_peer_bandwidth = field(peer_bandwidth);
+    guy->recipient_digest.import( (unsigned char *)&(field(filter)));	
+    guy->keys.clear();
+    guy->parent_last = parent_file.get_modulo_keys(guy->keys, (digest &)guy->recipient_digest, field(low_key), field(high_key), field(mod), field(mod_max) );
+    parallel_file.get_modulo_keys(guy->keys, (digest &)guy->recipient_digest, field(low_key), field(high_key), field(mod), field(mod_max));    
+    sprintf(trace_buf_, "Filter: updated_S(%d) for %x keys %d, low %d high %d mod %d max %d\n", guy->session,  from, guy->keys.size(), field(low_key), field(high_key), field(mod), field(mod_max));
+    trace_print();
+#if MOVING
+    if (guy->keys.size()==0 && field(low_key)!=0 &&  field(high_key)!=0)
+      route_peer_data( guy->ipaddr, 
+		       COMM_TYPE_MULTICAST, 
+		       0, -guy->session, 0, 0, 
+		       0, -1);   
+#endif      
+  }
+
+  joined recv update_parent {
+    neighbor_ransub_children *kid;
+    if (neighbor_query (mychildren, from))
+    {
+      kid = neighbor_entry(mychildren, from);
+      kid->kid_digest.import( (unsigned char *)&(field(filter)));	
+    }
+  }
+
+  joined recv request_denied {
+    if (neighbor_query(givers, from)) {
+      sprintf(trace_buf_, "Receiver: sender %.8x denied my request\n", from);
+      trace_print();
+      remove_giver( from);
+      list<int>* rejected = (list<int>*) rejected_char;
+      rejected->push_back(from);
+      int val = 0;
+      int only_download = 0;
+      do
+	{
+	  val = use_distribute(0, only_download);
+	  only_download = 1;
+	} while (val);
+    }
+  }
+
+  joined recv request_accepted {
+    neighbor_senders_to_me* givuh = neighbor_entry(givers, from);
+    if (givuh) {
+      sprintf(trace_buf_, "Receiver: sender %.8x accepted my request\n", from);
+      trace_print();
+      givuh->responded = 1;
+      if (to_close)
+	{
+	  route_remove_to_sender (to_close, 0, 0, -1);
+	  remove_giver (to_close);
+	  debug_macro ("Receiver: ACTUALLY Closing useless sender %.8x\n", to_close);
+	  to_close = 0;
+	}
+    }
+  }
+
+  joined recv remove_to_sender  {
+    // request for this node to stop sending data    
+    debug_macro("Sender: got remove request from %.8x\n", from);
+    if (neighbor_query (getters, from)) {
+      debug_macro("Sender: remove done from %.8x\n", from);
+      remove_getter(from);
+    }
+  }
+
+  joined recv remove_to_receiver {
+    // request for this node to stop sending data    
+    debug_macro("Receiver: got remove request from %.8x\n", from);
+    remove_giver( from);
+    list<int>* rejected = (list<int>*) rejected_char;
+    rejected->push_back(from);
+    int val = 0;
+    int only_download = 0;
+    do
+      {
+	val = use_distribute(0, only_download);
+	only_download = 1;
+      } while (val);
+  }
+
+  joined recv ask {
+    // asks for a specific key, not yet implemented
+  }
+
+  joined recv start_download {
+    neighbor_receivers_from_me *guy;
+    if (!accept_downloader (from, field( handle))) return;
+
+    guy = neighbor_entry (getters, from);
+    guy->round_started_time = curtime;
+    guy->last_refresh = curtime;
+    guy->sent_this_refresh = 0;
+    guy->handle = field( handle);
+    guy->handle_partial = 0;
+    guy->modulo = field( modulo);
+    guy->mod_max = field( mod_max);
+    if (field( key_starting) &&  field( key_starting) >= guy->starting_sequence) 
+      guy->starting_sequence = field( key_starting); // 0 means keep going
+    guy->starting_sequence += guy->modulo;
+    guy->reported_total_bandwidth = field(total_bandwidth);
+    guy->reported_peer_bandwidth = field(peer_bandwidth);
+
+    debug_macro ("start_download %.8x  handle: %d starting: %d mod: %d max %d tot %f me %f\n", from, guy->handle, field( key_starting), guy-> modulo, guy->mod_max, guy->reported_total_bandwidth, guy->reported_peer_bandwidth);
+
+    if (my_app) my_app-> request_encoder(field( handle));
+  }
+
+
+// ---------------------------------------------- 
+// update_sender
+// ---------------------------------------------- 
+  joined recv partial_download {
+    neighbor_receivers_from_me *guy;
+
+    if (!accept_downloader (from, field( handle))) return;
+
+    guy = neighbor_entry (getters, from);
+    guy->last_refresh = curtime;
+    guy->session = field(session);
+    guy->round_started_time = curtime;
+    guy->sent_this_refresh = 0;
+    guy->handle = field( handle);
+    guy->handle_partial = 1;
+    guy->reported_total_bandwidth = field(total_bandwidth);
+    guy->reported_peer_bandwidth = field(peer_bandwidth);
+//      guy->recipient_digest.import( (unsigned char *)&(field(filter)));  
+    guy->recipient_digest.import( (unsigned char *) msg);  
+    guy->keys.clear();
+    download_state*  state = my_app->get_state (field( handle));
+    
+    if (state &&state->info)
+      {
+	((download_encoded*)state->info)->working_file.get_modulo_keys(guy->keys, (digest &)guy->recipient_digest, field(low_key), field(high_key), field(mod), field(mod_max) );
+	sprintf(trace_buf_, "Filter: updated_P(%d) for %.8x keys %d low %d high %d  mod %d max %d\n", guy->session, from, guy->keys.size(),field(low_key), field(high_key), field(mod), field(mod_max));
+	trace_print();
+	
+//      if (guy->keys.size()==0  && field(low_key)!=0 &&  field(high_key)!=0)
+//        route_peer_data( guy->ipaddr, 
+//  		       COMM_TYPE_MULTICAST, 
+//  		       0, -guy->session, 0, 0, 
+//  		       0, -1);   
+      }
+  }
+
+// ---------------------------------------------- 
+// sending
+// ---------------------------------------------- 
+
+  joined timer sending {
+    int should_have_sent;
+    if (neighbor_size(getters)!=0) {
+      foreach_neighbor (neighbor_receivers_from_me*, getta, getters) {
+	if (my_app && getta->handle  && (getta->starting_sequence||getta->handle_partial))
+	  {
+	    download_state*  state = my_app->get_state (getta->handle);
+	    //let's just send as much as we can
+	    int status = 1;
+	    while (status)
+	      {
+		int length = 0;
+		data_object* object;
+		if (getta->handle_partial&& getta->keys.size())
+		  {
+		    list< int>::iterator traverse = getta->keys.begin();
+		    int value = *traverse; 
+		    if (!state->info->complete())
+		      {
+			object = ((download_encoded*)state->info)->decoder-> get_check (value);//dmk: lock?
+	
+		      }
+		    else
+		      {
+			getta->keys.pop_front();
+			continue;
+		      }
+		  }
+		  else
+		  {
+//  		    double before = Scheduler::instance().clock();
+		    object = my_app-> get_encoded_object(getta->handle, getta->starting_sequence, getta->mod_max);
+//  		    double after = Scheduler::instance().clock();
+//  		    debug_macro ("get_encoded_object: %f seconds\n", after - before);
+		  }
+
+		if (object)
+		  {
+//  		    debug_macro ("attempt route_download: %.8x handle: %d  sequence: %d\n",  getta->ipaddr, getta->handle, getta->starting_sequence);
+		    route_download_data
+		      ( getta->ipaddr, 0, getta->handle, object->sequence,  object-> data, object->  size, -1);   
+		    status = (macedon_sendret == 0);
+		    if (status) 
+		      {
+			forwarding.update();
+			debug_macro ("accepted route_download: handle: %d  sequence: %d to %.8x  %x\n", getta->handle, object->sequence,  getta->ipaddr, *((int*)object-> data));
+			if (getta->handle_partial)
+			  {
+			    getta->keys.pop_front();
+			  }
+			else
+			  {
+			    if (getta->mod_max)
+			      {
+				getta->starting_sequence += getta->mod_max;
+			      }
+			    else
+			      {
+				getta->starting_sequence ++;
+			      }
+			  }
+			if (!getta->handle_partial) 
+			  my_app-> done_with_encoded_object(getta->handle, getta->starting_sequence, getta->mod_max, object);
+		      }
+  		  }
+		else
+		  {
+		    status = 0;
+		  }
+	      }
+	  }
+	else if (getta->keys.size()) {
+	  sprintf(trace_buf_,"need to send %x keys %d\n", getta->ipaddr, getta->keys.size());
+	  cut_trace();
+	  if (curtime < getta->last_refresh + BULLET_REFRESH_INTERVAL+1.0) {
+	    // allow the update to be late up to 1 second, no more
+	    double sendtime = min(curtime-getta->last_refresh, (double)BULLET_REFRESH_INTERVAL);
+	    double prev_sendtime = sendtime;
+	    should_have_sent = (int)ceil((sendtime * (getta->keys.size() + getta->sent_this_refresh)) / (double)BULLET_REFRESH_INTERVAL);
+	    if (getta->sent_this_refresh > should_have_sent)
+	      continue;
+	    int num_send = should_have_sent - getta->sent_this_refresh;
+	    num_send = min(num_send, 20);  // send up to 20 since that is the queue limit anyway
+	    int trash;
+	    sprintf(trace_buf_, "Sender: for %.8x keys %d, sent %d should have %d will send %d last %f\n", getta->ipaddr, getta->keys.size(), getta->sent_this_refresh, should_have_sent, num_send, getta->last_refresh);
+	    cut_trace();
+
+	    while (num_send > 0 && getta->keys.size()>0) {
+	      list< int>::iterator traverse = getta->keys.begin();
+	      int value = *traverse; 
+
+	      if (!getta->recipient_digest.contains(value)) 
+		{
+		int mysize;
+		unsigned char *data_msg = working_file.get_message(value, mysize);
+		int last = getta->session;
+		if (getta->keys.size() == 1) {
+		  last = -getta->session;
+		  double c=curtime-getta->round_started_time;
+		  sprintf(trace_buf_, "last: %f to %.8x \n", c, getta->ipaddr);
+		  trace_print();
+		}
+
+		if (data_msg) 
+		  {
+		    route_peer_data( getta->ipaddr, 
+				     COMM_TYPE_MULTICAST, 
+				     0, last, value, data_msg, 
+				     mysize, -1);   
+		    delete [] data_msg;
+		  }
+		else
+		  {
+		  getta->keys.pop_front();
+		  continue;
+		  }
+
+		if (!macedon_sendret) {
+		  forwarding.update();
+		  sprintf(trace_buf_, "sent %d to %.8x last %d\n", value, getta->ipaddr, last);
+		  if (last >=0 )  cut_trace(); else  trace_print();
+		  getta->recipient_digest.insert(value);
+		  getta->keys.pop_front();
+		}
+		else {
+		  sprintf(trace_buf_, "failed sent %d to %.8x\n", value, getta->ipaddr);
+		  cut_trace();
+		}
+		getta->sent_this_refresh++;
+	      }
+	      else
+		{
+		  sprintf(trace_buf_, "duplicate to send %d to %.8x\n", value, getta->ipaddr);
+		  cut_trace();
+		}
+
+	      num_send--;
+	    }
+	  }
+	}
+      }
+      double application_spacing = (double)(parameters.getint("data_packet_size")) *8/(1000.0*(double) parameters.getint("streaming_rate"));
+      timer_resched(sending, application_spacing);
+    }
+  }
+
+  joined recv papa_data {
+    if (field(comm_type) != COMM_TYPE_MULTICAST) {
+      upcall_deliver( msg, size, field(comm_type));
+      return;
+    }
+
+    if (!neighbor_query(myparent,from))
+      return;
+
+    got_from = from;
+    got_msg = msg;
+    got_size = size;
+    got_key = field(key_seq);
+    got_type = BULLET_DATA_PARENT;
+    got_last = 0;
+    got_disseminate_type = field(disseminate_type);
+    joined_got_multi_data();
+  }
+
+  joined recv download_data {
+    debug_macro ("download_data: %.8x handle: %d  sequence: %d  %x\n", from, field( handle),field( sequence), *(int*)msg);
+
+    if (!my_app)  return;
+    neighbor_senders_to_me* givuh = neighbor_entry(givers, from);
+    if (givuh)
+      {
+	givuh->arrivals.update();
+	givuh->useful.update(); //dmk:assuming we're doing completely  disjoint!!!
+      }
+    else
+      {
+	route_remove_to_sender (from, 0, 0, -1);
+      }
+    master.update();
+    master_useful.update();
+    master_download.update();
+    if (!my_app-> active(field( handle), 0))
+      {
+	debug_macro ("no longer active: %d\n", field( handle));
+	
+  	if (remove_giver (from) ) //dmk: doing this every time is an overkill?
+	route_remove_to_sender (from, 0, 0, -1);
+      }
+    else
+      {
+	my_app->receive_download_data(from, field( handle),field( sequence),(unsigned char*)msg, size);
+      }
+  }
+
+  joined recv peer_data {
+    if (field(comm_type) != COMM_TYPE_MULTICAST) {
+      upcall_deliver( msg, size, field(comm_type));
+      return;
+    }
+    neighbor_senders_to_me* givuh = neighbor_entry(givers, from);
+    if (!givuh && field(disseminate_type) == BULLET_DISSEMINATE_BULLET)
+      return;
+
+    got_from = from;
+    got_msg = msg;
+    got_size = size;
+    got_key = field(key_seq);
+    got_type = BULLET_DATA_PARALLEL;
+    got_last = field (last);
+    got_disseminate_type = field(disseminate_type);
+//      got_disseminate_type = BULLET_DISSEMINATE_BULLET;
+#if LATE_CLOSING
+    if (givuh) givuh->responded = 1;
+#endif
+
+    if (got_last< 0)
+      {
+	sprintf(trace_buf_, "got_last:  %.8x %d session %d %d \n", from, got_last, session, got_key);
+	trace_print();
+      }
+    else if (givuh && got_last != givuh->session)
+      {
+	if (givuh->session)
+	  {
+	    sprintf(trace_buf_, "got_first:  %.8x %d session %d %d \n", from, got_last, session, got_key);
+	    trace_print();  
+	  }
+	givuh->session = got_last;
+      }
+
+    if (-got_last == session)
+      {
+	givuh->round_completed_time=curtime;
+	double completion =givuh->round_completed_time-givuh->round_started_time;
+	int complete = 0;
+	foreach_neighbor (neighbor_senders_to_me*, givuh2, givers) 
+	  {
+	  if (givuh2->round_completed_time != 0)
+	    complete++;
+	  }
+	sprintf(trace_buf_, "REPLAY givuh %x round_done (%d): %f total %d\n", givuh->ipaddr, session, completion, complete);
+	trace_print();
+#if MOVING
+	if (neighbor_size(givers)> BULLET_MAX_PEERS_senders/2 && 
+	    complete>=(neighbor_size(givers)-8)&&(neighbor_size(givers)-8)>0)
+	  {
+	    sprintf(trace_buf_, "REPLAY moving on %d complete %f\n", complete,completion);
+	    trace_print();
+	    timer_cancel(refresh);
+	    joined_timer_refresh();
+	    timer_resched(refresh, BULLET_REFRESH_INTERVAL);
+	  }
+#endif
+      }
+    if (size > 0) joined_got_multi_data(); //avoid 'nothing to send'
+  }
+
+  joined timer decision {
+    //    working_file.dump_stats();
+    //    parent_file.dump_stats();
+    //    parallel_file.dump_stats();
+
+    foreach_neighbor (neighbor_ransub_children*, kid, mychildren ) {
+      double stream_time = parameters.getdouble("streaming_time");
+      if ( ( stream_time == -1.0 ||
+            curtime > time_booted + stream_time) ) {
+        sprintf(trace_buf_, "strat: %x dens %f repr %d fctr %f sent %d not %d gas %d\n", kid->ipaddr, kid->density, kid->represents, kid->bandwidth_factor, kid->sent, kid->not_sent, kid->gas_sent);
+        trace_print();
+      }
+      kid->sent = 0;
+      kid->gas_sent = 0;
+      kid->not_sent = 0;
+    }
+  }
+
+  joined timer printer {
+    double parent_bandwidth = 0.0;
+    double useful_parent_bandwidth = 0.0;
+    double total_bandwidth = 0.0;
+    double total_download_bandwidth = 0.0;
+    double useful_bandwidth = 0.0;
+    double forwarding_bandwidth = 0.0;
+
+    foreach_neighbor (neighbor_senders_to_me *, givuh, givers) {
+      total_bandwidth+= givuh->arrivals.get_value();
+      useful_bandwidth+=givuh->useful.get_value();
+    }     
+    foreach_neighbor (neighbor_ransub_parent *, papa, myparent) {
+      parent_bandwidth = papa->arrivals.get_value();
+      useful_parent_bandwidth = papa->useful.get_value();
+      total_bandwidth += papa->arrivals.get_value();
+      useful_bandwidth += papa->useful.get_value();
+    }
+
+    forwarding_bandwidth = forwarding.get_value();
+    total_bandwidth = master.get_value();
+    total_download_bandwidth = master_download.get_value();
+    useful_bandwidth = master_useful.get_value();
+
+    smooth_bandwidth.update( useful_bandwidth );
+
+    double stream_time = parameters.getdouble("streaming_time");
+    if ( ( stream_time == -1.0 ||
+          curtime > time_booted + stream_time) )
+      printf("%s %f %d REPLAY_BULLET_BANDWIDTH %d %d %d %d %d %d\n", 
+          get_hostname(), Scheduler::instance().clock(), pthread_self(),
+          (int) parent_bandwidth,
+          (int) total_download_bandwidth,   
+          (int) useful_parent_bandwidth,
+          (int) total_bandwidth,
+          (int) useful_bandwidth,
+          (int) smooth_bandwidth.get_value()
+          );
+    if (total_bandwidth < 0.65*inbound_capacity*1000)
+      {
+	debug_macro("inbound_underutilized %d %d\n", (int)total_bandwidth, (int)inbound_capacity*1000);
+      }
+    if (forwarding_bandwidth < 0.7*outbound_capacity*1000)
+      {
+	debug_macro("outbound_underutilized %d %d\n", (int)forwarding_bandwidth, (int)outbound_capacity*1000);
+      }
+
+  }
+
+
+// ---------------------------------------------- 
+// collect
+// ---------------------------------------------- 
+
+  joined API collect { // send the data to our parent in the tree
+    sprintf(trace_buf_, "API collect\n");    
+    cut_trace();
+    neighbor_ransub_parent *mypa = neighbor_random (myparent);
+    if (mypa) {
+      sprintf(trace_buf_, "API collect to %x\n", mypa->ipaddr);    
+      cut_trace();
+      
+      // Only forward it if I have a parent
+      route_collect_data (mypa->ipaddr, mypa->ipaddr, me, COMM_TYPE_COLLECT, transport, msg, size, transport);
+    }
+    return_code = 0;
+  }
+
+  joined recv collect_data {
+    sprintf(trace_buf_, "recv collect_data type %d size %d from %x at %x\n", field(comm_type), size,from ,me);    
+    cut_trace();
+    // check to see if we should process this data
+    int should_forward = upcall_forward(0, msg, size, field(comm_type));
+    if (should_forward)
+      return; // Leave if upper layer says not to take this msg
+
+    upcall_deliver( msg, size, field(comm_type));
+
+    neighbor_ransub_parent *mypa = neighbor_random (myparent);
+    if (mypa) 
+      {
+      sprintf(trace_buf_, "routing collect to %x\n", mypa->ipaddr);    
+      cut_trace();
+      
+      route_collect_data (mypa->ipaddr, mypa->ipaddr, me, COMM_TYPE_COLLECT, field(priority), msg, size, field(priority));
+      }
+  }      
+
+// ---------------------------------------------- 
+// multicast
+// ---------------------------------------------- 
+
+  API multicast {
+    curkey ++;
+//      sprintf(trace_buf_, "Sender: root sending key %d\n", curkey);    
+//      cut_trace();
+    got_from = 0;
+    got_msg = msg;
+    got_size = size;
+    got_key = curkey;
+    got_type = BULLET_DATA_PARENT;
+    got_last = 0;
+//      got_disseminate_type = BULLET_DISSEMINATE_BULLET;
+    extern int global_disseminate_type;
+    got_disseminate_type = global_disseminate_type;
+    multicast_success_code = 1;
+    joined_got_multi_data();
+    return_code = multicast_success_code;
+  }
+
+  
+// ---------------------------------------------- 
+// ransub
+// ---------------------------------------------- 
+
+  joined timer ransub {
+
+    // This code times out ransub, for failure detection
+    if (collect_missing)
+      {
+      collect_expired = 1;
+      joined_xmit_collect_if_need();
+      collect_expired = 0;
+    }
+    if (source_ == me) {
+      if (collect_missing) {
+        foreach_neighbor(neighbor_ransub_children *, kid, mychildren) {
+          if (kid->seq != sequence)
+          {
+            sprintf(trace_buf_, "RanSub: coll still out at root for %x.\n", kid->ipaddr);
+            trace_print();
+          }
+        }
+        timer_resched(ransub, BULLET_SHORT_RANSUB);	
+        return;
+      }
+
+      bullet_summary_ticket* myticket = new bullet_summary_ticket(working_set::UNIVERSE_SIZE);
+      * myticket = working_file.get_sketch();
+      myticket->st.address = me;
+      myticket->st.high =  working_file. get_last();
+      myticket->st.low =  working_file. get_first();
+      if (my_app) my_app-> populate_ticket(* myticket);
+      myticket->st.downloaders = BULLET_MAX_PEERS_downloaders_from_me - neighbor_size(download_receivers);
+      sequence++;
+      population = descendants + 1;
+      collect_missing=1;
+      sprintf (trace_buf_, "RanSub: root dist seq %d, population %d\n", sequence, population);
+      trace_print();
+      foreach_neighbor(neighbor_ransub_children *, kid1, mychildren)
+	{
+	  candidate_set<cand_bullet_summary_ticket>  tosend(BULLET_MAX_CANDS);
+	  if (  participate_in_ransub ())
+	    tosend.addj(myticket->st);
+	  int sofar=1;
+	  foreach_neighbor(neighbor_ransub_children *, kid2, mychildren) 
+	    {
+	      if (kid1->ipaddr != kid2->ipaddr) {
+		tosend.compact(kid2->gathered, kid2->represents, sofar);
+		sofar+=kid2->represents;
+	      }
+	    }
+	  kid1->seq = sequence -1;
+	  sprintf(trace_buf_, "RanSub: root send dist seq %d to %x.\n", sequence, kid1->ipaddr);
+	  trace_print();
+	  route_distribute(kid1->ipaddr, sequence, population, tosend, 0, 0, -1);
+	}
+      timer_resched(ransub, BULLET_NORMAL_RANSUB);
+      delete myticket;
+    }
+
+  }
+
+// ---------------------------------------------- 
+// distribute
+// ---------------------------------------------- 
+  
+  joined recv distribute {
+    if (!neighbor_query(myparent, from)) {
+      sprintf(trace_buf_, "RanSub: dist from wrong parent %.8x seq %d.\n", from, field(sequence));
+      return;
+    }
+    sprintf(trace_buf_, "RanSub: dist from %.8x seq %d, expect %d.\n", from, field(sequence), sequence+1);
+    trace_print();
+
+    list<int>* rejected = (list<int>*) rejected_char;
+    rejected->clear();
+
+    bullet_summary_ticket* myticket = new bullet_summary_ticket(working_set::UNIVERSE_SIZE);
+    * myticket = working_file.get_sketch();
+    myticket->st.address = me;
+    myticket->st.high =  working_file. get_last();
+    myticket->st.low =  working_file. get_first();
+    if (my_app) my_app->populate_ticket(* myticket );
+    myticket->st.downloaders = BULLET_MAX_PEERS_downloaders_from_me - neighbor_size(download_receivers);
+
+  debug_macro(" myticket: low  %d high %d \n", myticket->st.low, myticket->st.high  );
+
+    if (sequence == 0)
+      sequence = field(sequence) - 1;
+    if (field(sequence) > sequence)
+    {
+      sequence = field(sequence);
+      curset = field(mydistribute);
+      //	curset.printem(me);
+      population = field(population);
+      bullet_summary_ticket* source_ticket = new bullet_summary_ticket(working_set::UNIVERSE_SIZE);
+
+      for (int i = 0; i < curset.number_candidates ;i++ )
+	{
+	  source_ticket->st = curset.candidates[i];
+
+	  for (int j = 0; j < NUM_HANDLES ;j++ )
+	    {
+	      if (my_app && source_ticket->st. handles[j])
+		{
+//  		  my_app->system_segments.assign(source_ticket->st. handles[j],source_ticket->get_address(),source_ticket->st. handle_percentage[j]);
+		}
+	    }
+	}
+      delete source_ticket;
+
+      int val = 0;
+      int only_download = 0;
+      do
+	{
+	  val = use_distribute (!only_download, only_download);
+	  only_download = 1;
+	} while (val);
+
+      // now the ransub processing
+      if (neighbor_size(mychildren) == 0)
+	{
+	  candidate_set<cand_bullet_summary_ticket>  tosend(BULLET_MAX_CANDS);
+	  if (participate_in_ransub() )
+	    tosend.addj(myticket->st);	
+	  neighbor_ransub_parent *papa = neighbor_random(myparent);
+	  sprintf(trace_buf_, "RanSub: send coll seq %d to %x.\n", sequence, papa->ipaddr);
+	  trace_print();
+	  route_collect(papa->ipaddr, sequence, 1, tosend, 0, 0, -1);
+	}
+      else
+	{       
+	  collect_missing = 1;
+	  foreach_neighbor(neighbor_ransub_children *, kid1, mychildren) 
+	    {
+	      candidate_set<cand_bullet_summary_ticket>  tosend(BULLET_MAX_CANDS);
+	      if ( participate_in_ransub() )
+		tosend.addj(myticket->st);	
+	      tosend.compact(curset, population-descendants-1, 1);
+	      int sofar = population-descendants;
+	      foreach_neighbor(neighbor_ransub_children *, kid2, mychildren) 
+		{
+		  if (kid1->ipaddr != kid2->ipaddr) {
+		    tosend.compact(kid2->gathered, kid2->represents, sofar);
+		    sofar+=kid2->represents;
+		  }
+		}
+	      kid1->seq = sequence -1;
+	      sprintf(trace_buf_, "RanSub: send dist seq %d to %x.\n", sequence, kid1->ipaddr);
+	      trace_print();
+	      route_distribute(kid1->ipaddr, sequence, population, tosend, 0, 0, -1);      
+	    }
+	  }
+    }
+    else {
+      candidate_set<cand_bullet_summary_ticket>  empty(BULLET_MAX_CANDS);
+      route_collect(from, field(sequence), 0, empty, 0, 0, -1);
+      printf("RanSub: send empty coll seq %d to %x\n", field(sequence), from);
+    }
+    delete myticket;
+  }
+
+  joined recv collect {
+    sprintf(trace_buf_, "RanSub: got coll seq %d(%d desc.) from %x\n", field(sequence), field(descendants), from);
+    trace_print();
+    if (sequence == field(sequence)) {
+      if (neighbor_query(mychildren, from)) {
+        neighbor_ransub_children *mykid = neighbor_entry(mychildren, from);
+        mykid->gathered = field(mycollect);
+        mykid->represents = field(descendants);
+        mykid->seq = field(sequence);
+      }
+      joined_xmit_collect_if_need();
+    }
+  }     
+
+
+
+  API notify {
+    debug_macro ("notify: type: %d size %d\n", type, size);
+
+    // I am being notified of changes in the tree below
+    int i;
+    if (type == NBR_TYPE_CHILDREN)
+    {
+      if (size > BULLET_MAX_CHILDREN) {
+        printf("Exception: notified of too many children %d!\n", size);
+        exit(54);
+      }
+      for (i=0; i<size; i++) {
+        if (!neighbor_query(mychildren, neighbors[i])) {
+          sprintf(trace_buf_, "Bullet: child %x added\n", neighbors[i]);
+          trace_print();
+          neighbor_add (mychildren, neighbors[i]);
+          neighbor_ransub_children *just_added = neighbor_entry(mychildren, neighbors[i]);
+          just_added->seq = -1;
+          just_added->represents = 1;
+          just_added->bandwidth_factor = 0.1;
+        }
+      }
+      int remove[BULLET_MAX_CHILDREN];
+      int rc=0;
+      foreach_neighbor (neighbor_ransub_children *, kid, mychildren) {
+        int found = 0;
+        for (i=0; i<size; i++) {
+          if (neighbors[i] == kid->ipaddr)
+            found = 1;
+        }
+        if (found == 0)
+        {
+          remove[rc] = kid->ipaddr;
+          rc++;
+        }
+      }
+      for (i=0; i<rc; i++) {
+        sprintf(trace_buf_, "Bullet: child %x removed\n", remove[i]);
+        trace_print();
+        neighbor_remove (mychildren, remove[i]);
+      }
+      joined_xmit_collect_if_need();
+      upcall_notify(mychildren, NBR_TYPE_CHILDREN); // Notify upper layer of change
+    }
+    else if (type == NBR_TYPE_PARENT){
+      if (!neighbor_query(myparent, neighbors[0])) {
+        sprintf(trace_buf_, "Bullet: parent changed to %x\n", neighbors[0]);
+        trace_print();
+        neighbor_clear(myparent);
+        neighbor_add (myparent, neighbors[0]);
+	upcall_notify(myparent, NBR_TYPE_PARENT); // Notify upper layer of change      
+      }
+    }
+  }
+
+} //transitions
+
+routines {
+
+  void read_capacity_file () 
+  {
+    struct hostent *phe;
+    struct hostent *mhe;
+    struct in_addr paddr;
+    struct in_addr myaddr;
+    FILE *myfile;
+
+    int i=0, inbound, outbound, who;
+    char rest[1024];
+    char whole_line[1024];
+    char * capacity_filename = parameters.getstr("capacity_file");
+    printf("forced  capacity_filename: %s\n", capacity_filename);
+
+    myfile = (FILE *)fopen( capacity_filename, "r");
+    if (!myfile) {
+      printf("nonexistent forced  capacity_file  %s\n",  capacity_filename);
+      return;
+    }
+    char* my_hostname = (char*)get_hostname();
+    printf("my_hostname: %s\n", my_hostname);
+
+    int myself =  atoi (my_hostname+6);
+    printf("myself: %d\n", myself);
+
+    while (fgets(whole_line, 512, myfile)!=NULL) {
+      int successful = 0;
+      if ((successful =sscanf(whole_line, "%d %d %d %[^\n]s", 
+               &who,&inbound, & outbound,&rest))!= 3) 
+	{
+	  continue;
+	}
+      if (myself == who)
+	{
+	  inbound_capacity = inbound;
+	  outbound_capacity =  outbound;
+	  debug_macro("%d: inbound: %d, outbound: %d\n", myself,inbound_capacity, outbound_capacity);
+	}
+      
+    }
+    fclose(myfile);
+  }
+
+  void joined_got_multi_data() {
+    neighbor_ransub_parent *papa;
+    neighbor_senders_to_me *givuh;
+
+#ifdef TRACE_KEY
+    sprintf(trace_buf_, "got data %d, type %d (transport %d), from %.8x\n", got_key, got_type, got_disseminate_type, got_from);
+    trace_print();
+#endif
+
+    //#define TRACE_KEY_MOD 100
+#ifdef TRACE_KEY_MOD
+    if (got_key%TRACE_KEY_MOD == 0 && source_ != me) {
+      sprintf(trace_buf_, "REPLAY_PACKET %s %s %d\n", get_hostname(got_from),  get_hostname(), got_key);
+      trace_print();
+    }
+#endif
+    int current_strategy = bullet_strategy;
+
+    int shallow = 0;
+    int useful = 0;
+    if (me ==  source_) 
+      {
+	current_strategy =  BULLET_STRAT_ONCE;
+	shallow = 1;
+      }
+    else if (got_key >working_file.get_earliest() ) //not having this check would cause potential duplicates to be counted as useful data
+      {
+	useful = working_file.insert( got_key,  shallow, (unsigned char *)got_msg, got_size );
+      }
+    if (got_type == BULLET_DATA_PARENT 
+        && neighbor_query(myparent, got_from)
+	&& !shallow) {
+      papa = neighbor_entry(myparent, got_from);
+      parent_file.insert( got_key, 1);
+      if (data_packet_size == got_size)
+	{
+	  papa->arrivals.update();
+	  if (useful)
+	    papa->useful.update();
+	}
+    }
+    else if (got_type == BULLET_DATA_PARALLEL
+        && neighbor_query(givers, got_from)
+	&& !shallow) {
+      parallel_file.insert( got_key, 1);
+	givuh = neighbor_entry(givers, got_from);
+	if (data_packet_size == got_size)
+	  {
+	    givuh->arrivals.update();
+	    if (useful)
+	      givuh->useful.update();
+	  }
+    }
+    if (data_packet_size == got_size)
+      {
+	master.update();
+      }
+    if (useful || !shallow)
+      {
+#if SMALL
+	int mod_to = got_key % BULLET_MAX_PEERS_senders;
+	bloom_filter** filter_array = (bloom_filter**) small_filters;
+	filter_array[mod_to]->insert( got_key, 0);
+
+	mod_to = got_key % (BULLET_MAX_PEERS_senders-1);
+	filter_array = (bloom_filter**) small_filters1;
+	filter_array[mod_to]->insert( got_key, 0);
+#endif
+      }
+    if (useful)
+      {
+	total_received++;
+	upcall_deliver( got_msg, got_size, COMM_TYPE_MULTICAST);
+	if (data_packet_size == got_size)
+	  {
+	    master_useful.update();
+	  }
+#ifdef TRACE_KEY
+	sprintf(trace_buf_, "got useful data %d, type %d, from %.8x\n", got_key, got_type, got_from);
+	trace_print();
+#endif
+      }
+    else if (me !=  source_){
+      sprintf(trace_buf_, "got useless data %d, type %d, from %.8x\n", got_key, got_type, got_from);
+	cut_trace();
+      trace_print();
+      got_msg = 0;
+      return;
+    }
+
+    int disseminated_type = BULLET_DISSEMINATE_BULLET;
+    int priority = -1; // please keep default
+    disseminated_type = got_disseminate_type;
+    if (disseminated_type == BULLET_DISSEMINATE_TREE||
+	disseminated_type == BULLET_DISSEMINATE_MESH)
+      {
+	priority = PRIORITY_LOW;
+	if (disseminated_type == BULLET_DISSEMINATE_MESH)
+	  priority = PRIORITY_MED;
+
+	current_strategy = BULLET_STRAT_STREAMTOALL;
+  	debug_macro("disseminated_type: %d for %d\n", disseminated_type, got_key);
+      }
+
+     if (disseminated_type == BULLET_DISSEMINATE_MESH &&
+	 useful && 
+	 got_key > working_file.get_earliest()
+	 )
+      {
+	debug_macro("flooding: %d while %d %d\n", got_key,working_file.get_earliest(),working_file.get_last());
+	foreach_neighbor (neighbor_receivers_from_me*, getta, getters) 
+	  {
+#if !SMALL
+	    if (!getta->recipient_digest.contains(got_key)) 
+#endif
+	      route_peer_data( getta->ipaddr, 
+			       COMM_TYPE_MULTICAST, 
+			       disseminated_type, 0, got_key, got_msg, 
+			       got_size, priority);   
+	  }
+      }
+
+    if (!neighbor_size(mychildren)) {
+      got_msg = 0;
+      multicast_success_code = 0; // technically, we're OK
+      return; // no kids, noone to send to
+    }
+
+    int current = 0;
+    double myrandom = 0.0;
+    int sent_this_interval=0;
+
+    foreach_neighbor (neighbor_ransub_children*, kid, mychildren ) {
+      sent_this_interval += kid->sent;
+      kid->density = (double)kid->represents/(double) (descendants);
+      if (kid->density > 1.0)
+        kid->density = 1.0;
+    }
+     
+    unsigned int splitter = got_key % neighbor_size(mychildren);  // for splitter
+
+    int sent_packet = 0;
+    int assigned = neighbor_random(mychildren)->ipaddr;
+    if (current_strategy == BULLET_STRAT_TRY) {
+      // find out who this packet belongs and try to send it to him
+      foreach_neighbor (neighbor_ransub_children*, kid, mychildren ) {
+        if (sent_this_interval == 0 ||
+            (((double)kid->sent / (double)sent_this_interval) < kid->density)) {
+          assigned = kid->ipaddr;
+        }
+      }
+      neighbor_ransub_children *assigned_ent = neighbor_entry (mychildren, assigned);
+      route_papa_data( assigned,
+		       COMM_TYPE_MULTICAST,  disseminated_type,
+			      got_key, got_msg, got_size, priority);
+      if (!macedon_sendret) {
+	forwarding.update();
+        assigned_ent->sent++;
+        if (me !=  source_) assigned_ent->kid_digest.insert(got_key);
+        sent_packet = 1;
+      }
+      else {
+        assigned_ent->not_sent++;
+      }
+    }
+    else if (current_strategy == BULLET_STRAT_ONCE) {
+      int c = 0;
+      foreach_neighbor (neighbor_ransub_children*, kid, mychildren ) {
+        if (splitter == c) {
+	  assigned = kid->ipaddr;
+        }
+        c++;
+      }
+
+      route_papa_data( assigned,
+		       COMM_TYPE_MULTICAST,  disseminated_type,
+		       got_key, got_msg, got_size, priority);
+      if (!macedon_sendret) {
+//          assigned_ent->kid_digest.insert(got_key);
+#ifdef TRACE_KEY
+	sprintf(trace_buf_, "Sent %d to %x strat %d 1\n", got_key, assigned, current_strategy);
+	trace_print();
+#endif
+	forwarding.update();
+        sent_packet = 1;
+      }
+    }
+
+    foreach_neighbor (neighbor_ransub_children*, kid, mychildren ) {
+      int should_send = 0;
+      if (current_strategy == BULLET_STRAT_STREAMTOALL) {
+        should_send = 1;
+      }
+      else if (current_strategy == BULLET_STRAT_SPLITTER) {
+        if (splitter == 0) {
+          should_send = 1;
+        }
+        splitter--;
+      }
+      else if (current_strategy == BULLET_STRAT_ONCE) {
+	if (!sent_packet) should_send = 1;
+      }
+      else if (current_strategy == BULLET_STRAT_TRY) {
+	if (kid->ipaddr != assigned ) {
+	  if (!sent_packet) { // this packet has not been sent yet, I will try
+	    should_send = 1;
+	  }
+	  else {  // have gas if I havent missed out sending more than a little amount of what I was supposed to send
+	    int gas_to_send = (int)(1.0/kid->bandwidth_factor);
+	    // the commented kid->sent allows us to send gas to a child even 
+	    // if we didn't send it any packets it's supposed to own
+	    // in this interval. Important for performance when using
+	    // unencoded content
+	    if ( // kid->sent &&
+		 got_key % gas_to_send == 0 ) {
+	      should_send = 1;
+	    }
+	  }
+	}
+      }
+      //dmk: why not?
+      if (me !=  source_)// && got_type != BULLET_DATA_PARENT) 
+      {
+	should_send &= (!kid->kid_digest.contains(got_key));      
+      }
+      if (should_send) {
+//	sprintf(trace_buf_, "Sending %d to %x strat %d\n", got_key, kid->ipaddr, current_strategy);
+//	trace_print();
+	route_papa_data( kid->ipaddr, 
+			 COMM_TYPE_MULTICAST, disseminated_type,
+			 got_key, got_msg, got_size, priority);
+	if (!macedon_sendret) {
+	  forwarding.update();
+#ifdef TRACE_KEY
+	  sprintf(trace_buf_, "Sent %d to %x strat %d 2\n", got_key, kid->ipaddr, current_strategy);
+	  trace_print();
+#endif
+	  if (!sent_packet) {
+	    kid->sent++; 
+	  }
+	  else {  // was a dupe
+	    kid->gas_sent++;
+	    kid->bandwidth_factor = min(kid->bandwidth_factor+application_spacing/(double)BULLET_REFRESH_INTERVAL, 1.0);
+	  }
+	  if (me !=  source_) kid->kid_digest.insert(got_key);
+	  sent_packet = 1;
+	}
+	else  // the send didn't work
+	  if (!sent_packet) {  
+	    kid->not_sent++;   
+	  }
+	  else {    // was a dupe anyway
+	    kid->bandwidth_factor = max(kid->bandwidth_factor-application_spacing/(double)BULLET_REFRESH_INTERVAL, 0.00001);
+	  }
+      }
+      else {
+        //	sprintf(trace_buf_, "Not sending %d to %x strat %d\n", got_key, kid->ipaddr, current_strategy);
+        //	trace_print();
+      }
+    }
+    got_msg = 0;
+    multicast_success_code = !sent_packet;
+#ifdef TRACE_KEY
+    sprintf(trace_buf_, "multicast_success_code for %d: %d\n", got_key, multicast_success_code);
+    trace_print();
+#endif
+  }
+
+// ---------------------------------------------- 
+// close_peers
+// ---------------------------------------------- 
+
+  void any_close_peers() {
+    // close peers if need be
+    int drop = 0;
+    double drop_bw;
+    double least_from_me=1.0;
+
+    foreach_neighbor (neighbor_senders_to_me*, givuh, givers) {
+      sprintf(trace_buf_, "REPLAY rcvdst %9s %.8x bw %6d use %6d h %d\n", 
+//  	      get_hostname(givuh->ipaddr), 
+	      "",
+	      givuh->ipaddr,
+	      (int) givuh->arrivals.get_value(),
+	      (int) givuh->useful.get_value(),
+	      givuh-> handle
+	      );
+      trace_print();
+    }
+    foreach_neighbor (neighbor_receivers_from_me*, gettuh, getters) {
+      sprintf(trace_buf_, "REPLAY rcvsnd %9s %.8x tot %6d me %6d h %d\n", 
+//  	      get_hostname(gettuh->ipaddr), 
+	      "",
+	      gettuh->ipaddr,
+	      (int) gettuh->reported_total_bandwidth, 
+	      (int) gettuh->reported_peer_bandwidth,
+	      gettuh-> handle
+	      );
+      trace_print();
+    }    
+     
+    foreach_neighbor (neighbor_senders_to_me*, givuh, givers) {
+        if ( givuh->handle &&
+	     givuh->handle_partial &&
+	     givuh->useful.get_value() == 0 &&
+	     curtime - givuh->start_time > ((double)1 * BULLET_NORMAL_RANSUB))  
+	{
+	  debug_macro("Receiver: Closing LAZY %.8x\n",givuh->ipaddr);
+	  route_remove_to_sender (givuh->ipaddr, 0, 0, -1);
+	  remove_giver (givuh->ipaddr);
+	}
+      }
+      foreach_neighbor (neighbor_receivers_from_me*, gettuh, getters) {
+        if ( curtime - gettuh->start_time > 
+            ((double)2 * BULLET_NORMAL_RANSUB)
+	     && gettuh-> handle
+	     && gettuh->reported_peer_bandwidth == 0
+	     ) 
+
+	  {
+	    debug_macro("Sender: Closing LAZY %.8x\n",gettuh->ipaddr);
+	    route_remove_to_receiver(gettuh->ipaddr, 0, 0, -1);
+	    remove_getter (gettuh->ipaddr);
+	  }
+      }
+
+    if (sequence%3 != 0)
+      return;
+
+    // first nuke the receiver who gets the least from me
+    if ( neighbor_size(getters) >= BULLET_MAX_PEERS_receivers) {   // only take one out if no space      
+      foreach_neighbor (neighbor_receivers_from_me*, gettuh, getters) {
+        if ( curtime - gettuh->start_time > 
+            ((double)3 * BULLET_NORMAL_RANSUB)
+	     && !gettuh-> handle// they have trouble connecting anyway, so leave them be
+	     ) {
+          // Allow at least 3 RanSub epochs for each guy to get data
+          if (gettuh->reported_peer_bandwidth/gettuh->reported_total_bandwidth < least_from_me ) {
+            drop = gettuh->ipaddr;
+            least_from_me = gettuh->reported_peer_bandwidth/gettuh->reported_total_bandwidth;
+          }
+        }
+      }
+      if (drop) {
+	neighbor_receivers_from_me *nuke = neighbor_entry(getters, drop);
+	route_remove_to_receiver(nuke->ipaddr, 0, 0, -1);
+	sprintf(trace_buf_, "Sender: Closing useless receiver %x with values %f %f %f\n", nuke->ipaddr, nuke->reported_peer_bandwidth, nuke->reported_total_bandwidth, nuke->start_time);
+	trace_print();
+	remove_getter(nuke->ipaddr);
+      }
+    }
+
+    drop = 0;
+    int closed_irrat=0;
+    // then nuke the sender who gives me nothing or the one who gives me the least
+    if ( neighbor_size(givers) >= BULLET_MAX_PEERS_senders ) {   // only take one out if there is no space
+      foreach_neighbor (neighbor_senders_to_me*, givuh, givers) {
+        if ( curtime - givuh->start_time > ((double)3 * BULLET_NORMAL_RANSUB)  
+//  	     && !givuh-> handle 
+	     )
+	  {
+          // Allow at least 3 RanSub epochs for each guy to give us data
+          if (givuh->useful.get_value()/givuh->arrivals.get_value() < BULLET_CLOSING_RATIO && 
+              !neighbor_query(myparent, givuh->ipaddr)) {
+            sprintf(trace_buf_, "Receiver: Closing irrational sender %x with values %f %f\n", givuh->ipaddr, givuh->useful.get_value(), givuh->arrivals.get_value());
+            trace_print();
+            closed_irrat = givuh->ipaddr;
+          }
+          else if ( !drop ||
+              givuh->useful.get_value() < drop_bw) {
+            drop = givuh->ipaddr;
+            drop_bw = givuh->useful.get_value();
+          }
+        }
+      }
+      if (!to_close && closed_irrat) {
+#if LATE_CLOSING
+	to_close = closed_irrat;
+#else
+	route_remove_to_sender (closed_irrat, 0, 0, -1);
+	remove_giver (closed_irrat);
+#endif
+      }
+      if (!to_close && !closed_irrat &&
+	  drop) {
+	neighbor_senders_to_me *nuke = neighbor_entry(givers, drop);
+	sprintf(trace_buf_, "Receiver: Closing useless sender %x with values %f %f %f\n", nuke->ipaddr, nuke->useful.get_value(), nuke->arrivals.get_value(), nuke->start_time);
+	trace_print();
+#if LATE_CLOSING
+	to_close = nuke->ipaddr;
+#else
+	route_remove_to_sender (nuke->ipaddr, 0, 0, -1);
+	remove_giver (nuke->ipaddr);
+#endif
+      }
+    }
+
+  }
+
+
+// ---------------------------------------------- 
+// joined_xmit_collect_if_need
+// ---------------------------------------------- 
+
+  void joined_xmit_collect_if_need() {
+    bullet_summary_ticket* myticket = new bullet_summary_ticket(working_set::UNIVERSE_SIZE);
+    * myticket = working_file.get_sketch();
+    myticket->st.address = me;
+    myticket->st.high =  working_file. get_last();
+    myticket->st.low =  working_file. get_first();
+    if (my_app) my_app->populate_ticket(* myticket );
+    myticket->st.downloaders = BULLET_MAX_PEERS_downloaders_from_me - neighbor_size(download_receivers);
+
+    int propagate=1;
+    foreach_neighbor(neighbor_ransub_children *, kid, mychildren) {
+      if (kid->seq != sequence && kid->seq !=-1)
+        propagate = 0;
+    }
+    if (propagate) {      
+      sprintf(trace_buf_,"joined_xmit_collect_if_need: kids are okay\n");
+      trace_print ();
+    }
+    if (collect_expired)
+      propagate = 1;
+    if (propagate && collect_missing) {      
+      collect_missing = 0;      
+      candidate_set<cand_bullet_summary_ticket>  tosend(BULLET_MAX_CANDS);
+      if ( participate_in_ransub() )
+	tosend.addj(myticket->st);
+      int sofar = 1;
+      descendants = 0;
+      foreach_neighbor(neighbor_ransub_children *, kid, mychildren) 
+      {
+        descendants += kid->represents;
+        tosend.compact(kid->gathered, kid->represents, sofar);
+        sofar+=kid->represents;
+        if (collect_expired &&
+            kid->seq != sequence && kid->seq !=-1)
+	  {
+	    // this kid isn't ready, we timed out the collect
+	    sprintf(trace_buf_,"kid->address: %x  timed out seq %d sequence %d\n", kid->ipaddr, kid->seq, sequence);
+	    trace_print ();
+	    kid->represents=0;  
+	  }
+      }
+      if (source_ == me) {
+        curset = tosend;
+        //	curset.printem(me);
+      }
+      else {
+	neighbor_ransub_parent *papa = neighbor_random(myparent);
+	sprintf(trace_buf_, "RanSub: sending collect sequence %d (%d desc.)to %x.\n", sequence, descendants+1, papa->ipaddr);
+	trace_print();
+	route_collect(papa->ipaddr, sequence, descendants+1, tosend, 0, 0, -1);
+      }
+    }
+    delete myticket;
+  }
+
+// ---------------------------------------------- 
+// participate_in_ransub
+// ---------------------------------------------- 
+
+  int participate_in_ransub() {
+//  debug_macro ("participate_in_ransub: room %d (%d) getters %d, MAX %d\n", BULLET_MAX_PEERS_receivers - neighbor_size(getters), neighbor_space(getters), neighbor_size(getters), BULLET_MAX_PEERS_receivers);
+
+ if (source_ != me && neighbor_space(getters) && (neighbor_size(getters)<BULLET_MAX_PEERS_receivers) )// && (neighbor_size(mychildren)+neighbor_size(getters))<BULLET_MAX_PEERS )
+      return 1;
+    else
+      return 0;
+  }
+
+// ---------------------------------------------- 
+// remove_getter
+// ---------------------------------------------- 
+
+  int remove_getter(int from) {
+    if (!from) return 0;
+    if (neighbor_query(download_receivers, from)) 
+      neighbor_remove (download_receivers, from);
+    neighbor_receivers_from_me* getta =  neighbor_entry ( getters, from);
+    if (getta) 
+      {
+	debug_macro("remove_getter for %.8x\n", from);
+	if (getta-> handle && my_app)
+	  {
+	    my_app->delete_encoder(getta-> handle);
+	  }
+	neighbor_remove (getters, from);
+	return 1;
+      }
+    return 0;
+  }
+// ---------------------------------------------- 
+// remove_giver
+// ---------------------------------------------- 
+
+  int remove_giver(int from) {
+    if (!from) return 0;
+    if (neighbor_query(download_senders, from)) 
+      neighbor_remove (download_senders, from);
+    neighbor_senders_to_me* givuh =  neighbor_entry ( givers, from);
+    if (givuh) 
+      {
+	debug_macro("remove_giver for %.8x\n", from);
+	if (givuh-> handle)
+	  {
+	  }
+	neighbor_remove ( givers, from);
+	return 1;
+      }
+    return 0;
+  }
+
+
+// ---------------------------------------------- 
+// accept_downloader
+// ---------------------------------------------- 
+
+  int accept_downloader(int from, int handle) {
+    download_state*  state = my_app->get_state ( handle);
+    if (!(state &&state->info))
+      {
+	debug_macro ("non-existent_download state, %.8x  handle: %d\n", from, ( handle));  
+	route_request_denied(from, 0, 0, -1);
+        sprintf(trace_buf_, "Sender: Denied %x as a downloader 1\n", from);
+        trace_print();
+	return 0;
+      }
+    if (neighbor_size(getters)==0)  // adding the first guy, start sender timer
+      timer_resched(sending, application_spacing);
+    if ((!neighbor_query (download_receivers, from) &&
+	neighbor_size(download_receivers) >= BULLET_MAX_PEERS_downloaders_from_me) ||
+	(!neighbor_query (getters, from) &&
+	 neighbor_size(getters) >= BULLET_MAX_PEERS_receivers))
+      { 
+	route_request_denied(from, 0, 0, -1);
+        sprintf(trace_buf_, "Sender: Denied %x as a downloader 2\n", from);
+        trace_print();
+	return 0;
+      }
+
+    if (!neighbor_query (download_receivers, from)) {
+      neighbor_add (download_receivers, from);
+      sprintf(trace_buf_, "Sender: start_download Added %.8x as a download_eceiver\n", from);
+      trace_print();
+    } 
+    if (!neighbor_query (getters, from)) {
+      neighbor_add (getters, from);
+      neighbor_receivers_from_me *gettuh = neighbor_entry(getters, from);
+      gettuh->start_time = curtime;
+#if LATE_CLOSING
+      route_request_accepted(from, 0, 0, -1);
+#endif
+      sprintf(trace_buf_, "Sender: Added %x as a receiver\n", from);
+      trace_print();
+    } 
+    return 1;
+  }
+
+// ---------------------------------------------- 
+// accept_getter
+// ---------------------------------------------- 
+
+  int accept_getter(int from) {
+    if (neighbor_size(getters)==0)  // adding the first guy, start sender timer
+      timer_resched(sending, application_spacing);
+    if (!neighbor_query (getters, from)) {
+      if (neighbor_size(getters) >= BULLET_MAX_PEERS_receivers) {
+	route_request_denied(from, 0, 0, -1);
+        sprintf(trace_buf_, "Sender: Denied %x as a receiver\n", from);
+        trace_print();
+	return 0;
+      }
+      else {
+        neighbor_add (getters, from);
+        neighbor_receivers_from_me *gettuh = neighbor_entry(getters, from);
+        gettuh->start_time = curtime;
+#if LATE_CLOSING
+	route_request_accepted(from, 0, 0, -1);
+#endif
+        sprintf(trace_buf_, "Sender: Added %x as a receiver\n", from);
+        trace_print();
+      }
+    } 
+    return 1;
+  }
+
+// ---------------------------------------------- 
+// use_distribute
+// ---------------------------------------------- 
+  
+  int use_distribute (int do_closing, int only_download) {
+    debug_macro ("use_distribute: %d\n", do_closing);
+
+    int picked = 0;
+
+    bullet_summary_ticket* myticket = new bullet_summary_ticket(working_set::UNIVERSE_SIZE);
+    * myticket = working_file.get_sketch();
+    myticket->st.address = me;
+    myticket->st.high =  working_file. get_last();
+    myticket->st.low =  working_file. get_first();
+    if (my_app) my_app->populate_ticket(* myticket );
+    myticket->st.downloaders = BULLET_MAX_PEERS_downloaders_from_me - neighbor_size(download_receivers);
+
+    debug_macro(" myticket: low  %d high %d \n", myticket->st.low, myticket->st.high  );
+
+    int mysize;
+    unsigned char *my_filter = (unsigned char *)working_file.export_digest(mysize);
+
+      int best=0;
+      double best_resemblance=1.1; // force picking at least one
+      double best_overlap=1.0; 
+      double resemblance;
+      neighbor_ransub_parent *mypa;
+      int to_download_handle = 0;
+      int to_download_from = 0;
+      int to_download_existing = 0;
+      int earliest_handle = 99999999;
+      int best_percentage = 0;
+      list<int>* rejected = (list<int>*) rejected_char;
+      list <int>::const_iterator element;
+
+      for (int i = 0; i < curset.number_candidates ;i++ )
+	{
+	  bullet_summary_ticket* source_ticket = new bullet_summary_ticket(working_set::UNIVERSE_SIZE);
+	  source_ticket->st = curset.candidates[i];
+	  int bad = 0;
+	  for(element=rejected->begin();element!=rejected->end();element++)
+	    {
+	      if (*element == source_ticket->get_address())
+		{
+		  bad = 1;
+		  break;
+		}
+	    }
+	  if (bad)
+	    {
+	      delete source_ticket;
+	      continue;
+	    }
+
+	  double  overlap =myticket->range_overlap(*source_ticket); // HANDLE 0!
+
+	  for (int j = 0; j < NUM_HANDLES ;j++ )
+	    {
+	      if (my_app && source_ticket->st. handles[j])
+		{
+		  int required = my_app-> required(source_ticket->st. handles[j]);
+		  int active = my_app-> active(source_ticket->st. handles[j], 1);
+		  debug_macro ("%.8x completed: %d (%d%% ) act: %d req: %d giver: %d room: %d\n",source_ticket->get_address(), source_ticket->st. handles[j], source_ticket->st. handle_percentage[j], active, required, neighbor_query(givers, source_ticket->get_address()), source_ticket->st.downloaders);
+		  int existing = neighbor_query(download_senders, source_ticket->get_address());
+		  if (neighbor_size (download_senders) < BULLET_MAX_PEERS_downloaders_to_me //(my_app->required_count(1)+1) 
+		      && !existing
+//  		      && (0x0900000a == me)//dmk: testing
+		      && active 
+		      && source_ticket->st.downloaders > 0
+		      && source_ticket->st. handle_percentage[j] >= best_percentage
+		      && ((required == 2 && source_ticket->st. handle_percentage[j] != 100) || (required == 1 && source_ticket->st. handle_percentage[j] == 100))
+		      &&   source_ticket->st. handle_percentage[j] != 0 
+//  		      && source_ticket->st. handle_percentage[j] != 100//dmk: testing without partial
+//  		      &&(source_ticket->st. handles[j] < earliest_handle)
+)
+		    {
+
+		      to_download_handle = earliest_handle = source_ticket->st. handles[j];
+		      best_percentage = source_ticket->st. handle_percentage[j];
+		      to_download_from =  source_ticket->get_address();
+		      debug_macro ("best_handle: %d (%d) at %.8x \n", earliest_handle, best_percentage, to_download_from);
+		    }
+		}
+	    }
+
+//  	  debug_macro(" overlap: %f my low  %d high %d vs low %d high %d  \n", overlap,  myticket->st.low, myticket->st.high, source_ticket->st.low, source_ticket->st.high  );
+	  resemblance = working_file.compute_resemblance(*source_ticket);
+	  sprintf(trace_buf_, "Receiver: resemblance with %.8x is %f\n", source_ticket->get_address(), resemblance);
+	  trace_print();
+	  mypa = neighbor_random(myparent);
+	  if (source_ticket->get_address()!=me &&
+	      source_ticket->get_address()!=mypa->ipaddr && 
+	      source_ticket->get_address() != source_ &&
+//  	      !source_ticket->empty() &&
+	      !neighbor_query (givers, source_ticket->get_address()) &&
+	      // this guy is already a sender to me
+//  	      best_overlap*(1-best_resemblance) < overlap*(1-resemblance) )
+	      best_resemblance > resemblance)
+	    {
+	      best_resemblance=resemblance;
+	      best=source_ticket->get_address();
+	      best_overlap = overlap;
+	    }
+	  delete source_ticket;
+	}
+      
+      if (do_closing) any_close_peers();
+
+      to_download_existing = neighbor_query(givers, to_download_from);
+
+      if (to_download_handle &&
+	  ((neighbor_size(givers) < BULLET_MAX_PEERS_senders) || to_download_existing)
+	  )
+	{
+	  if (!neighbor_query(download_senders, to_download_from))
+	    {
+	      neighbor_add (download_senders, to_download_from);
+	    }
+	  neighbor_senders_to_me *givuh = neighbor_entry(givers, to_download_from);
+	  if (!givuh) 
+	    {
+	      neighbor_add(givers, to_download_from);
+	      givuh = neighbor_entry(givers, to_download_from);
+	      givuh->responded = 0;
+	    }
+	  else
+	    {
+	      debug_macro ("converting a peer to a download source %.8x\n", to_download_from);
+	      //dmk: clear the bandwidth filter
+	    }
+
+	  givuh->start_time = curtime;
+	  givuh->round_completed_time = 0;
+	  givuh->handle = to_download_handle;
+
+	  int highest = 0;
+	  if (best_percentage == 100)
+	    {
+	      highest = my_app->get_highest_sequence(to_download_handle);
+	      if (highest == 0)
+		{
+		  highest = 1; //means we haven't seen any data from this segment
+		}
+	      else
+		{
+		  highest += 2000;//just skip anything that might be coming in from the source;careful not to overrun the object file store
+		}
+	      // 0 is reserved for new downloads
+	      // USE MOD_MAX from last refresh
+	      route_start_download(to_download_from, to_download_handle, 0, mod_max, highest, 0, 0, 0, 0, -1); 
+	      givuh->handle_partial = 0;
+	      debug_macro ("downloading %d/%d%% (out of %d) from: %.8x starting %d (%d/%d)\n", to_download_handle, best_percentage, downloading_handle, givuh->ipaddr, highest, 0,  mod_max);
+	    }
+	  else
+	    {
+	      download_state*  state = my_app->get_state (givuh->handle);
+	      int mysize1;
+	      unsigned char *my_filter1 = (unsigned char *)(state->info)->working_file.export_digest(mysize1);
+	      route_partial_download(to_download_from, to_download_handle, 0, 0, 0.0, 0.0, /**(flat_bloom*)my_filter1,*/ 0, 0, session, my_filter1, mysize1, -1); 
+	      givuh->handle_partial = 1;
+	      debug_macro ("partially_downloading %d/%d%% (out of %d) from: %.8x \n", to_download_handle, best_percentage, downloading_handle, givuh->ipaddr);
+	      delete [] my_filter1;
+	    }
+
+	  best = 0;
+	  if (!to_download_existing) picked = 1;
+	}
+
+      // send the request if we found someone good and we need more bandwidth
+      if (!only_download &&
+	  best_resemblance!=1.1 && 
+  	  (smooth_bandwidth.get_value() > 0|| 
+	   bullet_strategy == BULLET_STRAT_ONCE)&&
+	  smooth_bandwidth.get_value() < 
+	  (double)parameters.getint("streaming_rate")*1000 &&
+	  best != 0 &&
+	  (neighbor_size(givers) < BULLET_MAX_PEERS_senders)) {
+	sprintf(trace_buf_, "Receiver: Added %.8x as sender, bw %f, seq %d.res %f, over %f \n", best, smooth_bandwidth.get_value(), sequence, best_resemblance, best_overlap );
+	trace_print();
+	neighbor_add(givers, best);
+	neighbor_senders_to_me *givuh = neighbor_entry(givers, best);
+	givuh->handle = 0;
+	givuh->start_time = curtime;
+        givuh->round_completed_time = 0;	
+	picked = 1;
+
+	if (bullet_strategy != BULLET_STRAT_STREAMTOALL) {
+
+#if USE_BLOOM 
+	  route_update_sender(best, 0, 0, 0, 0, master_useful.get_value(), 0.0, session, 0, 0, -1); 
+#else
+	  route_update_sender(best, 0, 0, 0, 0, master_useful.get_value(), 0.0, session, 0, 0, -1); 
+#endif
+	}
+      }
+      else {
+//  	sprintf(trace_buf_, "Receiver: either my bandwidth %f is zero or close to the target %d or I have noone to select from.\n", smooth_bandwidth.get_value(), parameters.getint("streaming_rate")*1000);
+//  	cut_trace();
+      }
+
+      delete [] my_filter;
+      delete myticket;
+
+      if (!to_download_from && !best)
+	{
+	  to_close = 0;
+	}
+
+      return picked;
+
+  }
+
+  }

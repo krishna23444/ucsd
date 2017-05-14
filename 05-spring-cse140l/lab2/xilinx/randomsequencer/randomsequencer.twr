@@ -1,0 +1,63 @@
+--------------------------------------------------------------------------------
+Release 7.1.01i Trace H.39
+Copyright (c) 1995-2005 Xilinx, Inc.  All rights reserved.
+
+G:/xilinx/ise71/bin/nt/trce.exe -ise
+g:\xilinx\projects\lab2\randomsequencer\randomsequencer.ise -intstyle ise -e 3
+-l 3 -s 5 -xml randomsequencer randomsequencer.ncd -o randomsequencer.twr
+randomsequencer.pcf
+
+
+Design file:              randomsequencer.ncd
+Physical constraint file: randomsequencer.pcf
+Device,speed:             xc2v80,-5 (PRODUCTION 1.121 2005-02-23, STEPPING level 1)
+Report level:             error report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:2698 - No timing constraints found, doing default enumeration.
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths
+   option. All paths that are not constrained will be reported in the
+   unconstrained paths section(s) of the report.
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Setup/Hold to clock CLK
+------------+------------+------------+------------------+--------+
+            |  Setup to  |  Hold to   |                  |  Clock |
+Source      | clk (edge) | clk (edge) |Internal Clock(s) |  Phase |
+------------+------------+------------+------------------+--------+
+CLK_CE      |   -0.363(R)|    0.498(R)|CLK_BUFGP         |   0.000|
+------------+------------+------------+------------------+--------+
+
+Clock CLK to Pad
+------------+------------+------------------+--------+
+            | clk (edge) |                  |  Clock |
+Destination | to PAD     |Internal Clock(s) |  Phase |
+------------+------------+------------------+--------+
+D<0>        |    7.873(R)|CLK_BUFGP         |   0.000|
+D<1>        |    7.125(R)|CLK_BUFGP         |   0.000|
+D<2>        |    7.345(R)|CLK_BUFGP         |   0.000|
+D<3>        |    7.641(R)|CLK_BUFGP         |   0.000|
+------------+------------+------------------+--------+
+
+Clock to Setup on destination clock CLK
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+CLK            |    1.926|         |         |         |
+---------------+---------+---------+---------+---------+
+
+Analysis completed Tue May 03 23:16:01 2005
+--------------------------------------------------------------------------------
+
+
+
+Peak Memory Usage: 75 MB

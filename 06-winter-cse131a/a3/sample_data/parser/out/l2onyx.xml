@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.ast.Query>
+   <onyx.ast.ExprList>
+      <onyx.ast.Flwr>
+         <onyx.ast.LetAssignment varName="$a">
+            <onyx.ast.Constant datatype="onyx.types.Integer">4</onyx.ast.Constant>
+         </onyx.ast.LetAssignment>
+         <onyx.ast.LetAssignment varName="$b">
+            <onyx.ast.Constant datatype="onyx.types.Integer">3</onyx.ast.Constant>
+         </onyx.ast.LetAssignment>
+         <onyx.ast.Return>
+            <onyx.ast.Operator name="op:numeric-add">
+               <onyx.ast.Variable>$a</onyx.ast.Variable>
+               <onyx.ast.Variable>$b</onyx.ast.Variable>
+            </onyx.ast.Operator>
+         </onyx.ast.Return>
+      </onyx.ast.Flwr>
+   </onyx.ast.ExprList>
+</onyx.ast.Query>
+

@@ -1,0 +1,8 @@
+EN ftce_mxilinx_graycounter2 NULL G:/xilinx/projects/lab2/graycounter/graycounter2.vhf sub00/vhpl04 1115193592
+EN graycounter2 NULL G:/xilinx/projects/lab2/graycounter/graycounter2.vhf sub00/vhpl06 1115193594
+EN ftce_mxilinx_graycounter NULL G:/xilinx/projects/lab2/graycounter/graycounter.vhf sub00/vhpl00 1115185564
+AR ftce_mxilinx_graycounter2 behavioral G:/xilinx/projects/lab2/graycounter/graycounter2.vhf sub00/vhpl05 1115193593
+AR graycounter2 behavioral G:/xilinx/projects/lab2/graycounter/graycounter2.vhf sub00/vhpl07 1115193595
+AR graycounter behavioral G:/xilinx/projects/lab2/graycounter/graycounter.vhf sub00/vhpl03 1115185567
+AR ftce_mxilinx_graycounter behavioral G:/xilinx/projects/lab2/graycounter/graycounter.vhf sub00/vhpl01 1115185565
+EN graycounter NULL G:/xilinx/projects/lab2/graycounter/graycounter.vhf sub00/vhpl02 1115185566

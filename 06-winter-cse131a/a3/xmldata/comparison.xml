@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<q:query xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:q="http://www.w3.org/2001/06/xqueryx">
+ <q:exprList>
+  <q:function name="LESS-THAN">
+   <q:constant datatype="xs:integer">3</q:constant>
+   <q:constant datatype="xs:integer">4</q:constant>
+  </q:function>
+  <q:function name="EQUAL">
+   <q:constant datatype="xs:integer">5</q:constant>
+   <q:constant datatype="xs:integer">6</q:constant>
+  </q:function>
+  <q:function name="GREATER-THAN">
+   <q:constant datatype="xs:integer">7</q:constant>
+   <q:constant datatype="xs:integer">8</q:constant>
+  </q:function>
+  <q:function name="NOT-EQUAL">
+   <q:constant datatype="xs:integer">9</q:constant>
+   <q:constant datatype="xs:integer">10</q:constant>
+  </q:function>
+  <q:function name="LESS-THAN-EQUAL">
+   <q:constant datatype="xs:integer">11</q:constant>
+   <q:constant datatype="xs:integer">12</q:constant>
+  </q:function>
+  <q:function name="GREATER-THAN-EQUAL">
+   <q:constant datatype="xs:integer">13</q:constant>
+   <q:constant datatype="xs:integer">14</q:constant>
+  </q:function>
+ </q:exprList>
+</q:query>

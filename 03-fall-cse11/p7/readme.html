@@ -1,0 +1,363 @@
+<html><head><title>P7 README</title></head>
+<body>
+<hr> <h2>
+<font color="#0000ff">
+Programming assignment #7 README:  CSE 11 Fall 2003
+</font>
+</h2> <hr>
+
+<p>
+Here's a description of the seventh programming assignment for CSE 11,
+Fall 2003.  In this assignment, you will use arrays and event-driven
+progamming to create a GUI application running a cellular automaton
+simulation.
+</p><p>
+&gt;&gt;&gt; Due deadline:  Friday Nov 21 5:00pm
+</p><p>
+&gt;&gt;&gt; Required solution files:  Life.java 
+</p><p>
+
+This means that the file that contains your solution to the assignment
+must be turned in by the due deadline.   Use
+the bundleP7 script to turn in your assignment.
+ </p><p> 
+It's a good idea to plan to do the
+assignment well before the deadline; terminals and
+tutors can get very busy at the last minute.  
+In doing this assignment, it's your responsibility to understand the
+course rules for integrity of scholarship.
+ </p><p> 
+</p><h4> Getting started </h4> 
+First, make sure you've read chapters 6, 12, and parts of chapter 14 of the
+textbook.  This assignment uses material introduced and discussed
+there.
+Next, create a directory named "P7" under your cs11 home directory.
+Your solution to this assignment should be turned in from that directory
+by the due date and time.  Use the bundleP7 script to do that.
+
+ <p> This assignment involves implementing Java classes with a
+specified user interface.  Be sure you pay attention to what is
+required in terms of the name, return type, and number and type of
+arguments for the public methods of the class you will be writing.
+ </p><p>
+</p><h4> PROGRAM SPECIFICATIONS: Life.java </h4> 
+
+This program implements a general "Game of Life", a
+"cellular automaton" world consisting of a rectangular array of cells,
+each of which is either Alive or Dead.  The world starts in an initial
+state (i.e. a pattern of Alive and Dead cells), and then moves
+through a series of successive states.  Each state is called a
+<i>generation</i>.  State-transition rules determine the way
+the pattern of Alive/Dead cells change from one generation to the next.
+There are 4 transition possibilities for a cell:
+<pre>Dead -&gt; Dead:   "stasis"
+Dead -&gt; Alive:  "birth"
+Alive -&gt; Alive: "survival"
+Alive -&gt; Dead:  "death"
+</pre>
+The fate of a cell in going from one generation to the next depends on
+whether it is Alive or Dead in the current generation, and on the number of 
+Alive neighbors it has in the current generation.
+Different state-transition rules lead to different "Games of Life"
+with worlds that evolve in different ways.  
+A particularly interesting state transition
+rule discovered by the mathematician John Horton Conway is this:
+A "birth" happens only with 3 Alive neighbors, "survival" happens
+only with 2 or 3 Alive neighbors, and "stasis" or "death" happens
+otherwise.  This Conway Rule leads to many interesting patterns
+developing in the game.
+ <p>
+A neighbor of a cell is defined as one of its 8 adjacent cells 
+(upper left, above, upper right, left, right, lower left, below, lower right),
+so a cell can have at most 8 Alive neighbors.
+For this assignment, the world is a finite rectangle with a certain number
+of rows and columns, and there are no Alive cells outside the world.
+ </p><p>
+The program shall be run as follows:
+</p><pre>java Life &lt;FILENAME&gt;
+</pre>
+The initial state of the world is read from the file whose
+name is given as the first command line argument
+(format specified below) A window is created, which contains
+these components:
+<ol>
+<li> 
+A central panel, which displays the initial state of the world,
+and subsequent generations, in a form described below.
+The user can change the state of the world by clicking the
+mouse in a displayed cell. Doing so changes the state of that
+cell (to Alive it was Dead, or to Dead if it was Alive).  The
+result of such a change is displayed.
+</li><li> 
+A text field, initialized to "10",
+in which the user can enter a nonnegative integer which is the
+number of successive generations to compute and display.
+This text field should have a label associated with it, that indicates
+to the user that it represents the number of generations.
+</li><li> 
+A button
+labeled "Start", which when pushed computes and displays
+as many subsequent
+generations as are indicated by the number in the text
+field, at a rate of approximately two per second.  
+</li><li> 
+An output label that displays a running count
+of the number of generations displayed, and error messages
+as appropriate.
+</li></ol>
+ <p>
+<b>File format</b>:  The initial state of the world will be read from a
+file.  This file is a binary file, with format as 
+follows: <br>
+The first 4 bytes of the file are an int, indicating the number of
+rows in the world, R.  The next 4 bytes in the file are another int,
+indicating the number of columns in the world, C.  Then there follow
+R*C bytes. The first C bytes specify the states of the cells in
+the top row of the world, left to right; and so on.  A byte that
+is equal to 0 indicates a Dead cell; a nonzero byte indicates a
+Alive cell.  If there are more bytes in the file than required by the
+world size,
+the extra ones are to be ignored.  If there are fewer bytes in the file
+than required by the world size, the unspecified cells are assumed to be Dead.
+
+ </p><p> <b>Display format</b>: When run, the Life program first reads a
+world state specification file, as described above.  It displays this
+world in a central panel in the application window, and permits the
+user to change the state of some cells by clicking on them.  Each cell
+in the world should be displayed on the central panel
+as a filled circle 10 pixels in
+diameter, and the central panel should be the exact size required to
+display all cells in the world.  The panel
+background, Alive cells, and Dead cells should be displayed in
+contrasting colors so they can be distinguished from each other.
+ </p><p>
+When the user clicks the start
+button, new generations are computed and displayed.  The application
+pauses after the required generations have been displayed, permitting
+the user to continue if they want to, or to exit the application
+by clicking on the "close window" button provided by the window
+system.
+ </p><p>
+</p><h4> CLASS INTERFACE SPECIFICATIONS: Life.java </h4> 
+The Life class should be defined to extend JFrame.  An instance
+of the Life class will correspond to the top-level application
+window for your program.  
+ <p>
+You must define this protected instance variable in your class:
+</p><pre> protected boolean[][] world;  
+</pre>
+The elements of the world array represent the states of
+cells in an instance of the game of Life.  Each cell 
+is in one of two states (Alive or Dead), so a boolean array 
+is appropriate.  The number of rows and columns of this
+two-dimensional array must be exactly the same as the number of
+rows and columns in
+this instance of Life.  (And note that it must have protected
+visibility, so subclasses can access it as needed.)
+ <p>
+You must define at least these public methods in your Life class:
+</p><pre>/** Constructor:  initialize a new Life object to represent
+ *  a world with the given number of rows and columns of cells.
+ *  All cells are initially Dead.  This constructor also creates
+ *  appropriate components and containers and adds them to the
+ *  application container, and creates and registers appropriate
+ *  listener objects.  It does not make any GUI objects visible.
+ */
+public Life(int rows, int cols) 
+</pre>
+<pre>/** Read a world initial state specification file (format described
+ *  in the P7 README) with name given by its argument.  
+ *  Create and return a Life object whose world is in the state specified 
+ *  by the file.
+ *  @throws java.io.IOException containing an appropriate message if
+ *  the file is badly formatted or unreadable, or if an I/O error occurs.
+ */
+public static Life fromFile(String filename)
+		throws IOException
+</pre>
+<pre>/** Update the state of the protected boolean[][] world array of
+ * this Life object (i.e., compute the next generation) according
+ * to the Conway state-transition rule.
+ * This method does not do any displaying.
+ */
+public void next() 
+</pre>
+<pre>/** The entry point for the Life program.  
+ *  Creates a Life object initialized from the file given as
+ *  the first command line argument, and makes it visible.
+ */
+public static void main(String args[])
+</pre>
+You may define any other private static or instance methods or 
+variables, or inner classes that you wish.
+<h4> Hints and other observations </h4> 
+ <p>
+1. One major part of the assignment is implementing the next() method.
+It is quite hard to compute the state of the next generation using only the
+world array that is representing the current generation; so we suggest you
+create another array to hold the new generation while you are computing
+it, and then make the world array pointer point to it when done.  But
+be careful; when next() returns, the protected world variable must point to
+the new generation.
+ </p><p>
+2. To compute a new generation, apply the rule of the game to each cell.
+Be sure to take into account that the world "ends" at its edges,
+as mentioned above.
+In thinking about how to decompose the problem into manageable
+pieces, you may find that methods with suggestive names like 
+countLiveNeighbors(int row, int col) and isAlive(int row, int col)
+might be useful.
+ </p><p>
+4. Each cell takes up a circle 10 pixels in diameter when displayed.
+Therefore, if your world has R rows and C columns, your central
+panel must have width 10*C and height 10*R pixels to display the world.  The
+application JFrame needs to be large enough to hold such a central
+panel, the start button, the text field, the two required labels, plus
+any default borders and decorations belonging to the JFrame.
+A trick of JFC/AWT programming to accomplish this is to use a
+JPanel for the central panel, call the setPreferredSize() method of
+the JPanel to set its size, and after adding it and all other needed
+components to the JFrame's content pane, to
+"pack" the JFrame.  Note that setPreferredSize() takes one argument,
+of type Dimension.  Some code in your Life constructor can look something 
+like this:
+</p><pre>	Container c = this.getContentPane();
+	JPanel p = new JPanel();
+	p.setPreferredSize(new Dimension(10*C,10*R));
+	c.add(p);
+	this.pack();
+</pre>
+The pack() method computes the right size for the JFrame to be
+able to contain its Components, so you don't have to.
+ <p>
+5. Note that the only file you will turn in is Life.java.  However,
+you will want to define several new classes, with methods that override
+versions in base classes.  So inner classes will be necessary, and
+in particular anonymous inner classes will be appropriate for this
+assignment.  You should consider these:
+ </p><p>
+a.  An anonymous inner class that extends JPanel and that overrides
+the paintComponent(Graphics g) method to display the current world state
+in the JPanel.   This method should first call
+super.paintComponent(g) to clear the background and produce a
+better-looking animation.   An instance of this class will be the central panel
+in the application window.
+ </p><p>
+b.  An anonymous inner class that extends MouseAdapter and that overrides
+mouseClicked() to handle the mouse click events fired by the central
+JPanel.  An instance of this class will be registered as a MouseEvent
+listener with the central JPanel.  The handler method needs to determine
+the x,y coordinates of the mouse click, to change
+the state of the clicked cell appropriately, and to display the new
+state.  To display the new state, you can
+just call the repaint() method of the JPanel,
+which takes care of calling its paintComponent() method.
+ </p><p>
+c.  An anonymous inner class that implements ActionListener and that
+overrides actionPerformed() to handle the start button being clicked.
+An instance of this class will be registered as an ActionEvent
+listener with the start button.  The handler method needs to get the
+text in the text field, convert it to an int, and run the game of life
+for that many generations (not counting the current generation),
+causing each generation to be displayed in the central JPanel.  If the
+contents of the text field are not parseable as a positive int, an
+error should be displayed in the output label.  As each generation is
+displayed, the number of that generation should be displayed in the
+output label.
+ </p><p>
+d.  An anonymous inner class that extends WindowAdapter and that overrides
+windowClosing() to exit the application.  
+An instance of this class will be registered as a WindowEvent listener
+with the overall JFrame.  Alternatively, you could just 
+setDefaultCloseOperation to JFrame.EXIT_ON_CLOSE.
+ </p><p> 
+6. To cause a container to display all of its components, you normally
+call the container's repaint() method.  However, for animations such as
+the Life program, that may not work as you would hope; in an attempt
+to be efficient, the runtime system
+can "coalesce" multiple calls to paint() into one call, and you won't
+see anything but the last frame in the animation.  Instead, it is
+better in animations to call the paintImmediately() method of the 
+container, which does not do this coalescing.  Note that 
+paintImmediately() takes 4 int arguments which specify the rectangular area
+in the container to paint immediately:
+</p><pre>paintImmediately(int x, int y, int width, int height)
+</pre>
+You should think about calling paintImmediately for two purposes:
+ <p>
+a.  In the event handler for the start button, after a new generation has
+been computed, call the paintImmediately() method of the central
+JPanel.  (This leads to its overrided paintComponent() method being
+called.)  If the JPanel is p, painting the entire JPanel immediately
+can be done with a call like
+</p><pre>p.paintImmediately(0,0,p.getWidth(),p.getHeight());
+</pre>
+ <p>
+b.  In the event handler for the start button, after a new generation has
+been computed, you will update the text in the output label.  To make
+this new text appear immediately, call the paintImmediately() method
+for that label's container.  For convenience, you may want to place that
+label in a JPanel container, and place that JPanel in a region of
+the top-level JFrame.
+ </p><p> 
+7. As for things like displaying filled circles at the appropriate
+places, refer to some of the previous programming
+assignments!
+ </p><p>
+As for sleeping your program 
+between generations:  
+Call the static <code>sleep()</code>
+method of the <code>Thread</code> class to pause your
+program for a desired length of time.  
+The <code>Thread.sleep()</code>
+method takes an argument of type <code>long</code>, which is the
+number of milliseconds for your program to sleep.  One complication
+is that this method can throw an exception which must be caught or
+rethrown.  
+Another complication is that this technique is not a particularly 
+accurate way to mark time, especially if the machine is heavily
+loaded.  But it is accurate enough for this assignment.
+
+ </p><p>
+8. Some Life world specification files are available
+in the public/P7 directory which you can use.  These are text files, so
+they can be viewed and modified in a text editor if you want, and of
+course you can create your own:
+</p><pre>
+
+blank:		A 15 row, 22 column world with all cells Dead.  
+
+full:		A 15 row, 22 column world with all cells Alive.  
+
+explode:  	A pattern which "explodes" and reaches a stable state after 
+		about 65 generations
+
+glider1:	A pattern which reproduces itself at nearby locations,
+		walking or "gliding" diagonally up the screen
+
+hithere:	A pattern of letters which evolves in an interesting way
+
+oscillate:	A pattern which expands for awhile, and then oscillates 
+		forever with a period of 2 generations
+
+random:		Random initial conditions which evolve in a complicated way
+
+stable:		A pattern which doesn't change
+
+</pre>
+Also, the file P7Solution.jar in that directory is a working solution to
+the assignment.
+
+<h4>Grading of assignment # 7 </h4>
+There are 20 possible points for this assignment, broken down as follows:
+<br>
+a.  4 pts for the fromFile() method working as required
+<br>
+b.  4 pts for the next() method working as required
+<br>
+c.  4 pts for good initialization of the top-level window
+<br>
+d.  4 pts for correct handling of mouse click events
+<br>
+e.  4 pts for correct display of successive generations
+</body></html>

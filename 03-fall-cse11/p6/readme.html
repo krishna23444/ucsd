@@ -1,0 +1,287 @@
+<html>
+<head>
+<title>
+P6  README
+</title>
+</head>
+<body>
+<HR> <H2>
+<FONT COLOR="#0000FF">
+Programming assignment #6:  CSE 11 Fall 2003
+</FONT>
+</H2> <HR>
+
+<P>
+Here's a description of the sixth programming assignment for CSE 11,
+Fall 2003.  In this assignment, you will get more experience with 
+class derivation in Java as you extend a GUI "artificial
+life" simulation to explore how pairs of simple creatures interact
+with each other.
+<P>
+>>> Due deadline:  	Friday Nov 14 5:00pm
+<P>
+>>> Required solution files:  Chaser.java Random.java Runner.java Custom.java
+<P>
+
+This means that the files that contain your solution to the assignment
+must be turned in by the due deadline.  Use
+the bundleP6 script to turn in your assignment.
+ <P> 
+It's a good idea to plan to do the
+assignment well before the deadline; terminals and
+tutors can get very busy at the last minute.  
+ <P> 
+In doing this assignment, it's your responsibility to understand the
+course rules for integrity of scholarship.
+ <P> 
+<H4> 1: Getting started </H4> 
+
+First, make sure you've read 
+Chapter 12 of Savitch.  This assignment uses material and discussed
+there.
+Next, create a directory named "P6" under your cs11 home directory.
+Your solution to this assignment should be turned in from that directory
+by the due date and time.  Use the bundleP6 script to do that.
+ <P>
+Then, copy the following files from the directory ~/../public/P6 to your P6
+working directory:
+<PRE>
+CreatureWorld.java
+Creature.java
+</PRE>
+You will use these classes (but not modify them) in developing your solution.
+
+<H4> PROGRAM SPECIFICATIONS: CreatureWorld.java </H4> 
+
+This program exhibits the behavior of 4 types of "creatures" as
+they interact with each other in a world consisting of a region
+on your terminal screen.  It can be thought of as a simple
+"artificial life" simulation of the interaction of these creatures
+in their small world.  To keep it simple, the interaction between 
+the creatures is restricted in a way that is described below.
+Although the creature's movements are simple, the result of their
+interaction can be surprising in various ways.
+Each creature is implemented
+as a Java object, and so it is an instance of some Java class.
+ <P>
+There is a base class Creature, with source code in Creature.java.
+Four classes derived from Creature shall be as follows:
+ <P> a.  The "Chaser" class.  A Chaser tries to catch other creatures.
+When it gets a chance to interact with another Creature, a Chaser
+moves to a location which, of all its neighboring locations in its
+world, is nearest to the other creature.  A Chaser creature appears
+on the screen as a red filled circle 15 pixels in diameter, with its
+center at the Chaser's location.
+ <P> b.  The "Runner" class.  A Runner tries to escape from other
+creatures.  In each interaction with another creature, a Runner moves
+to a location which, of all its neighboring locations, is farthest
+from the other creature.  A Runner creature appears on the screen as a
+green filled square 15 pixels on a side, with its center at the
+Runner's location.
+ <P> c.  The "Random" class.  A Random doesn't care about other
+creatures.  When it gets a chance to interact with another
+creature, a Random creature moves to a randomly
+selected location, no matter where the other creature is.
+The new location must be no more than 20 pixels horizontally and 
+20 pixels vertically
+of its previous location.  A
+Random creature appears on the screen as a blue 'X', with the center
+of the X at the Random's location.  The 'X' should be 15 pixels high
+and 15 pixels wide.
+ <P> d.  The "Custom" class.  Here you get to use your imagination.  A
+Custom creature can respond to the other creature in any way you like,
+as long as the way it does this is different from what the other 3
+types of creature do, and as long as it does <I>something</I>.  In
+addition, it can display itself in any way you like, as long as it is
+different from the other 3 types, and as long as it displays visibly,
+at its current location.  Within these constraints, anything is fine,
+so have fun.
+ <P> In any case, no creature (even a Custom one)
+should ever move outside the boundaries of the
+"world"; when it gets to an edge, it should move as best it can within
+the constraints of the boundary.  (This must be true even if the
+Creature it is reacting to is somehow outside the boundary!)
+ <P>
+When the program runs, the user is given the opportunity to select
+the types of Creature to observe, their initial location, and how
+many steps to run the simulation.  To exit the simulation, the user
+can close the application window.
+
+<H4> Doing the assignment </H4>
+0.  You don't write CreatureWorld or Creature; they are already done.
+You do have to write, and turn in, source files for the
+derived classes Chaser, Runner, Random, and Custom.  The CreatureWorld
+application won't compile without these present; so for initial testing,
+you can create these as "stub classes", with stub methods that don't
+do anything.
+ <P> 1.  Look at the source code for the base class in Creature.java.
+If your derived classes do not introduce instance variables, the base
+class constructor may handle all of the initialization you need; but
+since constructors are not inherited, you have to define your own in
+the derived classes.  The constructor must take one argument of
+type java.awt.Point, which specifies  the
+initial location of the Creature.
+ <P>
+You must override the reactTo() and paint() methods to do the
+appropriate thing for each derived class; the ones in the
+base class are abstract, and don't provide method bodies at all!  
+(Note also that the base class instance variables
+have protected visibility, so they are directly accessible within methods
+of derived classes.)  These methods will be called from the
+CreatureWorld application, after the user clicks the START button
+to begin the simulation.
+The basic animulation loop in CreatureWorld
+looks like this (some pseudocode here):
+<PRE>
+    // loop for the right number of animation steps
+    for(int step = 1; step<=steps; step++) {
+
+      // get a Rectangle specifying the size of the "world"
+      Rectangle r = Rectangle_For(world);
+
+      // react each pair of Creatures in order of their indices
+      int nCreatures = Number_Of_Creatures();
+      for(int ic1 = 0; ic1 < nCreatures; ic1++) {
+	for(int ic2 = 0; ic2 < nCreatures; ic2++) {
+	  // make Creature indexed ic1 move in reaction to
+	  // creature indexed ic2; but don't bother if ic1 == ic2
+	  if (ic1 == ic2) continue;
+          Creature c1 = Creature_Indexed(ic1);
+	  Creature c2 = Creature_Indexed(ic2);
+	  c1.reactTo(c2,r);
+	}
+      }
+
+      // display the Creatures at their new location
+      Graphics g = Graphics_For(world);	
+      for(int ic = 0; ic < nCreatures; ic++) {
+        Creature c1 = Creature_Indexed(ic);
+	c1.paint(g);
+      }
+    }
+
+</PRE>
+Since Java does dynamic method binding of public instance method
+calls, the <CODE>reactTo()</CODE> 
+and <CODE>paint()</CODE> calls will "do the right thing"
+corresponding to the actual type of the Creatures pointed to...
+once you define the methods appropriately in the subclasses.
+ <P> Note that doubly-nested for loop.  When the user adds a Creature
+to the world, it is put in an indexed data structure.  The first
+creature added has index 0, the second one added has index 1, etc.
+The loop structure ensures that each Creature gets to reactTo() every
+other one before the result of each animation step is displayed;
+but the order in which these reactions take place depends
+on the order in which the Creatures were added, and different behaviors
+can happen as a result.  If there are more than 2 Creatures involved, 
+their interactions can be hard to predict (that's why simulations are
+useful).
+ <P>
+2. To implement the paint() method, note that a java.awt.Graphics 
+object is passed
+as argument.  The Graphics class defines lots of instance methods for
+doing graphics.  See the online Java API documentation for a complete
+list.  Here are prototypes for some of the methods you may find useful:
+<PRE>
+public void drawLine(int x1, int y1, int x2, int y2);
+public void drawOval(int x, int y, int width, int height);
+public void drawRect(int x, int y, int width, int height);
+public void drawString(String str, int x, int y);
+public void fillOval(int x, int y, int width, int height);
+public void fillRect(int x, int y, int width, int height);
+public void setColor(Color c);
+</PRE>
+Note that the x,y location for rectangles and ovals is the upper left
+"corner" of the rectangle or oval.  To get one of these figures to
+display centered at a certain location, you will have to add an 
+appropriate offset to the location.
+ <P>
+3.  The reactTo() method takes two arguments: a Creature to react to,
+and a Rectangle that specifies the limits of allowed movement.  The
+Creature must not move outside that Rectangle.  Rectangle
+is a class in the java.awt package.  It is a somewhat unusual class, in
+that its instance variables are public :
+<PRE>
+ public int x; // The x coordinate of the upper left corner of the rectangle.
+ public int y; // The y coordinate of the rectangle.
+ public int width; // The width of the rectangle.
+ public int height; // The height of the rectangle.
+</PRE>
+Rectangle also defines many instance methods.  One you may find useful has this prototype:
+<PRE>
+//Checks whether this rectangle contains the specified Point
+public boolean contains(Point p) 
+</PRE>
+You should note that the Point class, also in the java.awt package, has public
+instance variables as well.  See the online documentation of the Java
+standard library classes for more information.
+
+ <P>
+One interesting part of the assignment is coming up with
+an algorithm for finding a "best" position for a Chaser or a Runner
+creature to move to, when it reacts to another creature.  Here's a
+hint for one possible way to do this.  A creature has a certain x,y location on
+the "world Canvas".  The neighboring locations are the 9 pixels with
+coordinates
+
+<PRE>
+	x-1,y-1   x,y-1   x+1,y-1
+
+
+	x-1,y     x,y     x+1,y
+
+
+	x-1,y+1   x,y+1   x+1,y+1
+</PRE>
+
+So, all combinations of offsets from the current x and y coordinates
+can be tried with a doubly-nested for loop.
+You can pick the one that is "best" according to whether
+the creature wants to be closer or farther from the location of the
+other creature (remember to stay within the boundaries of the Rectangle
+passed to the reactTo() method).
+ <P> 4. An object of the Random class moves randomly.  How to do that?
+You can use the random number generator method random(), which is
+public static in the Math class.  Math.random() takes no arguments,
+and returns a double uniformly distributed in the range 0.0 up to (but
+not including) 1.0.  You can scale and shift this number to lie in the
+range [-20,20]; then adding one such random number to the current x
+coordinate and another to the y coordinate of a Random creature makes
+it move randomly, but not too far from its previous location.  (As
+with all Creatures, be sure to keep it from moving out of the
+"world".)  It can be amusing to watch a Chaser try to catch a Random!
+ <P> 5.  If you're wondering how everything should
+work (except for the Custom class), you can run 
+the P6Solution.jar application jarfile found in the public/P6 directory.
+ <P> 6.  This assignment involves dealing with a GUI application; it
+cannot be run over telnet.  It can be run over the network and
+displayed on your local machine if you have an X server on your
+machine (which you will have for free if you're running Linux or
+FreeBSD; X servers are also available for Windows and MacOS).
+Otherwise go to the lab to run your solution for this assignment in
+the context of the CreatureWorld application.  (But note also that you
+can test the requirements of the reactTo() methods without using a GUI
+at all.)
+ <P> 7.  Look at and learn from the main() method in
+CreatureWorld.java.  That is typical, for an event-driven GUI
+application.
+ <H4>
+Grading of assignment # 6
+ </H4> 
+
+There are 20 possible points for this assignment, broken down as follows:
+<PRE>
+a.   5 points for your Chaser class
+b.   5 points for your Runner class
+c.   5 points for your Random class
+d.   5 points for your Custom class
+
+
+</PRE>
+
+In each case, doing a part of the assignment means that your code
+compiles, runs correctly, satisfies the specifications,
+is well-written and commented.
+
+
+

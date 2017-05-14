@@ -1,0 +1,6 @@
+# XST flow : Creating project file
+shiftreg.prj
+# xst flow : RunXST
+shiftreg.prj
+__projnav/shiftreg.xst
+./xst

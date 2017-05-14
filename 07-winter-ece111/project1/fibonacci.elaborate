@@ -1,0 +1,20 @@
+Running PRESTO HDLC
+Loading db file '/acsnfs3/software/synopsys-V-2004.06-SP2/libraries/syn/standard.sldb'
+Loading db file '/acsnfs3/software/synopsys-V-2004.06-SP2/libraries/syn/gtech.db'
+Loading db file '/acsnfs3/software/synopsys-V-2004.06-SP2/libraries/syn/class.db'
+
+Inferred memory devices in process
+	in routine fibonacci_calculator line 18 in file
+		'./fibonacci_calculator.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     started_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|        b_reg        | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+|    fibo_out_reg     | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+|      count_reg      | Flip-flop |   5   |  Y  | N  | N  | N  | N  | N  | N  |
+|      done_reg       | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|        a_reg        | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Current design is now 'fibonacci_calculator'

@@ -1,0 +1,15 @@
+#include "MaceTypes.h"
+#include "mdeque.h"
+
+typedef mace::deque<uint> RequestList;
+
+serviceclass Distribution {
+
+  virtual void queueBlock(const MaceKey& dest, uint id, uint size);
+  virtual void queueBlocks(const MaceKey& dest, const RequestList& ids,
+			   uint size);
+  virtual void cancelQueue(const MaceKey& dest);
+  virtual uint getQueueSize(const MaceKey& dest);
+
+  handlers Distribution;
+};

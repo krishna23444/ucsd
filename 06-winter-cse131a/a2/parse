@@ -1,0 +1,2 @@
+#!/bin/sh
+java -cp .:/home/linux/ieng6/cs131w/public/Tools/java-cup-v11a.jar:/home/linux/ieng6/cs131w/public/Tools/onyx_xml.jar:/home/linux/ieng6/cs131w/public/Tools:./class/:lib/java_cup.jar:lib/java_cup-runtime.jar:lib/junit.jar:lib/onyx_xml.jar ParserDriver $*

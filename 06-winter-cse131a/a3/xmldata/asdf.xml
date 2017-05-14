@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<asdf>
+    <qwer id="4321">
+        <zxcv>argh</zxcv>
+    </qwer>
+    <qwer id="1234">
+    </qwer>
+    <qwer>
+        <zxcv zd="99">doh</zxcv>
+    </qwer>
+</asdf>

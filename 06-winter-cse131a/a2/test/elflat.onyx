@@ -1,0 +1,7 @@
+declare function foo( $a, $b ) {
+  $a,$b
+};
+
+let $x := ((3,4),5)
+  return foo( $x, ((6,7),8) )
+

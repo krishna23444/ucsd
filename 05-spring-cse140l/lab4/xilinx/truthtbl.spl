@@ -1,0 +1,13 @@
+[Inputs]
+=D[7:3]=
+[Outputs]
+clr
+R1_en
+R2_en
+R2_sel
+R3_en
+ov_en
+ge_en
+=sel[1:0]=
+=shf_of[1:0]=
+[BiDir]

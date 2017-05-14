@@ -1,0 +1,24 @@
+Team:
+Nachooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooos
+
+Members:
+Erik Buchanan
+Nitay Joffe
+Gil Edelman
+
+Changes we made:
+We implemented condition variables, locks, a synchronus mailbox, thread join,
+priority scheduling, and whale matchmaking.
+The majority of our code is in threads (.h and .cc) and synch (.h and .cc).
+We also had to make a slight adjustment to List.cc in order to get sorted
+insert to process things in decreasing order rather than increasing.
+
+As far as we know, everything should work great.
+
+We tested using a bunch of cases in the -q switch block, using the guidelines
+on the assignment, as well as trying our own test ideas. For example, we tried
+putting in a bunch of yields in weird places.
+
+All of the members of our group sat together and worked on the same thing
+at the same time, for all of the code-writing.  We brainstormed and debated
+about implementation choices.  We tested both as a group and individually.

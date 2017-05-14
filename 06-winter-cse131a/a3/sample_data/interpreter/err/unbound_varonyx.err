@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.error.SemanticError>
+   <DynamicError column="6" line="1">Variable $x not bound</DynamicError>
+</onyx.error.SemanticError>

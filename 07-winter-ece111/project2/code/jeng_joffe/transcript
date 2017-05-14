@@ -1,0 +1,152 @@
+# //  ModelSim SE 6.2b Jul 31 2006 Linux 2.6.19-gentoo-r5
+# //
+# //  Copyright 2006 Mentor Graphics Corporation
+# //              All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND 
+# //  PROPRIETARY INFORMATION WHICH IS THE PROPERTY
+# //  OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
+# //  AND IS SUBJECT TO LICENSE TERMS.
+# //
+vsim testbench_wep_encrypt_v4
+# vsim testbench_wep_encrypt_v4 
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.testbench_wep_encrypt_v4(fast)
+restart -f
+# Loading work.testbench_wep_encrypt_v4(fast)
+run -all
+# Error: memory reference not word aligned!
+# 
+# Error: memory reference not word aligned!
+# 
+# Error: memory reference not word aligned!
+# 
+# -----------
+# 
+# Plaintext 1
+# 
+# -----------
+# 
+# 00000000
+# 
+# 00000000
+# 
+# 00000000
+# 
+# 00000000
+# 
+# 00000000
+# 
+# 00000000
+# 
+# 00000000
+# 
+# 00000000
+# 
+# 00000000
+# 
+# 00000000
+# 
+# 00000028
+# 
+# 864d7f00
+# 
+# -----------
+# 
+# Ciphertext 1
+# 
+# -----------
+# 
+# e7c29474
+# 
+# 79084b10
+# 
+# 53d54b0d
+# 
+# fc1e8f32
+# 
+# 48e81a9b
+# 
+# 773c808e
+# 
+# b7483552
+# 
+# d9cb8c76
+# 
+# 2a8c8bc6
+# 
+# 0967ada8
+# 
+# d4520f74
+# 
+# 568e589d
+# 
+# -----------
+# 
+# Plaintext 2
+# 
+# -----------
+# 
+# 00000000
+# 
+# 12345678
+# 
+# 9abcdef0
+# 
+# 00000000
+# 
+# 00000000
+# 
+# 0f005030
+# 
+# 00000028
+# 
+# 864d7f00
+# 
+# 82367002
+# 
+# 04564530
+# 
+# 45645722
+# 
+# ab56c352
+# 
+# 00555322
+# 
+# Note, most significant byte (00) of last word should not be encrypted
+# 
+# -----------
+# 
+# Ciphertext 2
+# 
+# -----------
+# 
+# bd10a1a3
+# 
+# 30cf6e1c
+# 
+# 91fd852d
+# 
+# 1c70a490
+# 
+# bb07ccd6
+# 
+# a8e7db9b
+# 
+# edf2a604
+# 
+# e1e7b273
+# 
+# 5938bca6
+# 
+# 0690b62c
+# 
+# 8aa30bd9
+# 
+# c842589f
+# 
+# 0091e22a
+# 
+# number of clock cycles =        1293
+# 
+# Break at testbench_wep_encrypt_v4.v line 149

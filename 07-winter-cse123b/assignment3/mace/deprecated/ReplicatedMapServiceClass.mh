@@ -1,0 +1,12 @@
+serviceclass ReplicatedMap {
+  virtual void setServers(const NodeSet& servers);
+  virtual void exists(const std::string& key);
+  virtual void erase(const std::string& key);
+  virtual void put(const std::string& key, const std::string& value, bool overwrite = false);
+//   virtual void get(const std::string& key)
+//     [syncname=syncGet; id=key; type=block; callback=replicatedMapGetResult];
+  virtual void get(const std::string& key);
+
+  // block, aggregate, unique, fifo
+  handlers ReplicatedMap;
+};

@@ -1,0 +1,84 @@
+From cs30staff-request@ieng9.ucsd.edu  Fri Apr 12 14:39:00 2002
+Return-Path: <cs30staff-request@ieng9.ucsd.edu>
+Received: (from daemon@localhost)
+	by ieng9.ucsd.edu (8.11.6/8.11.6) id g3CLOaA26232
+	for cs30staff-list; Fri, 12 Apr 2002 14:24:36 -0700 (PDT)
+Received: from localhost (cs30x3@localhost)
+	by ieng9.ucsd.edu (8.11.6/8.11.6) with ESMTP id g3CLOYY26221
+	for <cs30staff@ieng9.ucsd.edu>; Fri, 12 Apr 2002 14:24:35 -0700 (PDT)
+Date: Fri, 12 Apr 2002 14:24:34 -0700 (PDT)
+From: Jonathan <cs30x3@ieng9.ucsd.edu>
+Reply-To: cs30x3@ieng9.ucsd.edu
+To: cs30staff@ieng9.ucsd.edu
+Subject: pa0 grading
+Message-ID: <Pine.GSO.4.40.0204121421120.13879-100000@ieng9.ucsd.edu>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Status: R
+Content-Length: 3252
+
+Hi everybody,
+
+pa0 has been sent through the autograder, and will be in your directories
+soon (probably before you get this email).  You should have your grading
+done by next thursday (4/18/02) night.  That means when I wake up on
+Friday, you should all be done.
+
+Be sure to nail the students on their style now when it doesn't cost much
+pointwise, and let them know what is expected of them in terms of style
+(no more than 80 chars per line, function headers, file headers, inline
+comments, good and consistent indentation following the guideline supplied
+at the end of the pa1 write-up,and anything else like that).
+
+For those who have not graded for this class before:
+
+You will be given several tools to assist with your grading.  You will
+have two scripts in your ~/Assignments/pa0 directory (which is where all
+the files to grade are as well) called "mailer" and "extract."  For each
+file, there is a line that contains "cs30x[a-b]*" in the middle of it.
+You need to change the [a-b] part to be the range of students that you
+are grading (you might have some cs30xf's and some cs30xe's for example,
+so you would make it "cs30x[e-f]*").  Then you can run the "extract"
+script (by typing the name of the script) and it will unzip and untar the
+program files for each of the students you need to grade.  The "mailer"
+script is for use when you have finished grading all of your students.
+When all of their grades are recored, and their guidelines complete, then
+you can run the mailer script to send the students their grades.
+
+You will also have a file called "cs30x??.grades" in which you should
+recored the grades for each student (for me to collect later) when you
+finish them.
+
+Within each subdirectory of ~/Assignments/pa0 there will be a
+cs30x??.diffs, cs30x??.output, and "guideline" file.  The *.diffs file
+shows the student's output with a "<" in front of it and the correct
+output with a ">" in front of it.  You should compare any differences and
+make sure that they are really different before taking off any points for
+correctness.  There is only one test case for this assignment, and it
+should only be different on the line with their name and the one with
+their birthday (as the code was given out in class).  If you don't know
+how to read the diff file, email me and we'll set a time to meet and go
+over them.
+
+The *.output file is broken up by test case as well.  Each one has the
+complete output from the student and the correct output (labeled as such)
+for you to compare.  You can use either the *.output, *.diffs, or both as
+you see fit to determine if the student passed their test cases.
+
+The guideline file will have a list of all the things that they can lose
+points for and how much to take off for each thing.  You should change
+this file to reflect where they lost points as it will be attached to the
+email sent to them with their grade.
+
+A file called pa0.answers should be in your ~/Assignments/pa0 directory as
+well. I didn't write these answers, but they're good enough for me.
+
+If you have any questions on whether something works as a valid answer to
+the gdb questions, you can email me (cs30x2).
+
+I think that's it.  If there are any questions at all, feel free to email
+me at cs30x2@ieng9.ucsd.edu.
+
+Jonathan
+
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.error.SemanticError>
+   <DynamicError column="1" line="3">
+      <ErrorMessage>Function with prototype op(onyx.types.Integer,onyx.types.Integer) not found</ErrorMessage>
+      <PossibleMatch>onyx.types.Boolean op:and(onyx.types.Boolean,onyx.types.Boolean)</PossibleMatch>
+      <PossibleMatch>onyx.types.Boolean op:equals(onyx.types.AnySimpleType,onyx.types.AnySimpleType)</PossibleMatch>
+      <PossibleMatch>onyx.types.Boolean op:greater-than(onyx.types.AnySimpleType,onyx.types.AnySimpleType)</PossibleMatch>
+      <PossibleMatch>onyx.types.Boolean op:greater-than-equals(onyx.types.AnySimpleType,onyx.types.AnySimpleType)</PossibleMatch>
+      <PossibleMatch>onyx.types.Boolean op:less-than(onyx.types.AnySimpleType,onyx.types.AnySimpleType)</PossibleMatch>
+      <PossibleMatch>onyx.types.Boolean op:less-than-equals(onyx.types.AnySimpleType,onyx.types.AnySimpleType)</PossibleMatch>
+      <PossibleMatch>onyx.types.Boolean op:not-equals(onyx.types.AnySimpleType,onyx.types.AnySimpleType)</PossibleMatch>
+      <PossibleMatch>onyx.types.Boolean op:or(onyx.types.Boolean,onyx.types.Boolean)</PossibleMatch>
+      <PossibleMatch>onyx.types.Decimal op:numeric-add(onyx.types.Decimal,onyx.types.Decimal)</PossibleMatch>
+      <PossibleMatch>onyx.types.Decimal op:numeric-divide(onyx.types.Decimal,onyx.types.Decimal)</PossibleMatch>
+      <PossibleMatch>onyx.types.Decimal op:numeric-multiply(onyx.types.Decimal,onyx.types.Decimal)</PossibleMatch>
+      <PossibleMatch>onyx.types.Decimal op:numeric-subtract(onyx.types.Decimal,onyx.types.Decimal)</PossibleMatch>
+      <PossibleMatch>onyx.types.Integer op:numeric-add(onyx.types.Integer,onyx.types.Integer)</PossibleMatch>
+      <PossibleMatch>onyx.types.Integer op:numeric-integer-divide(onyx.types.Integer,onyx.types.Integer)</PossibleMatch>
+      <PossibleMatch>onyx.types.Integer op:numeric-mod(onyx.types.Integer,onyx.types.Integer)</PossibleMatch>
+      <PossibleMatch>onyx.types.Integer op:numeric-multiply(onyx.types.Integer,onyx.types.Integer)</PossibleMatch>
+      <PossibleMatch>onyx.types.Integer op:numeric-subtract(onyx.types.Integer,onyx.types.Integer)</PossibleMatch>
+      <PossibleMatch>onyx.types.Sequence op:to(onyx.types.Integer,onyx.types.Integer)</PossibleMatch>
+      <PossibleMatch>onyx.types.String op:numeric-add(onyx.types.String,onyx.types.String)</PossibleMatch>
+   </DynamicError>
+</onyx.error.SemanticError>

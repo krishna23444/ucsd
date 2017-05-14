@@ -1,0 +1,5 @@
+Running PRESTO HDLC
+Searching for ./wep_encrypt_v4.v
+Compiling source file ./wep_encrypt_v4.v
+Warning:  ./wep_encrypt_v4.v:105: Redundant digits given in number 00000000. (VER-1)
+Presto compilation completed successfully.

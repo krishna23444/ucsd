@@ -1,0 +1,69 @@
+1 a ?
+  b sometimes
+  c sometimes
+  d sometimes
+  e ?
+  f always
+  g sometimes
+  h sometimes
+  i never
+  j ?
+
+2 a ?
+  b when the operating system spends so much time swapping pages that no real
+    work gets done
+  c ?
+  d increasing the memory used up by vmware's "balloon" driver so that the
+    virtual machine guest operating system's memory gets decreased.
+  e ?
+  f translation look-aside buffer. a cache for virtual address lookups. often
+    have a tag to distinguish different address spaces for operating system
+    context switches. some also have a virtual cpu tag for virtual machine
+    level context switches within a virtual machine monitor.
+
+3 a micokernel reduces the amount of abstractions used to a minimal set.
+    exokernel removes all the abstractions and makes the hardware available to
+    the user applications.
+  b 1 increased block size improved performance because it allowed better usage
+      of the disk.
+    2 cylinder groups made files within a directory and file blocks within a
+      file close to each other so that disk seek was reduced.
+  c ?
+  d because we don't trust the user. the application may purposefully kick out
+    a page that is not really it's oldest to try to get more pages allocated to
+    it. using placeholders the operating system can keep track, and when the
+    application requests the page it just booted out, it will forcefully swap
+    out the originally chosen page.
+  e native irix can't take advantage of a large number of processors. it is
+    really hard to write an operating system to leverage massive
+    multiprocessing and shared memory.
+  f developed user-land services that implemented the various bsd system call
+    behaviors using the mach microkernel system?
+  g 1 semantic gap. vmm's don't know what's going on inside their guest
+      operating systems, so they can't the difference between a scientific
+      computation and an idle loop.
+    2
+
+4 a fat table. has an entry for every block on the disk that tells the location
+    of the next block for the given file. uses special markers to flag end of
+    file and a free block. to find a free block, a linear search is done for
+    a fat table entry with the free block flag.
+  b so that it is always known where they are?
+  c 
+  d
+
+5 a
+
+6
+
+7 a
+  b ipc
+    ports
+  c
+  d 
+
+8
+
+9 a
+  b
+  c

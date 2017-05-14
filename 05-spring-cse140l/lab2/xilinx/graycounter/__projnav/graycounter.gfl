@@ -1,0 +1,319 @@
+# Schematic : PDCL (jhdparse)
+__projnav/graycounter_jhdparse_tcl.rsp
+# xst flow : RunXST
+graycounter_summary.html
+# Schematic : PDCL (jhdparse)
+__projnav/graycounter_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/graycounter_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/graycounter_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/graycounter_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/graycounter_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/graycounter_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/graycounter_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/graycounter_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/graycounter_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/graycounter_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/graycounter_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/graycounter_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/graycounter_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/graycounter_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+graycounter.vhf
+graycounter.cmd_log
+# Bencher : Creating project file
+graycounter_tbw_bencher.prj
+# ProjNav -> New Source -> TBW
+graycounter_tbw.vhw
+graycounter_tbw.ano
+graycounter_tbw.tfw
+graycounter_tbw.ant
+# Bencher : Creating project file
+graycounter_tbw_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+graycounter_tbw.ado
+graycounter_tbw.ano
+# Bencher : Creating project file
+graycounter_tbw_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+graycounter_tbw_bencher.prj
+# Update Bencher Waveform
+__projnav/updateTBW_tcl.rsp
+graycounter_tbw.vhw
+graycounter_tbw.ano
+graycounter_tbw.tfw
+graycounter_tbw.ant
+# XST (Creating Lso File) : 
+graycounter.lso
+# xst flow : RunXST
+graycounter_summary.html
+# xst flow : RunXST
+graycounter.syr
+graycounter.prj
+graycounter.sprj
+graycounter.ana
+graycounter.stx
+graycounter.cmd_log
+graycounter.ngc
+graycounter.ngr
+# Implmentation : Translate
+__projnav/ednTOngd_tcl.rsp
+"g:\xilinx\projects\lab2\graycounter/_ngo"
+graycounter.ngd
+graycounter_ngdbuild.nav
+graycounter.bld
+.untf
+graycounter.cmd_log
+# Implementation : Map
+graycounter_summary.html
+# Implementation : Map
+graycounter_map.ncd
+graycounter.ngm
+graycounter.pcf
+graycounter.nc1
+graycounter.mrp
+graycounter_map.mrp
+graycounter.mdf
+graycounter.cmd_log
+MAP_NO_GUIDE_FILE_CPF "graycounter"
+graycounter_map.ngm
+# Implmentation : Post-Place & Route Timing
+__projnav/ncdTOtwr_tcl.rsp
+graycounter.twr
+graycounter.twx
+graycounter.tsi
+graycounter.cmd_log
+# Implementation : Place & Route
+graycounter_summary.html
+# Implmentation : Place & Route
+__projnav/nc1TOncd_tcl.rsp
+graycounter.ncd
+graycounter.par
+graycounter.pad
+graycounter_pad.txt
+graycounter_pad.csv
+graycounter.pad_txt
+graycounter.dly
+reportgen.log
+graycounter.xpi
+graycounter.grf
+graycounter.itr
+graycounter_last_par.ncd
+graycounter.placed_ncd_tracker
+graycounter.routed_ncd_tracker
+graycounter.cmd_log
+PAR_NO_GUIDE_FILE_CPF "graycounter"
+# Implementation : Generate Post-Place & Route Simulation Model
+graycounter_timesim.vhd
+graycounter_timesim.nlf
+graycounter.vhdsim_par
+graycounter.par_nlf
+graycounter.cmd_log
+graycounter_timesim.vhd
+graycounter_timesim.sdf
+graycounter_timesim.sdf
+# Bencher : Creating project file
+graycounter_tbw_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+graycounter_tbw.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+graycounter_tbw.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Bencher : Creating project file
+graycounter_tbw_bencher.prj
+# Bencher : Creating project file
+graycounter_tbw_crit_bencher.prj
+# ProjNav -> New Source -> TBW
+graycounter_tbw_crit.vhw
+graycounter_tbw_crit.ano
+graycounter_tbw_crit.tfw
+graycounter_tbw_crit.ant
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Bencher : Creating project file
+graycounter_tbw_crit_bencher.prj
+# ProjNav -> New Source -> TBW
+graycounter_tbw_crit.vhw
+graycounter_tbw_crit.ano
+graycounter_tbw_crit.tfw
+graycounter_tbw_crit.ant
+# Bencher : Creating project file
+graycounter_tbw_crit_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+graycounter_tbw_crit.ado
+graycounter_tbw_crit.ano
+# Bencher : Creating project file
+graycounter_tbw_crit_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+graycounter_tbw_crit_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+graycounter_tbw_crit.ado
+graycounter_tbw_crit.ano
+# Bencher : Creating project file
+graycounter_tbw_crit_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+graycounter_tbw_bencher.prj
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# xst flow : RunXST
+graycounter_summary.html
+# Schematic : PDCL (jhdparse)
+__projnav/graycounter2_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/graycounter2_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/graycounter2_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/graycounter2_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+graycounter2.vhf
+graycounter2.cmd_log
+# Bencher : Creating project file
+gc2_tbw_bencher.prj
+# ProjNav -> New Source -> TBW
+gc2_tbw.vhw
+gc2_tbw.ano
+gc2_tbw.tfw
+gc2_tbw.ant
+# Bencher : Creating project file
+gc2_tbw_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+gc2_tbw.ado
+gc2_tbw.ano
+# ModelSim : Generate Expected Simulation Results
+gc2_tbw.ado
+gc2_tbw.ano
+# Bencher : Creating project file
+gc2_tbw_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Schematic : PDCL (jhdparse)
+__projnav/graycounter2_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+graycounter2.vhf
+graycounter2.cmd_log
+# Bencher : Creating project file
+gc2_tbw_bencher.prj
+# Bencher : Creating project file
+gc2_tbw_bencher.prj
+# Update Bencher Waveform
+__projnav/updateTBW_tcl.rsp
+gc2_tbw.vhw
+gc2_tbw.ano
+gc2_tbw.tfw
+gc2_tbw.ant
+# ModelSim : Generate Expected Simulation Results
+gc2_tbw.ado
+gc2_tbw.ano
+# Bencher : Creating project file
+gc2_tbw_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+graycounter_tbw_bencher.prj
+# Schematic : PDCL (jhdparse)
+__projnav/graycounter2_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+graycounter2.vhf
+graycounter2.cmd_log
+# Bencher : Creating project file
+gc2_tbw_bencher.prj
+# Update Bencher Waveform
+__projnav/updateTBW_tcl.rsp
+gc2_tbw.vhw
+gc2_tbw.ano
+gc2_tbw.tfw
+gc2_tbw.ant
+# ModelSim : Generate Expected Simulation Results
+gc2_tbw.ado
+gc2_tbw.ano
+# Bencher : Creating project file
+gc2_tbw_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+graycounter_tbw_bencher.prj
+# XST (Creating Lso File) : 
+graycounter2.lso
+# xst flow : RunXST
+graycounter2_summary.html
+# xst flow : RunXST
+graycounter2.syr
+graycounter2.prj
+graycounter2.sprj
+graycounter2.ana
+graycounter2.stx
+graycounter2.cmd_log
+graycounter2.ngc
+graycounter2.ngr
+# Implmentation : Translate
+__projnav/ednTOngd_tcl.rsp
+"g:\xilinx\projects\lab2\graycounter/_ngo"
+graycounter2.ngd
+graycounter2_ngdbuild.nav
+graycounter2.bld
+.untf
+graycounter2.cmd_log
+# Implementation : Map
+graycounter2_summary.html
+# Implementation : Map
+graycounter2_map.ncd
+graycounter2.ngm
+graycounter2.pcf
+graycounter2.nc1
+graycounter2.mrp
+graycounter2_map.mrp
+graycounter2.mdf
+graycounter2.cmd_log
+MAP_NO_GUIDE_FILE_CPF "graycounter2"
+graycounter2_map.ngm
+# Implmentation : Post-Place & Route Timing
+__projnav/ncdTOtwr_tcl.rsp
+graycounter2.twr
+graycounter2.twx
+graycounter2.tsi
+graycounter2.cmd_log
+# Implementation : Place & Route
+graycounter2_summary.html
+# Implmentation : Place & Route
+__projnav/nc1TOncd_tcl.rsp
+graycounter2.ncd
+graycounter2.par
+graycounter2.pad
+graycounter2_pad.txt
+graycounter2_pad.csv
+graycounter2.pad_txt
+graycounter2.dly
+reportgen.log
+graycounter2.xpi
+graycounter2.grf
+graycounter2.itr
+graycounter2_last_par.ncd
+graycounter2.placed_ncd_tracker
+graycounter2.routed_ncd_tracker
+graycounter2.cmd_log
+PAR_NO_GUIDE_FILE_CPF "graycounter2"
+# Implmentation : Post-Place & Route Timing
+__projnav/ncdTOtwr_tcl.rsp
+graycounter2.twr
+graycounter2.twx
+graycounter2.tsi
+graycounter2.cmd_log

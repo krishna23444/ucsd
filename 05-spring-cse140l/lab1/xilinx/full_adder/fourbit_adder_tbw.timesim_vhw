@@ -1,0 +1,4371 @@
+--------------------------------------------------------------------------------
+-- Copyright (c) 1995-2003 Xilinx, Inc.
+-- All Right Reserved.
+--------------------------------------------------------------------------------
+--   ____  ____ 
+--  /   /\/   / 
+-- /___/  \  /    Vendor: Xilinx 
+-- \   \   \/     Version : 7.1.01i
+--  \   \         Application : ISE WebPACK
+--  /   /         Filename : fourbit_adder_tbw.timesim_vhw
+-- /___/   /\     Timestamp : Mon Apr 18 19:00:58 2005
+-- \   \  /  \ 
+--  \___\/\___\ 
+--
+--Command: 
+--Design Name: fourbit_adder_tbw
+--Device: Xilinx
+--
+
+library UNISIM;
+use UNISIM.Vcomponents.ALL;
+library ieee;
+use ieee.std_logic_1164.ALL;
+use ieee.numeric_std.ALL;
+USE IEEE.STD_LOGIC_TEXTIO.ALL;
+USE STD.TEXTIO.ALL;
+
+ENTITY fourbit_adder_tbw IS
+END fourbit_adder_tbw;
+
+ARCHITECTURE testbench_arch OF fourbit_adder_tbw IS
+    COMPONENT fourbit_adder
+        PORT (
+            a0 : In std_logic;
+            a1 : In std_logic;
+            a2 : In std_logic;
+            a3 : In std_logic;
+            b0 : In std_logic;
+            b1 : In std_logic;
+            b2 : In std_logic;
+            b3 : In std_logic;
+            c0i : In std_logic;
+            co : Out std_logic;
+            s0 : Out std_logic;
+            s1 : Out std_logic;
+            s2 : Out std_logic;
+            s3 : Out std_logic
+        );
+    END COMPONENT;
+
+    SIGNAL a0 : std_logic := '0';
+    SIGNAL a1 : std_logic := '0';
+    SIGNAL a2 : std_logic := '0';
+    SIGNAL a3 : std_logic := '0';
+    SIGNAL b0 : std_logic := '0';
+    SIGNAL b1 : std_logic := '0';
+    SIGNAL b2 : std_logic := '0';
+    SIGNAL b3 : std_logic := '0';
+    SIGNAL c0i : std_logic := '0';
+    SIGNAL co : std_logic := '0';
+    SIGNAL s0 : std_logic := '0';
+    SIGNAL s1 : std_logic := '0';
+    SIGNAL s2 : std_logic := '0';
+    SIGNAL s3 : std_logic := '0';
+
+    SHARED VARIABLE TX_ERROR : INTEGER := 0;
+    SHARED VARIABLE TX_OUT : LINE;
+
+    BEGIN
+        UUT : fourbit_adder
+        PORT MAP (
+            a0 => a0,
+            a1 => a1,
+            a2 => a2,
+            a3 => a3,
+            b0 => b0,
+            b1 => b1,
+            b2 => b2,
+            b3 => b3,
+            c0i => c0i,
+            co => co,
+            s0 => s0,
+            s1 => s1,
+            s2 => s2,
+            s3 => s3
+        );
+
+        PROCESS
+            PROCEDURE CHECK_co(
+                next_co : std_logic;
+                TX_TIME : INTEGER
+            ) IS
+                VARIABLE TX_STR : String(1 to 4096);
+                VARIABLE TX_LOC : LINE;
+                BEGIN
+                IF (co /= next_co) THEN
+                    STD.TEXTIO.write(TX_LOC, string'("Error at time="));
+                    STD.TEXTIO.write(TX_LOC, TX_TIME);
+                    STD.TEXTIO.write(TX_LOC, string'("ns co="));
+                    IEEE.STD_LOGIC_TEXTIO.write(TX_LOC, co);
+                    STD.TEXTIO.write(TX_LOC, string'(", Expected = "));
+                    IEEE.STD_LOGIC_TEXTIO.write(TX_LOC, next_co);
+                    STD.TEXTIO.write(TX_LOC, string'(" "));
+                    TX_STR(TX_LOC.all'range) := TX_LOC.all;
+                    STD.TEXTIO.Deallocate(TX_LOC);
+                    ASSERT (FALSE) REPORT TX_STR SEVERITY ERROR;
+                    TX_ERROR := TX_ERROR + 1;
+                END IF;
+            END;
+            PROCEDURE CHECK_s0(
+                next_s0 : std_logic;
+                TX_TIME : INTEGER
+            ) IS
+                VARIABLE TX_STR : String(1 to 4096);
+                VARIABLE TX_LOC : LINE;
+                BEGIN
+                IF (s0 /= next_s0) THEN
+                    STD.TEXTIO.write(TX_LOC, string'("Error at time="));
+                    STD.TEXTIO.write(TX_LOC, TX_TIME);
+                    STD.TEXTIO.write(TX_LOC, string'("ns s0="));
+                    IEEE.STD_LOGIC_TEXTIO.write(TX_LOC, s0);
+                    STD.TEXTIO.write(TX_LOC, string'(", Expected = "));
+                    IEEE.STD_LOGIC_TEXTIO.write(TX_LOC, next_s0);
+                    STD.TEXTIO.write(TX_LOC, string'(" "));
+                    TX_STR(TX_LOC.all'range) := TX_LOC.all;
+                    STD.TEXTIO.Deallocate(TX_LOC);
+                    ASSERT (FALSE) REPORT TX_STR SEVERITY ERROR;
+                    TX_ERROR := TX_ERROR + 1;
+                END IF;
+            END;
+            PROCEDURE CHECK_s1(
+                next_s1 : std_logic;
+                TX_TIME : INTEGER
+            ) IS
+                VARIABLE TX_STR : String(1 to 4096);
+                VARIABLE TX_LOC : LINE;
+                BEGIN
+                IF (s1 /= next_s1) THEN
+                    STD.TEXTIO.write(TX_LOC, string'("Error at time="));
+                    STD.TEXTIO.write(TX_LOC, TX_TIME);
+                    STD.TEXTIO.write(TX_LOC, string'("ns s1="));
+                    IEEE.STD_LOGIC_TEXTIO.write(TX_LOC, s1);
+                    STD.TEXTIO.write(TX_LOC, string'(", Expected = "));
+                    IEEE.STD_LOGIC_TEXTIO.write(TX_LOC, next_s1);
+                    STD.TEXTIO.write(TX_LOC, string'(" "));
+                    TX_STR(TX_LOC.all'range) := TX_LOC.all;
+                    STD.TEXTIO.Deallocate(TX_LOC);
+                    ASSERT (FALSE) REPORT TX_STR SEVERITY ERROR;
+                    TX_ERROR := TX_ERROR + 1;
+                END IF;
+            END;
+            PROCEDURE CHECK_s2(
+                next_s2 : std_logic;
+                TX_TIME : INTEGER
+            ) IS
+                VARIABLE TX_STR : String(1 to 4096);
+                VARIABLE TX_LOC : LINE;
+                BEGIN
+                IF (s2 /= next_s2) THEN
+                    STD.TEXTIO.write(TX_LOC, string'("Error at time="));
+                    STD.TEXTIO.write(TX_LOC, TX_TIME);
+                    STD.TEXTIO.write(TX_LOC, string'("ns s2="));
+                    IEEE.STD_LOGIC_TEXTIO.write(TX_LOC, s2);
+                    STD.TEXTIO.write(TX_LOC, string'(", Expected = "));
+                    IEEE.STD_LOGIC_TEXTIO.write(TX_LOC, next_s2);
+                    STD.TEXTIO.write(TX_LOC, string'(" "));
+                    TX_STR(TX_LOC.all'range) := TX_LOC.all;
+                    STD.TEXTIO.Deallocate(TX_LOC);
+                    ASSERT (FALSE) REPORT TX_STR SEVERITY ERROR;
+                    TX_ERROR := TX_ERROR + 1;
+                END IF;
+            END;
+            PROCEDURE CHECK_s3(
+                next_s3 : std_logic;
+                TX_TIME : INTEGER
+            ) IS
+                VARIABLE TX_STR : String(1 to 4096);
+                VARIABLE TX_LOC : LINE;
+                BEGIN
+                IF (s3 /= next_s3) THEN
+                    STD.TEXTIO.write(TX_LOC, string'("Error at time="));
+                    STD.TEXTIO.write(TX_LOC, TX_TIME);
+                    STD.TEXTIO.write(TX_LOC, string'("ns s3="));
+                    IEEE.STD_LOGIC_TEXTIO.write(TX_LOC, s3);
+                    STD.TEXTIO.write(TX_LOC, string'(", Expected = "));
+                    IEEE.STD_LOGIC_TEXTIO.write(TX_LOC, next_s3);
+                    STD.TEXTIO.write(TX_LOC, string'(" "));
+                    TX_STR(TX_LOC.all'range) := TX_LOC.all;
+                    STD.TEXTIO.Deallocate(TX_LOC);
+                    ASSERT (FALSE) REPORT TX_STR SEVERITY ERROR;
+                    TX_ERROR := TX_ERROR + 1;
+                END IF;
+            END;
+            BEGIN
+                -- -------------  Current Time:  50ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 50);
+                -- -------------------------------------
+                -- -------------  Current Time:  100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 250);
+                CHECK_s1('1', 250);
+                -- -------------------------------------
+                -- -------------  Current Time:  300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 450);
+                -- -------------------------------------
+                -- -------------  Current Time:  500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 650);
+                CHECK_s1('0', 650);
+                CHECK_s2('1', 650);
+                -- -------------------------------------
+                -- -------------  Current Time:  700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  750ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 750);
+                CHECK_s2('0', 750);
+                -- -------------------------------------
+                -- -------------  Current Time:  800ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 850);
+                -- -------------------------------------
+                -- -------------  Current Time:  900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  1000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  1050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 1050);
+                CHECK_s1('0', 1050);
+                CHECK_s2('1', 1050);
+                -- -------------------------------------
+                -- -------------  Current Time:  1100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  1200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  1250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 1250);
+                -- -------------------------------------
+                -- -------------  Current Time:  1300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  1400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  1450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 1450);
+                CHECK_s1('1', 1450);
+                -- -------------------------------------
+                -- -------------  Current Time:  1500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  1550ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 1550);
+                -- -------------------------------------
+                -- -------------  Current Time:  1600ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  1650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 1650);
+                -- -------------------------------------
+                -- -------------  Current Time:  1700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  1800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  1850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 1850);
+                CHECK_s1('1', 1850);
+                -- -------------------------------------
+                -- -------------  Current Time:  1900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  2000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  2050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 2050);
+                -- -------------------------------------
+                -- -------------  Current Time:  2100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  2200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  2250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 2250);
+                CHECK_s1('0', 2250);
+                CHECK_s2('0', 2250);
+                CHECK_s3('1', 2250);
+                -- -------------------------------------
+                -- -------------  Current Time:  2300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  2350ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 2350);
+                CHECK_s2('1', 2350);
+                CHECK_s3('0', 2350);
+                -- -------------------------------------
+                -- -------------  Current Time:  2400ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  2450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 2450);
+                -- -------------------------------------
+                -- -------------  Current Time:  2500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  2600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  2650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 2650);
+                CHECK_s1('0', 2650);
+                CHECK_s2('0', 2650);
+                CHECK_s3('1', 2650);
+                -- -------------------------------------
+                -- -------------  Current Time:  2700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  2800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  2850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 2850);
+                -- -------------------------------------
+                -- -------------  Current Time:  2900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  3000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  3050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 3050);
+                CHECK_s1('1', 3050);
+                -- -------------------------------------
+                -- -------------  Current Time:  3100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  3150ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 3150);
+                CHECK_s2('1', 3150);
+                CHECK_s3('0', 3150);
+                -- -------------------------------------
+                -- -------------  Current Time:  3200ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                a2 <= '1';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  3250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 3250);
+                -- -------------------------------------
+                -- -------------  Current Time:  3300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  3400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  3450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 3450);
+                CHECK_s1('1', 3450);
+                -- -------------------------------------
+                -- -------------  Current Time:  3500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  3600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  3650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 3650);
+                -- -------------------------------------
+                -- -------------  Current Time:  3700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  3800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  3850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 3850);
+                CHECK_s1('0', 3850);
+                CHECK_s2('0', 3850);
+                CHECK_s3('1', 3850);
+                -- -------------------------------------
+                -- -------------  Current Time:  3900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  3950ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 3950);
+                CHECK_s2('1', 3950);
+                CHECK_s3('0', 3950);
+                -- -------------------------------------
+                -- -------------  Current Time:  4000ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  4050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 4050);
+                -- -------------------------------------
+                -- -------------  Current Time:  4100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  4200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  4250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 4250);
+                CHECK_s1('0', 4250);
+                CHECK_s2('0', 4250);
+                CHECK_s3('1', 4250);
+                -- -------------------------------------
+                -- -------------  Current Time:  4300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  4400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  4450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 4450);
+                -- -------------------------------------
+                -- -------------  Current Time:  4500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  4600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  4650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 4650);
+                CHECK_s1('1', 4650);
+                -- -------------------------------------
+                -- -------------  Current Time:  4700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  4750ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 4750);
+                -- -------------------------------------
+                -- -------------  Current Time:  4800ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  4850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 4850);
+                -- -------------------------------------
+                -- -------------  Current Time:  4900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  5000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  5050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 5050);
+                CHECK_s1('1', 5050);
+                -- -------------------------------------
+                -- -------------  Current Time:  5100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  5200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  5250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 5250);
+                -- -------------------------------------
+                -- -------------  Current Time:  5300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  5400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  5450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 5450);
+                CHECK_s1('0', 5450);
+                CHECK_s2('1', 5450);
+                -- -------------------------------------
+                -- -------------  Current Time:  5500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  5550ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 5550);
+                CHECK_s2('0', 5550);
+                -- -------------------------------------
+                -- -------------  Current Time:  5600ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  5650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 5650);
+                -- -------------------------------------
+                -- -------------  Current Time:  5700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  5800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  5850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 5850);
+                CHECK_s1('0', 5850);
+                CHECK_s2('1', 5850);
+                -- -------------------------------------
+                -- -------------  Current Time:  5900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  6000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  6050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 6050);
+                -- -------------------------------------
+                -- -------------  Current Time:  6100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  6200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  6250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 6250);
+                CHECK_s1('1', 6250);
+                -- -------------------------------------
+                -- -------------  Current Time:  6300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  6350ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 6350);
+                CHECK_s2('0', 6350);
+                -- -------------------------------------
+                -- -------------  Current Time:  6400ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                a2 <= '0';
+                a3 <= '1';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  6450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 6450);
+                -- -------------------------------------
+                -- -------------  Current Time:  6500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  6600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  6650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 6650);
+                CHECK_s1('1', 6650);
+                -- -------------------------------------
+                -- -------------  Current Time:  6700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  6800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  6850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 6850);
+                -- -------------------------------------
+                -- -------------  Current Time:  6900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  7000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  7050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 7050);
+                CHECK_s1('0', 7050);
+                CHECK_s2('1', 7050);
+                -- -------------------------------------
+                -- -------------  Current Time:  7100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  7150ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 7150);
+                CHECK_s2('0', 7150);
+                -- -------------------------------------
+                -- -------------  Current Time:  7200ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  7250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 7250);
+                -- -------------------------------------
+                -- -------------  Current Time:  7300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  7400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  7450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 7450);
+                CHECK_s1('0', 7450);
+                CHECK_s2('1', 7450);
+                -- -------------------------------------
+                -- -------------  Current Time:  7500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  7600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  7650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 7650);
+                -- -------------------------------------
+                -- -------------  Current Time:  7700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  7800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  7850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 7850);
+                CHECK_s1('1', 7850);
+                -- -------------------------------------
+                -- -------------  Current Time:  7900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  7950ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 7950);
+                -- -------------------------------------
+                -- -------------  Current Time:  8000ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  8050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 8050);
+                -- -------------------------------------
+                -- -------------  Current Time:  8100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  8200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  8250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 8250);
+                CHECK_s1('1', 8250);
+                -- -------------------------------------
+                -- -------------  Current Time:  8300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  8400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  8450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 8450);
+                -- -------------------------------------
+                -- -------------  Current Time:  8500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  8600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  8650ns
+                WAIT FOR 50 ns;
+                CHECK_co('1', 8650);
+                CHECK_s0('0', 8650);
+                CHECK_s1('0', 8650);
+                CHECK_s2('0', 8650);
+                CHECK_s3('0', 8650);
+                -- -------------------------------------
+                -- -------------  Current Time:  8700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  8750ns
+                WAIT FOR 50 ns;
+                CHECK_co('0', 8750);
+                CHECK_s1('1', 8750);
+                CHECK_s2('1', 8750);
+                CHECK_s3('1', 8750);
+                -- -------------------------------------
+                -- -------------  Current Time:  8800ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  8850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 8850);
+                -- -------------------------------------
+                -- -------------  Current Time:  8900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  9000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  9050ns
+                WAIT FOR 50 ns;
+                CHECK_co('1', 9050);
+                CHECK_s0('0', 9050);
+                CHECK_s1('0', 9050);
+                CHECK_s2('0', 9050);
+                CHECK_s3('0', 9050);
+                -- -------------------------------------
+                -- -------------  Current Time:  9100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  9200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  9250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 9250);
+                -- -------------------------------------
+                -- -------------  Current Time:  9300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  9400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  9450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 9450);
+                CHECK_s1('1', 9450);
+                -- -------------------------------------
+                -- -------------  Current Time:  9500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  9550ns
+                WAIT FOR 50 ns;
+                CHECK_co('0', 9550);
+                CHECK_s1('0', 9550);
+                CHECK_s2('1', 9550);
+                CHECK_s3('1', 9550);
+                -- -------------------------------------
+                -- -------------  Current Time:  9600ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                a2 <= '1';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  9650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 9650);
+                -- -------------------------------------
+                -- -------------  Current Time:  9700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  9800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  9850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 9850);
+                CHECK_s1('1', 9850);
+                -- -------------------------------------
+                -- -------------  Current Time:  9900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  10000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  10050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 10050);
+                -- -------------------------------------
+                -- -------------  Current Time:  10100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  10200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  10250ns
+                WAIT FOR 50 ns;
+                CHECK_co('1', 10250);
+                CHECK_s0('0', 10250);
+                CHECK_s1('0', 10250);
+                CHECK_s2('0', 10250);
+                CHECK_s3('0', 10250);
+                -- -------------------------------------
+                -- -------------  Current Time:  10300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  10350ns
+                WAIT FOR 50 ns;
+                CHECK_co('0', 10350);
+                CHECK_s1('1', 10350);
+                CHECK_s2('1', 10350);
+                CHECK_s3('1', 10350);
+                -- -------------------------------------
+                -- -------------  Current Time:  10400ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  10450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 10450);
+                -- -------------------------------------
+                -- -------------  Current Time:  10500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  10600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  10650ns
+                WAIT FOR 50 ns;
+                CHECK_co('1', 10650);
+                CHECK_s0('0', 10650);
+                CHECK_s1('0', 10650);
+                CHECK_s2('0', 10650);
+                CHECK_s3('0', 10650);
+                -- -------------------------------------
+                -- -------------  Current Time:  10700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  10800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  10850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 10850);
+                -- -------------------------------------
+                -- -------------  Current Time:  10900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  11000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  11050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 11050);
+                CHECK_s1('1', 11050);
+                -- -------------------------------------
+                -- -------------  Current Time:  11100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  11150ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 11150);
+                -- -------------------------------------
+                -- -------------  Current Time:  11200ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  11250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 11250);
+                -- -------------------------------------
+                -- -------------  Current Time:  11300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  11400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  11450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 11450);
+                CHECK_s1('1', 11450);
+                -- -------------------------------------
+                -- -------------  Current Time:  11500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  11600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  11650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 11650);
+                -- -------------------------------------
+                -- -------------  Current Time:  11700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  11800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  11850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 11850);
+                CHECK_s1('0', 11850);
+                CHECK_s2('1', 11850);
+                -- -------------------------------------
+                -- -------------  Current Time:  11900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  11950ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 11950);
+                CHECK_s2('0', 11950);
+                -- -------------------------------------
+                -- -------------  Current Time:  12000ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  12050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 12050);
+                -- -------------------------------------
+                -- -------------  Current Time:  12100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  12200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  12250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 12250);
+                CHECK_s1('0', 12250);
+                CHECK_s2('1', 12250);
+                -- -------------------------------------
+                -- -------------  Current Time:  12300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  12400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  12450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 12450);
+                -- -------------------------------------
+                -- -------------  Current Time:  12500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  12600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  12650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 12650);
+                CHECK_s1('1', 12650);
+                -- -------------------------------------
+                -- -------------  Current Time:  12700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  12750ns
+                WAIT FOR 50 ns;
+                CHECK_co('0', 12750);
+                CHECK_s1('0', 12750);
+                CHECK_s2('0', 12750);
+                CHECK_s3('1', 12750);
+                -- -------------------------------------
+                -- -------------  Current Time:  12800ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                a2 <= '0';
+                a3 <= '0';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '0';
+                b3 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  12850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 12850);
+                -- -------------------------------------
+                -- -------------  Current Time:  12900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  13000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  13050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 13050);
+                CHECK_s1('1', 13050);
+                -- -------------------------------------
+                -- -------------  Current Time:  13100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  13200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  13250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 13250);
+                -- -------------------------------------
+                -- -------------  Current Time:  13300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  13400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  13450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 13450);
+                CHECK_s1('0', 13450);
+                CHECK_s2('1', 13450);
+                -- -------------------------------------
+                -- -------------  Current Time:  13500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  13550ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 13550);
+                CHECK_s2('0', 13550);
+                -- -------------------------------------
+                -- -------------  Current Time:  13600ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  13650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 13650);
+                -- -------------------------------------
+                -- -------------  Current Time:  13700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  13800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  13850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 13850);
+                CHECK_s1('0', 13850);
+                CHECK_s2('1', 13850);
+                -- -------------------------------------
+                -- -------------  Current Time:  13900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  14000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  14050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 14050);
+                -- -------------------------------------
+                -- -------------  Current Time:  14100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  14200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  14250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 14250);
+                CHECK_s1('1', 14250);
+                -- -------------------------------------
+                -- -------------  Current Time:  14300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  14350ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 14350);
+                -- -------------------------------------
+                -- -------------  Current Time:  14400ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  14450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 14450);
+                -- -------------------------------------
+                -- -------------  Current Time:  14500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  14600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  14650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 14650);
+                CHECK_s1('1', 14650);
+                -- -------------------------------------
+                -- -------------  Current Time:  14700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  14800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  14850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 14850);
+                -- -------------------------------------
+                -- -------------  Current Time:  14900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  15000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  15050ns
+                WAIT FOR 50 ns;
+                CHECK_co('1', 15050);
+                CHECK_s0('0', 15050);
+                CHECK_s1('0', 15050);
+                CHECK_s2('0', 15050);
+                CHECK_s3('0', 15050);
+                -- -------------------------------------
+                -- -------------  Current Time:  15100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  15150ns
+                WAIT FOR 50 ns;
+                CHECK_co('0', 15150);
+                CHECK_s1('1', 15150);
+                CHECK_s2('1', 15150);
+                CHECK_s3('1', 15150);
+                -- -------------------------------------
+                -- -------------  Current Time:  15200ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  15250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 15250);
+                -- -------------------------------------
+                -- -------------  Current Time:  15300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  15400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  15450ns
+                WAIT FOR 50 ns;
+                CHECK_co('1', 15450);
+                CHECK_s0('0', 15450);
+                CHECK_s1('0', 15450);
+                CHECK_s2('0', 15450);
+                CHECK_s3('0', 15450);
+                -- -------------------------------------
+                -- -------------  Current Time:  15500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  15600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  15650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 15650);
+                -- -------------------------------------
+                -- -------------  Current Time:  15700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  15800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  15850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 15850);
+                CHECK_s1('1', 15850);
+                -- -------------------------------------
+                -- -------------  Current Time:  15900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  15950ns
+                WAIT FOR 50 ns;
+                CHECK_co('0', 15950);
+                CHECK_s1('0', 15950);
+                CHECK_s2('1', 15950);
+                CHECK_s3('1', 15950);
+                -- -------------------------------------
+                -- -------------  Current Time:  16000ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                a2 <= '1';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  16050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 16050);
+                -- -------------------------------------
+                -- -------------  Current Time:  16100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  16200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  16250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 16250);
+                CHECK_s1('1', 16250);
+                -- -------------------------------------
+                -- -------------  Current Time:  16300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  16400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  16450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 16450);
+                -- -------------------------------------
+                -- -------------  Current Time:  16500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  16600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  16650ns
+                WAIT FOR 50 ns;
+                CHECK_co('1', 16650);
+                CHECK_s0('0', 16650);
+                CHECK_s1('0', 16650);
+                CHECK_s2('0', 16650);
+                CHECK_s3('0', 16650);
+                -- -------------------------------------
+                -- -------------  Current Time:  16700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  16750ns
+                WAIT FOR 50 ns;
+                CHECK_co('0', 16750);
+                CHECK_s1('1', 16750);
+                CHECK_s2('1', 16750);
+                CHECK_s3('1', 16750);
+                -- -------------------------------------
+                -- -------------  Current Time:  16800ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  16850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 16850);
+                -- -------------------------------------
+                -- -------------  Current Time:  16900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  17000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  17050ns
+                WAIT FOR 50 ns;
+                CHECK_co('1', 17050);
+                CHECK_s0('0', 17050);
+                CHECK_s1('0', 17050);
+                CHECK_s2('0', 17050);
+                CHECK_s3('0', 17050);
+                -- -------------------------------------
+                -- -------------  Current Time:  17100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  17200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  17250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 17250);
+                -- -------------------------------------
+                -- -------------  Current Time:  17300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  17400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  17450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 17450);
+                CHECK_s1('1', 17450);
+                -- -------------------------------------
+                -- -------------  Current Time:  17500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  17550ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 17550);
+                -- -------------------------------------
+                -- -------------  Current Time:  17600ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  17650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 17650);
+                -- -------------------------------------
+                -- -------------  Current Time:  17700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  17800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  17850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 17850);
+                CHECK_s1('1', 17850);
+                -- -------------------------------------
+                -- -------------  Current Time:  17900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  18000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  18050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 18050);
+                -- -------------------------------------
+                -- -------------  Current Time:  18100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  18200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  18250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 18250);
+                CHECK_s1('0', 18250);
+                CHECK_s2('1', 18250);
+                -- -------------------------------------
+                -- -------------  Current Time:  18300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  18350ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 18350);
+                CHECK_s2('0', 18350);
+                -- -------------------------------------
+                -- -------------  Current Time:  18400ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  18450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 18450);
+                -- -------------------------------------
+                -- -------------  Current Time:  18500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  18600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  18650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 18650);
+                CHECK_s1('0', 18650);
+                CHECK_s2('1', 18650);
+                -- -------------------------------------
+                -- -------------  Current Time:  18700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  18800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  18850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 18850);
+                -- -------------------------------------
+                -- -------------  Current Time:  18900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  19000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  19050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 19050);
+                CHECK_s1('1', 19050);
+                -- -------------------------------------
+                -- -------------  Current Time:  19100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  19150ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 19150);
+                CHECK_s2('0', 19150);
+                -- -------------------------------------
+                -- -------------  Current Time:  19200ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                a2 <= '0';
+                a3 <= '1';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  19250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 19250);
+                -- -------------------------------------
+                -- -------------  Current Time:  19300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  19400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  19450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 19450);
+                CHECK_s1('1', 19450);
+                -- -------------------------------------
+                -- -------------  Current Time:  19500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  19600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  19650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 19650);
+                -- -------------------------------------
+                -- -------------  Current Time:  19700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  19800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  19850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 19850);
+                CHECK_s1('0', 19850);
+                CHECK_s2('1', 19850);
+                -- -------------------------------------
+                -- -------------  Current Time:  19900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  19950ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 19950);
+                CHECK_s2('0', 19950);
+                -- -------------------------------------
+                -- -------------  Current Time:  20000ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  20050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 20050);
+                -- -------------------------------------
+                -- -------------  Current Time:  20100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  20200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  20250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 20250);
+                CHECK_s1('0', 20250);
+                CHECK_s2('1', 20250);
+                -- -------------------------------------
+                -- -------------  Current Time:  20300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  20400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  20450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 20450);
+                -- -------------------------------------
+                -- -------------  Current Time:  20500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  20600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  20650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 20650);
+                CHECK_s1('1', 20650);
+                -- -------------------------------------
+                -- -------------  Current Time:  20700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  20750ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 20750);
+                -- -------------------------------------
+                -- -------------  Current Time:  20800ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  20850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 20850);
+                -- -------------------------------------
+                -- -------------  Current Time:  20900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  21000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  21050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 21050);
+                CHECK_s1('1', 21050);
+                -- -------------------------------------
+                -- -------------  Current Time:  21100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  21200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  21250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 21250);
+                -- -------------------------------------
+                -- -------------  Current Time:  21300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  21400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  21450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 21450);
+                CHECK_s1('0', 21450);
+                CHECK_s2('0', 21450);
+                CHECK_s3('1', 21450);
+                -- -------------------------------------
+                -- -------------  Current Time:  21500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  21550ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 21550);
+                CHECK_s2('1', 21550);
+                CHECK_s3('0', 21550);
+                -- -------------------------------------
+                -- -------------  Current Time:  21600ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  21650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 21650);
+                -- -------------------------------------
+                -- -------------  Current Time:  21700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  21800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  21850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 21850);
+                CHECK_s1('0', 21850);
+                CHECK_s2('0', 21850);
+                CHECK_s3('1', 21850);
+                -- -------------------------------------
+                -- -------------  Current Time:  21900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  22000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  22050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 22050);
+                -- -------------------------------------
+                -- -------------  Current Time:  22100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  22200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  22250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 22250);
+                CHECK_s1('1', 22250);
+                -- -------------------------------------
+                -- -------------  Current Time:  22300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  22350ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 22350);
+                CHECK_s2('1', 22350);
+                CHECK_s3('0', 22350);
+                -- -------------------------------------
+                -- -------------  Current Time:  22400ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                a2 <= '1';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  22450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 22450);
+                -- -------------------------------------
+                -- -------------  Current Time:  22500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  22600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  22650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 22650);
+                CHECK_s1('1', 22650);
+                -- -------------------------------------
+                -- -------------  Current Time:  22700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  22800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  22850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 22850);
+                -- -------------------------------------
+                -- -------------  Current Time:  22900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  23000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  23050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 23050);
+                CHECK_s1('0', 23050);
+                CHECK_s2('0', 23050);
+                CHECK_s3('1', 23050);
+                -- -------------------------------------
+                -- -------------  Current Time:  23100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  23150ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 23150);
+                CHECK_s2('1', 23150);
+                CHECK_s3('0', 23150);
+                -- -------------------------------------
+                -- -------------  Current Time:  23200ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  23250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 23250);
+                -- -------------------------------------
+                -- -------------  Current Time:  23300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  23400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  23450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 23450);
+                CHECK_s1('0', 23450);
+                CHECK_s2('0', 23450);
+                CHECK_s3('1', 23450);
+                -- -------------------------------------
+                -- -------------  Current Time:  23500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  23600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  23650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 23650);
+                -- -------------------------------------
+                -- -------------  Current Time:  23700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  23800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  23850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 23850);
+                CHECK_s1('1', 23850);
+                -- -------------------------------------
+                -- -------------  Current Time:  23900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  23950ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 23950);
+                -- -------------------------------------
+                -- -------------  Current Time:  24000ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  24050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 24050);
+                -- -------------------------------------
+                -- -------------  Current Time:  24100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  24200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  24250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 24250);
+                CHECK_s1('1', 24250);
+                -- -------------------------------------
+                -- -------------  Current Time:  24300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  24400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  24450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 24450);
+                -- -------------------------------------
+                -- -------------  Current Time:  24500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  24600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  24650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 24650);
+                CHECK_s1('0', 24650);
+                CHECK_s2('1', 24650);
+                -- -------------------------------------
+                -- -------------  Current Time:  24700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  24750ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 24750);
+                CHECK_s2('0', 24750);
+                -- -------------------------------------
+                -- -------------  Current Time:  24800ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  24850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 24850);
+                -- -------------------------------------
+                -- -------------  Current Time:  24900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  25000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  25050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 25050);
+                CHECK_s1('0', 25050);
+                CHECK_s2('1', 25050);
+                -- -------------------------------------
+                -- -------------  Current Time:  25100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  25200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  25250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 25250);
+                -- -------------------------------------
+                -- -------------  Current Time:  25300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  25400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  25450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 25450);
+                CHECK_s1('1', 25450);
+                -- -------------------------------------
+                -- -------------  Current Time:  25500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  25550ns
+                WAIT FOR 50 ns;
+                CHECK_co('0', 25550);
+                CHECK_s1('0', 25550);
+                CHECK_s2('0', 25550);
+                CHECK_s3('0', 25550);
+                -- -------------------------------------
+                -- -------------  Current Time:  25600ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                a2 <= '0';
+                a3 <= '0';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '0';
+                b3 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  25650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 25650);
+                -- -------------------------------------
+                -- -------------  Current Time:  25700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  25800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  25850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 25850);
+                CHECK_s1('1', 25850);
+                -- -------------------------------------
+                -- -------------  Current Time:  25900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  26000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  26050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 26050);
+                -- -------------------------------------
+                -- -------------  Current Time:  26100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  26200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  26250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 26250);
+                CHECK_s1('0', 26250);
+                CHECK_s2('1', 26250);
+                -- -------------------------------------
+                -- -------------  Current Time:  26300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  26350ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 26350);
+                CHECK_s2('0', 26350);
+                -- -------------------------------------
+                -- -------------  Current Time:  26400ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  26450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 26450);
+                -- -------------------------------------
+                -- -------------  Current Time:  26500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  26600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  26650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 26650);
+                CHECK_s1('0', 26650);
+                CHECK_s2('1', 26650);
+                -- -------------------------------------
+                -- -------------  Current Time:  26700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  26800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  26850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 26850);
+                -- -------------------------------------
+                -- -------------  Current Time:  26900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  27000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  27050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 27050);
+                CHECK_s1('1', 27050);
+                -- -------------------------------------
+                -- -------------  Current Time:  27100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  27150ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 27150);
+                -- -------------------------------------
+                -- -------------  Current Time:  27200ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  27250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 27250);
+                -- -------------------------------------
+                -- -------------  Current Time:  27300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  27400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  27450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 27450);
+                CHECK_s1('1', 27450);
+                -- -------------------------------------
+                -- -------------  Current Time:  27500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  27600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  27650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 27650);
+                -- -------------------------------------
+                -- -------------  Current Time:  27700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  27800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  27850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 27850);
+                CHECK_s1('0', 27850);
+                CHECK_s2('0', 27850);
+                CHECK_s3('1', 27850);
+                -- -------------------------------------
+                -- -------------  Current Time:  27900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  27950ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 27950);
+                CHECK_s2('1', 27950);
+                CHECK_s3('0', 27950);
+                -- -------------------------------------
+                -- -------------  Current Time:  28000ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  28050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 28050);
+                -- -------------------------------------
+                -- -------------  Current Time:  28100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  28200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  28250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 28250);
+                CHECK_s1('0', 28250);
+                CHECK_s2('0', 28250);
+                CHECK_s3('1', 28250);
+                -- -------------------------------------
+                -- -------------  Current Time:  28300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  28400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  28450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 28450);
+                -- -------------------------------------
+                -- -------------  Current Time:  28500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  28600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  28650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 28650);
+                CHECK_s1('1', 28650);
+                -- -------------------------------------
+                -- -------------  Current Time:  28700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  28750ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 28750);
+                CHECK_s2('1', 28750);
+                CHECK_s3('0', 28750);
+                -- -------------------------------------
+                -- -------------  Current Time:  28800ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                a2 <= '1';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  28850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 28850);
+                -- -------------------------------------
+                -- -------------  Current Time:  28900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  29000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  29050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 29050);
+                CHECK_s1('1', 29050);
+                -- -------------------------------------
+                -- -------------  Current Time:  29100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  29200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  29250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 29250);
+                -- -------------------------------------
+                -- -------------  Current Time:  29300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  29400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  29450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 29450);
+                CHECK_s1('0', 29450);
+                CHECK_s2('0', 29450);
+                CHECK_s3('1', 29450);
+                -- -------------------------------------
+                -- -------------  Current Time:  29500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  29550ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 29550);
+                CHECK_s2('1', 29550);
+                CHECK_s3('0', 29550);
+                -- -------------------------------------
+                -- -------------  Current Time:  29600ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  29650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 29650);
+                -- -------------------------------------
+                -- -------------  Current Time:  29700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  29800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  29850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 29850);
+                CHECK_s1('0', 29850);
+                CHECK_s2('0', 29850);
+                CHECK_s3('1', 29850);
+                -- -------------------------------------
+                -- -------------  Current Time:  29900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  30000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  30050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 30050);
+                -- -------------------------------------
+                -- -------------  Current Time:  30100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  30200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  30250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 30250);
+                CHECK_s1('1', 30250);
+                -- -------------------------------------
+                -- -------------  Current Time:  30300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  30350ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 30350);
+                -- -------------------------------------
+                -- -------------  Current Time:  30400ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  30450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 30450);
+                -- -------------------------------------
+                -- -------------  Current Time:  30500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  30600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  30650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 30650);
+                CHECK_s1('1', 30650);
+                -- -------------------------------------
+                -- -------------  Current Time:  30700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  30800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  30850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 30850);
+                -- -------------------------------------
+                -- -------------  Current Time:  30900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  31000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  31050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 31050);
+                CHECK_s1('0', 31050);
+                CHECK_s2('1', 31050);
+                -- -------------------------------------
+                -- -------------  Current Time:  31100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  31150ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 31150);
+                CHECK_s2('0', 31150);
+                -- -------------------------------------
+                -- -------------  Current Time:  31200ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  31250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 31250);
+                -- -------------------------------------
+                -- -------------  Current Time:  31300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  31400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  31450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 31450);
+                CHECK_s1('0', 31450);
+                CHECK_s2('1', 31450);
+                -- -------------------------------------
+                -- -------------  Current Time:  31500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  31600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  31650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 31650);
+                -- -------------------------------------
+                -- -------------  Current Time:  31700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  31800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  31850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 31850);
+                CHECK_s1('1', 31850);
+                -- -------------------------------------
+                -- -------------  Current Time:  31900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  31950ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 31950);
+                CHECK_s2('0', 31950);
+                -- -------------------------------------
+                -- -------------  Current Time:  32000ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                a2 <= '0';
+                a3 <= '1';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  32050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 32050);
+                -- -------------------------------------
+                -- -------------  Current Time:  32100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  32200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  32250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 32250);
+                CHECK_s1('1', 32250);
+                -- -------------------------------------
+                -- -------------  Current Time:  32300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  32400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  32450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 32450);
+                -- -------------------------------------
+                -- -------------  Current Time:  32500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  32600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  32650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 32650);
+                CHECK_s1('0', 32650);
+                CHECK_s2('1', 32650);
+                -- -------------------------------------
+                -- -------------  Current Time:  32700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  32750ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 32750);
+                CHECK_s2('0', 32750);
+                -- -------------------------------------
+                -- -------------  Current Time:  32800ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  32850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 32850);
+                -- -------------------------------------
+                -- -------------  Current Time:  32900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  33000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  33050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 33050);
+                CHECK_s1('0', 33050);
+                CHECK_s2('1', 33050);
+                -- -------------------------------------
+                -- -------------  Current Time:  33100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  33200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  33250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 33250);
+                -- -------------------------------------
+                -- -------------  Current Time:  33300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  33400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  33450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 33450);
+                CHECK_s1('1', 33450);
+                -- -------------------------------------
+                -- -------------  Current Time:  33500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  33550ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 33550);
+                -- -------------------------------------
+                -- -------------  Current Time:  33600ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  33650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 33650);
+                -- -------------------------------------
+                -- -------------  Current Time:  33700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  33800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  33850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 33850);
+                CHECK_s1('1', 33850);
+                -- -------------------------------------
+                -- -------------  Current Time:  33900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  34000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  34050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 34050);
+                -- -------------------------------------
+                -- -------------  Current Time:  34100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  34200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  34250ns
+                WAIT FOR 50 ns;
+                CHECK_co('1', 34250);
+                CHECK_s0('0', 34250);
+                CHECK_s1('0', 34250);
+                CHECK_s2('0', 34250);
+                CHECK_s3('0', 34250);
+                -- -------------------------------------
+                -- -------------  Current Time:  34300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  34350ns
+                WAIT FOR 50 ns;
+                CHECK_co('0', 34350);
+                CHECK_s1('1', 34350);
+                CHECK_s2('1', 34350);
+                CHECK_s3('1', 34350);
+                -- -------------------------------------
+                -- -------------  Current Time:  34400ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  34450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 34450);
+                -- -------------------------------------
+                -- -------------  Current Time:  34500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  34600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  34650ns
+                WAIT FOR 50 ns;
+                CHECK_co('1', 34650);
+                CHECK_s0('0', 34650);
+                CHECK_s1('0', 34650);
+                CHECK_s2('0', 34650);
+                CHECK_s3('0', 34650);
+                -- -------------------------------------
+                -- -------------  Current Time:  34700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  34800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  34850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 34850);
+                -- -------------------------------------
+                -- -------------  Current Time:  34900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  35000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  35050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 35050);
+                CHECK_s1('1', 35050);
+                -- -------------------------------------
+                -- -------------  Current Time:  35100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  35150ns
+                WAIT FOR 50 ns;
+                CHECK_co('0', 35150);
+                CHECK_s1('0', 35150);
+                CHECK_s2('1', 35150);
+                CHECK_s3('1', 35150);
+                -- -------------------------------------
+                -- -------------  Current Time:  35200ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                a2 <= '1';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  35250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 35250);
+                -- -------------------------------------
+                -- -------------  Current Time:  35300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  35400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  35450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 35450);
+                CHECK_s1('1', 35450);
+                -- -------------------------------------
+                -- -------------  Current Time:  35500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  35600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  35650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 35650);
+                -- -------------------------------------
+                -- -------------  Current Time:  35700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  35800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  35850ns
+                WAIT FOR 50 ns;
+                CHECK_co('1', 35850);
+                CHECK_s0('0', 35850);
+                CHECK_s1('0', 35850);
+                CHECK_s2('0', 35850);
+                CHECK_s3('0', 35850);
+                -- -------------------------------------
+                -- -------------  Current Time:  35900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  35950ns
+                WAIT FOR 50 ns;
+                CHECK_co('0', 35950);
+                CHECK_s1('1', 35950);
+                CHECK_s2('1', 35950);
+                CHECK_s3('1', 35950);
+                -- -------------------------------------
+                -- -------------  Current Time:  36000ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  36050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 36050);
+                -- -------------------------------------
+                -- -------------  Current Time:  36100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  36200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  36250ns
+                WAIT FOR 50 ns;
+                CHECK_co('1', 36250);
+                CHECK_s0('0', 36250);
+                CHECK_s1('0', 36250);
+                CHECK_s2('0', 36250);
+                CHECK_s3('0', 36250);
+                -- -------------------------------------
+                -- -------------  Current Time:  36300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  36400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  36450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 36450);
+                -- -------------------------------------
+                -- -------------  Current Time:  36500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  36600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  36650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 36650);
+                CHECK_s1('1', 36650);
+                -- -------------------------------------
+                -- -------------  Current Time:  36700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  36750ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 36750);
+                -- -------------------------------------
+                -- -------------  Current Time:  36800ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  36850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 36850);
+                -- -------------------------------------
+                -- -------------  Current Time:  36900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  37000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  37050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 37050);
+                CHECK_s1('1', 37050);
+                -- -------------------------------------
+                -- -------------  Current Time:  37100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  37200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  37250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 37250);
+                -- -------------------------------------
+                -- -------------  Current Time:  37300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  37400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  37450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 37450);
+                CHECK_s1('0', 37450);
+                CHECK_s2('1', 37450);
+                -- -------------------------------------
+                -- -------------  Current Time:  37500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  37550ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 37550);
+                CHECK_s2('0', 37550);
+                -- -------------------------------------
+                -- -------------  Current Time:  37600ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  37650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 37650);
+                -- -------------------------------------
+                -- -------------  Current Time:  37700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  37800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  37850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 37850);
+                CHECK_s1('0', 37850);
+                CHECK_s2('1', 37850);
+                -- -------------------------------------
+                -- -------------  Current Time:  37900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  38000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  38050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 38050);
+                -- -------------------------------------
+                -- -------------  Current Time:  38100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  38200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  38250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 38250);
+                CHECK_s1('1', 38250);
+                -- -------------------------------------
+                -- -------------  Current Time:  38300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  38350ns
+                WAIT FOR 50 ns;
+                CHECK_co('0', 38350);
+                CHECK_s1('0', 38350);
+                CHECK_s2('0', 38350);
+                CHECK_s3('1', 38350);
+                -- -------------------------------------
+                -- -------------  Current Time:  38400ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                a2 <= '0';
+                a3 <= '0';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '0';
+                b3 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  38450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 38450);
+                -- -------------------------------------
+                -- -------------  Current Time:  38500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  38600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  38650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 38650);
+                CHECK_s1('1', 38650);
+                -- -------------------------------------
+                -- -------------  Current Time:  38700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  38800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  38850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 38850);
+                -- -------------------------------------
+                -- -------------  Current Time:  38900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  39000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  39050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 39050);
+                CHECK_s1('0', 39050);
+                CHECK_s2('1', 39050);
+                -- -------------------------------------
+                -- -------------  Current Time:  39100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  39150ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 39150);
+                CHECK_s2('0', 39150);
+                -- -------------------------------------
+                -- -------------  Current Time:  39200ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  39250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 39250);
+                -- -------------------------------------
+                -- -------------  Current Time:  39300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  39400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  39450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 39450);
+                CHECK_s1('0', 39450);
+                CHECK_s2('1', 39450);
+                -- -------------------------------------
+                -- -------------  Current Time:  39500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  39600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  39650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 39650);
+                -- -------------------------------------
+                -- -------------  Current Time:  39700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  39800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  39850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 39850);
+                CHECK_s1('1', 39850);
+                -- -------------------------------------
+                -- -------------  Current Time:  39900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  39950ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 39950);
+                -- -------------------------------------
+                -- -------------  Current Time:  40000ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  40050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 40050);
+                -- -------------------------------------
+                -- -------------  Current Time:  40100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  40200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  40250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 40250);
+                CHECK_s1('1', 40250);
+                -- -------------------------------------
+                -- -------------  Current Time:  40300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  40400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  40450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 40450);
+                -- -------------------------------------
+                -- -------------  Current Time:  40500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  40600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  40650ns
+                WAIT FOR 50 ns;
+                CHECK_co('1', 40650);
+                CHECK_s0('0', 40650);
+                CHECK_s1('0', 40650);
+                CHECK_s2('0', 40650);
+                CHECK_s3('0', 40650);
+                -- -------------------------------------
+                -- -------------  Current Time:  40700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  40750ns
+                WAIT FOR 50 ns;
+                CHECK_co('0', 40750);
+                CHECK_s1('1', 40750);
+                CHECK_s2('1', 40750);
+                CHECK_s3('1', 40750);
+                -- -------------------------------------
+                -- -------------  Current Time:  40800ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  40850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 40850);
+                -- -------------------------------------
+                -- -------------  Current Time:  40900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  41000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  41050ns
+                WAIT FOR 50 ns;
+                CHECK_co('1', 41050);
+                CHECK_s0('0', 41050);
+                CHECK_s1('0', 41050);
+                CHECK_s2('0', 41050);
+                CHECK_s3('0', 41050);
+                -- -------------------------------------
+                -- -------------  Current Time:  41100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  41200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  41250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 41250);
+                -- -------------------------------------
+                -- -------------  Current Time:  41300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  41400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  41450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 41450);
+                CHECK_s1('1', 41450);
+                -- -------------------------------------
+                -- -------------  Current Time:  41500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  41550ns
+                WAIT FOR 50 ns;
+                CHECK_co('0', 41550);
+                CHECK_s1('0', 41550);
+                CHECK_s2('1', 41550);
+                CHECK_s3('1', 41550);
+                -- -------------------------------------
+                -- -------------  Current Time:  41600ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                a2 <= '1';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  41650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 41650);
+                -- -------------------------------------
+                -- -------------  Current Time:  41700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  41800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  41850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 41850);
+                CHECK_s1('1', 41850);
+                -- -------------------------------------
+                -- -------------  Current Time:  41900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  42000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  42050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 42050);
+                -- -------------------------------------
+                -- -------------  Current Time:  42100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  42200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  42250ns
+                WAIT FOR 50 ns;
+                CHECK_co('1', 42250);
+                CHECK_s0('0', 42250);
+                CHECK_s1('0', 42250);
+                CHECK_s2('0', 42250);
+                CHECK_s3('0', 42250);
+                -- -------------------------------------
+                -- -------------  Current Time:  42300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  42350ns
+                WAIT FOR 50 ns;
+                CHECK_co('0', 42350);
+                CHECK_s1('1', 42350);
+                CHECK_s2('1', 42350);
+                CHECK_s3('1', 42350);
+                -- -------------------------------------
+                -- -------------  Current Time:  42400ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  42450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 42450);
+                -- -------------------------------------
+                -- -------------  Current Time:  42500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  42600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  42650ns
+                WAIT FOR 50 ns;
+                CHECK_co('1', 42650);
+                CHECK_s0('0', 42650);
+                CHECK_s1('0', 42650);
+                CHECK_s2('0', 42650);
+                CHECK_s3('0', 42650);
+                -- -------------------------------------
+                -- -------------  Current Time:  42700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  42800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  42850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 42850);
+                -- -------------------------------------
+                -- -------------  Current Time:  42900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  43000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  43050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 43050);
+                CHECK_s1('1', 43050);
+                -- -------------------------------------
+                -- -------------  Current Time:  43100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  43150ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 43150);
+                -- -------------------------------------
+                -- -------------  Current Time:  43200ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  43250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 43250);
+                -- -------------------------------------
+                -- -------------  Current Time:  43300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  43400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  43450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 43450);
+                CHECK_s1('1', 43450);
+                -- -------------------------------------
+                -- -------------  Current Time:  43500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  43600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  43650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 43650);
+                -- -------------------------------------
+                -- -------------  Current Time:  43700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  43800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  43850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 43850);
+                CHECK_s1('0', 43850);
+                CHECK_s2('1', 43850);
+                -- -------------------------------------
+                -- -------------  Current Time:  43900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  43950ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 43950);
+                CHECK_s2('0', 43950);
+                -- -------------------------------------
+                -- -------------  Current Time:  44000ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  44050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 44050);
+                -- -------------------------------------
+                -- -------------  Current Time:  44100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  44200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  44250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 44250);
+                CHECK_s1('0', 44250);
+                CHECK_s2('1', 44250);
+                -- -------------------------------------
+                -- -------------  Current Time:  44300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  44400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  44450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 44450);
+                -- -------------------------------------
+                -- -------------  Current Time:  44500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  44600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  44650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 44650);
+                CHECK_s1('1', 44650);
+                -- -------------------------------------
+                -- -------------  Current Time:  44700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  44750ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 44750);
+                CHECK_s2('0', 44750);
+                -- -------------------------------------
+                -- -------------  Current Time:  44800ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                a2 <= '0';
+                a3 <= '1';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  44850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 44850);
+                -- -------------------------------------
+                -- -------------  Current Time:  44900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  45000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  45050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 45050);
+                CHECK_s1('1', 45050);
+                -- -------------------------------------
+                -- -------------  Current Time:  45100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  45200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  45250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 45250);
+                -- -------------------------------------
+                -- -------------  Current Time:  45300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  45400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  45450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 45450);
+                CHECK_s1('0', 45450);
+                CHECK_s2('1', 45450);
+                -- -------------------------------------
+                -- -------------  Current Time:  45500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  45550ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 45550);
+                CHECK_s2('0', 45550);
+                -- -------------------------------------
+                -- -------------  Current Time:  45600ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  45650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 45650);
+                -- -------------------------------------
+                -- -------------  Current Time:  45700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  45800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  45850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 45850);
+                CHECK_s1('0', 45850);
+                CHECK_s2('1', 45850);
+                -- -------------------------------------
+                -- -------------  Current Time:  45900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  46000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  46050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 46050);
+                -- -------------------------------------
+                -- -------------  Current Time:  46100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  46200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  46250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 46250);
+                CHECK_s1('1', 46250);
+                -- -------------------------------------
+                -- -------------  Current Time:  46300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  46350ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 46350);
+                -- -------------------------------------
+                -- -------------  Current Time:  46400ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  46450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 46450);
+                -- -------------------------------------
+                -- -------------  Current Time:  46500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  46600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  46650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 46650);
+                CHECK_s1('1', 46650);
+                -- -------------------------------------
+                -- -------------  Current Time:  46700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  46800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  46850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 46850);
+                -- -------------------------------------
+                -- -------------  Current Time:  46900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  47000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  47050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 47050);
+                CHECK_s1('0', 47050);
+                CHECK_s2('0', 47050);
+                CHECK_s3('1', 47050);
+                -- -------------------------------------
+                -- -------------  Current Time:  47100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  47150ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 47150);
+                CHECK_s2('1', 47150);
+                CHECK_s3('0', 47150);
+                -- -------------------------------------
+                -- -------------  Current Time:  47200ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  47250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 47250);
+                -- -------------------------------------
+                -- -------------  Current Time:  47300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  47400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  47450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 47450);
+                CHECK_s1('0', 47450);
+                CHECK_s2('0', 47450);
+                CHECK_s3('1', 47450);
+                -- -------------------------------------
+                -- -------------  Current Time:  47500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  47600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  47650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 47650);
+                -- -------------------------------------
+                -- -------------  Current Time:  47700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  47800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  47850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 47850);
+                CHECK_s1('1', 47850);
+                -- -------------------------------------
+                -- -------------  Current Time:  47900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  47950ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 47950);
+                CHECK_s2('1', 47950);
+                CHECK_s3('0', 47950);
+                -- -------------------------------------
+                -- -------------  Current Time:  48000ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                a2 <= '1';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  48050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 48050);
+                -- -------------------------------------
+                -- -------------  Current Time:  48100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  48200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  48250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 48250);
+                CHECK_s1('1', 48250);
+                -- -------------------------------------
+                -- -------------  Current Time:  48300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  48400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  48450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 48450);
+                -- -------------------------------------
+                -- -------------  Current Time:  48500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  48600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  48650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 48650);
+                CHECK_s1('0', 48650);
+                CHECK_s2('0', 48650);
+                CHECK_s3('1', 48650);
+                -- -------------------------------------
+                -- -------------  Current Time:  48700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  48750ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 48750);
+                CHECK_s2('1', 48750);
+                CHECK_s3('0', 48750);
+                -- -------------------------------------
+                -- -------------  Current Time:  48800ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  48850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 48850);
+                -- -------------------------------------
+                -- -------------  Current Time:  48900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  49000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  49050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 49050);
+                CHECK_s1('0', 49050);
+                CHECK_s2('0', 49050);
+                CHECK_s3('1', 49050);
+                -- -------------------------------------
+                -- -------------  Current Time:  49100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  49200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  49250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 49250);
+                -- -------------------------------------
+                -- -------------  Current Time:  49300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  49400ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  49450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 49450);
+                CHECK_s1('1', 49450);
+                -- -------------------------------------
+                -- -------------  Current Time:  49500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  49550ns
+                WAIT FOR 50 ns;
+                CHECK_s1('0', 49550);
+                -- -------------------------------------
+                -- -------------  Current Time:  49600ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  49650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 49650);
+                -- -------------------------------------
+                -- -------------  Current Time:  49700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  49800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  49850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 49850);
+                CHECK_s1('1', 49850);
+                -- -------------------------------------
+                -- -------------  Current Time:  49900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  50000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  50050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 50050);
+                -- -------------------------------------
+                -- -------------  Current Time:  50100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  50200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  50250ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 50250);
+                CHECK_s1('0', 50250);
+                CHECK_s2('1', 50250);
+                -- -------------------------------------
+                -- -------------  Current Time:  50300ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  50350ns
+                WAIT FOR 50 ns;
+                CHECK_s1('1', 50350);
+                CHECK_s2('0', 50350);
+                -- -------------------------------------
+                -- -------------  Current Time:  50400ns
+                WAIT FOR 50 ns;
+                a0 <= '0';
+                a1 <= '0';
+                b0 <= '0';
+                b1 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  50450ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 50450);
+                -- -------------------------------------
+                -- -------------  Current Time:  50500ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  50600ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  50650ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 50650);
+                CHECK_s1('0', 50650);
+                CHECK_s2('1', 50650);
+                -- -------------------------------------
+                -- -------------  Current Time:  50700ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  50800ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '1';
+                b0 <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  50850ns
+                WAIT FOR 50 ns;
+                CHECK_s0('1', 50850);
+                -- -------------------------------------
+                -- -------------  Current Time:  50900ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  51000ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                b0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  51050ns
+                WAIT FOR 50 ns;
+                CHECK_s0('0', 51050);
+                CHECK_s1('1', 51050);
+                -- -------------------------------------
+                -- -------------  Current Time:  51100ns
+                WAIT FOR 50 ns;
+                a0 <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  51200ns
+                WAIT FOR 100 ns;
+                a0 <= '0';
+                a1 <= '0';
+                a2 <= '0';
+                a3 <= '0';
+                b0 <= '0';
+                b1 <= '0';
+                b2 <= '0';
+                b3 <= '0';
+
+                IF (TX_ERROR = 0) THEN
+                    STD.TEXTIO.write(TX_OUT, string'("No errors or warnings"));
+                    ASSERT (FALSE) REPORT
+                      "Simulation successful (not a failure).  No problems detected."
+                      SEVERITY FAILURE;
+                ELSE
+                    STD.TEXTIO.write(TX_OUT, TX_ERROR);
+                    STD.TEXTIO.write(TX_OUT,
+                        string'(" errors found in simulation"));
+                    ASSERT (FALSE) REPORT "Errors found during simulation"
+                         SEVERITY FAILURE;
+                END IF;
+            END PROCESS;
+
+    END testbench_arch;
+

@@ -1,0 +1,270 @@
+--------------------------------------------------------------------------------
+-- Copyright (c) 1995-2003 Xilinx, Inc.
+-- All Right Reserved.
+--------------------------------------------------------------------------------
+--   ____  ____ 
+--  /   /\/   / 
+-- /___/  \  /    Vendor: Xilinx 
+-- \   \   \/     Version : 7.1.01i
+--  \   \         Application : ISE WebPACK
+--  /   /         Filename : asyncounter8_tbw.vhw
+-- /___/   /\     Timestamp : Wed May 04 00:15:40 2005
+-- \   \  /  \ 
+--  \___\/\___\ 
+--
+--Command: 
+--Design Name: asyncounter8_tbw
+--Device: Xilinx
+--
+
+library UNISIM;
+use UNISIM.Vcomponents.ALL;
+library ieee;
+use ieee.std_logic_1164.ALL;
+use ieee.numeric_std.ALL;
+USE IEEE.STD_LOGIC_TEXTIO.ALL;
+USE STD.TEXTIO.ALL;
+
+ENTITY asyncounter8_tbw IS
+END asyncounter8_tbw;
+
+ARCHITECTURE testbench_arch OF asyncounter8_tbw IS
+    FILE RESULTS: TEXT OPEN WRITE_MODE IS "results.txt";
+
+    COMPONENT asyncounter_8
+        PORT (
+            CLK : In std_logic;
+            CLK_CE : In std_logic;
+            CLR : In std_logic;
+            VCC : In std_logic;
+            D : Out std_logic_vector (7 DownTo 0)
+        );
+    END COMPONENT;
+
+    SIGNAL CLK : std_logic := '0';
+    SIGNAL CLK_CE : std_logic := '0';
+    SIGNAL CLR : std_logic := '1';
+    SIGNAL VCC : std_logic := '0';
+    SIGNAL D : std_logic_vector (7 DownTo 0) := "UUUUUUUU";
+
+    SHARED VARIABLE TX_ERROR : INTEGER := 0;
+    SHARED VARIABLE TX_OUT : LINE;
+
+    constant PERIOD : time := 12 ns;
+    constant DUTY_CYCLE : real := 0.5;
+    constant OFFSET : time := 0 ns;
+
+    BEGIN
+        UUT : asyncounter_8
+        PORT MAP (
+            CLK => CLK,
+            CLK_CE => CLK_CE,
+            CLR => CLR,
+            VCC => VCC,
+            D => D
+        );
+
+        PROCESS    -- clock process for CLK
+        BEGIN
+            WAIT for OFFSET;
+            CLOCK_LOOP : LOOP
+                CLK <= '0';
+                WAIT FOR (PERIOD - (PERIOD * DUTY_CYCLE));
+                CLK <= '1';
+                WAIT FOR (PERIOD * DUTY_CYCLE);
+            END LOOP CLOCK_LOOP;
+        END PROCESS;
+
+        PROCESS
+            PROCEDURE CHECK_D(
+                next_D : std_logic_vector (7 DownTo 0);
+                TX_TIME : INTEGER
+            ) IS
+                VARIABLE TX_STR : String(1 to 4096);
+                VARIABLE TX_LOC : LINE;
+                BEGIN
+                IF (D /= next_D) THEN
+                    STD.TEXTIO.write(TX_LOC, string'("Error at time="));
+                    STD.TEXTIO.write(TX_LOC, TX_TIME);
+                    STD.TEXTIO.write(TX_LOC, string'("ns D="));
+                    IEEE.STD_LOGIC_TEXTIO.write(TX_LOC, D);
+                    STD.TEXTIO.write(TX_LOC, string'(", Expected = "));
+                    IEEE.STD_LOGIC_TEXTIO.write(TX_LOC, next_D);
+                    STD.TEXTIO.write(TX_LOC, string'(" "));
+                    TX_STR(TX_LOC.all'range) := TX_LOC.all;
+                    STD.TEXTIO.writeline(RESULTS, TX_LOC);
+                    STD.TEXTIO.Deallocate(TX_LOC);
+                    ASSERT (FALSE) REPORT TX_STR SEVERITY ERROR;
+                    TX_ERROR := TX_ERROR + 1;
+                END IF;
+            END;
+            BEGIN
+                -- -------------  Current Time:  2ns
+                WAIT FOR 2 ns;
+                CLK_CE <= '1';
+                VCC <= '1';
+                -- -------------------------------------
+                -- -------------  Current Time:  7ns
+                WAIT FOR 5 ns;
+                CHECK_D("00000000", 7);
+                -- -------------------------------------
+                -- -------------  Current Time:  110ns
+                WAIT FOR 103 ns;
+                CLR <= '0';
+                -- -------------------------------------
+                -- -------------  Current Time:  115ns
+                WAIT FOR 5 ns;
+                CHECK_D("00000001", 115);
+                -- -------------------------------------
+                -- -------------  Current Time:  127ns
+                WAIT FOR 12 ns;
+                CHECK_D("00000010", 127);
+                -- -------------------------------------
+                -- -------------  Current Time:  139ns
+                WAIT FOR 12 ns;
+                CHECK_D("00000011", 139);
+                -- -------------------------------------
+                -- -------------  Current Time:  151ns
+                WAIT FOR 12 ns;
+                CHECK_D("00000100", 151);
+                -- -------------------------------------
+                -- -------------  Current Time:  163ns
+                WAIT FOR 12 ns;
+                CHECK_D("00000101", 163);
+                -- -------------------------------------
+                -- -------------  Current Time:  175ns
+                WAIT FOR 12 ns;
+                CHECK_D("00000110", 175);
+                -- -------------------------------------
+                -- -------------  Current Time:  187ns
+                WAIT FOR 12 ns;
+                CHECK_D("00000111", 187);
+                -- -------------------------------------
+                -- -------------  Current Time:  199ns
+                WAIT FOR 12 ns;
+                CHECK_D("00001000", 199);
+                -- -------------------------------------
+                -- -------------  Current Time:  211ns
+                WAIT FOR 12 ns;
+                CHECK_D("00001001", 211);
+                -- -------------------------------------
+                -- -------------  Current Time:  223ns
+                WAIT FOR 12 ns;
+                CHECK_D("00001010", 223);
+                -- -------------------------------------
+                -- -------------  Current Time:  235ns
+                WAIT FOR 12 ns;
+                CHECK_D("00001011", 235);
+                -- -------------------------------------
+                -- -------------  Current Time:  247ns
+                WAIT FOR 12 ns;
+                CHECK_D("00001100", 247);
+                -- -------------------------------------
+                -- -------------  Current Time:  259ns
+                WAIT FOR 12 ns;
+                CHECK_D("00001101", 259);
+                -- -------------------------------------
+                -- -------------  Current Time:  271ns
+                WAIT FOR 12 ns;
+                CHECK_D("00001110", 271);
+                -- -------------------------------------
+                -- -------------  Current Time:  283ns
+                WAIT FOR 12 ns;
+                CHECK_D("00001111", 283);
+                -- -------------------------------------
+                -- -------------  Current Time:  295ns
+                WAIT FOR 12 ns;
+                CHECK_D("00010000", 295);
+                -- -------------------------------------
+                -- -------------  Current Time:  307ns
+                WAIT FOR 12 ns;
+                CHECK_D("00010001", 307);
+                -- -------------------------------------
+                -- -------------  Current Time:  319ns
+                WAIT FOR 12 ns;
+                CHECK_D("00010010", 319);
+                -- -------------------------------------
+                -- -------------  Current Time:  331ns
+                WAIT FOR 12 ns;
+                CHECK_D("00010011", 331);
+                -- -------------------------------------
+                -- -------------  Current Time:  343ns
+                WAIT FOR 12 ns;
+                CHECK_D("00010100", 343);
+                -- -------------------------------------
+                -- -------------  Current Time:  355ns
+                WAIT FOR 12 ns;
+                CHECK_D("00010101", 355);
+                -- -------------------------------------
+                -- -------------  Current Time:  367ns
+                WAIT FOR 12 ns;
+                CHECK_D("00010110", 367);
+                -- -------------------------------------
+                -- -------------  Current Time:  379ns
+                WAIT FOR 12 ns;
+                CHECK_D("00010111", 379);
+                -- -------------------------------------
+                -- -------------  Current Time:  391ns
+                WAIT FOR 12 ns;
+                CHECK_D("00011000", 391);
+                -- -------------------------------------
+                -- -------------  Current Time:  403ns
+                WAIT FOR 12 ns;
+                CHECK_D("00011001", 403);
+                -- -------------------------------------
+                -- -------------  Current Time:  415ns
+                WAIT FOR 12 ns;
+                CHECK_D("00011010", 415);
+                -- -------------------------------------
+                -- -------------  Current Time:  427ns
+                WAIT FOR 12 ns;
+                CHECK_D("00011011", 427);
+                -- -------------------------------------
+                -- -------------  Current Time:  439ns
+                WAIT FOR 12 ns;
+                CHECK_D("00011100", 439);
+                -- -------------------------------------
+                -- -------------  Current Time:  451ns
+                WAIT FOR 12 ns;
+                CHECK_D("00011101", 451);
+                -- -------------------------------------
+                -- -------------  Current Time:  463ns
+                WAIT FOR 12 ns;
+                CHECK_D("00011110", 463);
+                -- -------------------------------------
+                -- -------------  Current Time:  475ns
+                WAIT FOR 12 ns;
+                CHECK_D("00011111", 475);
+                -- -------------------------------------
+                -- -------------  Current Time:  487ns
+                WAIT FOR 12 ns;
+                CHECK_D("00100000", 487);
+                -- -------------------------------------
+                -- -------------  Current Time:  499ns
+                WAIT FOR 12 ns;
+                CHECK_D("00100001", 499);
+                -- -------------------------------------
+                -- -------------  Current Time:  511ns
+                WAIT FOR 12 ns;
+                CHECK_D("00100010", 511);
+                -- -------------------------------------
+                WAIT FOR 21 ns;
+
+                IF (TX_ERROR = 0) THEN
+                    STD.TEXTIO.write(TX_OUT, string'("No errors or warnings"));
+                    STD.TEXTIO.writeline(RESULTS, TX_OUT);
+                    ASSERT (FALSE) REPORT
+                      "Simulation successful (not a failure).  No problems detected."
+                      SEVERITY FAILURE;
+                ELSE
+                    STD.TEXTIO.write(TX_OUT, TX_ERROR);
+                    STD.TEXTIO.write(TX_OUT,
+                        string'(" errors found in simulation"));
+                    STD.TEXTIO.writeline(RESULTS, TX_OUT);
+                    ASSERT (FALSE) REPORT "Errors found during simulation"
+                         SEVERITY FAILURE;
+                END IF;
+            END PROCESS;
+
+    END testbench_arch;
+

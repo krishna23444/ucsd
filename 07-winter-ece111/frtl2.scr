@@ -1,0 +1,35 @@
+/*  frtl2.scr */
+
+
+/*  Check for errors in frtl2.v, if no errors, write design to an intermediate format; write analyze messages to file  */
+analyze -f verilog frtl2.v > frtl2.analyze 
+
+
+*  Build design with Synopsys generic library from intermediate format.  */
+elaborate functional_rtl_2 > frtl2.elaborate
+
+
+/*  The module name is functional_rtl_2; set the current_design to functional_rtl_2.  */
+current_design functional_rtl_2  
+
+
+/*  The create_clock command is used on a synchronous design to specify the clock port and set a constraint. In this case, 5 ns. */
+/*  A constraint is a design goal for the compile command for the (maximum combinational path delay + library setup time).  */
+/*  The clock port in the functional_rtl module is clk.  */
+create_clock clk -period 5 
+
+
+/* The design is mapped to cells from the TSMC technology library and optimized. */
+compile -map_effort medium > frtl2.compile 
+
+
+/* write an area report */
+report_area > frtl2.area
+
+
+/* write a timing (maximum combinational path delay) report */
+report_timing > frtl2.timing
+
+
+/* save the design in Synopsys internal database format to functional_rtl_2.db */
+write functional_rtl_2

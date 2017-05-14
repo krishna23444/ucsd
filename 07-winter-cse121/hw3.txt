@@ -1,0 +1,100 @@
+Nitay Joffe
+03/08/2007
+CSE 121: Modern Operating Systems
+
+1. Tagged TLBs reduce overhead because of all the context switching that
+   occurs in microkernels (e.g. going back and forth between userland processes
+   to handle a syscall). If the processor does not have a tagged TLB, segment
+   registers can be used to fake it out by multiplexing many address spaces onto
+   one global space with an offset specified by the segment registers. If
+   segment registers are also absent than they have to flush the TLB on every
+   context switch. Virtually-tagged caches create a problem because you have to
+   maintain tags about the address spaces (similar to tagged TLB) to know
+   whether that cache item is actually for the current process. The other
+   option, like with the TLB discussed above, is to flush it on every context
+   switch, but this again is really bad performance wise. Large virtual address
+   space switching incurs the usual cost during context switching, but it is
+   not a major effect because the TLB and cache would mostly miss anyways since
+   there is a such a large change in working set.
+
+2.
+  a) Nooks cannot detect errors caused by the module explicitly executing
+     privileged instructions that cross their boundary and possibly corrupt the
+     system. Deadlocks also can't be caught. Additionally, some parameter
+     passing between the kernel and the module might be able to pass under the
+     cover of Nooks because it's structure is special and weird. Extending
+     Nooks to be able to handle modules explicitly executing privileged
+     instructions would mean running the modules in a lower permission jail,
+     which immediately disqualifies Nooks' goal of being transparent. Catching
+     deadlocks would require a lot of hacking on the kernel scheduler, which
+     against removes the transparency. Handling all the various sorts of
+     parameters passed between the kernel and module is theoretically possible,
+     but Linux doesn't really have any defined semantics for this parameter
+     passing, so handling every type of struct would be an inordinate amount of
+     work.
+
+  b) If a driver fails and the application tries to make a call to it while it
+     is still rebooting, the application will likely get a segfault.
+     Additionally, if an application is in the middle of a call to a driver
+     while it fails and it gets "lucky" and does not segfault, it will likely
+     get a result full of garbage. Shadow drivers can solve these problem by
+     either blocking till the real driver has successfully rebooted or queueing
+     up requests and returning immediately on each call with some ok value.
+     The required behavior is different when you're working with network
+     drivers where it is considered the norm for packets to drop versus a
+     filesystem. To handle the case of garbage data being returned Nooks'
+     mechanism of detecting bad return values using call by value return is
+     used and an acceptable return value is used while masking the failure.
+
+3.
+  a) Like most modern operating systems the Exokernel can insert itself into
+     every address space using shared memory to improve the performance of
+     system calls.
+
+  b) Packets have different priorities. Having a lot of packet filters from
+     many programs would bring up issues of what order to process the filters
+     in. For example a streaming VoIP conversation is much more time critical
+     than a DNS UDP lookup. In order to handle this we could install a default
+     priority order for standard intertnet packets (e.g. TCP more important
+     than UDP), and let the application be able to control the priorities of
+     its' filters, kind of like process priority. Then the packet filters get
+     processed in a regular priority queue fashion. Another issue is handling
+     conflicts, that is two applications registering filters that match the
+     same packet. To handle this we could define packets that may be shared
+     between multiple applications, and ones that are exclusive.
+
+  c) Working on the order of single disk blocks is likely to be way too much
+     overhead, so the first step would be to decide on a size for sectioning.
+     Since this is an exokernel and we want to hold back from defining
+     abstractions as much as possible, we'll let the application do the
+     deciding. Now we need to handle multiple processes concurrently reading
+     and writing data. To do this we implement a locking mechanism such that
+     you may write as long as no one else is writing to any part of that
+     section, and you may read as long as no one else is currently writing.
+     Essentially there can only be one writer, but there can be many readers,
+     as long as there isn't any writers currently operating. Each application
+     will call into the kernel with <start_address,size>, and the Exokernel
+     will record that information for the application. This is hard to
+     implement because it requires tracking a lot of information for each
+     application, and doing a lot of set-intersection like computations to
+     figure out the overlap between sections.
+
+4.
+  a) The main advantage of paravirtualization is improved performance. The
+     guest operating systems are edited so that various lightweight virtualized
+     mechanisms like hypercalls and direct handlers for system calls can be
+     used which provide a substantial advantage over traditional virtualization.
+     The principal disadvantage is doing paravirtualization by definition
+     requires editing the guest operating systems so that they will work with
+     the virtualized environment, so therefore you can't just use any old
+     operating system out of the box.
+
+  b) Adding another tag to the TLB would allow storing information about
+     process and operating system the page belongs to, which would prevent
+     having to flush the TLB every time there is a context switch. Having a
+     software managed TLB would make the work of vmm's much easier because
+     there are a lot of hurdles they have to go through to deal with a hardware
+     loaded TLB. Getting rid of all instructions that "fail silently", i.e.
+     don't do the normal raising of a trap, by making them all follow the
+     expected behavior would be lighter on the vmm because there wouldn't have
+     to be handlers for those special case instructions.

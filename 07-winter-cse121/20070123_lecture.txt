@@ -1,0 +1,54 @@
+- project
+  - use FUSE framework 
+  - no file attributes, links, etc
+  - two executables
+    - mount and use
+    - format = wriite superblock, run once
+  - assume buffer cache does not exist = write synchronous
+  - test crash by making dread/dwrite exit system
+  - dwrite happens either completely, or not at all = no partial write
+
+- journaling and soft updates
+- journaling
+  - used by all modern machines
+  - mccusick = ffs, freebsd
+  - ganger = soft updates
+  - margo = journaling
+  - journaling -> data before inode, didn't want to crash w/ only an inode
+  - majority of lfs performance is not having to write synchronously
+  - small log of metadata updates, in order, in chunks
+  - journal is sequential, all in one place
+  - checkpoint = filesystem looks normal
+  - looks just like ffs w/ a todo list
+  - problem b/c jorunal is circular buffer -> use version
+  - todo list = set of updates in buffer cache but not on disk
+  - checkpoint location written in journal
+    - stuff in journal after checkpoint
+    - use version numbers to see if newer
+    - make compound operations, like open paren - close paren
+  - find checkpoint
+    - go to end of journal, step backwards
+  - checkpont emans fs is in good condition (all file buffer cache and inodes)
+  - rolling forward only recovers inode metadata changes
+  - where is the journal?
+    - file in the filesystem = cheap
+    - separate disk = better b/c of seeks
+  - metadata changes = directory, superblock (infrequent), free list, inodes
+  - lfs has all this stuff plus a cleaner = really bad
+  - write new journal data synchronously?
+    - hope better than ffs b/c head is already at end
+  - asynchronous
+  - no cleaning = keep in memory oldest item to do
+    - implement using linked list
+    - when you get to tail of journal, execute all stuff that's in linked list
+      so that you can make room
+
+- soft updates
+  - no ournal, just flush buffer cache in "right" order
+  - store pointers that hold dependency information for blocks
+  - still let os manage file buffer cache, but keep dependency information
+  - circular cycles b/w blocks, but not b/w enties
+  - use roll back to break cycle, write temporary file where os could have been
+    in that condition
+  - write data to disk whenever we feel like it
+  - safe state os "could" be in

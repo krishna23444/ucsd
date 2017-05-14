@@ -1,0 +1,28 @@
+Release 7.1.01i - netgen H.39
+Copyright (c) 1995-2005 Xilinx, Inc.  All rights reserved.
+
+Command Line: netgen -intstyle ise -s 5 -pcf asyncounter_8.pcf -rpw 100 -tpw 0
+-ar Structure -xon true -w -ofmt vhdl -sim asyncounter_8.ncd
+asyncounter_8_timesim.vhd  
+
+Read and Annotate design 'asyncounter_8.ncd' ...
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "asyncounter_8" is an NCD, version 3.1, device xc2v80, package cs144, speed
+-5
+Loading constraints from 'asyncounter_8.pcf'...
+The speed grade (-5) differs from the speed grade specified in the .ncd file
+(-5).
+The number of routable networks is 22
+Flattening design ...
+Processing design ... 
+  Preping design's networks ...
+  Preping design's macros ...
+Writing VHDL netlist 'asyncounter_8_timesim.vhd' ...
+Writing VHDL SDF file 'asyncounter_8_timesim.sdf' ...
+INFO:NetListWriters:635 - The generated VHDL netlist contains Xilinx SIMPRIM
+   simulation primitives and has to be used with SIMPRIM library for correct
+   compilation and simulation. 
+Number of warnings: 0
+Number of info messages: 1
+Total memory usage is 62620 kilobytes

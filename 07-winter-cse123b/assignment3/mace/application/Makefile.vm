@@ -1,0 +1,8 @@
+DIRS=common TritonShare_nogui #modelchecker appmacedon filecopy unit_app TsunamiApp dht sword vivaldi
+#DIRS=common modelchecker appmacedon filecopy unit_app TsunamiApp dht sword vivaldi
+
+include ../commondirs.mk
+
+clean : cleandirs
+cleaner : cleanerdirs
+.cvsignore : 

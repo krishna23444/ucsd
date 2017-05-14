@@ -1,0 +1,4 @@
+declare function abc($x as onyx.types.Integer) { $x };
+declare function def($x as onyx.types.String) { $x };
+
+a("bc")

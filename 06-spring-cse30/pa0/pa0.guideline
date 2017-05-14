@@ -1,0 +1,117 @@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+			Guideline for PA0
+			
+Points Breakdown:
+*****************
+
+                MAX        AWARDED
+----------------------------------
+README:          0          0
+
+COMPILING:      10         10
+
+STYLE:          20         20
+
+CORRECTNESS:    70         70
+(answers to GDB questions)
+----------------------------------
+TOTAL          100         100
+
+
+Details and comments:
+*********************
+-For this assignment answers to GDB questions in the README file 
+will count as correctness points. Still look over README portion
+of guideline to make sure you are not missing anything for your next 
+assignment. README is worth 10% of your grade!
+
+-This guideline is similar to the guideline based on which your 
+future programming assignments will be graded. The point distribution will be
+different and correctness will be based on the test cases.
+Before turning in your next assignment look over this guideline to 
+make sure you are not missing any points (especially for style).
+
+-In case of any question or problem with your grade contact your grader
+
+-Start early on your assignments!
+
+-Good luck! :)
+
+****************************************************************************
+
+README:                                               MAX          AWARDED
+----------------------------------------------------------------------------
+
+o High level description of what the program does.     2             2
+
+o How to compile it                                    1             1
+
+o How to run it (give an example).
+
+o An example of normal output and where that normal    2             2
+  output goes 
+
+o An example of abnormal/error output and where        2             2
+  that error output goes (stderr usually).
+
+o How they tested their program (what test values      3             3
+  used to test normal and error states)
+
+
+****************************************************************************
+STYLE and COMMENTING:                                MAX            DEDUCTED
+                                                     DEDUCTIBLE
+----------------------------------------------------------------------------
+
+o -4 for not having the header file (pa0.h)           -4             0
+	 
+o -2 for poor/inconsistent indentation                -2             0 
+	 
+o -1 for no file header( for each file )              -5             0
+ 
+o -1 for no function header (for each function)       -4             0
+  
+o -3 for no inline comments                           -3             0
+                                   
+o -2 for using more then 80 characters on line	      -2             0
+	 
+****************************************************************************
+COMPILING:                                           MAX           DEDUCTED
+                                                     DEDUCTIBLE
+----------------------------------------------------------------------------
+
+o -1 for every warning                                -10            0 
+  (look at the output file 
+   eg. warnings about return value being ignored
+   for the printf variety)
+
+
+****************************************************************************
+CORRECTNESS:                                         MAX           DEDUCTED
+                                                     DEDUCTIBLE
+----------------------------------------------------------------------------
+						                              -70             0
+
+o -10 for each function that is written in C that
+  is supposed to be written in assembly
+
+o Answers for GDB questions:
+  ( There are total of 7 questions 10 points each )
+
+When taking off points, please indicate the test case
+that the program failed to work on:
+
+
+****************************************************************************
+EXTRA CREDIT:                                       MAX           AWARDED
+----------------------------------------------------------------------------
+
+~0.5 for each nop filled.                              5              0
+To get full credit for filled nops you should have
+about 80% of all nops filled
+
+Do not award points for frivolous fills
+and also for unecessary creation of delay slots
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

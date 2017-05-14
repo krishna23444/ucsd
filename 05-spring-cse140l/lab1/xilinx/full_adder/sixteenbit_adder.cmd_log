@@ -1,0 +1,20 @@
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w sixteenbit_adder.sch sixteenbit_adder.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w sixteenbit_adder.sch sixteenbit_adder.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w sixteenbit_adder.sch sixteenbit_adder.vhf
+xst -intstyle ise -ifn __projnav/sixteenbit_adder.xst -ofn sixteenbit_adder.syr
+ngdbuild -intstyle ise -dd "g:\xilinx\projects\lab1\full_adder/_ngo" -nt timestamp -i  -p xc2v80-cs144-5 sixteenbit_adder.ngc sixteenbit_adder.ngd
+map -intstyle ise -p xc2v80-cs144-5 -cm area -pr b -k 4 -c 100 -tx off -o sixteenbit_adder_map.ncd sixteenbit_adder.ngd sixteenbit_adder.pcf
+par -w -intstyle ise -ol std -t 1 sixteenbit_adder_map.ncd sixteenbit_adder.ncd sixteenbit_adder.pcf
+trce -intstyle ise -e 3 -l 3 -s 5 -xml sixteenbit_adder sixteenbit_adder.ncd -o sixteenbit_adder.twr sixteenbit_adder.pcf
+netgen -intstyle ise -s 5   -pcf sixteenbit_adder.pcf -rpw 100 -tpw 0 -ar Structure -xon true -w -ofmt vhdl -sim sixteenbit_adder.ncd sixteenbit_adder_timesim.vhd
+timingan -intstyle ise sixteenbit_adder.ncd sixteenbit_adder
+par -w -intstyle ise -ol std -t 1 -ub sixteenbit_adder_map.ncd sixteenbit_adder.ncd sixteenbit_adder.pcf
+trce -intstyle ise -e 3 -l 3 -s 5 -xml sixteenbit_adder sixteenbit_adder.ncd -o sixteenbit_adder.twr sixteenbit_adder.pcf
+timingan -intstyle ise sixteenbit_adder.ncd sixteenbit_adder
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w sixteenbit_adder.sch sixteenbit_adder.vhf
+xst -intstyle ise -ifn __projnav/sixteenbit_adder.xst -ofn sixteenbit_adder.syr
+ngdbuild -intstyle ise -dd "g:\xilinx\projects\lab1\full_adder/_ngo" -nt timestamp -i  -p xc2v80-cs144-5 sixteenbit_adder.ngc sixteenbit_adder.ngd
+map -intstyle ise -p xc2v80-cs144-5 -cm area -pr b -k 4 -c 100 -tx off -o sixteenbit_adder_map.ncd sixteenbit_adder.ngd sixteenbit_adder.pcf
+par -w -intstyle ise -ol std -t 1 -ub sixteenbit_adder_map.ncd sixteenbit_adder.ncd sixteenbit_adder.pcf
+trce -intstyle ise -e 3 -l 3 -s 5 -xml sixteenbit_adder sixteenbit_adder.ncd -o sixteenbit_adder.twr sixteenbit_adder.pcf
+netgen -intstyle ise -s 5   -pcf sixteenbit_adder.pcf -rpw 100 -tpw 0 -ar Structure -xon true -w -ofmt vhdl -sim sixteenbit_adder.ncd sixteenbit_adder_timesim.vhd

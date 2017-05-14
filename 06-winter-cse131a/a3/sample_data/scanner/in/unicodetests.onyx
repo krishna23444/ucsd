@@ -1,0 +1,6 @@
+"Hex Unicode 0x41 should output A: &#x41;"
+"Dec Unicode 65 should output A: &#65;"
+"Hex Unicode outputs a: &#x61;"
+"Dec Unicode outputs a: &#97;"
+"NOT UNICODE: &#65"
+"NOT a STRINGLITERAL: " "&#65;

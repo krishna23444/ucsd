@@ -1,0 +1,10 @@
+#include "BufferedBlockManager.h"
+
+serviceclass Swarming {
+  enum OperationMode {GREEDY, COORDINATED};
+  virtual void disseminate(BufferedBlockManager& manager, OperationMode m) { }
+  virtual void participate(BufferedBlockManager& manager, 
+			   const std::string& peerName);
+  handlers FileStatus;
+};
+

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.error.SemanticError>
+   <DynamicError column="18" line="1">Type not assignable to $a</DynamicError>
+</onyx.error.SemanticError>
+

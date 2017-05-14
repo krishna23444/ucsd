@@ -1,0 +1,9 @@
+# Author: Nitay Joffe
+# Class: CSE 121 - Modern Operating Systems
+# Project: 2 - Filesystem Benchmarking
+
+CFLAGS = -I/software/nonrdist/fuse/include 
+LDFLAGS = -lfuse -L/software/nonrdist/fuse/lib \
+          -Wl,-rpath=/software/nonrdist/fuse/lib
+
+include Makefile.common

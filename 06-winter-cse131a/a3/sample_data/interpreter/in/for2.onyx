@@ -1,0 +1,5 @@
+for $i in 3 to 8
+for $j in 9 to 5
+   where $i <= ($j - 3)
+   return
+      $i * 2 + $j

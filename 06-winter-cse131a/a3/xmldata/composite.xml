@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<composite>
+	<class>
+		<name>Application</name>
+		<package>compApplication.compPlatform.modBasic</package>
+		<ctor>
+			<name>Application</name>
+			<mode-error>no mode info available</mode-error>
+		</ctor>
+		<method>
+			<name>execute</name>
+			<intent>define</intent>
+			<mode>fusion</mode>
+			<integration>fusion.method(self)</integration>
+		</method>
+	</class>
+	<class>
+		<name>Application</name>
+		<package>compApplication.compPlatform.modConsole</package>
+		<ctor>
+			<name>Application</name>
+			<mode-error>no mode info available</mode-error>
+		</ctor>
+		<method>
+			<name>execute</name>
+			<intent>define-uses</intent>
+			<mode>fusion</mode>
+			<integration>fusion.method(self)</integration>
+			<concern>application.console</concern>
+		</method>
+		<method>
+			<name>main</name>
+			<intent>define</intent>
+			<mode>Singleton</mode>
+			<integration>Singleton.method(self)</integration>
+			<concern>application.console</concern>
+		</method>
+	</class>
+	<class>
+		<name>Application</name>
+		<package>compApplication.compPlatform.modExit</package>
+		<ctor>
+			<name>Application</name>
+			<mode-error>no mode info available</mode-error>
+		</ctor>
+		<method>
+			<name>setExit</name>
+			<intent>define</intent>
+			<mode>singleton</mode>
+			<integration>singleton.method(self)</integration>
+		</method>
+		<method>
+			<name>execute</name>
+			<intent>define-uses</intent>
+			<mode>fusion</mode>
+			<integration>fusion.last(ExecutionStages)</integration>
+		</method>
+	</class>
+	<class>
+		<name>Application</name>
+		<package>compApplication.compPlatform.modProgName</package>
+		<field>
+			<name>strProgName</name>
+			<intent>define</intent>
+			<mode>singleton</mode>
+			<integration>singleton.field(self)</integration>
+		</field>
+		<ctor>
+			<name>Application</name>
+			<mode-error>no mode info available</mode-error>
+		</ctor>
+		<method>
+			<name>initialize</name>
+			<intent>extend</intent>
+			<mode>fusion</mode>
+			<integration>fusion.method(self)</integration>
+			<concern>Sort.ProgName</concern>
+		</method>
+	</class>
+</composite>

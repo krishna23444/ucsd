@@ -1,0 +1,58 @@
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library       |      Version       | Available |
+============================================================================
+| Basic DW Building Blocks                | V-2004.06-DWF_0406 |     *     |
+| Licensed DW Building Blocks             |                    |           |
+============================================================================
+
+  Loading target library 'class'
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'fibonacci_calculator'
+
+  Updating timing information
+
+  Beginning Implementation Selection
+  ----------------------------------
+  Processing 'fibonacci_calculator_DW01_cmp2_5_0'
+  Processing 'fibonacci_calculator_DW01_dec_5_0'
+  Processing 'fibonacci_calculator_DW01_add_16_0'
+  Processing 'fibonacci_calculator_DW01_dec_5_1'
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+
+                          ELAPSED 
+CPU SEC MBYTES   AREA      TIME   
+------- ------ --------- ---------
+     20   22.6     921.0   0:00:33
+     21   23.0     881.0   0:00:35
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                          ELAPSED 
+CPU SEC MBYTES   AREA      TIME   
+------- ------ --------- ---------
+     21   23.0     881.0   0:00:35
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                          ELAPSED 
+CPU SEC MBYTES   AREA      TIME   
+------- ------ --------- ---------
+     21   23.0     881.0   0:00:35
+     21   23.0     881.0   0:00:35
+     21   23.0     877.0   0:00:36
+
+  Optimization Complete
+  ---------------------
+  Transferring design 'fibonacci_calculator' to database 'fibonacci_calculator.db'
+
+Current design is 'fibonacci_calculator'.

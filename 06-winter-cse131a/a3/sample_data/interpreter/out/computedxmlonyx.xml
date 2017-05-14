@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx-result>
+   <foo baz="4">8</foo>
+   <hoo baz="4">88</hoo>
+</onyx-result>
+

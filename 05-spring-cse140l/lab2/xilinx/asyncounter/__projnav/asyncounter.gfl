@@ -1,0 +1,679 @@
+# Schematic : PDCL (jhdparse)
+__projnav/asyncounter_jhdparse_tcl.rsp
+# xst flow : RunXST
+asyncounter_summary.html
+# Schematic : PDCL (jhdparse)
+__projnav/asyncounter_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/asyncounter_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/asyncounter_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+asyncounter.vhf
+asyncounter.cmd_log
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# ProjNav -> New Source -> TBW
+asyncounter_tbw.vhw
+asyncounter_tbw.ano
+asyncounter_tbw.tfw
+asyncounter_tbw.ant
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw.ado
+asyncounter_tbw.ano
+# Schematic : PDCL (jhdparse)
+__projnav/asyncounter_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+asyncounter.vhf
+asyncounter.cmd_log
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# Update Bencher Waveform
+__projnav/updateTBW_tcl.rsp
+asyncounter_tbw.vhw
+asyncounter_tbw.ano
+asyncounter_tbw.tfw
+asyncounter_tbw.ant
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw.ado
+asyncounter_tbw.ano
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw.ado
+asyncounter_tbw.ano
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw.ado
+asyncounter_tbw.ano
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw.ado
+asyncounter_tbw.ano
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Schematic : PDCL (jhdparse)
+__projnav/asyncounter_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+asyncounter.vhf
+asyncounter.cmd_log
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# Update Bencher Waveform
+__projnav/updateTBW_tcl.rsp
+asyncounter_tbw.vhw
+asyncounter_tbw.ano
+asyncounter_tbw.tfw
+asyncounter_tbw.ant
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw.ado
+asyncounter_tbw.ano
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw.ado
+asyncounter_tbw.ano
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Schematic : PDCL (jhdparse)
+__projnav/asyncounter_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+asyncounter.vhf
+asyncounter.cmd_log
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# Update Bencher Waveform
+__projnav/updateTBW_tcl.rsp
+asyncounter_tbw.vhw
+asyncounter_tbw.ano
+asyncounter_tbw.tfw
+asyncounter_tbw.ant
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw.ado
+asyncounter_tbw.ano
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# XST (Creating Lso File) : 
+asyncounter.lso
+# xst flow : RunXST
+asyncounter_summary.html
+# xst flow : RunXST
+asyncounter.syr
+asyncounter.prj
+asyncounter.sprj
+asyncounter.ana
+asyncounter.stx
+asyncounter.cmd_log
+asyncounter.ngc
+asyncounter.ngr
+# Implmentation : Translate
+__projnav/ednTOngd_tcl.rsp
+"g:\xilinx\projects\lab2\asyncounter/_ngo"
+asyncounter.ngd
+asyncounter_ngdbuild.nav
+asyncounter.bld
+.untf
+asyncounter.cmd_log
+# Implementation : Map
+asyncounter_summary.html
+# Implementation : Map
+asyncounter_map.ncd
+asyncounter.ngm
+asyncounter.pcf
+asyncounter.nc1
+asyncounter.mrp
+asyncounter_map.mrp
+asyncounter.mdf
+asyncounter.cmd_log
+MAP_NO_GUIDE_FILE_CPF "asyncounter"
+asyncounter_map.ngm
+# Implmentation : Post-Place & Route Timing
+__projnav/ncdTOtwr_tcl.rsp
+asyncounter.twr
+asyncounter.twx
+asyncounter.tsi
+asyncounter.cmd_log
+# Implementation : Place & Route
+asyncounter_summary.html
+# Implmentation : Place & Route
+__projnav/nc1TOncd_tcl.rsp
+asyncounter.ncd
+asyncounter.par
+asyncounter.pad
+asyncounter_pad.txt
+asyncounter_pad.csv
+asyncounter.pad_txt
+asyncounter.dly
+reportgen.log
+asyncounter.xpi
+asyncounter.grf
+asyncounter.itr
+asyncounter_last_par.ncd
+asyncounter.placed_ncd_tracker
+asyncounter.routed_ncd_tracker
+asyncounter.cmd_log
+PAR_NO_GUIDE_FILE_CPF "asyncounter"
+# Implementation : Generate Post-Place & Route Simulation Model
+asyncounter_timesim.vhd
+asyncounter_timesim.nlf
+asyncounter.vhdsim_par
+asyncounter.par_nlf
+asyncounter.cmd_log
+asyncounter_timesim.vhd
+asyncounter_timesim.sdf
+asyncounter_timesim.sdf
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+asyncounter_tbw.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+asyncounter_tbw.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# ProjNav -> New Source -> TBW
+asyncounter_tbw_critical.vhw
+asyncounter_tbw_critical.ano
+asyncounter_tbw_critical.tfw
+asyncounter_tbw_critical.ant
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# Implmentation : Post-Place & Route Timing
+__projnav/ncdTOtwr_tcl.rsp
+asyncounter.twr
+asyncounter.twx
+asyncounter.tsi
+asyncounter.cmd_log
+# Implementation : Place & Route
+asyncounter_summary.html
+# Implmentation : Place & Route
+__projnav/nc1TOncd_tcl.rsp
+asyncounter.ncd
+asyncounter.par
+asyncounter.pad
+asyncounter_pad.txt
+asyncounter_pad.csv
+asyncounter.pad_txt
+asyncounter.dly
+reportgen.log
+asyncounter.xpi
+asyncounter.grf
+asyncounter.itr
+asyncounter_last_par.ncd
+asyncounter.placed_ncd_tracker
+asyncounter.routed_ncd_tracker
+asyncounter.cmd_log
+PAR_NO_GUIDE_FILE_CPF "asyncounter"
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw_critical.ado
+asyncounter_tbw_critical.ano
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw_critical.ado
+asyncounter_tbw_critical.ano
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw_critical.ado
+asyncounter_tbw_critical.ano
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# Implementation : Generate Post-Place & Route Simulation Model
+asyncounter_timesim.vhd
+asyncounter_timesim.nlf
+asyncounter.vhdsim_par
+asyncounter.par_nlf
+asyncounter.cmd_log
+asyncounter_timesim.vhd
+asyncounter_timesim.sdf
+asyncounter_timesim.sdf
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+asyncounter_tbw_critical.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+asyncounter_tbw_critical.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw_critical.ado
+asyncounter_tbw_critical.ano
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw_critical.ado
+asyncounter_tbw_critical.ano
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+asyncounter_tbw_critical.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+asyncounter_tbw_critical.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw_critical.ado
+asyncounter_tbw_critical.ano
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+asyncounter_tbw_critical.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+asyncounter_tbw_critical.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw_critical.ado
+asyncounter_tbw_critical.ano
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+asyncounter_tbw_critical.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+asyncounter_tbw_critical.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw_critical.ado
+asyncounter_tbw_critical.ano
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+asyncounter_tbw_critical.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+asyncounter_tbw_critical.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw_critical.ado
+asyncounter_tbw_critical.ano
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+asyncounter_tbw_critical.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+asyncounter_tbw_critical.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw_critical.ado
+asyncounter_tbw_critical.ano
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw_critical.ado
+asyncounter_tbw_critical.ano
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+asyncounter_tbw_critical.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+asyncounter_tbw_critical.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw_critical.ado
+asyncounter_tbw_critical.ano
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+asyncounter_tbw_critical.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+asyncounter_tbw_critical.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw_critical.ado
+asyncounter_tbw_critical.ano
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw.ado
+asyncounter_tbw.ano
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw.ado
+asyncounter_tbw.ano
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+asyncounter_tbw.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+asyncounter_tbw.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# xst flow : RunXST
+asyncounter_summary.html
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Bencher : Creating project file
+asyncounter_tbw_critical_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+asyncounter_tbw.ado
+asyncounter_tbw.ano
+# Bencher : Creating project file
+asyncounter_tbw_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Schematic : PDCL (jhdparse)
+__projnav/asyncounter_8_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/asyncounter_8_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/asyncounter_8_jhdparse_tcl.rsp
+# Schematic : PDCL (jhdparse)
+__projnav/asyncounter_8_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+asyncounter_8.vhf
+asyncounter_8.cmd_log
+# Schematic : PDCL (jhdparse)
+__projnav/asyncounter_8_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+asyncounter_8.vhf
+asyncounter_8.cmd_log
+# Schematic : PDCL (jhdparse)
+__projnav/asyncounter_8_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+asyncounter_8.vhf
+asyncounter_8.cmd_log
+# Bencher : Creating project file
+asyncounter8_tbw_bencher.prj
+# ProjNav -> New Source -> TBW
+asyncounter8_tbw.vhw
+asyncounter8_tbw.ano
+asyncounter8_tbw.tfw
+asyncounter8_tbw.ant
+# Bencher : Creating project file
+asyncounter8_tbw_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+asyncounter8_tbw.ado
+asyncounter8_tbw.ano
+# Bencher : Creating project file
+asyncounter8_tbw_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+asyncounter8_tbw_bencher.prj
+# Bencher : Creating project file
+asyncounter8_tbw_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+asyncounter8_tbw.ado
+asyncounter8_tbw.ano
+# Bencher : Creating project file
+asyncounter8_tbw_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+asyncounter8_tbw_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+asyncounter8_tbw.ado
+asyncounter8_tbw.ano
+# Bencher : Creating project file
+asyncounter8_tbw_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+asyncounter8_tbw_bencher.prj
+# Bencher : Creating project file
+asyncounter8_tbw_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# Bencher : Creating project file
+asyncounter8_tbw_bencher.prj
+# Bencher : Creating project file
+asyncounter8_tbwb_bencher.prj
+# ProjNav -> New Source -> TBW
+asyncounter8_tbwb.vhw
+asyncounter8_tbwb.ano
+asyncounter8_tbwb.tfw
+asyncounter8_tbwb.ant
+# Bencher : Creating project file
+asyncounter_8tbwb_bencher.prj
+# ProjNav -> New Source -> TBW
+asyncounter_8tbwb.vhw
+asyncounter_8tbwb.ano
+asyncounter_8tbwb.tfw
+asyncounter_8tbwb.ant
+# Bencher : Creating project file
+asyncounter_8tbwb_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+asyncounter_8tbwb.ado
+asyncounter_8tbwb.ano
+# Bencher : Creating project file
+asyncounter_8tbwb_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+asyncounter_8_tbw_bencher.prj
+# ProjNav -> New Source -> TBW
+asyncounter_8_tbw.vhw
+asyncounter_8_tbw.ano
+asyncounter_8_tbw.tfw
+asyncounter_8_tbw.ant
+# Bencher : Creating project file
+asyncounter8_tbw_bencher.prj
+# Bencher : Creating project file
+asyncounter_8tbwb_bencher.prj
+# Update Bencher Waveform
+__projnav/updateTBW_tcl.rsp
+asyncounter_8tbwb.vhw
+asyncounter_8tbwb.ano
+asyncounter_8tbwb.tfw
+asyncounter_8tbwb.ant
+# XST (Creating Lso File) : 
+asyncounter_8.lso
+# xst flow : RunXST
+asyncounter_8_summary.html
+# xst flow : RunXST
+asyncounter_8.syr
+asyncounter_8.prj
+asyncounter_8.sprj
+asyncounter_8.ana
+asyncounter_8.stx
+asyncounter_8.cmd_log
+asyncounter_8.ngc
+asyncounter_8.ngr
+# Implmentation : Translate
+__projnav/ednTOngd_tcl.rsp
+"g:\xilinx\projects\lab2\asyncounter/_ngo"
+asyncounter_8.ngd
+asyncounter_8_ngdbuild.nav
+asyncounter_8.bld
+.untf
+asyncounter_8.cmd_log
+# Implementation : Map
+asyncounter_8_summary.html
+# Implementation : Map
+asyncounter_8_map.ncd
+asyncounter_8.ngm
+asyncounter_8.pcf
+asyncounter_8.nc1
+asyncounter_8.mrp
+asyncounter_8_map.mrp
+asyncounter_8.mdf
+asyncounter_8.cmd_log
+MAP_NO_GUIDE_FILE_CPF "asyncounter_8"
+asyncounter_8_map.ngm
+# Implmentation : Post-Place & Route Timing
+__projnav/ncdTOtwr_tcl.rsp
+asyncounter_8.twr
+asyncounter_8.twx
+asyncounter_8.tsi
+asyncounter_8.cmd_log
+# Implementation : Place & Route
+asyncounter_8_summary.html
+# Implmentation : Place & Route
+__projnav/nc1TOncd_tcl.rsp
+asyncounter_8.ncd
+asyncounter_8.par
+asyncounter_8.pad
+asyncounter_8_pad.txt
+asyncounter_8_pad.csv
+asyncounter_8.pad_txt
+asyncounter_8.dly
+reportgen.log
+asyncounter_8.xpi
+asyncounter_8.grf
+asyncounter_8.itr
+asyncounter_8_last_par.ncd
+asyncounter_8.placed_ncd_tracker
+asyncounter_8.routed_ncd_tracker
+asyncounter_8.cmd_log
+PAR_NO_GUIDE_FILE_CPF "asyncounter_8"
+# Implementation : Generate Post-Place & Route Simulation Model
+asyncounter_8_timesim.vhd
+asyncounter_8_timesim.nlf
+asyncounter_8.vhdsim_par
+asyncounter_8.par_nlf
+asyncounter_8.cmd_log
+asyncounter_8_timesim.vhd
+asyncounter_8_timesim.sdf
+asyncounter_8_timesim.sdf
+# Bencher : Creating project file
+asyncounter_8tbwb_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+asyncounter_8tbwb.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+asyncounter_8tbwb.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf

@@ -1,0 +1,120 @@
+From cs30staff-request@ieng9.ucsd.edu  Tue Jul  9 15:15:07 2002
+Return-Path: <cs30staff-request@ieng9.ucsd.edu>
+Received: (from daemon@localhost)
+	by ieng9.ucsd.edu (8.11.6/8.11.6) id g69M4CD24833
+	for cs30staff-list; Tue, 9 Jul 2002 15:04:12 -0700 (PDT)
+Received: (from cs30x1@localhost)
+	by ieng9.ucsd.edu (8.11.6/8.11.6) id g69M4CV24828
+	for cs30staff@ieng9.ucsd.edu; Tue, 9 Jul 2002 15:04:12 -0700 (PDT)
+Date: Tue, 9 Jul 2002 15:04:11 -0700
+From: Jack Pham <cs30x1@ieng9.ucsd.edu>
+To: cs30staff@ieng9.ucsd.edu
+Subject: pa0 grading
+Message-ID: <20020709150411.A14558@ieng9.ucsd.edu>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.2.5.1i
+Status: R
+Content-Length: 4161
+
+Hi everybody,
+
+PA0 has been collected, graded and distributed to each of your home
+directories. Please start and finish grading as soon as possible. This is a
+very short assignment, so I expect to have all grading completed by
+Thursday morning at 8am.
+
+Since this is the first assignment, the bulk of their points will be from
+their answers to the GDB questions in their README file. The remaining 30
+points will be awarded for style and compiling. Be sure to take off points
+now and warn them about those types of points, like style (spaces, indenting,
+comment blocks, file headers, keeping within 80 columns, etc.) and compiler
+warnings (make sure they understand to (void) the printf's)--we want to make
+them aware of these important points so that they won't make the same
+mistakes after this.
+
+The answers to the README questions are in each student's directory, in a
+file named pa0.answers. I've used the exact same one from previous
+quarters, though I've finally updated it to make a little more sense. Give
+them full credit if they've got.
+
+For those of you new to grading, or new to CS30 grading, it's pretty
+simple. In your home directories you will find a subdirectory called
+Assignments, which will be where all the graded assignments will go. For
+pa0, you will see a list of students in ~/Assignments/pa0, along with a
+cs30x##.grades file, and two scripts, extract and mailer. The first thing
+you should do is run the extract script, which will un-tar each of the
+students program submission so that you can examine their source code. In
+each student directory, there will be, in addition to the source files,
+three more files: cs30x??.diffs, cs30x??.output and guideline. The
+guideline file is what you will be editing to add/subtract points and to
+provide feedback to the student. This is what the student will receive when
+you run the mailer script. The .diffs file and the .output file are very
+important--they contain the output of the autograder running the student's
+program. In particular, the .output file has the output of every single
+test case, each showing the output of the student's program, immediately
+followed by "CORRECT OUTPUT" which is just the output of pa0test. Those of
+you with keen eyes or good students, or both can examine the .diffs file
+which is the .output file but in a diff format, which highlights the
+differences between the student's and the correct output. Basically the
+lines that start with a '<' are output from the student's program, and '>'
+indents the output from the correct output. If you have a hard time
+reading it, stick with the .output file or ask me to show you. For this
+assignment you will ALWAYS get some sort of entry int he .diffs file, since
+no student should have put down "Joe Jane Student" with that December
+birthday. In future assignments though, having a difference doesn't
+necessarily mean points-off. Usually if it looks right or the message they
+are trying to tell you is similar, then that's good enough. But it
+certainly makes it easier for us to grade if their output is EXACTLY the
+same--the .diffs file will be unusually empty in that case.
+
+The students' grades will be recorded in the guideline file, which goes
+back to them, and also the cs30x##.grades file, which I will collect on
+Thursday. At the top of this file there is a self-explanatory "I am done"
+line--change the "N" to "Y" when you are done.
+
+Don't forget to run the mailer script when you are done as well, this is
+the only way (for now, until I put the grades into GradeSource) the
+students will find out how they did on their assignment. So if they come to
+me saying they didn't receive a grade, I'm simply going to tell them to
+talk to their grader (you guys) about it.
+
+Oh yeah, some of you might only have a few to grade, while the rest of us
+have six students each. Don't worry about it for now, I will adjust it for
+the next assignment, since their might still be students who chose not to
+do this assignment or added too late to have time to work on it.
+
+I think that's it, but if you have any other questions or concerns, please
+feel free to ask me, or give me an email at cs30x1@ieng9.ucsd.edu.
+
+Jack
+
+From cs30staff-request@ieng9.ucsd.edu  Tue Jul  9 15:28:19 2002
+Return-Path: <cs30staff-request@ieng9.ucsd.edu>
+Received: (from daemon@localhost)
+	by ieng9.ucsd.edu (8.11.6/8.11.6) id g69MER728555
+	for cs30staff-list; Tue, 9 Jul 2002 15:14:27 -0700 (PDT)
+Received: (from cs30x1@localhost)
+	by ieng9.ucsd.edu (8.11.6/8.11.6) id g69MERW28550
+	for cs30staff@ieng9.ucsd.edu; Tue, 9 Jul 2002 15:14:27 -0700 (PDT)
+Date: Tue, 9 Jul 2002 15:14:26 -0700
+From: Jack Pham <cs30x1@ieng9.ucsd.edu>
+To: cs30staff@ieng9.ucsd.edu
+Subject: pa0 grading--one last time
+Message-ID: <20020709151426.A28166@ieng9.ucsd.edu>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.2.5.1i
+Status: R
+Content-Length: 300
+
+Ok I promise this will be the last one about pa0 you will hear from me...
+
+When you run the mailer script, you might get some errors about "Unknown
+tilde escape". Ignore those. The script itself still seems to work fine,
+and the students seem to receive readable copies of the guideline email.
+
+jack
+

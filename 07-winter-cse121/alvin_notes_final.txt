@@ -1,0 +1,510 @@
+10 questions, 3 hours
+
+File systems
+   - [Unix FFS]
+   - [Log structure file system]
+      - Cleaning, segments, reliability, ordering, anonymisity
+
+      - Writes all modified data in a segmented log. Writes are in large
+        segment-sized chunks, then orders the request. Add small log entries
+        at the beginning of segments. Then it made segments temporary until
+        necessary meta-data was on disk. Combines SU with J
+   - [Journaling/Soft updates]
+      - What are the guarnatees that the above give
+      - Difference between journaling / logging
+      - What do you get w/sync vs. async
+
+      Meta-Data Integrity
+      - Soft updates - guarantees that blocks are written to disk in required
+        order without using synchronous disk I/Os. New node before reference
+      - Journaling - Maintains an auxiliary log recording all meta-data ops
+         - write-ahead logging: log written to disk before pages containing
+           data modified by the corresponding operations
+         - sync log -> FFS, async till log is full -> soft updates
+
+      Soft Updates
+      - Delayed writes for meta-data, maintains dependency info for the order
+      - Cyclic dependencies: Soft updates tracks dependencies on a per-pointer
+        basis instead of a per-block basis. Each block has a list of
+        dependencies to check if other blocks need to be written beforehand
+      - Conducts rollbacks till all blocks are in a safe state
+      - Can defer work - ie when a delete is issued, remove the file's name
+        from the directory hierarchy and creates a remove dependency. Do that
+        delete later. Crash -> reduce in disk space, but stable!
+
+      Journaling
+      - LFFS-file has a circular log
+         - Fixed log (1% of the file system size)
+         - Examines buffer headers of blocks, determins priority of writing
+         - Reclaims space (circular)
+            - During periodic syncer daemon activity (once/second)
+            - Oldest log entry -> new start of log, recorded to superblock
+            - Forced checkpoints: All blocks are written
+         - Very similar to FFS, minor modifications
+      - LFFS-wafs records log records in separate stand-alone service WAFS
+         - WAFS: Write-ahead file system, free standing file system that
+           supports a limited # of operations
+         - Circular buffer in the alloted space
+         - Same checkpoint scheme as LFFS-file
+         - 2 disjoint file systems; flexibility; can mount on separate disk
+         - Log msgs for create/delete/renames are flushed to disk before
+           system call returns. bitmap operations are cached in memory
+      - Require database-like recovery after system failure
+         - Superblock has last log checkpoint (or WAFS)
+         - LFFS-file: Checkpoints are frequent; Wafs - superblock is written
+           infrequently, log recovery code must find end of log (timestamp)
+         - WAFS: creates are the only aborted operations (high level)
+         - Aborted operations are undone, rather than rolled forward
+
+      - Benchmarks (micro with file create/del, macro with realworld apps)
+         - Microbenchmark results: Avg of 5 runs
+         - Read&Write are similar in techniques so they are about the same
+         - Create: Async of course does well, limits when max throughput is
+           reached and additional seeks are introduced
+         - Delete: Soft updates is lazy when deleting, very good performance
+      
+   - [Rio]
+      - Simple idea
+      - Important thing is the testing
+      - How do you inject faults, which are reasonable to inject
+      - How does one test these sort of things
+
+   - [Caching & Prefetching]
+      - Hard technical questions
+      - LRUSP necessary
+      - What was the problems with application controlled prefetching
+      - What is Be____ ' s problem
+      - How can it hurt you
+      - How can an application know
+
+      Integrates application-controlled file caching with prefetching
+      - Careful so neither harms performance of other
+      - Allocates file cache space among multiple processes properly
+         - Should be fair, robust, and no adverse performance feedback
+
+      Controlled aggressive algorithm to handle prefetching
+      - Uses disk scheduling to reorder service within a batch
+
+      Uses LRU with Swapping and Placeholders
+
+      - Aggressive pre-fetching is a double-edged sword
+      - 1) Optimal prefetching: bring into cache the next one not in cache
+      - 2) Optimal replacement: Discard block furthest in future
+      - 3) Do no harm: Don't discard A to get B, when A before B
+      - 4) First opportunity: Don't perform if may have been done previous
+
+      Controlled aggressive - always answers "yes" whenever 3 & 4 allow it
+      - Fetch the next block in access stream not in cache, disk is idle,
+        and block in cache will be accessed after missing one
+
+      Limited lookahead
+      - Tries to match application's actual references against prediction
+      - Unpredicted reference - taking as usual
+      - Predicted not occuring - "Pretends" they already happened
+      - Bogu list - discard it
+      - Without complete lookahead
+         - Seeks help from application's control over file cache replacement
+         - Make replacement choices as close to optimal as possible
+         - If prediction is long enough, go with it, else use app controled
+         - Conflicting info? list of predicted is more accurate
+
+      Disk scheduling
+      - Limited batch scheduling: Disk idle, prefetch, limited by Batch size
+      - Reduce disk latency, logical-block number ordering
+
+      Multiprocess case
+      - two-level cache management strategy
+         - kernel decides how many cache blocks to use, process decides how to
+           use
+         - Processes unwilling/unable to manage cache can allow kernel to
+         - Processes with knowledge can use controlled-aggressive
+      - LRU-SP allocation policy
+         - Oblivious process, not < LRU, foolish process (process = worse)
+           smart process (better than default)
+         - LRU to find which process owns least-recently-used
+            - Process manages itself: it decides, else replace
+            - 1) A @ end, user process chooses B, swap A and B in LRU list
+            - 2) Miss on B, placeholder exists, pointed to one is replaced
+            - 3) Any hit on A, placeholders are deleted
+
+      - Application control
+         - Priorities given to files and blocks
+         - Can list a list of files or blocks for future access
+         - ACM is the proxy between the kernel and process
+
+      - Integrated prefetching
+         - PCM module, needs 5 things: predic list, where the process is in
+           the stream, next block to fetch, # blocks it can replace, and if
+           previous fetches finished
+
+   - [Lottery scheduling]
+      - Why not just old priorities
+      - Dif between lottery and stride scheduling
+         - Stride: deterministic version of lottery
+      - Why both are useful
+      - How it worked
+      - Whats the gain
+      - Why stride > lottery
+
+   - [GMS]
+      - Why was it a good idea at th etime
+      - Is it still a good idea
+      - Why did it work?
+         - Memory/network was faster than the disk then
+      - What system environment would it make sense in
+      - what was minAge, how do you know which to kill off
+
+Operating systems & Structures
+   - [Mach]
+      - Multiprocessing support focus. Goal: Be a distributed system capable
+        of functioning on heterogeneous hardware
+      - Support diverse architectures
+      - Function with varying intercomputer network speeds
+      - Simplified kernel structure, small # abstractions
+      - Distributed operation, network transparency to clients
+      - Integrated memory management, interprocess communication
+
+      Drawbacks of BSD to address
+      - Many redundant features, difficult to manage
+      - Original design flaws: difficult for multiprocessors, distributed
+        systems, shared program libraries (it was for uniprocessors)
+      - Too many fundamental abstractions, competes with itself
+
+      Reduced to basic abstractions - place as little as possible in kernel
+      - Concentrate on communcation facilities: All requests to kernel and all
+        data movement among processes handled through 1 comm. mechanism
+      - Object oriented system - data & manipulation operations = objects
+         - Objects can reside anywhere, transparent to the user
+      - Task (unit fo resource allocation), thread (unit of execution), port
+        (reference mechanism, kernel protected), port set (share a common
+        message queue), message (communication between threads in mach),
+        memory object (source of memory, can be mapped by tasks)
+
+      Memory management
+      - Use of 'memory objects' represented by a port/ports. IPC messages are
+        sent to this port to request operations (pagein/pageout)
+      - Use of memory-management for message passing (pointers to shared
+        memory objects instead of makng copies)
+
+      Message passing - must be efficient since its a message based kernel
+      - Inefficiences prior: slow network communication, or copying messages
+      - Use virtual-memory remapping to transfer contents of large messages
+         - Virtual copy/copy-on-write for increased flexibility, greater
+           generality, improved performance, easier task migration
+
+      Process management
+      - Task contains threads which can compuete in parallel, prevent tasks
+        stalling on thread pagefault
+      - Thread can be running (or waiting to) or suspended
+      - C Threads package -> P Threads
+         - Create new thread in task, destroy the calling thread, wait for a
+           specific thread to terminate before continue, and yield use of cpu
+         - Spinlocks for mutual exclusion (create mutex, and free, lock mutex,
+           unlock mutex)
+
+      CPU Scheduler
+      - Only threads are scheduled, with no knowledge of tasks
+      - Threads compete equally for resources, each with a priority # 0-127
+      - 32 global run queues, arranged by priority
+      - Local run queues for threads that can run on only 1 cpu, has priority
+      - No fixed time quanta (since CPUs > threads in count..). Varies size of
+        time quantum inversely with total # of threads in system
+
+      Exception Handling
+      - Exception handler is another thread in the task which the exception
+        occurs
+      - Internally generated exception and external interrupts
+      - Error handling supported by per-thread exception handling, and
+        debuggers use per-task handling (no sense in debugging 1 thread)
+      - Victim sends a "raise RPC" -> calls routing to wait till exception is
+        handled -> handler receives notification & info -> performs function
+      - Signal system to handle errors to be seen by just the problem thread
+
+      Interprocess Communication
+      - Ports and messages (objects addressed via ports)
+      - Security: senders and receivers have "rights" (port & capability)
+
+      Ports
+      - Protected, bounded queue within the kernel of the system
+      - Allocate new port, deallocate rights to port, get status, backup
+
+      Messages
+      - Kernel inspects messages for certain types (ie port info)
+      - Can send pointers via messages, to not need to copy data
+
+      NetMsgServer - sending between computers
+      - Destination is an object, location is transparent
+      - NetMsgServer on destination creates port/proxy to represent
+        destination. Msgs received by Server are then fwded to the port
+      - Translates data so Mach can be heterogeneous
+      - Uses IPC for synchronization
+
+      Memory Management
+      - Memory object represents 2ndary storage, files, pipes, other data, VM
+      - User-Level memory managers
+         - 2ndary storage object is usually mapped into the virtual address
+           space of a task
+         - Maintains a cache of memory-resident pages of all mapped objects
+         - Memory can be paged by user-written memory managers
+      - Shared memory
+         - Fast IPC, reducing overhead, helps with multiprocessing/db
+         - Threads share task memory
+         - Parent task can declare which regions are inheritied/read/write
+         - External memory managers are allowed.. leave it up to user
+
+      Programmer interface
+      - Emulation library to keep mach as a true microkernel. These run
+        outside of the kernel
+
+   - [Microkernal/L4]
+      - IPC, strengths, weaknesses
+      - MCPI
+      - Why do people want IPC to be faster
+      - Tag TLB, segment registers, why they were playing games
+
+      Implement outside the kernel whatever possible
+      - Enforces a more modular system structure, servers can use mechanisms
+        provided like any other user program, more flexible/tailorable
+      - Most ukernels do not perform well as of yet, and were incorrectly
+        analyzed
+      - Hide the hardware concept of address spaces (protection, etc)
+         - Support recursive construction of address spaces outside kernel
+         - One address space which represents physical memory and is
+           controlled by the first subsystem
+         - Grant (owner of space can grant pages to another space)
+         - Map (owner can map any of its pages to another space if recipient
+           agrees)
+         - Flush (owner can flush any of its pages, remains accessible but is
+           removed from all other address spaces which had received the page
+           directly/indirectly from flusher)
+      - I/O - done by memory managers & pagers on top of the ukernel
+      - Threads and IPC
+         - Thread has a set of registers (inst. pointer, stack pointer, state
+           information -> address space)
+         - All changes to a thread's address space is controlled by kernel
+         - IPC supported by ukernel, xfer msgs between threads by ukernel
+         - Interrupts - hardware msgs transformed by kernel but doesn't know
+           anything about the interrupt semantics
+         - ukernel supplies unique id's (uid) for communication
+      - Flexibility
+         - Memory manager - server managing initial address space
+         - Pager - implement traditional paged vmemory and file/db mapping
+         - Multimedia resource allocation
+         - Device driver - directly accesses hardware, receives IPC msgs
+         - 2nd level cache & TLB - 2nd level is user-level, 1st level tlb
+           handler could be hardware/ukernel
+         - Remote communication, Unix Server, many abstractions
+      - Performance facts & rumors
+         - Switching overhead (kernel-user, address space-threads) should be
+           able to be lowered from 800cycles -> 15 cycles or so
+         - Address space switching costs determined by TLB architecture
+            - Tagged TLBs - each entry contains address-space ID, switching is
+              transparent to the TLB (no additional cycles)
+            - Untagged TLBs - requires a TLB flush, cost is in the LOAD ops.
+              Lead to performance problems during reloading
+            - PowerPC has segment registers controlled by ukernel to provide
+              additional address translation facility. Reload segment
+              registers instead of switching page table. Use for Pentium
+            - Use segment registers for implementing user address spaces so
+              that each 2^32 byte hw address space shares all small & 1 large
+              user address space. Transparent to user
+         - Thread switches and IPC
+            - Spring & L3 show communication CAN be pretty fast
+            - IPC can be implemented fast enough to handle hardware
+              interrupts. Using segmented switching is much stable/quicker
+         - Memory effects
+            - MCPI (memory cycle overhead per instruction) showed mach was
+              more inefficient in the past. Due to way Mach constructed
+            - Mach differed greatly in system cache misses (OS system). Memory
+              degradation is caused solely by high cache consumption of Mach
+      - Non-portability, processor/hardware dependent for optimizations
+         - User-address-space implementation, pentium to use segment registers
+         - Segment register loads are faster, penium has large TLB, pays off
+         - IPC implementation - restructure Pentium to profit from doubled
+           cache line size
+         - Many incompatible processors, need processor specific optimizations
+      - Synthesis OS: kernel-integrated 'compiler', doesn't help on modern cpu
+      - Spin OS: User can control and write new system calls, based on Mach :(
+      - Utah-Mach: changed Mach IPC semantics to migrate RPC, performance gain
+      - DP-Mach: Multiple domains of protection within a user address space,
+        twice as slow, however
+      - Panda: Small kernel and delegrates as much as possible to user space
+      - Cache-Kernel: Small, hardware dependent, relies on small Vir machine.
+        Caches kerneles, threads, address spaces & mappings
+      - Exokernel: kernel should not provide abstractions but only a minimal
+        set of primitives, partially integrates device drivers
+
+
+   - [Nooks]
+      - Device driver thing
+      - Limited form of protection
+      - Why it was a useful thing to do
+      - What did it do, how did it work
+      - Keeping track of all of the objects
+      - Copy on value return, what was the use (param passing scheme)
+        in case there was a crash. Know if all or none of values returned
+
+      - OS Subsystem allowing existing OS extensions (drivers, etc) to execute
+        safely in commodity kernels
+      - Executes extensions in a lightweight kernel protection domain
+
+      Architecture
+      - Design for fault resistance, not fault tolerance (recovery)
+      - Design for mistakes, not abuse (errors in design)
+      - Goals: Isolate the kernel, recovery, backward compatibility
+      - Functions
+         - Reliability layer: between extensions and OS kernel. Intercepts all
+           interactions between. Very transparent (backwards compantible)
+           NIM: Nooks isolation manager
+            - Isolation: prevents damage to the kernel
+               - Protection-domain management
+               - Extension Procedure Call (XPC) between trusted domains
+            - Interposition: integrates extensions into Nooks environment
+            - Object tracking: Oversee all kernel resources used by extensions
+               - Maintains a list of kernel data structures used by extensions
+               - Controls all mods to those structures
+               - Provides object info for cleanup when extension fails
+            - Recovery: Software and hardware faults are detected/handled
+
+      Implementation in the Linux OS for all of its extensions
+
+      Isolation
+      - Memory management: read/write to own address space, read only kernel
+      - Extension Procedure Call (XPC): Kernel <=> extension
+         - Executes function with arguments in specified domain
+         - Deferred call mechanism: queue calls for later execution
+      - Maintains coherency bwn kernel and extension page tables, modified
+        kernel exception handlers to detect exceptions in protected domains,
+
+      Interposition
+      - Wrapper stubs between extensions and the kernel. Transparency
+      - Kernel calls wrappers instead of extension procedures directly
+      - Kernel objects -> Wrapped function calls
+      - For performance critical, create shadow copy
+
+      Wrappers
+      - Inserted between kernel and extension functions
+      - Body of work done in protected domain
+      - 1) Check parameters for validity and valid pointers
+      - 2) Object tracker code within wrappers implement call-by-value-result
+        semantics for XPC. Creates copy of kernel objects on local heap/stack
+      - 3) Wrappers perform an XPC into the kernel or extension to execute fn
+
+      Object tracking
+      - Records all kernel objects & types in use by extensions
+      - 1) Records addresses of all objects in use by an extension
+      - 2) Records an association between kernel and extension versions
+      - Need to track times to deallocate. Short, extension handled, and
+        a timer data structure
+
+      Recovery
+      - 1) After fault, recovery manager releases resources in use by
+        extension. Disables interrupt processing
+      - 2) User-mode agent coordinates recovery and determins couse of action.
+        Needs to return kernel and extension to a safe state
+
+      Limitations - needs backwards compatibility, doesn't prevent infinite
+      loops, deliberate harming, cannot do a complete job
+
+   - [Exokernel]
+      - Dif between microkernel
+      - Why or why not would you want it
+      - Why aren' twe all running it
+      - Exposes the hardware. Slightly differnt from MIPS to another kernel
+
+      - Elimination of OS abstractions, lowering interface enforced by OS to
+        almost raw hardware. Abstractions outside of the OS
+      - Just safely multiplex physical resources
+
+      OS Abstractions (The Jeremiad)
+      - Poor reliability: Large amount of complx/multi-threaded code along
+        with paging of kernel data structures decrease reliability
+      - Poor adaptability: Large software is hard to change
+      - Poor performance: OS abstractions are overly general, provide any
+        feature needed. Unnecessary features -> overhead
+      - Poor flexibility: Cannot avoid OS, emulations are difficult
+
+      Eliminate OS abstractions
+      - Allocate, Deallocate, and Multiplex physical resources securely
+      - Address space: provide small number of "guaranteed mappings" that can
+        be used to map the page-table and exception handling code.
+      - Process: just know where to jump to on an exception and prologue and
+        epilogue code when a time-slice is initiated/expires
+      - IPC: Xfer of a PC from one protection domain to an agreed-upon value
+        in another
+
+      Discussion
+      - Reliability: OS can be small and readily understood -> correctness
+      - Adaptability: Easy modifications because of its simplicity
+      - Efficiency: Exploit application-specific knowledge in making tradeoffs
+      - Flexibility: Radical page table structures, process abstractions,
+        address spaces, and filesystems can be constructed safely/efficiently
+
+Virtual machines
+   - What is one
+   - Virtualiation vs. paravirtualization
+   - Dead for 40 years, why are they back now
+   - What is the problem with VMs
+   - Symantic gap, how is it addressed. Tricks & Tricks to avoid decisions?
+   - Want the OS to make the decisions
+   - CCnuma machine. Why did disco think it was a good idea
+   - Performance tricks with drivers for shared memory vs. network
+   - VMWare, ESX
+   - XEN, paravirt., shadow page tables, dif between VMware
+
+   [Disco]
+
+   - It is difficult to get large companies to modify existing OS
+
+   Virtual machine monitor
+   - An additional layer virtualizing all the resources of the machine
+   - Allows Virtual Machines to exploit fine-grain resource sharing potential
+     in the hardware
+   - Becomes the unit of fault containment
+   - Challenges: overheads, resource management, communication and sharing
+
+   Disco: A Virtual Machine Monitor
+   - CPU: provides abstraction of a MIPS R10000 processor, emulating instructions
+   - Physical Memory: dynamic page migration and replication to export a
+     nearly uniform memory access time memory architecture to the software
+   - I/O Devices: Disco intercepts all communication to and from I/O devices.
+     Virtualizes all network devices. Acts as a gateway to outside of machine
+   - Improve NUMA locality: small code segments are replicated in all memories
+   - Virtual CPUs
+      - Data structure storing saved registers, and other state of a vCPU,
+        along with TLB contents of the vCPU
+      - Disco = kernel mode, OS = supervisor mode (protected portion of
+        address space, but no priv instructions/physical mem), else user mode
+   - Virtual physical memory
+      - Adds a level of address translation (physical-to-machine mappings)
+      - Uses software-reloaded TLB of MIPS processor
+      - Virtual address -> physical address -> machine address
+      - pmap data structure for each virtual machine, 1 entry -> 1 phys. page
+      - Disco caches recent virtual->machine translations in 2nd TLB
+   - Numa memory management
+      - dynamic page migration and page replication system to replicate pages
+        and maintain locality between a vCPU's cache misses
+      - Moves only pages that will likely result in performance benefit-
+        heavily accessed by a node -> that node, cache miss counting facility
+   - Virtual I/O devices
+      - Intercepts and then forwards accesses from VMs
+      - Add special device drivers to the OS which has a MONITOR CALL
+   - Copy-on-write Disks
+      - Intercepts every disk request that DMAs data into memory
+      - Disk request -> map to VM's physical memory (read only), attempt to
+        write to it results in a copy-on-write fault -> monitor
+      - Sharing: can share same root disk (kernel/apps), code & other
+        read-only can be DMA'd to memory when first accessed
+      - Each disk has a B-Tree indexed by range of disk sectors requested
+      - Second B-Tree to find any mods to the block made by the VM
+      - Copy-on-write for file systems (root disk..etc) whos mods as not
+        intended to be persistent or shared across VMs
+   - Virtual network interface
+      - Use standard distributed protocols (NFS, virtual subnet, etc)
+      - Page of data read into file cache in one VM can be shared with other
+        VMs (server -> client) 
+   - Running commodity operating systems. OSs provide hardware abstraction
+     level (HAL) to allow OSs to be ported
+
+   [Xen]
+

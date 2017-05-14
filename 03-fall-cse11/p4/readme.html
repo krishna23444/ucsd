@@ -1,0 +1,474 @@
+<html><head><title>P4 README</title></head>
+<body>
+<hr> <h2>
+<font color="#0000ff">
+Programming assignment #4:  CSE 11 Fall 2003
+</font>
+</h2> <hr>
+
+<p>
+Here's a description of the fourth programming assignment for CSE 11,
+Fall 2003. 
+ </p><p>
+In the previous assignment, there were a few things that we
+didn't do, and things we could've done better.  Some of you may have noticed that if
+the user isn't too careful, he or she could possibly crash the client in an
+ungraceful manner.  In addition there are some features we would like to
+add.  For instance, it'd be great if we could store some more information
+related to a transaction,
+such as what a user is interested in paying 11-dollars for, and
+what a user is interested in buying with 11-dollars.  We'd like to store
+an email address, but since this isn't something you want to be public knowledge,
+we'll require that you know the user's password before getting their
+email address.  And finally, it'd also be great if you could get a list of your
+previous transactions.
+ </p><p>
+It's time we fixed these omissions.  At the same time you'll be learning
+how to do error handling in Java, and how one class can inherit fields and methods
+from another.  You'll find that classes will have a small amount of code,
+and yet extend a class's abilities significantly.  This is part of the
+goal of object oriented programming.
+ </p><p>
+&gt;&gt;&gt; Due deadline:  	Wed Oct 29 12:00noon
+ </p><p>
+&gt;&gt;&gt; Required solution files: BetterPerson.java
+BetterAccount.java BuddyAccount.java TransAccount.java
+NoBuddyException.java NoUserException.java ElevenDollar.java </p><p>
+
+</p><h4>1. The Usual</h4>
+First, make sure you've read chapters 7 and 8 of the textbook.  This
+assignment uses material introduced and discussed there.
+ <p>
+Next, create a directory named "P4" under your cs11 home directory. Your
+solution to this assignment should be turned in from that directory by the
+due date and time.  Use the bundleP4 script to do that.  Follow the integrity
+of scholarship rules for the course.
+
+</p><h4>2. Some Unusual</h4>
+
+In this assignment, you will extend some classes from the previous assignment.
+We will provide correct versions of Person.class and Account.class for you
+to use.  They will appear in the public/P4 directory after the due deadline
+for P3. Please copy these to your P4 working directory and use them.  We will
+use them when testing your P4 solution.
+
+There will be a change to the Account class from P3.  An Account object maintains
+a pointer to a Person object associated with the Account.  These protected visibility
+accessor methods for it will be added:
+<pre>protected Person getPerson()
+protected void setPerson(Person p)
+</pre>
+ <p>
+There will be no other changes to the specifications for the Person or
+Account classes. Enhanced functionality will be obtained by extending
+those classes and using the power of inheritance.
+<b>3. BetterPerson.java</b>
+
+A Person didn't really have a lot of information inside it in the previous
+assignment.  Here we'll rectify this by adding a little more data to
+Person to make it a bit more useful.  In particular, we want to add pieces
+of data that would help make it easier to do 11Dollar trading.
+ </p><p>
+However, we're going to do something tricky--we're not going to modify
+Person directly.  We've written it, it works, and instead of playing with
+it some more, we're going to write a new class, BetterPerson.java, that
+will extend the original Person.  This BetterPerson will have the
+additional fields mentioned, but will rely on Person to handle some of the
+original methods and the original data.
+ </p><p>
+Here's the information we'll be adding, which should be implemented 
+using private instance variables:
+</p><pre>email:
+  a String equal to your email address.  Doesn't have to be your real one,
+  but might aid others in contacting you if they want to trade.
+  Will only be released to "buddies", i.e. people who know your password.
+</pre>
+<pre>trades:
+  a String of things you're interested in trading for 11-dollars, delimited by spaces.
+  ex:"surf_trip go_lessons short_stories"
+</pre>
+
+We will add accessors and mutators for these, and override netString(), and
+provide two constructors, similar to the original Person.  The list of
+BetterPerson's methods follows:
+ <p>
+Constructors:
+</p><pre>public BetterPerson(String name, String password, String email, String trades)
+</pre>
+Creates a BetterPerson with the fields initialized.  Call a base class Person
+constructor with this(name, password) to initialize those fields.
+<br>
+<pre>public BetterPerson(String netString)
+</pre>
+Creates a BetterPerson given a String of the format
+"[nickname]\t[password]\t[email]\t[trades]"  Call a base class Person constructor to
+handle the initialization of name and password.
+ <p>
+Accessors/Mutators:
+</p><pre>public String getEmail()
+public void setEmail(String email)
+public String getTrades()
+public void setTrades(String trades)
+</pre>
+ <p>
+
+Utility methods:
+</p><pre>public String toString()
+</pre>
+ Creates a String of "Nickname:" followed by the nickname, a newline, and
+then "Password:" followed by the password and a newline, then "Email:" followed by
+the email address and a newline, and finally
+"Trades:" follwed by the trades string.
+Use the Person toString() for the name and
+password fields.
+<pre>public String netString()
+</pre>
+ Creates a string of "[nickname]\t[password]\t[email]\t[trades]".  Once
+again, use existing superclass method(s) to help.
+
+<h4>3. BetterAccount.java</h4>
+With this, we can now write BetterAccount to get and update the new fields
+to and from the server.  While some of Account's methods must be
+overridden, some don't rely on the contents of Person, and therefore don't
+need modification in BetterAccount.
+ <p>
+The server has new messages for this part, to accommodate the new fields,
+as well as the security changes.
+</p><pre>GETINFO
+   returns a string of the format
+   "YOURINFO\t[nickname]\t[password]\t[email]\t[trades]"
+</pre>
+<pre>GETINFO\t[user]
+   returns a string of the format
+   "USERINFO\t[nickname]\t*SECRET*\t*PRIVATE*\t*[trades]"
+</pre>
+<pre>GETINFO\t[user]\t[password]
+   returns a string of the format
+   "USERINFO\t[nickname]\t[password]\t[email]\t[trades]"
+</pre>
+<pre>UPDATEINFO\t[nickname]\t[password]\t[email]\t[trades]
+   Updates the information on the server.  Returns "UPDATE CONFIRMED"
+</pre>
+ <p>
+BetterAccount will have the following methods in it to account for the new
+changes.  Note that transferToAcct and checkBalance are just inherited
+from Account's
+original implementation.
+ </p><p>
+</p><pre>public BetterAccount()
+</pre>
+  Same constructor as Account(asks server for information, constructs a
+Person and stores it), except we construct and assign a BetterPerson 
+in the base Account.  You will not need, and should not use, an instance
+variable in the BetterAccount class to point to this BetterPerson object.
+<pre>public Person getInformation()
+</pre>
+   Asks server for information about the user and returns a BetterPerson.
+Overrides Account's method.  Note this returns a Person--if it returned
+BetterPerson, it would not override its parent.
+<pre>public Person getInformation(String username)
+</pre>
+Asks server for information about another user and returns a
+BetterPerson.  Overrides Account's method.
+<pre>public String updateInformation(String newNick, String newPass, String newEmail, String newTrades)
+</pre>
+Sends an UPDATEINFO request to the server, of the format
+"UPDATEINFO\t[nickname]\t[password]\t[email]\t[trades]".
+ <p>
+If all goes well, we'll have written a reasonably small amount of code to
+increase the storage of a Person.  At this stage, if you modify
+ElevenDollar to construct a BetterAccount instead of an Account(but still
+leave it in an Account variable) everything should function except for
+updating your information.  A few SavitchIn.readLines will easily fix
+that.  You can add those now or wait until you're done with the other
+classes.
+
+</p><h4>4. TransAccount.java</h4>
+
+It'd be really nice if, after making or receiving transfers, you could get
+a record of what they were.  A TransactionAccount is pretty much the same as
+an Account, except for an additional feature, that you can ask to review
+previous transactions.
+ <p>
+The server will understand one new message for this part:
+
+</p><pre>GET_HISTORY
+</pre>
+Tells the server to return a String containing information about all
+previous transactions involving the owner of the account.  The String has 
+a format like:
+<pre>Tue Oct 21 20:48:40 PDT 2003	cs11f7	cs11f6	100	surfing lesson
+Mon Oct 20 10:38:00 PDT 2003	cs11f6	cs11f7	150	tune up his car
+Mon Oct 20 05:12:20 PDT 2003	cs11f7	cs11f3	30	cookies
+Sun Oct 19 11:48:33 PDT 2003	cs11f3	cs11f7	40	donuts
+</pre>
+The fields in each transaction are separated by tab characters; transactions are
+separated by newlines.  The fields in each transaction are:  Date and time,
+source account name, destination account name, amount, and comment.
+ <p>
+Write TransAccount to extend BetterAccount, and add one more
+method of the following signature:
+</p><pre>public String getHistory()
+</pre>
+Returns the transaction history of your own transactions, in the same format
+as received from the server.
+ <p>
+At this point you should be able to add a fifth option to ElevenDollar, to
+retrieve your transaction history.  Modify ElevenDollar so it constructs a
+TransAccount instead of a BetterAccount(but still places it in the same
+Account variable)
+ </p><p>
+Since getting the history isn't something an ordinary Account can
+do, you'll need to cast the Account reference, and either check
+beforehand with an instanceof clause or afterwards with a try/catch
+block, ready to catch a ClassCastException.  This is explained in more
+detail under the heading "ElevenDollar.java".
+
+</p><h4>5. BuddyAccount.java</h4>
+
+Now we'll create a BuddyAccount to represent an account of another user,
+someone whose password you know.  BuddyAccounts are like ordinary
+BetterAccounts, in that you can get their complete information and their
+balance.  Unlike ordinary accounts, however, you can neither transfer
+money nor update their information. (That wouldn't be very buddy-like!)
+ <p>
+BuddyAccounts are also initialized a bit differently than normal
+BetterAccounts too--the server doesn't usually give you the complete
+information for users other than yourself.  You'll need someone's password
+to prove to the server that you're their buddy.  You'll also need to keep
+their login in a private variable, so that if you need to you can access
+the server again and re-retrieve information.
+ </p><p>
+At this point, I remind you--please set your client password to something
+that isn't anything like a real password you actually use, since to test
+this feature out you'll naturally be telling people this password.
+ </p><p>
+There will be one more new message the server understands for this part,
+so that you can get someone else's balance:
+</p><pre>BALANCE\t[user]\t[password]
+</pre>
+Returns the balance of this user, if the password matches, in the form
+"BALANCE IS [amount]".  Returns ERROR otherwise.
+ <p>
+BuddyAccount constructors take in a user's name and password.  It asks the
+user for information, retrieves it, and places it in a new Person.  For
+each of the methods, however, it must send a different message, or
+sometimes refuse to send information at all.  The complete list of methods
+you must add is below.
+</p><pre>public BuddyAccount(String username, String password) throws NoBuddyException
+</pre>
+Create an new account.  Ask the server to retrieve the information of a
+user with this name and password, and stores this in a Person variable.
+Throws the declared exception on failure.
+ <p>
+Methods:
+</p><pre>public Person getInformation() throws NoBuddyException
+</pre>
+Ask the server to retrieve the information on this buddy, using your
+stored variable and the password from the stored BetterPerson.  Throws
+the declared exception on failure.
+ <p>
+</p><pre>public String updateInformation(String newNick, String newPass)
+   throws  UnsupportedOperationException
+</pre>
+[see part on Exceptions for details]
+ <p>
+</p><pre>public double checkBalance() throws NoBuddyException
+</pre>
+Sends a BALANCE request to the server.  For buddies, BALANCE is of the
+format:"BALANCE\t[user]\t[password]".  As before, if ERROR is returned,
+throw a NoBuddyException.  You'll also need to use the stored login
+here as well.
+ <p>
+</p><pre>public String transferToAcct(String user, double amount, String comment)
+   throws UnsupportedOperationException
+</pre>
+[see part on Exceptions for details]
+
+
+<h4>6. ElevenDollar.java</h4>
+
+ElevenDollar needs a couple of changes to make it work nicely with the added
+functionality of the classes you are writing.  The first of which is to modify
+the update function so it requests all five fields.  Optionally, you can
+modify the update so that if you leave it blank, it will send the old
+value, so you don't have to retype your previous information every time.
+This is optional, however--all that's required is that the user types in
+the information as before, but with five fields in the appropriate order.
+ <p>
+Printing the fields should be unchanged, if you used the toString()
+operator to print out a Person.
+ </p><p>
+ElevenDollar also needs to provide an interface that lets you access
+multiple accounts.  We'll handle this by letting the user choose to switch
+accounts during execution.  We'll also be modifying the menu a bit so it
+has two new options, and so that it says "account's" instead of "your".
+See the following sample run:
+</p><pre>
+Welcome to the 11-dollar banking system
+A)Retrieve personal information
+B)Update account's personal information
+C)Check account's balance
+D)Transfer money to another account
+E)View transaction history
+F)Select a different account
+X)Exit
+<i>F</i>
+Which account?(leave blank for your own)
+<i>cs11f2</i>
+Account password?
+<i>11_4ever</i>
+Welcome to the 11-dollar banking system
+A)Retrieve personal information
+B)Update account's personal information
+C)Check account's balance
+D)Transfer money to another account
+E)View transaction history
+F)Select a different account
+X)Exit
+<i>A</i>
+Nickname:Dave 'The TA' Berlin
+Secret Password:11_4ever
+Email:cs11f2@sunpal.ucsd.edu
+Trades:Chips
+</pre>
+ <p>
+A single Account variable will hold either a BuddyAccount or TransAccount,
+depending on which account is currently active.  However, when requesting
+a transaction history, you'll need to check to make sure the Account
+you're looking at is a TransAccount.
+ </p><p>
+There are two suggested ways to do this.  The first option is to use
+instanceof, the same way you checked for objects being equal.  Check to
+see if the Account is a TransAccount before letting the user try to access
+its history.
+ </p><p>
+The second is to attempt to cast it anyway.  If the Account turns out not
+to be a TransAccount, it will throw a ClassCastException, which you can
+then catch.  Then you can peacefully tell the user the operation isn't
+allowed on this account.
+ </p><p>
+As a note, this isn't the cleanest of implementations, but it is a
+reasonable workaround, and a small price to pay for the amount of code
+we've reused.
+ </p><p>
+
+</p><h4>7. NoBuddyException.java, NoUserException.java, UnsupportedOperationException</h4>
+
+Some of you may have used C or C++ before--  these languages have a number
+of ways to handle runtime errors, the sort from bad data.  They're errors
+like a divide by zero or an out-of-memory.  Often times the return value
+of the function has some special case to report an error, such as
+checkBalance returning -1.0.  But it doesn't really tell you what's going
+on.  Even worse are constructors, which have no return value at all.
+ <p>
+Exceptions leap upwards through the stack of procedure calls--they're like
+an instant return, except they return to a catch block.  So you can use
+them to package up an explanation of the error and what caused it, which
+is great for debugging.  You can also catch exceptions in an attempt to
+keep running.
+ </p><p>
+Some of you may have noticed that when you get a runtime error, like a
+NullPointerException, you get a bunch of procedure names and line
+numbers--these say exactly where the program was, a computer version of "I
+went here, this thing told me to go there, so I tried to find this house,
+but it didn't exist!"
+ </p><p>
+If you've ever programmed in C, if you make the same mistake, your program
+will say "Segmentation fault" and exit.  So three cheers for Java,
+everyone.
+ </p><p>
+There are three kinds of exceptions we'll be taking care of in this
+project.  This in no way will bulletproof your program from a clueless
+user, but it will gracefully handle some of the more common cases
+introduced in this portion.  Each one is a bit different.
+ </p><p>
+</p><pre>NoBuddyException
+</pre>
+Some exceptions do not have to be declared before being thrown.  In
+BuddyAccount, we'll handle the case of a user giving an invalid user and
+password by creating a NoBuddyException, which extends RuntimeException.
+It will have one constructor, which takes an error message String.  This
+String is then passed to its superclass, RuntimeException, which will
+store it away in case the handler wants to take a look at it.
+ <p>
+</p><pre>NoUserException
+</pre>
+Some exceptions do need to be declared when thrown.  In TransAccount,
+we'll handle the unlikely case of an invalid user trying to access their
+history.  Define a class NoUserException which extends Exception.  Unlike
+RuntimeExceptions, these must be declared in a throws clause of the method
+signature, so that anyone using it knows this can happen.
+ <p>
+</p><pre>UnsupportedOperationException
+</pre>
+There are many descendant classes of Exception already written by Java.
+UnsupportedOperationException is particularly
+suited to the case when a user attempts to transfer money out of a
+BuddyAccount, or update its information.  Throw this exception should
+either of those methods be called on a BuddyAccount.
+ <p>
+Now that all this error information is coming out, create a try-catch
+block in ElevenDollar to handle individual cases of Exceptions.  If the
+user creates an exception, you should catch it and report the error, and
+continue executing the loop with the menu in it.
+ </p><p>
+There are, of course, all the holes in P3, such as checkBalance, or the
+normal Account's constructor.  Ordinarily we would patch that up too, but
+part of P4 is to demonstrate that we can reuse P3's code without making
+<i>any</i> modifications.  (Well almost none:  Account didn't have a way for
+subclasses to access its Person, so that was added.)
+
+
+</p><h4>8: Hints</h4>
+<ol>
+<li> 
+Start Early.  Or again, at least try not to start too late.
+</li><li> 
+Read the README, perhaps several times.  Unlike the P3's README, some of
+the methods are a little less obvious.  Think a bit before diving into the
+code.  Try to implement them in your head and see what happens, and ask
+questions before the due date.
+</li><li> 
+Exceptions are among the simplest classes in the world to write, so don't
+be intimidated by the number of them.  They're approximately five lines,
+two of which are close braces.  Don't forget to comment them though, to
+say what the exception is about.
+</li><li> 
+Getting a field out of a String message is something you might end up doing
+often.
+It might help to write a utility function String getField(String input,
+int n) that will find the nth field and return that.
+</li><li> 
+Use the following checklist for things you need to do:
+<pre>  Create BetterPerson.java
+  Create BetterAccount.java
+  Create TransAccount.java to have Transaction ability.
+  Create BuddyAccount.java to access accounts that aren't your own.
+  Add Exceptions to BuddyAccount.
+  Modify ElevenDollar to switch accounts, use TransAccount's ability, and catch Exceptions.
+</pre>
+</li></ol>
+
+ <h4>
+Grading of assignment #4
+ </h4> 
+
+There are 20 possible points for this assignment, broken down as follows:
+<pre>a.   4 points for your BetterPerson class
+b.   4 points for your BetterAccount class
+c.   4 points for your BuddyAccount class
+d.   3 points for your TransAccount class
+e.   2  points for your exception classes
+f.   3 points for your new ElevenDollar class
+
+
+</pre>
+
+In each case, doing a part of the assignment means that your code
+compiles, runs correctly, satisfies the specifications,
+is well-written and commented.
+
+
+
+</body></html>

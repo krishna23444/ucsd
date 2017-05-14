@@ -1,0 +1,85 @@
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library       |      Version       | Available |
+============================================================================
+| Basic DW Building Blocks                |
+                                         V-2004.06-DWF_0406    |     *     |
+| Licensed DW Building Blocks             |
+                                                               |           |
+============================================================================
+
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'wep_encrypt_v4'
+
+  Updating timing information
+
+  Beginning Implementation Selection
+  ----------------------------------
+  Processing 'wep_encrypt_v4_DW01_inc_8_0'
+  Processing 'wep_encrypt_v4_DW01_add_8_0'
+  Processing 'wep_encrypt_v4_DW01_add_8_1'
+  Processing 'wep_encrypt_v4_DW01_add_16_0'
+  Processing 'wep_encrypt_v4_DW01_cmp2_32_0'
+  Processing 'wep_encrypt_v4_DW01_add_8_2'
+  Processing 'wep_encrypt_v4_DW01_add_32_0'
+  Processing 'wep_encrypt_v4_DW01_cmp2_32_1'
+  Processing 'DW01_inc_2_0'
+  Processing 'wep_encrypt_v4_DW01_add_16_1'
+  Processing 'wep_encrypt_v4_DW01_add_32_1'
+
+  Beginning Mapping Optimizations  (High effort)
+  -------------------------------
+
+                          ELAPSED 
+CPU SEC MBYTES   AREA      TIME   
+------- ------ --------- ---------
+   1537  287.4   53284.0   0:33:19
+   1555  287.4   51852.0   0:33:38
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                          ELAPSED 
+CPU SEC MBYTES   AREA      TIME   
+------- ------ --------- ---------
+   1555  287.4   51852.0   0:33:38
+
+
+  Beginning Area-Recovery Phase  (max_area 0)
+  -----------------------------
+
+                          ELAPSED 
+CPU SEC MBYTES   AREA      TIME   
+------- ------ --------- ---------
+   1555  287.4   51852.0   0:33:38
+   1557  287.4   51852.0   0:33:40
+   1625  287.4   51679.0   0:34:53
+Information: Complementing port 'S0' in design 'wep_encrypt_v4_MUX_OP_256_8_8'.
+	 The new name of the port is 'S0_BAR'. (OPT-319)
+Information: Complementing port 'S1' in design 'wep_encrypt_v4_MUX_OP_256_8_8'.
+	 The new name of the port is 'S1_BAR'. (OPT-319)
+Information: Complementing port 'S2' in design 'wep_encrypt_v4_MUX_OP_256_8_8'.
+	 The new name of the port is 'S2_BAR'. (OPT-319)
+Information: Complementing port 'S3' in design 'wep_encrypt_v4_MUX_OP_256_8_8'.
+	 The new name of the port is 'S3_BAR'. (OPT-319)
+Information: Complementing port 'S4' in design 'wep_encrypt_v4_MUX_OP_256_8_8'.
+	 The new name of the port is 'S4_BAR'. (OPT-319)
+   1690  287.4   50851.0   0:36:00
+   1739  287.4   50542.0   0:36:52
+   1746  287.4   50542.0   0:36:59
+   1884  287.4   50508.0   0:39:25
+   1919  287.4   50428.0   0:40:02
+   1958  287.4   50398.0   0:40:42
+   1972  287.4   50394.0   0:40:58
+
+  Optimization Complete
+  ---------------------
+Warning: Design 'wep_encrypt_v4' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+     Net 'port_A_clk': 2225 load(s), 1 driver(s)
+  Transferring design 'wep_encrypt_v4' to database 'wep_encrypt_v4.db'
+
+Current design is 'wep_encrypt_v4'.

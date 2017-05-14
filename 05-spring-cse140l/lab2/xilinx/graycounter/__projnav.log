@@ -1,0 +1,1147 @@
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "View HDL Functional Model".
+
+DRC Check completed: No Error found.
+Vhdl netlist file generated.
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do graycounter_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_graycounter
+# -- Compiling architecture behavioral of ftce_mxilinx_graycounter
+# -- Compiling entity graycounter
+# -- Compiling architecture behavioral of graycounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity graycounter_tbw
+# -- Compiling architecture testbench_arch of graycounter_tbw
+# vsim -lib work -t 1ps graycounter_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.graycounter_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.graycounter(behavioral)
+# Loading work.ftce_mxilinx_graycounter(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and4b3(and4b3_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and4b1(and4b1_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or4(or4_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xnor4(xnor4_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and3b2(and3b2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /graycounter_tbw/line__91 File: graycounter_tbw.ant
+# Break at graycounter_tbw.ant line 256
+# Stopped at graycounter_tbw.ant line 256 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+Started process "Synthesize".
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "G:/xilinx/projects/lab2/graycounter/graycounter.vhf" in Library work.
+Entity <FTCE_MXILINX_graycounter> compiled.
+Entity <FTCE_MXILINX_graycounter> (Architecture <BEHAVIORAL>) compiled.
+Entity <graycounter> compiled.
+Entity <graycounter> (Architecture <BEHAVIORAL>) compiled.
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <graycounter> (Architecture <BEHAVIORAL>).
+    Set user-defined property "HU_SET =  XLXI_1_2" for instance <XLXI_1> in unit <graycounter>.
+    Set user-defined property "HU_SET =  XLXI_2_1" for instance <XLXI_2> in unit <graycounter>.
+    Set user-defined property "HU_SET =  XLXI_3_3" for instance <XLXI_3> in unit <graycounter>.
+    Set user-defined property "HU_SET =  XLXI_4_0" for instance <XLXI_4> in unit <graycounter>.
+Entity <graycounter> analyzed. Unit <graycounter> generated.
+
+Analyzing Entity <FTCE_MXILINX_graycounter> (Architecture <behavioral>).
+    Set user-defined property "INIT =  0" for instance <I_36_35> in unit <FTCE_MXILINX_graycounter>.
+    Set user-defined property "RLOC =  X0Y0" for instance <I_36_35> in unit <FTCE_MXILINX_graycounter>.
+Entity <FTCE_MXILINX_graycounter> analyzed. Unit <FTCE_MXILINX_graycounter> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <FTCE_MXILINX_graycounter>.
+    Related source file is "G:/xilinx/projects/lab2/graycounter/graycounter.vhf".
+Unit <FTCE_MXILINX_graycounter> synthesized.
+
+
+Synthesizing Unit <graycounter>.
+    Related source file is "G:/xilinx/projects/lab2/graycounter/graycounter.vhf".
+Unit <graycounter> synthesized.
+
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Advanced RAM inference ...
+Advanced multiplier inference ...
+Advanced Registered AddSub inference ...
+Dynamic shift register inference ...
+
+=========================================================================
+HDL Synthesis Report
+
+Found no macro
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <graycounter> ...
+
+Optimizing unit <FTCE_MXILINX_graycounter> ...
+Loading device for application Rf_Device from file '2v80.nph' in environment G:/xilinx/ise71.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block graycounter, actual ratio is 0.
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 2v80cs144-5 
+
+ Number of Slices:                       4  out of    512     0%  
+ Number of Slice Flip Flops:             4  out of   1024     0%  
+ Number of bonded IOBs:                  7  out of     92     7%  
+ Number of GCLKs:                        1  out of     16     6%  
+
+
+=========================================================================
+TIMING REPORT
+
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+CLK                                | BUFGP                  | 4     |
+-----------------------------------+------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -5
+
+   Minimum period: 4.062ns (Maximum Frequency: 246.184MHz)
+   Minimum input arrival time before clock: 1.576ns
+   Maximum output required time after clock: 5.140ns
+   Maximum combinational path delay: No path found
+
+=========================================================================
+
+
+
+
+Started process "Translate".
+
+
+Command Line: ngdbuild -intstyle ise -dd
+g:\xilinx\projects\lab2\graycounter/_ngo -nt timestamp -i -p xc2v80-cs144-5
+graycounter.ngc graycounter.ngd 
+
+Reading NGO file 'G:/xilinx/projects/lab2/graycounter/graycounter.ngc' ...
+
+Checking timing specifications ...
+Checking expanded design ...
+
+NGDBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Writing NGD file "graycounter.ngd" ...
+
+Writing NGDBUILD log file "graycounter.bld"...
+
+NGDBUILD done.
+
+
+
+
+Started process "Map".
+
+Using target part "2v80cs144-5".
+Mapping design into LUTs...
+Running directed packing...
+Running delay-based LUT packing...
+Running related packing...
+
+Design Summary:
+Number of errors:      0
+Number of warnings:    0
+Logic Utilization:
+  Number of Slice Flip Flops:           4 out of   1,024    1%
+  Number of 4 input LUTs:               4 out of   1,024    1%
+Logic Distribution:
+  Number of occupied Slices:            4 out of     512    1%
+  Number of Slices containing only related logic:       4 out of       4  100%
+  Number of Slices containing unrelated logic:          0 out of       4    0%
+        *See NOTES below for an explanation of the effects of unrelated logic
+Total Number 4 input LUTs:              4 out of   1,024    1%
+
+  Number of bonded IOBs:                7 out of      92    7%
+  Number of GCLKs:                      1 out of      16    6%
+
+   Number of RPM macros:            4
+Total equivalent gate count for design:  59
+Additional JTAG gate count for IOBs:  336
+Peak Memory Usage:  100 MB
+
+NOTES:
+
+   Related logic is defined as being logic that shares connectivity - e.g. two
+   LUTs are "related" if they share common inputs.  When assembling slices,
+   Map gives priority to combine logic that is related.  Doing so results in
+   the best timing performance.
+
+   Unrelated logic shares no connectivity.  Map will only begin packing
+   unrelated logic into a slice once 99% of the slices are occupied through
+   related logic packing.
+
+   Note that once logic distribution reaches the 99% level through related
+   logic packing, this does not mean the device is completely utilized.
+   Unrelated logic packing will then begin, continuing until all usable LUTs
+   and FFs are occupied.  Depending on your timing budget, increased levels of
+   unrelated logic packing may adversely affect the overall timing performance
+   of your design.
+
+Mapping completed.
+See MAP report file "graycounter_map.mrp" for details.
+
+
+
+
+Started process "Place & Route".
+
+
+
+
+Constraints file: graycounter.pcf.
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "graycounter" is an NCD, version 3.1, device xc2v80, package cs144, speed -5
+
+Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000
+Celsius)
+Initializing voltage to 1.425 Volts. (default - Range: 1.425 to 1.575 Volts)
+
+
+Device speed data version:  "PRODUCTION 1.121 2005-02-23".
+
+
+Device Utilization Summary:
+
+   Number of BUFGMUXs                  1 out of 16      6%
+   Number of External IOBs             7 out of 92      7%
+      Number of LOCed IOBs             0 out of 7       0%
+
+   Number of SLICEs                    4 out of 512     1%
+
+
+Overall effort level (-ol):   Standard (set by user)
+Placer effort level (-pl):    Standard (set by user)
+Placer cost table entry (-t): 1
+Router effort level (-rl):    Standard (set by user)
+
+
+Starting Placer
+
+Phase 1.1
+Phase 1.1 (Checksum:9896a3) REAL time: 1 secs 
+
+Phase 2.31
+Phase 2.31 (Checksum:1312cfe) REAL time: 1 secs 
+
+Phase 3.2
+
+
+
+Phase 3.2 (Checksum:1c9c37d) REAL time: 1 secs 
+
+Phase 4.30
+Phase 4.30 (Checksum:26259fc) REAL time: 1 secs 
+
+Phase 5.3
+Phase 5.3 (Checksum:2faf07b) REAL time: 1 secs 
+
+Phase 6.5
+Phase 6.5 (Checksum:39386fa) REAL time: 1 secs 
+
+Phase 7.8
+.
+Phase 7.8 (Checksum:98a471) REAL time: 1 secs 
+
+Phase 8.5
+Phase 8.5 (Checksum:4c4b3f8) REAL time: 1 secs 
+
+Phase 9.18
+Phase 9.18 (Checksum:55d4a77) REAL time: 1 secs 
+
+Phase 10.5
+Phase 10.5 (Checksum:5f5e0f6) REAL time: 1 secs 
+
+Phase 11.27
+Phase 11.27 (Checksum:68e7775) REAL time: 1 secs 
+
+Phase 12.24
+Phase 12.24 (Checksum:7270df4) REAL time: 1 secs 
+
+Writing design to file graycounter.ncd
+
+
+Total REAL time to Placer completion: 1 secs 
+Total CPU time to Placer completion: 0 secs 
+
+Starting Router
+
+Phase 1: 37 unrouted;       REAL time: 1 secs 
+
+Phase 2: 32 unrouted;       REAL time: 1 secs 
+
+Phase 3: 0 unrouted;       REAL time: 1 secs 
+
+Phase 4: 0 unrouted;       REAL time: 1 secs 
+
+
+Total REAL time to Router completion: 1 secs 
+Total CPU time to Router completion: 1 secs 
+
+Generating "PAR" statistics.
+
+**************************
+Generating Clock Report
+**************************
+
++---------------------+--------------+------+------+------------+-------------+
+|        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
++---------------------+--------------+------+------+------------+-------------+
+|           CLK_BUFGP |     BUFGMUX7P| No   |    4 |  0.000     |  0.653      |
++---------------------+--------------+------+------+------------+-------------+
+
+Generating Pad Report.
+
+All signals are completely routed.
+
+Total REAL time to PAR completion: 2 secs 
+Total CPU time to PAR completion: 1 secs 
+
+Peak Memory Usage:  68 MB
+
+Placement: Completed - No errors found.
+Routing: Completed - No errors found.
+
+Number of error messages: 0
+Number of warning messages: 0
+Number of info messages: 1
+
+Writing design to file graycounter.ncd
+
+
+
+PAR done!
+
+Started process "Generate Post-Place & Route Static Timing".
+
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "graycounter" is an NCD, version 3.1, device xc2v80, package cs144, speed -5
+
+Analysis completed Tue May 03 22:46:24 2005
+--------------------------------------------------------------------------------
+
+Generating Report ...
+
+Number of warnings: 0
+Total time: 1 secs 
+
+
+
+
+Started process "Generate Post-Place & Route Simulation Model".
+
+INFO:NetListWriters:635 - The generated VHDL netlist contains Xilinx SIMPRIM
+   simulation primitives and has to be used with SIMPRIM library for correct
+   compilation and simulation. 
+
+
+
+
+
+
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do graycounter_tbw_crit.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_graycounter
+# -- Compiling architecture behavioral of ftce_mxilinx_graycounter
+# -- Compiling entity graycounter
+# -- Compiling architecture behavioral of graycounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity graycounter_tbw_crit
+# -- Compiling architecture testbench_arch of graycounter_tbw_crit
+# vsim -lib work -t 1ps graycounter_tbw_crit 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.graycounter_tbw_crit(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.graycounter(behavioral)
+# Loading work.ftce_mxilinx_graycounter(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and4b3(and4b3_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and4b1(and4b1_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or4(or4_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xnor4(xnor4_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and3b2(and3b2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /graycounter_tbw_crit/line__91 File: graycounter_tbw_crit.ant
+# Break at graycounter_tbw_crit.ant line 149
+# Stopped at graycounter_tbw_crit.ant line 149 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do graycounter_tbw_crit.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_graycounter
+# -- Compiling architecture behavioral of ftce_mxilinx_graycounter
+# -- Compiling entity graycounter
+# -- Compiling architecture behavioral of graycounter
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity graycounter_tbw_crit
+# -- Compiling architecture testbench_arch of graycounter_tbw_crit
+# vsim -lib work -t 1ps graycounter_tbw_crit 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.graycounter_tbw_crit(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.graycounter(behavioral)
+# Loading work.ftce_mxilinx_graycounter(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and4b3(and4b3_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and4b1(and4b1_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or4(or4_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xnor4(xnor4_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and3b2(and3b2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /graycounter_tbw_crit/line__91 File: graycounter_tbw_crit.ant
+# Break at graycounter_tbw_crit.ant line 148
+# Stopped at graycounter_tbw_crit.ant line 148 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "View HDL Functional Model".
+
+DRC Check completed: No Error found.
+Vhdl netlist file generated.
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do gc2_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_graycounter2
+# -- Compiling architecture behavioral of ftce_mxilinx_graycounter2
+# -- Compiling entity graycounter2
+# -- Compiling architecture behavioral of graycounter2
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity gc2_tbw
+# -- Compiling architecture testbench_arch of gc2_tbw
+# vsim -lib work -t 1ps gc2_tbw 
+# ** Error: License checkout has been disallowed because
+# only one session is allowed to run on an uncounted nodelock
+# license and an instance of ModelSim is already running with a
+# nodelocked license on this machine
+# Error loading design
+Error loading design
+ERROR: VSim failed to simulate annotated testbench
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do gc2_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_graycounter2
+# -- Compiling architecture behavioral of ftce_mxilinx_graycounter2
+# -- Compiling entity graycounter2
+# -- Compiling architecture behavioral of graycounter2
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity gc2_tbw
+# -- Compiling architecture testbench_arch of gc2_tbw
+# vsim -lib work -t 1ps gc2_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.gc2_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.graycounter2(behavioral)
+# Loading work.ftce_mxilinx_graycounter2(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xnor4(xnor4_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and3b2(and3b2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and2b1(and2b1_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and2(and2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or2b1(or2b1_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /gc2_tbw/line__91 File: gc2_tbw.ant
+# Break at gc2_tbw.ant line 256
+# Stopped at gc2_tbw.ant line 256 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "View HDL Functional Model".
+
+DRC Check completed: No Error found.
+Vhdl netlist file generated.
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do gc2_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_graycounter2
+# -- Compiling architecture behavioral of ftce_mxilinx_graycounter2
+# -- Compiling entity graycounter2
+# -- Compiling architecture behavioral of graycounter2
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity gc2_tbw
+# -- Compiling architecture testbench_arch of gc2_tbw
+# vsim -lib work -t 1ps gc2_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.gc2_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.graycounter2(behavioral)
+# Loading work.ftce_mxilinx_graycounter2(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xnor4(xnor4_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and3b2(and3b2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or2b1(or2b1_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and3(and3_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /gc2_tbw/line__91 File: gc2_tbw.ant
+# Break at gc2_tbw.ant line 256
+# Stopped at gc2_tbw.ant line 256 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+Started process "View HDL Functional Model".
+
+DRC Check completed: No Error found.
+Vhdl netlist file generated.
+
+
+
+
+
+
+Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+
+# 6.0a
+
+# do gc2_tbw.ado 
+listening on address 127.0.0.1 port 1200
+# ** Warning: (vlib-34) Library already exists at "work".
+# resume
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity ftce_mxilinx_graycounter2
+# -- Compiling architecture behavioral of ftce_mxilinx_graycounter2
+# -- Compiling entity graycounter2
+# -- Compiling architecture behavioral of graycounter2
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity gc2_tbw
+# -- Compiling architecture testbench_arch of gc2_tbw
+# vsim -lib work -t 1ps gc2_tbw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.gc2_tbw(testbench_arch)
+# ** Warning: (vsim-3479) Time unit 'fs' is less than the simulator resolution (1ps).
+#    Time: 0 ps  Iteration: 0  Region: /
+# Loading work.graycounter2(behavioral)
+# Loading work.ftce_mxilinx_graycounter2(behavioral)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xor2(xor2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.fdce(fdce_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.xnor4(xnor4_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and3b2(and3b2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.and3(and3_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.or2(or2_v)
+# ** Failure: Success! Simulation for annotation completed
+#    Time: 1 us  Iteration: 0  Process: /gc2_tbw/line__91 File: gc2_tbw.ant
+# Break at gc2_tbw.ant line 256
+# Stopped at gc2_tbw.ant line 256 
+
+
+Project Navigator Auto-Make Log File
+-------------------------------------
+
+
+
+
+
+
+
+
+
+
+Started process "Synthesize".
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "G:/xilinx/projects/lab2/graycounter/graycounter2.vhf" in Library work.
+Entity <FTCE_MXILINX_graycounter2> compiled.
+Entity <FTCE_MXILINX_graycounter2> (Architecture <BEHAVIORAL>) compiled.
+Entity <graycounter2> compiled.
+Entity <graycounter2> (Architecture <BEHAVIORAL>) compiled.
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <graycounter2> (Architecture <BEHAVIORAL>).
+    Set user-defined property "HU_SET =  XLXI_1_2" for instance <XLXI_1> in unit <graycounter2>.
+    Set user-defined property "HU_SET =  XLXI_2_1" for instance <XLXI_2> in unit <graycounter2>.
+    Set user-defined property "HU_SET =  XLXI_3_3" for instance <XLXI_3> in unit <graycounter2>.
+    Set user-defined property "HU_SET =  XLXI_4_0" for instance <XLXI_4> in unit <graycounter2>.
+Entity <graycounter2> analyzed. Unit <graycounter2> generated.
+
+Analyzing Entity <FTCE_MXILINX_graycounter2> (Architecture <behavioral>).
+    Set user-defined property "INIT =  0" for instance <I_36_35> in unit <FTCE_MXILINX_graycounter2>.
+    Set user-defined property "RLOC =  X0Y0" for instance <I_36_35> in unit <FTCE_MXILINX_graycounter2>.
+Entity <FTCE_MXILINX_graycounter2> analyzed. Unit <FTCE_MXILINX_graycounter2> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <FTCE_MXILINX_graycounter2>.
+    Related source file is "G:/xilinx/projects/lab2/graycounter/graycounter2.vhf".
+Unit <FTCE_MXILINX_graycounter2> synthesized.
+
+
+Synthesizing Unit <graycounter2>.
+    Related source file is "G:/xilinx/projects/lab2/graycounter/graycounter2.vhf".
+Unit <graycounter2> synthesized.
+
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Advanced RAM inference ...
+Advanced multiplier inference ...
+Advanced Registered AddSub inference ...
+Dynamic shift register inference ...
+
+=========================================================================
+HDL Synthesis Report
+
+Found no macro
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <graycounter2> ...
+
+Optimizing unit <FTCE_MXILINX_graycounter2> ...
+Loading device for application Rf_Device from file '2v80.nph' in environment G:/xilinx/ise71.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block graycounter2, actual ratio is 0.
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 2v80cs144-5 
+
+ Number of Slices:                       4  out of    512     0%  
+ Number of Slice Flip Flops:             4  out of   1024     0%  
+ Number of bonded IOBs:                  7  out of     92     7%  
+ Number of GCLKs:                        1  out of     16     6%  
+
+
+=========================================================================
+TIMING REPORT
+
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+CLK                                | BUFGP                  | 4     |
+-----------------------------------+------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -5
+
+   Minimum period: 4.994ns (Maximum Frequency: 200.240MHz)
+   Minimum input arrival time before clock: 1.576ns
+   Maximum output required time after clock: 5.100ns
+   Maximum combinational path delay: No path found
+
+=========================================================================
+
+
+
+
+Started process "Translate".
+
+
+Command Line: ngdbuild -intstyle ise -dd
+g:\xilinx\projects\lab2\graycounter/_ngo -nt timestamp -i -p xc2v80-cs144-5
+graycounter2.ngc graycounter2.ngd 
+
+Reading NGO file 'G:/xilinx/projects/lab2/graycounter/graycounter2.ngc' ...
+
+Checking timing specifications ...
+Checking expanded design ...
+
+NGDBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Writing NGD file "graycounter2.ngd" ...
+
+Writing NGDBUILD log file "graycounter2.bld"...
+
+NGDBUILD done.
+
+
+
+
+Started process "Map".
+
+Using target part "2v80cs144-5".
+Mapping design into LUTs...
+Running directed packing...
+Running delay-based LUT packing...
+Running related packing...
+
+Design Summary:
+Number of errors:      0
+Number of warnings:    0
+Logic Utilization:
+  Number of Slice Flip Flops:           4 out of   1,024    1%
+  Number of 4 input LUTs:               4 out of   1,024    1%
+Logic Distribution:
+  Number of occupied Slices:            4 out of     512    1%
+  Number of Slices containing only related logic:       4 out of       4  100%
+  Number of Slices containing unrelated logic:          0 out of       4    0%
+        *See NOTES below for an explanation of the effects of unrelated logic
+Total Number 4 input LUTs:              4 out of   1,024    1%
+
+  Number of bonded IOBs:                7 out of      92    7%
+  Number of GCLKs:                      1 out of      16    6%
+
+   Number of RPM macros:            4
+Total equivalent gate count for design:  59
+Additional JTAG gate count for IOBs:  336
+Peak Memory Usage:  100 MB
+
+NOTES:
+
+   Related logic is defined as being logic that shares connectivity - e.g. two
+   LUTs are "related" if they share common inputs.  When assembling slices,
+   Map gives priority to combine logic that is related.  Doing so results in
+   the best timing performance.
+
+   Unrelated logic shares no connectivity.  Map will only begin packing
+   unrelated logic into a slice once 99% of the slices are occupied through
+   related logic packing.
+
+   Note that once logic distribution reaches the 99% level through related
+   logic packing, this does not mean the device is completely utilized.
+   Unrelated logic packing will then begin, continuing until all usable LUTs
+   and FFs are occupied.  Depending on your timing budget, increased levels of
+   unrelated logic packing may adversely affect the overall timing performance
+   of your design.
+
+Mapping completed.
+See MAP report file "graycounter2_map.mrp" for details.
+
+
+
+
+Started process "Place & Route".
+
+
+
+
+Constraints file: graycounter2.pcf.
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "graycounter2" is an NCD, version 3.1, device xc2v80, package cs144, speed -5
+
+Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000
+Celsius)
+Initializing voltage to 1.425 Volts. (default - Range: 1.425 to 1.575 Volts)
+
+
+Device speed data version:  "PRODUCTION 1.121 2005-02-23".
+
+
+Device Utilization Summary:
+
+   Number of BUFGMUXs                  1 out of 16      6%
+   Number of External IOBs             7 out of 92      7%
+      Number of LOCed IOBs             0 out of 7       0%
+
+   Number of SLICEs                    4 out of 512     1%
+
+
+Overall effort level (-ol):   Standard (set by user)
+Placer effort level (-pl):    Standard (set by user)
+Placer cost table entry (-t): 1
+Router effort level (-rl):    Standard (set by user)
+
+
+Starting Placer
+
+Phase 1.1
+Phase 1.1 (Checksum:9896a3) REAL time: 1 secs 
+
+Phase 2.31
+Phase 2.31 (Checksum:1312cfe) REAL time: 1 secs 
+
+Phase 3.2
+
+
+
+Phase 3.2 (Checksum:1c9c37d) REAL time: 1 secs 
+
+Phase 4.30
+Phase 4.30 (Checksum:26259fc) REAL time: 1 secs 
+
+Phase 5.3
+Phase 5.3 (Checksum:2faf07b) REAL time: 1 secs 
+
+Phase 6.5
+Phase 6.5 (Checksum:39386fa) REAL time: 1 secs 
+
+Phase 7.8
+.
+Phase 7.8 (Checksum:98a471) REAL time: 1 secs 
+
+Phase 8.5
+Phase 8.5 (Checksum:4c4b3f8) REAL time: 1 secs 
+
+Phase 9.18
+Phase 9.18 (Checksum:55d4a77) REAL time: 1 secs 
+
+Phase 10.5
+Phase 10.5 (Checksum:5f5e0f6) REAL time: 1 secs 
+
+Phase 11.27
+Phase 11.27 (Checksum:68e7775) REAL time: 1 secs 
+
+Phase 12.24
+Phase 12.24 (Checksum:7270df4) REAL time: 1 secs 
+
+Writing design to file graycounter2.ncd
+
+
+Total REAL time to Placer completion: 1 secs 
+Total CPU time to Placer completion: 0 secs 
+
+Starting Router
+
+Phase 1: 37 unrouted;       REAL time: 1 secs 
+
+Phase 2: 32 unrouted;       REAL time: 1 secs 
+
+Phase 3: 0 unrouted;       REAL time: 1 secs 
+
+Phase 4: 0 unrouted;       REAL time: 1 secs 
+
+
+Total REAL time to Router completion: 1 secs 
+Total CPU time to Router completion: 0 secs 
+
+Generating "PAR" statistics.
+
+**************************
+Generating Clock Report
+**************************
+
++---------------------+--------------+------+------+------------+-------------+
+|        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
++---------------------+--------------+------+------+------------+-------------+
+|           CLK_BUFGP |     BUFGMUX7P| No   |    4 |  0.000     |  0.653      |
++---------------------+--------------+------+------+------------+-------------+
+
+Generating Pad Report.
+
+All signals are completely routed.
+
+Total REAL time to PAR completion: 1 secs 
+Total CPU time to PAR completion: 1 secs 
+
+Peak Memory Usage:  67 MB
+
+Placement: Completed - No errors found.
+Routing: Completed - No errors found.
+
+Number of error messages: 0
+Number of warning messages: 0
+Number of info messages: 1
+
+Writing design to file graycounter2.ncd
+
+
+
+PAR done!
+
+Started process "Generate Post-Place & Route Static Timing".
+
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "graycounter2" is an NCD, version 3.1, device xc2v80, package cs144, speed -5
+
+Analysis completed Wed May 04 01:00:09 2005
+--------------------------------------------------------------------------------
+
+Generating Report ...
+
+Number of warnings: 0
+Total time: 1 secs 
+
+
+
+
+Started process "Generate Post-Place & Route Static Timing".
+
+Loading device for application Rf_Device from file '2v80.nph' in environment
+G:/xilinx/ise71.
+   "graycounter2" is an NCD, version 3.1, device xc2v80, package cs144, speed -5
+
+Analysis completed Wed May 04 01:00:12 2005
+--------------------------------------------------------------------------------
+
+Generating Report ...
+
+Number of warnings: 0
+Total time: 1 secs 
+

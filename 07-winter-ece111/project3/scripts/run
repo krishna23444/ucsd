@@ -1,0 +1,4 @@
+#!/bin/csh -f
+
+cve config.cve < /dev/null &
+

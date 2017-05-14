@@ -1,0 +1,230 @@
+\documentclass[10pt,letterpaper,oneside,onecolumn,leqno,fleqn]{article}
+
+\usepackage{graphicx}
+
+\author{Nitay Joffe}
+\title{CSE 166 Homework 2}
+\date{10/12/2006}
+
+\begin{document}
+  \maketitle
+
+  \textbf{Written exercises}
+  \begin{enumerate}
+    \item
+      GW, Problem 10.5. \\
+      Suppose we have used the edge model shown, instead of the ramp model of
+      an edge shown in Fig10.6. Sketch the Gradient and Laplacian of each
+      profile. \\
+
+    \pagebreak
+    \item
+      GW, Problem 10.8. \\
+      $$ \left[ \begin{array}{rrr}
+      -1 & 0 & 1
+      \end{array}\right] *
+      \left[ \begin{array}{r}
+      1 \\
+      2 \\
+      1
+      \end{array} \right] =
+      \left[ \begin{array}{rrr}
+      -1 & 0 & 1 \\
+      -2 & 0 & 2 \\
+      -1 & 0 & 1
+      \end{array}\right] $$ \\
+      $$ \left[ \begin{array}{rrr}
+      1 & 2 & 1
+      \end{array}\right] *
+      \left[ \begin{array}{r}
+      -1 \\
+      0  \\
+      1
+      \end{array} \right] =
+      \left[ \begin{array}{rrr}
+      -1 & -2 & -1 \\
+       0 & 0  &  0 \\
+      1  & 2  &  1
+      \end{array}\right] $$
+    
+    \bigskip \bigskip
+    \item
+      Compute $ \nabla^2f $ for the function $ f(x,y) =
+      e^{-(x^2+y^2)/2\sigma^2} $. Show your work.
+      
+      $$ f(x,y) = e^{-(x^2+y^2)/2\sigma^2} =
+      e^{-x^2/2\sigma^2}e^{-y^2/2\sigma^2} $$
+      
+      $$ \frac{\partial f}{\partial x} = \frac{-x}{\sigma^2}
+      e^{-x^2/2\sigma^2}e^{-y^2/2\sigma^2} $$
+      $$ \frac{\partial^2 f}{\partial x^2} = \frac{-1}{\sigma^2}
+      e^{-x^2/2\sigma^2}e^{-y^2/2\sigma^2} + \frac{x^2}{\sigma^4} 
+      e^{-x^2/2\sigma^2}e^{-y^2/2\sigma^2} =
+      \left(-1 + \frac{x^2}{\sigma^2} \right)
+      \frac{1}{\sigma^2}e^{-x^2/2\sigma^2}e^{-y^2/2\sigma^2} $$
+
+      $$ \frac{\partial f}{\partial y} = \frac{-y}{\sigma^2}
+      e^{-x,^2/2\sigma^2}e^{-y^2/2\sigma^2} $$
+      $$ \frac{\partial^2 f}{\partial y^2} = \frac{-1}{\sigma^2}
+      e^{-x^2/2\sigma^2}e^{-y^2/2\sigma^2} + \frac{y^2}{\sigma^4} 
+      e^{-x^2/2\sigma^2}e^{-y^2/2\sigma^2}  =
+      \left(-1 + \frac{y^2}{\sigma^2} \right)
+      \frac{1}{\sigma^2}e^{-x^2/2\sigma^2}e^{-y^2/2\sigma^2} $$
+
+      $$ \nabla^2f = \frac{\partial^2 f}{\partial x^2} +
+      \frac{\partial^2 f}{\partial y^2} =
+      \left(-1 + \frac{x^2}{\sigma^2} \right)
+      \frac{1}{\sigma^2}e^{-x^2/2\sigma^2}e^{-y^2/2\sigma^2} +
+      \left(-1 + \frac{y^2}{\sigma^2} \right)
+      \frac{1}{\sigma^2}e^{-x^2/2\sigma^2}e^{-y^2/2\sigma^2} $$ \\
+      $$ \nabla^2f =
+      \left(-2 + \frac{x^2}{\sigma^2} + \frac{y^2}{\sigma^2} \right)
+      \frac{1}{\sigma^2}e^{-x^2/2\sigma^2}e^{-y^2/2\sigma^2} $$
+
+    \pagebreak
+    \item
+      GW, Problem 10.11.
+
+    \pagebreak
+    \item
+      GW, Problem 4.1. \\
+      \linebreak
+      Substituting $ f(x) $ [Eq. (4.2-6)] into $ F(u) $ [Eq. (4.2-5)]:
+      \begin{eqnarray*}
+        F(u) &=& \frac{1}{M}\sum_{x=0}^{M-1} f(x)e^{-j2\pi ux/M} \\
+             &=& \frac{1}{M}\sum_{x=0}^{M-1}\left[ \sum_{r=0}^{M-1} 
+                 F(r) e^{j2\pi rx/M} \right] e^{-j2\pi ux/M} \\
+             &=& \frac{1}{M}\sum_{r=0}^{M-1} F(r) \sum_{x=0}^{M-1} 
+                 e^{j2\pi rx/M} e^{-j2\pi ux/M} \\
+             &=& \frac{1}{M}F(u)[M] \\
+             &=& F(u)
+      \end{eqnarray*} \\
+      \linebreak
+      Substituting $ F(u) $ [Eq. (4.2-5)] into $ f(x) $ [Eq. (4.2-6)]:
+      \begin{eqnarray*}
+        f(x) &=& \sum_{u=0}^{M-1} F(u)e^{j2\pi ux/M} \\
+             &=& \sum_{u=0}^{M-1} \left[ \frac{1}{M}\sum_{r=0}^{M-1}
+                 f(r)e^{-j2\pi ur/M} \right] e^{j2\pi ux/M} \\
+             &=& \frac{1}{M}\sum_{r=0}^{M-1} f(r) \sum_{u=0}^{M-1} 
+                 e^{-j2\pi ur/M} e^{j2\pi ux/M} \\
+             &=& \frac{1}{M}f(x)[M] \\
+             &=& f(x)
+      \end{eqnarray*}
+
+    \pagebreak
+    \item
+      GW, Problem 4.4.
+      \begin{eqnarray*}
+               &&  let \quad w^2 = u^2 + v^2 \\
+        H(w)   &=& e^{-w^2/2\sigma^2} \\
+        h(z)   &=& \int_{-\infty}^{\infty}H(w)e^{j2\pi wz}dw \\
+               &=& \int_{-\infty}^{\infty}e^{-w^2/2\sigma^2}e^{j2\pi wz}dw \\
+               &=& \int_{-\infty}^{\infty}e^{-\frac{1}{2\sigma^2}\left[
+                   w^2-j4\pi\sigma^2wz\right]}dw \\
+        e^{-\frac{(2\pi)^2z^2\sigma^2}{2}}e^{\frac{(2\pi)^2z^2\sigma^2}{2}} &=& 1 \\
+        h(z)   &=& e^{-\frac{(2\pi)^2z^2\sigma^2}{2}} \int_{-\infty}^{\infty}
+                   e^{-\frac{1}{2\sigma^2}\left[w^2-j4\pi\sigma^2wz-
+                   (2\pi)^2\sigma^4z^2\right]}dw \\
+               &=& e^{-\frac{(2\pi)^2z^2\sigma^2}{2}} \int_{-\infty}^{\infty}
+                   e^{-\frac{1}{2\sigma^2}}\left[w-j2\pi\sigma^2z\right]^2dw \\
+               &&  let \quad r = w - j2\pi\sigma^2z \quad \to \quad dr = dw \\
+        h(z)   &=& e^{-\frac{(2\pi)^2z^2\sigma^2}{2}} \int_{-\infty}^{\infty}
+                   e^{-\frac{r^2}{2\sigma^2}} dr \\
+               &=& \sqrt{2\pi}\sigma e^{-\frac{(2\pi)^2z^2\sigma^2}{2}}
+                   \left[\frac{1}{\sqrt{2\pi}\sigma}\int_{-\infty}^{\infty}
+                   e^{-\frac{r^2}{2\sigma^2}}dr \right] \\
+               &=& \sqrt{2\pi}\sigma e^{-\frac{(2\pi)^2z^2\sigma^2}{2}} \\
+        h(x,y) &=& \sqrt{2\pi}\sigma e^{-2\pi^2\sigma^2(x^2+y^2)}
+      \end{eqnarray*}
+
+    \pagebreak
+    \item
+      GW, Problem 4.6. Explain how this relates to the Matlab function
+      \texttt{fftshift}.
+      \begin{enumerate}
+        \item
+          Prove the validity of Eq.(4.2-21).
+          \begin{eqnarray*}
+            \Im\left[ f(x,y)(-1)^{x+y} \right]
+            &=& \Im\left[ f(x,y)e^{j\pi(x+y)} \right] \\
+            \Im\left[ f(x,y)e^{j\pi(x+y)} \right]
+            &=& \frac{1}{MN} \sum_{x=0}^{M-1} \sum_{y=0}^{N-1} \left[
+                f(x,y)e^{j\pi(x+y)} \right] e^{-j2\pi(ux/M+vy/N)} \\
+            &=& \frac{1}{MN} \sum_{x=0}^{M-1} \sum_{y=0}^{N-1} \left[f(x,y)
+                e^{-j2\pi \left( -\frac{xM}{2M}-\frac{yN}{2N} \right)} \right]
+                e^{-j2\pi(ux/M+vy/N)} \\
+            &=& \frac{1}{MN} \sum_{x=0}^{M-1} \sum_{y=0}^{N-1} f(x,y)
+                e^{-j2\pi \left(x\left[u-\frac{M}{2}\right]/M +
+                y\left[v-\frac{N}{2}\right]/N\right)} \\
+            &=& F(u-M/2, v-N/2)
+          \end{eqnarray*}
+
+        \bigskip \bigskip
+        \item
+          Prove the validity of Eqs.(4.6-1) and (4.6-2).
+          \begin{eqnarray*}
+            \Im\left[f(x,y)e^{j2\pi(u_0x/M+v_0y/N)}\right]
+            &=& \frac{1}{MN} \sum_{x=0}^{M-1} \sum_{y=0}^{N-1} \left[
+                f(x,y)e^{j2\pi(u_0x/M+v_0y/N)} \right] \\
+            &&  \qquad \qquad \qquad \quad e^{-j2\pi(ux/M+vy/N)} \\
+            &=& \frac{1}{MN} \sum_{x=0}^{M-1} \sum_{y=0}^{N-1} \left[ f(x,y)
+                e^{-j2\pi(-u_0x/M-v_0y/N)} \right] \\
+            &&  \qquad \qquad \qquad \quad e^{-j2\pi(ux/M+vy/N)} \\
+            &=& \frac{1}{MN} \sum_{x=0}^{M-1} \sum_{y=0}^{N-1} f(x,y)
+                e^{-j2\pi([u-u_0]x/M+[v-v_0]y/N)} \\
+            &=& F(u-u_0, v-v_0)
+          \end{eqnarray*}
+          \begin{eqnarray*}
+            \Im\left[f(x-x_0, y-y_0)\right]
+            &=& \frac{1}{MN} \sum_{x=0}^{M-1} \sum_{y=0}^{N-1} \left[
+                f(x-x_0,y-y_0)e^{-j2\pi(ux/M+vy/N)} \right] \\
+            &&  let \quad A = x-x_0 \quad and \quad B = y - y_0 \\
+            &=& \frac{1}{MN} \sum_{x=0}^{M-1} \sum_{y=0}^{N-1} \left[
+                f(A,B) e^{-j2\pi(u[A+x_0]/M+v[B+y_0]/N)} \right] \\
+            &=& \frac{1}{MN} \sum_{x=0}^{M-1} \sum_{y=0}^{N-1} \left[
+                f(A,B) e^{-j2\pi(uA/M+vB/N)} \right]
+                e^{-j2\pi(ux_0/M+vy_0/N)} \\
+            &&  rename \quad A \to x \quad and \quad B \to y \\
+            &=& \frac{1}{MN} \sum_{x=0}^{M-1} \sum_{y=0}^{N-1} \left[
+                f(x,y) e^{-j2\pi(ux/M+vy/N)} \right]
+                e^{-j2\pi(ux_0/M+vy_0/N)} \\
+            &=& F(u,v) e^{-j2\pi(ux_0/M+vy_0/N)}
+          \end{eqnarray*}
+    \end{enumerate}
+  \end{enumerate}
+
+  \pagebreak 
+  \textbf{Matlab exercises}
+  \begin{enumerate}
+    \item[2]
+      Canny Edge Detection
+      \begin{enumerate}
+        \item
+        Examine the \texttt{gradient} function and explain how it is
+        implemented in terms of convolution. (The commands \texttt{which} and
+        \texttt{type} may be useful for this purpose. Alternatively, you can
+        apply \texttt{gradient} to an impulse and inspect the result.) \\
+        \linebreak \linebreak
+        The \texttt{gradient} function applies a centered first order
+        difference kernel across the x and y directions. In other words, it
+        convolves the function with $ \begin{array}{rrr} [0.5 & 0 & -0.5]
+        \end{array} $ followed by $ \left[ \begin{array}{c} 0.5 \\ 0 \\ -0.5
+        \end{array} \right]/2 $. \\ \\
+
+        \bigskip \bigskip
+        \item[(c)]
+          Run your edge detector on Figure 10.4(a) using $ \tau = 5 $ and the
+          following three values for $ \sigma^2 $: 0.5, 1, and 3. (Note: to
+          save ink, invert E before printing it.) Discuss how the choice of
+          $ \sigma^2 $ effects the results. \\
+          \linebreak \linebreak
+          The larger the $ \sigma^2 $ that's used, the bigger the smoothing
+          kernel is. When the image is smoothed with larger kernels, there is
+          more blurring which causes the edges to smoothen out. This means that
+          less faulty edges due to noise will be detected, but it also makes it
+          more likely to miss important edges.
+      \end{enumerate}
+
+    \pagebreak
+  \end{enumerate}
+\end{document}

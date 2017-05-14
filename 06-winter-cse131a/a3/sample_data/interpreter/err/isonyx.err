@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.error.SemanticError>
+   <DynamicError column="1" line="1">
+      <ErrorMessage>Function with prototype is(onyx.types.Integer) not found</ErrorMessage>
+      <PossibleMatch>onyx.types.Boolean isENode(onyx.types.AnyType)</PossibleMatch>
+      <PossibleMatch>onyx.types.Boolean isNode(onyx.types.AnyType)</PossibleMatch>
+      <PossibleMatch>onyx.types.Boolean isTNode(onyx.types.AnyType)</PossibleMatch>
+   </DynamicError>
+</onyx.error.SemanticError>
+

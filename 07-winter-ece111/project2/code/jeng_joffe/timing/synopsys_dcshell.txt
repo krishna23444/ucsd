@@ -1,0 +1,157 @@
+Creating sold alias for Synopsys On-Line Documentation.
+
+[synopsys] [ee111w] uape-203.ucsd.edu% dc_shell
+
+                        DC Professional (TM)
+                           DC Expert (TM)
+                            DC Ultra (TM)
+                         VHDL Compiler (TM)
+                          HDL Compiler (TM)
+                        Library Compiler (TM)
+                         Power Compiler (TM)
+                          DFT Compiler (TM)
+                            BSD Compiler
+                      DesignWare Developer (TM)
+
+          Version V-2004.06-SP2 for sparc64 -- Aug 25, 2004
+              Copyright (c) 1988-2004 by Synopsys, Inc.
+                         ALL RIGHTS RESERVED
+
+This program is proprietary and confidential information of Synopsys, Inc.
+and may be used and disclosed only as authorized in a license agreement
+controlling such use and disclosure.
+
+Initializing...
+dc_shell> include project2.min.area_v4.scr
+/* Sample Project 2 Synopsys Design Compiler synthesis script with minimum area constraint */
+
+/* . represents the directory that you are running dc_shell in;
+ sets the search path there to look for files. */    
+search_path={".","/acsnfs3/software/synopsys-V-2004.06-SP2/libraries/syn"}
+{".", "/acsnfs3/software/synopsys-V-2004.06-SP2/libraries/syn"}
+/*search_path={".","/acsnfs3/software/synopsys-2002.05-SP2/libraries/syn"} */  
+
+target_library={class.db}
+{"class.db"}
+
+link_library={class.db}
+{"class.db"}
+
+local_link_library={class.db}
+Warning: Defining new variable 'local_link_library'. (EQN-10)
+{"class.db"}
+
+
+/*  Set the information to be displayed by dc_shell when the compile command is executed. */ 
+/*  cpu=the cpu time used by the dc_shell process;
+  mem=the amount of memory used;
+  area=design area;
+  elap_time=elapsed time.  */
+compile_log_format="%cpu %mem %area %elap_time"
+"%cpu %mem %area %elap_time"
+
+
+/*  Check for errors in wep_encrypt_v4.v, translate verilog to an intermediate format, and write messages to file. */
+analyze -f verilog wep_encrypt_v4.v > wep_encrypt_v4.analyze 
+1
+
+
+/*  Build design using a generic library from intermediate format and write messages to file.  */
+elaborate wep_encrypt_v4 > wep_encrypt_v4.elaborate
+1
+
+
+/*  The module name is wep_encrypt_v4;
+ set the current_design to wep_encrypt_v4.  */
+current_design wep_encrypt_v4  
+Current design is 'wep_encrypt_v4'.
+{"wep_encrypt_v4"}
+
+
+/* Obtain a report to see if there are any combinational loops. */
+report_timing -loops > wep_encrypt_v4_loops
+1
+
+
+/* Check for unwanted latches */
+all_registers -level_sensitive > wep_encrypt_v4_latches
+{}
+
+
+/* Check design for warnings and write output to file  */   
+check_design > wep_encrypt_v4_warnings
+1
+
+
+/*  uniquify removes multiple-instantiated hierarchy in the design by creating a unique design for each cell instance. */ 
+/* this command is only needed if there are multiple instantiations of a module */
+uniquify -force 
+1
+
+
+/*  The create_clock command is used on a synchronous design to specify the clock port and set a constraint. In this case, 100 ns. */
+/*  A constraint is a design goal for the compile command for the (maximum combinational path delay + library setup time).  */
+/*  The clock port in the wep_encrypt_v4 module is clk.  */
+create_clock clk -period 100
+Performing create_clock on port 'clk'. 
+1
+
+
+/* Set the design for minimum area */
+set_max_area 0.0 
+1
+
+
+/* The design is mapped to cells from the TSMC technology library and optimized.  */
+compile -map_effort high > wep_encrypt_v4.compile 
+1
+
+
+/* Write an area report. */
+/* Divide the total area by 1, the area of a two-input nand gate, to obtain the area in units of gates. */
+report_area > wep_encrypt_v4.area
+1
+
+
+/* Write a timing (maximum [combinational path delay + setup time] in nanoseconds) report to file. */
+report_timing > wep_encrypt_v4.timing
+1
+
+
+/* Write a report listing the number of adders, muxes, and other cells used in the design. */ 
+report_reference > wep_encrypt_v4.reference
+1
+
+
+/* Write a report listing the number and type of designware adders and muxes implemented in the design. */ 
+report_resources > wep_encrypt_v4.resources
+1
+
+
+/* save the design in Synopsys internal database format to wep_encrypt_v4.db file */
+write wep_encrypt_v4 
+Information: Writing synthetic library implementations for design 'wep_encrypt_v4'.
+        Use "write -no_implicit" to get just the design. (UID-172)
+Writing to file /home/solaris/ieng9/ee111w/apjeng/wep_encrypt/wep_encrypt_v4.db
+Writing to file /home/solaris/ieng9/ee111w/apjeng/wep_encrypt/wep_encrypt_v4_DW01_add_32_1.db
+Writing to file /home/solaris/ieng9/ee111w/apjeng/wep_encrypt/wep_encrypt_v4_DW01_add_16_1.db
+Writing to file /home/solaris/ieng9/ee111w/apjeng/wep_encrypt/wep_encrypt_v4_DW01_cmp2_32_1.db
+Writing to file /home/solaris/ieng9/ee111w/apjeng/wep_encrypt/wep_encrypt_v4_DW01_add_32_0.db
+Writing to file /home/solaris/ieng9/ee111w/apjeng/wep_encrypt/wep_encrypt_v4_DW01_add_8_2.db
+Writing to file /home/solaris/ieng9/ee111w/apjeng/wep_encrypt/wep_encrypt_v4_DW01_cmp2_32_0.db
+Writing to file /home/solaris/ieng9/ee111w/apjeng/wep_encrypt/wep_encrypt_v4_DW01_add_16_0.db
+Writing to file /home/solaris/ieng9/ee111w/apjeng/wep_encrypt/wep_encrypt_v4_DW01_add_8_1.db
+Writing to file /home/solaris/ieng9/ee111w/apjeng/wep_encrypt/wep_encrypt_v4_DW01_add_8_0.db
+Writing to file /home/solaris/ieng9/ee111w/apjeng/wep_encrypt/wep_encrypt_v4_DW01_inc_8_0.db
+Writing to file /home/solaris/ieng9/ee111w/apjeng/wep_encrypt/wep_encrypt_v4_MUX_OP_8_3_8.db
+Writing to file /home/solaris/ieng9/ee111w/apjeng/wep_encrypt/wep_encrypt_v4_MUX_OP_256_8_8.db
+Writing to file /home/solaris/ieng9/ee111w/apjeng/wep_encrypt/wep_encrypt_v4_MUX_OP_256_8_8_32.db
+Writing to file /home/solaris/ieng9/ee111w/apjeng/wep_encrypt/wep_encrypt_v4_MUX_OP_256_8_8_33.db
+1
+
+
+exit
+1
+1
+
+Thank you...

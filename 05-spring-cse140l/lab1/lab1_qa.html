@@ -1,0 +1,285 @@
+<meta name="generator" content="Namo WebEditor v6.0">
+<style type="text/css">
+<!--
+.style3 {font-size: 20px}
+.style5 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+}
+.style9 {
+	font-size: 36px;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+-->
+</style>
+<p class="style9"><a name="top"></a> Q&amp;A for Lab 1</p>
+<p class="style3">	<span class="style3">1. <a href="#q1">What's the purpose of Lab 1?</a><br>
+  2. <a href="#q2" class="style3">What are the steps in the tutorial?</a><br>
+  3. </span><a href="#q3">How to download and install ISE WebPACK 7.1 with&nbsp;ModelSim XE III Starter?</a><span class="style3"><br>
+  4. </span><a href="#q4">How to built the 4-bit parallel to serial data translater by&nbsp;multiplexers?</a><span class="style3"><br>
+5. </span><a href="#q5">How to demonstrate the critical path delay?</a><span class="style3"><br>
+6. 
+</span><a href="#q6">How to identify a critical path in a design?</a><span class="style3"><br>
+7. <a href="#q7">What is a four-bit adder?</a> </span><br>
+8. <a href="#q8">How to install ModelSim XE III Starter and let it work with Xilinx ISE 7.1?</a><br>&nbsp;</p>
+<ol class="style3">
+    <li>
+
+        <p class="style5"><a name="q1"></a>What's the purpose of Lab 1?</p>
+    </li>
+    <ul type="disc">
+        <li>
+
+            <p><u>Build a&nbsp;connection between design flow in theory and&nbsp;a pratical design tool</u><br>
+          <img src="qa_imgs/purpose.jpg" width="902" height="467" border="0">&nbsp;</p>
+        </li>
+        <li>
+
+            <p>Design basic combinational logics</p>
+        </li>
+    </ul>
+    <blockquote>
+        <p><a href="#top">Back to Top </a></p>
+    </blockquote>
+    <li>
+
+        <p class="style5"><a name="q2"></a>What are the steps in the tutorial?</p>
+    </li>
+    <ol type="i">
+        <li>
+
+            <p>Start Xilinx ISE 6 (Project Navigator)</p>
+        </li>
+        <li>
+
+            <p>Create a project</p>
+        </li>
+        <ul>
+            <li>
+
+                <p>Working directory</p>
+            </li>
+            <li>
+
+                <p>Project name</p>
+            </li>
+            <li>
+
+                <p>Module type</p>
+            </li>
+            <li>
+
+                <p>Device</p>
+            </li>
+        </ul>
+        <li>
+
+            <p>Add half_adder</p>
+        </li>
+        <ul>
+            <li>
+
+                <p>Put an AND gate and a XOR gate</p>
+            </li>
+            <li>
+
+                <p>Connect them</p>
+            </li>
+            <li>
+
+                <p>Add input/output ports</p>
+            </li>
+            <li>
+
+                <p>Create a symbol</p>
+            </li>
+        </ul>
+        <li>
+
+            <p>Add full_adder</p>
+        </li>
+        <ul>
+            <li>
+
+                <p>Put two half_adder instances and one OR gate</p>
+            </li>
+            <li>
+      
+      
+                <p>Connect them</p>
+            </li>
+            <li>
+
+                <p>Add input/output ports</p>
+            </li>
+        </ul>
+        <li>
+
+            <p>Add simulation inputs file</p>
+        </li>
+        <li>
+
+            <p>Synthesize</p>
+        </li>
+        <li>
+
+            <p>Implement</p>
+        </li>
+        <li>
+
+            <p>Simulate</p>
+        </li>
+        <ul>
+            <li>
+
+                <p>Start Modelsim</p>
+            </li>
+            <li>              Check Timing</li>
+        </ul>
+        <blockquote>
+            <p><a href="#top">Back to Top </a></p>
+        </blockquote>
+    </ol>
+    <li>
+
+        <p class="style5"><a name="q3"></a>How to download and install ISE WebPACK 7.1 with&nbsp;ModelSim XE III Starter?</p>
+    </li>
+    <ol type="i">
+        <li>
+          
+          
+            <p>Create your&nbsp;Xilinx&nbsp;account.<br>
+            www.xilinx.com -&gt; SUPPORT&nbsp;-&gt; MySupport -&gt; Login/Register (<a href="http://www.xilinx.com/support/mysupport.htm">http://www.xilinx.com/support/mysupport.htm</a>)</p>
+        </li>
+        <li>
+          
+          
+            <p>Download ISE WebPACK 7.1 and ModelSim XE III Starter(6.0a).<br>
+            www.xilinx.com -&gt; Products&amp;Service -&gt; ISE Design Tools -&gt; ISE WebPACK -&gt; Download (<a href="http://www.xilinx.com/webpack/index.htm">http://www.xilinx.com/webpack/index.htm</a>)</p>
+        </li>
+        <li>
+          
+          
+            <p>Install ISE WebPACK 7.1 and ModelSim XE III Starter.</p>
+        </li>
+        <ul>
+            <li>
+          
+          
+                <p>ISE WebPACK single file installation is preferred.<br>
+                (ISE WebPACK 7.1 WebInstall is quite slow.)</p>
+            </li>
+            <li>
+          
+          
+                <p>Install ModelSim XE III <u>Starter</u>. (NOT full version)</p>
+            </li>
+        </ul>
+        <li>
+          
+          
+            <p>Licensing ModelSim XE III Starter.</p>
+        </li>
+        <ul>
+            <li>
+          
+          
+                <p>Request license.<br>
+                <img src="qa_imgs/MS_lic_req.jpg" width="196" height="115" border="0">&nbsp;</p>
+            </li>
+            <li>
+          
+          
+                <p>Fill in your&nbsp;information, a license file &quot;license.dat&quot; will be sent to you by email.</p>
+            </li>
+            <li>
+          
+          
+                <p>Start License Wizard.<br>
+                <img src="qa_imgs/MS_lic_wiz.jpg" width="196" height="115" border="0">&nbsp;</p>
+            </li>
+            <li>
+          
+          
+                <p>Indicate your license file location.<br>
+                <img src="qa_imgs/MS_lic_wiz1.jpg" width="425" height="412" border="0">&nbsp;</p>
+            </li>
+            <li>
+
+                <p>Follow the instructions to finish license setup.<br>
+                <img src="qa_imgs/MS_lic_wiz2.jpg" width="425" height="412" border="0">&nbsp;</p>
+            </li>
+        </ul>
+        <li>          Installation finished. Start Xilinx Project Navigator.</li>
+    </ol>
+    <blockquote>
+        <p><a href="#top">Back to Top </a></p>
+    </blockquote>
+    <li><span class="style5"><a name="q4"></a>How to built the 4-bit parallel to serial data translater by&nbsp;multiplexers?</span><br>
+      To identify one bit position among four, we need two address bits.<br>
+      <img src="qa_imgs/p2s.jpg" width="976" height="245" border="0"><br>
+      Asssume there is a 2-bit counter giving a sequence '00', '01', '10' and '11', the 4-bit parallel data will serially appear at the output of a 4-1 MUX.<br>
+      Following is a diagram of 4-1 MUX.<br>
+      <img src="qa_imgs/p2s_diag.jpg" width="927" height="549" border="0"><br>
+      &nbsp;<br>
+  <a href="#top">Back to Top </a><br>
+  <br>
+</li>
+    <li><span class="style5"><a name="q5"></a>How to demonstrate the critical path delay?</span><br>
+      Intuitively the destination&nbsp;changing should reflect the changing at the source input, and no other input will disturb the destination status. That means all other inputs won't change and let the source input signal go through the critical path.<br>
+  Here's an example of 4-bit adder.<br>
+  <img src="qa_imgs/4_adder.jpg" width="895" height="167" border="0">&nbsp;<br>
+  Assume the critial path is from Ci to S3. All A0A1A2A3 and B0B1B2B3 are fixed, so that the changing of S3 only reflect the act of Ci, not A2. Also Ci should be allowed to propogate to S3. We can set A0A1A2A3=1110 and B0B1B2B3=0000:<br>
+  <img src="qa_imgs/4_adder_input.jpg" width="829" height="370" border="0">&nbsp;<br>
+    We expect a positive edge at S3 after 300ns. The following is the simulation result. The distance between the stimulation and the response is the critical path delay.<br>
+    <img src="qa_imgs/4_adder_sim.jpg" width="1060" height="353" border="0"><br>
+    <a href="#top"><br>
+    Back to Top </a><br>
+    <br>
+</li>
+    <li><a name="q6"></a><span class="style5">How to identify a critical path in a design ? </span><br>
+      <br>
+      A critical path is a path from an input to an output with the largest delay. Xilinx timing analysis tool provides a good way to identify critical paths. It analyses every path from the input to the output, and gives the delay on each path. We can easily find the critical path from the timing report.<br>
+      The following is an example to find a critical path in a full adder design:      
+      
+        <ol type="i">
+            <li><strong>Choose your component</strong><br>
+        Highlight your four-bit adder source file (e.g. four_bit_adder.sch) in the project source window of the Xilinx Project Navigator.<br>
+</li>
+            <li><strong>Generate the timing report<br>
+        </strong>In the process view window, click on the ?Implement Design -&gt; Generate Post-Place and Route Static Timing -&gt; Post-Place and Route Static Timing Report ?step. A timing analyzer window shall pop-up with the timing report similar to the following:<br>
+        <img src="qa_imgs/tmr.gif" width="824" height="524"> </li>
+            <li>
+
+                <p><strong>Identify the critical path<br>
+          </strong>The critical path is from input B to output S, with a delay of 6.428 nanoseconds, according to the timing report. </p>
+            </li>
+        </ol>
+        <p align="left">We shall be able to get the critical path delay from simulation waveforms. Using a test bench waveform with single toggle at input B, we get the simulation wave forms as follows. Note that the exact 6.428 ns delay is shown in the waveforms. </p>
+        <table width="95%"  border="0">
+            <tr>
+                <td align="center"><img src="qa_imgs/worsewf.gif" width="552" height="294" align="middle"></td>
+            </tr>
+        </table>
+
+      <p align="left"><a href="#top">Back to Top </a> </p>
+    </li>
+    <li> <span class="style5"><a name="q7"></a>What is a four-bit adder ?</span> <br>
+    A 4-bit adder takes as input three numbers, A , B and Ci , sum them up, and generates two output numbers, S and Co . Numbers A, B , and S are 4-bit binary numbers: A = (a<sub>3</sub>a<sub>2</sub>a<sub>1</sub>a<sub>0</sub>); B = (b<sub>3</sub>b<sub>2</sub>b<sub>1</sub>b<sub>0</sub>); S = (s<sub>3</sub>s<sub>2</sub>s<sub>1</sub>s<sub>0</sub>). Ci and Co are single bit binary numbers. A and B are two operands of the addition operation. Ci is the carry-in bit. S is the sum. Co is the carry-out bit. <br>
+    <br>
+    <a href="#top">Back to Top </a>                </li>
+    <li> <a name="q8"></a><span class="style5">How to install ModelSim&nbsp;XE&nbsp;III Starter and let it work with Xilinx ISE 7.1?</span></li>
+    <ol class="style3" type="i">
+        <li class="style3"> Download ModelSim XE III from <a href="http://www.xilinx.com/webpack/index.htm.">http://www.xilinx.com/webpack/index.htm.</a></li>
+        <li class="style3"> In the installation, select ModelSim XE III <u><b>Starter</b></u>. <br><img src="qa_imgs/MS_ins_1.jpg" width="479" height="364" border="0">&nbsp;<br>Select <b><u>Full VHDL</u></b> as&nbsp;library installation type.<br><img src="qa_imgs/MS_ins_2.jpg" width="479" height="364" border="0">&nbsp;<br>Use default values for other options.</li>
+        <li class="style3"> Integrate Modelsim with Xilinx ISE. (Usually it's done by Xilinx ISE automatically. But if you didn't see the ModelSim options when you click on a Test Bench Waveform file,&nbsp;please&nbsp;integrate&nbsp;ModelSim&nbsp;manually.)</li>
+        <ul class="style3" type="i">
+            <li class="style3"> Click on the Edit menu in Xilinx ISE 7.1, and click on Preferences.</li>
+            <li class="style3"> In the Preferences window, indicate the ModelSim installation directory in Integrated Tools Options.<br><img src="qa_imgs/MS_int.jpg" width="654" height="431" border="0">&nbsp;</li>
+            <li class="style3"> Click OK.</li>
+        </ul>
+    </ol>
+    <p class="style3"> <br><a href="lab1_qa.htm#top">Back to Top</a></p>
+</ol>
+<p class="style3">&nbsp;</p>

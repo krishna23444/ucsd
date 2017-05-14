@@ -1,0 +1,47 @@
+- lfs
+  - useful to talk in terms of files instead of blocks b/c things happen in
+    terms of files, not blocks
+  - why block # not address on disk? that's all you need to lookup the address
+    in the inode
+  - if inode # and version # match, may still not be most current b/c version #
+    only incremented on deletion/truncation, not append
+  - wc = write cost
+  - wc = (cleaning + writing data) / writing data
+    w = fraction of data that is live
+    writing data = 1 - u
+  - process of cleaning = read segment (= 1 why not seek to summary? b/c seek),
+    search complex data structure, write back live data (= u)
+  - wc = (1 + u + (1-u))/(1-u) = 2/(1-u)
+  - why 2 at u=0, need to read in next segment to find out it's empty ->
+    optimize this later
+  - want to clean segments at most 50% full to get good results
+    - clean multiple segments at same time
+  - ex. u=0.75, clean 4 segments at a time, reshuffle data so that you can get
+    3 full ones, 1 free one
+  - wc = (N*cleaning + N*writing_data)/(N*writing_data)
+  - simulation = hot-and-cold
+    - 90% cold, 10% hot = 90% of time choose hot file, 10% choose cold
+    - a lot of locality, high chance of choosing a hot file again (high %, low
+      count), low chance of a cold (low %, high count)
+  - greedy policy = clean segments that are more empty
+  - cold segments drop to cleanable, i.e. get some free space after a _long_
+    time, b/c they touch it very little, hot segment gets written frequently so
+    cleaning it can't be that effective b/c will have to clean it again soon
+    - morale of story is to clean things which aren't going to get written to
+      in near future
+    - need to predict future, so use past  timestamp of youngest block 
+  - cb = cost benefit
+  - cb = (1-u)*age/(1+u)
+  - segregated graph in two pieces
+  - still clean cold, why?
+    - lots more of them
+    - when cold gets written, it's going to be written in a hot segment,
+      effectively cooling it
+  - journaled fs based on log, it has a log, but not everything there
+    - use a log on top/side, can take existing fs and add to it, whereas put log
+      requires complete reformat
+    - big win is asynchronous metadata (inode) updates, unlike ffs which is
+      syncrhonous
+    - soft updates = write in order so that if you stop somewhere everything is
+      consistent, in ffs inodes could be there without the data having being
+      written

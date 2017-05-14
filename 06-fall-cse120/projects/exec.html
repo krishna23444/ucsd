@@ -1,0 +1,28 @@
+<pre>
+
+Keep in mind that the goal of Exec is to create a new process and
+start it running.  StartProcess does this, so it serves as the example
+by which you should implement Exec and you should start by copying the
+code from StartProcess into Exec.
+
+Next you should think about why Exec and StartProcess are different.
+The main reason is that StartProcess is called by the thread ("main")
+that is going to run the bootstrap program, whereas Exec is called by
+the parent process (which is already running a program) to create a
+new process.  So Exec needs to fork off a new thread to run the
+program in the process.
+
+How do you run a program?  Well, StartProcess shows you how:
+initialize the machine, and then make it Run.  However, StartProcess
+can do this directly because the thread that is executing StartProcess
+is the thread that is going to run the program.  If you do the same
+thing in Exec, you will reinitialize the parent process to start at
+the beginning (which is _not_ what you want to happen).  Remember, the
+thread that is executing Exec is the parent, and the thread that is to
+execute the new program is the thread that you create in Exec.  So you
+need to arrange to have the new thread run the program, not the thread
+that is executing in Exec.
+
+What do you pass in to Fork()?  A function to make the above happen.
+
+</pre>

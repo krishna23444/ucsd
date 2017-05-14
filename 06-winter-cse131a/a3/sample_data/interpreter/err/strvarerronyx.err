@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.error.ParserError>
+   <StaticError column="30" line="1">Lexical Error: "</StaticError>
+</onyx.error.ParserError>
+

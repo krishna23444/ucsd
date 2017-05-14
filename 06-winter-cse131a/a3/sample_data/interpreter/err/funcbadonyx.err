@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.error.SemanticError>
+   <DynamicError column="1" line="5">
+      <ErrorMessage>Function with prototype foo(onyx.types.Integer,onyx.types.Integer,onyx.types.Integer) not found</ErrorMessage>
+      <PossibleMatch>onyx.types.AnyType foo(onyx.types.AnyType,onyx.types.AnyType,onyx.types.AnyType)</PossibleMatch>
+      <PossibleMatch>onyx.types.AnyType foo(onyx.types.Integer,onyx.types.AnyType,onyx.types.AnyType)</PossibleMatch>
+      <PossibleMatch>onyx.types.AnyType foo(onyx.types.Integer,onyx.types.Integer,onyx.types.AnyType)</PossibleMatch>
+   </DynamicError>
+</onyx.error.SemanticError>
+

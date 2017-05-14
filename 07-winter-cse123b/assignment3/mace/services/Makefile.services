@@ -1,0 +1,5 @@
+# -*- makefile -*- vim:ft=make
+
+# list services in reverse dependency order
+SERVICES=interfaces MacedonTransport Transport Http TritonShare SimApplication
+RSERVICES := $(shell perl -e 'while (@ARGV) { print pop(@ARGV) . " "; } ' $(SERVICES))

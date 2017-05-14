@@ -1,0 +1,23 @@
+- send/receive semantics
+  - synchronous
+    - block until reply comes back
+  - asynchronous
+    - send request, go off and do other things
+- process model
+  - single process
+    - avoid context switch overheads
+  - multiple process
+- buffer model
+  - avoid data copies
+- select has high overhead
+  - must copy large data structures into and out of kernel each time to specify
+    which fd's program is interested in
+  - common case: very few fd's have data available
+- alternative: /dev/poll
+  - tell it what we're interseted in
+  - use ioctl()'s to add and check
+- rpc
+  - client doesn't know if server actually executed function
+    - make operations idempotent
+      - ex. use x = 2 instead of x += 2
+      - nfs does this, all its operations are idempotent

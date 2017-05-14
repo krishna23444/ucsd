@@ -1,0 +1,185 @@
+# Author: Kevin Clark <k1clark@ucsd.edu>
+# Author: Nitay Joffe <njoffe@ucsd.edu>
+# Date: 02/28/06
+#
+# $@ - target of rule
+# $< - first dependency
+# $^ - all dependencies
+#
+
+LIBDIR          := lib
+LIBS            := $(subst jar ,jar:,$(wildcard $(LIBDIR)/*.jar))
+
+CLASS_DIR       := bin
+
+TEST_DIR      := test
+TEST_FILES    := $(wildcard $(TEST_DIR)/*.java)
+TEST_CLASSES  := $(patsubst %.java,$(CLASS_DIR)/%.class,$(notdir $(TEST_FILES)))
+ALL_JUNIT_TESTS := AllTests
+
+SAMPLE_DATA_DIR := sample_data
+T_SCAN_DIR      := $(SAMPLE_DATA_DIR)/scanner
+T_PARSE_DIR     := $(SAMPLE_DATA_DIR)/parser
+T_ONYXI_DIR     := $(SAMPLE_DATA_DIR)/interpreter
+
+ERR_DIR         := err
+IN_DIR          := in
+OUT_DIR         := out
+
+IN_SUFFIX       := onyx
+ERR_SUFFIX      := err
+OUT_SUFFIX      := xml
+
+CLASSPATH       := .:$(CLASSPATH):$(LIBS):$(CLASS_DIR):$(TEST_DIR)
+
+CHMOD           := chmod ugo+x
+DIFF            := xmldiff -n
+ECHO            := echo -e
+JAVAC           := javac -cp $(CLASSPATH) -d $(CLASS_DIR)
+JAVA            := java -cp $(CLASSPATH)
+JFLEX           := jflex
+MAKE            := make
+RM              := rm -f
+
+JFLEX_FILE      := scanner.jflex
+SCANNER         := Scanner.java
+
+SYM_FILE        := sym.java
+
+CUP_FILE        := parser.cup
+PARSER          := Parser.java
+
+JAVA_FILES    := $(wildcard *.java)
+
+CLASSES       := $(patsubst %.java,$(CLASS_DIR)/%.class,$(notdir $(JAVA_FILES)))
+
+SCANNER_DRIVER  := ScannerDriver
+PARSER_DRIVER   := ParserDriver
+INTERPRETER     := Interpreter
+
+SCAN            := scan
+PARSE           := parse
+ONYXI           := onyxi
+
+
+.PHONY: all clean new dist test
+.PHONY: clean_test_data vars
+.PHONY: junit test_onyxi test_parse test_scan
+all:
+	$(MAKE) test
+
+clean_test_data:
+	-$(RM) $(T_SCAN_DIR)/$(IN_DIR)/*.$(OUT_SUFFIX)*
+	-$(RM) $(T_PARSE_DIR)/$(IN_DIR)/*.$(OUT_SUFFIX)*
+	-$(RM) $(T_ONYXI_DIR)/$(IN_DIR)/*.$(OUT_SUFFIX)*
+
+clean: clean_test_data
+	-$(RM) *~ .*.swp *.class $(CLASS_DIR)/*.class
+	-$(RM) $(SCANNER) $(SYM_FILE) $(PARSER) $(SCAN) $(PARSE) $(ONYXI)
+	@$(ECHO)
+
+new:
+	$(MAKE) clean
+	$(MAKE) all
+
+dist: clean
+	tar --exclude=*.svn* -cjvf compilers_a3.tar.bz2 *
+
+#
+# Print Makefile variables
+#
+vars:
+	@$(ECHO) "  [vars] ------------------------------------------------- [vars]"
+	@$(ECHO) "CLASSES = $(CLASSES)"
+	@$(ECHO)
+	@$(ECHO) "CLASSPATH = $(CLASSPATH)"
+	@$(ECHO)
+	@$(ECHO) "TEST_FILES = $(TEST_FILES)"
+	@$(ECHO)
+	@$(ECHO) "TEST_CLASSES = $(TEST_CLASSES)"
+	@$(ECHO)
+
+test: junit
+
+junit: $(TEST_CLASSES)
+	@$(ECHO) "  [junit] ------------------------------------------------ [junit]"
+	$(JAVA) $(ALL_JUNIT_TESTS)
+	@$(ECHO)
+
+test_onyxi: $(ONYXI)
+	@$(ECHO) "  [test interpreter]"
+	for i in $(T_ONYXI_DIR)/$(IN_DIR)/*.$(IN_SUFFIX); do                       \
+		$(ECHO) "--- $$i ---";                                                   \
+		./$(ONYXI) $$i;                                                          \
+		$(DIFF) $$i.$(OUT_SUFFIX) $${i/$(IN_DIR)\//$(OUT_DIR)/}.$(OUT_SUFFIX);   \
+		$(DIFF) $$i.$(ERR_SUFFIX) $${i/$(IN_DIR)\//$(ERR_DIR)/}.$(ERR_SUFFIX);   \
+	done
+	@$(ECHO)
+	
+test_parse: $(PARSE)
+	@$(ECHO) "  [test parser]"
+	for i in $(T_PARSE_DIR)/$(IN_DIR)/*.$(IN_SUFFIX); do                       \
+		$(ECHO) "--- $$i ---";                                                   \
+		./$(PARSE) $$i;                                                          \
+	$(DIFF) $$i.$(OUT_SUFFIX) $${i/$(IN_DIR)\//$(OUT_DIR)/}.$(OUT_SUFFIX);     \
+	done
+	@$(ECHO)
+
+test_scan: $(SCAN)
+	@$(ECHO) "  [test scanner]"
+	for i in $(T_SCAN_DIR)/$(IN_DIR)/*.$(IN_SUFFIX); do                        \
+		$(ECHO) "--- $$i ---";                                                   \
+		./$(SCAN) $$i;                                                           \
+		$(DIFF) $$i.$(OUT_SUFFIX) $${i/$(IN_DIR)\//$(OUT_DIR)/}.$(OUT_SUFFIX);   \
+	done
+	@$(ECHO)
+
+
+$(TEST_CLASSES): $(CLASSES) $(TEST_FILES)
+
+
+$(CLASSES): $(SCANNER) $(SYMFILE) $(PARSER) $(JAVA_FILES)
+
+
+$(CLASS_DIR)/%.class: %.java
+	$(JAVAC) $<
+$(CLASS_DIR)/%.class: $(TEST_DIR)/%.java
+	$(JAVAC) $<
+
+#
+# Generate scanner and parser java code using jflex and cup, respectively.
+#
+$(SCANNER): $(JFLEX_FILE)
+	@$(ECHO) "  [jflex]------------------------------------------------  [jflex]"
+	$(JFLEX) $<
+	@$(ECHO)
+
+$(PARSER) $(SYMFILE): $(CUP_FILE)
+	@$(ECHO) "  [cup] -------------------------------------------------- [cup]"
+	$(JAVA) java_cup.Main -parser $(PARSER:%.java=%) < $<
+	@$(ECHO)
+
+
+#
+# Write bourne shell executables to run the scanner, parser, and interpreter.
+#
+$(SCAN): $(CLASSES)
+	@$(ECHO) "  [scan] ------------------------------------------------- [scan]"
+	@$(ECHO) '#!/bin/sh' > $@
+	@$(ECHO) '$(JAVA) $(SCANNER_DRIVER) $$*' >> $@
+	@$(CHMOD) $@
+	@$(ECHO)
+
+$(PARSE): $(CLASSES)
+	@$(ECHO) "  [parse] ------------------------------------------------ [parse]"
+	@$(ECHO) '#!/bin/sh' > $@
+	@$(ECHO) '$(JAVA) $(PARSER_DRIVER) $$*' >> $@
+	@$(CHMOD) $@
+	@$(ECHO)
+
+$(ONYXI): $(CLASSES)
+	@$(ECHO) "  [onyxi] ------------------------------------------------ [onyxi]"
+	@$(ECHO) '#!/bin/sh' > $@
+	@$(ECHO) '$(JAVA) $(INTERPRETER) $$*' >> $@
+	@$(CHMOD) $@
+	@$(ECHO)

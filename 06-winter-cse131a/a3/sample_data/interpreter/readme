@@ -1,0 +1,41 @@
+
+3/8/06
+
+	5 test case outputs updated
+
+	err1
+	err2
+	is
+	prefix
+	tp1
+
+	the "." was removed from the error message to match the spec
+
+3/6/06
+11 new tests added
+	is
+	tstring
+	decimal
+	err1
+	err2
+	err3
+	err4
+	exml
+	f1
+	for
+	seq
+
+3/01/06
+Updated prefix and tp1 output
+Added:
+	flwrscope01
+	flwrscope02
+
+2/20/06
+More test cases added along with their results.
+
+2/13/06
+Test cases for A3
+
+Some results have been posted.
+More results  and more tests coming later this week.

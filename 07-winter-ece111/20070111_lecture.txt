@@ -1,0 +1,18 @@
+- avoid using mixed case, verilog case sensitive but other tools are not
+- blocking, a = b, assigned immediately, next statment blocked till done
+- non blocking, a <= b
+- no latches = see one, something wrong
+- no combinatorial loops = bad
+- c gets b, a gets b
+  a = b
+  c = a
+- c gets old value of a
+  a <= b
+  c <= a
+  - cannot use both at same time
+- $stop, $finish, $time, $display... system calls
+- register: reg...
+- net: wire...
+- initial, wait, forever, repeat... not synthesizable
+- #x = wait for x nano seconds
+- assign = continuous assignment

@@ -1,0 +1,21 @@
+[cs120f] > ./nachos -rs 5
+Forked off the joiner and joiner threads.
+Smell the roses.
+Smell the roses.
+Smell the roses.
+Waiting for the Joinee to finish executing.
+Smell the roses.
+Smell the roses.
+Done smelling the roses!
+Joinee has finished executing, we can continue.
+No threads ready or runnable, and no pending interrupts.
+Assuming the program completed.
+Machine halting!
+
+Ticks: total 414, idle 144, system 270, user 0
+Disk I/O: reads 0, writes 0
+Console I/O: reads 0, writes 0
+Paging: faults 0
+Network I/O: packets received 0, sent 0
+
+Cleaning up...

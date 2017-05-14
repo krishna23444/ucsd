@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.error.SemanticError>
+   <DynamicError column="1" line="4">
+      <ErrorMessage>Function with prototype a(onyx.types.String) not found</ErrorMessage>
+      <PossibleMatch>onyx.types.AnyType abc(onyx.types.Integer)</PossibleMatch>
+   </DynamicError>
+</onyx.error.SemanticError>
+

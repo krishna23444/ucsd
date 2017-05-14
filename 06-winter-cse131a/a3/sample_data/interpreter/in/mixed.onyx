@@ -1,0 +1,3 @@
+declare variable $a as onyx.types.Sequence {(1)};
+let $b := enode("String",attrenv())
+return ($a,$b)

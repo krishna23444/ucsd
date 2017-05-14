@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.error.SemanticError>
+   <DynamicError column="13" line="2">Tagname &lt;element is an invalid OXML tagname</DynamicError>
+</onyx.error.SemanticError>
+

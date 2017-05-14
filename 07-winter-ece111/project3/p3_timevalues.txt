@@ -1,0 +1,27 @@
+all NS
+breakpoint      line #    time (48)   time (64)    time (96)    time (128)    time (256)
+
+first crc       141       35,470      37,550       40,110       42,710        52,950
+wep_encrypt()   144       234,510     301,230      433,070      564,950       1,092,310
+
+/\ first crc computation task
+
+sbox_setup()    73        237,190     303,910      435,750      567,630       1,094,990
+after sbox()    75        3,284,350   3,351,070    3,482,910    3,614,790     4,142,150
+
+/\ sbox_setup()
+
+ciphertext      77        3,285,550   3,352,270    3,484,110    3,615,990     4,143,350
+after 1 byte    77        3,303,870   3,370,590    3,502,430    3,634,310     4,161,670
+
+/\ enrypt each byte
+
+end of function 79        4,164,710   4,524,550    5,242,630    5,960,750     8,833,070
+
+/\ finish encrypting bytes
+
+second crc b4   153       4,168,670   4,528,510    5,246,590    5,964,710     8,837,030
+after 2nd crc   156       4,383,870   4,808,350    5,655,710    6,503,110     9,892,550
+
+/\ second CRC computation
+

@@ -1,0 +1,48 @@
+- concepts
+1. upcall/downcall
+  - from the perspective of some layer
+  - ex. linux kernel & networking,
+  - from point of view of application, application -> send -> kernel, that is
+    when application calls send() in the kernel, is a downcall
+  - setup a timer, kernel makes an upcall to the application when triggered
+2. state machine
+3. event-driven model
+  - register a bunch of handlers for different events
+  - whenever an event happens, the corresponding handler is called
+4. marshalling/demarshalling data
+  - in project 1, we sent flat, raw data (strings)
+  - even sending integers is pretty simple (have to deal with endianness though)
+  - now we want to send a linked list 1->2->3 from a to b
+    - can't send raw pointers b/c makes no sense, it's a machine local memory
+      address
+    - need to create our own format, say have it describe three nodes, their
+      data, in the linked list order
+  - java has some serializable interface/functions, but in c/c++ we have to
+    define our own methods for marshalling/unmarshalling
+  - all the data structures in mace already have marshalling methods
+- mace
+  - higher level language to define and code p2p stuff
+  - tcptransport
+    - takes care of low level socket details
+    - connection handling
+  - we're writing tritonshare, a protocol on top of tcptransport
+  - also have an application that uses tritonshare, a gui
+  - no low level system functions send(),receive(),open(), etc, all this is
+    done through the tcptransport layer
+  - service driven architechture
+  - "provides" = what services we offer, what dowcalls you can make
+  - "messages" = define messages machines a and b use to talk to each other
+  - {upcall,downcall,scheduler} (state == ready) event { code }
+  -         type                  filter
+- ping example
+  - downcall route from ping to tcptransport
+  - upcall deliver from tcptransport to ping
+- our program, kazaa like file sharing
+  - application to p2p, what does it need to do?
+    - join network, query, leave
+  - p2p to application
+    - query results
+    - join status changes
+- mace/services/TritonShare/
+  - mace/services/interfaces/P2PServiceClass defines all these downcalls
+- states = init, joining, client_joining, supernode

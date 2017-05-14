@@ -1,0 +1,29 @@
+MEMORY MAP
+__________
+
+SRAM Memory             : 0x00000000 - 0x003FFFFF
+Unused (do not access)  : 0x00400000 - 0x00FFFFFF 
+Pld slave    (*)        : 0X01000000 - 0x011FFFFF
+Unused (do not access)  : 0x02000000 - 0xFFFFFFFF
+
+(*) : The wep encryption block reads the plaintext from DPSRAM (implemented
+with the pld slave) and writes back the ciphertext to the DPSRAM (pld_slave). 
+Hence, the sw in MAC_hw_sw.c has to write the plaintext data in 
+DPSRAM (pld_slave) and read back the result from the DPSRAM (pld_slave).
+
+(*) : The individual addresses of the registers in the WEP encryption
+block is as follows:
+
+Start Encrypt Register  : 0x01000004
+Plain Address Register  : 0x01000008
+Frame Size Register    : 0x0100000C
+Cipher Address Register  : 0x01000010
+Seed LSW Register    : 0x01000014
+Seed MSW Register    : 0x01000018
+Done Register       : 0x0100001C
+
+Plain   address  (begining of plain text)  :  0x01000100
+Cipher address  (begining of cipher text)  :  0x01000200
+
+The rest of the memory locations mapped to the WEP encrypt block are unused. 
+Do not access them.

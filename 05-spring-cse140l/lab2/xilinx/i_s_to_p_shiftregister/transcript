@@ -1,0 +1,72 @@
+# Reading G:/xilinx/modelsim/tcl/vsim/pref.tcl 
+# do shiftreg_tw.tdo 
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vital_timing
+# -- Loading package vcomponents
+# -- Loading package vital_primitives
+# -- Loading package textio
+# -- Loading package vpackage
+# -- Compiling entity shiftreg
+# -- Compiling architecture structure of shiftreg
+# Model Technology ModelSim XE III vcom 6.0a Compiler 2004.11 Nov 10 2004
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Loading package std_logic_textio
+# -- Compiling entity shiftreg_tw
+# -- Compiling architecture testbench_arch of shiftreg_tw
+# vsim -lib work -sdfmax /UUT=shiftreg_timesim.sdf -t 1ps shiftreg_tw 
+# Loading g:\xilinx\modelsim\win32xoem/../std.standard
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_1164(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/unisim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.numeric_std(body)
+# Loading g:\xilinx\modelsim\win32xoem/../std.textio(body)
+# Loading g:\xilinx\modelsim\win32xoem/../ieee.std_logic_textio(body)
+# Loading work.shiftreg_tw(testbench_arch)
+# Loading g:\xilinx\modelsim\win32xoem/../vital2000.vital_timing(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.vcomponents
+# Loading g:\xilinx\modelsim\win32xoem/../vital2000.vital_primitives(body)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.vpackage(body)
+# Loading work.shiftreg(structure)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_buf_pp(x_buf_pp_v)
+# Loading shiftreg_timesim.sdf
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_tri_pp(x_tri_pp_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_inv_pp(x_inv_pp_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_bufgmux(x_bufgmux_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_ff(x_ff_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_or2(x_or2_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_one(x_one_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_zero(x_zero_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_roc(x_roc_v)
+# Loading g:\xilinx\modelsim\win32xoem/../xilinx/vhdl/simprim.x_toc(x_toc_v)
+# ** Note: (vsim-3587) SDF Backannotation Successfully Completed.
+#    Time: 0 ps  Iteration: 0  Region: /shiftreg_tw  File: shiftreg_tw.timesim_vhw
+# .main_pane.mdi.interior.cs.vm.paneset.cli_0.wf.clip.cs
+# .main_pane.workspace
+# .main_pane.signals.interior.cs
+# ** Error: Error at time=125ns D0=0, Expected = 1 
+#    Time: 125 ns  Iteration: 0  Instance: /shiftreg_tw
+# ** Error: Error at time=225ns D1=0, Expected = 1 
+#    Time: 225 ns  Iteration: 0  Instance: /shiftreg_tw
+# ** Error: Error at time=325ns D2=0, Expected = 1 
+#    Time: 325 ns  Iteration: 0  Instance: /shiftreg_tw
+# ** Error: Error at time=425ns D3=0, Expected = 1 
+#    Time: 425 ns  Iteration: 0  Instance: /shiftreg_tw
+# ** Error: Error at time=525ns D0=1, Expected = 0 
+#    Time: 525 ns  Iteration: 0  Instance: /shiftreg_tw
+# ** Error: Error at time=625ns D1=1, Expected = 0 
+#    Time: 625 ns  Iteration: 0  Instance: /shiftreg_tw
+# ** Error: Error at time=725ns D2=1, Expected = 0 
+#    Time: 725 ns  Iteration: 0  Instance: /shiftreg_tw
+# ** Error: Error at time=825ns D3=1, Expected = 0 
+#    Time: 825 ns  Iteration: 0  Instance: /shiftreg_tw
+# ** Failure: Errors found during simulation
+#    Time: 1 us  Iteration: 0  Process: /shiftreg_tw/line__71 File: shiftreg_tw.timesim_vhw
+# Break at shiftreg_tw.timesim_vhw line 274
+# Simulation Breakpoint: Break at shiftreg_tw.timesim_vhw line 274
+# MACRO ./shiftreg_tw.tdo PAUSED at line 14

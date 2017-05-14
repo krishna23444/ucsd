@@ -1,0 +1,9 @@
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w asyncounter_8.sch asyncounter_8.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w asyncounter_8.sch asyncounter_8.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w asyncounter_8.sch asyncounter_8.vhf
+xst -intstyle ise -ifn __projnav/asyncounter_8.xst -ofn asyncounter_8.syr
+ngdbuild -intstyle ise -dd "g:\xilinx\projects\lab2\asyncounter/_ngo" -nt timestamp -i  -p xc2v80-cs144-5 asyncounter_8.ngc asyncounter_8.ngd
+map -intstyle ise -p xc2v80-cs144-5 -cm area -pr b -k 4 -c 100 -tx off -o asyncounter_8_map.ncd asyncounter_8.ngd asyncounter_8.pcf
+par -w -intstyle ise -ol std -t 1 asyncounter_8_map.ncd asyncounter_8.ncd asyncounter_8.pcf
+trce -intstyle ise -e 3 -l 3 -s 5 -xml asyncounter_8 asyncounter_8.ncd -o asyncounter_8.twr asyncounter_8.pcf
+netgen -intstyle ise -s 5   -pcf asyncounter_8.pcf -rpw 100 -tpw 0 -ar Structure -xon true -w -ofmt vhdl -sim asyncounter_8.ncd asyncounter_8_timesim.vhd

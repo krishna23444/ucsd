@@ -1,0 +1,7 @@
+handler ReplicatedMap {
+  virtual void replicatedMapExistsResult(const std::string& key, bool exists);
+  virtual void replicatedMapEraseResult(const std::string& key, bool success);
+  virtual void replicatedMapPutResult(const std::string& key, bool success);
+  virtual void replicatedMapGetResult(const std::string& key, const std::string& value,
+				      bool success);
+};

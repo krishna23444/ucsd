@@ -1,0 +1,26 @@
+Release 7.1.01i - xst H.39
+Copyright (c) 1995-2005 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to .
+CPU : 0.00 / 0.27 s | Elapsed : 0.00 / 1.00 s
+ 
+--> 
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "G:/xilinx/projects/lab4/pcounter.vhf" in Library work.
+Entity <FTCE_MXILINX_pcounter> compiled.
+Entity <FTCE_MXILINX_pcounter> (Architecture <BEHAVIORAL>) compiled.
+Entity <CB4CE_MXILINX_pcounter> compiled.
+Entity <CB4CE_MXILINX_pcounter> (Architecture <BEHAVIORAL>) compiled.
+Entity <pcounter> compiled.
+Entity <pcounter> (Architecture <BEHAVIORAL>) compiled.
+CPU : 0.05 / 0.32 s | Elapsed : 0.00 / 1.00 s
+ 
+--> 
+
+Total memory usage is 74856 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    0 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+

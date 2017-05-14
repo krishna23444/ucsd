@@ -1,0 +1,208 @@
+# Schematic : PDCL (jhdparse)
+__projnav/shiftreg_jhdparse_tcl.rsp
+# xst flow : RunXST
+shiftreg_summary.html
+# Schematic : PDCL (jhdparse)
+__projnav/shiftreg_jhdparse_tcl.rsp
+# Schematic : View HDL Functional Model
+shiftreg.vhf
+shiftreg.cmd_log
+# Bencher : Creating project file
+shiftreg_tw_bencher.prj
+# ProjNav -> New Source -> TBW
+shiftreg_tw.vhw
+shiftreg_tw.ano
+shiftreg_tw.tfw
+shiftreg_tw.ant
+# Bencher : Creating project file
+shiftreg_tw_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+shiftreg_tw.ado
+shiftreg_tw.ano
+# Bencher : Creating project file
+shiftreg_tw_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+shiftreg_tw_bencher.prj
+# Update Bencher Waveform
+__projnav/updateTBW_tcl.rsp
+shiftreg_tw.vhw
+shiftreg_tw.ano
+shiftreg_tw.tfw
+shiftreg_tw.ant
+# XST (Creating Lso File) : 
+shiftreg.lso
+# xst flow : RunXST
+shiftreg_summary.html
+# xst flow : RunXST
+shiftreg.syr
+shiftreg.prj
+shiftreg.sprj
+shiftreg.ana
+shiftreg.stx
+shiftreg.cmd_log
+shiftreg.ngc
+shiftreg.ngr
+# Implmentation : Translate
+__projnav/ednTOngd_tcl.rsp
+"g:\xilinx\projects\lab2\i_s_to_p_shiftregister/_ngo"
+shiftreg.ngd
+shiftreg_ngdbuild.nav
+shiftreg.bld
+.untf
+shiftreg.cmd_log
+# Implementation : Map
+shiftreg_summary.html
+# Implementation : Map
+shiftreg_map.ncd
+shiftreg.ngm
+shiftreg.pcf
+shiftreg.nc1
+shiftreg.mrp
+shiftreg_map.mrp
+shiftreg.mdf
+shiftreg.cmd_log
+MAP_NO_GUIDE_FILE_CPF "shiftreg"
+shiftreg_map.ngm
+# Implmentation : Post-Place & Route Timing
+__projnav/ncdTOtwr_tcl.rsp
+shiftreg.twr
+shiftreg.twx
+shiftreg.tsi
+shiftreg.cmd_log
+# Implementation : Place & Route
+shiftreg_summary.html
+# Implmentation : Place & Route
+__projnav/nc1TOncd_tcl.rsp
+shiftreg.ncd
+shiftreg.par
+shiftreg.pad
+shiftreg_pad.txt
+shiftreg_pad.csv
+shiftreg.pad_txt
+shiftreg.dly
+reportgen.log
+shiftreg.xpi
+shiftreg.grf
+shiftreg.itr
+shiftreg_last_par.ncd
+shiftreg.placed_ncd_tracker
+shiftreg.routed_ncd_tracker
+shiftreg.cmd_log
+PAR_NO_GUIDE_FILE_CPF "shiftreg"
+# Implementation : Generate Post-Place & Route Simulation Model
+shiftreg_timesim.vhd
+shiftreg_timesim.nlf
+shiftreg.vhdsim_par
+shiftreg.par_nlf
+shiftreg.cmd_log
+shiftreg_timesim.vhd
+shiftreg_timesim.sdf
+shiftreg_timesim.sdf
+# Bencher : Creating project file
+shiftreg_tw_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+shiftreg_tw.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+shiftreg_tw.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Bencher : Creating project file
+shiftreg_tw_bencher.prj
+# Bencher : Creating project file
+shiftreg_tw_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+shiftreg_tw.ado
+shiftreg_tw.ano
+# ModelSim : Generate Expected Simulation Results
+shiftreg_tw.ado
+shiftreg_tw.ano
+# Bencher : Creating project file
+shiftreg_tw_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+shiftreg_tw_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+shiftreg_tw.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+shiftreg_tw.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Bencher : Creating project file
+shiftreg_tw_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+shiftreg_tw.ado
+shiftreg_tw.ano
+# Bencher : Creating project file
+shiftreg_tw_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+shiftreg_tw_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# Bencher : Creating project file
+shiftreg_tw_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+shiftreg_tw.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+shiftreg_tw.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# Bencher : Creating project file
+shiftreg_tw_bencher.prj
+# Bencher : Creating project file
+shiftreg_tw_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+shiftreg_tw.ado
+shiftreg_tw.ano
+# Bencher : Creating project file
+shiftreg_tw_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+shiftreg_tw_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+shiftreg_tw.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+shiftreg_tw.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf
+# xst flow : RunXST
+shiftreg_summary.html
+# Bencher : Creating project file
+shiftreg_tw_bencher.prj
+# Bencher : Creating project file
+shiftreg_tw_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# ModelSim : Generate Expected Simulation Results
+shiftreg_tw.ado
+shiftreg_tw.ano
+# Bencher : Creating project file
+shiftreg_tw_bencher.prj
+# ModelSim : Generate Expected Simulation Results
+# Bencher : Creating project file
+shiftreg_tw_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# Bencher : Creating project file
+shiftreg_tw_bencher.prj
+# Update Bencher Waveform
+__projnav/updateTBW_tcl.rsp
+shiftreg_tw.vhw
+shiftreg_tw.ano
+shiftreg_tw.tfw
+shiftreg_tw.ant
+# Bencher : Creating project file
+shiftreg_tw_bencher.prj
+# Hidden Remap : Simulate Post-Place & Route VHDL Model
+shiftreg_tw.timesim_vhw
+_remap.tmp
+# ModelSim : Simulate Post-Place & Route VHDL Model
+shiftreg_tw.tdo
+# ModelSim : Simulate Post-Place & Route VHDL Model
+vsim.wlf

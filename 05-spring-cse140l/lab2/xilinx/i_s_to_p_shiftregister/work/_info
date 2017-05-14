@@ -1,0 +1,92 @@
+m255
+13
+cModel Technology
+dG:\xilinx\projects\lab2\i_s_to_p_shiftregister
+Eshiftreg
+w1115109271
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP vital2000 vital_primitives P<o@__YgakiANKimF[boN3
+DP simprim vpackage zFI8ah@Y4E_^X_3N<Wi6j2
+DP vital2000 vital_timing S^n>oJ2GS[H5aTKMo9OkE0
+DP simprim vcomponents Lm<h;IBQV0hW3fz`R3[Ia1
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+Fshiftreg_timesim.vhd
+l0
+L41
+VoaYgTW<DjU8cEn0;Nh:E?2
+OX;C;6.0a;29
+30
+o-87 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Astructure
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP vital2000 vital_primitives P<o@__YgakiANKimF[boN3
+DP simprim vpackage zFI8ah@Y4E_^X_3N<Wi6j2
+DP vital2000 vital_timing S^n>oJ2GS[H5aTKMo9OkE0
+DP simprim vcomponents Lm<h;IBQV0hW3fz`R3[Ia1
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DE work shiftreg oaYgTW<DjU8cEn0;Nh:E?2
+l100
+L54
+V_EiY9RnE_TPCPW?jIQBfU2
+OX;C;6.0a;29
+30
+M6 ieee std_logic_1164
+M5 simprim vcomponents
+M4 vital2000 vital_timing
+M3 simprim vpackage
+M2 vital2000 vital_primitives
+M1 std textio
+o-87 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Abehavioral
+DP unisim vcomponents cIe6TJGN[9ngH:7_?I:FB1
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DE work shiftreg cFio4B__4f=:U`:oV9h_T0
+l61
+L42
+V1SXY[Lj8HhM4l<A=A>9zR2
+OX;C;6.0a;29
+31
+M3 ieee std_logic_1164
+M2 ieee numeric_std
+M1 unisim vcomponents
+o-93 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Fshiftreg.vhf
+w1115109098
+Eshiftreg_tw
+w1115189585
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DP unisim vcomponents cIe6TJGN[9ngH:7_?I:FB1
+Fshiftreg_tw.timesim_vhw
+l0
+L28
+VnbCdQLgLoeA?DFoZ8>`4X2
+OX;C;6.0a;29
+31
+o-93 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Atestbench_arch
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DP unisim vcomponents cIe6TJGN[9ngH:7_?I:FB1
+DE work shiftreg_tw nbCdQLgLoeA?DFoZ8>`4X2
+l57
+L31
+VX6hQSREC3g1VXWaeT^6dP0
+OX;C;6.0a;29
+31
+M5 unisim vcomponents
+M4 ieee std_logic_1164
+M3 ieee numeric_std
+M2 ieee std_logic_textio
+M1 std textio
+o-93 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000

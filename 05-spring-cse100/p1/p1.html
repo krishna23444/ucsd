@@ -1,0 +1,279 @@
+<html><head>
+<title>P1 README</title></head>
+<body>
+<hr> <h2>
+<font color="#0000ff">
+Programming assignment #1:  CSE 100 Spring 2005
+</font>
+</h2> <hr>
+
+ <p> Here's a description of the first programming assignment for CSE
+100, Spring 2005.  In this assignment, you will implement a Huffman
+code file compressor and decompressor in Java.  
+ </p><p>
+&gt;&gt;&gt;  Due Monday, April 11, 6:00pm
+ </p><p>
+&gt;&gt;&gt; Required solution files:  Compress.java and Uncompress.java,
+plus any other .java files in your working directory.  
+ </p><p> The files that contain your solution to the
+assignment must be turned in by the due deadline.  
+ </p><p> To turn in your assignment, log in to your account on ieng9; prep
+cs100s; cd to the directory containing your solution files; and run the
+command <code>bundleP1</code>.  Follow the dialog.  This will bundle
+together and turn in all and only the .java files in the directory.
+Make sure that these are the files you want to turn in!  
+ </p><p> If you are working in a team of 2 students, turn in your
+assignment from <em>one</em> of your two accounts only.  In your
+source code files, clearly document the names and login names of the
+authors (using the javadoc <code>@author</code> tag in the javadoc
+comment on each public class is the best way to do that).
+ </p><p>
+It's a good idea to plan to do the assignment well before the
+deadlines; terminals and tutors can get very busy at the last minute.
+ </p><p>
+In doing this assignment, it's your responsibility to understand the
+course rules for integrity of scholarship.
+
+</p><h4> Getting started </h4> 
+Read Weiss, Chapter 10 section 1; this assignment uses some concepts introduced
+there.  Lecture notes on binary tries and Huffman code trees will
+also be useful. 
+ <p>
+Create a directory named P1 under the home directory for your
+CSE 100 class account on ieng9.  Your files 
+should be bundled from that directory using the bundleP1 script
+before the due time for the assignment.
+ </p><p>
+
+</p><h4> File compression and decompression</h4> 
+ <p> Even though disk space and bandwidth is cheaper now than ever before in
+history, there is also more data than ever before. So it is still 
+very useful to be able to compress disk files and network data, 
+thereby allowing a given
+amount of disk to hold more data, or a given network link to carry
+more data.  It is often possible to
+significantly compress a file without any loss of information whatsoever
+("lossless compression").  The
+trick is to figure out how to do that, and how to 
+reconstruct the original file when needed.
+Here, we will implement file compression using Huffman coding, a clever
+technique invented by David Huffman in 1952.  Huffman code compression
+is used today as part of the JPEG image compression and the mp3
+audio compression standards, and
+in the Unix file compression command <code>pack</code>
+(the popular <code>zip</code> and <code>gzip</code> compression utilities
+use compression algorithms somewhat different from Huffman).
+ </p><p>
+You will write a Java program <code>Compress</code> that will be invoked with
+a command line of the form
+</p><pre>java Compress infile outfile
+</pre>
+When run, this program will read the contents of the file named by
+its first command line argument, construct a Huffman code for the
+contents of that file, and use that code to construct a compressed
+version which is written to a file named by the second command line
+argument.  The input file can contain any data (not just ASCII
+characters) so it should be treated as a binary file.
+The input file can be up to 100 megabytes in size
+(so the same byte may occur up to 100 million times in the file).
+ <p>
+You will also write a Java program <code>Uncompress</code> 
+that will be invoked with a command line of the form
+</p><pre>java Uncompress infile outfile
+</pre>
+When run, this program will read the contents of the file named by
+its first command line argument, which should be a file that has been
+created by the Compress program.  It will use the contents of that
+file to reconstruct the original, uncompressed version,
+which is written to a file named by the second command line
+argument.
+
+<h4> Control flow </h4> 
+Taking a top-down design approach to the problem, you can see that
+your Compress program basically needs to go through these steps:
+<ol>
+<li> Open the input file for reading.
+</li><li> Read bytes from the file, counting the number of occurrences of each
+byte value; then close the file.
+</li><li> Use these byte counts to construct a Huffman coding tree.
+</li><li> Open the output file for writing. 
+</li><li> Write enough information (a "file header") to the output file
+file to enable the coding tree to be reconstructed when the file is
+read by your Uncompress program.
+</li><li> Open the input file for reading, again.
+</li><li> Using the Huffman coding tree, translate each byte from the input file
+into its code, and append these codes as a sequence of bits to the output
+file, after the header.
+</li><li> Close the input and output files.
+</li></ol>
+ <p> Your Uncompress program should go through these basic steps:
+</p><ol>
+<li> Open the input file for reading.
+</li><li> Read the file header at the beginning of the input file, and reconstruct
+the Huffman coding tree.
+</li><li> Open the output file for writing.
+</li><li> Using the Huffman coding tree, decode the bits from the input file
+into the appropriate sequence of bytes, writing them to the output file.
+</li><li> Close the input and output files.
+</li></ol>
+
+<h4> Data structures and object-oriented design </h4> 
+ <p> The main data structure you will need in your solution is a binary
+trie that represents a Huffman code.  In implementing Huffman's algorithm
+to construct the trie, you will find it
+convenient to use other data structures as well (for example, a priority queue
+is useful, to maintain the forest of trees ranked by count).  
+Any other data structures you find you need,
+can be implemented in any way you wish; however, you should use good
+object-oriented design in your solution.  For example, since a Huffman
+code tree will be used by both your Compress and Uncompress classes,
+it makes sense to encapsulate its functionality
+in its own class, so that Compress and Uncompress can both use it.
+With a good design, the main methods in the Compress and Uncompress
+classes will be quite simple; they will create objects of other classes
+and call their methods to do the necessary work.
+ </p><p> One important design detail in this assignment is: how to
+represent information about the Huffman code in the compressed file,
+so the file can be correctly uncompressed.  Probably the easiest way
+to do it is to save the frequency counts of the bytes in the original
+uncompressed file as a sequence of 256 ints.  Since this is the information
+that Compress uses to create the Huffman code in the first place, it
+is sufficient.  However, it is not very efficient in terms of space:
+it uses 1024 bytes of disk for the header no matter what the statistics of the 
+input file are.  Alternative approaches use arrays to
+represent the structure of the tree itself in the header.
+It is possible to make do with about 2*C bytes, where C
+is the number of distinct byte values that actually appear in the
+input file.
+ </p><p> One thing to watch out for is that all disk I/O operations (and
+all memory read and write operations, for that matter) deal with a byte
+as the smallest unit of storage.  To write a single bit to a file, or
+to read a single bit from a file, involves using bitwise shift and
+logical operations to manipulate the bits within a byte.  The number
+of bits in the Huffman-compressed version of a file may not be a
+multiple of 8; but the compressed file will always contain an integral
+number of bytes.  You need a way to make sure that any "stray" bits at the
+end of the last byte in the compressed file are not interpreted as
+real code bits.  One way to do this is to store, in the compressed
+file, the length in bytes of the uncompressed file, and use that
+to terminate decoding.  (Note that the array of byte counts implicitly contains
+that information already, 
+since the sum of all of them is equal to the length in bytes of
+the input file.)
+</p><h4> Documentation </h4> 
+ <p> Document your code.  For this assignment, you will not turn in a
+separate user's manual; comments within the source code files
+themselves will suffice, if they are clear, informative, compelete,
+and  appropriately written.  Use "javadoc" comments to document each public
+class, and each public method in each class.  Use "double-slash"
+and/or "C-style" comments within method bodies and to document private
+variables and methods.
+ </p><p>
+In the class comments for your Compress and Uncompress classes, clearly
+describe how to use your programs, what their purpose is, and what their
+limitations are.  Be sure to include <code>@author</code> tags to indicate
+who wrote the code; both students' names and login names must appear
+prominently in all source code files, 
+if the assignment was done as a team.
+ </p><p>
+  To see what HTML documentation
+files javadoc will create, run
+
+</p><pre> javadoc -author *.java 
+</pre> 
+
+in your working directory.  Point a browser at the index.html file created there to see what
+the resulting hyperlinked documentation looks like.
+ <p>
+
+</p><h4> Notes and hints </h4> 
+ <p> Note that there are some differences between the requirements
+of this assignment and the description of Huffman coding in the
+textbook; for example, your program is required to
+work on a file containing any data, not just ASCII characters.
+ </p><p> The jarfiles RefCompress.jar and RefUncompress.jar in the
+directory <code>~/../public/P1/</code> contain "reference" implementations
+that satisfy the functional requirements of this assignment.  They
+are the result of rather poor design, and it
+is certainly possible to write a solution that is both faster and
+that writes smaller compressed files.  Note that you run a Java jarfile with
+a command of the form
+</p><pre>java -jar &lt;jarfilename&gt;
+</pre>
+passing command line arguments as needed.
+ <p>
+For file I/O, you may find the java.io. classes <code>FileInputStream</code>,
+<code>FileOutputStream</code>, <code>BufferedInputStream</code>,
+<code>BufferedOutputStream</code>, <code>DataInputStream</code>, and
+<code>DataOutputStream</code> useful.  See online or hardcopy Java
+references for more information.
+ </p><p>
+To see the size of a file from the Unix command line, 
+you can use the <code>ls</code> command with the<code>-l</code> flag:
+</p><pre>ls -l words.cmp
+</pre>
+will display the size of <code>words.cmp</code> in bytes.
+ <p>
+To check if two files contain the same data, use the <code>diff</code> command.
+For example,
+</p><pre>diff foo bar
+</pre>
+will print nothing if <code>foo</code> and <code>bar</code> are identical.
+If they are different, <code>diff</code> will print out some information
+about how they differ.  This can be useful to test if your Uncompress
+is really undoing what your Compress does!  (A Compress implementation
+without a matching Uncompress implementation, or vice versa, is really
+useless and will be graded accordingly.)
+
+ <p>
+To time a Unix command, pass the entire command line as an argument to
+the <code>time</code> command.  For example,
+</p><pre>time java Compress /usr/dict/words words.cmp
+</pre>
+will print out information about the time taken to run the command.
+(The first number printed is the user-mode CPU time in seconds; see
+<code>man time</code> for more information.)
+ <p>
+You should test your program as thoroughly as you can (we will certainly
+test it as thoroughly as we can when grading it).  Be sure to test
+on "corner cases": an empty file, 
+files that contain only one character repeated many
+times, etc.  "Working" means, at minimum, that running your Compress on
+a file, and then running your Uncompress on the result, must reproduce the
+original file.  There are some files
+in public/P1 that may be useful as test cases, but you will want to test
+on more than these.
+
+</p><h4>Grading</h4> 
+
+There are 25 possible points on the assignment.
+If your solution files do not compile and link error-free, you will
+recieve 0 points for this assignment.  We will compile your files with
+the commands <code>javac Compress.java</code> and 
+<code>javac Uncompress.java</code> using the
+JDK on ieng9.  
+<p>
+To get full credit, style and comments (including
+javadoc comments) count.  We will generate your documentation with
+the command <code>javadoc -author *.java</code>.
+
+
+</p><pre>15 points for Compress and Uncompress programs that use Huffman coding
+to correctly compress and decompress files.
+ <p>
+2 points for a correct implementation of Compress that creates a smaller 
+compressed file than the reference implementation when run on /usr/dict/words.
+ </p><p>
+2 points for a correct implementation of Compress that runs at least 25% faster
+than the reference implementation when compressing /usr/dict/words.
+ </p><p> 
+2 points for a correct implementation of Uncompress that runs at
+least 25% faster than the reference implementation when uncompressing
+the compressed version of /usr/dict/words.
+ </p><p>
+4 points for a good object-oriented design, good coding style, and 
+informative, well-written comments.
+</p></pre>
+
+
+</body></html>

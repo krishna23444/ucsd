@@ -1,0 +1,2 @@
+declare function foo( $x as onyx.types.Integer ) { () };
+declare function foo( $j as onyx.types.Integer ) { () };

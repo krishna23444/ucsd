@@ -1,0 +1,604 @@
+A service is specified in Mace by writing a .mac file.  The filename foo.mac
+refers to a service named foo.  Unlike popular languages such as Java which
+require the class name to be re-specified inside the file, Mace simply takes
+the service name from the file name.
+
+This tutorial will describe how to specify a .mac file, taking you through
+each of the steps of the compilation from .mac to c++.  The specification of
+the .mac file will be taken as annotated snippets from the yacc file, modified 
+for readability; those familiar with its syntax will find this familiar.
+
+[1] The Service Specification
+
+> service:  provides addressing trace constants services states auto_types typedefs messages state_variables transitions routines ;
+
+First we have the base line for the service description.  This specifies that
+the service will be defined by specifying what the service provides, its
+addressing, the trace (debugging) options, the service constants, the
+subordinate services used, the system states, auto-generated types, a
+convenience block for typedefining collections, a set of messages, the
+service's state variables or member variables, the transitions which may
+occur (functions which are called when events happen in certain states), 
+and finally a set of helper routines (private member functions).
+
+However, before we get to the provides line, it is worth knowing that input
+prior to the provides line is copied verbatim into the header file for the
+service.
+
+[1.1] Specifying the APIs a service provides
+
+> provides: "provides" id comma_provides ;
+> comma_provides: comma_provides "," id | ;
+
+The provides line defines the set of service classes which the service being
+specified provides.  The header files for these service classes can be found
+in mace/services/common.  For example, when a service says "provides Route",
+this means that it will conform to the common service class header file
+"RouteServiceClass.h", and more specifically that an instance of the specified
+service derives from RouteServiceClass.  The "ServiceClass" in
+"RouteServiceClass" is required for all service class header files, and as
+such, is omitted from the provides specification.  Multiple provided service 
+classes can be specified by writing a comma separated list of service classes.
+
+ASIDE: One of the things we as Mace developers challenge you as service
+developers to spend some time thinking about are exactly what service class
+your service provides.  The idea with service classes is that by describing
+the service classes your service provides, then applications using your
+service may stick to common API functions which could be replaced easily with
+another service providing that service class or classes.  Also, before
+creating new service classes, carefully consider how it will fit in with the
+existing service class heirarchy.  Ask yourself -- is there another service
+class which is sufficient to describe my service?  What public functions that
+my service provides do not exist as current APIs?  And finally, are the
+functions my service provides generic enough that they could be provided by
+another implementation?
+
+[1.2] Specifying the local address(es) of a service
+
+> addressing:  "local_addresses" "{" single_addresses "}" ;
+> single_addresses:  INT "->" exp ";" single_addresses | ;
+
+The addressing block allows a service to define a local address for each of
+the address families.  For address families not specified, the local address
+of that family will be a NULL address (one which returns true for
+"isInvalidAddress()").  When sending messages, the source address will be set
+based on the address family of the corresponding destination address.  The
+different local addresses may be accessed by referencing the "me" array at the
+index of the address family of interest.  The syntax for each address family
+definition is something like "0 -> getLocalAddress();"  This means that for
+address family 0, the expression getLocalAddress() will evaluate to the local
+address.  For a 32 bit hash space, it could be "1 ->
+macedon_hash(getLocalAddress());", in which case the expression indicates
+address family 1's local address is the address of family 0 should be hashed
+by the macedon_hash function.
+
+For example, an addressing block which included the two families mentioned in
+the prior paragraph would look like:
+
+addressing {
+  0 -> getLocalAddress();
+  1 -> macedon_hash(getLocalAddress());
+}
+
+[1.3] Controlling the degree of automated tracing
+
+All debugging in Mace should go through our centralized logging facility, the
+Log class (lib/Log.h).  The Log class provides a standard logging mechanism
+which provides a selective interface through string matching the roles of the
+log message.  All code written for .mac files can take advantage of
+this either by making calls directly to the Log class, or by using the
+standard "debug_macro" we have provided, which logs to the Log class using a 
+selector based on the transition being executed.  For more details on
+selectors see the documentation of the Log class.  
+
+A great deal of information about the execution of the service can  be
+automatically logged, however, using the automated tracing capabilities of
+mace generated services.  The degree of such tracing is controlled by the next
+block of the specification file, the trace block.  The syntax for this block
+is:
+
+> trace: "trace_high" | "trace_med" | "trace_low" | "trace_off"  
+
+Unsurprisingly, "trace_off" indicates that the mace compiler will generate no
+automated debugging messages for the service.  Then there are three degress of
+[default] tracing which can be generated.  Note that the trace level can be
+overridden for specific transitions later in the specification.
+
+trace_low: In trace_low, a log message is printed for every entry point into
+        the service code.  Essentially, this is understood as a debug message
+        happening any time a public function is called on the instance
+        implementing the service which has an implementation in the .mac file.  
+        Additionally, in trace_low, the flow of
+        messages is printed in a bit more detail, including the source and
+        destination of each message in a messaging transition
+        *** MAY NOT BE WHOLLY ACCURATE, MOVING TARGET ***
+
+trace_med: In trace_med, additionally, log messages are printed at every exit
+        point from the service, namely when transitions are ending, and when
+        calls are made to services which we use.  In trace_med, the message 
+        headers are also printed on receipt or sending of a message.
+        *** MAY NOT BE WHOLLY ACCURATE, MOVING TARGET ***
+
+trace_high: In trace_high, the points at which tracing occur are the same as
+        in trace_med.  The difference between trace_med and trace_high is the
+        degree of trace information which is printed.  In particular, in
+        addition to other logging, the contents of the state variables are
+        also logged for each transition.  This level of debugging, though very
+        excessive, should provide enough information to determine the
+        majority of things which could happen during the transition.
+        *** MAY NOT BE WHOLLY ACCURATE, MOVING TARGET ***
+
+Note, however, that the degree of logging can also be controlled by utilizing
+the optional parameters on message fields and state variables, which can
+specify that some things are either never dumped to logs, or that they only be
+dumped when the trace level is greater than or equal to a given level
+(low/med/high).  Additionally, the use of selectors can prevent log messages
+from being printed or in some cases evaluated.
+
+[1.4] Specifying service constants
+
+The constants block is useful for setting up named constants which can be
+referenced anywhere else in the .mac file where a literal constant would
+otherwise be used.  For example, you can name a constant for the number of
+peers a service is willing to accept (e.g. "MAX_NUM_PEERS"), and then use that
+elsewhere instead of the corresponding number.  In the c++ code implementing
+the service, these will appear as actual constants.  However, these will not
+conflict with other things defined elsewhere, as they will be constants within
+a namespace specific to the service being specified.
+
+The syntax for the constants block is as follows:
+
+> constants: "constants" "{" constants_recur "}" | ;
+> constants_recur: constants_recur constant | ;
+> constant:   type id "=" exp ";" ;
+
+The constants block is optional.  If it is specified, it is a block of
+constants surrounded by an open and close brace, and qualified by the word
+"constants".  A constants block may be empty, or may contain any number of
+constants.  A constant is defined as any other c++ variable, as a type, a
+name, the equals sign, and an expression.  For this to work, the expression
+must of course be a constant expression.  An example constant would look like
+"int MAX_NUM_PEERS = 5;" and a whole block could be 
+
+constants { int MAX_NUM_PEERS = 5; }
+
+Also, a note on constants style.  While it is by no means a requirement, it is
+common convention to name your constants in all caps, using underscores to
+separate words.  We recommend sticking to this style.
+
+A final word about using constants.  Constants should represent fundamental
+traits of your service, or constant parameters to your service.  These
+represent an excellent place for someone working with your service to
+experiment with different options.  It is perhaps then a good idea to comment
+the specification to describe the set of valid ranges under which the service
+may still work.  ***We are also considering the following additions based on
+the constants block.  (1) A separate parameters block, of things which are
+tweakable at runtime rather than compile time. This may also be linked to the
+Params class.  (2) An automated toolkit which can repeatedly run the service,
+searching for optimal parameter values or other statistical niceties.  (3) An
+online toolkit which can update parameters based on environmental feedback.***
+
+
+[1.5] Using other services
+
+One of the benefits of using Mace to write new services is how easy it is to
+create new services by composing other services and adding functionality,
+providing either the same interface or a new one.  The services block is how
+you specify the set of service instances you need to use
+
+> services:       "services" "{" service_list "}" | ;
+
+The services block is optional, and if present contains a service list.
+
+> service_list:   service_list service |
+> service: id service_options id ";" ;
+
+A service list contains one or more services, or may be empty. A service is an id
+representing the service class of the service to be used, the optional service
+options are used to specify defaults and other parameters, and the remaining
+id is the variable name by which the .mac file will refer to the service.  The
+compiler assumes that a header file with the name $1ServiceClass.h (where $1
+is the first id of the service line) exists in mace/services/common, so only
+those entries are valid in that slot.  The header file of the service class
+specifies the API functions which can be called with the named variable.  Any
+valid variable name may be used to refer to the instance of the service.
+
+service_options: "[" service_options_entries "]" | ;
+service_options_entries: service_options_entries service_options_entry | ;
+service_options_entry: id "=" exp ";"
+
+The optional service options are commonly used to specify defaults for each
+service instance.  This block is enclosed in "[" and "]" to denote its status
+as providing optional parameters.  Each default fits the format 'id "=" exp
+";"', so it is an assigment of an expression to some id.  Most id's which are
+assigned a value (the expression 'exp')  in this section will be loaded as
+parameters which that class may reference from the Params class.  The
+exception is the id "default", which allows you to provide a default
+constructor to use if no service instance is provided at runtime.
+
+An example services block could look like this:
+
+services {
+  Route [default=TCPService(); queue_size=5;] plain;
+  Route [default=EncryptedMultiChannel(plain);] encrypted;
+}
+
+This defines two services which can be used, both of which provide the API
+defined in mace/services/RouteServiceClass.h.  One is named "plain", and
+defaults to a new TCPService when none is provided.  Additionally, when the
+TCPService is constructed, the parameter queue_size=5 is available for its
+use, which will cause it to buffer up to 5 messages for sending on a socket.
+The other service defined is named "encrypted", and defaults to a new
+EncryptedMultiChannel when none is provided.  What's special about this
+construction is that we know that the EncryptedMultiChannel takes a
+RouteServiceClass& in its constructor, so we have used this knowledge to pass
+in our "plain" RouteServiceClass to its constructor.
+
+
+[1.6] System states
+
+The next thing to do after defining the services you use is to define the
+high-level states your system may be in.  All services have an 'init' state
+automatically defined for them, and this is the state in which they begin.
+Some services will be able to make good use of this block by specifying a
+number of high-level states which control the behavior of the system.  Others
+will not be able to define states at this high a granularity, because their
+high-level state is really a combination of a number of things which cause a
+large number of states that are not worth enumerating in one place.
+
+> states:	"states" "{" states_recur "}" | ;
+> states_recur:	states_recur state ";" | ;
+> state:	 id ;
+
+The states block is just a brace-delimited block with a list of states
+followed by semicolons.  States must be a single id (valid variable-name), and
+must not match the system defined state 'init'.  An example states block looks
+like:
+
+states {
+  preJoining;
+  joining;
+  joined;
+  restructuring;
+}
+
+A service with this block will have 5 high-level states.  The uses of these
+states are in enabling functions for transitions; that is, each transition
+specified will only be enabled when the state expression is true.  So for
+example, if a node is in the preJoining state, perhaps it won't enable a
+multicast API.  Alternately, this can be used to implement different behavior
+depending on which state a node is in.
+
+
+[1.7] Defining convenience data structures (auto_type(s))
+
+While it is true that data structures from other parts of code may be included
+and used in a .mac file, it is frequently convenient to include it inline in
+the service specification for readability or clarity, especially if it is a
+data structure specifically for the service.  It is particularly convenient to
+have the data structure definition in the .mac file when you may use some of
+the special compiler functions.  Special compiler functionality for data
+structures include using it to create "neighbor/node" auto types, for
+auto-generated serialization and deserialization code for the data structure,
+or to control how the data structure is logged when dumping state. ***List is
+current, but a moving target***
+
+The auto_types block:
+> auto_types:  "auto_types" "{" auto_types_recur "}" | ;
+> auto_types_recur:	auto_type | auto_types_recur auto_type ;
+> auto_type:		id auto_type_opt_list "{" auto_type_fields_recur "}" ;
+
+The auto_types block is optional, but when included is designated with the
+word auto_types, which encloses a list of auto_type definitions in braces.
+Each auto_type is given a type name (id), optionally contains a list of type
+options (auto_type_opt_list), and contains a set of fields which are public
+members of the data structure.
+
+[1.7.1] auto_type optional parameter list format (in general)
+
+> auto_type_opt_list: type_opt_list
+
+The type options conforms to a standard format called "type_opt_list" which is
+explained in detail in section 2.1.  Basically, the format is that an option
+name is given, followed by a list of "id=val;" options in parenthesis.  An
+example could be "[node(tracked_services=enabled; fail_detect=enabled;)]",
+which says that the node option has two suboptions, tracked_services and
+fail_detect, both of which are set to enabled.
+
+[1.7.2] Valid type options for auto types
+
+When declaring an auto_type, the compiler will parse any options which conform
+to the "type_opt_list" format.  But not all inputs are actually valid, and
+will generate error messages if not recognized.  The valid options and
+suboptions are:
+
+- node
+  - score
+  - tracked_services
+  - fail_detect
+- serialize
+  - no
+
+"node" as an option indicates that the auto_type represents a node, or rather,
+something which is indexed by a mace_key.  This is commonly used to represent
+sets of peers for things such as parents, children, finger tables, etc.  It
+does not require any suboptions to be specified, and used alone essentially
+just adds a private key field which should be provided when constructing the
+object, and can be accessed using the getId function.  It also adds an
+accessor function get_<fieldname>() for each field specified for the auto
+type, for use in the leastScore and greatestScore of the NodeCollection. The
+recommended way to make a NodeCollection is by declaring an auto_type to have
+the node option, and then templatizing the NodeCollection on the auto_type.
+Additionally, when you make an auto_type a node, it defines a getScore() which
+is the default function pointer for least/greatestScore() on a NodeCollection.
+On a node, getScore() returns 0.0 unless you also specify the score suboption.
+The score suboption allows you to indicate what field of the node should be
+used instead, such as "[node(score=latency;)]".  In addition to "score",
+"fail_detect" and "tracked_services" can be specified as suboptions to the
+"node" option.  The value of "fail_detect" defaults to disabled if the
+suboption is omitted, enabled if specified, and reverts to disabled if
+"fail_detect=disabled".  To later specify that a state variable should have
+liveness probing performed automatically, it must be a node type with fail_detect 
+enabled.  Similarly, the "tracked_services" suboption to "node" allows you to
+enable tracking of services, another automatic feature the compiler
+supports ***will support, future tense***.  Tracked services are specified for
+state variable instances, and when specified, indicate that the mace compiler
+will generate code to make sure that when the members of a node collection
+change, the tracked services are also notified of that change, so they can
+update their peering relationships.  In the auto_type "tracked_services"
+suboption to "node", you can specify it as "enabled" or "disabled", with the
+same defaults as "fail_detect".
+
+"serialize" is the other option supported for auto_type options.  Normally,
+the Mace compiler will automatically generate serialization code for the
+auto_type, allowing it to be converted to a string in a way that can be sent
+over the network, or written to file, etc.  If you do not need this
+functionality for this auto_type, specifying the "no" suboption to serialize
+will prevent the compiler from generating this code.  This looks like
+"[serialize(no;)]".  This can also be done if you want "serialization" to be
+implemented via memory copy using sizeof(), which for some circumstances will
+be more efficient (though less portable).  ***Soon, the serializable suboption
+will be modified to indicate yes/no for different types of serialization, i.e.
+XMLRPC, wire, etc.***
+
+A note about serializable nodes.  When serializing a node, the key (id field)
+of the node is serialized, but other automatically added data elements will
+not be.
+
+[1.7.3] auto_type fields and valid type options
+
+> auto_type_fields_recur: auto_type_fields_recur auto_type_field | ;
+> auto_type_field:	  pointer_type id auto_type_opt_list ";" ;
+
+The auto_type fields are declared using standard syntax for declaring
+variables.  Arrays are not supported, however full template type parsing is.
+auto_type fields can be any valid type, including auto_types which are defined
+prior to this auto_type, or types from the typedefs block (section 1.8).  If
+header files for types need to be included, they can be included at the top of
+the .mac file, before the provides line.  *** Here the options aren't where I
+thought -- i.e. they are after the variable name.  The problem, however, is
+that this prevents us from supporting arrays. ***
+
+After the type name(pointer_type) and variable name(id), you may also specify
+an auto_type_opt_list, which is the same format as before.  The options and
+suboptions allowed here are:
+
+- serialize
+  - no ***
+- dump
+  - no ***
+
+These options allow you to control, on a per-field basis, whether fields are
+included in the serialization of the object or whether they are included in
+the standard logging of the object.  Both default to be included in
+serialization and logging, and can be turned off if the no suboption is
+specified.  *** Similarly, serialize for a field will probably support
+individual type serialization, and dump will allow you to specify at what log
+level the field is dumped ***
+
+[1.7.4] Full auto_type definition example
+
+auto_types {
+  route_entry [node(score=delay;)] {
+    mace_key hash_id;
+    double delay [serialize(no;) dump(no;)];
+  }
+}
+
+This example defines a single auto_type called "route_entry".  "route_entry"
+represents a node, and the getScore() function will return the delay field.
+In addition to the node's id, which is included as a private variable, it
+includes a hash_id of type mace_key, and a delay field of type double.  The
+delay field is not serialized with the rest of the object, nor is it dumped
+out with the other fields when calling dumpState() on the object.
+
+
+[1.8] Type definitions: Collections, iterators, and the like
+
+The typedefs block is optional, but is a convenient place to define types for
+collections or other long templated types you will be using frequently, or to
+assign names specific to the use of the type rather than the structure of the
+type.  The syntax is:
+
+> typedefs: "typedefs" GRAFT_BODY  | ;
+
+The typedefs syntax is just the "typedefs" keyword followed by the GRAFT_BODY
+macro.  The GRAFT_BODY macro causes all content between the opening brace
+("{") and the closing brace ("}") to be included in the header file for the
+service being specified, inside the namespace for the service.  Thus, any
+valid C++ syntax may be used here, though it is STRONGLY RECOMMENDED that you
+restrict yourself to making type definitions in this block.  A good use of
+this block could be:
+
+typedefs {
+  typedef NodeCollection<child, RANDTREE_MAX_CHILDREN> children;
+  typedef mace::hash_map<handler_uid_t, mace::string> HandlerCredentialMap;
+  typedef mace::hash_map<handler_uid_t, bool> HandlerAcceptanceMap;
+}
+
+Which creates convenient names for collection types.  It defines a type called
+children which is a NodeCollection templated on child with a maximum number of
+children set at RANDTREE_MAX_CHILDREN (omitting the second template parameter
+will cause the max to be set at INT_MAX), where RANDTREE_MAX_CHILDREN is a
+constant defined in the constants block.  It also defines a type called
+HandlerCredentialMap, which is a mace::hash_map (a version of a hash_map with
+some extra mace functionality, including serializability) from a handler_uid_t
+to a mace::string, and finally a type called HandlerAcceptanceMap which maps a
+handler_uid_t to a bool.  These typenames can then be used in auto_type
+definitions, message definitions, or anywhere else in the .mac file.
+
+[1.9] Message definitions
+
+messages:   "messages" "{" messages_recur "}" | ;
+messages_recur:	message | messages_recur message ;
+message:	id message_opt_params "{" fields_recur "}" ;		
+fields_recur:	fields_recur field | ;
+field:		type id ";" | type id "[" exp "]" ";" ;
+
+message_opt_params: "[" message_opt_param_list "]" | ;
+message_opt_param_list: message_opt_param_list  message_opt_param ";" | message_opt_param ";" ;
+message_opt_param: id "::" id "(" msg_opt_param_param_list ")" ;
+msg_opt_param_param_list: msg_opt_param_param msg_opt_param_param_commas | ;
+msg_opt_param_param_commas: msg_opt_param_param_commas "," msg_opt_param_param | ;
+
+msg_opt_param_param: "<>" { $$ = NULL; } //No default handling of this parameter.
+                   | id { $$ = $1; } //The default handling of this parameter will be the id provided
+                   | id "<" id ">"  { $$ = $1; } //No present support for the < id >
+                   | int_val { $$ = $1; } //The default handling of this parameter will be the int provided
+                   | dbl_val { $$ = $1; } //The default handling of this parameter will be the double provided
+                     ;
+
+
+[1.10] State variables
+
+state_variables:	"state_variables" "{" state_variables_recur "}" ;
+state_variables_recur:	state_variable | state_variables_recur state_variable ;
+state_variable:	  state_type_expr ";" 
+		| state_type_expr "[" exp "]" ";" 
+		| state_type_expr "[" exp "]" "[" exp "]" ";" 
+		| state_type_expr "[" exp "]" "[" exp "]" "[" exp "]" ";" 
+                | "timer" state_var_opt_params id ";" 
+		;
+state_type_expr: pointer_type state_var_opt_params id ;
+state_var_opt_params: type_opt_list
+
+[1.11] Transitions
+
+*** CHANGING ***
+transitions:	"transitions" "{" transitions_recur "}" ;
+transitions_recur:   transition | transitions_recur transition ;
+transition:	    transition1 transition2 ;
+transition1: state_expr transition_type id | transition_type id ;
+state_expr:	"!" "(" state_paren_list ")" | "(" state_paren_list ")" | "!" id | state_paren_list ;
+state_paren_list: state_paren_list "|" id | id ;
+transition2:	GRAFT_BODY ;
+transition_type:     "recv" | "forward" | "timer" | "API" ;
+
+***transition_1 : erroneous.  But we want some kind of transition_options --
+perhaps using standard type_opt_list***
+transition_1: state_expr transition_type transition_name transition_options { 
+		    //cur_state = $1; 
+		    //transition_stimulus_str = $2; 
+		    add_transition($1, $2, $3);
+		    }
+		    | transition_type transition_name transition_options {
+		      add_transition("any",$1,$2);
+		    }
+		    ;
+transition_options: OBRACKET topts CBRACKET {}
+		    |
+		    ;	    
+topts:	
+	| LOCKING EQ id SEMI topts {transition_locking($3);}
+	;
+transition_name: TRANS_NAME ;
+
+
+[1.12] Routines
+                          
+routines: 	"routines" "{" routine_list "}" | ;
+routine_list:	routine_list routine | ;
+
+routine:	prototype GRAFT_BODY ;
+prototype:	prototype1 PARAM_LIST ;
+
+prototype1:	id id | id "*" id | id id id | id id "*" id ;
+
+[2.1] "type_opt_list" (in detail)
+
+type_opt_list: "[" type_opt_entry type_opt_entries "]" | ;
+type_opt_entries: type_opt_entries "," type_opt_entry | ;
+
+type_opt_entry: id "(" type_opt_fields ")" ;
+type_opt_fields: type_opt_fields type_opt_field ";" | ;
+type_opt_field: id | id "=" exp | "fail_detect" "=" exp ;
+
+[2.2] "id"
+
+id:             ID { $$ = $1; }
+                ;
+
+[2.3] Numbers
+
+int_val:	INT_VAL { $$ = $1; }
+		;
+
+dbl_val:        DBL_VAL { $$ = $1; }
+           ;
+
+[2.4] Expressions
+
+exp: expression { $$ = strdup(parse_buf); parse_buf[0] = 0; }
+
+expression:  expression STAR {rstrcat(parse_buf, "*");} expression2
+           | expression DIVIDE {rstrcat(parse_buf, "/");} expression2
+	   | expression PLUS {rstrcat(parse_buf, "+");} expression2
+	   | expression MINUS {rstrcat(parse_buf, "-");} expression2
+	   | expression LSHIFT {rstrcat(parse_buf, "<<");} expression2
+	   | expression RSHIFT {rstrcat(parse_buf, ">>");} expression2
+	   | expression BIT_AND {rstrcat(parse_buf, "&");} expression2
+	   | expression BIT_OR {rstrcat(parse_buf, "|");} expression2
+	   | expression BIT_NOT {rstrcat(parse_buf, "~");} expression2
+	   | expression LOG_AND {rstrcat(parse_buf, "&&");} expression2
+	   | expression LOG_OR {rstrcat(parse_buf, "||");} expression2
+	   | LOG_NOT {rstrcat(parse_buf, "!");} expression2
+           | expression2
+;
+
+expression2: id {rstrcat(parse_buf, $1);}
+           | dbl_val {rstrcat(parse_buf, $1);} 
+           | int_val {rstrcat(parse_buf, $1); }
+           | OPAREN {rstrcat(parse_buf, "(");} expression CPAREN {rstrcat(parse_buf, ")");}
+           ;
+
+[2.5] Types
+
+pointer_type: type_recur stars {$$ = strdup(parse_buf); parse_buf[0] = 0; }
+        ;
+stars: stars STAR { rstrcat(parse_buf, "*");} | 
+        ;
+
+type: type_recur {$$ = strdup(parse_buf); parse_buf[0] = 0; }
+
+type_recur: type_colon | template_type
+        ;
+
+type_colon: id {rstrcat(parse_buf, $1); } type_colon_recur
+        ;
+
+type_colon_recur: COLON COLON {rstrcat(parse_buf, "::"); } id {rstrcat(parse_buf, $4); } type_colon_recur | 
+        ;
+
+template_type: type_colon 
+               LESS {rstrcat(parse_buf, "<");}
+               template_type_recur GREATER { rstrcat(parse_buf, "> "); }
+        ;
+template_type_recur: type_recur comma_type 
+         ;
+
+comma_type: comma_type COMMA {rstrcat(parse_buf, ", "); } type_recur |
+
+[2.6] Comments
+
+Additionally, C/C++ style comments are valid anywhere in a .mac file. ***IS
+THIS TRUE?***

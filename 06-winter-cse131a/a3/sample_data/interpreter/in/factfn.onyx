@@ -1,0 +1,9 @@
+declare function fac( $n as onyx.types.Decimal ) as onyx.types.Decimal {
+  if( $n < 1 )
+  then
+    1
+  else
+    ($n * fac($n - 1))
+};
+
+fac(6)

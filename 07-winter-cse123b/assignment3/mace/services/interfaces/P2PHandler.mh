@@ -1,0 +1,66 @@
+#include "lib/Serializable.h"
+#include "lib/Util.h"
+
+typedef int join_status_t;
+const join_status_t P2P_DISCONNECTED = 1;
+const join_status_t P2P_JOINING = 2;
+const join_status_t P2P_CLIENT_JOINED = 3;
+const join_status_t P2P_SUPERNODE_JOINED = 4;
+
+typedef mace::hash_set<mace::string> FileSet;
+
+
+class QueryResult : public mace::PrintPrintable, public mace::Serializable {
+public:
+  MaceKey peer;
+  int port;
+  FileSet files;
+
+  QueryResult(const MaceKey& _peer, int _port, const FileSet& _files)
+      : peer(_peer), port(_port), files(_files)
+  { }
+  
+  QueryResult()
+  { }
+  
+  QueryResult(const QueryResult& qr)
+      : peer(qr.peer), port(qr.port), files(qr.files)
+  { }
+  
+  void print(std::ostream& out) const {
+    out << peer << " " << port << " " << files;
+  }
+
+  void serialize(std::string& str) const {
+    mace::serialize(str, &peer, peer);
+    mace::serialize(str, &port, port);
+    mace::serialize(str, &files, files);
+
+  }
+
+  int deserialize(std::istream& in) throw(mace::SerializationException) {
+    int serializedByteSize = 0;
+    serializedByteSize += mace::deserialize(in, &peer, peer);
+    serializedByteSize += mace::deserialize(in, &port, port);
+    serializedByteSize += mace::deserialize(in, &files, files);
+    return serializedByteSize;
+  }
+};
+
+struct queryResultlt
+{
+  bool operator()(const QueryResult& q1, const QueryResult& q2) 
+  {
+    return (q1.peer < q2.peer);
+  }
+};
+
+typedef mace::set<QueryResult, queryResultlt> QueryResultSet;
+
+handler P2P {
+  virtual void joinStatusChanged(join_status_t newstatus) { assert(0); }
+  virtual FileSet getAvailableFiles() { assert(0); }
+    
+  virtual void handleQueryResult(uint sequence_num,
+                                 const QueryResultSet& results) { assert(0);}
+};

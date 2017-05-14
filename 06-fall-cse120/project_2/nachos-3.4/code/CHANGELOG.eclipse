@@ -1,0 +1,13 @@
+Changes we had to make to NACHOS in order to get it to run at home under
+Eclipse just like it runs on UCSD's servers.
+
+
+2006-10-14  Nitay Joffe   <nitayj@gmail.com>
+
+* Define macros used by Makefiles:
+    CSE120_GCC=/home/nitay/src/nachos-3.4/mips-x86.linux-xgcc/
+    CSE120_CFLAGS=-I./ -I../threads -g
+    CSE120_HOST=-DHOST_i386
+
+* Makefile.common: Remove -fwritable-strings from CFLAGS.
+

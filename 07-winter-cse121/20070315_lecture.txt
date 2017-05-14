@@ -1,0 +1,152 @@
+  vmware esx server
+  -----------------
+- basically disco
+- run real operating systems that they could go in and tweak
+- memory
+  - content based page sharing using hashes
+  - copy on write
+- 1gb real machine hardware memory, want to run 4 os's on top of it
+- say we give each guest os 512mb = 2gb total
+- implement swapping at the vmm layer, what could go wrong?
+  - too smart for our own good, trip over ourselves. say vm needs another page
+    and is doing its own paging, now it has to put oldest on its swap, but we
+    have to get its oldest off our swap, so we just shot ourselves in the foot
+  - problem is its deterministic, vm's lru and our lru will always match up, so
+    when it has a page on disk, so will we... use random paging?
+- need mechanism to avoid this double paging issue
+- vmm doesn't want to ever have to use it's swap, it's like a panic button
+- conceptually we'd like to twiddle the memory we give to the vm. use a
+  "balloon" in the vm which allocates/deallocates memory. has a secret
+  communication channel with the vmm
+- balloon driver tells vmm when it allocates a page, letting it know it's not
+  going to touch it. vmm will remove those pages from the pmap, it knows no one
+  is going to touch them
+- problem if vm can swap out balloon's memory. in order for it to work need to
+  be sure that os won't touch it either. need to make the balloon pin its
+  memory just like the kernel does. how do we do this? make balloon a driver.
+- how does balloon driver tell vmm about its page? system calls trap to vmm, so
+  we define a "fake" system call that isn't used anywhere else
+- what could go wrong? vm refuses to give balloon memory? vm kills ballon? 
+  - have to have swap mechanism as a backup
+- vm may crash, when it comes back up it will touch all its memory before the
+  baloon even starts up, so we need to be able to play the swap game as a
+  backup, but it is incredibly bad performance wise
+- how do you decide who gets more memory?
+  - same game as in vm, use reference bits to notice who has been accessed
+  - wipe out all the reference bits, let things run for a while, and see the
+    pages they've touched recently?
+  - vm with most pages with reference bit set need more memory
+  - don't really want to set all those bits b/c it would screw their paging?
+  - use probability, pick a random set of pages, set their reference bits to
+    zero. then look at those pages and estimate the whole behavior according to
+    that. this is the same behavior as us census bureau, use fraction of
+    population to decide the whole
+  - don't have to actually go and count everything, just notice page faults
+    that set the refernce bit
+- say we get some results from four vms, using 1/2, 1/4, 1/6 and 1/8 of their
+  memory, how do we reallocate memory?
+- p(f(m)+k(1-f(m)))
+  - p = number of pages
+  - f(m) = fraction of memory that you're using
+  - 1-f(m) = fraction of memory you're not using
+  - k = some constant greater than 1
+  - number gets bigger as you use less memory, if you're using all your memory,
+    than f(m) = 1, and 1-f(m) = 0
+- p = s/p(f(m)+k(1-f(m)))
+  - very similar to lottery scheduling, it's from same guy
+  - s = money given
+  - for a given amount of money, and a given amount of pages, you're paying
+    some amount for it
+  - s/p = how much you're paying for your pages. if you're paying a lot, we'll
+    give you more
+  - the whole f(m)+k(1-f(m)) is like a tax for not using pages that makes unused
+    pages a lot more expensive
+- need to allocate more memory, who do you take it from? the person who is
+  paying the least for their memory
+- only time vmm makes decision about memory is when there's a page fault and
+  the page is not backed by some machine page
+- improve performance by doing similar thing vm os's do, keep a pile of memory
+  available for allocation and do these ticketing tricks in the background
+- vmware
+  - copy on write stuff, hope you can overcommit memory
+  - when you get in a pinch, start inflating balloons
+  - can specify priorities on vms to change factors on how much money each gets
+  - if you get screwed and balloon is not responding, then just kick out a
+    random page from that vm. need to punish balloon poppers.
+- if you get a wild write on a balloon address than something is wrong, i.e.
+  possibly os crashed and now it's doing its sweep. vmm can't trust its balloon
+  anymore. use a weighted moving average value
+- use two different periods weighted average values to track both quick changes
+  in memory consumption and long term slow ones
+- slow to take memory away from you, quick to give it to you
+- balloon used to get os to do paging for the vmm
+
+  final
+  -----
+- 10 questions, 3 hours
+- two samples available on web, no answers though
+- a/s/n, t/f, free response
+- closed book
+- high level concepts, not low level details
+- anything detailed there'll be a copy of formula/graph/etc
+
+- filesystems
+  - unix ffs
+  - logfs
+    - cleaning
+    - segments
+  - journaling and soft updates
+    - reliability guarantees
+  - rio
+    - crash testing
+    - fault injection
+  - caching/prefetching
+    - algorithm
+    - lru-sp
+    - belady's
+    - why does prefetching matter
+  - lottery scheduling
+    - what's the point
+    - diff vs. stride
+    - how does it work
+  - gms
+    - why a good idea?
+    - still a good idea?
+    - network faster than disk
+    - minage
+    - too much old data
+- operating systems
+  - mach
+  - l4
+  - microkernel
+    - strength
+    - weaknesses
+      - ipc
+    - mcpi
+    - address space slicing/dicing
+    - tagged tlbs
+  - nooks
+    - limited form of protection
+    - what did it do
+    - how did it work
+    - copy on value return
+      - parameter passing routine so that if driver crashes still have data
+  - exokernel
+    - diff with micokernel
+    - why/why not want it?
+    - no abstractions, there are no right answers. microkernel says there are
+      right answers, just few of them
+- virtual machines
+  - what's a vm
+  - virtualization vs. paravirtualization
+  - dead in 60s, why are they back now?
+  - semantic gap
+    - why is this a problem
+  - how do you address it?
+    - lots and lots of tricks
+  - ccnuma
+  - vmware
+    - balloon drivers
+  - xen
+    - paravirtualization
+    - shadow page tables

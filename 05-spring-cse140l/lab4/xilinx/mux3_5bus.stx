@@ -1,0 +1,26 @@
+Release 7.1.01i - xst H.39
+Copyright (c) 1995-2005 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to .
+CPU : 0.00 / 0.26 s | Elapsed : 0.00 / 0.00 s
+ 
+--> 
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "G:/xilinx/projects/lab4/Mux3_5bus.vhf" in Library work.
+Entity <m2_1e_mxilinx_mux3_5bus> compiled.
+Entity <m2_1e_mxilinx_mux3_5bus> (Architecture <behavioral>) compiled.
+Entity <m4_1e_mxilinx_mux3_5bus> compiled.
+Entity <m4_1e_mxilinx_mux3_5bus> (Architecture <behavioral>) compiled.
+Entity <mux3_5bus> compiled.
+Entity <Mux3_5bus> (Architecture <BEHAVIORAL>) compiled.
+CPU : 0.08 / 0.34 s | Elapsed : 0.00 / 0.00 s
+ 
+--> 
+
+Total memory usage is 74856 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    0 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+

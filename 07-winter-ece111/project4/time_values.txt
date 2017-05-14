@@ -1,0 +1,17 @@
+all NS
+breakpoint        time (48)  time (64)   time (96)   time (128)  time (256)
+
+first crc         35,470     37,550      40,110      42,670      52,910
+wep_encrypt()     234,510    301,230     433,070     564,910     1,092,270 
+
+/\ first crc computation task
+
+ciphertext        411,030    532,790     774,870     1,016,790   1,984,310
+after ciphertext  438,910    563,070     808,750     1,054,270   2,034,990
+
+/\ finish encrypting bytes
+
+second crc b4     588,870    761,670     1,104,790   1,447,590   2,817,270
+after 2nd crc     804,070    1,041,510   1,513,910   1,985,990   3,872,790
+
+/\ second CRC computation

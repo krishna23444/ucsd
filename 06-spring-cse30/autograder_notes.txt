@@ -1,0 +1,8 @@
+  CSE 30 Autograder Notes
+
+- Make sure you have the right executable in ~cs30xzz/pa2
+- make sure cs30xzz runs turnin on pa2 before you collect the assignments and run the autograder.
+- Make sure you remove all the .html files in ~cs30x3/public_html/scores
+- Make sure you have the right pa2.guideline in the ~cs30x3/guidelines
+- Double check the permissions on the cs30xAA folders in grading/pa2 when you distribute (the last folder didn't have group write permissions for some reason when I did it so I had to manually chmod them)
+- Make sure you send/collect gradesheets

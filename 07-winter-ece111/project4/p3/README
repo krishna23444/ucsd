@@ -1,0 +1,12 @@
+This directory contains the HW and the SW for the system.
+This directory is used for doing simulations of software only implementations.
+
+The directories are:
+
+hw/	: This contains the HW design of the system
+sw/	: This contains the software programs which will run on the system
+scripts/: This contains the configuration script for Seamless and some other
+	  do files and include files
+
+setup.csh : This file is sourced to setup some environment variables before
+	    running any tool.

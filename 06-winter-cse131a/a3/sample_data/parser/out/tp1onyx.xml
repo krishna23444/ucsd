@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.ast.Query>
+   <onyx.ast.ExprList>
+      <onyx.ast.Operator name="op:numeric-add">
+         <onyx.ast.Constant datatype="onyx.types.Boolean">true</onyx.ast.Constant>
+         <onyx.ast.Constant datatype="onyx.types.Integer">1</onyx.ast.Constant>
+      </onyx.ast.Operator>
+   </onyx.ast.ExprList>
+</onyx.ast.Query>
+

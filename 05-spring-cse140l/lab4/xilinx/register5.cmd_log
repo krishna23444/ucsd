@@ -1,0 +1,3 @@
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w register5.sch register5.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w register5.sch register5.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w register5.sch register5.vhf

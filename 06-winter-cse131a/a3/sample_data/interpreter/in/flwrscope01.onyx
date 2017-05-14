@@ -1,0 +1,7 @@
+let $n := 3
+    for $i in (3,4)
+        for $j in ($i,7)
+                let $k := 12
+                        let $n := $n+2
+                                where $j < $n
+                                        return $i * $j

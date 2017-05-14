@@ -1,0 +1,2 @@
+let $d := document(3)
+return $d

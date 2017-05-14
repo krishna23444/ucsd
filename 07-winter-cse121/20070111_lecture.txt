@@ -1,0 +1,77 @@
+- why filesystem?
+  - secondary storage is permanent, describe data across process creation/finish
+  - name game, be able to access files across processes
+  - file structure
+  - structuring data access to physical disk
+- master boot record
+  - lives right at beginning of disk, at fixed location
+  - partition table
+    - 4 slots for partitions, at most one bootable
+    - sector number, size, fstype
+- superblock = describe what fs is in the partition
+- mbr tells you what superblock to expect
+
+- dos fat 16
+  - 512 byte sectors
+  - clusters are groups of sectors (4,8,2...) = size stored in superblock
+  - internal vs. external fragmentation in changing size
+  - file stored in blocks 1,3,7
+    -------------------------------------
+    |3| |7| | | |x| | | | | | | | | | | |
+    -------------------------------------
+    | | | | | | | | | | | | | | | | | | |
+    -------------------------------------
+  - table really efficient
+  - really dangerous if you lose/corrupt pointer in fat
+    - fix = keep two copies, put them far away so cash doesn't effect both =
+      poor performance
+  - directory file
+    - 32 byte entries
+    - 11 bytes name = 8.3 format
+    - delete file = put space in first char of name, "mark" fat entry unused,
+      have it point to next free
+    - fixed size, could only have a certain number of files
+
+- fat 32
+  - larger file names = take up multiple entries in directory file
+
+- cdrom iso 9660
+  - designed for write once media
+  - path table file name fully qualified
+
+- fast file system
+  - hardware can support faster reads
+  - interesting to do, applications, e.g. image processing
+  - reasons why current fs not good
+    - lots of seeks
+    - block size = tried twice as big, became better
+  - good
+    - decrease seeks
+    - efficient transfer rate = bigger block size
+  - lots of seeks
+  - inodes and data in separate locations, why?
+    - metadata operations
+    - can use a mroe dynamic structure to store them, don't need fixed size
+      inodes
+    - corruption = know where inodes are stored
+  - cylinder group = set of concentric tracks that ...
+  - need an allocation policy that made sure files and their inodes were in
+    same cylinder group
+  - ffs doesn't decay over time, they didn't necessarily set out to do it, but
+    it was a big thing
+  - don't use fcfs, be fair
+  - at point when you hit need for single indirect block, you're gonna need to
+    seek somewhere else anyways, so now move to another cylinder group =
+    overlap work
+  - later 1mb after, move to another cylinder group
+    - not really a magic number, just big enough for most files
+  - where to put files?
+    - same cylinder group as other files in that directory
+    - ppl will touch that directory together a lot
+  - subdirectory that's new?
+    - go to new cylinder group
+  - how to choose new subdirectory?
+    - pick one w/ more than average free space
+    - within that set, chooose one w/ lots of free inodes
+  - did not choose close by, why?
+    - forces back to old fs

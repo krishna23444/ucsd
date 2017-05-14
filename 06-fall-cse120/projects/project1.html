@@ -1,0 +1,536 @@
+<html xmlns:str="http://exslt.org/strings" lang="en">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CSE 120 Fall 2005: Project 1</title> 
+
+<base href="">
+
+<meta content="text/html; charset=UTF-8" http-equiv="content-type">
+<meta content="en" http-equiv="content-language">
+<meta content="text/css" http-equiv="content-style-type">
+<meta content="no" http-equiv="imagetoolbar">
+<meta content="Computer Science, engineering, ucsd, faculty, students, Jacobs School, San Diego, University" name="keywords">
+<meta content="UCSD Department of Computer Science and Engineering" name="description">
+<meta content="UCSD Department of Computer Science and Engineering" name="organization">
+<meta content="4.3.4.0" name="pageno">
+<link media="screen" type="text/css" href="http://www.cs.ucsd.edu/css/global_style.css" rel="stylesheet">
+<script type="text/javascript" language="JavaScript" src="http://www.cs.ucsd.edu/javascript/global_functions.js"> </script><script language="JavaScript" type="text/javascript">
+<!--
+        var NS4, IE, DOMstandard, CSScapable;
+        NS4 = (document.layers) ? 1 : 0;
+        IE = (document.all) ? 1 : 0;
+        DOMstandard = (document.getElementById) ? 1 : 0;
+        CSScapable = (NS4 || IE || DOMstandard) ? 1 : 0;
+        if(CSScapable)
+        {
+          if(NS4)
+            document.write('<link type="text/css" href="../../../css/ns_style.css" rel="stylesheet">');
+            else
+  	      document.write('<link media="screen" type="text/css" href="../../../css/dom_style.css" rel="stylesheet">');
+            }
+//-->
+          </script>
+</head>
+<body link="#006699" vlink="#800000" alink="#FF0000" marginwidth="0" marginheight="0" topmargin="0" leftmargin="0" rightmargin="0" style="background: #ffffff url(../../../images/IMG_bgimg.gif) no-repeat">
+<a name="top"> </a><script type="text/javascript" language="JavaScript">
+<!--
+
+      logotopon = new Image(187,29);
+      logotopon.src = "../../../images/H_logo_top_over.gif";
+      logotopoff = new Image(187,29);
+      logotopoff.src = "../../../images/H_logo_top.gif";
+      logobottomon = new Image(187,18);
+      logobottomon.src = "../../../images/H_logo_bottom_over.gif";
+      logobottomoff = new Image(187,18);
+      logobottomoff.src = "../../../images/H_logo_bottom.gif";
+      headeron = new Image(573,47);
+      headeron.src = "../../../images/H_header_on.gif";
+      headeroff = new Image(573,47);
+      headeroff.src = "../../../images/H_header_off.gif";
+        
+//-->
+</script>
+<table bgcolor="#efefef" cellpadding="0" cellspacing="0" border="0" width="760">
+<tr>
+<td valign="top" width="187"><a onmouseout="Off('logotop')" onmouseover="On('logotop'); return true" href="http://www.ucsd.edu"><img border="0" width="187" height="29" src="http://www.cs.ucsd.edu/images/H_logo_top.gif" name="logotop" alt="UCSD Main Website"></a><a onmouseout="Off('logobottom')" onmouseover="On('logobottom'); return true" href="http://www.jacobsschool.ucsd.edu"><img border="0" width="187" height="18" src="http://www.cs.ucsd.edu/images/H_logo_bottom.gif" name="logobottom" alt="UCSD Jacobs School"></a></td><td valign="top" width="573"><a onmouseout="Off('header')" onmouseover="On('header'); return true" href="http://www.cs.ucsd.edu/index.php"><img border="0" width="573" height="47" src="http://www.cs.ucsd.edu/images/H_header_off.gif" name="header" alt="Department of Computer Science and Engineering"></a></td>
+</tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" width="760">
+<tr>
+<td bgcolor="#efefef" valign="top" width="760"><img border="0" width="1" height="12" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="760">
+<tr>
+<td bgcolor="#efefef" valign="top" width="12"><img border="0" width="12" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" bgcolor="#efefef" width="172">
+<table cellpadding="0" cellspacing="0" border="0" width="172">
+<tr><td bgcolor="#ffffff" valign="top" colspan="4" width="172">
+<a href="../index.html"><img border="0" width="172" height="38" src="../120.gif" alt="CSE 120"></a></td></tr
+<tr>
+<td bgcolor="#cccccc" valign="top" width="1"><img border="0" width="1" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#ffffff" valign="top" width="6"><img border="0" width="6" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#ffffff" valign="top" width="159">
+<table border="0" cellpadding="0" cellspacing="0" width="159">
+<tr>
+<td colspan="3" width="159"><img border="0" width="1" height="10" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<td valign="top" width="9"></td><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="../general.html"><b>Course Overview</b></a></font></td>
+</tr>
+<tr>
+<td valign="top" width="9"><img border="0" width="9" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="../general.html#structure"><b>Structure</b></a></font></td>
+</tr>
+<tr>
+<td valign="top" width="9"><img border="0" width="9" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="../general.html#grading"><b>Grading</b></a></font></td>
+</tr>
+<tr>
+<td valign="top" width="9"><img border="0" width="9" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="../general.html#collaboration"><b>Collaboration</b></a></font></td>
+</tr>
+<tr>
+<td valign="top" width="9"><img border="0" width="9" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="../general.html#books"><b>Useful books</b></a></font></td>
+</tr>
+<tr>
+<td colspan="3" width="159"><img border="0" width="159" height="5" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<td valign="top" width="9"><img border="0" width="9" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="../schedule.html"><b>Schedule</b></a></font></td>
+</tr>
+<tr>
+<td colspan="3" width="159"><img border="0" width="159" height="5" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<td valign="top" width="9"><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="index.html"><b>Projects</b></a></font></td>
+</tr>
+<tr>
+<td colspan="3" width="159"><img border="0" width="159" height="5" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<td valign="top" width="9"><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</td>
+<td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="../homework/index.html"><b>Homeworks</b></a></font></td>
+</tr>
+<tr>
+<td colspan="3" width="159"><img border="0" width="159" height="5" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<td valign="top" width="9"><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><b><a href="http://webboard.ucsd.edu">WebBoard</a></b></font></td>
+</tr>
+<tr>
+<td colspan="3" width="159"><img border="0" width="159" height="5" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+</td><td bgcolor="#ffffff" valign="top" width="6"><img border="0" width="6" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="172">
+<tr>
+<td bgcolor="#efefef" valign="top" width="172"><img border="0" width="172" height="12" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="172">
+<tr>
+<td valign="top" colspan="6" width="172"><img border="0" width="172" height="26" src="http://www.cs.ucsd.edu/images/DA_IMG_search.gif" alt="Search"></td>
+</tr>
+<tr>
+<td bgcolor="#cccccc" valign="top" width="1"><img border="0" width="1" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#ffffff" valign="top" width="1"><img border="0" width="1" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#eff5ef" valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#eff5ef" valign="top" width="159">
+<br>
+<form onsubmit="return check_search_form(this)" id="site_search" name="site_search" method="post" action="http://www.cs.ucsd.edu/cgi-bin/htsearch">
+<input value="htdig" name="config" type="hidden"><input value="" name="restrict" type="hidden"><input value="" name="exclude" type="hidden"><input maxlength="50" size="15" class="searchform" id="search" name="words" alt="search" type="text">&nbsp;&nbsp;<input type="image" name="searchnow" width="34" height="17" border="0" alt="search" align="top" src="http://www.cs.ucsd.edu/images/IMG_gobutton.gif">
+</form>
+<font class="body2" size="-2" face="verdana, arial, geneva, san-serif"><a href="http://www.cs.ucsd.edu/home/search.html"><b>Advanced search</b></a>&nbsp;&nbsp;</font><img border="0" width="8" height="5" src="http://www.cs.ucsd.edu/images/IMG_arrows.gif" alt="arrows gif" class="inlineimage"><br>
+<br>
+<img border="0" width="159" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#eff5ef" valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" bgcolor="#ffffff" width="1"><img border="0" width="1" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<td valign="top" colspan="6" bgcolor="#ffffff" width="172"><img border="0" width="172" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="172">
+<tr>
+<td bgcolor="#efefef" valign="top" width="172"><img border="0" width="172" height="12" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+</td><td bgcolor="#efefef" valign="top" width="12"><img border="0" width="12" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#efefef" valign="top" width="552">
+<table cellpadding="0" cellspacing="0" border="0" width="552">
+<tr>
+<td bgcolor="#cc9966" valign="top" colspan="3" width="552"><img border="0" width="552" height="15" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+
+<tr>
+<td bgcolor="#ffffff" valign="top" width="20"><img border="0" width="20" height="5" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#ffffff" valign="top" width="512"><font class="body1" size="-1" face="verdana,arial, geneva, sans-serif"></font><img border="0" width="360" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#ffffff" valign="top" width="20"><img border="0" width="20" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+
+<tr>
+<td bgcolor="#ffffff" valign="top" width="20"><img border="0" width="20" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td> <td bgcolor="#ffffff" valign="top" width="512">
+
+<font class="body1" size="-1" face="verdana,arial, geneva, sans-serif">
+<h3>
+Nachos Project 1: Threads
+</h3>
+
+<p><i>Due: Thursday, October 19th, at Midnight.</i></p>
+
+<p> In this assignment, we will give you part of a working thread
+system. Your job is to complete it and then use it to solve several
+synchronization problems.</p>
+
+<p> The first step is to read and understand the partial thread system
+we've provided. This thread system implements thread fork, thread
+completion, and semaphores for synchronization.</p>
+
+<p> Properly synchronized code should work no matter what order
+the scheduler chooses to run the threads on the ready list. In other words, we
+should be able to put a call to Thread::Yield() (which causes the scheduler to
+pick another thread to run) anywhere in your code where interrupts are enabled
+without changing the correctness of your code. You will be asked to write
+properly synchronized code as part of later assignments, so understanding how
+to do this is crucial to being able to do the project.</p>
+
+<p> To aid you in this task, code linked in with Nachos will cause
+Thread::Yield() to be called in a repeatable but unpredictable way.
+Nachos code is repeatable in that if you call it repeatedly with the
+same arguments, it will do exactly the same thing each time. However,
+if you invoke Nachos with "nachos -rs #" with a different number each
+time, calls to Thread::Yield() will be inserted in different places in
+the code.</p>
+
+<p> Warning: In our implementation of threads, each thread is assigned
+a small, fixed-size execution stack.  This may cause bizarre problems
+(such as segmentation faults at strange lines of code) if you declare
+large data structures to be automatic variables (e.g., ''int
+buf[1000];''). You will probably not notice this during the term,
+but, if you do, you may change the size of the stack by modifying the
+StackSize #define in thread.h.</p>
+
+<p> Although the solutions can be written as normal C routines, you
+will find organizing your code to be easier if you structure your code
+as C++ classes.  Also, there should be no busy-waiting in any of your
+solutions to this assignment.</p>
+
+<p> Don't worry if you don't have to write much code for each of
+these: the assignment is largely conceptual and not a programming
+chore.  For some hints on getting started, here are some <a
+href="hints.html">suggestions</a>.</p>
+
+<ol> 
+
+<li> [15 pts] Implement condition variables using interrupt enable and
+disable to provide atomicity. The file code/threads/synch.h defines
+the classes "Lock" and "Condition", and it is your task to implement
+the functions defined by those classes in synch.cc. 
+The file <a href="badtest.cc">badtest.cc</a> is an example
+program that demonstrates how race conditions can happen inside of Nachos.
+<a href="badtest.out">[Sample Output]</a>
+
+<p> [10 pts] You should write your code "defensively" in the sense
+that you should make an attempt to detect error conditions and react
+appropriately.  For error conditions that could result in a race
+condition or deadlock, your library routines should exit -- there is
+no way to recover from these errors, so they should be fatal to the
+program.  There is a convenient macro ASSERT() that you can use to
+check for error conditions and abort if necessary (grep through the
+Nachos source code files for examples of how to use it).</p>
+
+<p> To help motivate you to get into the habit of testing for error
+conditions, write test programs that test that your code correctly
+deals with the following situations: (1) acquiring the same Lock
+twice, (2) releasing a Lock that isn't held, (3) deleting a Lock that
+is held, (4) waiting on a condition variable without holding a Lock,
+(5) signaling a condition variable wakes only one thread and
+broadcasting wakes up all threads, (6) signaling and broadcasting to a
+condition variable with no waiters is a no-op, and future threads that
+wait will block (i.e., the signal/broadcast is "lost"), and (7) a
+thread calling Signal holds the Lock passed in to Signal.  These are
+the minimal set of error conditions for which we'll test your Lock and
+Condition implementations.</p>
+
+<li> [15 pts] Implement synchronous send and receive of one word
+messages using <b>condition variables</b>.  Create a "Mailbox" class
+with the operations Mailbox::Send(int message) and
+Mailbox::Receive(int * Message). Send atomically waits until Receive
+is called on the same mailbox, and then copies the message into the
+receive buffer. Once the copy is made, both can return. Similarly,
+Receive waits until Send is called, at which point the copy is made
+and both calls return. Your solution should work even if there are
+multiple senders and receivers for the same mailbox. (Hint: this is
+equivalent to a zero-length bounded buffer.)  Note that you cannot use
+explicit wait queues, Sleep, or disable/enable interrupts to implement
+Mailbox; the condition variables will do all of that for you.  Also,
+it is not necessary to "match" sending and receiving threads -- a
+receiver does not care which sender it gets a message from, only that
+it does get a message if a sender is trying to send one.  If you do
+match them, though, that is fine.
+
+<p> You can implement the "Mailbox" class in synch.h and sync.cc, or
+in new files.  If you create new files, be sure to update the
+dependency information in the Makefile; see <a
+href="http://www.cs.duke.edu/~chase/cps110/nachos-guide/nachos.b.html#pgfId=1004539">Installing
+and Building Nachos</a> from the Duke equivalent of this course for
+directions on how to do this.</p>
+
+<p> [5 pts] Write test cases that demonstrate that your implementation
+of the Mailbox class is faithful to the semantics described above: a
+receiver will only return when a sender sends, and blocks otherwise
+(and vice-versa); only one receiver and sender synchronize at a time,
+even when there are multiple senders and receivers.</p>
+
+<li> [15 pts] Implement Thread::Join().  Two threads are involved in
+Join; for the sake of intuition, let's call them the parent and the
+child.  At a high level, Join enables the parent thread to wait for
+the child thread to finish.  To do this, the parent thread is the one
+that invokes Join, and it invokes it on the child:
+
+<blockquote><pre><i>(executing as the parent thread)</i>
+
+Thread *child = new Thread("child", 1);
+child->Fork(SomeProcedure, SomeArgument);
+...
+child->Join();  // parent blocks until child terminates</pre></blockquote>
+
+<p> To implement Join, start by adding a parameter to the thread
+constructor to indicate whether or not Join will be called on this
+thread, and then implement the new Join method using one of the
+high-level synchronization primitives (Locks/CVs or Semaphores); do
+not create another "wait queue" and Sleep the waiting thread directly
+(i.e., do not do anything that requires you to add code to
+disable/enable interrupts).</p>
+
+<p> Use the following signatures for the updated constructor and Join
+method:</p>
+
+<blockquote><pre>Thread(char* debugName, int join = 0);
+
+void Join();</pre></blockquote>
+
+<p> Your implementation should properly delete the thread control
+block (1) whether or not Join is to be called, and (2) whether or not
+the thread being Joined finishes before the Join is called.  For (1),
+if Join will not be called on the thread, you can delete the TCB
+immediately when the thread exits (as currently implemented).  If Join
+will be called on the thread, you must wait until after Join has been
+called and returns before you can delete the TCB (you can assume that
+Join will eventually be called in this case).  For (2), you do not
+know whether the thread to be Joined will finish before another thread
+calls Join on that thread -- i.e., the TCB for the child cannot be
+deleted even if the child terminates before the parent calls Join on
+it.  If the child finishes before the parent calls Join, you must wait
+to delete the child's TCB until the parent calls Join.</p>
+
+<p> The file <a href="join-example.cc">join-example.cc</a> is an
+example program where one thread calls Join() on another <a
+href="join-example.out">[Sample Output]</a>.  It should help make the
+semantics and use of Join more concrete.  Be sure to note the use of
+the "-rs" switch to the nachos executable to randomizes context
+switches.</p>
+
+<p> [5 pts] Write test cases that test that (1) a thread that will be
+joined only is destroyed once Join has been called on it, (2) if a
+parent calls Join on a child and the child is still executing, the
+parent waits, (3) if a parent calls Join on a child and the child has
+finished executing, the parent does not block, (4) a thread does not
+call Join on itself, (5) Join is only invoked on threads created to be
+joined, (6) Join is only called on a thread that has forked, and (7)
+Join is not called more than once on a thread (if it is, then this
+could easily lead to a segmentation fault because the child is likely
+deleted).</p>
+
+<li> [15 pts] Implement preemptive priority scheduling in
+Nachos. Priority scheduling is a key building block for real-time
+systems. Add calls to the Thread class to set and get the priority of
+the thread. When a thread is added to the ready list that is a higher
+priority than the currently running thread, the current thread gives
+up the processor to the new thread (a thread with the same priority as
+the current thread does not preempt it).  If it is already on the
+ready list, you do not have to re-sort it (although you can if you
+want).  Similarly, when threads are waiting for a lock, semaphore, or
+condition variable, the highest priority waiting thread should be
+woken up first.  
+
+<p> Use the following signatures for the methods:</p>
+
+<blockquote><pre>void setPriority(int newPriority);
+int getPriority();</pre></blockquote>
+
+<p> NOTE: You need to use these names (including capitalization) and
+obey these signatures so that our test programs will compile to your
+code.</p>
+
+<p> The range of valid priorities is the entire range of an "int".
+Assume that all threads are created with priority 0.  Roughly
+speaking, threads set to have a negative priority have "less
+priority", and threads set to have a positive priority have "more
+priority".  Compare thread priorities directly to determine higher
+priority (e.g., a priority of 1 is lower than a priority of 2).</p>
+
+<p> An issue with priority scheduling is "priority inversion". If a
+high priority thread needs to wait for a low priority thread, such as
+for a lock held by a low priority thread or for a Join to complete,
+and a middle priority thread is on the ready list, then the high
+priority thread will never get the CPU because the low priority thread
+will not get any CPU time. A partial fix for this problem is to have
+the waiting thread "donate" its priority to the low priority thread
+while it is holding the lock.  Implement this fix separately for both
+situations: (1) the Lock class and (2) the Join method.</p>
+
+<p> [10 pts] Write test programs that (1) demonstrate that threads with
+higher priority get service first in the cases outlined above (both
+when added to the ready list, and when woken up when waiting on a
+synchronization variable), and (2) demonstrate that you solve the
+priority inversion problem for Locks and Join().</p>
+
+<li> [10 pts] You have been hired by Greenpeace to help the
+environment. Because unscrupulous commercial interests have
+dangerously lowered the whale population, whales are having
+synchronization problems in finding a mate. The trick is that in order
+to have children, three whales are needed, one male, one female, and one to
+play matchmaker -- literally, to push the other two whales together
+(I'm not making this up!). Your job is to write the three procedures
+Male(), Female(), and Matchmaker(). Each whale is represented by a
+separate thread with a unique ID. A male whale calls Male(), which 
+waits until there is a waiting female and matchmaker; similarly, a 
+female whale must wait until a male whale and a matchmaker are present. 
+Once all three are present, print a single message announcing the 
+whale IDs involved. Then, all three return. Each whale can only be
+involved in a single matchmaking.
+
+<p> Note that you cannot use explicit wait queues, Sleep, or
+disable/enable interrupts to implement the Whale procedures.  The
+Whale problem is similar in spirit to the synchronization problems we
+discussed in class (e.g., BoundedBuffer, ProducerConsumer, etc.).  You
+will use synchronization primitives (either Locks and CVs, or
+Semaphores) to coordinate the threads.</p>
+
+</ol>
+
+<h4>Submitting The Project</h4>
+
+<p> All the code you write should be well commented so we can
+understand what you changed.  However, your grade on the project
+fundamentally depends upon how well your solutions will pass the test
+cases.  As a result, it is important that (1) your code compiles
+cleanly, (2) the nachos executable will run, and (3) you write test
+cases to test your solutions to the problems.</p>
+
+<p>
+Turning in the project will be done via CVS.  Add a file named README
+to your CVS repository containing the members of your group, and a
+short paper write-up describing what changes you made, how well they
+worked, how you tested your changes, and how each group member
+contributed to the project. The idea of this is to make it easier to
+grade, not to burden you with a lot more work. Don't agonize over
+wording or anything, it doesn't have to be poetic, but should be
+informative. <!--For an example writeup, see <a
+href="http://www-cse.ucsd.edu/classes/fa02/cse120/projects/example-writeup.html">
+ http://www-cse.ucsd.edu/classes/fa02/cse120/projects/example-writeup.html
+</a>.--></p>
+
+<p>
+Put this file in the root of your copy of the cvs repository, and do:</p>
+<blockquote><pre>% cvs add README
+% cvs commit README</pre></blockquote>
+
+<p>
+Next, label the current version of the code in CVS as project1, this is
+important as this is how we get your files. To do this, type the
+following:</p>
+
+<blockquote><pre>% cvs rtag -F project1 nachos-3.4</pre></blockquote>
+
+<p>
+The -F flag tells it to set the tag even if it's already been set. This
+will be useful if you need to make changes to what you turned in.
+Essentially any time you make a change that you want turned in, you'll
+have to re-label it.</p>
+
+<p>
+If you've forgotten all the CVS commands, there is a quick and dirty reference
+for most of the commands you will need <a href="cvs.html">here</a>.</p>
+
+<!--<p><i>We are still in the process of establishing the CVS repository.</i></p>-->
+
+<!--
+
+<p> You should hand in the entire threads directory, including your
+test cases, as well as a file named "README" containing your group
+name and the members of the team.  In addition, we would like a short paper write-up describing what
+changes you made, how well they worked, how you tested your changes,
+and how each group member contributed to the project.   An example of
+
+<p> To turn in your project, create a tar file of your threads
+directory and Mail it to Rishi, Kuo-Wen, and me.  If you were group
+57, use the following sequence of commands to minimize the size of the
+file you send:
+
+<blockquote><pre>
+% cd nachos-3.4/code
+% gmake clean
+% tar cvf group57.tar threads
+% gzip group57.tar
+% [mail group57.tar.gz using your favorite method of email attachments]
+</pre></blockquote>
+
+<p> Look on the <a href="project-groups.html">project groups list</a> if you do
+not remember your group number.  -->
+
+</font>
+</td><td bgcolor="#ffffff" valign="top" width="20"><img border="0" width="20" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<br>
+<p>
+</font><img border="0" width="532" height="12" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="552">
+<tr>
+<td bgcolor="#efefef" valign="top" width="552"><img border="0" width="552" height="12" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+</td><td bgcolor="#efefef" valign="top" width="12"><img border="0" width="12" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="760">
+<tr>
+<td bgcolor="#efefef" valign="top" width="760"><img border="0" width="760" height="12" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="760">
+<tr>
+<td bgcolor="#003366" valign="top" align="center" width="760"><font class="addy" color="#ffffff" size="-2" face="verdana, arial, geneva, san-serif">9500 Gilman Drive, La Jolla, CA 92093-0114<br>
+</font></td>
+</tr>
+<tr>
+<td bgcolor="#efefef" valign="top" width="760"><img border="0" width="760" height="12" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<td bgcolor="#efefef" align="center" width="760"><font class="footernav" color="#003366" size="-2" face="verdana, arial, geneva, san-serif"><b><a href="http://www.cs.ucsd.edu/aboutcse/deptoverview.html">About CSE</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/csepeople/csepeoplehome.html">CSE People</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/facresearch/facultyresearch.html">Faculty &amp; Research</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/gradedu/gradeduhome.html">Graduate Education</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/undergrad/undergradeduhome.html">Undergraduate Education</a></b>
+<br>
+<b><a href="http://www.cs.ucsd.edu/deptadmin/index.php">Department Administration</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/aboutcse/contactinfo.html">Contact CSE</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/home/help/index.html">Help</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/home/search.html">Search</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/progress/progressroot.html">Site map</a></b> |
+          <b><a href="http://www.cs.ucsd.edu/index.php">Home</a></b>
+<br>
+<a href="mailto:snoeren@cs.ucsd.edu">snoeren@cs.ucsd.edu</a>
+<br>
+</font><a href="http://www.ucsd.edu/"><img border="0" width="379" height="25" src="http://www.cs.ucsd.edu/images/IMG_footer.gif" alt="Official web page of the University of California, San Diego" class="inlineimage"></a></td>
+</tr>
+<tr>
+<td bgcolor="#efefef" align="center" width="760"><font class="copyright" color="#003366" size="-2" face="verdana, arial, geneva, san-serif">
+          Copyright 
+          &copy;
+          2002 Regents of the University of California.  All rights reserved.
+          
+          
+        </font></td>
+</tr>
+<tr>
+<td bgcolor="#efefef" valign="top" width="760"><img border="0" width="760" height="15" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+</body>
+</html>

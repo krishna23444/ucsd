@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.error.SemanticError>
+   <DynamicError column="1" line="2">Attribute name key dsf is an invalid OXML attribute name</DynamicError>
+</onyx.error.SemanticError>

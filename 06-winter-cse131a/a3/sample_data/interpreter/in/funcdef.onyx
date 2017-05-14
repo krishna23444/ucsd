@@ -1,0 +1,6 @@
+declare function f() {1};
+declare function g() {2};
+declare function h() {3};
+f() + g() + h()
+
+

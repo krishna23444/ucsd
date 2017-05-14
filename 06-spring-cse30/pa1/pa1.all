@@ -1,0 +1,596 @@
+#ifndef PA1_H
+#define PA1_H
+
+/* Local function prototypes for PA1 (written in Assembly or C) */
+
+long strToLong( char* str, int base );
+int checkRange( long value, long minRange, long maxRange );
+void displaySquare( long outerSquareSize, long innerSquareSize,
+		    long outerChar, long innerChar );
+int isOdd( long value );
+
+#define BASE 10
+#define OUTER_SQUARE_MIN 3
+#define OUTER_SQUARE_MAX 21
+#define INNER_SQUARE_MIN (OUTER_SQUARE_MIN - 2)
+#define INNER_SQUARE_MAX (OUTER_SQUARE_MAX - 2)
+
+/*
+ * See "man ascii" for ASCII char values
+ */
+#define ASCII_MIN 32				/* ' ' */
+#define ASCII_MAX 126				/* '~' */
+
+/*
+ * void printChar( char ch );
+ *
+ * Only called from an Assembly routine. Not needed in any C routine.
+ * Would get a lint message about function declared but not used.
+ */
+
+#endif /* PA1_H */
+
+/* 
+ * main.c
+ */
+
+#include <errno.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "pa1.h"
+
+int
+main( int argc, char *argv[] ) {
+
+  int badInput = 0;        /* Assume good input to begin with */
+  int badSTL = 0;          /* To indicate if we got a strToLong() error */
+  long outerSquare,        /* Outer square size */
+       innerSquare,        /* Inner square size */
+       outerChar,          /* Outer square character */
+       innerChar;          /* Inner square character */
+  char *usage = 
+    "\nUsage: %s outer_sq_sz inner_sq_sz outer_sq_ch inner_sq_ch\n"
+    "    outer_sq_sz (must be within the range of [%d - %d])\n"
+    "    inner_sq_sz (must be within the range of [%d - %d])\n"
+    "                (must be smaller than outer_sq_sz)\n"
+    "                (must be odd if outer_sq_sz is odd)\n"
+    "                (must be even if outer_sq_sz is even)\n"
+    "    outer_sq_ch (must be an ASCII value within the range "
+                     "[%d - %d])\n"
+    "    inner_sq_ch (must be an ASCII value within the range "
+                     "[%d - %d])\n"
+    "                (must be different than outer_sq_ch)\n"
+    "\n";
+
+  /*
+   * Make sure we have enough command line args
+   */
+  if ( argc != 5 ) {
+    (void) fprintf( stderr, usage, argv[0], 
+                    OUTER_SQUARE_MIN, OUTER_SQUARE_MAX,
+                    INNER_SQUARE_MIN, INNER_SQUARE_MAX,
+                    ASCII_MIN, ASCII_MAX,
+                    ASCII_MIN, ASCII_MAX );
+    return( 1 );  /* or exit( 1 ); either to indicate error/failure mode */
+  }
+
+  /*
+   * Try to convert the command line args to long ints doing lots of
+   * error checking and reporting (some in strToLong()).
+   */
+
+  /*
+   * First check outer square size
+   */
+  errno = 0;
+
+  outerSquare = strToLong( argv[1], BASE );
+
+  if ( errno == 0 ) {                /* Okay -- got a good one */
+
+    /*
+     * Check the range of the outer square size
+     */
+    if ( checkRange( outerSquare, OUTER_SQUARE_MIN, OUTER_SQUARE_MAX ) == 0 ) {
+      (void) fprintf( stderr,
+             "\n\touter_sq_sz(%ld) must be within the range of [%d - %d]\n",
+             outerSquare, OUTER_SQUARE_MIN, OUTER_SQUARE_MAX );
+      badInput = 1;
+    }
+
+  } else {                          /* Oops -- got a bad one */
+    badInput = 1;
+    badSTL = 1;
+  }
+
+  /*
+   * Now check inner square size
+   */
+  errno = 0;
+
+  innerSquare = strToLong( argv[2], BASE );
+
+  if ( errno == 0 ) {                /* Okay -- got a good one */
+
+    /*
+     * Check the range of the inner square size
+     */
+    if ( checkRange( innerSquare, INNER_SQUARE_MIN, INNER_SQUARE_MAX ) == 0 ) {
+      (void) fprintf( stderr,
+             "\n\tinner_sq_sz(%ld) must be within the range of [%d - %d]\n",
+             innerSquare, INNER_SQUARE_MIN, INNER_SQUARE_MAX );
+      badInput = 1;
+    }
+
+    /*
+     * Do more checks if we got a valid outer square size
+     */
+    if ( !badSTL ) {
+
+      /*
+       * Check that inner square size < outer square size
+       */
+      if ( innerSquare >= outerSquare ) {
+        (void) fprintf( stderr,
+               "\n\tinner_sq_sz(%ld) must be less than outer_sq_sz(%ld)\n",
+               innerSquare, outerSquare );
+        badInput = 1;
+      }
+
+      /*
+       * Make sure the sizes are either both odd or both even.
+       */
+      if ( (isOdd( outerSquare ) && !isOdd( innerSquare )) ||
+           (!isOdd( outerSquare ) && isOdd( innerSquare )) ) {
+        (void) fprintf( stderr, 
+               "\n\tboth outer_sq_sz(%ld) and inner_sq_sz(%ld) "
+               "must be either odd or even\n", outerSquare, innerSquare );
+        badInput = 1;
+      }
+    }  /* !badSTL */
+  } else {                          /* Oops -- got a bad one */
+      badInput = 1;
+      badSTL = 1;
+  }
+
+  /*
+   *  Now check outer square char
+   */
+  badSTL = 0;                        /* Reset for checking ASCII chars */
+  errno = 0;
+
+  outerChar = strToLong( argv[3], BASE );
+
+  if ( errno == 0 ) {                /* Okay -- got a good one */
+
+    /*
+     * Check the range of the outer square character
+     */
+    if ( checkRange( outerChar, ASCII_MIN, ASCII_MAX ) == 0 ) {
+      (void) fprintf( stderr,
+             "\n\touter_sq_ch(%ld) must be an ASCII code in "
+             "the range [%d - %d]\n", outerChar, ASCII_MIN, ASCII_MAX );
+      badInput = 1;
+    }
+  } else {                          /* Oops -- got a bad one */
+    badInput = 1;
+    badSTL = 1;
+  }
+
+  /*
+   * Now check inner square char
+   */
+  errno = 0;
+
+  innerChar = strToLong( argv[4], BASE );
+
+  if ( errno == 0 ) {                /* Okay -- got a good one */
+
+    /*
+     * Check the range of the inner square character
+     */
+    if ( checkRange( innerChar, ASCII_MIN, ASCII_MAX ) == 0 ) {
+      (void) fprintf( stderr,
+             "\n\tinner_sq_ch(%ld) must be an ASCII code in "
+             "the range [%d - %d]\n", innerChar, ASCII_MIN, ASCII_MAX );
+      badInput = 1;
+    }
+  } else {                          /* Oops -- got a bad one */
+    badInput = 1;
+    badSTL = 1;
+  }
+
+  /*
+   * Check that outerChar != innerChar
+   */
+  if ( !badSTL && (outerChar == innerChar) ) {
+    (void) fprintf( stderr,
+           "\n\touter_sq_ch(%ld) and inner_sq_ch(%ld) "
+           "must be different\n", outerChar, innerChar );
+    badInput = 1;
+  }
+
+  /*
+   * Got a bad input somewhere above and displayed some error messages.
+   * Output another newline to help separate the errors from prompt and exit.
+   */
+  if ( badInput != 0 ) {
+    (void) fprintf( stderr, "\n" );
+    exit( 1 );
+  }
+
+  /*
+   * Finally, display the pattern!
+   */
+  displaySquare( outerSquare, innerSquare, outerChar, innerChar );
+
+  return( 0 );
+}
+
+/*
+ * strToLong.c
+ *
+ * long strToLong( char *str, int base );
+ *
+ * Convert the argument string to a long int as specified base.
+ *
+ * Check for errors:
+ *    errno
+ *    *endptr != '\0'
+ *       Set errno to non-zero value to indicate an error
+ *
+ * Return the converted value.
+ *
+ * Calling routine needs to check the value of errno on return from
+ * strToLong() to determine if returned value is valid.
+ *
+ */
+
+#include <errno.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "pa1.h"
+
+long
+strToLong( char *str, int base ) {
+
+    long num;
+    char *endptr;
+    char errorStr[BUFSIZ];
+
+    errno = 0;
+
+    /* Try to convert to a long int */
+    num = strtol( str, &endptr, base );
+
+    /* Check errno first */
+    if ( errno != 0 ) {
+
+        (void) snprintf( errorStr, BUFSIZ,
+                         "\n\tConverting \"%s\" base \"%d\"", str, base);
+        perror( errorStr );
+        return 0;		/* Errno already set */
+
+    /* Then check *endptr */
+    } else if (*endptr != '\0') {
+
+        (void) fprintf( stderr, "\n\t\"%s\" is not an integer\n", str);
+        errno = -1;		/* To indicate error */
+        return 0;
+    }
+
+    return num;
+}
+
+/*
+ * isOdd.s
+ *
+ * int isOdd( long value );
+ */
+	.global	isOdd
+
+	.section ".text"
+
+isOdd:
+	save	%sp, -96, %sp
+
+	/*
+	 * If the value in %i0 is odd, bit 0 will be on.  Just AND 0x1 and
+	 * store the result back in %i0 for the return value.
+	 *
+	 * 0 means false
+	 * 1 means true
+	 */
+
+	and	%i0, 1, %i0
+
+	ret
+	restore
+
+
+
+/*
+ * printChar.s
+ *
+ * void printChar( char ch );
+ */
+
+	.global	printChar
+
+	.section ".data"
+
+fmt:	.asciz	"%c"
+
+	.section ".text"
+
+printChar:
+	save	%sp, -96, %sp
+
+	set	fmt, %o0
+	mov	%i0, %o1
+	call	printf
+	nop
+
+	ret
+	restore
+
+/*
+ * checkRange.s
+ *
+ * int checkRange( long value, long minRange, long maxRange );
+ *
+ * Returns 0 for error
+ *         1 for OKAY
+ *
+ * if ( (value < minRange) || (value > maxRange) )
+ *     return 0;
+ * else
+ *     return 1;
+ *
+ *	%i0 -- value to check
+ *	%i1 -- minRange
+ *	%i2 -- maxRange
+ */
+
+	.global	checkRange
+
+	.section ".text"
+
+checkRange:
+	save	%sp, -96, %sp
+
+	cmp	%i0, %i1	! value < minRange
+	bl	error
+	nop
+
+	cmp	%i0, %i2	! value > maxRange
+	bg	error
+	nop
+
+	mov	1, %i0		! return 1
+	ret
+	restore
+
+error:
+	clr	%i0		! return 0
+	ret
+	restore
+
+
+/*
+ * displaySquare.s
+ *
+ * void displaySquare( int outerSquareSize, int innerSquareSize,
+ *		       int outerChar, int innerChar );
+ *
+ * %i0 - outerSquareSize
+ * %i1 - innerSquareSize
+ * %i2 - outerChar
+ * %i3 - innerChar
+ *
+ * %l0 - row counter
+ * %l1 - col counter
+ * %l2 - (outerSquareSize - innerSquareSize) / 2
+ */
+
+	NL = '\n'
+
+	.global	displaySquare
+
+	.section ".text"
+
+displaySquare:
+	save	%sp, -96, %sp
+
+	/*
+	 * Pre-compute common loop terminating expression
+	 */
+
+	sub	%i0, %i1, %o0
+	mov	2, %o1
+	call	.div
+	nop
+
+	mov	%o0, %l2	! (outerSquareSize - innerSquareSize) / 2
+
+	/*
+	 * Display the top portion of the outer square pattern
+	 */
+
+	clr	%l0		! row = 0
+
+	ba	outer_loop_1_test
+	nop
+
+outer_loop_1:
+
+	clr	%l1		! col = 0
+
+	ba	inner_loop_1A_test
+	nop
+
+inner_loop_1A:
+
+	mov	%i2, %o0
+	call	printChar	! printChar( outerCh )
+	nop
+
+	inc	%l1		! ++col
+
+inner_loop_1A_test:
+
+	cmp	%l1, %i0	! col < outerSquareSize
+	bl	inner_loop_1A
+	nop
+
+	mov	NL, %o0
+	call	printChar	! printChar( '\n' )
+	nop
+
+	inc	%l0		! ++row
+
+outer_loop_1_test:
+
+	cmp	%l0, %l2	! row < (outerSquareSize - innerSquareSize)/2
+	bl	outer_loop_1
+	nop
+
+	/*
+	 * Now for the middle portion with inner square pattern
+	 */
+
+	clr	%l0		! row = 0
+
+	ba	outer_loop_2_test
+	nop
+
+outer_loop_2:
+
+	/*
+	 * First inner loop to print the outer square char
+	 */
+
+	clr	%l1		! col = 0
+
+	ba	inner_loop_2A_test
+	nop
+
+inner_loop_2A:
+
+	mov	%i2, %o0
+	call	printChar	! printChar( outerChar )
+	nop
+
+	inc	%l1		! ++col
+
+inner_loop_2A_test:
+
+	cmp	%l1, %l2	! col < (outerSquareSize - innerSquareSize)/2
+	bl	inner_loop_2A
+	nop
+
+	/*
+	 * Second inner loop to print the inner square char
+	 */
+
+	clr	%l1		! col = 0
+
+	ba	inner_loop_2B_test
+	nop
+
+inner_loop_2B:
+
+	mov	%i3, %o0
+	call	printChar	! printChar( innerChar )
+	nop
+
+	inc	%l1		! ++col
+
+inner_loop_2B_test:
+
+	cmp	%l1, %i1	! col < innerSquareSize
+	bl	inner_loop_2B
+	nop
+
+	/*
+	 * Third inner loop to print the outer square char
+	 */
+
+	clr	%l1		! col = 0
+
+	ba	inner_loop_2C_test
+	nop
+
+inner_loop_2C:
+
+	mov	%i2, %o0
+	call	printChar	! printChar( outerChar )
+	nop
+
+	inc	%l1		! ++col
+
+inner_loop_2C_test:
+
+	cmp	%l1, %l2	! col < (outerSquareSize - innerSquareSize)/2
+	bl	inner_loop_2C
+	nop
+
+	mov	NL, %o0
+	call	printChar	! printChar( '\n' )
+	nop
+
+	inc	%l0		! ++row
+
+outer_loop_2_test:
+
+	cmp	%l0, %i1	! row < innerSquareSize
+	bl	outer_loop_2
+	nop
+
+	/*
+	 * And lastly display the bottom portion of the outer square pattern
+	 */
+
+	clr	%l0		! row = 0
+
+	ba	outer_loop_3_test
+	nop
+
+outer_loop_3:
+
+	clr	%l1		! col = 0
+
+	ba	inner_loop_3A_test
+	nop
+
+inner_loop_3A:
+
+	mov	%i2, %o0
+	call	printChar	! printChar( outerCh )
+	nop
+
+	inc	%l1		! ++col
+
+inner_loop_3A_test:
+
+	cmp	%l1, %i0	! col < outerSquareSize
+	bl	inner_loop_3A
+	nop
+
+	mov	NL, %o0
+	call	printChar	! printChar( '\n' )
+	nop
+
+	inc	%l0		! ++row
+
+outer_loop_3_test:
+
+	cmp	%l0, %l2	! row < (outerSquareSize - innerSquareSize)/2
+	bl	outer_loop_3
+	nop
+
+	ret
+	restore
+

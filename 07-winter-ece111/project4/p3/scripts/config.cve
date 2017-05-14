@@ -1,0 +1,43 @@
+#!/bin/sh
+# the next line restarts using cve \
+exec cve "$0" "$@"
+
+seamless cve v5.4_7.2
+
+reset config
+
+x states on
+
+
+rpl enabled 0 sw
+rpl enabled 0 hw
+replay options hw disabled 
+replay options sw disabled 
+
+simulate logic ./hw.sh
+
+register memory 1M 32 pxdefault_tb.test3_1.AhbMemory_1 -class SRAM -id pxdefault_tb.test3_1.AhbMemory_1
+register cpu arm946e_sr1 pxdefault_tb.test3_1.a946_1.uARM946E_Sr1 -space Memory 0 -wordsize 1 -buswidth 32 -addrwidth 32 -bus_orientation low -space External_Instruction_TCM 1 -wordsize 1 -buswidth 32 -addrwidth 32 -bus_orientation low -space External_Data_TCM 2 -wordsize 1 -buswidth 32 -addrwidth 32 -bus_orientation low -id pxdefault_tb.test3_1.a946_1.uARM946E_Sr1
+register memory 512K 32 pxdefault_tb.test3_1.AhbMemory_2 -class SRAM -id pxdefault_tb.test3_1.AhbMemory_2
+
+
+setup sw pxdefault_tb.test3_1.a946_1.uARM946E_Sr1 ./sw.sh
+
+setup clk multiplier pxdefault_tb.test3_1.a946_1.uARM946E_Sr1 auto
+
+setup clk period pxdefault_tb.test3_1.a946_1.uARM946E_Sr1 40.0000
+
+setup global sync window 10
+
+
+map memory instance pxdefault_tb.test3_1.a946_1.uARM946E_Sr1 -space Memory pxdefault_tb.test3_1.AhbMemory_1 0x0
+map memory instance pxdefault_tb.test3_1.a946_1.uARM946E_Sr1 -space Memory pxdefault_tb.test3_1.AhbMemory_2 0x1000000
+
+map check off pxdefault_tb.test3_1.a946_1.uARM946E_Sr1
+setup autorun off pxdefault_tb.test3_1.a946_1.uARM946E_Sr1
+
+optimize instructions off pxdefault_tb.test3_1.a946_1.uARM946E_Sr1
+
+optimize time off pxdefault_tb.test3_1.a946_1.uARM946E_Sr1
+
+end config

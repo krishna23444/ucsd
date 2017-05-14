@@ -1,0 +1,35 @@
+---
+root_directory: File.join(File.dirname(__FILE__), ..)
+graphs_directory: graphs
+filesystems:
+  - name: fat
+    directory: fat_fs
+    fs_executable: fatfs
+    mkfs_executable: mkfatfs
+    mkfs_arguments: disk.txt
+    disk_file: disk.txt
+    mount_directory: mount_directory
+  - name: inode
+    directory: inode_fs
+    fs_executable: inodefs
+    mkfs_executable: mkinodefs
+    mkfs_arguments: disk.txt
+    disk_file: disk.txt
+    mount_directory: mount_directory
+  - name: mine
+    directory: my_fs
+    fs_executable: cse121fs
+    mkfs_executable: mkcse121fs
+    disk_file: disk.txt
+    mount_directory: mount_directory
+benchmark_format:
+  # The order here matters, it is the order that these items will expect to be
+  # found in the benchmark output file
+  - name: avg_offset
+    type: list
+    separator: ','
+    result: average
+  - name: read_count
+    type: integer
+  - name: write_count
+    type: integer

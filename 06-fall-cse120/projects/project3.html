@@ -1,0 +1,426 @@
+<html xmlns:str="http://exslt.org/strings" lang="en">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CSE 120 Fall 2006: Project 3</title> 
+<meta content="text/html; charset=UTF-8" http-equiv="content-type">
+<meta content="en" http-equiv="content-language">
+<meta content="text/css" http-equiv="content-style-type">
+<meta content="no" http-equiv="imagetoolbar">
+<meta content="Computer Science, engineering, ucsd, faculty, students, Jacobs School, San Diego, University" name="keywords">
+<meta content="UCSD Department of Computer Science and Engineering" name="description">
+<meta content="UCSD Department of Computer Science and Engineering" name="organization">
+<meta content="4.3.4.0" name="pageno">
+<link media="screen" type="text/css" href="http://www.cs.ucsd.edu/classes/css/global_style.css" rel="stylesheet">
+<script type="text/javascript" language="JavaScript" src="http://www.cs.ucsd.edu/classes/javascript/global_functions.js"> </script><script language="JavaScript" type="text/javascript">
+<!--
+        var NS4, IE, DOMstandard, CSScapable;
+        NS4 = (document.layers) ? 1 : 0;
+        IE = (document.all) ? 1 : 0;
+        DOMstandard = (document.getElementById) ? 1 : 0;
+        CSScapable = (NS4 || IE || DOMstandard) ? 1 : 0;
+        if(CSScapable)
+        {
+          if(NS4)
+            document.write('<link type="text/css" href="../../../css/ns_style.css" rel="stylesheet">');
+            else
+  	      document.write('<link media="screen" type="text/css" href="../../../css/dom_style.css" rel="stylesheet">');
+            }
+//-->
+          </script>
+<html xmlns:str="http://exslt.org/strings" lang="en">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CSE 120 Fall 2006: Project 3</title> 
+
+<base href="">
+
+<meta content="text/html; charset=UTF-8" http-equiv="content-type">
+<meta content="en" http-equiv="content-language">
+<meta content="text/css" http-equiv="content-style-type">
+<meta content="no" http-equiv="imagetoolbar">
+<meta content="Computer Science, engineering, ucsd, faculty, students, Jacobs School, San Diego, University" name="keywords">
+<meta content="UCSD Department of Computer Science and Engineering" name="description">
+<meta content="UCSD Department of Computer Science and Engineering" name="organization">
+<meta content="4.3.4.0" name="pageno">
+<link media="screen" type="text/css" href="http://www.cs.ucsd.edu/css/global_style.css" rel="stylesheet">
+<script type="text/javascript" language="JavaScript" src="http://www.cs.ucsd.edu/javascript/global_functions.js"> </script><script language="JavaScript" type="text/javascript">
+<!--
+        var NS4, IE, DOMstandard, CSScapable;
+        NS4 = (document.layers) ? 1 : 0;
+        IE = (document.all) ? 1 : 0;
+        DOMstandard = (document.getElementById) ? 1 : 0;
+        CSScapable = (NS4 || IE || DOMstandard) ? 1 : 0;
+        if(CSScapable)
+        {
+          if(NS4)
+            document.write('<link type="text/css" href="../../../css/ns_style.css" rel="stylesheet">');
+            else
+  	      document.write('<link media="screen" type="text/css" href="../../../css/dom_style.css" rel="stylesheet">');
+block            }
+//-->
+          </script>
+</head>
+<body link="#006699" vlink="#800000" alink="#FF0000" marginwidth="0" marginheight="0" topmargin="0" leftmargin="0" rightmargin="0" style="background: #ffffff url(../../../images/IMG_bgimg.gif) no-repeat">
+<a name="top"> </a><script type="text/javascript" language="JavaScript">
+<!--
+
+      logotopon = new Image(187,29);
+      logotopon.src = "../../../images/H_logo_top_over.gif";
+      logotopoff = new Image(187,29);
+      logotopoff.src = "../../../images/H_logo_top.gif";
+      logobottomon = new Image(187,18);
+      logobottomon.src = "../../../images/H_logo_bottom_over.gif";
+      logobottomoff = new Image(187,18);
+      logobottomoff.src = "../../../images/H_logo_bottom.gif";
+      headeron = new Image(573,47);
+      headeron.src = "../../../images/H_header_on.gif";
+      headeroff = new Image(573,47);
+      headeroff.src = "../../../images/H_header_off.gif";
+        
+//-->
+</script>
+<table bgcolor="#efefef" cellpadding="0" cellspacing="0" border="0" width="760">
+<tr>
+<td valign="top" width="187"><a onmouseout="Off('logotop')" onmouseover="On('logotop'); return true" href="http://www.ucsd.edu"><img border="0" width="187" height="29" src="http://www.cs.ucsd.edu/images/H_logo_top.gif" name="logotop" alt="UCSD Main Website"></a><a onmouseout="Off('logobottom')" onmouseover="On('logobottom'); return true" href="http://www.jacobsschool.ucsd.edu"><img border="0" width="187" height="18" src="http://www.cs.ucsd.edu/images/H_logo_bottom.gif" name="logobottom" alt="UCSD Jacobs School"></a></td><td valign="top" width="573"><a onmouseout="Off('header')" onmouseover="On('header'); return true" href="http://www.cs.ucsd.edu/index.php"><img border="0" width="573" height="47" src="http://www.cs.ucsd.edu/images/H_header_off.gif" name="header" alt="Department of Computer Science and Engineering"></a></td>
+</tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" width="760">
+<tr>
+<td bgcolor="#efefef" valign="top" width="760"><img border="0" width="1" height="12" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="760">
+<tr>
+<td bgcolor="#efefef" valign="top" width="12"><img border="0" width="12" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" bgcolor="#efefef" width="172">
+<table cellpadding="0" cellspacing="0" border="0" width="172">
+<tr><td bgcolor="#ffffff" valign="top" colspan="4" width="172">
+<a href="../index.html"><img border="0" width="172" height="38" src="../120.gif" alt="CSE 120"></a></td></tr
+<tr>
+<td bgcolor="#cccccc" valign="top" width="1"><img border="0" width="1" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#ffffff" valign="top" width="6"><img border="0" width="6" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#ffffff" valign="top" width="159">
+<table border="0" cellpadding="0" cellspacing="0" width="159">
+<tr>
+<td colspan="3" width="159"><img border="0" width="1" height="10" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<td valign="top" width="9"></td><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="../general.html"><b>Course Overview</b></a></font></td>
+</tr>
+<tr>
+<td valign="top" width="9"><img border="0" width="9" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="../general.html#structure"><b>Structure</b></a></font></td>
+</tr>
+<tr>
+<td valign="top" width="9"><img border="0" width="9" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="../general.html#grading"><b>Grading</b></a></font></td>
+</tr>
+<tr>
+<td valign="top" width="9"><img border="0" width="9" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="../general.html#collaboration"><b>Collaboration</b></a></font></td>
+</tr>
+<tr>
+<td valign="top" width="9"><img border="0" width="9" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="../general.html#books"><b>Useful books</b></a></font></td>
+</tr>
+<tr>
+<td colspan="3" width="159"><img border="0" width="159" height="5" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<td valign="top" width="9"><img border="0" width="9" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="../schedule.html"><b>Schedule</b></a></font></td>
+</tr>
+<tr>
+<td colspan="3" width="159"><img border="0" width="159" height="5" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<td valign="top" width="9"><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="index.html"><b>Projects</b></a></font></td>
+</tr>
+<tr>
+<td colspan="3" width="159"><img border="0" width="159" height="5" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<td valign="top" width="9"><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</td>
+<td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><a href="../homework/index.html"><b>Homeworks</b></a></font></td>
+</tr>
+<tr>
+<td colspan="3" width="159"><img border="0" width="159" height="5" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<td valign="top" width="9"><td valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" width="145"><font class="subnav" size="-2" face="verdana, arial, geneva, san-serif"><b><a href="http://webboard.ucsd.edu">WebBoard</a></b></font></td>
+</tr>
+<tr>
+<td colspan="3" width="159"><img border="0" width="159" height="5" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+</td><td bgcolor="#ffffff" valign="top" width="6"><img border="0" width="6" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="172">
+<tr>
+<td bgcolor="#efefef" valign="top" width="172"><img border="0" width="172" height="12" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="172">
+<tr>
+<td valign="top" colspan="6" width="172"><img border="0" width="172" height="26" src="http://www.cs.ucsd.edu/images/DA_IMG_search.gif" alt="Search"></td>
+</tr>
+<tr>
+<td bgcolor="#cccccc" valign="top" width="1"><img border="0" width="1" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#ffffff" valign="top" width="1"><img border="0" width="1" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#eff5ef" valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#eff5ef" valign="top" width="159">
+<br>
+<form onsubmit="return check_search_form(this)" id="site_search" name="site_search" method="post" action="http://www.cs.ucsd.edu/cgi-bin/htsearch">
+<input value="htdig" name="config" type="hidden"><input value="" name="restrict" type="hidden"><input value="" name="exclude" type="hidden"><input maxlength="50" size="15" class="searchform" id="search" name="words" alt="search" type="text">&nbsp;&nbsp;<input type="image" name="searchnow" width="34" height="17" border="0" alt="search" align="top" src="http://www.cs.ucsd.edu/images/IMG_gobutton.gif">
+</form>
+<font class="body2" size="-2" face="verdana, arial, geneva, san-serif"><a href="http://www.cs.ucsd.edu/home/search.html"><b>Advanced search</b></a>&nbsp;&nbsp;</font><img border="0" width="8" height="5" src="http://www.cs.ucsd.edu/images/IMG_arrows.gif" alt="arrows gif" class="inlineimage"><br>
+<br>
+<img border="0" width="159" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#eff5ef" valign="top" width="5"><img border="0" width="5" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td valign="top" bgcolor="#ffffff" width="1"><img border="0" width="1" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<td valign="top" colspan="6" bgcolor="#ffffff" width="172"><img border="0" width="172" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="172">
+<tr>
+<td bgcolor="#efefef" valign="top" width="172"><img border="0" width="172" height="12" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+</td><td bgcolor="#efefef" valign="top" width="12"><img border="0" width="12" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#efefef" valign="top" width="552">
+<table cellpadding="0" cellspacing="0" border="0" width="552">
+<tr>
+<td bgcolor="#cc9966" valign="top" colspan="3" width="552"><img border="0" width="552" height="15" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+
+<tr>
+<td bgcolor="#ffffff" valign="top" width="20"><img border="0" width="20" height="5" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#ffffff" valign="top" width="512"><font class="body1" size="-1" face="verdana,arial, geneva, sans-serif"></font><img border="0" width="360" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#ffffff" valign="top" width="20"><img border="0" width="20" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+
+<tr>
+<td bgcolor="#ffffff" valign="top" width="20"><img border="0" width="20" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td> <td bgcolor="#ffffff" valign="top" width="512">
+
+<font class="body1" size="-1" face="verdana,arial, geneva, sans-serif">
+
+<h3>Nachos Project 3: Virtual Memory</h3>
+
+<i>Due: Friday, December 1st, at Midnight</i>
+
+<p> In this lab you will extend Nachos to support demand paged virtual memory.  This new functionality gives processes the illusion of a virtual memory that is larger than the available machine memory.</p>
+
+<p> You will implement and debug virtual memory in two steps. First, you will implement demand paging using page faults to dynamically load process virtual pages on demand, rather than initializing page frames for each process in advance at Exec time as you did in Project 2. Next, you will implement page replacement, enabling your kernel to evict a virtual page from memory to free up a physical page frame to satisfy a page fault.  Demand paging and page replacement together allow your kernel to "overbook" memory by executing more processes than would fit in machine memory at any one time, using page faults to "juggle" the available physical page frames among the larger number of process virtual pages. If it is implemented correctly, virtual memory is undetectable to user programs unless they monitor their own performance.</p>
+
+<p> The operating system kernel works together with the machine's memory management unit (MMU) to support virtual memory. Coordination between the hardware and software centers on the page table structure for each process. You used page tables in Project 2 to allow your kernel to assign any free page frame to any process page, while preserving the illusion of a contiguous memory for the process. The indirect memory addressing through page tables also isolates each process from bugs in other processes that are running concurrently. In this project, you will extend your kernel's handling of the page tables to use three special bits in each page table entry (PTE):</p>
+
+<ul>
+
+<li> <b>Valid bit</b>: The kernel sets or clears the valid bit in each PTE to tell the machine which virtual pages are resident in memory (a valid translation) and which are not resident (an invalid translation). If a user process references an address for which the PTE is marked invalid, then the machine raises a page fault exception and transfers control to your kernel's exception handler.  
+
+<li> <b>Use bit</b>: The machine sets the use bit (aka reference bit) in the PTE to pass information to the kernel about page access patterns. If a virtual page is referenced by a process, the machine sets the corresponding PTE reference bit to inform the kernel that the page is active. Once set, the reference bit remains set until the kernel clears it.  
+    
+<li> <b>Dirty bit</b>: The machine sets the dirty bit in the PTE whenever a process executes a store (write) to the corresponding virtual page. This informs the kernel that the page is dirty; if the kernel evicts the page from memory, then it must first "clean" the page by writing its contents to disk. Once set, the dirty bit remains set until the kernel clears it.  
+</ul>
+    
+This project has four parts:
+
+<ol>
+<li> [35 pts] Implement demand paging.  In the first part, you will continue to preallocate a page frame for each virtual page of each newly created process at Exec time, just as in Project 2. As before, return an error from the Exec system call if there are not enough free page frames to hold the process' new address space. But for this part, you need to make the following changes to AddrSpace: 
+<ol>
+<li> In your AddrSpace initialization method, initialize all the PTEs as <b>invalid</b>.  
+
+<li> In the same method, <i>remove</i> the code that (1) zeros out the physical page frames, and (2) preloads the address space with the code and data segments from the file.  You will do this on demand when the process causes a page fault -- you will continue to allocate physical page frames in AddrSpace for each virtual page, but delay loading the frames with data until they are actually referenced by the process.  
+
+<li> Handle page fault exceptions in ExceptionHandler.  When the process references an invalid page, the machine will raise a page fault exception (if a page is marked valid, no fault is generated).  Modify your exception handler to catch this exception and handle it by preparing the requested page on demand.  
+
+<li> To prepare the requested page on demand, add a method to AddrSpace to page in the faulted page from the executable file.  Note that faults on different address space segments are handled in different ways.  For example, a fault on a code page should read the corresponding code from the executable file, a fault on a data page should read the corresponding data from the executale file, and a fault on a stack frame should zero-fill the frame.  
+
+<li> Once you have paged in the faulted page, clear the page fault exception by marking the PTE as <b>valid</b>.  Then let the machine restart execution of the user program at the faulting instruction -- when you return from the exception, do not increment the PC as you did when handling a system call so that the machine will reexecute the faulting instruction.  
+</ol>
+
+<p>If you set up the page (by initializing it) and page table (by setting the valid bit) correctly, then the instruction will execute correctly and the process will continue on its way, none the wiser.</p>
+<p> As you make the changes above, keep the following points in mind: </p>
+
+<ul>
+<li> Remember, a virtual page may contain portions of two segments, such as the end of the code segment and the beginning of the data segment.  A fault on that page will require you to load from both the code and data segments into that page.  You need to handle this boundary case for all situations where two segments can overlap on a page (code, data, stack, and argument).  
+
+<li> If you use ReadMem (or WriteMem) to implement a system call, it is entirely possible for those functions to reference a page that has yet to be loaded into memory (since you can give them an arbitrary address in the process virtual address space).  If this happens, ReadMem will return FALSE because it triggered a page fault when it tried to access the address you gave it.  You <i>should not</i> consider this an error.  Instead, you should retry the operation assuming that the referenced page was successfully loaded.  If it is FALSE again, then return an error.  
+
+<li> StartProcess and Exec closed the executable file after creating the address space.  You no longer have this luxury, and will have to keep it open during the life of the process.  
+</ul>
+
+<p> <b>Testing</b>: Start by testing with one process running at a time.  During debugging, you will probably want to print out the arguments that you are giving to ReadAt and bzero when initializing a page during a page fault to make sure that you are loading the correct parts of the executable file into the virtual page.  Then test with multiple processes; this should work automatically since these changes should be independent of the number of processes running.  </p>
+
+<li> [35 pts] Now implement demand paged virtual memory with page replacement.  In this second part, not only do you delay initializing pages, but now you delay the allocation of physical page frames until a process actually references a virtual page that is not already loaded in memory. 
+
+<ol> 
+<li> Start by completing the gutting of your code that creates an address space.  In part one, you removed the code that initialized the virtual pages.  Now, remove the code that (1) allocates page frames and (2) preinstalls virtual-physical translations when setting up the page table.  Instead, merely mark all the PTEs as invalid.  
+
+<li> Extend your page fault exception handler to allocate a page frame on-the-fly when a page fault occurs.  In part one, you just initialized the virtual page when a page fault occurred.  In this part, allocate a physical page for the virtual page and use your code from part 1 to initialize it, mark the PTE as valid, and return from the exception.  
+
+</ol> 
+
+<p> You can get the above two changes working without having page replacement implemented for the case where you run a single program that does not consume all of physical memory.  Before moving on, be sure that the two changes above work for a single program that fits into memory (e.g., array).</p>
+
+<p> Now implement page replacement to free up a physical page frame to handle page faults: </p>
+
+<ol> 
+<li> Extend your page fault exception handler to evict pages once physical memory becomes full.  First, you will need to select a victim page to evict from memory; for now, keep this simple and just choose a convenient page.  Then mark the PTE for that page as invalid.  
+
+<li> Evict the victim page.  If the page is clean (i.e., not dirty), then the page can be used immediately; you can always recover the contents of the page from disk.  If the page is dirty, though, the kernel must save the page contents in backing store on disk.  
+
+<li> Read in the contents of the faulted page either from the executable file or from backing store (see below).
+
+<li> Implement a BackingStore class to handle page in and page out operations.  An important part of this project is to use the Nachos file system interface to allocate and manage the backing store.  Implement methods to allocate space on backing store, locate pages on backing store, push pages from memory to backing store (for page out), and pull from backing store to memory (for page in).  
+
+<li> Use the FileSystem class to create files for backing store (see filesys/filesys.h).  After creating the backing store file, use the FileSystem class to open it.  Opening the file will return an OpenFile object, which allows you to do reads and writes (see filesys/openfile.h).  The Makefiles are setup to compile with FILESYS_STUB defined, so be sure to look at that version of the classes.  
+</ol>
+
+<p> As you implement the above operations, keep the following points in mind: </p>
+
+<ul> 
+<li> As in the first part of the project, the first time a page is touched it needs to be initialized (from the executable file for code and data, bzero'd otherwise; see part 1 above).  If this page is subsequently evicted to backing store, it will be read from there on further page faults.  
+
+<li> You are not limited to one file for backing store for the entire system, and might find it more convenient to have a backing store file for each process (doing so makes locating evicted pages convenient).  However, do not create backing store files at finer granularities; e.g., do not use one file per page.
+
+<li> Be sure to clear the dirty bit when you mark a PTE for the victim page as invalid.  
+
+<li> When running multiple processes, you may select a victim page from another process.  As a result, you will need to update the PTE in the page table for that process, not the faulting one.
+</ul> 
+
+<p> Finally, you should only do as many page reads and writes as necessary to execute the program, and as dictated by your page replacement algorithm.  You will soon discover that the first page fault is different than subsequent ones on code and data pages.  On the first fault you need to read from the executable file, and on the second you need to read from the backing store.  Your implementation needs to be able to handle this situation.  It might be tempting to just copy the pages from the executable file to the backing store when the process is first created, or on a page-by-page basis when the first fault occurs, but both of these cases introduce extra unecessary disk I/Os and should not be used.  </p>
+
+<li> [15 pts] Testing.  In this project, programs can use more virtual memory than physical memory, and pages are brought into memory only if they are actually referenced by the user program.  To show that you only initialize pages that are referenced on demand, write one test program that references all of the pages in memory, and a second test program that only references some of the pages.  You can use the pagein and pageout counters (below) to convince yourself that you are only initializing the pages that are referenced by the process.  For example, accessing a two-dimensional array selectively (e.g., all rows, some rows) can give different page reference behavior, and not calling a function will only execute a subset of the code in an executable file.  We do not particularly care if the test programs do anything useful (like multiplying matrices), but they should generate memory reference patterns of interest.  
+
+<p> Your test programs should also demonstrate the page replacement policy and correct handling of dirty pages (e.g., allocating backing storage and preserving the correct contents for each page on backing store).  Implement additional test programs that (1) generate good locality (most references are to a small subset of pages), and (2) generate poor locality (everything is referenced repeatedly in a pattern), and (3) random locality (pages are effectively referenced randomly).  If necessary, try reducing the amount of physical memory to ensure more page replacement activity.</p>  
+
+<p> Here is an example test program that is larger than physical memory and uses the console to draw a "snake" wandering around on the screen: <a href="snake.c">snake.c</a> </p>
+
+<li> [15 pts] Maintain counters of page faults and pagein and pageout events.  Print out these counters when Nachos exits.  This will aid in debugging, and indicate how well the page replacement algorithm is working with the processes running in the system.  You might also want to print out a DEBUG message when each of these events occurs as the process is running (and identify the process that caused the event so that you can disambiguate among multiple executing processes).  
+
+<p> In particular, add two new counters to the Statistics class in machine/stats.h, <tt>numPageOuts</tt> and <tt>numPageIns</tt>, and update the constructor and Print methods in stats.cc to initialize and report the values of those counters (ignore the top of the file where it says to not change the file).  Increment the "PageOut" counter whenever you write a page to the backing store (e.g., "clean" pages should not cause a PageOut).  Increment the "PageIn" counter whenever you read a page from (1) the original executable file and (2) your backing store.  Print the values of those counters on the same line as the <tt>numPageFaults</tt> counter.</p>
+
+<p> With backing store implemented, your operating system will use main memory as a cache over a slower and cheaper backing store. As with any caching system, performance depends largely on the policy used to decide which pages are kept in memory and which to evict. As you know, we are not especially concerned about the performance of your Nachos implementations (simplicity and correctness are paramount), but in this case we want you to experiment with one of the page replacement policies discussed in class.  For project 3, use a simple algorithm to implement page replacement such as FIFO or random replacement.  For extra credit, you can implement LRU or an LRU approximation (see below).  In any case, document your replacement algorithm choices in the project writeup.</p>
+
+<p> In your project writeup, create a table that reports the values of the paging counters for all of the test programs that you used to test your page replacement algorithm.  If you implemented more than one replacement algorithm, report the values for all of the algorithms that you implemented.  Here is an example: 
+
+<font face="courier, monospace">
+<pre>Physical memory size: 32 pages.
+Page replacement policy: Random.
+
+Program             PageFaults      PageOuts        PageIns
+halt                3               0               2
+matmult             112             45              74
+sort                755             624             722
+(more)</pre>
+</font>
+
+<p> Note that the exact numbers of page faults and disk I/Os is implementation dependent, so do not be surprised if your implementation results in different values.</p>
+
+<li> (Extra Credit) [4 pts] Implement LRU or an LRU approximation for your page replacement algorithm, examining and clearing the use bit in each PTE in order to gather information to drive the policy.  Make it possible to run your nachos executable with your original algorithm as well your LRU algorithm (e.g., with a new command line switch to main.cc).  Using the counters and experiments with test programs, demonstrate that LRU does a better job of replacing pages than your original (FIFO or random).  Extend your page fault table in your writeup to include the values for your LRU algorithm.  Design a test case where LRU does a worse job.  
+
+            <!--
+            <p>
+            <li> (Extra Credit) [5 pts] Another important design question is the
+            handling of dirty pages. Some rather poor kernels allow processes to
+            fill memory with dirty pages. Consider what can happen when memory is
+            full of dirty pages. If a page fault occurs, the kernel must find a
+            victim frame to hold the incoming page, but every potential victim
+            must be written to disk before its frame may be seized. Cleaning pages
+            is an expensive operation, and it could even lead to deadlock in
+            extreme cases, if for example a page is needed for buffering during
+            the disk write. For these reasons, "real" operating systems retain a
+            reserve of clean pages that can be grabbed quickly in a
+            pinch. Maintaining such a reserve generally requires a paging daemon
+            to aggressively clean dirty pages by pushing them to disk if the
+            reserve begins to drain down. This makes correct management of the
+            dirty bits more interesting.
+            -->
+
+</ol>
+
+<h3>Turnin</h3>
+            
+<p> As with projects 1 and 2, we would like a writeup describing what changes you made, how well they worked, how you tested your changes, and how each group member contributed to the project.  For project 3, also include a discussion of the page replacement algorithm that you used, and a description of how well that page replacement algorithm worked on your test programs (e.g., the test program name, the number of pages it requires, and the faults it generated).  Please include this writeup in your userprog directory.</p>
+
+<p> And as with the previous projects, use CVS to turn in your project.</p>
+
+<blockquote><pre>% cvs rtag -F project3 nachos-3.4</pre></blockquote>
+
+
+<!--
+            <p> For project 3, you again have two options for turning it in.  You
+            can use <a href="threads.html#submit">CVS as you did for project
+            1</a>, or you can email us a gzipped tar file.  If you are going to do
+            the latter, then follow these explicit instructions step by step (say
+                    you are group 57):
+
+            <blockquote><pre>
+            % cd nachos-3.4/code
+            % gmake clean
+            % cd ..
+            % tar cvf group57.tar code
+            % gzip group57.tar
+            % [mail group57.tar.gz to voelker@cs and jlrapp@cs using your favorite method of email attachments]
+            </pre></blockquote>
+
+            <p> Look on the <a href="groups.html">project groups list</a> if you do
+            not remember your group number.
+
+            -->
+
+</font>
+<img border="0" width="360" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#ffffff" valign="top" width="20"><img border="0" width="20" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<td bgcolor="#ffffff" valign="top" width="20"><img border="0" width="20" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td><td bgcolor="#ffffff" colspan="2" valign="top" width="532"><font class="body2" size="-2" face="verdana,arial, geneva, sans-serif"><a href="project2.html#top"><b>back to top ^</b></a>
+<br>
+</font><img border="0" width="532" height="12" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="552">
+<tr>
+<td bgcolor="#efefef" valign="top" width="552"><img border="0" width="552" height="12" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+</td><td bgcolor="#efefef" valign="top" width="12"><img border="0" width="12" height="1" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="760">
+<tr>
+<td bgcolor="#efefef" valign="top" width="760"><img border="0" width="760" height="12" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="760">
+<tr>
+<td bgcolor="#003366" valign="top" align="center" width="760"><font class="addy" color="#ffffff" size="-2" face="verdana, arial, geneva, san-serif">9500 Gilman Drive, La Jolla, CA 92093-0114<br>
+</font></td>
+</tr>
+<tr>
+<td bgcolor="#efefef" valign="top" width="760"><img border="0" width="760" height="12" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+<tr>
+<td bgcolor="#efefef" align="center" width="760"><font class="footernav" color="#003366" size="-2" face="verdana, arial, geneva, san-serif"><b><a href="http://www.cs.ucsd.edu/aboutcse/deptoverview.html">About CSE</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/csepeople/csepeoplehome.html">CSE People</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/facresearch/facultyresearch.html">Faculty &amp; Research</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/gradedu/gradeduhome.html">Graduate Education</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/undergrad/undergradeduhome.html">Undergraduate Education</a></b>
+<br>
+<b><a href="http://www.cs.ucsd.edu/deptadmin/index.php">Department Administration</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/aboutcse/contactinfo.html">Contact CSE</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/home/help/index.html">Help</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/home/search.html">Search</a></b> | 
+          <b><a href="http://www.cs.ucsd.edu/progress/progressroot.html">Site map</a></b> |
+          <b><a href="http://www.cs.ucsd.edu/index.php">Home</a></b>
+<br>
+<a href="mailto:snoeren@cs.ucsd.edu">snoeren@cs.ucsd.edu</a>
+<br>
+</font><a href="http://www.ucsd.edu/"><img border="0" width="379" height="25" src="http://www.cs.ucsd.edu/images/IMG_footer.gif" alt="Official web page of the University of California, San Diego" class="inlineimage"></a></td>
+</tr>
+<tr>
+<td bgcolor="#efefef" align="center" width="760"><font class="copyright" color="#003366" size="-2" face="verdana, arial, geneva, san-serif">
+          Copyright 
+          &copy;
+          2002 Regents of the University of California.  All rights reserved.
+          
+          
+        </font></td>
+</tr>
+<tr>
+<td bgcolor="#efefef" valign="top" width="760"><img border="0" width="760" height="15" src="http://www.cs.ucsd.edu/images/space.gif" alt="spacer gif"></td>
+</tr>
+</table>
+</body>
+</html>
+
+

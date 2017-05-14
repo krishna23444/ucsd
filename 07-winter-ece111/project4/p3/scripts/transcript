@@ -1,0 +1,53 @@
+# //  ModelSim SE 6.1d Jan 23 2006 SunOS 5.10
+# //
+# //  Copyright 2006 Mentor Graphics Corporation
+# //              All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND 
+# //  PROPRIETARY INFORMATION WHICH IS THE PROPERTY
+# //  OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
+# //  AND IS SUBJECT TO LICENSE TERMS.
+# //
+# vsim -do /home/solaris/ieng9/ee111w/njoffe/mac_layer/scripts/wave.do -l transcript -i -pli { /acsnfs3/software/seamless-cve-5.4/seamless/cve_home.ss5/lib/arm946e_sr1_vsim_vlog.slib } -t 1ps /home/solaris/ieng9/ee111w/njoffe/mac_layer/work.pxdefault_tb 
+# Loading /acsnfs3/software/seamless-cve-5.4/seamless/cve_home.ss5/lib/arm946e_sr1_vsim_vlog.slib
+# Refreshing /home/solaris/ieng9/ee111w/njoffe/mac_layer/work.pxdefault_tb
+# Loading /home/solaris/ieng9/ee111w/njoffe/mac_layer/work.pxdefault_tb
+# Refreshing /home/solaris/ieng9/ee111w/njoffe/mac_layer/work.test3
+# Loading /home/solaris/ieng9/ee111w/njoffe/mac_layer/work.test3
+# Refreshing /home/solaris/ieng9/ee111w/njoffe/mac_layer/work.a946
+# Loading /home/solaris/ieng9/ee111w/njoffe/mac_layer/work.a946
+# Refreshing /home/solaris/ieng9/ee111w/njoffe/mac_layer/work.ARM946E_Sr1
+# Loading /home/solaris/ieng9/ee111w/njoffe/mac_layer/work.ARM946E_Sr1
+# Refreshing /home/solaris/ieng9/ee111w/njoffe/mac_layer/work.AhbMemory
+# Loading /home/solaris/ieng9/ee111w/njoffe/mac_layer/work.AhbMemory
+# Refreshing /home/solaris/ieng9/ee111w/njoffe/mac_layer/work.PxDecoder_AHB_1_1407810334_module
+# Loading /home/solaris/ieng9/ee111w/njoffe/mac_layer/work.PxDecoder_AHB_1_1407810334_module
+# CVE arm946e_sr1 Bus Interface Model Version v5.4_1.0_1.0_1.0
+# ***********************************************************
+# ****  ARM946E_SR1 Bus Interface Model Version 1.0      
+# ****        Copyright (C) Mentor Graphics 2002             
+# ***********************************************************
+# CVE NOTE: pxdefault_tb.test3_1.a946_1.uARM946E_Sr1
+# 
+# CVE NOTE: Annotating instance pxdefault_tb.test3_1.a946_1.uARM946E_Sr1 from file $CVE_HOME/delays/arm946e_sr1_delays
+# 	Full path is: /acsnfs3/software/seamless-cve-5.4/seamless/cve_home.ss5/delays/arm946e_sr1_delays
+# do /home/solaris/ieng9/ee111w/njoffe/mac_layer/scripts/wave.do 
+# hexadecimal
+run -all
+# CVE iRAM Memory Model Version v5.4 (1.0)
+# Copyright (c) Mentor Graphics Corporation, 1996, All Rights Reserved.
+# iRAM "pxdefault_tb.test3_1.AhbMemory_1" configured as 1Mx32 bit
+# CVE iRAM Memory Model Version v5.4 (1.0)
+# Copyright (c) Mentor Graphics Corporation, 1996, All Rights Reserved.
+# iRAM "pxdefault_tb.test3_1.AhbMemory_2" configured as 512Kx32 bit
+# CVE NOTE: Instance "pxdefault_tb.test3_1.a946_1.uARM946E_Sr1" waiting for connection from software process...
+# 
+# CVE NOTE: Instance "pxdefault_tb.test3_1.a946_1.uARM946E_Sr1" connected to software process.
+# 
+# CVE ERROR: Software communication error.
+# 
+# NOTE: instance "pxdefault_tb.test3_1.a946_1.uARM946E_Sr1" going interactive...
+# 
+# ERROR :: Model "pxdefault_tb.test3_1.a946_1.uARM946E_Sr1": Problem advancing clock - model disabled
+# Simulation stop requested.
+# CVE Exit...

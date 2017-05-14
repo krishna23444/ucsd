@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OnyxSource file="punctuation.onyx">
+   <token column="1" id="60" line="1"/>
+   <token column="3" id="59" line="1"/>
+   <token column="6" id="64" line="1">:</token>
+   <token column="7" id="64" line="1">:</token>
+   <token column="9" id="50" line="1"/>
+   <token column="12" id="18" line="1"/>
+   <token column="15" id="13" line="1"/>
+   <token column="16" id="13" line="1"/>
+   <token column="18" id="42" line="1"/>
+   <token column="20" id="60" line="1"/>
+   <token column="21" id="22" line="1"/>
+   <token column="23" id="64" line="1">?</token>
+   <token column="-1" id="0" line="-1"/>
+</OnyxSource>
+

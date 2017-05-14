@@ -1,0 +1,8 @@
+# Author: Nitay Joffe
+# Class: CSE 121 - Modern Operating Systems
+# Project: 2 - Filesystem Benchmarking
+
+CFLAGS = `pkg-config --cflags fuse` -Wall -g
+LDFLAGS =`pkg-config --libs fuse` -Wall -g
+
+include Makefile.common

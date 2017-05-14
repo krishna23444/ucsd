@@ -1,0 +1,38 @@
+#ifndef P2P_SERVICE_CLASS_H
+#define P2P_SERVICE_CLASS_H
+
+#include <string>
+#include "ServiceClass.h"
+/*#include "P2PJoinHandler.h"
+  #include "P2PAuthenticationHandler.h"*/
+#include "MaceTypes.h"
+#include "P2PFileHandler.h"
+#include "P2PQueryHandler.h"
+#include "P2PJoinHandler.h"
+
+class P2PServiceClass : public virtual ServiceClass {
+
+ public:
+  static P2PServiceClass& NULL_;
+
+  virtual void registerUniqueHandler(P2PFileHandler& handler) { assert(0); }
+  virtual void registerUniqueHandler(P2PJoinHandler& handler) { assert(0); }
+  virtual void registerUniqueHandler(P2PQueryHandler& handler) { assert(0); }
+
+  virtual registration_uid_t registerHandler(P2PFileHandler& handler, registration_uid_t registrationUid = -1) { assert(0); }
+  
+  virtual registration_uid_t registerHandler(P2PQueryHandler& handler, registration_uid_t registrationUid = -1) { assert(0); }
+
+  virtual registration_uid_t registerHandler(P2PJoinHandler& handler, registration_uid_t registrationUid = -1) { assert(0); }
+
+  virtual void JoinP2P(const MaceKey& initialPeer, double advertisedBandwidth, int httpPort, const std::string& identity,
+		       registration_uid_t joinHandler_registrationUid, registration_uid_t fileHandler_registrationUid) { }
+
+  virtual void LeaveP2P(registration_uid_t registrationUid) { }
+
+  virtual uint QueryP2P(const std::string& searchString, registration_uid_t registrationUid) { return 0;}
+
+
+};
+
+#endif // P2P_SERVICE_CLASS_H

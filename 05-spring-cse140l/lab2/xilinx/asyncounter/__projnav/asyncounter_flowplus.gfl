@@ -1,0 +1,12 @@
+# XST flow : Creating project file
+asyncounter.prj
+# xst flow : RunXST
+asyncounter.prj
+__projnav/asyncounter.xst
+./xst
+# XST flow : Creating project file
+asyncounter_8.prj
+# xst flow : RunXST
+asyncounter_8.prj
+__projnav/asyncounter_8.xst
+./xst

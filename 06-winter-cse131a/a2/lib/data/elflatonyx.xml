@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.ast.Query>
+   <onyx.ast.FunctionDeclaration datatype="onyx.types.AnyType" funcName="foo">
+      <onyx.ast.ArgumentDeclaration datatype="onyx.types.AnyType" varName="$a"/>
+      <onyx.ast.ArgumentDeclaration datatype="onyx.types.AnyType" varName="$b"/>
+      <onyx.ast.ExprList>
+         <onyx.ast.Variable>$a</onyx.ast.Variable>
+         <onyx.ast.Variable>$b</onyx.ast.Variable>
+      </onyx.ast.ExprList>
+   </onyx.ast.FunctionDeclaration>
+   <onyx.ast.ExprList>
+      <onyx.ast.Flwr>
+         <onyx.ast.LetAssignment varName="$x">
+            <onyx.ast.ExprList>
+               <onyx.ast.Constant datatype="onyx.types.Integer">3</onyx.ast.Constant>
+               <onyx.ast.Constant datatype="onyx.types.Integer">4</onyx.ast.Constant>
+               <onyx.ast.Constant datatype="onyx.types.Integer">5</onyx.ast.Constant>
+            </onyx.ast.ExprList>
+         </onyx.ast.LetAssignment>
+         <onyx.ast.Return>
+            <onyx.ast.FunctionCall name="foo">
+               <onyx.ast.Variable>$x</onyx.ast.Variable>
+               <onyx.ast.ExprList>
+                  <onyx.ast.Constant datatype="onyx.types.Integer">6</onyx.ast.Constant>
+                  <onyx.ast.Constant datatype="onyx.types.Integer">7</onyx.ast.Constant>
+                  <onyx.ast.Constant datatype="onyx.types.Integer">8</onyx.ast.Constant>
+               </onyx.ast.ExprList>
+            </onyx.ast.FunctionCall>
+         </onyx.ast.Return>
+      </onyx.ast.Flwr>
+   </onyx.ast.ExprList>
+</onyx.ast.Query>
+

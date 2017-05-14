@@ -1,0 +1,139 @@
+We have a few (long though) comments regarding the CRC program.
+
+	1. Sender vs Receiver CRC algorithm:
+	2. Implementation:
+
+Read on....
+
+1. The question says "Write a program for the sender and receiver that takes a
+   bit stream and computes its CRC". Recall that receivers get the full
+   message including the appended CRC bits, and they compute CRC to
+   verify if it computes to be zero. They do not add r bits of zeros
+   (for a generator of degree r) to the end of the message before
+   computing the CRC.
+
+   On the other hand, senders, add r bits of zeroes to the end of the
+   message before computing CRC of a message.  Once they compute the
+   CRC of the modified message, the zeroes are replaced with the CRC.
+   (The CRC has exactly r bits.)  
+
+2. Implementation:
+
+   There are many ways to organize the message, once it is read into
+   the program. The input file has a string of characters `0's and
+   `1's.  Therefore, you are forced to read it into the system as
+   characters or as a string. Once it is read in, you could do one of
+   the following: (Remember, each of these characters represent a bit
+   in the message.)
+
+   (1) Process the input message as is, i.e., as characters.  This is a
+   very inefficient way, but can be done. Using appropriate loop
+   constructs, by processing the message and the generator character by
+   character, we can find the CRC as a string of `0's and `1's.
+
+   (2) This will cause no trouble for problem 3. But, if you intend to
+   do a real implementation, you may want to try your hand doing it a 
+   bit at a time (in fact, to make CRC faster, you can do it
+   8 bits at a time, which only works if you work with bits).
+   If you work with bits, you are
+   forced to convert to bit-stuffed form, where each byte in your
+   internal representation contains 8 bits of the message; in other
+   words, convert 8 characters from the input message into one byte of
+   your internal representation. e.g., for an input of
+
+   0100100101010010101001
+
+   the internal representation will have the following byte values:
+   (in hexadecimal representation)
+
+   0x49 0x52 0xa4
+
+   and the procedures that manipulate this representation should
+   remember to ignore the last two bits in the last byte. (We have
+   padded zeroes at the end because the message did not have a multiple
+   of 8 bits; the last two bits are not part of the message.)
+
+   Some of you may have had trouble figuring out how this
+   is to be done. We attach a C function (should work in Java/C++ with
+   the appropriate modifications) here which will convert
+   a given string containing characters `0's and `1's(only) to
+   its byte representation.
+
+   Pack(char *input, unsigned char *bit_stuffed_input) returns you a
+   bit-stuffed version of input string in bit_stuffed_input.
+
+   input should have a valid string (in the C sense) containing only
+   characters `0' and `1'; I am NOT DOING ANY ERROR CHECKING inside the
+   function.
+
+   bit_stuffed_input should be declared to have enough space to
+   store the bit-stuffed version of your input.
+
+   I have tried to explain the code in detail; those of you who would
+   not need this elaborate comments, can ignore them.
+
+==============================================================
+void Pack(char *input, unsigned char *bit_stuffed_input)
+{
+
+    int i,j;
+    int len=strlen(input); /* Length of the input string */
+
+    for (i=0; i<len; i++)
+    {
+
+        /* in the following code, 
+            x >> 3  divides x by 8
+
+            x & 0x07 finds remainder when divided by 8
+
+            x |= (0x80 >> y)
+            sets y_th bit position (from MSB ) of x to 1
+
+            x &= (~(0x80 >> y))
+            sets y_th bit position (from MSB ) of x to 0
+        */
+
+
+        if (input[i] == '1') /* set position i to 1 */
+            bit_stuffed_input[i>>3] |= (0x80 >> (i&0x07));
+        else 
+        if (input[i] == '0') /* set position i to 0 */
+            bit_stuffed_input[i>>3] &= ~(0x80 >> (i&0x07));
+
+    }
+
+        /* zero out the rest of the last byte.
+                sorry, this part is a little messy.
+        */
+        for (i = ((len-1) & 0x07)+1, j = ((len-1) >> 3); i<8; i++)
+                bit_stuffed_input[j] &= ~(0x80 >> i);
+
+} /* Pack */
+
+==============================================================
+
+   You could  use this function as follows:
+
+   unsigned char bit_stuffed_input[50];
+   char input[400];
+   /* 50 and 400 are arbitrarily chosen numbers. Make sure
+   that bit_stuffed_input has enough space*/
+
+   /* here read input into `input' */
+    
+	........
+
+   /* pass it through Pack to get a packed representation */
+
+	Pack (input, bit_stuffed_input);
+
+
+	/* now you have packed representation. 
+	The number of valid bits in this representation is 
+	same as the length of the input string. */
+
+Good Luck!
+
+
+

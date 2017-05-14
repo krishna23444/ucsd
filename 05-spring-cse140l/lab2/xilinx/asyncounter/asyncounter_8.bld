@@ -1,0 +1,21 @@
+Release 7.1.01i ngdbuild H.39
+Copyright (c) 1995-2005 Xilinx, Inc.  All rights reserved.
+
+Command Line: ngdbuild -intstyle ise -dd
+g:\xilinx\projects\lab2\asyncounter/_ngo -nt timestamp -i -p xc2v80-cs144-5
+asyncounter_8.ngc asyncounter_8.ngd 
+
+Reading NGO file 'G:/xilinx/projects/lab2/asyncounter/asyncounter_8.ngc' ...
+
+Checking timing specifications ...
+Checking expanded design ...
+
+NGDBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Total memory usage is 59420 kilobytes
+
+Writing NGD file "asyncounter_8.ngd" ...
+
+Writing NGDBUILD log file "asyncounter_8.bld"...

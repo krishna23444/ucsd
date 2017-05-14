@@ -1,0 +1,22 @@
+Hi Rick,
+
+Here are a couple suggestions for mycrypt:
+
+1. In the encrypting routine, write every set of bits
+back to memory in reverse order. This is a "symmetric"
+operation so it can be incorporated well into the assignment.
+This would probably require shifting bitmasks in a loop.
+
+2. Add a -s option so that the user can search for a string within an
+encrypted file. This would involve encrypting the string and then testing
+the bitpattern of the string against each bit in the encrypted file.
+However, this might be a little tedious to implement in assembly..
+
+3. Some type of primitive file-compression would be interesting..
+Not sure about this one though.
+
+Hope that helped.
+
+-Henrick
+
+

@@ -1,0 +1,7 @@
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w memory16x8.sch memory16x8.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w memory16x8.sch memory16x8.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w memory16x8.sch memory16x8.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w memory16x8.sch memory16x8.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w memory16x8.sch memory16x8.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w memory16x8.sch memory16x8.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w memory16x8.sch memory16x8.vhf

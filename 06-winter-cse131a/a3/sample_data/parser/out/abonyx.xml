@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.ast.Query>
+   <onyx.ast.ExprList>
+      <onyx.ast.Constant datatype="onyx.types.String">&amp; &amp; &lt; &lt;  &gt; &gt;</onyx.ast.Constant>
+   </onyx.ast.ExprList>
+</onyx.ast.Query>
+

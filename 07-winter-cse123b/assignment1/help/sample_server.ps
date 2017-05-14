@@ -1,0 +1,1093 @@
+%!PS-Adobe-3.0
+%%BoundingBox: 24 24 588 768
+%%Title: Enscript Output
+%%For: Calvin Hubble
+%%Creator: GNU enscript 1.6.1
+%%CreationDate: Wed Jan 17 09:53:13 2007
+%%Orientation: Landscape
+%%Pages: (atend)
+%%DocumentMedia: Letter 612 792 0 () ()
+%%DocumentNeededResources: (atend)
+%%EndComments
+%%BeginProlog
+%%BeginResource: procset Enscript-Prolog 1.6 1
+%
+% Procedures.
+%
+
+/_S {	% save current state
+  /_s save def
+} def
+/_R {	% restore from saved state
+  _s restore
+} def
+
+/S {	% showpage protecting gstate
+  gsave
+  showpage
+  grestore
+} bind def
+
+/MF {	% fontname newfontname -> -	make a new encoded font
+  /newfontname exch def
+  /fontname exch def
+
+  /fontdict fontname findfont def
+  /newfont fontdict maxlength dict def
+
+  fontdict {
+    exch
+    dup /FID eq {
+      % skip FID pair
+      pop pop
+    } {
+      % copy to the new font dictionary
+      exch newfont 3 1 roll put
+    } ifelse
+  } forall
+
+  newfont /FontName newfontname put
+
+  % insert only valid encoding vectors
+  encoding_vector length 256 eq {
+    newfont /Encoding encoding_vector put
+  } if
+
+  newfontname newfont definefont pop
+} def
+
+/SF { % fontname width height -> -	set a new font
+  /height exch def
+  /width exch def
+
+  findfont
+  [width 0 0 height 0 0] makefont setfont
+} def
+
+/SUF { % fontname width height -> -	set a new user font
+  /height exch def
+  /width exch def
+
+  /F-gs-user-font MF
+  /F-gs-user-font width height SF
+} def
+
+/M {moveto} bind def
+/s {show} bind def
+
+/Box {	% x y w h -> -			define box path
+  /d_h exch def /d_w exch def /d_y exch def /d_x exch def
+  d_x d_y  moveto
+  d_w 0 rlineto
+  0 d_h rlineto
+  d_w neg 0 rlineto
+  closepath
+} def
+
+/bgs {	% x y height blskip gray str -> -	show string with bg color
+  /str exch def
+  /gray exch def
+  /blskip exch def
+  /height exch def
+  /y exch def
+  /x exch def
+
+  gsave
+    x y blskip sub str stringwidth pop height Box
+    gray setgray
+    fill
+  grestore
+  x y M str s
+} def
+
+% Highlight bars.
+/highlight_bars {	% nlines lineheight output_y_margin gray -> -
+  gsave
+    setgray
+    /ymarg exch def
+    /lineheight exch def
+    /nlines exch def
+
+    % This 2 is just a magic number to sync highlight lines to text.
+    0 d_header_y ymarg sub 2 sub translate
+
+    /cw d_output_w cols div def
+    /nrows d_output_h ymarg 2 mul sub lineheight div cvi def
+
+    % for each column
+    0 1 cols 1 sub {
+      cw mul /xp exch def
+
+      % for each rows
+      0 1 nrows 1 sub {
+        /rn exch def
+        rn lineheight mul neg /yp exch def
+        rn nlines idiv 2 mod 0 eq {
+	  % Draw highlight bar.  4 is just a magic indentation.
+	  xp 4 add yp cw 8 sub lineheight neg Box fill
+	} if
+      } for
+    } for
+
+  grestore
+} def
+
+% Line highlight bar.
+/line_highlight {	% x y width height gray -> -
+  gsave
+    /gray exch def
+    Box gray setgray fill
+  grestore
+} def
+
+% Column separator lines.
+/column_lines {
+  gsave
+    .1 setlinewidth
+    0 d_footer_h translate
+    /cw d_output_w cols div def
+    1 1 cols 1 sub {
+      cw mul 0 moveto
+      0 d_output_h rlineto stroke
+    } for
+  grestore
+} def
+
+% Column borders.
+/column_borders {
+  gsave
+    .1 setlinewidth
+    0 d_footer_h moveto
+    0 d_output_h rlineto
+    d_output_w 0 rlineto
+    0 d_output_h neg rlineto
+    closepath stroke
+  grestore
+} def
+
+% Do the actual underlay drawing
+/draw_underlay {
+  ul_style 0 eq {
+    ul_str true charpath stroke
+  } {
+    ul_str show
+  } ifelse
+} def
+
+% Underlay
+/underlay {	% - -> -
+  gsave
+    0 d_page_h translate
+    d_page_h neg d_page_w atan rotate
+
+    ul_gray setgray
+    ul_font setfont
+    /dw d_page_h dup mul d_page_w dup mul add sqrt def
+    ul_str stringwidth pop dw exch sub 2 div ul_h_ptsize -2 div moveto
+    draw_underlay
+  grestore
+} def
+
+/user_underlay {	% - -> -
+  gsave
+    ul_x ul_y translate
+    ul_angle rotate
+    ul_gray setgray
+    ul_font setfont
+    0 0 ul_h_ptsize 2 div sub moveto
+    draw_underlay
+  grestore
+} def
+
+% Page prefeed
+/page_prefeed {		% bool -> -
+  statusdict /prefeed known {
+    statusdict exch /prefeed exch put
+  } {
+    pop
+  } ifelse
+} def
+
+% Wrapped line markers
+/wrapped_line_mark {	% x y charwith charheight type -> -
+  /type exch def
+  /h exch def
+  /w exch def
+  /y exch def
+  /x exch def
+
+  type 2 eq {
+    % Black boxes (like TeX does)
+    gsave
+      0 setlinewidth
+      x w 4 div add y M
+      0 h rlineto w 2 div 0 rlineto 0 h neg rlineto
+      closepath fill
+    grestore
+  } {
+    type 3 eq {
+      % Small arrows
+      gsave
+        .2 setlinewidth
+        x w 2 div add y h 2 div add M
+        w 4 div 0 rlineto
+        x w 4 div add y lineto stroke
+
+        x w 4 div add w 8 div add y h 4 div add M
+        x w 4 div add y lineto
+	w 4 div h 8 div rlineto stroke
+      grestore
+    } {
+      % do nothing
+    } ifelse
+  } ifelse
+} def
+
+% EPSF import.
+
+/BeginEPSF {
+  /b4_Inc_state save def    		% Save state for cleanup
+  /dict_count countdictstack def	% Count objects on dict stack
+  /op_count count 1 sub def		% Count objects on operand stack
+  userdict begin
+  /showpage { } def
+  0 setgray 0 setlinecap
+  1 setlinewidth 0 setlinejoin
+  10 setmiterlimit [ ] 0 setdash newpath
+  /languagelevel where {
+    pop languagelevel
+    1 ne {
+      false setstrokeadjust false setoverprint
+    } if
+  } if
+} bind def
+
+/EndEPSF {
+  count op_count sub { pos } repeat	% Clean up stacks
+  countdictstack dict_count sub { end } repeat
+  b4_Inc_state restore
+} bind def
+
+% Check PostScript language level.
+/languagelevel where {
+  pop /gs_languagelevel languagelevel def
+} {
+  /gs_languagelevel 1 def
+} ifelse
+%%EndResource
+%%BeginResource: procset Enscript-Encoding-88591 1.6 1
+/encoding_vector [
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/space        	/exclam       	/quotedbl     	/numbersign   	
+/dollar       	/percent      	/ampersand    	/quoteright   	
+/parenleft    	/parenright   	/asterisk     	/plus         	
+/comma        	/hyphen       	/period       	/slash        	
+/zero         	/one          	/two          	/three        	
+/four         	/five         	/six          	/seven        	
+/eight        	/nine         	/colon        	/semicolon    	
+/less         	/equal        	/greater      	/question     	
+/at           	/A            	/B            	/C            	
+/D            	/E            	/F            	/G            	
+/H            	/I            	/J            	/K            	
+/L            	/M            	/N            	/O            	
+/P            	/Q            	/R            	/S            	
+/T            	/U            	/V            	/W            	
+/X            	/Y            	/Z            	/bracketleft  	
+/backslash    	/bracketright 	/asciicircum  	/underscore   	
+/quoteleft    	/a            	/b            	/c            	
+/d            	/e            	/f            	/g            	
+/h            	/i            	/j            	/k            	
+/l            	/m            	/n            	/o            	
+/p            	/q            	/r            	/s            	
+/t            	/u            	/v            	/w            	
+/x            	/y            	/z            	/braceleft    	
+/bar          	/braceright   	/tilde        	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/space        	/exclamdown   	/cent         	/sterling     	
+/currency     	/yen          	/brokenbar    	/section      	
+/dieresis     	/copyright    	/ordfeminine  	/guillemotleft	
+/logicalnot   	/hyphen       	/registered   	/macron       	
+/degree       	/plusminus    	/twosuperior  	/threesuperior	
+/acute        	/mu           	/paragraph    	/bullet       	
+/cedilla      	/onesuperior  	/ordmasculine 	/guillemotright	
+/onequarter   	/onehalf      	/threequarters	/questiondown 	
+/Agrave       	/Aacute       	/Acircumflex  	/Atilde       	
+/Adieresis    	/Aring        	/AE           	/Ccedilla     	
+/Egrave       	/Eacute       	/Ecircumflex  	/Edieresis    	
+/Igrave       	/Iacute       	/Icircumflex  	/Idieresis    	
+/Eth          	/Ntilde       	/Ograve       	/Oacute       	
+/Ocircumflex  	/Otilde       	/Odieresis    	/multiply     	
+/Oslash       	/Ugrave       	/Uacute       	/Ucircumflex  	
+/Udieresis    	/Yacute       	/Thorn        	/germandbls   	
+/agrave       	/aacute       	/acircumflex  	/atilde       	
+/adieresis    	/aring        	/ae           	/ccedilla     	
+/egrave       	/eacute       	/ecircumflex  	/edieresis    	
+/igrave       	/iacute       	/icircumflex  	/idieresis    	
+/eth          	/ntilde       	/ograve       	/oacute       	
+/ocircumflex  	/otilde       	/odieresis    	/divide       	
+/oslash       	/ugrave       	/uacute       	/ucircumflex  	
+/udieresis    	/yacute       	/thorn        	/ydieresis    	
+] def
+%%EndResource
+%%EndProlog
+%%BeginSetup
+%%IncludeResource: font Courier-Bold
+%%IncludeResource: font Courier
+/HFpt_w 10 def
+/HFpt_h 10 def
+/Courier-Bold /HF-gs-font MF
+/HF /HF-gs-font findfont [HFpt_w 0 0 HFpt_h 0 0] makefont def
+/Courier /F-gs-font MF
+/F-gs-font 7 7 SF
+/#copies 1 def
+% Pagedevice definitions:
+gs_languagelevel 1 gt {
+  <<
+    /PageSize [612 792] 
+  >> setpagedevice
+} if
+%%BeginResource: procset Enscript-Header-enscript 1.6 1
+%%IncludeResource: font Times-Bold
+%%IncludeResource: font Times-Roman
+
+% Fonts.
+/Times-Bold /HeaderFont-Bold MF
+/HeaderDateF /HeaderFont-Bold findfont 12 scalefont def
+
+/Times-Roman /HeaderFont-Times MF
+/HeaderHDRF /HeaderFont-Times findfont 14 scalefont def
+
+/HeaderPageNumF /Helvetica-Bold findfont 28.8 scalefont def
+
+/do_header {	% print enscript header
+  gsave
+    d_header_x d_header_y translate
+
+    % light bar
+    0 0 d_header_w d_header_h 2 div Box
+    .95 setgray fill
+
+    % dark gray boxes
+    /dbw d_header_h 2 mul def	% dark box width
+    /dbc .7 def			% dark box color
+
+    % left dark box.
+    0 0 dbw d_header_h Box
+    dbc setgray fill
+
+    0 setgray 
+    HeaderDateF setfont
+    moddatestr dup stringwidth pop dbw exch sub 2 div 
+    d_header_h 2 div 2 add moveto show
+    modtimestr dup stringwidth pop dbw exch sub 2 div 
+    d_header_h 5 div moveto show
+
+    % right dark box
+    d_header_w dbw sub 0 dbw d_header_h Box
+    dbc setgray fill
+
+    HeaderPageNumF setfont
+    1 setgray
+    pagenumstr dup
+    stringwidth pop dbw exch sub 2 div d_header_w dbw sub add
+    d_header_h .2 mul moveto show
+
+    % filename
+    0 setgray 
+    HeaderHDRF setfont
+    d_header_w fname stringwidth pop sub 2 div d_header_h 8 div moveto
+    fname show
+
+    % user supplied header string.
+    user_header_p {
+      /h d_header_h 8 div 5 mul def
+
+      % Implement strict enscript compatibility.
+      user_header_center_str () eq user_header_right_str () eq and {
+        d_header_w user_header_left_str stringwidth pop sub 2 div 
+        h moveto user_header_left_str show
+      } {
+        dbw 5 add h moveto user_header_left_str show
+
+        d_header_w user_header_center_str stringwidth pop sub 2 div 
+        h moveto user_header_center_str show
+
+	d_header_w dbw sub 5 sub user_header_right_str stringwidth pop
+	sub h moveto user_header_right_str show
+      } ifelse
+    } if
+
+  grestore
+} def
+%%EndResource
+/d_page_w 744 def
+/d_page_h 564 def
+/d_header_x 0 def
+/d_header_y 528 def
+/d_header_w 744 def
+/d_header_h 36 def
+/d_footer_x 0 def
+/d_footer_y 0 def
+/d_footer_w 744 def
+/d_footer_h 0 def
+/d_output_w 744 def
+/d_output_h 528 def
+/cols 2 def
+%%EndSetup
+%%Page: (1) 1
+%%BeginPageSetup
+_S
+90 rotate
+24 -588 translate
+/pagenum 1 def
+/fname (sample_server.cc) def
+/fdir () def
+/ftail (sample_server.cc) def
+% User defined strings:
+/pagenumstr (1) def
+/moddatestr (01/17/07) def
+/modtimestr (09:53:10) def
+/user_header_p false def
+%%EndPageSetup
+column_lines
+column_borders
+do_header
+5 518 M
+(#) s
+/Courier-Bold 7 7 SUF
+9.2 518 M
+(include) s
+/F-gs-font 7 7 SF
+38.6 518 M
+( ) s
+/Courier-Bold 7 7 SUF
+42.8 518 M
+(<stdio.h>) s
+/F-gs-font 7 7 SF
+5 510 M
+(#) s
+/Courier-Bold 7 7 SUF
+9.2 510 M
+(include) s
+/F-gs-font 7 7 SF
+38.6 510 M
+( ) s
+/Courier-Bold 7 7 SUF
+42.8 510 M
+(<stdlib.h>) s
+/F-gs-font 7 7 SF
+5 502 M
+(#) s
+/Courier-Bold 7 7 SUF
+9.2 502 M
+(include) s
+/F-gs-font 7 7 SF
+38.6 502 M
+( ) s
+/Courier-Bold 7 7 SUF
+42.8 502 M
+(<sys/types.h>) s
+/F-gs-font 7 7 SF
+5 494 M
+(#) s
+/Courier-Bold 7 7 SUF
+9.2 494 M
+(include) s
+/F-gs-font 7 7 SF
+38.6 494 M
+( ) s
+/Courier-Bold 7 7 SUF
+42.8 494 M
+(<sys/socket.h>) s
+/F-gs-font 7 7 SF
+5 486 M
+(#) s
+/Courier-Bold 7 7 SUF
+9.2 486 M
+(include) s
+/F-gs-font 7 7 SF
+38.6 486 M
+( ) s
+/Courier-Bold 7 7 SUF
+42.8 486 M
+(<netinet/in.h>) s
+/F-gs-font 7 7 SF
+5 470 M
+(#) s
+/Courier-Bold 7 7 SUF
+9.2 470 M
+(include) s
+/F-gs-font 7 7 SF
+38.6 470 M
+( ) s
+/Courier-Bold 7 7 SUF
+42.8 470 M
+(<string>) s
+/F-gs-font 7 7 SF
+5 454 M
+(#) s
+/Courier-Bold 7 7 SUF
+9.2 454 M
+(define) s
+/F-gs-font 7 7 SF
+34.4 454 M
+( ) s
+/Courier-Bold 7 7 SUF
+38.6 454 M
+(SEC_TIMEOUT) s
+/F-gs-font 7 7 SF
+84.8 454 M
+( 1) s
+5 446 M
+(#) s
+/Courier-Bold 7 7 SUF
+9.2 446 M
+(define) s
+/F-gs-font 7 7 SF
+34.4 446 M
+( ) s
+/Courier-Bold 7 7 SUF
+38.6 446 M
+(USEC_TIMEOUT) s
+/F-gs-font 7 7 SF
+89 446 M
+( 0) s
+5 430 M
+(using namespace std;) s
+/Courier-Bold 7 7 SUF
+5 414 M
+(void) s
+/F-gs-font 7 7 SF
+21.8 414 M
+( ) s
+/Courier-Bold 7 7 SUF
+26 414 M
+(pullRequest) s
+/F-gs-font 7 7 SF
+72.2 414 M
+(\() s
+/Courier-Bold 7 7 SUF
+76.4 414 M
+(const) s
+/F-gs-font 7 7 SF
+97.4 414 M
+( string &str\);) s
+/Courier-Bold 7 7 SUF
+5 406 M
+(int) s
+/F-gs-font 7 7 SF
+17.6 406 M
+( ) s
+/Courier-Bold 7 7 SUF
+21.8 406 M
+(main) s
+/F-gs-font 7 7 SF
+38.6 406 M
+(\(\) ) s
+5 398 M
+({) s
+5 390 M
+(    ) s
+/Courier-Bold 7 7 SUF
+21.8 390 M
+(char) s
+/F-gs-font 7 7 SF
+38.6 390 M
+( test[] = ) s
+/Courier-Bold 7 7 SUF
+80.6 390 M
+("firstpart\\r\\ntwo\\r\\n\\r\\nthree") s
+/F-gs-font 7 7 SF
+210.8 390 M
+(;) s
+5 382 M
+(    string str\(test\);) s
+5 374 M
+(    pullRequest\(str\);) s
+5 358 M
+(    ) s
+/Courier-Oblique 7 7 SUF
+21.8 358 M
+(// now on to sample server code) s
+/F-gs-font 7 7 SF
+5 342 M
+(    ) s
+/Courier-Bold 7 7 SUF
+21.8 342 M
+(int) s
+/F-gs-font 7 7 SF
+34.4 342 M
+( listenfd;) s
+5 334 M
+(    ) s
+/Courier-Bold 7 7 SUF
+21.8 334 M
+(struct) s
+/F-gs-font 7 7 SF
+47 334 M
+( sockaddr_in bindAddr;) s
+5 326 M
+(    fd_set master_read_fds, master_write_fds;) s
+5 318 M
+(    fd_set read_fds, write_fds;) s
+5 310 M
+(    ) s
+/Courier-Bold 7 7 SUF
+21.8 310 M
+(int) s
+/F-gs-font 7 7 SF
+34.4 310 M
+( fdmax;) s
+5 302 M
+(    ) s
+/Courier-Bold 7 7 SUF
+21.8 302 M
+(char) s
+/F-gs-font 7 7 SF
+38.6 302 M
+( charMsg[1024];) s
+5 294 M
+(    ) s
+/Courier-Bold 7 7 SUF
+21.8 294 M
+(struct) s
+/F-gs-font 7 7 SF
+47 294 M
+( timeval timeout;  ) s
+/Courier-Oblique 7 7 SUF
+126.8 294 M
+(// set timeout to 1 second) s
+/F-gs-font 7 7 SF
+5 286 M
+(    timeout.tv_sec = SEC_TIMEOUT;) s
+5 278 M
+(    timeout.tv_usec = USEC_TIMEOUT;) s
+5 262 M
+(    ) s
+/Courier-Bold 7 7 SUF
+21.8 262 M
+(char) s
+/F-gs-font 7 7 SF
+38.6 262 M
+( responseMessage[] = ) s
+/Courier-Bold 7 7 SUF
+126.8 262 M
+("received your input\\n") s
+/F-gs-font 7 7 SF
+223.4 262 M
+(;) s
+5 246 M
+(    listenfd = socket\(AF_INET, SOCK_STREAM, 0\);) s
+5 238 M
+(    bindAddr.sin_family = AF_INET;) s
+5 230 M
+(    bindAddr.sin_port = htons\(8888\);) s
+5 222 M
+(    bindAddr.sin_addr.s_addr = INADDR_ANY;) s
+5 214 M
+(    memset\(&\(bindAddr.sin_zero\), 0, 8\);) s
+5 206 M
+(    ) s
+5 198 M
+(    bind\(listenfd, \() s
+/Courier-Bold 7 7 SUF
+89 198 M
+(struct) s
+/F-gs-font 7 7 SF
+114.2 198 M
+( sockaddr *\)&bindAddr, ) s
+/Courier-Bold 7 7 SUF
+210.8 198 M
+(sizeof) s
+/F-gs-font 7 7 SF
+236 198 M
+(\() s
+/Courier-Bold 7 7 SUF
+240.2 198 M
+(struct) s
+/F-gs-font 7 7 SF
+265.4 198 M
+( sockaddr\)\);) s
+5 190 M
+(    ) s
+/Courier-Bold 7 7 SUF
+21.8 190 M
+(if) s
+/F-gs-font 7 7 SF
+30.2 190 M
+( \(listen\(listenfd, 1\) == -1\) ) s
+5 182 M
+(    {) s
+5 174 M
+(        perror\() s
+/Courier-Bold 7 7 SUF
+68 174 M
+("Listen error") s
+/F-gs-font 7 7 SF
+126.8 174 M
+(\);) s
+5 166 M
+(        exit\(1\);) s
+5 158 M
+(    }) s
+5 150 M
+(    fdmax = listenfd;) s
+5 142 M
+(    FD_ZERO\(&read_fds\);) s
+5 134 M
+(    FD_ZERO\(&master_read_fds\);) s
+5 126 M
+(    FD_SET\(listenfd, &master_read_fds\);) s
+5 110 M
+(    ) s
+/Courier-Bold 7 7 SUF
+21.8 110 M
+(while) s
+/F-gs-font 7 7 SF
+42.8 110 M
+(\(1\) ) s
+5 102 M
+(    {) s
+5 94 M
+(        read_fds = master_read_fds;) s
+5 86 M
+(        timeout.tv_sec = SEC_TIMEOUT;) s
+5 78 M
+(        timeout.tv_usec = USEC_TIMEOUT;) s
+5 70 M
+(        ) s
+/Courier-Bold 7 7 SUF
+38.6 70 M
+(if) s
+/F-gs-font 7 7 SF
+47 70 M
+( \(select\(fdmax+1, &read_fds, NULL, NULL, &timeout\) == -1\)) s
+5 62 M
+(        {) s
+5 54 M
+(            perror\() s
+/Courier-Bold 7 7 SUF
+84.8 54 M
+("select failed") s
+/F-gs-font 7 7 SF
+147.8 54 M
+(\);) s
+5 46 M
+(            exit\(1\);) s
+5 38 M
+(        }) s
+5 30 M
+(        ) s
+/Courier-Bold 7 7 SUF
+38.6 30 M
+(for) s
+/F-gs-font 7 7 SF
+51.2 30 M
+(\() s
+/Courier-Bold 7 7 SUF
+55.4 30 M
+(int) s
+/F-gs-font 7 7 SF
+68 30 M
+( i=0; i <= fdmax; i++\) ) s
+5 22 M
+(        {) s
+5 14 M
+(            ) s
+/Courier-Bold 7 7 SUF
+55.4 14 M
+(if) s
+/F-gs-font 7 7 SF
+63.8 14 M
+( \(FD_ISSET\(i, &read_fds\)\)) s
+5 6 M
+(            {) s
+377 518 M
+(                printf\() s
+/Courier-Bold 7 7 SUF
+473.6 518 M
+("YOO is set!: %d\\n") s
+/F-gs-font 7 7 SF
+553.4 518 M
+(, i\);) s
+377 510 M
+(                ) s
+/Courier-Bold 7 7 SUF
+444.2 510 M
+(if) s
+/F-gs-font 7 7 SF
+452.6 510 M
+( \(i == listenfd\) ) s
+377 502 M
+(                {) s
+377 494 M
+(                    ) s
+/Courier-Oblique 7 7 SUF
+461 494 M
+(// accept new connection) s
+/F-gs-font 7 7 SF
+377 486 M
+(                    ) s
+/Courier-Bold 7 7 SUF
+461 486 M
+(struct) s
+/F-gs-font 7 7 SF
+486.2 486 M
+( sockaddr_in clientAddr;) s
+377 478 M
+(                    ) s
+/Courier-Bold 7 7 SUF
+461 478 M
+(int) s
+/F-gs-font 7 7 SF
+473.6 478 M
+( size = ) s
+/Courier-Bold 7 7 SUF
+507.2 478 M
+(sizeof) s
+/F-gs-font 7 7 SF
+532.4 478 M
+(\() s
+/Courier-Bold 7 7 SUF
+536.6 478 M
+(struct) s
+/F-gs-font 7 7 SF
+561.8 478 M
+( sockaddr\);) s
+377 470 M
+(                    ) s
+/Courier-Bold 7 7 SUF
+461 470 M
+(int) s
+/F-gs-font 7 7 SF
+473.6 470 M
+( accepted_fd =  accept\(listenfd, ) s
+377 462 M
+(                                              \() s
+/Courier-Bold 7 7 SUF
+574.4 462 M
+(struct) s
+/F-gs-font 7 7 SF
+599.6 462 M
+( sockaddr *\)&clientAddr,) s
+377 454 M
+(                                              \(socklen_t *\)&size\);) s
+377 446 M
+(                    printf\() s
+/Courier-Bold 7 7 SUF
+490.4 446 M
+("Accepted client on fd %d\\n") s
+/F-gs-font 7 7 SF
+608 446 M
+(, accepted_fd\);) s
+377 438 M
+(                    ) s
+/Courier-Oblique 7 7 SUF
+461 438 M
+(// Save the file descriptor) s
+/F-gs-font 7 7 SF
+377 430 M
+(                    FD_SET\(accepted_fd, &master_read_fds\);) s
+377 422 M
+(                    ) s
+/Courier-Bold 7 7 SUF
+461 422 M
+(if) s
+/F-gs-font 7 7 SF
+469.4 422 M
+(\(fdmax < accepted_fd\)) s
+377 414 M
+(                        fdmax = accepted_fd;) s
+377 406 M
+(                }) s
+377 398 M
+(                ) s
+/Courier-Bold 7 7 SUF
+444.2 398 M
+(else) s
+/F-gs-font 7 7 SF
+377 390 M
+(                {) s
+377 382 M
+(                    printf\() s
+/Courier-Bold 7 7 SUF
+490.4 382 M
+("asdfsdf\\n") s
+/F-gs-font 7 7 SF
+536.6 382 M
+(\);) s
+377 374 M
+(                    ) s
+/Courier-Bold 7 7 SUF
+461 374 M
+(int) s
+/F-gs-font 7 7 SF
+473.6 374 M
+( bytes = recv\(i, charMsg, 1024, 0\);) s
+377 366 M
+(                    printf\() s
+/Courier-Bold 7 7 SUF
+490.4 366 M
+("Received %d bytes on fd %d\\n") s
+/F-gs-font 7 7 SF
+616.4 366 M
+(, bytes\);) s
+377 358 M
+(                    ) s
+/Courier-Bold 7 7 SUF
+461 358 M
+(if) s
+/F-gs-font 7 7 SF
+469.4 358 M
+( \(bytes <= 0\) {) s
+377 350 M
+(                        FD_CLR\(i, &master_read_fds\);) s
+377 342 M
+(                        printf\() s
+/Courier-Bold 7 7 SUF
+507.2 342 M
+("closed client connection fd %d\\n") s
+/F-gs-font 7 7 SF
+650 342 M
+(, i\);) s
+377 334 M
+(                    }) s
+377 326 M
+(                    send\(i, responseMessage, strlen\(responseMessage\), 0\);) s
+377 318 M
+(                }) s
+377 310 M
+(            }) s
+377 302 M
+(        } ) s
+/Courier-Oblique 7 7 SUF
+419 302 M
+(// for) s
+/F-gs-font 7 7 SF
+377 294 M
+(    } ) s
+/Courier-Oblique 7 7 SUF
+402.2 294 M
+(// while\(1\)) s
+/F-gs-font 7 7 SF
+377 286 M
+(} ) s
+/Courier-Oblique 7 7 SUF
+385.4 286 M
+(// main) s
+/F-gs-font 7 7 SF
+377 278 M
+(        ) s
+/Courier-Oblique 7 7 SUF
+377 262 M
+(// function that pulls out the request of such exists) s
+/F-gs-font 7 7 SF
+/Courier-Oblique 7 7 SUF
+377 254 M
+(// updates str to remove the request) s
+/F-gs-font 7 7 SF
+/Courier-Bold 7 7 SUF
+377 246 M
+(void) s
+/F-gs-font 7 7 SF
+393.8 246 M
+( ) s
+/Courier-Bold 7 7 SUF
+398 246 M
+(pullRequest) s
+/F-gs-font 7 7 SF
+444.2 246 M
+(\() s
+/Courier-Bold 7 7 SUF
+448.4 246 M
+(const) s
+/F-gs-font 7 7 SF
+469.4 246 M
+( string &str\)) s
+377 238 M
+({) s
+377 230 M
+(    ) s
+/Courier-Bold 7 7 SUF
+393.8 230 M
+(int) s
+/F-gs-font 7 7 SF
+406.4 230 M
+( loc = str.find\() s
+/Courier-Bold 7 7 SUF
+473.6 230 M
+("\\r\\n\\r\\n") s
+/F-gs-font 7 7 SF
+515.6 230 M
+(, 0\);) s
+377 222 M
+(    ) s
+/Courier-Bold 7 7 SUF
+393.8 222 M
+(if) s
+/F-gs-font 7 7 SF
+402.2 222 M
+( \(loc == string::npos\) ) s
+377 214 M
+(    {) s
+377 206 M
+(        printf\() s
+/Courier-Bold 7 7 SUF
+440 206 M
+("Could not find\\n") s
+/F-gs-font 7 7 SF
+515.6 206 M
+(\);) s
+377 198 M
+(    }) s
+377 190 M
+(    string request = str.substr\(0, loc\);) s
+377 182 M
+(    ) s
+/Courier-Oblique 7 7 SUF
+393.8 182 M
+(// +2 because our delimeter is 2 bytes long) s
+/F-gs-font 7 7 SF
+377 174 M
+(    string newStr = str.substr\(loc+2, string::npos\);) s
+377 166 M
+(    printf\() s
+/Courier-Bold 7 7 SUF
+423.2 166 M
+("REUQEST: *%s*\\n") s
+/F-gs-font 7 7 SF
+494.6 166 M
+(, request.c_str\(\)\);) s
+377 158 M
+(    printf\() s
+/Courier-Bold 7 7 SUF
+423.2 158 M
+("THE REST: *%s*\\n") s
+/F-gs-font 7 7 SF
+498.8 158 M
+(, newStr.c_str\(\)\);) s
+377 150 M
+(}) s
+377 142 M
+(    ) s
+_R
+S
+%%Trailer
+%%Pages: 1
+%%DocumentNeededResources: font Times-Roman Courier-Oblique Courier-Bold 
+%%+ font Courier Times-Bold 
+%%EOF

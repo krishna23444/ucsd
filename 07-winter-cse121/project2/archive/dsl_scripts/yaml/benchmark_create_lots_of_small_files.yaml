@@ -1,0 +1,17 @@
+name: create lots of small files
+type :bar
+x_label: number of files
+format_size: 100000
+arguments:
+  - size: 10
+  - size: 100
+  - size: 1000
+commands:
+  - loop
+    - start: 1
+    - end: size
+run do |b, size|
+  1.upto(size) do |i|
+    b.sh 'touch ' + i.to_s
+  end
+end

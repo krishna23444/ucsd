@@ -1,0 +1,4 @@
+set -tmpdir .
+elaborate
+-ifn pcounter.prj
+-ifmt mixed

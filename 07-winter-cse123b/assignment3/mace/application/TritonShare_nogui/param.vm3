@@ -1,0 +1,6 @@
+peer=17.cse123b.chubble.usher.ucsdsys.net
+peer_port=5556
+bandwidth=10
+share=share3
+http_port=8890
+MACE_PORT=5557

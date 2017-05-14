@@ -1,0 +1,193 @@
+# -*- makefile -*- vim:ft=make
+
+.PHONY: nullfiles clean cleanmknull cleanlib all override .cvsignore svnignore
+
+all: nullfiles lib
+
+ifndef MACEPATH
+MACEPATH = $(HOME)/mace/
+endif 
+
+ifndef LIBDIR
+LIBDIR=./
+endif
+
+ifndef DIR
+DIR=$(notdir $(PWD))
+endif
+
+ifndef LIBNAME
+LIBNAME=$(DIR)
+endif
+
+include $(MACEPATH)Makefile.vars
+
+ifeq (clean,$(MAKECMDGOALS))
+META_ONLY=1
+endif
+ifeq (cleaner,$(MAKECMDGOALS))
+META_ONLY=1
+endif
+ifeq (svnignore,$(MAKECMDGOALS))
+META_ONLY=1
+endif
+ifeq (.cvsignore,$(MAKECMDGOALS))
+META_ONLY=1
+endif
+
+ifndef META_ONLY
+include $(PERLMAKE)
+endif
+
+SERVICE_CLASS_MH_FILES=$(wildcard *ServiceClass.mh)
+SERVICE_CLASS_H_FILES=$(SERVICE_CLASS_MH_FILES:.mh=.h)
+SERVICE_CLASS_FILES=$(SERVICE_CLASS_H_FILES:.h=.cc)
+HANDLER_MH_FILES=$(wildcard *Handler.mh)
+HANDLER_H_FILES=$(HANDLER_MH_FILES:.mh=.h)
+HANDLER_FILES=$(HANDLER_H_FILES:.h=.cc)
+NULL_H_FILES=$(SERVICE_CLASS_H_FILES) $(HANDLER_H_FILES)
+NULL_FILES=$(SERVICE_CLASS_FILES) $(HANDLER_FILES)
+
+nullfiles: $(NULL_H_FILES) $(NULL_FILES) 
+EXTRAGENSRCS=$(NULL_FILES)
+
+MPP=$(wildcard *.m)
+MAC=$(wildcard *.mac)
+
+MPPDEP=$(MPP:.m=.macdep)
+MACDEP=$(MAC:.mac=.macdep)
+
+MACEFILES=$(MPP:.m=.) $(MAC:.mac=.)
+MACESRCS=$(MACEFILES:.=.cc) $(MACEFILES:.=.h) $(MACEFILES:.=-macros.h) $(MACEFILES:.=-constants.h) $(MACEFILES:.=-init.h) $(MACEFILES:.=-init.cc)
+
+MPPCCFILES=$(MPP:.m=.cc)
+MACCCFILES=$(MAC:.mac=.cc)
+
+MPPHFILES=$(MPP:.m=.h)
+MACHFILES=$(MAC:.mac=.h)
+
+MPPHMACROSFILES=$(MPP:.m=-macros.h)
+MACHMACROSFILES=$(MAC:.mac=-macros.h)
+
+MPPINITHFILES=$(MPP:.m=-init.h)
+MACINITHFILES=$(MAC:.mac=-init.h)
+
+MPPINITCCFILES=$(MPP:.m=-init.cc)
+MACINITCCFILES=$(MAC:.mac=-init.cc)
+
+MPPCONSTHFILES=$(MPP:.m=-constants.h)
+MACCONSTHFILES=$(MAC:.mac=-constants.h)
+
+MACEANNOFILES=$(MACEFILES:.=.mac.annotated)
+
+MACEHS=$(MACEFILES:.=.h) $(MACEFILES:.=-macros.h) $(MACEFILES:.=-constants.h) $(MACEFILES:.=-init.h)
+MACECCS=$(MACEFILES:.=.cc) $(MACEFILES:.=-init.cc)
+NONMACESRCS=$(filter-out $(EXTRAGENSRCS), $(filter-out $(MACECCS), $(wildcard *.cc))) $(EXTRAGENSRCS)
+SRCS=$(NONMACESRCS) $(MACECCS)
+
+BASE_OBJS=$(SRCS:.cc=.o)
+
+CCPATH=$(MACEPATH)compiler
+
+%.h: %.mh $(macemh_dep)
+	$(macemh) $< $@
+
+%.cc: %.h $(makenull_dep)
+	@$(makenull) $<
+
+$(NULL_FILES):
+$(NULL_H_FILES):
+
+$(MPPDEP) $(MACDEP) $(MACEHS) $(MACECCS): $(NULL_H_FILES)
+
+include $(MACEPATH)/services/Makefile.services
+CXXFLAGS= $(GLOBAL_FLAGS) $(EXTRA_INCLUDES) -I$(MACEPATH) -I$(MACEPATH)/lib $(addprefix -I$(MACEPATH)/services/,$(SERVICES))
+
+-include mh.dep
+
+include $(MACEPATH)/extradefaults.mk
+%.d:	%.cc $(MACEHS) $(NULL_H_FILES)
+	$(DEPENDCCRULE)
+ifndef META_ONLY
+ifeq "$(MACEFILES)" " "
+else
+-include $(MPPDEP) $(MACDEP)
+include $(MACECCS:.cc=.d)
+endif
+ifeq "$(NONMACESRCS)" ""
+else 
+-include $(NONMACESRCS:.cc=.d)
+endif
+endif
+
+MACE_RULE=$(macec) $<
+
+.cvsignore: 
+	rm -fv .cvsignore
+	for i in $(HANDLER_H_FILES) $(SERVICE_CLASS_H_FILES) $(NULL_FILES) .cvsignore Makefile $(MACESRCS) $(MPPDEP) $(MACDEP) $(MACEANNOFILES); do echo $$i >> $@; done
+	echo '*.a' >> $@
+
+svnignore : .cvsignore
+	if [ -f .cvsignore ]; then svn propset svn:ignore -F .cvsignore .; fi
+
+lib: $(NULL_FILES) $(MACEHS) $(ALL_LIBS)
+
+genfiles: nullfiles $(MACESRCS)
+
+clean: cleangen
+	@echo "Removing dependency files"
+	@rm -f *.d *.d.* *.macdep *.mac.annotated
+	@echo "Removing object and library files of compile type $(TYPES)"
+	@rm -f $(ALL_OBJS) $(ALL_LIBS)
+
+cleaner: cleangen
+	@echo "Removing all dependency files, cvsignore files, and object and library files of compile type $(COMPILE_VERSIONS)"
+	@rm -f *.d *.d.* *.macdep .cvsignore $(CLEAN_OBJS) $(CLEAN_LIBS)
+
+cleangen:
+ifneq "$(HANDLER_H_FILES) $(SERVICE_CLASS_H_FILES) $(NULL_FILES)" "  "
+	@echo "Removing interface generated files"
+	@rm -f $(HANDLER_H_FILES) $(SERVICE_CLASS_H_FILES) $(NULL_FILES)
+endif
+ifneq "$(MACESRCS)" ""
+	@echo "Removing Mace generated files"
+	@rm -f $(MACESRCS)
+endif
+
+$(MPPCCFILES) : %.cc : %.m $(macec_dep) $(NULL_H_FILES)
+	$(MACE_RULE)
+
+$(MACCCFILES) : %.cc : %.mac $(macec_dep)
+	$(MACE_RULE)
+
+$(MPPHFILES) : %.h : %.m $(macec_dep)
+	$(MACE_RULE)
+
+$(MACHFILES) : %.h : %.mac $(macec_dep)
+	$(MACE_RULE)
+
+$(MPPHMACROSFILES) : %-macros.h : %.m $(macec_dep)
+	$(MACE_RULE)
+
+$(MACHMACROSFILES) : %-macros.h : %.mac $(macec_dep)
+	$(MACE_RULE)
+
+$(MPPCONSTHFILES) : %-constants.h : %.m $(macec_dep)
+	$(MACE_RULE)
+
+$(MACCONSTHFILES) : %-constants.h : %.mac $(macec_dep)
+	$(MACE_RULE)
+
+$(MPPINITHFILES) : %-init.h : %.m $(macec_dep)
+	$(MACE_RULE)
+
+$(MACINITHFILES) : %-init.h : %.mac $(macec_dep)
+	$(MACE_RULE)
+
+$(MPPINITCCFILES) : %-init.cc : %.m $(macec_dep)
+	$(MACE_RULE)
+
+$(MACINITCCFILES) : %-init.cc : %.mac $(macec_dep)
+	$(MACE_RULE)
+
+$(MACECCS) : $(NULL_H_FILES)

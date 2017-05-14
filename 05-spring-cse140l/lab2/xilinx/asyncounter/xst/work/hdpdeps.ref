@@ -1,0 +1,25 @@
+V2 15
+FL G:/xilinx/projects/lab2/asyncounter/asyncounter.vhf 2005/05/03.02:49:37 H.38
+EN work/FTCE_MXILINX_ASYNCOUNTER 1115114060 \
+      FL G:/xilinx/projects/lab2/asyncounter/asyncounter.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/FTCE_MXILINX_ASYNCOUNTER/BEHAVIORAL 1115114061 \
+      FL G:/xilinx/projects/lab2/asyncounter/asyncounter.vhf \
+      EN work/FTCE_MXILINX_ASYNCOUNTER 1115114060 CP XOR2 CP FDCE
+EN work/ASYNCOUNTER 1115114062     FL G:/xilinx/projects/lab2/asyncounter/asyncounter.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/ASYNCOUNTER/BEHAVIORAL 1115114063 \
+      FL G:/xilinx/projects/lab2/asyncounter/asyncounter.vhf EN work/ASYNCOUNTER 1115114062 \
+      CP FTCE_MXILINX_ASYNCOUNTER CP INV
+FL G:/xilinx/projects/lab2/asyncounter/asyncounter_8.vhf 2005/05/04.00:12:34 H.38
+EN work/FTCE_MXILINX_ASYNCOUNTER_8 1115191668 \
+      FL G:/xilinx/projects/lab2/asyncounter/asyncounter_8.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/FTCE_MXILINX_ASYNCOUNTER_8/BEHAVIORAL 1115191669 \
+      FL G:/xilinx/projects/lab2/asyncounter/asyncounter_8.vhf \
+      EN work/FTCE_MXILINX_ASYNCOUNTER_8 1115191668 CP XOR2 CP FDCE
+EN work/ASYNCOUNTER_8 1115191670   FL G:/xilinx/projects/lab2/asyncounter/asyncounter_8.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/ASYNCOUNTER_8/BEHAVIORAL 1115191671 \
+      FL G:/xilinx/projects/lab2/asyncounter/asyncounter_8.vhf \
+      EN work/ASYNCOUNTER_8 1115191670 CP FTCE_MXILINX_ASYNCOUNTER_8 CP INV

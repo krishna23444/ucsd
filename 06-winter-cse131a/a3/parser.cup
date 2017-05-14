@@ -1,0 +1,634 @@
+import java_cup.runtime.Symbol;
+
+/* user code */
+//init with {: Scanner scanner = new Scanner(); :};
+//scan with {: return Scanner.next_token(); :};
+
+parser code {:
+  public static boolean debug = false;
+
+  public void syntax_error(Symbol cur_token) {
+    String val;
+  	if (cur_token.value == null)
+  		val = "";
+  	else
+  		val = cur_token.value.toString();
+  	if (cur_token.sym == sym.LEXICALERROR)
+  		throw new LexicalErrorException(cur_token.left, cur_token.right, val);
+    else
+    	throw new SyntaxErrorException(cur_token.left, cur_token.right, val);
+  }
+:}
+
+
+/* Terminals (tokens returned by the scanner) */
+terminal String     AFTER;
+terminal String     AND;
+terminal String     AS;
+terminal String     ASCENDING;
+terminal String     BEFORE;
+terminal String     BOOLEANLITERAL;
+terminal String     COLONEQUALS;
+terminal String     COMMA;
+terminal String     DECIMALLITERAL;
+terminal String     DECLARE;
+terminal String     DESCENDING;
+terminal String     DIV;
+terminal String     ELSE;
+terminal String     EQUALS;
+terminal String     EQ;
+terminal String     EXCEPT;
+terminal String     FUNCTION;
+terminal String     FOR;
+terminal String     GE;
+terminal String     GREATER;
+terminal String     GREATEREQUALS;
+terminal String     GT;
+terminal String     IDIV;
+terminal String     IF;
+terminal String     IN;
+terminal String     INTEGERLITERAL;
+terminal String     INTERSECT;
+terminal String     LCURLY;
+terminal String     LE;
+terminal String     LESS;
+terminal String     LESSEQUALS;
+terminal String     LET;
+terminal String     LEXICALERROR;
+terminal String     LSQUARE;
+terminal String     LT;
+terminal String     LPAREN;
+terminal String     MINUS;
+terminal String     MOD;
+terminal String     MULT;
+terminal String     NE;
+terminal String     NOTEQUALS;
+terminal String     OR;
+terminal String     ORDEREDBY;
+terminal String     PLUS;
+terminal String     QNAME;
+terminal String     RCURLY;
+terminal String     RETURN;
+terminal String     RPAREN;
+terminal String     RSQUARE;
+terminal String     SEMICOLON;
+terminal String     SLASH;
+terminal String     SLASHSLASH;
+terminal String     THEN;
+terminal String     TO;
+terminal String     STRINGLITERAL;
+terminal String     TOKENVARIABLE;
+terminal String     UNION;
+terminal String     VARIABLE;
+terminal String     VERTICALBAR;
+terminal String     WHERE;
+
+/* Non terminals */
+non terminal ExpressionNode     AdditiveExpr;
+non terminal                    AdditiveOp;
+non terminal ExpressionNode     AndExpr;
+non terminal ExpressionNode     ArgList;
+non terminal ExpressionNode     CompareExpr;
+non terminal 			              CompareOp;
+non terminal ExpressionNode     ExprList;
+non terminal ExpressionNode     ExprSingle;
+non terminal Flwr               FLWRExpr;
+non terminal NonExpressionNode  ForClause;
+non terminal ExpressionNode     FunctionCall;
+non terminal ASTNode            FunctionDecl;
+non terminal IfThenElseExpr     IfExpr;
+non terminal NonExpressionNode  LetClause;
+non terminal Constant           Literal;
+non terminal ExpressionNode     MultiplicativeExpr;
+non terminal                    MultiplicativeOp;
+non terminal ExpressionNode     OrExpr;
+non terminal ExpressionNode     UnaryExpr;
+non terminal                    UnaryOp;
+non terminal ASTNode            ParamList;
+non terminal ExpressionNode     PrimaryExpr;
+non terminal Query              Query;
+non terminal ASTNode            QueryProlog;
+non terminal ASTNode            QueryBody;
+non terminal ExpressionNode     RangeExpr;
+non terminal Return             ReturnStmt;
+non terminal ASTNode            VariableDecl;
+non terminal Where              WhereClause;
+
+non terminal Flwr               ForOrLetStmt;
+non terminal NonExpressionNode  ForStmt;
+non terminal NonExpressionNode  LetStmt;
+non terminal ASTNode            ParamStmt;
+
+
+/* Precedences */
+//precedence left PLUS, MINUS;
+//precedence left TIMES, DIVIDE, MOD;
+//precedence left UMINUS;
+
+
+/* Grammar */
+Query ::= QueryProlog:e1 QueryBody:e2 {:
+              RESULT = new Query(e1, e2);
+          :}
+        ;
+
+QueryProlog ::=                                           // nothing
+                {:
+                    RESULT = new NonExpressionNode();
+                :}
+              | QueryProlog:e2 VariableDecl:e1 {:
+              			//e1.setLineAndColumn(e1left, e1right);
+                    e2.addChild(e1);
+                    RESULT = e2;
+                :}
+              | QueryProlog:e2 FunctionDecl:e1 {:
+              			//e1.setLineAndColumn(e1left, e1right);
+                    e2.addChild(e1);
+                    RESULT = e2;
+                :}
+              ;
+
+QueryBody ::=                                             // nothing
+              {:
+                  RESULT = new ExprList();
+              :}
+            | ExprList:e {:
+                  if (e instanceof ExprList)
+                    RESULT = e;
+                  else
+                    RESULT = new ExprList(e);
+              :}
+            ;
+
+FunctionDecl ::= DECLARE FUNCTION QNAME:e1 LPAREN RPAREN
+                        LCURLY ExprList:e2 RCURLY SEMICOLON {:
+                    RESULT = new FunctionDeclaration(e1, e2);
+                    RESULT.setLineAndColumn(e1left, e1right);
+                    if (Parser.debug == true)
+                      System.err.println("FunctionDecl " + e1);
+                 :}
+               | DECLARE FUNCTION QNAME:e1 LPAREN ParamList:e2 RPAREN
+                        LCURLY ExprList:e3 RCURLY SEMICOLON {:
+                    RESULT = new FunctionDeclaration(e1, e2, e3);
+                    RESULT.setLineAndColumn(e1left, e1right);
+                    if (Parser.debug == true)
+                      System.err.println("FunctionDecl " +e1+ "- with params");
+                 :}
+               | DECLARE FUNCTION QNAME:e1 LPAREN RPAREN
+                        AS QNAME:e2 LCURLY ExprList:e3 RCURLY SEMICOLON {:
+                    RESULT = new FunctionDeclaration(e1, e2, e3);
+                    RESULT.setLineAndColumn(e1left, e1right);
+                    if (Parser.debug == true)
+                      System.err.println("FunctionDecl " + e1 +
+                                         "- with return val " + e2);
+                 :}
+               | DECLARE FUNCTION QNAME:e1 LPAREN ParamList:e2 RPAREN
+                        AS QNAME:e3 LCURLY ExprList:e4 RCURLY SEMICOLON {:
+                    RESULT = new FunctionDeclaration(e1, e2, e3, e4);
+                    RESULT.setLineAndColumn(e1left, e1right);
+                    if (Parser.debug == true)
+                      System.err.println("FunctionDecl " + e1 +
+                                         "- with return " + e2 + " and params");
+                 :}
+               ;
+
+VariableDecl ::= DECLARE VARIABLE TOKENVARIABLE:e1 LCURLY ExprList:e2
+                        RCURLY SEMICOLON {:
+                    RESULT = new VariableDeclaration(e1);
+                    RESULT.addChild(e2);
+                    RESULT.setLineAndColumn(e1left, e1right);
+                    if (Parser.debug == true)
+                        System.err.println("VariableDecl " + RESULT);
+                 :}
+               | DECLARE VARIABLE TOKENVARIABLE:e1 AS QNAME:type
+                        LCURLY ExprList:e2 RCURLY SEMICOLON {:
+                    RESULT = new VariableDeclaration(e1, type);
+                    RESULT.addChild(e2);
+                    RESULT.setLineAndColumn(e1left, e1right);
+                    if (Parser.debug == true)
+                      System.err.println("VariableDecl " + RESULT +
+                                         " - with return val " + type);
+                 :}
+               ;
+
+ParamStmt ::= TOKENVARIABLE:v {:
+                RESULT = new ArgumentDeclaration(v);
+                RESULT.setLineAndColumn(vleft, vright);
+                if (Parser.debug == true)
+                  System.err.println("ParamStmt " + v);
+              :}
+            | TOKENVARIABLE:v AS QNAME:type {:
+                RESULT = new ArgumentDeclaration(v, type);
+                RESULT.setLineAndColumn(vleft, vright);
+                if (Parser.debug == true)
+                  System.err.println("ParamStmt " + v + " with type " + type);
+              :}
+            ;
+
+ParamList ::= ParamStmt:e {:
+                RESULT = new NonExpressionNode(e);
+                RESULT.setLineAndColumn(eleft, eright);
+                if (Parser.debug == true)
+                  System.err.println("ParamList");
+              :}
+            | ParamList:e2 COMMA ParamStmt:e1 {:
+                e2.addChild(e1);
+                RESULT = e2;
+
+                if (Parser.debug == true)
+                  System.err.println("Paramlist - build up");
+              :}
+            ;
+
+ExprList ::= ExprSingle:e {:
+                  RESULT = e;
+             :}
+           | ExprList:e1 COMMA ExprSingle:e2 {:
+                  if (!(e1 instanceof ExprList)) {
+                    RESULT = new ExprList(e1, e2);
+                    //RESULT.setLineAndColumn(?,?);
+                  } else {
+                    e1.addChild(e2);
+                    RESULT = e1;
+                  }
+             :}
+           ;
+
+ExprSingle ::= OrExpr:e {:
+                  RESULT = e;
+                  if (Parser.debug == true)
+                    System.err.println("ExprSingle - OrExpr");
+               :} 
+             | FLWRExpr:e {:
+                  RESULT = e;
+                  if (Parser.debug == true)
+                    System.err.println("ExprSingle - FLWRExpr");
+               :}
+             | IfExpr:e {:
+                  RESULT = e;
+                  if (Parser.debug == true)
+                    System.err.println("ExprSingle - IfExpr");
+               :}
+             | RangeExpr:e {:
+                  RESULT = e;
+                  if (Parser.debug == true)
+                    System.err.println("ExprSingle - RangeExpr");
+               :}
+             ;
+
+OrExpr ::= AndExpr:e {:
+                RESULT = e;
+                if (Parser.debug == true)
+                  System.err.println("OrExpr - AndExpr");
+           :} 
+         | OrExpr:e1 OR AndExpr:e2 {:
+                RESULT = new Operator(Ops.OR, e1, e2);
+                //RESULT.setLineAndColumn(?,?);
+                if (Parser.debug == true)
+                  System.err.println("OrExpr - build up");
+           :}
+         ;
+
+AndExpr ::= CompareExpr:e {:
+                RESULT = e;
+                if (Parser.debug == true)
+                  System.err.println("AndExpr - CompareExpr");
+            :}
+          | AndExpr:e1 AND CompareExpr:e2 {:
+                RESULT = new Operator(Ops.AND, e1, e2);
+                //RESULT.setLineAndColumn(?,?);
+                if (Parser.debug == true)
+                  System.err.println("AndExpr - build up");
+            :}
+          ;
+
+CompareExpr ::= AdditiveExpr:e {:
+                    RESULT = e;
+                    if (Parser.debug == true)
+                      System.err.println("CompareExpr - AdditiveExpr");
+                :}
+              | AdditiveExpr:e1 CompareOp:e2 AdditiveExpr:e3 {:
+                    RESULT = new Operator(e2.toString(), e1, e3);
+                    RESULT.setLineAndColumn(e2left, e2right);
+                    if (Parser.debug == true)
+                      System.err.println("CompareExpr - build up");
+                :}
+              ;
+
+RangeExpr ::= AdditiveExpr:e1 TO AdditiveExpr:e2 {:
+                  RESULT = new Operator(Ops.TO, e1, e2);
+                  //RESULT.setLineAndColumn(?,?);
+                  if (Parser.debug == true)
+                    System.err.println("RangeExpr");
+              :}
+            ;
+
+AdditiveExpr ::= MultiplicativeExpr:e {:
+                      RESULT = e;
+                      if (Parser.debug == true)
+                        System.err.println("AdditiveExpr - MultiplicativeExpr");
+                 :}
+             |   AdditiveExpr:e1 AdditiveOp:e2 MultiplicativeExpr:e3 {:
+                      RESULT = new Operator(e2.toString(), e1, e3);
+                      RESULT.setLineAndColumn(e2left, e2right);
+                      if (Parser.debug == true)
+                        System.err.println("AdditiveExpr - build up");
+                 :}
+             ;
+
+MultiplicativeExpr ::= UnaryExpr:e {:
+                          RESULT = e;
+                          if (Parser.debug == true)
+                            System.err.println("MultiplicativeExpr -UnaryExpr");
+                       :}
+                     | MultiplicativeExpr:e1 MultiplicativeOp:e2 UnaryExpr:e3 {:
+                          RESULT = new Operator(e2.toString(), e1, e3);
+                          RESULT.setLineAndColumn(e2left, e2right);
+                          if (Parser.debug == true)
+                            System.err.println("MultiplicativeExpr - build up");
+                       :}
+                     ;
+
+UnaryExpr ::= PrimaryExpr:e {:
+                  RESULT = e;
+                  if (Parser.debug == true)
+                      System.err.println("UnaryExpr - PrimaryExpr");
+              :}
+            | UnaryOp:e1 PrimaryExpr:e2 {:
+                  RESULT = new Operator(e1.toString(), e2);
+                  RESULT.setLineAndColumn(e1left, e1right);
+                  if (Parser.debug == true)
+                      System.err.println("UnaryExpr - build up");
+              :}
+            ;
+
+CompareOp ::= EQUALS:e {:
+                  RESULT = Ops.EQUALS;
+                  if (Parser.debug == true)
+                      System.err.println("CompareOp - " + e);
+              :}
+            | NOTEQUALS:e {:
+                  RESULT = Ops.NOT_EQUALS;
+                  if (Parser.debug == true)
+                      System.err.println("CompareOp - " + e);
+              :}
+            | LESSEQUALS:e {:
+                  RESULT = Ops.LESS_EQUALS;
+                  if (Parser.debug == true)
+                      System.err.println("CompareOp - " + e);
+              :}
+            | GREATEREQUALS:e {:
+                  RESULT = Ops.GREATER_EQUALS;
+                  if (Parser.debug == true)
+                      System.err.println("CompareOp - " + e);
+              :}
+            | LESS:e {:
+                  RESULT = Ops.LESS_THAN;
+                  if (Parser.debug == true)
+                      System.err.println("CompareOp - " + e);
+              :}
+            | GREATER:e {:
+                  RESULT = Ops.GREATER_THAN;
+                  if (Parser.debug == true)
+                      System.err.println("CompareOp - " + e);
+              :}
+            ;
+
+AdditiveOp ::= PLUS:e {:
+                  RESULT = Ops.ADD;
+                  if (Parser.debug == true)
+                      System.err.println("AdditiveOp - " + e);
+               :}
+             | MINUS:e {:
+                  RESULT = Ops.SUBTRACT;
+                  if (Parser.debug == true)
+                      System.err.println("AdditiveOp - " + e);
+               
+               :}
+             ;
+
+MultiplicativeOp ::= MULT:e {:
+                        RESULT = Ops.MULTIPLY;
+                        if (Parser.debug == true)
+                            System.err.println("MultiplicativeOp - " + e);
+                     :}
+                   | DIV:e {:
+                        RESULT = Ops.DIVIDE;
+                        if (Parser.debug == true)
+                            System.err.println("MultiplicativeOp - " + e);
+                     :}
+                   | IDIV:e {:
+                        RESULT = Ops.INTEGER_DIVIDE;
+                        if (Parser.debug == true)
+                            System.err.println("MultiplicativeOp - " + e);
+                     :}
+                   | MOD:e {:
+                        RESULT = Ops.MOD;
+                        if (Parser.debug == true)
+                            System.err.println("MultiplicativeOp - " + e);
+                     :}
+                   ;
+
+UnaryOp ::= PLUS:e {:
+              RESULT = Ops.UNARY_PLUS;
+              if (Parser.debug == true)
+                  System.err.println("UnaryOp - " + e);
+            :}
+          | MINUS:e {:
+              RESULT = Ops.UNARY_MINUS;
+              if (Parser.debug == true)
+                  System.err.println("UnaryOp - " + e);
+            :}
+          ;
+
+PrimaryExpr ::= Literal:e {:
+                    RESULT = e;
+                    if (Parser.debug == true)
+                        System.err.println("PrimaryExpr - Literal");
+                :}
+              | TOKENVARIABLE:e {:
+                    RESULT = new Variable(e);
+                    RESULT.setLineAndColumn(eleft, eright);
+                    if (Parser.debug == true)
+                        System.err.println("PrimaryExpr - TokenVariable");
+                :}
+              | LPAREN RPAREN {:
+                    RESULT = new ExprList();
+                    if (Parser.debug == true)
+                        System.err.println("PrimaryExpr - ()");
+                :}
+              | LPAREN ExprList:e RPAREN {:
+                    RESULT = e;
+                    if (Parser.debug == true)
+                        System.err.println("PrimaryExpr - ExprList");
+                :}
+              | FunctionCall:e {:
+                    RESULT = e;
+                    if (Parser.debug == true)
+                        System.err.println("PrimaryExpr - FunctionCall");
+                :}
+              ;
+
+Literal ::= INTEGERLITERAL:e {:
+                RESULT = new Constant(Types.INTEGER, e);
+                RESULT.setLineAndColumn(eleft, eright);
+                if (Parser.debug == true)
+                    System.err.println("Constant - Integer " + e);
+            :}
+          | DECIMALLITERAL:e {:
+                RESULT = new Constant(Types.DECIMAL, e);
+                RESULT.setLineAndColumn(eleft, eright);
+                if (Parser.debug == true)
+                    System.err.println("Constant - Decimal " + e);
+            :}
+          | BOOLEANLITERAL:e {:
+                RESULT = new Constant(Types.BOOLEAN, e);
+                RESULT.setLineAndColumn(eleft, eright);
+                if (Parser.debug == true)
+                    System.err.println("Constant - Boolean " + e);
+            :}
+          | STRINGLITERAL:e {:
+                RESULT = new Constant(Types.STRING, e);
+                RESULT.setLineAndColumn(eleft, eright);
+                if (Parser.debug == true)
+                    System.err.println("Constant - String " + e);
+            :}
+          ;
+
+FunctionCall ::= QNAME:e1 LPAREN ArgList:e2 RPAREN {:
+                    RESULT = new FunctionCall(e1);
+                    RESULT.addChild(e2);
+                    RESULT.setLineAndColumn(e1left, e1right);
+                    if (Parser.debug == true)
+                      System.err.println("FunctionCall " + e1 + " with args");
+                 :}
+               | QNAME:e1 LPAREN RPAREN {:
+                    RESULT = new FunctionCall(e1);
+                    RESULT.setLineAndColumn(e1left, e1right);
+                    if (Parser.debug == true)
+                      System.err.println("FunctionCall " + e1 + " no args");
+                 :}
+               ;
+
+ArgList ::= ExprSingle:e {:
+              RESULT = new ExpressionNode(e);
+              RESULT.setLineAndColumn(eleft, eright);
+              if (Parser.debug == true)
+                  System.err.println("ArgList - ExprSingle");
+            :}
+          | ArgList:e1 COMMA ExprSingle:e2 {:
+              e1.addChild(e2); 
+              RESULT = e1;
+              if (Parser.debug == true)
+                  System.err.println("ArgList - build up");
+            :}
+          ;
+
+ForOrLetStmt ::= ForClause:e {:
+                    RESULT = new Flwr(e);
+                    RESULT.setLineAndColumn(eleft, eright);
+                 :}
+               | LetClause:e {:
+                    RESULT = new Flwr(e); 
+                    RESULT.setLineAndColumn(eleft, eright);
+                 :}
+               | ForOrLetStmt:e1 ForClause:e2 {:
+                    e1.addChild(e2);
+                    RESULT = e1;
+                 :}
+               | ForOrLetStmt:e1 LetClause:e2 {:
+                    e1.addChild(e2);
+                    RESULT = e1;
+                 :}
+               ;
+
+FLWRExpr ::= ForOrLetStmt:e1 ReturnStmt:e2 {:
+                e1.addChild(e2);
+                RESULT = e1;
+                if (Parser.debug == true)
+                  System.err.println("FLWRExpr - Return");
+             :}
+           | ForOrLetStmt:e1 WhereClause:e2 ReturnStmt:e3 {:
+                e1.addChild(e2);
+                e1.addChild(e3);
+                RESULT = e1;
+                if (Parser.debug == true)
+                  System.err.println("FLWRExpr - Where Return");
+             :}
+           ;
+
+WhereClause ::= WHERE ExprSingle:e {:
+                  RESULT = new Where(e);
+                  RESULT.setLineAndColumn(eleft, eright);
+                  if (Parser.debug == true)
+                      System.err.println("WhereClause");
+                :}
+              ;
+
+ReturnStmt ::= RETURN ExprSingle:e {:
+                  RESULT = new Return(e);
+                  RESULT.setLineAndColumn(eleft, eright);
+                  if (Parser.debug == true)
+                      System.err.println("Return");
+               :}
+             ;
+
+ForStmt ::= TOKENVARIABLE:e1 IN ExprSingle:e2 {:
+              ForAssignment f = new ForAssignment(e1);
+              f.addChild(e2);
+              RESULT = new NonExpressionNode(f);
+              //RESULT.setLineAndColumn(?,?);
+              if (Parser.debug == true)
+                  System.err.println("ForClause " + e1);
+            :}
+          | ForStmt:e1 COMMA TOKENVARIABLE:e2 IN ExprSingle:e3 {:
+              ForAssignment f = new ForAssignment(e2);
+              f.addChild(e3);
+              e1.addChild(f); 
+              RESULT = e1;
+              //RESULT.setLineAndColumn(?,?);
+              if (Parser.debug == true)
+                  System.err.println("ForClause " + e1 + " building");
+            :}
+          ;
+
+ForClause ::= FOR ForStmt:e {:
+                  RESULT = e;
+              :}
+            ;
+
+LetStmt ::= TOKENVARIABLE:e1 COLONEQUALS ExprSingle:e2 {:
+              NonExpressionNode n = new NonExpressionNode();
+              LetAssignment la = new LetAssignment(e1);
+              la.addChild(e2);
+              n.addChild(la);
+              RESULT = n;
+              //RESULT.setLineAndColumn(?,?);
+              if (Parser.debug == true)
+                  System.err.println("LetClause - " + e1);
+            :}
+          | LetStmt:n COMMA TOKENVARIABLE:e1 COLONEQUALS ExprSingle:e2 {:
+              LetAssignment la = new LetAssignment(e1);
+              la.addChild(e2);
+              n.addChild(la);
+              RESULT = n;
+              //RESULT.setLineAndColumn(?,?);
+              if (Parser.debug == true)
+                System.err.println("LetClause - " + e1 + " - building");
+            :}
+          ;
+
+LetClause ::= LET LetStmt:e {:
+									e.setLineAndColumn(eleft, eright);
+                  RESULT = e;
+              :}
+            ;
+
+IfExpr ::= IF LPAREN ExprSingle:e1 RPAREN THEN ExprSingle:e2 ELSE ExprSingle:e3
+           {:
+                RESULT = new IfThenElseExpr(e1, e2, e3);
+                RESULT.setLineAndColumn(e1left, e1right);
+                if (Parser.debug == true)
+                  System.err.println("IfExpr");
+           :}
+         ;

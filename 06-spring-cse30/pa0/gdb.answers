@@ -1,0 +1,56 @@
+From cs30staff-request@ieng9.ucsd.edu  Wed Oct 16 14:08:54 2002
+Return-Path: <cs30staff-request@ieng9.ucsd.edu>
+Delivered-To: cs30x@ieng9.ucsd.edu
+Received: by ieng9.ucsd.edu (Postfix)
+	id 276ABC80E; Wed, 16 Oct 2002 14:08:54 -0700 (PDT)
+Delivered-To: cs30staff-list@ieng9.ucsd.edu
+Received: by ieng9.ucsd.edu (Postfix, from userid 60001)
+	id 19F61C835; Wed, 16 Oct 2002 14:08:54 -0700 (PDT)
+Delivered-To: cs30staff@ieng9.ucsd.edu
+Received: by ieng9.ucsd.edu (Postfix, from userid 1255)
+	id EB38AC834; Wed, 16 Oct 2002 14:08:53 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by ieng9.ucsd.edu (Postfix) with ESMTP id E7FC1C80E
+	for <cs30staff@ieng9.ucsd.edu>; Wed, 16 Oct 2002 14:08:53 -0700 (PDT)
+Date: Wed, 16 Oct 2002 14:08:53 -0700 (PDT)
+From: Desiree <cs30x3@ieng9.ucsd.edu>
+Reply-To: cs30x3@ieng9.ucsd.edu
+To: cs30staff@ieng9.ucsd.edu
+Subject: pa0 answers
+Message-ID: <Pine.GSO.4.40.0210161408001.18667-100000@ieng9.ucsd.edu>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Status: RO
+Content-Length: 1055
+
+Here are some answers Victoria came up with:
+Answers don't have to be exactly as below, but should reflect the basic
+correct
+idea. ( I hope the answers are right I sort of answered then as I
+remembered
+without going through the GDB...)
+
+1) 1: x/i $pc  0x10564 <main+4>:   sethi  %hi(0x10400), %o1
+
+2) You should see the next line.
+
+3) Joe Jane Student. The string that is passed in as a parameter (their
+name).
+
+4) Should be the length of the string. How ever long there name is
+   plus hello: length of "Hello Joe Jane Student "
+
+5) x/s - prints the string at the memory address stored in the register
+   p/d - prints the decimal value of the varieble in the register
+
+6) next  - executes until the next source (C code ) line is reached
+   nexti - .... until next machine instruction is reached
+
+7) step  - until next source line is reached, but steps in the call
+function
+   stepi - until next instruction is reached, steps in the call function
+   as opposed to next.
+
+When in doubt about an answer, please email me or Rick just to make sure:)
+-Desiree
+

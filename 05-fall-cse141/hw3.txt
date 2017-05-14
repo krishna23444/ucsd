@@ -1,0 +1,46 @@
+int main( int argc, char *argv[] ) {
+    int iarray[2];
+    iarray[0] = 0x12345678;
+    iarray[1] = 0x00112233;
+
+    char *endian = 0;
+    int i = 0;
+    endian = (char *)(&iarray);
+
+
+    for (i = 0; i < 8; i++) {
+        /* printf("Pointer pointed at : %x\n", endian); */
+
+        printf("Value of pointer   : %x\n", *endian);    
+
+        endian = endian + 1;
+    }
+
+
+    return( 0 );
+}
+
+
+
+Pointer Order on Windows:
+78
+56
+34
+12
+33
+22
+11
+00
+
+
+Pointer Order on Sparc:
+12
+34
+56
+78
+00
+11
+22
+33
+
+The 2 outputs are different because Sparc is big endian and orders the byte blocks in order as they should appear, whereas windows is little endian and orders the last value in the first part.

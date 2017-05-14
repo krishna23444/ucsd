@@ -1,0 +1,61 @@
+- ffs, 1984
+- want 4kb blocks, but waste lots of space
+- use fragments of blocks, can share blocks
+- why does this not just go back to original?
+  - read/write in 4kb blocks, like readahead
+  - inodes metadata amortized, pointing at 4kb blocks
+  - sequential writing
+- maintain rule that can only have fragments, partial blocks, on one block kept
+  at en of file -> unix only allows 
+- bitmap within each block of which fragments are being used 
+- run tests three times to eliminate startup effects (caching) and measure
+  steady state effects
+- ffs not much better at writes
+  - not designed for this, designed to layout files on disk for fast reads using
+    cynlinder groups... prob have lots of seeks all over the place to get to
+    locations
+- file locks = not as useful, symbolic links = very useful
+
+- log based filesystem, 1992
+  - bigger memory -> more caching -> writes dominate disk io
+  - write wherever disk head is, avoiid seeking
+  - 2 files, 1 data block each -> 2 data blocks, 2 inodes, 2 directories, and 2
+    directory inodes
+  - write inode halfway, just note that there is a file, then write the data,
+    finally fill the inode w/ the information
+  - oplicy of never pointing to somethat you don't have yet
+  - ffs writes a block at a time
+  - lfs queues up operations and writes it all out at once, when?
+    - ideally nevver, queue up eveerything, in reallity some long time
+  - data nd inodes one and the same, it's all sequential
+    - use inode map to find inodes
+  - can creae inode map structure after at the fact
+  - append file = write only new data, write another inode instead of updating
+    old one (requires seeking)
+  - modify block = write new version, write new inode
+  - never "free" memory, just dereference
+  - inode map where? just lay it down at the end of the log
+  - need to know where inode map, i.e. end of log is
+  - write to superblock
+  - superblock -> ptr to end of log
+  - run out of space
+    - threading = weave through empty blocks
+    - kills sequentiall writing
+  - how do you find out if block is used? need to look up inodes in all mapp of
+    all blocks
+  - copying = split into segments
+    - segment metadata = segment summary block
+      - which are data/inode blocks
+      - inode version number = not always updated, only when actual inode
+        changes = during file deletion or truncation
+      - checksum
+      - ptr to next segment = leave at least 2 open, one for now, one for later
+      - dataq block inode number (not version), and version number
+  - expect very quickly find dead, but slowlly possibly alive blocks
+  - suck in all the alive blocks, change log pointer to new segment
+  - when to write out segment? when have full segment of data is natural
+  - shutdown? write partial data left into segment, leave free space
+  - write superblock after each segment
+  - write checksum for segment in case of crash during write
+  - checkpoint = once in a while force out all data in cache including inode
+    map and update superblock

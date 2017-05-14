@@ -1,0 +1,20 @@
+TritonShare P2P Assignment
+
+Group:
+-Erik Buchanan  ebuchana@ucsd.edu A05479081
+-Nitay Joffe    njoffe@ucsd.edu   A05229402
+
+Functionality:
+We implemented all of the functionality in the writeup for the TritonShare P2P
+protocol.  All of the functionality works and has been tested to some degree.
+
+We tested our protocol with a combination of GUI and NOGUI TritonShare
+applications, both running them individually and with test scripts.
+We tried to use the modelchecker (as you, Calvin, already know) but ultimately
+we didn't get it working.
+
+Nitay gave up his 64-bit crusade once he found out you can compile in 32-bit
+mode using -m32.
+
+This project was awesome but Mace is really bulky and hard to manage.
+

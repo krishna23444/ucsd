@@ -1,0 +1,564 @@
+\documentclass[9pt]{article}
+
+%\usepackage{amsmath}
+%\usepackage{amssymb}
+%\usepackage{amsthm}
+%\usepackage{array}
+%\usepackage{color}
+\usepackage{graphicx}
+%\usepackage{xy}
+
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+
+\topmargin 0in
+\headheight 0in
+\headsep 0in
+\textheight 7.7in
+\textwidth 6.5in
+\oddsidemargin 0in
+\evensidemargin 0in
+\headheight 77pt
+\headsep 0.25in
+
+\title{CSE 166 Homework 0}
+\author{Nitay Joffe}
+\date{10/02/2006}
+
+\begin{document}
+  \maketitle
+  \textbf{WRITTEN EXERCISES}
+  \begin{enumerate}
+    \item
+      GW, Problem 3.17
+      \begin{enumerate}
+        \item
+          Since the kernel we are using is a box-filter, that is a square
+          matrix with all coefficients equal to one, no multiplication needs to
+          be done. All the computations involved are additions of pixel values
+          in the image.
+          Initially, we compute the $ n \times n $ image kernel at the top
+          left of the image. This takes $ n^{2} - 1 $ additions. When we move
+          the kernel to the right by one pixel we are adding an $ n \times 1 $
+          column of pixels on the right side while removing the $ n \times 1 $
+          column of pixels on the left. In particular, the first time we do
+          this, we are adding the $ (n+1)th $ column while removed the $ first
+          $ column. Using this observation we can compute the new sum by simply
+          adding the column on the right side that was shifted in to the kernel
+          and subtracting the column on the left side that was shifted out of
+          the kernel. Mathematically speaking, we have $ Pixel_{new} =
+          Pixel_{old} - Column_{shifted\_out} + Column_{shifted\_in} $.
+          Computing the sum of an $ n \times 1 $ column of values takes $ n-1 $
+          additions.
+          We store the result of previous computations so that we
+          don't have to recompute $ C_{shifted\_out} $ each time. The storage
+          required is fairly minimal since all we need is enough space to store
+          the n column sums.
+          Computing the value of the new pixel requires
+          $ n - 1 $ additions for the new column plus $ 1 $ subtraction of the
+          shifted out column and $ 1 $ addition for the shifted in column,
+          which equals $ n + 1 $ addition operations.
+          Moving the kernel down one pixel works in a similar
+          fashion using the shifted out row on top and the shifted in row on
+          the bottom. \\
+        \item
+          The brute-force implementation uses $ n^{2} - 1 $ additions for each
+          pixel. My algorithm uses $ n^{2} - 1 $ additions for the first pixel,
+          and $ n + 1 $ additions for every pixel thereafter. Therefore, the
+          \textit{computational advantange}, that is the ratio of the number of
+          computations performed by the brute-force implementation to my
+          algorithm, is equal to $ \displaystyle \frac{n^{2} - 1}{n + 1}
+          = n - 1 $. \\
+      \end{enumerate}
+    \item
+      GW, Problem 3.18 \\
+      With each repetition of the 3x3 lowpass spatial filter, the pixels in the
+      image will become more and more blurred. Eventually, textures and shapes
+      will fade out and there won't be any visible shapes, just one big blur of
+      colors. Each application of the lowpass filter brings the pixel values
+      closer together by blurring them. That means there is less
+      differentiation between the pixels, which makes the next application of
+      the lowpass filter less effective. \\
+    \item
+      GW, Problem 3.22 \\
+      The reason the bars in (b) have merged is because the size of the mask is
+      exactly the length of one column plus the space in between the columns.
+      When this is the case, no matter where the center of the mask is placed
+      along the lines, the value will always be the same. It all comes down to
+      how the frequency of repetition in the bar pattern relates to the size of
+      the mask being used. When there is a periodic signal (like this bar
+      pattern) and a cumulative function over an area that is some multiple of
+      the frequency of the signal is being computed, the location of the center
+      of the area does not matter because the same periodic data will be
+      captured. In this particular case, the mask in (b) is of length 25, which
+      means the period of the bar pattern must be either 5 or 25. However, in
+      (c), when a mask of 45 is used, the blurring is not the same throughout,
+      so 5 cannot be the period. That leaves 25 as the period of the bar
+      pattern. In (a), a mask smaller than the period length is used, so the
+      offsets have an effect and distinctions occur.
+    \item
+      \begin{enumerate}
+        \item
+          $ g(x) = e^{f(x)} $
+          \begin{enumerate}
+          \item
+            \textbf{NOT linear}
+            \begin{eqnarray*}
+              r(x) &=& \alpha f_1(x) + \beta f_2(x) \\
+              H[r(x)] &=& e^{r(x)} \\
+                      &=& e^{\alpha f_{1}(x) + \beta f_{2}(x)} \\
+                      &=& e^{\alpha f_{1}(x)} e^{\beta f_{2}(x)} \\
+              \\
+              \alpha H[f_1(x)] + \beta H[f_2(x)]
+                      &=& \alpha e^{f_1(x)} + \beta e^{f_2(x)} \\
+            \end{eqnarray*}
+          \item
+            \textbf{spatially invariant}
+            \begin{eqnarray*}
+              r(x) &=& f(x + x_0) \\
+              H[r(x)] &=& e^{r(x)} \\
+                      &=& e^{f(x + x_0)} \\
+              \\
+              g(x + x_0) &=& e^{f(x + x_0)} \\
+            \end{eqnarray*}
+          \end{enumerate}
+        \item
+          $ g(x) = f(x)f(x-1) $
+          \begin{enumerate}
+          \item
+            \textbf{NOT linear}
+            \begin{eqnarray*}
+              r(x) &=& \alpha f_1(x) + \beta f_2(x) \\
+              H[r(x)] &=& r(x)r(x-1) \\
+                      &=& [\alpha f_1(x) + \beta f_2(x)]
+                          [\alpha f_1(x-1) + \beta f_2(x-1)] \\
+                      &=& \alpha^2 f_1(x) f_1(x-1) + \beta^2 f_2(x) f_2(x-1) \\
+                      &&  + \alpha \beta [f_1(x) f_2(x-1) + f_2(x) f_1(x-1)] \\
+              \\
+              \alpha H[f_1(x)] + \beta H[f_2(x)]
+                      &=& \alpha f_1(x) f_1(x-1) + \beta f_2(x) f_2(x-1) \\
+            \end{eqnarray*}
+          \item
+            \textbf{spatially invariant}
+            \begin{eqnarray*}
+              r(x) &=& f(x + x_0) \\
+              H[r(x)] &=& r(x)r(x-1) \\
+                      &=& f(x + x_0)f(x + x_0 - 1) \\
+              \\
+              g(x + x_0) &=& f(x + x_0)f(x + x_0 - 1) \\
+            \end{eqnarray*}
+          \end{enumerate}
+        \item
+          $ g(x) = f(x) - f(x-1) $
+          \begin{enumerate}
+          \item
+            \textbf{linear}
+            \begin{eqnarray*}
+              r(x) &=& \alpha f_1(x) + \beta f_2(x) \\
+              H[r(x)] &=& r(x) - r(x-1) \\
+                      &=& \alpha f_1(x) + \beta f_2(x) - \alpha f_1(x - 1)
+                          - \beta f_2(x - 1) \\
+                      &=& \alpha (f_1(x)-f_1(x-1)) + \beta (f_2(x)-f_2(x-1)) \\
+              \\
+              \alpha H[f_1(x)] + \beta H[f_2(x)]
+                      &=& \alpha (f_1(x)-f_1(x-1)) + \beta (f_2(x)-f_2(x-1)) \\
+            \end{eqnarray*}
+          \item
+            \textbf{spatially invariant}
+            \begin{eqnarray*}
+              r(x) &=& f(x + x_0) \\
+              H[r(x)] &=& r(x) - r(x - 1) \\
+                      &=& f(x + x_0) - f(x + x_0 - 1) \\
+              \\
+              g(x + x_0) &=& f(x + x_0) - f(x + x_0 - 1) \\
+            \end{eqnarray*}
+          \end{enumerate}
+        \item
+          $ g(x) = f(x-2) - 2f(x-17) $
+          \begin{enumerate}
+          \item
+            \textbf{linear}
+            \begin{eqnarray*}
+              r(x) &=& \alpha f_1(x) + \beta f_2(x) \\
+              H[r(x)] &=& r(x-2) - 2r(x-17) \\
+                      &=& \alpha f_1(x-2) + \beta f_2(x-2) -
+                          2[\alpha f_1(x-17) + \beta f_2(x-17)] \\
+                      &=& \alpha [f_1(x-2) - 2f_1(x-17)] +
+                          \beta [f_2(x-2) - 2f_2(x-17)] \\
+              \\
+              \alpha H[f_1(x)] + \beta H[f_2(x)]
+                      &=& \alpha [f_1(x-2) - 2f_1(x-17)] +
+                          \beta [f_2(x-2) - 2f_2(x-17)] \\
+            \end{eqnarray*}
+          \item
+            \textbf{spatially invariant}
+            \begin{eqnarray*}
+              r(x) &=& f(x + x_0) \\
+              H[r(x)] &=& r(x + x_0 - 2) - 2r(x + x_0 - 17) \\
+              \\
+              g(x + x_0) &=& f(x + x_0 - 2) - 2f(x + x_0 - 17) \\
+            \end{eqnarray*}
+          \end{enumerate}
+        \item
+          $ g(x) = \sin(6x) f(x) $
+          \begin{enumerate}
+          \item
+            \textbf{linear}
+            \begin{eqnarray*}
+              r(x) &=& \alpha f_1(x) + \beta f_2(x) \\
+              H[r(x)] &=& \sin(6x) r(x) \\
+                      &=& \sin(6x) [\alpha f_1(x) + \beta f_2(x)] \\
+                      &=& \alpha \sin(6x) f_1(x) + \beta \sin(6x) f_2(x) \\
+              \\
+              \alpha H[f_1(x)] + \beta H[f_2(x)]
+                      &=& \alpha \sin(6x) f_1(x) + \beta \sin(6x) f_2(x) \\
+            \end{eqnarray*}
+          \item
+            \textbf{NOT spatially invariant}
+            \begin{eqnarray*}
+              r(x) &=& f(x + x_0) \\
+              H[r(x)] &=& \sin(6x) r(x) \\
+                      &=& \sin(6x) f(x + x_0) \\
+              \\
+              g(x + x_0) &=& \sin(6(x + x_0)) f(x + x_0) \\
+            \end{eqnarray*}
+          \end{enumerate}
+        \item
+          $ g(x) = \sum_{k = x - 2}^{x + 4} f(x) $
+          \begin{enumerate}
+          \item
+            \textbf{linear}
+            \begin{eqnarray*}
+              r(x) &=& \alpha f_1(x) + \beta f_2(x) \\
+              H[r(x)] &=& \sum_{k=x-2}^{x+4} r(x) \\
+                      &=& \sum_{k=x-2}^{x+4} [\alpha f_1(x) + \beta f_2(x)] \\
+                      &=& \alpha \sum_{k=x-2}^{x+4} f_1(x) +
+                          \beta \sum_{k=x-2}^{x+4} f_2(x) \\
+              \\
+              \alpha H[f_1(x)] + \beta H[f_2(x)]
+                      &=& \alpha \sum_{k=x-2}^{x+4} f_1(x) +
+                          \beta \sum_{k=x-2}^{x+4} f_2(x)
+            \end{eqnarray*}
+          \item
+            \textbf{spatially invariant}
+            \begin{eqnarray*}
+              r(x) &=& f(x + x_0) \\
+              H[r(x)] &=& \sum_{k=x-2}^{x+4} r(x) \\
+                      &=& \sum_{k=x-2}^{x+4} f(x + x_0) \\
+              \\
+              g(x + x_0) &=& \sum_{k=x-2}^{x+4} f(x + x_0)
+            \end{eqnarray*}
+          \end{enumerate}
+        \item
+          $ g(x) = xf(x) $
+          \begin{enumerate}
+          \item
+            \textbf{linear}
+            \begin{eqnarray*}
+              r(x) &=& \alpha f_1(x) + \beta f_2(x) \\
+              H[r(x)] &=& x r(x) \\
+                      &=& \alpha x f_1(x) + \beta x f_2(x) \\
+              \\
+              \alpha H[f_1(x)] + \beta H[f_2(x)]
+                      &=& \alpha x f_1(x) + \beta x f_2(x)
+            \end{eqnarray*}
+          \item
+            \textbf{NOT spatially invariant}
+            \begin{eqnarray*}
+              r(x) &=& f(x + x_0) \\
+              H[r(x)] &=& x r(x) \\
+                      &=& x f(x + x0) \\
+              \\
+              g(x + x_0) &=& (x + x_0) f(x + x_0) \\
+                         &=& x f(x + x_0) + x0 f(x + x_0)
+            \end{eqnarray*}
+          \end{enumerate}
+        \item
+          $ g(x) = f(2x) $
+          \begin{enumerate}
+          \item
+            \textbf{linear}
+            \begin{eqnarray*}
+              r(x) &=& \alpha f_1(x) + \beta f_2(x) \\
+              H[r(x)] &=& r(2x) \\
+                      &=& \alpha f_1(2x) + \beta f_2(2x) \\
+              \\
+              \alpha H[f_1(x)] + \beta H[f_2(x)]
+                      &=& \alpha f_1(2x) + \beta f_2(2x)
+            \end{eqnarray*}
+          \item
+            \textbf{NOT spatially invariant}
+            \begin{eqnarray*}
+              r(x) &=& f(x + x_0) \\
+              H[r(x)] &=& r(2x) \\
+                      &=& f(2x + x_0) \\
+              \\
+              g(x + x_0) &=& f(2(x + x_0)) \\
+                         &=& f(2x + 2x_0)
+            \end{eqnarray*}
+          \end{enumerate}
+      \end{enumerate}
+  \end{enumerate}
+
+  \newpage
+  \textbf{MATLAB EXERCISES}
+  \begin{enumerate}
+    \item
+      ------ BEGIN CODE ------
+      \begin{verbatim}
+% Author: <njoffe@ucsd.edu> (Nitay Joffe)
+% Date: 10/03/2006
+% Class: CSE 166 - Image Processing
+% Homework: 1
+% Problem: 1 - Working with plots and images in Matlab.
+
+% Part (a).
+% Use imread to load in the image.
+image_uint8 = imread('Fig1.14(c).jpg');
+
+% Convert the image from uint8 to double.
+image_double = double(image_uint8);
+
+% Part (b).
+% Display figure as it appears in the book, using proper aspect ratio.
+imshow(image_double);
+truesize;
+
+% Interactively select a ractange roughly enclosing the bottom half of the
+% middle bottle.
+rectangle = getrect;
+
+% Crop the image using selected rectangle
+cropped_image = imcrop(image_double, rectangle);
+
+% Use subplot to display the cropped image next to the original image.
+subplot(1,2,1);
+imshow(image_double);
+subplot(1,2,2);
+imshow(cropped_image);
+
+% Display the cropped image using a gray colormap and colorbar, with maximum and
+% minimum gray levels corresponding to the maximum and minimum brightness in the
+% image.
+max_brightness = max(max(cropped_image));
+min_brightness = min(min(cropped_image));
+colormap('gray');
+colorbar;
+
+% Put the titles 'original image' and 'cropped image' on the respective images.
+subplot(1,2,1);
+imshow(image_double);
+title('original image');
+subplot(1,2,2);
+imshow(cropped_image);
+title('cropped image');
+colormap('gray');
+colorbar;
+
+% Select a point on the original image that corresponds roughly to the center of
+% the cropped image using ginput.
+center_of_cropped_image = ginput(1);
+
+% Plot a large white '+' at the location of the point returned by ginput.
+hold;
+plot(center_of_cropped_image(1), center_of_cropped_image(2), 'w+');
+
+% Add a silly caption to the image
+text(100,100,'A silly caption'); \end{verbatim}
+      ------ END CODE ------ \\
+    \item
+      ------ BEGIN CODE ------
+      \begin{verbatim}
+% Author: <njoffe@ucsd.edu> (Nitay Joffe)
+% Date: 10/03/2006
+% Class: CSE 166 - Image Processing
+% Homework: 1
+% Problem: 2 - Moving Averages
+
+% Part (a).
+h_box = [1 1 1]/3;
+
+% Create a vector x of length 100 representing a step edge.
+x = [zeros(1,50) ones(1,50)];
+
+% Add Gaussian noise with standard deviation 0.05.
+x = x + 0.05*randn(1,100);
+
+% Convolve x with h_box.
+x_h_box = conv(x,h_box);
+
+% Part (c).
+% Set h_pasc equal to the fifth row  of Pascal's triangle.
+h_pasc = [1 4 6 4 1];
+
+% Normalize it so that it sums to 1.
+h_pasc = h_pasc ./ sum(h_pasc);
+
+x_h_pasc = conv(x,h_pasc);
+
+% Part (d)
+% Set x2 equal to row 375 of Figure 3.35(a).
+figure_335a = double(imread('Fig3.35(a).jpg'));
+x2 = figure_335a(375);
+
+% Convolve this signal with each of hte above kernels and plot the results.
+x2_h_box = conv(x2,h_box);
+x2_h_pasc = conv(x2,h_pasc);
+
+% Plot results on one page.
+subplot(4,2,1);
+stem(x);
+title('step edge');
+
+subplot(4,2,2);
+stem(x2);
+title('row 375 of figure 3.35(a)');
+
+subplot(4,2,3);
+stem(x_h_box);
+title('step edge after convolution with box filter');
+
+subplot(4,2,4);
+stem(x2_h_box);
+title('row 375 of figure 3.35(a) convolved with box filter');
+
+subplot(4,2,5);
+stem(x_h_pasc);
+title('step edge after convolution with binomial lowpass filter');
+
+subplot(4,2,6);
+stem(x2_h_pasc);
+title('row 375 of figure 3.35(a) convolved with binomial lowpass filter');
+
+subplot(4,2,7);
+stem(h_box);
+title('box filter');
+
+subplot(4,2,8);
+stem(h_pasc);
+title('binomial lowpass filter'); \end{verbatim}
+      ------ END CODE ------ \\
+      \begin{enumerate}
+        \item[(b)]
+          This kernel computes the average of the pixel with its direct
+          neighboars. \\
+          $$ y(k) = \frac{x(k-1) + x(k) + x(k+1)}{3} $$ \\
+        \item[(c)]
+          The binomial lowpass filter is better at smoothing out noise, but it
+          also spreads out edges more. The box filter does not smooth as well,
+          but edges are not as spread out when using it. To decide which to
+          use, we would have to analyze how much noise there is in the signal
+          and how salient the edges are and reach an optimal solution. \\
+      \end{enumerate}
+    \item
+      ------ BEGIN CODE ------
+      \begin{verbatim}
+% Author: <njoffe@ucsd.edu> (Nitay Joffe)
+% Date: 10/03/2006
+% Class: CSE 166 - Image Processing
+% Homework: 1
+% Problem: 3 - Moving Differences
+
+% Part (c).
+% Centered first difference kernel.
+h_cfd = [1 0 -1] / 2;
+
+% Grab row 238 of Figure 3.35(a), in double format.
+x = double(imread('Fig3.35(a).jpg'));
+x = x(238,:);
+
+% Convolve row 238 with centered first difference.
+y = conv(x, h_cfd);
+
+% Crop the filtered signal by removing its first and last samples.
+y = y(2:end-1);
+
+% Plot results.
+subplot(2,1,1);
+stem(x);
+title('row 238 of Figure 3.35(a)');
+
+subplot(2,1,2);
+stem(y);
+title('convolved with centered first difference'); \end{verbatim}
+      ------ END CODE ------ \\
+      \begin{enumerate}
+        \item
+          centered first difference ([1 0 -1]/2):
+            $$ y(k) = \frac{x(k+1) - x(k-1)}{2} $$
+          first difference ([1 -1]):
+            $$ y(k) = x(k) - x(k-1) $$
+          The centered first difference is more commonly used because it
+          computes the derivative using the pixels around a given a point,
+          rather than focusing only on what happens right before. This allows
+          it to capture slope information both before and after a point. \\
+        \item
+          $ \displaystyle f'(x) = \lim_{\epsilon \to 0}
+            \frac{f(x + \epsilon) - f(x)}{\epsilon} \; $
+          is equivalent to the first difference. \\ \\
+          $ \displaystyle f'(x) = \lim_{\epsilon \to 0}
+            \frac{f(x + \epsilon) - f(x - \epsilon)}{2 \epsilon} \; $
+          is equivalent to the centered first difference. \\ \\
+          When $ f(x) $ comes from an image, $ \epsilon $ represents the
+          distance between pixels. \\
+        \item
+          The positions of the spikes represent the locations where a change in
+          pixel value occurs, i.e. an edge. A positive spike means the change
+          is from a smaller (darker) value to a higher (brighter) value, and a
+          negative spike is the reverse. The heights of the spike tell us how
+          sharp of an edge, that is how much change occurs. The higher the
+          spike, the more visible of a difference there is between the two
+          pixels. \\
+        \item
+          $$ y(k) = \frac{x(k-2)}{4} - \frac{x(k)}{2} + \frac{x(k+2)}{4} $$
+          To obtain this kernel from the centered first difference kernel we
+          convolved the centered first difference with itself:
+          [1 0 -1]/2 * [1 0 -1]/2 $ \to $ [0.25 0 -0.5 0 0.25]. \\
+      \end{enumerate}
+    \item
+      ------ BEGIN CODE ------
+      \begin{verbatim}
+% Author: <njoffe@ucsd.edu> (Nitay Joffe)
+% Date: 10/03/2006
+% Class: CSE 166 - Image Processing
+% Homework: 1
+% Problem: 4 - Sampling and Aliasing
+
+% Part (a).
+x_interval = 0:16;
+x_limits = [x_interval(1) x_interval(end)];
+k_interval = 0:16;
+N = 16;
+
+for k = k_interval
+  omega_0 = 2*pi*k/N;
+  % Create cos(2*pi*k*x/N) function.
+  function_handle = @(x)cos(omega_0 * x);
+  % Sample values of function at x interval.
+  f_n = function_handle(x_interval);
+
+  subplot(5,4,k+1);
+  % Plot continuous function.
+  fplot(function_handle,x_limits);
+  % Plot samples of function.  We have to specify the x interval to stem because
+  % otherwise it assumes x starts at one and we need it to start at zero.
+  hold;
+  stem(x_interval,f_n);
+  title(['k = ' int2str(k)]);
+end \end{verbatim}
+      ------ END CODE ------ \\
+      \begin{enumerate}
+        \item[(b)]
+          $ f(x) $ hits the Nyquist frequency when $ k = 8 $, and $ \omega_0 =
+          \pi $. \\
+        \item[(c)]
+          alias: A false name used to conceal one's identity. \\
+          This term is used to describe $ f(n) $ when $ \omega_0 $ exceeds the
+          Nyquist frequency because the sampled signal no longer appears to
+          come from the continuous one. This is easiest to see in the cases
+          where k=14, k=15, and k=16. If one were to try and reconstruct the
+          original continuous signal from the samples, the result would be
+          completely different from the original signal.
+      \end{enumerate}
+  \end{enumerate}
+\end{document}

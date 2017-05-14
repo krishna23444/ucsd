@@ -1,0 +1,8 @@
+let $x := "foo"
+let $y := "baz"
+let $at1 := addAttribute(attrenv(),$y,"4")
+let $tn1 := tnode( $x, $at1,"8")
+let $at2 := addAttribute(attrenv(),"baz","4")
+let $tn2 := tnode( "hoo", $at2,"88")
+return
+($tn1, $tn2)

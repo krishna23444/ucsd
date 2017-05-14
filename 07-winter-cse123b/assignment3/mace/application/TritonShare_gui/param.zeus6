@@ -1,0 +1,6 @@
+peer=zeus
+peer_port=5550
+bandwidth=60
+share=share1
+http_port=8886
+MACE_PORT=5556

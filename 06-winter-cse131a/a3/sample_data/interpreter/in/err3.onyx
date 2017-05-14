@@ -1,0 +1,3 @@
+let $z := 3
+return
+   if ($z) then 0 else 5

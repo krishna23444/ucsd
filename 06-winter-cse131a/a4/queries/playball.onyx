@@ -1,0 +1,43 @@
+{-- Helper function to convert a string to an integer		--}
+{-- You may remove it if you like 				--}
+declare function toInt( $s as onyx.types.String) as onyx.types.Integer {
+if  ($s = "") then 0 else integer($s) };
+
+declare function getDescendantOrSelfByTagName( $node, $tagname ) as onyx.types.Sequence {
+  if( tagname($node) = $tagname )
+  then
+    $node
+  else
+    ()
+  ,
+  if( isENode($node) )
+  then
+    for $child in children($node)
+      return getDescendantOrSelfByTagName( $child, $tagname )
+  else
+    ()
+};
+
+declare function getChildrenByTagName( $node, $tagname ) as onyx.types.Sequence {
+   if( isENode( $node ) )
+   then
+      for $child in children($node)
+         where tagname($child) = $tagname
+           return $child
+   else
+      ()
+};
+
+
+{-- Query begins here --}
+{-- Do not modify the next line --}
+let $d := document("/home/linux/ieng6/cs131w/public/Materials/A4/xmlFiles/stats.xml")
+  let $players := getDescendantOrSelfByTagName( $d, "PLAYER" )
+for $player in $players
+  let $position := getChildrenByTagName( $player, "POSITION" )
+  let $surname := getChildrenByTagName( $player, "SURNAME" )
+  let $textcontent := string(first($position)) + " " + string(first($surname))
+  let $games := integer(string(first(getChildrenByTagName($player, "GAMES")))) 
+  let $tn := tnode( "player", attrenv(), $textcontent )
+    where ($games >= 50) and ($games <= 200)
+    return $tn

@@ -1,0 +1,48 @@
+
+#include "GossipDataHandler.h"
+#include "mset.h"
+
+typedef GossipMap AdvertisementMap;
+
+struct PeerRank {
+  MaceKey peer;
+  int rank;
+
+  PeerRank() : rank(0) {
+  }
+
+  PeerRank(const MaceKey& p, int r) : peer(p), rank(r) {
+  }
+
+  bool operator<(const PeerRank& right) const {
+    if(rank < right.rank) { return true; }
+    else if(rank > right.rank) { return false; }
+    else { return peer < right.peer; }
+  }
+};
+
+typedef mace::set<PeerRank> PeerOrdering;
+typedef mace::map<MaceKey, double> PeerScoreMap;
+
+handler MeshStructure {
+
+  //These calls are only made to the authoritative join handler
+  //virtual std::string getPeerRequest(const MaceKey& peer); //Get an application specific request string before attempting to join a peer
+
+  //Note -- the request cannot be used for determining whether to accept the peer as things are currently designed.  So it's commented here 
+  // for symmetry, but not active until we feel it's useful.
+  virtual std::string notifyNewReactivePeer(const MaceKey& peer/*, const std::string& request*/); //Get an application specific response string before responding to a peer.
+  virtual void notifyNewProactivePeer(const MaceKey& peer, 
+				      const mace::string& response);
+  
+  virtual void notifyReactivePeerRemoved(const MaceKey& peer);
+  virtual void notifyProactivePeerRemoved(const MaceKey& peer);
+
+//  virtual void notifyReactivePeersChanged(const NodeSet& peers);
+//  virtual void notifyProactivePeersChanged(const NodeSet& peers);
+
+  virtual void getPeerOrdering(const AdvertisementMap& amap, PeerOrdering& peers);
+  virtual void getReactiveScores(PeerScoreMap& scores);
+  virtual void getProactiveScores(PeerScoreMap& scores);
+  virtual void updateAdvertisement(mace::string& data);
+};

@@ -1,0 +1,1751 @@
+/**
+ *  Implementation of the spectrum protocol
+ *
+ *  Dejan Kostic
+
+note: subscriptions are expressed as percentages (0-100) and stored as unsigned char. color variables are in the range [0,1]. 
+ */
+
+#include "adolfo_filter.h"
+#include "smooth_filter.h"
+#include "working_set.h"
+#include "candidate_set.h"
+#include "color_summary.h"
+
+#define BULLET 0
+
+protocol spectrum uses randtree
+
+addressing ip
+
+trace_off
+
+constants {
+  int SPECTRUM_MAX_PEERS_allocate = 10;
+  int SPECTRUM_MAX_PEERS = 10;
+  int SPECTRUM_MAX_CHILDREN = 10;
+  int SPECTRUM_MAX_CANDS = 10;
+  int SPECTRUM_REFRESH_INTERVAL = 6;
+  int SPECTRUM_DECISION_INTERVAL = 5;
+  int SPECTRUM_PRINTER_INTERVAL = 1;
+  int SPECTRUM_START_RANSUB = 20;
+  int SPECTRUM_NORMAL_RANSUB = 5;
+  int SPECTRUM_SHORT_RANSUB = 1;
+  int SPECTRUM_DATA_RECONCILE = 2;
+  int SPECTRUM_DATA_PARALLEL = 2;
+  int SPECTRUM_DATA_PARENT = 1;
+  double SPECTRUM_CLOSING_RATIO = 0.5;
+  int SPECTRUM_STRAT_DISJOINT=1;
+  int SPECTRUM_STRAT_SPLITTER=2;
+  int SPECTRUM_STRAT_STREAMTOALL=3;
+  int SPECTRUM_STRAT_TRY=4;
+  int SPECTRUM_STRAT_ONCE=5;
+  int SPECTRUM_STRAT_COLOR = 6;
+  int SPECTRUM_COLOR_SIZE = 10;
+  double SPECTRUM_INBOUND_LINK_MAX_UTILIZATION =  0.85;
+  double SPECTRUM_OUTBOUND_LINK_MAX_UTILIZATION =  0.85;
+}
+
+node_types {
+  source;
+  receiver;
+}
+
+states {
+  joined;
+}
+
+neighbor_types {
+  receivers_from_me SPECTRUM_MAX_PEERS_allocate {
+    double last_refresh;
+    int sent_this_refresh;
+    double reported_total_bandwidth;
+    double reported_peer_bandwidth;
+    bloom_filter recipient_digest;
+//      bitmap_digest recipient_digest;
+    int parent_last;
+    int parallel_last;
+    list<int> keys;
+    double start_time;
+    double round_started_time;
+    double round_completed_time;
+    short session;
+    color_summary subscriptions;
+  }
+  senders_to_me SPECTRUM_MAX_PEERS_allocate {
+    adolfo_filter arrivals;
+    adolfo_filter useful;
+    int data_count;
+    int total_data_count;
+    int useful_count;
+    int total_useful_count;
+    double start_time;
+    double round_started_time;
+    double round_completed_time;
+    color_summary subscriptions;
+  }
+  ransub_parent 1 { 
+//      adolfo_filter arrivals;
+//      adolfo_filter useful;
+    int bla;
+  }
+  ransub_children SPECTRUM_MAX_CHILDREN {
+    int sent;
+    int gas_sent;   // only for statistics
+    int not_sent;
+    double bandwidth_factor;  // called limiting_factor in the paper
+    double density; // called sending_factor in the paper
+//      bloom_filter kid_digest;
+//      bitmap_digest kid_digest;
+    int seq;
+    int represents;
+    candidate_set<cand_color_summary> gathered;
+  }
+}
+
+messages {
+  PRIORITY_HIGHEST collect {
+    int sequence;
+    int descendants;
+    candidate_set<cand_color_summary> mycollect;
+  }
+  PRIORITY_HIGHEST distribute {
+    int sequence;
+    int population;
+    candidate_set<cand_color_summary> mydistribute;
+  }
+  PRIORITY_HIGH request_denied {
+  }
+  PRIORITY_HIGH update_parent {
+    flat_bloom filter;
+//     flat_bitmap   filter;
+  }
+  PRIORITY_HIGH remove_to_sender {
+  }
+  PRIORITY_HIGH remove_to_receiver {
+  }
+  PRIORITY_HIGH ask {
+    int key_seq;	    
+  }
+  PRIORITY_MED papa_data {
+    short comm_type;
+    int key_seq;
+  }
+  PRIORITY_LOW peer_data {
+    short comm_type;
+    short last;
+    int key_seq;
+  }
+  PRIORITY_LOW reconcile_data {
+    short comm_type;
+    short last;
+    int key_seq;
+  }
+  PRIORITY_MED collect_data { 
+    int receiver;
+    int sender;
+    int comm_type;
+    int priority;
+  }
+  PRIORITY_HIGH update_sender {
+    int low_key;
+    int high_key;
+    short mod;
+    short mod_max;
+    double total_bandwidth;
+    double peer_bandwidth;
+    flat_bloom filter;
+//      flat_bitmap filter;
+    short session;
+  }
+  PRIORITY_HIGH update_sender_small {
+    int low_key;
+    int high_key;
+    short mod;
+    short mod_max;
+    double total_bandwidth;
+    double peer_bandwidth;
+    flat_bloom_small filter;
+//      flat_bitmap_small filter;
+    short session;
+  }
+  PRIORITY_HIGH update_peer {
+    double total_bandwidth;
+    double peer_bandwidth;
+  }
+  PRIORITY_HIGH subscription_request {
+    double total_bandwidth;
+    double peer_bandwidth;
+    cand_color_summary subscriptions;
+    double max;
+  }
+  PRIORITY_HIGH subscription_response {
+    cand_color_summary subscriptions;
+  }
+}
+
+state_variables {	 
+  char * got_msg nodump;
+  int got_from;
+  int got_key;
+  int got_type;
+  int got_size;
+  int got_last;
+  int multicast_success_code;
+  adolfo_filter master;
+  adolfo_filter master_useful;
+  receivers_from_me getters;
+  senders_to_me givers;
+  int curkey;
+  working_set working_file;
+  working_set parent_file;
+  working_set parallel_file;
+  smooth_filter smooth_bandwidth;
+  timer refresh SPECTRUM_REFRESH_INTERVAL;
+  timer decision SPECTRUM_DECISION_INTERVAL;
+  timer printer SPECTRUM_PRINTER_INTERVAL;
+  timer sending;
+  ransub_parent myparent;
+  ransub_children mychildren;
+  int sequence;
+  int total_received;
+  int total_expected;
+  int population;
+  int descendants;
+  int collect_expired;
+  int collect_missing;
+  candidate_set<cand_color_summary> curset;
+  timer ransub;
+  char * cached_msg;
+  char * small_filters;
+  char * small_filters1; // 1 less than max peers
+  int growing_senders;
+  short session;
+  char * color_table;
+  int color_count;
+  double sending_colors;
+  color_summary subscriptions;
+  color_summary achieved;
+  int inbound_capacity;
+  int outbound_capacity;
+  int max_inbound_colors;
+  int max_outbound_colors;
+  char * color_achieved;
+}	  
+
+transitions {
+
+  init API init {
+    curkey = 0;
+    sequence = 0;
+    session = 1;
+    total_received = 0;
+    collect_missing = 0;
+    growing_senders = 1;
+    sending_colors = 0;
+    cached_msg = (char *) malloc(parameters.getint("data_packet_size"));	
+    state_change(joined);
+    int spectrum_strategy = parameters.getint("spectrum_strategy");
+    printf("spectrum_strategy: %d\n", spectrum_strategy);
+    double application_spacing = (double)(parameters.getint("data_packet_size")) *8/(1000.0*(double) parameters.getint("streaming_rate"));
+ 
+//      if (spectrum_strategy != SPECTRUM_STRAT_COLOR )
+//        timer_resched(decision, SPECTRUM_DECISION_INTERVAL);
+    timer_resched(printer, SPECTRUM_PRINTER_INTERVAL);
+#if SMALL
+    small_filters = (char *)new bloom_filter*[SPECTRUM_MAX_PEERS];
+    bloom_filter** filter_array = (bloom_filter**) small_filters;
+    for (int i = 0; i < SPECTRUM_MAX_PEERS ;i++ )
+      {
+	filter_array[i] = (bloom_filter* ) new bloom_filter(BLOOM_SIZE_SMALL);
+	printf("small[%d]=%x\n", i, filter_array[i]);
+      }
+    small_filters1 = (char *)new bloom_filter*[SPECTRUM_MAX_PEERS-1];
+    filter_array = (bloom_filter**) small_filters1;
+    for (int i = 0; i < SPECTRUM_MAX_PEERS-1 ;i++ ) // -1
+      {
+	filter_array[i] = (bloom_filter* ) new bloom_filter(BLOOM_SIZE_SMALL);
+	printf("small1[%d]=%x\n", i, filter_array[i]);
+      }
+#endif
+    if ( source_ == me )
+      {
+	neighbor_add (myparent, 0);
+	replay_experiment();
+	timer_resched(ransub, SPECTRUM_START_RANSUB);	
+      }
+    else
+      {
+	replay_init();
+      }
+   timer_resched(refresh, SPECTRUM_REFRESH_INTERVAL);
+
+    color_count = NUM_COLORS;
+    color_table  =( char *) new  map <int,  set<int>* , less<int> >;
+//      read_color_file();
+
+    color_achieved  =( char *) new  adolfo_filter[ color_count];
+    inbound_capacity = 0;
+    outbound_capacity = 0;
+    read_capacity_file();
+    max_outbound_colors = (int)(outbound_capacity*SPECTRUM_OUTBOUND_LINK_MAX_UTILIZATION/(double)SPECTRUM_COLOR_SIZE);
+    max_inbound_colors = (int)(inbound_capacity*SPECTRUM_INBOUND_LINK_MAX_UTILIZATION/(double)SPECTRUM_COLOR_SIZE);
+    debug_macro ("max_inbound_colors : %d\n", max_inbound_colors );
+    debug_macro ("max_outbound_colors: %d\n", max_outbound_colors);
+
+    if (max_inbound_colors> color_count) max_inbound_colors = color_count;
+  }
+
+// ---------------------------------------------- 
+// refresh
+// ---------------------------------------------- 
+
+  joined timer refresh {
+#if !BULLET
+  if (neighbor_size(givers)) {
+     foreach_neighbor (neighbor_senders_to_me*, givuh, givers) {
+       route_update_peer(givuh->ipaddr, master_useful.get_value(), givuh->useful.get_value(), 0, 0, -1);
+     } 
+  }
+#else
+    int mysize;
+    unsigned char *my_filter = (unsigned char*)working_file.export_digest(mysize);
+    session ++;
+    if (session<0)
+      {
+	session = 1;
+      }
+
+    if (neighbor_size(givers)) {
+      int piece = (working_file.get_last() - working_file.get_earliest())/neighbor_size(givers);
+      sprintf(trace_buf_, "Receiver: dividing range %d (%d - %d)between %d senders\n", 
+          working_file.get_last() - working_file.get_earliest(),
+          working_file.get_earliest(), working_file.get_last(),
+          neighbor_size(givers)); 
+      trace_print();
+      int starting =  working_file.get_earliest();
+      int ending = working_file.get_last();
+      int sender_num=0;
+
+      foreach_neighbor (neighbor_senders_to_me*, givuh, givers) {
+	int modval = (sender_num+session) % neighbor_size(givers);
+//  	int modval = (sender_num+sequence) % neighbor_size(givers);
+	sprintf(trace_buf_, "Filter: sending to %x mod %d max %d low %d high %d\n", givuh->ipaddr, modval, neighbor_size(givers), starting, ending);
+	trace_print();
+	givuh->round_started_time = curtime;
+	givuh->round_completed_time = 0;
+	{
+#if SMALL
+	  if (neighbor_size(givers) == SPECTRUM_MAX_PEERS||
+	      neighbor_size(givers) == SPECTRUM_MAX_PEERS-1)
+	    {
+
+	      bloom_filter** filter_array = NULL;
+
+	      if (neighbor_size(givers) == SPECTRUM_MAX_PEERS)
+		{
+		  filter_array = (bloom_filter**) small_filters;
+		} 
+	      else if (neighbor_size(givers) == SPECTRUM_MAX_PEERS-1)
+		{
+		  filter_array = (bloom_filter**) small_filters1;
+		}
+
+	      filter_array[modval]->prune_up_to(starting);
+	      sprintf(trace_buf_,"starting: %d filter[%d]=%x: %d items %d \n", starting, modval, filter_array[modval], filter_array[modval]->get_lowest_sequence (), filter_array[modval]->get_items () );
+	      trace_print();
+
+	      unsigned char* buffer = new unsigned char [filter_array[modval]->size_compacted_in_bytes()];
+	      filter_array[modval]->serialize( buffer);
+	      sprintf(trace_buf_,"filter[%d]=%x: %d peers \n", modval, filter_array[modval], neighbor_size(givers));
+	      trace_print();
+
+	      route_update_sender_small(givuh->ipaddr, filter_array[modval]->get_lowest_sequence (), /*9999999*/ ending, modval, neighbor_size(givers), master_useful.get_value(), givuh->useful.get_value(), *(flat_bloom_small*)buffer, session, 0, 0, -1);
+	      delete [] buffer;
+	    }
+  	  else // dmk
+#endif
+	    {
+
+#if USE_BLOOM 
+	      route_update_sender(givuh->ipaddr, starting, /*9999999*/ ending, modval, neighbor_size(givers), master_useful.get_value(), givuh->useful.get_value(), *(flat_bloom*)my_filter, session, 0, 0, -1);
+#else
+	  route_update_sender(givuh->ipaddr, starting, ending, modval, neighbor_size(givers), master_useful.get_value(), givuh->useful.get_value(), *(flat_bitmap*)my_filter, session, 0, 0, -1);
+#endif
+	    }
+	} 
+	sender_num++;
+//  	if (sender_num>1) break;
+      }
+    }
+    unsigned char *temp = (unsigned char *)my_filter;
+    delete [] temp;
+#endif
+  }
+  
+// ---------------------------------------------- 
+// update_sender
+// ---------------------------------------------- 
+  joined recv update_sender {
+    // delivers a bloom filter to start sending data    
+    neighbor_receivers_from_me *guy = neighbor_entry (getters, from);
+    debug_macro("update_sender  from: %x\n", from);
+    if (!guy) return;
+    double application_spacing = (double)(parameters.getint("data_packet_size")) *8/(1000.0*(double) parameters.getint("streaming_rate"));
+    guy = neighbor_entry (getters, from);
+    guy->last_refresh = curtime;
+    guy->session = field(session);
+    guy->round_started_time = curtime;
+    guy->sent_this_refresh = 0;
+    guy->reported_total_bandwidth = field(total_bandwidth);
+    guy->reported_peer_bandwidth = field(peer_bandwidth);
+    guy->recipient_digest.import( (unsigned char *)&(field(filter)));  
+    guy->keys.clear();
+    parent_file.get_modulo_keys(guy->keys, (digest &)guy->recipient_digest, field(low_key), field(high_key), field(mod), field(mod_max) );
+    parallel_file.get_modulo_keys(guy->keys, (digest &)guy->recipient_digest, field(low_key), field(high_key), field(mod), field(mod_max));    
+    debug_macro("Filter: updated_N(%d) for %x keys %d, low %d high %d mod %d max %d\n", guy->session, from, guy->keys.size(), field(low_key), field(high_key), field(mod), field(mod_max));
+  }
+
+// ---------------------------------------------- 
+// update_sender_small
+// ---------------------------------------------- 
+  joined recv update_sender_small {
+    // delivers a bloom filter to start sending data    
+    double application_spacing = (double)(parameters.getint("data_packet_size")) *8/(1000.0*(double) parameters.getint("streaming_rate"));
+    neighbor_receivers_from_me *guy = neighbor_entry (getters, from);
+    debug_macro("update_sender_small  from: %x\n", from);
+    if (!guy) return;
+
+    guy->session = field(session);
+    guy->round_started_time = curtime;
+    guy->last_refresh = curtime;
+    guy->sent_this_refresh = 0;
+    guy->reported_total_bandwidth = field(total_bandwidth);
+    guy->reported_peer_bandwidth = field(peer_bandwidth);
+    guy->recipient_digest.import( (unsigned char *)&(field(filter)));	
+    guy->keys.clear();
+    guy->parent_last = parent_file.get_modulo_keys(guy->keys, (digest &)guy->recipient_digest, field(low_key), field(high_key), field(mod), field(mod_max) );
+    parallel_file.get_modulo_keys(guy->keys, (digest &)guy->recipient_digest, field(low_key), field(high_key), field(mod), field(mod_max));    
+    sprintf(trace_buf_, "Filter: updated_S(%d) for %x keys %d, low %d high %d mod %d max %d\n", guy->session,  from, guy->keys.size(), field(low_key), field(high_key), field(mod), field(mod_max));
+    trace_print();
+    if (guy->keys.size()==0 && field(low_key)!=0 &&  field(high_key)!=0)
+      route_reconcile_data( guy->ipaddr, 
+		       COMM_TYPE_MULTICAST, 
+		       -guy->session, 0, 0, 
+		       0, -1);   
+  }
+
+// ---------------------------------------------- 
+// sending
+// ---------------------------------------------- 
+
+  joined timer sending {
+    debug_macro ("timer_sending: %d\n", neighbor_size(getters));
+
+    int should_have_sent;
+    if (neighbor_size(getters)!=0) {
+      foreach_neighbor (neighbor_receivers_from_me*, getta, getters) {
+	if (getta->keys.size()) {
+	  sprintf(trace_buf_,"need to send %x keys %d\n", getta->ipaddr, getta->keys.size());
+	  trace_print();
+	  if (curtime < getta->last_refresh + SPECTRUM_REFRESH_INTERVAL+1.0) {
+	    // allow the update to be late up to 1 second, no more
+	    double sendtime = min(curtime-getta->last_refresh, (double)SPECTRUM_REFRESH_INTERVAL);
+	    double prev_sendtime = sendtime;
+	    should_have_sent = (int)ceil((sendtime * (getta->keys.size() + getta->sent_this_refresh)) / (double)SPECTRUM_REFRESH_INTERVAL);
+	    if (getta->sent_this_refresh > should_have_sent)
+	      continue;
+	    int num_send = should_have_sent - getta->sent_this_refresh;
+	    num_send = min(num_send, 20);  // send up to 20 since that is the queue limit anyway
+	    int trash;
+	    sprintf(trace_buf_, "Sender: for %.8x keys %d, sent %d should have %d will send %d last %f\n", getta->ipaddr, getta->keys.size(), getta->sent_this_refresh, should_have_sent, num_send, getta->last_refresh);
+	    cut_trace();
+
+	    while (num_send > 0 && 
+getta->keys.size()>0) {
+	      list< int>::iterator traverse = getta->keys.begin();
+	      int value = *traverse; 
+
+	      if (!getta->recipient_digest.contains(value)) 
+		{
+		int mysize;
+		unsigned char *data_msg = working_file.get_message(value, mysize);
+		int last = 0;
+		if (getta->keys.size() == 1) {
+		  last = -getta->session;
+		  double c=curtime-getta->round_started_time;
+		  sprintf(trace_buf_, "last: %f\n", c);
+		  trace_print();
+		}
+
+		if (data_msg) 
+		  {
+		    route_reconcile_data( getta->ipaddr, 
+				     COMM_TYPE_MULTICAST, 
+				     last, value, data_msg, 
+				     mysize, -1);   
+		    delete [] data_msg;
+		  }
+		else
+		  {
+		    route_reconcile_data( getta->ipaddr, 
+				     COMM_TYPE_MULTICAST, 
+				     last, value, cached_msg, 
+				     parameters.getint("data_packet_size"), -1);   
+		  }
+
+		if (!macedon_sendret) {
+		  sprintf(trace_buf_, "sent %d to %.8x last %d\n", value, getta->ipaddr, last);
+		  if (last >=0 )  cut_trace(); else  trace_print();
+		  getta->recipient_digest.insert(value);
+		  getta->keys.pop_front();
+		}
+		else {
+		  sprintf(trace_buf_, "failed sent %d to %.8x\n", value, getta->ipaddr);
+		  cut_trace();
+		  if (value > 1000000) {
+		    printf("REPLAY Trying to push back a bad value %d\n", value);
+		    fflush(stdout);
+		    exit(348);
+		  }
+		}
+		getta->sent_this_refresh++;
+	      }
+	      else
+		{
+		  sprintf(trace_buf_, "duplicate to send %d to %.8x\n", value, getta->ipaddr);
+		  cut_trace();
+		}
+
+	      num_send--;
+	    }
+	  }
+	}
+      }
+      double application_spacing = (double)(parameters.getint("data_packet_size")) *8/(1000.0*(double) parameters.getint("streaming_rate"));
+      timer_resched(sending, application_spacing);
+    }
+  }
+
+// ---------------------------------------------- 
+// update_peer
+// ---------------------------------------------- 
+  joined recv update_peer {
+    neighbor_receivers_from_me *guy = neighbor_entry (getters, from);
+    debug_macro("update_peer from: %x\n", from);
+
+    if (!guy) {
+	return;
+    }
+    guy->reported_total_bandwidth = field(total_bandwidth);
+    guy->reported_peer_bandwidth = field(peer_bandwidth);
+  }
+
+// ---------------------------------------------- 
+// subscription_request
+// ---------------------------------------------- 
+  joined recv subscription_request {
+    neighbor_receivers_from_me *guy = neighbor_entry (getters, from);
+    neighbor_receivers_from_me *existing = guy;
+#if BULLET
+
+    double application_spacing = (double)(parameters.getint("data_packet_size")) *8/(1000.0*(double) parameters.getint("streaming_rate"));
+    if (neighbor_size(getters)==0)  // adding the first guy, start sender timer
+      timer_resched(sending, application_spacing);
+#endif
+
+    if (!guy) {
+      if (!neighbor_space(getters)) {
+	route_request_denied(from, 0, 0, -1);
+	return;
+      }
+      else {
+        neighbor_add (getters, from);
+        guy = neighbor_entry(getters, from);
+        guy->start_time = curtime;
+        sprintf(trace_buf_, "Sender: Added %.8x as a receiver\n", from);
+        trace_print();
+      } 
+    }
+
+    debug_macro("subscription_request from: %.8x cap %d forwarding %f can_absorb %d\n", from, max_outbound_colors, sending_colors,field(max));
+
+    double max_capacity = field(max);
+   
+    if (max_capacity < 0)
+      {
+	debug_macro ("max_capacity: %d\n", max_capacity);
+
+      }
+
+    map <int,  set<int>* , less<int> >* colors  = (map <int,  set<int>* , less<int> >*) color_table;
+
+    color_summary desired;
+    color_summary approved;
+    desired.st = field( subscriptions);
+    double before = guy->subscriptions.cumulative_potential ();
+    
+    // remove
+    for (int color = 0; color < NUM_COLORS ;color++ )
+	{
+	map <int, set<int>*, less<int> >::const_iterator element
+	  =  colors->find(  color);
+	set<int>* entry;
+	if (element == colors->end()) { 
+	  entry = new set<int> ();  (*colors)[ color] =   entry; 
+	} else
+	  entry = (*element).second;
+	set<int>::const_iterator set_element = entry->find(color);
+
+	if (!desired.st.table[ color]) 
+	  { 
+	   if (set_element != entry->end())
+	     {
+	       sending_colors -= guy->subscriptions.st.table[ color]/(double)100.0;
+	       entry->erase(from);
+	       guy->subscriptions.st.table[ color] = 0;
+	       debug_macro("  removing color %d from %.8x\n",  color, from);
+	     }
+	  }
+	}
+    // keep
+    for (int color = 0; color < NUM_COLORS ;color++ )
+	{
+	map <int, set<int>*, less<int> >::const_iterator element
+	  =  colors->find(  color);
+	set<int>* entry;
+	if (element == colors->end()) { 
+	  entry = new set<int> ();  (*colors)[ color] =   entry; 
+	} else
+	  entry = (*element).second;
+	set<int>::const_iterator set_element = entry->find(color);
+
+	if (desired.st.table[ color] && guy->subscriptions.st.table[ color] && set_element != entry->end()) 
+	  { 
+	    if (subscriptions.st.table[ color] || source_ == me)
+	      {
+		debug_macro("will keep color %d  (%d%%) %.8x\n",  color, desired.st.table[ color], from);
+		approved.st.table[ color] = desired.st.table[ color];	
+	      }
+	    else
+	      {
+		debug_macro("wants, but don't have color %d  (%d%%) %.8x\n",  color, desired.st.table[ color], from);
+		approved.st.table[ color] = 0;
+		guy->subscriptions.st.table[ color] = 0;
+	      }
+	  }
+	}
+    double intermediate = guy->subscriptions.cumulative_potential ();
+
+    double max_new_capacity = max_capacity + (intermediate - before);
+    // add
+    for (int color = 0; color < NUM_COLORS ;color++ )
+	{
+	map <int, set<int>*, less<int> >::const_iterator element
+	  =  colors->find(  color);
+	set<int>* entry;
+	if (element == colors->end()) { 
+	  entry = new set<int> ();  (*colors)[ color] =   entry; 
+	} else
+	  entry = (*element).second;
+	set<int>::const_iterator set_element = entry->find(color);
+
+	if (desired.st.table[ color] && !approved.st.table[ color]) 
+	  { 
+	    debug_macro("wants color %d  (%d%%) %.8x\n",  color, desired.st.table[ color], from);
+	    if (source_ == me)
+	      {
+		neighbor_receivers_from_me* already = NULL;
+		foreach_neighbor (neighbor_receivers_from_me*, gettuh, getters) 
+		  {
+		    if ( gettuh->ipaddr != from &&
+			 gettuh->subscriptions.st.table[ color]) 
+		      {
+			approved.st.table[ color] = 0;
+			debug_macro("source refusing to send duplicate color %d to %.8x\n", color,from);
+			already = gettuh;
+			break;
+		      }
+		  }
+	       if (already) continue;
+	      }
+	   if (sending_colors<max_outbound_colors &&
+	       set_element == entry->end() &&
+	       (subscriptions.st.table[ color] || source_ == me ))
+	     {
+	       if (approved.cumulative_potential()- intermediate > max_new_capacity)
+		 {
+		   debug_macro("source refusing to send color %d to %.8x (overflow a %f %f %f)\n", from, approved.cumulative_potential(),intermediate, max_new_capacity);
+		   break;
+		 }
+	       sending_colors += desired.st.table[ color]/(double)100.0;
+	       entry->insert(from);
+	       approved.st.table[ color] = desired.st.table[ color];
+	       guy->subscriptions.st.table[ color] = desired.st.table[ color];
+	       debug_macro(" sending  color %d  (%d%%) to %.8x\n",  color, desired.st.table[ color], from);
+	       double divisor = population;
+	       if (divisor > 4.0) divisor = 4.0;
+	       if (source_ == me &&
+		   approved.cumulative_potential() > max_outbound_colors/4.0)
+		 {
+		   debug_macro("source refusing to send more than %f%% of available colors to %.8x\n", 1/divisor,from);
+		   break;
+		 }
+	     }
+	   else 
+	     {
+	       debug_macro("what to do with color %d to %.8x s %f m %d \n", color,from, sending_colors<max_outbound_colors);
+	     }
+	  }
+	}
+    double benefit = approved.cumulative_potential();
+    if (benefit == 0) { remove_getter(from);}
+
+    route_subscription_response( from,  approved.st, 0, 0, -1); 
+  }
+
+// ---------------------------------------------- 
+// subscription_response
+// ---------------------------------------------- 
+  joined recv subscription_response {
+    neighbor_senders_to_me *guy = neighbor_entry ( givers, from);
+    debug_macro("subscription_response from: %.8x\n", from);
+
+    if (!guy) {
+      return;
+    }
+    debug_macro("subscription_response from known: %.8x\n", from);
+    // see what has changed.
+
+    color_summary approved;
+
+    approved.st = field( subscriptions); //dmk  careful with cumulative subscriptions
+    adolfo_filter*  achieved_filters = (adolfo_filter*) color_achieved;
+    for (int color = 0; color < NUM_COLORS ;color++ )
+	{
+	  if (approved.st.table[color])
+	    {
+	      if (!guy->subscriptions.st.table[color])
+		{
+		  debug_macro(" confirmed %x will send color %d (%d%%)\n", from, color, approved.st.table[color]);
+		}
+	      else 
+		{
+		  debug_macro(" confirmed %x will cont color %d (%d%%)\n", from, color, approved.st.table[color]);
+		}
+
+	      subscriptions.st.table[color] = approved.st.table[color];
+//  	      achieved.st.table[color] = approved.st.table[color];
+	      guy->subscriptions.st.table[ color] = approved.st.table[color];
+	    }
+	  else if (guy->subscriptions.st.table[color])
+	    {
+	      debug_macro(" confirmed %x will quit color %d\n", from, color);	  
+	      subscriptions.st.table[color] = approved.st.table[color];
+// 	      achieved.st.table[color] = approved.st.table[color];
+	      guy->subscriptions.st.table[ color] = approved.st.table[color];
+	      achieved_filters[color].clear();
+	    }
+	}
+    double benefit = approved.cumulative_potential();
+    if (benefit == 0) {remove_giver(from);}
+  }
+
+
+  joined recv update_parent {
+    neighbor_ransub_children *kid;
+    if (neighbor_query (mychildren, from))
+    {
+      kid = neighbor_entry(mychildren, from);
+
+    }
+  }
+
+  joined recv request_denied {
+    if (neighbor_query(givers, from)) {
+      sprintf(trace_buf_, "Receiver: sender %.8x denied my request\n", from);
+      trace_print();
+      neighbor_remove (givers, from);
+    }
+  }
+// ---------------------------------------------- 
+// remove_to_sender
+// ---------------------------------------------- 
+
+  joined recv remove_to_sender {
+    debug_macro ("remove_to_sender: %d\n", from);
+    remove_getter(from);
+  }
+
+// ---------------------------------------------- 
+// remove_to_receiver
+// ---------------------------------------------- 
+
+  joined recv remove_to_receiver {
+    debug_macro ("remove_to_receiver: %d\n", from);
+    remove_giver(from);
+  }
+
+ 
+  joined recv ask {
+    // asks for a specific key, not yet implemented
+  }
+
+  joined recv papa_data {
+    if (field(comm_type) != COMM_TYPE_MULTICAST) {
+      upcall_deliver( msg, size, field(comm_type));
+      return;
+    }
+
+    if (!neighbor_query(myparent,from))
+      return;
+
+    got_from = from;
+    got_msg = msg;
+    got_size = size;
+    got_key = field(key_seq);
+    got_type = SPECTRUM_DATA_PARENT;
+    got_last = 0;
+    joined_got_multi_data();
+  }
+
+  joined recv peer_data {
+    if (field(comm_type) != COMM_TYPE_MULTICAST) {
+      upcall_deliver( msg, size, field(comm_type));
+      return;
+    }
+    neighbor_senders_to_me* givuh = neighbor_entry(givers, from);
+    if (!givuh)
+      {
+	sprintf(trace_buf_, "peer_data: %d from unknown %.8x \n", field(key_seq), from);
+	trace_print();
+      return;
+      }
+    got_from = from;
+    got_msg = msg;
+    got_size = size;
+    got_key = field(key_seq);
+    got_type = SPECTRUM_DATA_PARALLEL;
+    got_last = field (last);
+    if (got_last< 0)
+      {
+	sprintf(trace_buf_, "got_last: %d session %d\n", got_last, session);
+	trace_print();
+      }
+
+    if (size > 0) joined_got_multi_data(); //avoid 'nothing to send'
+  }
+
+  joined recv reconcile_data {
+    if (field(comm_type) != COMM_TYPE_MULTICAST) {
+      upcall_deliver( msg, size, field(comm_type));
+      return;
+    }
+    neighbor_senders_to_me* givuh = neighbor_entry(givers, from);
+    if (!givuh)
+      {
+	sprintf(trace_buf_, "reconcile_data: %d from unknown %.8x \n", field(key_seq), from);
+	trace_print();
+      return;
+      }
+    got_from = from;
+    got_msg = msg;
+    got_size = size;
+    got_key = field(key_seq);
+    got_type = SPECTRUM_DATA_RECONCILE;
+    got_last = field (last);
+    if (got_last< 0)
+      {
+	sprintf(trace_buf_, "got_last: %d session %d\n", got_last, session);
+	trace_print();
+      }
+
+    if (size > 0) joined_got_multi_data(); //avoid 'nothing to send'
+  }
+
+  joined timer printer {
+    double parent_bandwidth = 0.0;
+    double useful_parent_bandwidth = 0.0;
+    double total_bandwidth = 0.0;
+    double useful_bandwidth = 0.0;
+
+    foreach_neighbor (neighbor_senders_to_me *, givuh, givers) {
+      total_bandwidth+= givuh->arrivals.get_value();
+      useful_bandwidth+=givuh->useful.get_value();
+    }     
+
+    total_bandwidth = master.get_value();
+    useful_bandwidth = master_useful.get_value();
+
+    smooth_bandwidth.update( useful_bandwidth );
+
+    double stream_time = parameters.getdouble("streaming_time");
+    if ( ( stream_time == -1.0 ||
+          curtime > time_booted + stream_time) )
+      printf("%s %f %d REPLAY_BULLET_BANDWIDTH %d %d %d %d %d %d\n", 
+          get_hostname(), Scheduler::instance().clock(), pthread_self(),
+          (int) parent_bandwidth,
+          0,   
+          (int) useful_parent_bandwidth,
+          (int) total_bandwidth,
+          (int) useful_bandwidth,
+          (int) smooth_bandwidth.get_value()
+          );
+  }
+
+
+// ---------------------------------------------- 
+// collect
+// ---------------------------------------------- 
+
+  joined API collect { // send the data to our parent in the tree
+    sprintf(trace_buf_, "API collect\n");    
+    cut_trace();
+    neighbor_ransub_parent *mypa = neighbor_random (myparent);
+    if (mypa) {
+      sprintf(trace_buf_, "API collect to %x\n", mypa->ipaddr);    
+      cut_trace();
+      
+      // Only forward it if I have a parent
+      route_collect_data (mypa->ipaddr, mypa->ipaddr, me, COMM_TYPE_COLLECT, transport, msg, size, transport);
+    }
+    return_code = 0;
+  }
+
+// ---------------------------------------------- 
+// collect_data
+// ---------------------------------------------- 
+
+  joined recv collect_data {
+    sprintf(trace_buf_, "recv collect_data type %d size %d from %x at %x\n", field(comm_type), size,from ,me);    
+    cut_trace();
+    // check to see if we should process this data
+    int should_forward = upcall_forward(0, msg, size, field(comm_type));
+    if (should_forward)
+      return; // Leave if upper layer says not to take this msg
+
+    upcall_deliver( msg, size, field(comm_type));
+
+    neighbor_ransub_parent *mypa = neighbor_random (myparent);
+    if (mypa) 
+      {
+      sprintf(trace_buf_, "routing collect to %x\n", mypa->ipaddr);    
+      cut_trace();
+      
+      route_collect_data (mypa->ipaddr, mypa->ipaddr, me, COMM_TYPE_COLLECT, field(priority), msg, size, field(priority));
+      }
+  }      
+
+// ---------------------------------------------- 
+// multicast
+// ---------------------------------------------- 
+
+  API  multicast {
+    curkey ++;
+    sprintf(trace_buf_, "Sender: root sending key %d\n", curkey);    
+    cut_trace();
+    got_from = 0;
+    got_msg = msg;
+    got_size = size;
+    got_key = curkey;
+    got_type = SPECTRUM_DATA_PARALLEL;
+    got_last = 0;
+    multicast_success_code = 1;
+    joined_got_multi_data();
+    return_code = multicast_success_code;
+  }
+
+  
+// ---------------------------------------------- 
+// ransub
+// ---------------------------------------------- 
+
+  joined timer ransub {
+
+    // This code times out ransub, for failure detection
+    if (collect_missing)
+      {
+      collect_expired = 1;
+      joined_xmit_collect_if_need();
+      collect_expired = 0;
+    }
+    if (source_ == me) {
+      if (collect_missing) {
+        foreach_neighbor(neighbor_ransub_children *, kid, mychildren) {
+          if (kid->seq != sequence)
+          {
+            sprintf(trace_buf_, "RanSub: coll still out at root for %x.\n", kid->ipaddr);
+            trace_print();
+          }
+        }
+        timer_resched(ransub, SPECTRUM_SHORT_RANSUB);	
+        return;
+      }
+
+      sequence++;
+      population = descendants + 1;
+      collect_missing=1;
+      sprintf (trace_buf_, "RanSub: root dist seq %d, population %d\n", sequence, population);
+      trace_print();
+
+      construct_achieved_summary();
+
+      foreach_neighbor(neighbor_ransub_children *, kid1, mychildren)
+	{
+	  candidate_set<cand_color_summary>  tosend(SPECTRUM_MAX_CANDS);
+	  if (participate_in_ransub())  
+	    tosend.addj(achieved.st);
+	  int sofar=1;
+	  foreach_neighbor(neighbor_ransub_children *, kid2, mychildren) 
+	    {
+	      if (kid1->ipaddr != kid2->ipaddr) {
+		tosend.compact(kid2->gathered, kid2->represents, sofar);
+		sofar+=kid2->represents;
+	      }
+	    }
+	  kid1->seq = sequence -1;
+	  sprintf(trace_buf_, "RanSub: root send dist seq %d to %x.\n", sequence, kid1->ipaddr);
+	  trace_print();
+	  route_distribute(kid1->ipaddr, sequence, population, tosend, 0, 0, -1);
+	}
+      timer_resched(ransub, SPECTRUM_NORMAL_RANSUB);
+    }
+
+  }
+
+// ---------------------------------------------- 
+// distribute
+// ---------------------------------------------- 
+  
+  joined recv distribute {
+    if (!neighbor_query(myparent, from)) {
+      sprintf(trace_buf_, "RanSub: dist from wrong parent %.8x seq %d.\n", from, field(sequence));
+      return;
+    }
+    sprintf(trace_buf_, "RanSub: dist from %.8x seq %d, expect %d.\n", from, field(sequence), sequence+1);
+    trace_print();
+
+
+    if (sequence == 0)
+      sequence = field(sequence) - 1;
+    int mysize;
+    int spectrum_strategy = parameters.getint("spectrum_strategy");
+
+    if (field(sequence) > sequence)
+    {
+      sequence = field(sequence);
+      curset = field(mydistribute);
+      //	curset.printem(me);
+      population = field(population);
+
+      // first do the bullet stuff
+      int best=0;
+      double best_overlap=1.0; 
+      neighbor_ransub_parent *mypa;
+      double potential = 0;
+      double best_potential = 0;
+      color_summary best_subscriptions;
+
+      int giver_for_removal = any_close_peers();
+
+      color_summary hoping;
+      adolfo_filter*  achieved_filters = (adolfo_filter*) color_achieved;
+      foreach_neighbor (neighbor_senders_to_me*, giver, givers) 
+	{
+	  for (int color = 0; color < NUM_COLORS ;color++ )
+	    {
+	      if (giver->subscriptions.st. table[ color])
+		{
+//  		  if ( curtime - giver->start_time > 
+//  		       ((double)3 * SPECTRUM_NORMAL_RANSUB) &&
+//  		       giver->ipaddr != source_) //dmk
+//  		    {
+//  		      hoping.st. table[ color]= (unsigned char) (100*achieved_filters[color].get_value()/(double) (SPECTRUM_COLOR_SIZE*1000.0));
+//  		      if (hoping.st. table[ color] > 100)
+//  			hoping.st. table[ color] = 100;
+//  		    }
+//  		  else
+		    {
+		      hoping.st. table[ color]= giver->subscriptions.st. table[ color];
+		    }
+		}
+	    }
+	}
+
+      for (int i = 0; i < curset.number_candidates ;i++ )
+	{
+	  color_summary source_ticket;
+	  source_ticket.st = curset.candidates[i];
+	  color_summary difference = source_ticket/hoping;//same colors pick > num?
+	  potential = difference.cumulative_potential();
+	  sprintf(trace_buf_, "Receiver: potential with %.8x is %f\n", source_ticket.get_address(),  potential);
+	  trace_print();
+	  mypa = neighbor_random(myparent);
+	  if (source_ticket.get_address()!=me &&
+	      source_ticket.get_address()!=giver_for_removal &&
+	      !neighbor_query (givers, source_ticket.get_address()) && // this guy is already a sender to me
+	      best_potential < potential*source_ticket.st.capacity_left)
+	    {
+	      best_subscriptions=difference;
+	      best_potential=potential;
+	      best=source_ticket.get_address();
+	    }
+	}
+ 
+      construct_achieved_summary();
+
+      debug_macro ("best_potential: %f from %x\n", best_potential, best);
+
+      // send the request if we found someone good and we need more bandwidth
+      int possible_colors = (int)hoping.cumulative_potential();
+      int missing_colors = max_inbound_colors - possible_colors;
+      sprintf(trace_buf_, "colors pos: %d max : %d miss: %d \n", possible_colors, max_inbound_colors, missing_colors);
+      trace_print();
+      int already = 0;
+      if (best!=0 && 
+	  neighbor_query (givers, best))
+	already = 1;
+
+      if (best_potential!=0 && 
+	  missing_colors > 0&&
+	  best != 0 &&
+	  (already || neighbor_space(givers))) {
+	neighbor_senders_to_me * givuh = neighbor_entry(givers, best);
+	if (!already) 
+	  {
+	    neighbor_add(givers, best);
+	    givuh = neighbor_entry(givers, best);
+	    givuh->start_time = curtime;
+	    color_summary dummy;
+	    givuh->subscriptions = dummy ; 
+	    sprintf(trace_buf_, "Receiver: Added %.8x as sender, bw %f, seq %d. pot %f,  \n", best, smooth_bandwidth.get_value(), sequence, best_potential );
+	    trace_print();
+	  }
+	else
+	  {
+	    sprintf(trace_buf_, "Receiver: existing %.8x as sender, bw %f, seq %d. pot %f,  \n", best, smooth_bandwidth.get_value(), sequence, best_potential );
+	    trace_print();
+	  }
+
+	//throw away enough colors so that we do not to 
+	//oversaturate the inbound link
+	color_summary to_send;
+	double will_have =  possible_colors;
+	for (int color = 0; color < NUM_COLORS ;color++ )
+	  {
+	    if (already && givuh->subscriptions.st.table[ color])
+	      {
+		//don't drop existing colors
+		to_send.st.table[ color] = givuh->subscriptions.st.table[ color];
+		debug_macro("keeping color %d from %.8x\n",  color, best);
+	      }	
+	    else if ( best_subscriptions.st.table[ color] > 0 
+// the sender will observe the bound instead		      
+//  &&
+//  		  will_have + best_subscriptions.st.table[ color]/(double)100.0 <= max_inbound_colors
+)
+	      {
+		to_send.st.table[ color] = best_subscriptions.st.table[ color];
+		will_have += best_subscriptions.st.table[ color]/(double)100.0;
+		debug_macro("asking color %d from %.8x\n",  color, best);
+	      }
+	  }
+
+	route_subscription_request(best, master_useful.get_value(), 0.0,  to_send.st, max_inbound_colors - subscriptions.cumulative_potential (), 0, 0, -1); 
+      }
+      else {
+	sprintf(trace_buf_, "Receiver: either my bandwidth %f is zero or close to the target %d or I have noone to select from.\n", smooth_bandwidth.get_value(), parameters.getint("streaming_rate")*1000);
+	trace_print();
+      }
+
+
+      // now the ransub processing
+      if (neighbor_size(mychildren) == 0)
+	{
+	  candidate_set<cand_color_summary>  tosend(SPECTRUM_MAX_CANDS);
+	  if (participate_in_ransub())
+	    tosend.addj( achieved.st);	
+	  neighbor_ransub_parent *papa = neighbor_random(myparent);
+	  sprintf(trace_buf_, "RanSub: send coll seq %d to %x.\n", sequence, papa->ipaddr);
+	  trace_print();
+	  route_collect(papa->ipaddr, sequence, 1, tosend, 0, 0, -1);
+	}
+      else
+	{       
+	  collect_missing = 1;
+	  foreach_neighbor(neighbor_ransub_children *, kid1, mychildren) 
+	    {
+	      candidate_set<cand_color_summary>  tosend(SPECTRUM_MAX_CANDS);
+	      if (participate_in_ransub())
+		tosend.addj( achieved.st);	
+	      tosend.compact(curset, population-descendants-1, 1);
+	      int sofar = population-descendants;
+	      foreach_neighbor(neighbor_ransub_children *, kid2, mychildren) 
+		{
+//  		  if (kid1->ipaddr != kid2->ipaddr) //dmk all
+		    {
+		    tosend.compact(kid2->gathered, kid2->represents, sofar);
+		    sofar+=kid2->represents;
+		  }
+		}
+	      kid1->seq = sequence -1;
+	      sprintf(trace_buf_, "RanSub: send dist seq %d to %x.\n", sequence, kid1->ipaddr);
+	      trace_print();
+	      route_distribute(kid1->ipaddr, sequence, population, tosend, 0, 0, -1);      
+	    }
+	  }
+    }
+    else {
+      candidate_set<cand_color_summary>  empty(SPECTRUM_MAX_CANDS);
+      route_collect(from, field(sequence), 0, empty, 0, 0, -1);
+      printf("RanSub: send empty coll seq %d to %x\n", field(sequence), from);
+    }
+  }
+
+  joined recv collect {
+    sprintf(trace_buf_, "RanSub: got coll seq %d(%d desc.) from %x\n", field(sequence), field(descendants), from);
+    trace_print();
+    if (sequence == field(sequence)) {
+      if (neighbor_query(mychildren, from)) {
+        neighbor_ransub_children *mykid = neighbor_entry(mychildren, from);
+        mykid->gathered = field(mycollect);
+        mykid->represents = field(descendants);
+        mykid->seq = field(sequence);
+      }
+      joined_xmit_collect_if_need();
+    }
+  }     
+
+
+
+  API notify {
+    // I am being notified of changes in the tree below
+    int i;
+
+    if (type == NBR_TYPE_CHILDREN)
+    {
+      if (size > SPECTRUM_MAX_CHILDREN) {
+        printf("Exception: notified of too many children %d!\n", size);
+        exit(54);
+      }
+      for (i=0; i<size; i++) {
+        if (!neighbor_query(mychildren, neighbors[i])) {
+          sprintf(trace_buf_, "Bullet: child %x added\n", neighbors[i]);
+          trace_print();
+          neighbor_add (mychildren, neighbors[i]);
+          neighbor_ransub_children *just_added = neighbor_entry(mychildren, neighbors[i]);
+          just_added->seq = -1;
+          just_added->represents = 1;
+          just_added->bandwidth_factor = 0.1;
+        }
+      }
+      int remove[SPECTRUM_MAX_CHILDREN];
+      int rc=0;
+      foreach_neighbor (neighbor_ransub_children *, kid, mychildren) {
+        int found = 0;
+        for (i=0; i<size; i++) {
+          if (neighbors[i] == kid->ipaddr)
+            found = 1;
+        }
+        if (found == 0)
+        {
+          remove[rc] = kid->ipaddr;
+          rc++;
+        }
+      }
+      for (i=0; i<rc; i++) {
+        sprintf(trace_buf_, "Bullet: child %x removed\n", remove[i]);
+        trace_print();
+        neighbor_remove (mychildren, remove[i]);
+      }
+      joined_xmit_collect_if_need();
+      upcall_notify(mychildren, NBR_TYPE_CHILDREN); // Notify upper layer of change
+    }
+    else {
+      if (!neighbor_query(myparent, neighbors[0])) {
+        sprintf(trace_buf_, "Bullet: parent changed to %x\n", neighbors[0]);
+        trace_print();
+        neighbor_clear(myparent);
+        neighbor_add (myparent, neighbors[0]);
+	upcall_notify(myparent, NBR_TYPE_PARENT); // Notify upper layer of change
+      }
+    }
+  }
+
+} //transitions
+
+routines {
+
+// ---------------------------------------------- 
+// remove_getter
+// ---------------------------------------------- 
+
+  void remove_getter(int from) {
+    if (!from) return;
+
+    printf("remove_getter for %.8x\n", from);
+    neighbor_receivers_from_me *guy = neighbor_entry ( getters, from);
+    if (guy) {
+    map <int,  set<int>* , less<int> >* colors  = (map <int,  set<int>* , less<int> >*) color_table;
+      //      printf("Sender: remove done from %.8x\n", from);
+      for (int color = 0; color < NUM_COLORS ;color++ )
+	{
+	  if (guy->subscriptions.st.table[color])
+	    {
+	      map <int, set<int>*, less<int> >::const_iterator element
+		=  colors->find(  color);
+	      set<int>* entry;
+	      if (element == colors->end()) { 
+		entry = new set<int> ();  (*colors)[ color] =   entry; 
+	      } else
+		entry = (*element).second;
+	      set<int>::const_iterator set_element = entry->find(color);
+	      if (set_element != entry->end())
+		{
+		  sending_colors -= guy->subscriptions.st.table[color]/(double)100.0;
+		  entry->erase(from);
+		}
+	      debug_macro("  removing color %d from %x\n",  color, from);
+	    }	
+	}
+    neighbor_remove (getters, from);
+    }    
+  }
+
+
+// ---------------------------------------------- 
+// remove_giver
+// ---------------------------------------------- 
+
+  void remove_giver(int from) {
+    if (!from) return;
+    printf("remove_giver for %.8x\n", from);
+    neighbor_senders_to_me *guy = neighbor_entry ( givers, from);
+    if (guy) {
+	adolfo_filter*  achieved_filters = (adolfo_filter*) color_achieved;	
+	for (int color = 0; color < NUM_COLORS ;color++ )
+	  {
+	    if (guy->subscriptions.st.table[ color])
+	      {
+//  		achieved_filters[color].clear();
+		subscriptions.st.table[color] = 0;
+		achieved.st.table[color] = 0;
+	      }
+	  } 
+	neighbor_remove(givers, from);
+    }
+  }    
+  
+  void read_color_file () 
+  {
+    struct hostent *phe;
+    struct hostent *mhe;
+    struct in_addr paddr;
+    struct in_addr myaddr;
+    FILE *myfile;
+
+    int i=0;
+    char  command[200];
+    char source[200];
+    char  destination[200];
+    char rest[1024];
+    char whole_line[1024];
+    int color = 0;
+    int color_total = 0;
+    char *color_filename = parameters.getstr("color_file");
+    printf("forced  color_filename: %s\n", color_filename);
+
+    myfile = (FILE *)fopen(color_filename, "r");
+    if (!myfile) {
+      printf("nonexistent forced color_file  %s\n", color_filename);
+      return;
+    }
+    while (fgets(whole_line, 512, myfile)!=NULL) {
+      int successful = 0;
+      if ((successful =sscanf(whole_line, "%s %s %s %d %[^\n]s", 
+               & command,& source, & destination, &color,&rest))!= 4) 
+	{
+	  if ((successful =sscanf(whole_line, "%s %d %[^\n]s", 
+				  & command, &color_total, &rest))== 2) {
+	    if (!strcmp( command,"color_count"))
+	      {
+		color_count = color_total;
+		printf("color_count: %d\n", color_count);
+	      }
+	  }   
+	  continue;
+	}
+      if (strcmp( command,"color_route"))
+	continue;   
+      if ((mhe = gethostbyname( source)) == 0) {
+        printf("Bad host lookup.\n");
+        exit(24);
+      }
+      memcpy(&myaddr, mhe->h_addr_list[0], sizeof(struct in_addr)); 
+
+      if ((phe = gethostbyname( destination)) == 0) {
+        printf("Bad host lookup.\n");
+        exit(24);
+      }
+
+      memcpy(&paddr, phe->h_addr_list[0], sizeof(struct in_addr));
+      map <int,  set<int>* , less<int> >* colors  = (map <int,  set<int>* , less<int> >*) color_table;
+	
+      if (myaddr.s_addr == me) {   // i am  source of this unicast connection
+	map <int, set<int>*, less<int> >::const_iterator element
+	  =  colors->find(  color);
+	set<int>*   entry;
+	if (element ==  colors->end())
+	  {
+	     entry = new set<int> ();
+	    (*colors)[ color] =   entry; 
+	  }
+	else
+	  {
+	    entry = (*element).second;
+	  }	
+	if ( source_ == me )  //dmk: testing
+	  {
+	    sending_colors += 1.0;
+	    entry-> insert(( int)paddr.s_addr);
+	    debug_macro("forced  color line: %s %.8x %s %.8x %d\n",  source, myaddr,  destination, paddr, color);
+	  }
+	else
+	  {
+//  	    debug_macro("avoid  color line: %s %.8x %s %.8x %d\n",  source, myaddr,  destination, paddr, color);
+	  }
+	
+      }
+      else if (paddr.s_addr == me)
+	{
+	  neighbor_senders_to_me *guy = neighbor_entry ( givers, myaddr.s_addr);
+	  if (!guy && ( source_ ==  myaddr.s_addr )  //dmk: testing
+	      ) 
+	    {
+	      debug_macro("added giver: %s %.8x\n",  source, myaddr,  color);
+	      neighbor_add(givers, myaddr.s_addr);
+	      guy = neighbor_entry ( givers, myaddr.s_addr);
+	      guy->start_time = curtime;
+	    }
+
+	  if ( source_ ==  myaddr.s_addr )  //dmk: testing
+	    {
+	      debug_macro("getting color line: %s %.8x %s %.8x %d\n",  source, myaddr,  destination, paddr, color);
+	      subscriptions.st.table[color] = 100;
+	      guy->subscriptions.st.table[ color] = 100;
+	    }
+	}
+    }
+    fclose(myfile);
+  }
+
+  void read_capacity_file () 
+  {
+    struct hostent *phe;
+    struct hostent *mhe;
+    struct in_addr paddr;
+    struct in_addr myaddr;
+    FILE *myfile;
+
+    int i=0, inbound, outbound, who;
+    char rest[1024];
+    char whole_line[1024];
+    char * capacity_filename = parameters.getstr("capacity_file");
+    printf("forced  capacity_filename: %s\n", capacity_filename);
+
+    myfile = (FILE *)fopen( capacity_filename, "r");
+    if (!myfile) {
+      printf("nonexistent forced  capacity_file  %s\n",  capacity_filename);
+      return;
+    }
+    char* my_hostname = (char*)get_hostname();
+    printf("my_hostname: %s\n", my_hostname);
+
+    int myself =  atoi (my_hostname+6);
+    printf("myself: %d\n", myself);
+
+    while (fgets(whole_line, 512, myfile)!=NULL) {
+      int successful = 0;
+      if ((successful =sscanf(whole_line, "%d %d %d %[^\n]s", 
+               &who,&inbound, & outbound,&rest))!= 3) 
+	{
+	  continue;
+	}
+      if (myself == who)
+	{
+	  inbound_capacity = inbound;
+	  outbound_capacity =  outbound;
+	  debug_macro("%d: inbound: %d, outbound: %d\n", myself,inbound_capacity, outbound_capacity);
+	}
+      
+    }
+    fclose(myfile);
+  }
+
+// ---------------------------------------------- 
+// joined_got_multi_data
+// ---------------------------------------------- 
+
+  void joined_got_multi_data() {
+    neighbor_ransub_parent *papa;
+    neighbor_senders_to_me *givuh;
+    double application_spacing = (double)(parameters.getint("data_packet_size")) *8/(1000.0*(double) parameters.getint("streaming_rate"));
+
+//      sprintf(trace_buf_, "got data %d, type %d, from %.8x\n", got_key, got_type, got_from);
+//      trace_print();
+
+    //#define TRACE_KEY_MOD 100
+#ifdef TRACE_KEY_MOD
+    if (got_key%TRACE_KEY_MOD == 0 && source_ != me) {
+      sprintf(trace_buf_, "REPLAY_PACKET %s %s %d\n", get_hostname(got_from),  get_hostname(), got_key);
+      trace_print();
+    }
+#endif
+
+    int spectrum_strategy = parameters.getint("spectrum_strategy");
+
+    int color =  got_key% color_count;
+//      int useful = working_file.insert( got_key, 0 );
+    int useful = working_file.insert( got_key, 0, (unsigned char *)got_msg, got_size );
+    if (got_type == SPECTRUM_DATA_PARALLEL ||
+	got_type == SPECTRUM_DATA_RECONCILE) {
+      parallel_file.insert( got_key, 1);
+      if (got_from) 
+	{
+	givuh = neighbor_entry(givers, got_from);
+	if (givuh)
+	  {
+	    givuh->arrivals.update();
+	    if (useful)
+	      givuh->useful.update();
+	  }
+      }
+    }
+    master.update();
+    if (useful)
+      {
+#if SMALL
+	int mod_to = got_key % SPECTRUM_MAX_PEERS;
+	bloom_filter** filter_array = (bloom_filter**) small_filters;
+	filter_array[mod_to]->insert( got_key, 0);
+
+	mod_to = got_key % (SPECTRUM_MAX_PEERS-1);
+	filter_array = (bloom_filter**) small_filters1;
+	filter_array[mod_to]->insert( got_key, 0);
+#endif
+      }
+    if (useful)
+      {
+	total_received++;
+	master_useful.update();
+	upcall_deliver( got_msg, got_size, COMM_TYPE_MULTICAST);
+	sprintf(trace_buf_, "got useful data %d, type %d, from %.8x\n", got_key, got_type, got_from);
+	cut_trace();
+      }
+    else {
+      sprintf(trace_buf_, "got useless data %d, color %d, from %.8x\n", got_key, color, got_from);
+//  	cut_trace();
+      trace_print();
+      got_msg = 0;
+      return;
+    }
+
+    int current = 0;
+    double myrandom = 0.0;
+    int sent_this_interval=0;
+
+  
+    if ( got_type == SPECTRUM_DATA_PARALLEL)
+      {
+      adolfo_filter*  achieved_filters = (adolfo_filter*) color_achieved;
+
+      achieved_filters[color].update();
+      map <int,  set<int>* , less<int> >* colors  = (map <int,  set<int>* , less<int> >*) color_table;
+      map <int, set<int>*, less<int> >::const_iterator element
+	=  colors->find(  color);
+      set<int>*   entry;
+      if (element !=  colors->end())
+	{
+	  entry = (*element).second;
+	  set<int>::iterator element1;
+	  for(element1=entry->begin();element1!=entry->end();element1++)
+	    {
+	      int value = *element1; 	      
+//  	      sprintf(trace_buf_, "Sending %d to %x color %d strat %d\n", got_key, value, color, spectrum_strategy);
+//  	      trace_print();
+	      route_peer_data( value, 
+			       COMM_TYPE_MULTICAST, 
+			       1, got_key, got_msg, got_size, -1);
+	    }
+ 	}	
+      }
+
+    got_msg = 0;
+    multicast_success_code = 0;
+  }
+
+// ---------------------------------------------- 
+// close_peers
+// ---------------------------------------------- 
+
+  int any_close_peers() {
+    // close peers if need be
+    int drop = 0;
+    double drop_bw;
+    double least_from_me=1.0;
+
+//  return 0;
+
+    if (sequence%3 != 0)
+      return 0;
+
+    // first nuke the receiver who gets the least from me
+    if ( !neighbor_space(getters) ) {   // only take one out if no space      
+      foreach_neighbor (neighbor_receivers_from_me*, gettuh, getters) {
+        if ( curtime - gettuh->start_time > 
+            ((double)3 * SPECTRUM_NORMAL_RANSUB) ) {
+          // Allow at least 3 RanSub epochs for each guy to get data
+          if (gettuh->reported_peer_bandwidth/gettuh->reported_total_bandwidth < least_from_me ) {
+            drop = gettuh->ipaddr;
+            least_from_me = gettuh->reported_peer_bandwidth/gettuh->reported_total_bandwidth;
+          }
+        }
+      }
+      if (drop) {
+	neighbor_receivers_from_me *nuke = neighbor_entry(getters, drop);
+	route_remove_to_receiver(nuke->ipaddr, 0, 0, -1);
+	sprintf(trace_buf_, "Sender: Closing useless receiver %x with values %f %f %f\n", nuke->ipaddr, nuke->reported_peer_bandwidth, nuke->reported_total_bandwidth, nuke->start_time);
+	trace_print();
+	remove_getter(nuke->ipaddr);
+      }
+    }
+    foreach_neighbor (neighbor_senders_to_me*, givuh, givers) {
+      sprintf(trace_buf_, "REPLAY rcvdst %9s %8x bw %6d use %6d\n", 
+	      get_hostname(givuh->ipaddr), 
+	      givuh->ipaddr,
+	      (int) givuh->arrivals.get_value(),
+	      (int) givuh->useful.get_value()
+	      );
+      trace_print();
+    }
+    foreach_neighbor (neighbor_receivers_from_me*, gettuh, getters) {
+      sprintf(trace_buf_, "REPLAY rcvsnd %9s %8x tot %6d me %6d\n", 
+	      get_hostname(gettuh->ipaddr), 
+	      gettuh->ipaddr,
+	      (int) gettuh->reported_peer_bandwidth,
+	      (int) gettuh->reported_total_bandwidth 
+	      );
+      trace_print();
+    }    
+    
+    drop = 0;
+    int closed_irrat=0;
+    // then nuke the sender who gives me nothing or the one who gives me the least
+    if ( !neighbor_space(givers) ) {   // only take one out if there is no space
+      foreach_neighbor (neighbor_senders_to_me*, givuh, givers) {
+        if ( curtime - givuh->start_time > ((double)3 * SPECTRUM_NORMAL_RANSUB) ) {
+          // Allow at least 3 RanSub epochs for each guy to give us data
+          if (givuh->useful.get_value()/givuh->arrivals.get_value() < SPECTRUM_CLOSING_RATIO) {
+            sprintf(trace_buf_, "Receiver: Closing irrational sender %x with values %f %f\n", givuh->ipaddr, givuh->useful.get_value(), givuh->arrivals.get_value());
+            trace_print();
+            closed_irrat = givuh->ipaddr;
+            drop = givuh->ipaddr;
+            drop_bw = givuh->useful.get_value();
+	    break;
+          }
+          else if ( !drop || givuh->useful.get_value() < drop_bw) {
+            drop = givuh->ipaddr;
+            drop_bw = givuh->useful.get_value();
+          }
+        }
+      }
+      if (closed_irrat) {
+	route_remove_to_sender(closed_irrat, 0, 0, -1);
+	remove_giver(closed_irrat);
+      }
+      if (!closed_irrat && drop) {
+	neighbor_senders_to_me *nuke = neighbor_entry(givers, drop);
+	route_remove_to_sender(nuke->ipaddr, 0, 0, -1);
+	sprintf(trace_buf_, "Receiver: Closing useless sender %x with values %f %f %f\n", nuke->ipaddr, nuke->useful.get_value(), nuke->arrivals.get_value(), nuke->start_time);
+	trace_print();
+
+	remove_giver(nuke->ipaddr);
+      }
+    }
+    return drop;
+  }
+
+
+// ---------------------------------------------- 
+// construct_achieved_summary
+// ---------------------------------------------- 
+
+  void  construct_achieved_summary() {
+    adolfo_filter*  achieved_filters = (adolfo_filter*) color_achieved;
+
+    for (int color = 0; color < NUM_COLORS ;color++ )
+	{
+	  achieved.st. table[ color] = (unsigned char) (100*achieved_filters[color].get_value()/(double) (SPECTRUM_COLOR_SIZE*1000.0));
+	  if (achieved.st. table[ color] > 100)
+	    {
+	      achieved.st. table[ color] = 100;
+	    }
+	}
+    achieved.st.address  = me;
+    achieved.st.capacity_left  = max_outbound_colors - sending_colors;
+  }
+
+  int participate_in_ransub() {
+    if ( neighbor_space(getters) && sending_colors< max_outbound_colors) // && source_ != me)// && (neighbor_size(mychildren)+neighbor_size(getters))<SPECTRUM_MAX_PEERS )
+      return 1;
+    else
+      return 0;
+  }
+  void joined_xmit_collect_if_need() {
+    int propagate=1;
+    foreach_neighbor(neighbor_ransub_children *, kid, mychildren) {
+      if (kid->seq != sequence && kid->seq !=-1)
+        propagate = 0;
+    }
+    if (propagate) {      
+      sprintf(trace_buf_,"joined_xmit_collect_if_need: kids are okay\n");
+      trace_print ();
+    }
+    if (collect_expired)
+      propagate = 1;
+    if (propagate && collect_missing) {      
+      construct_achieved_summary();
+      collect_missing = 0;      
+      candidate_set<cand_color_summary>  tosend(SPECTRUM_MAX_CANDS);
+      if (participate_in_ransub())
+	tosend.addj(achieved.st);
+      int sofar = 1;
+      descendants = 0;
+      foreach_neighbor(neighbor_ransub_children *, kid, mychildren) 
+      {
+        descendants += kid->represents;
+        tosend.compact(kid->gathered, kid->represents, sofar);
+        sofar+=kid->represents;
+        if (collect_expired &&
+            kid->seq != sequence && kid->seq !=-1)
+	  {
+	    // this kid isn't ready, we timed out the collect
+	    sprintf(trace_buf_,"kid->address: %x  timed out seq %d sequence %d\n", kid->ipaddr, kid->seq, sequence);
+	    trace_print ();
+	    kid->represents=0;  
+	  }
+      }
+      if (source_ == me) {
+        curset = tosend;
+        //	curset.printem(me);
+      }
+      else {
+	neighbor_ransub_parent *papa = neighbor_random(myparent);
+	sprintf(trace_buf_, "RanSub: sending collect sequence %d (%d desc.)to %x.\n", sequence, descendants+1, papa->ipaddr);
+	trace_print();
+	route_collect(papa->ipaddr, sequence, descendants+1, tosend, 0, 0, -1);
+      }
+    }
+  }
+
+}

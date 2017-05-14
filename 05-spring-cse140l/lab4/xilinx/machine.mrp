@@ -1,0 +1,394 @@
+Release 7.1.01i Map H.39
+Xilinx Mapping Report File for Design 'machine'
+
+Design Information
+------------------
+Command Line   : G:/xilinx/ise71/bin/nt/map.exe -ise
+g:\xilinx\projects\lab4\lab4.ise -intstyle ise -p xc2v80-cs144-5 -cm area -pr b
+-k 4 -c 100 -tx off -o machine_map.ncd machine.ngd machine.pcf 
+Target Device  : xc2v80
+Target Package : cs144
+Target Speed   : -5
+Mapper Version : virtex2 -- $Revision: 1.26.6.4 $
+Mapped Date    : Wed Jun 01 15:11:54 2005
+
+Design Summary
+--------------
+Number of errors:      0
+Number of warnings:    2
+Logic Utilization:
+  Number of Slice Flip Flops:          19 out of   1,024    1%
+  Number of 4 input LUTs:              51 out of   1,024    4%
+Logic Distribution:
+  Number of occupied Slices:           35 out of     512    6%
+  Number of Slices containing only related logic:      35 out of      35  100%
+  Number of Slices containing unrelated logic:          0 out of      35    0%
+        *See NOTES below for an explanation of the effects of unrelated logic
+Total Number 4 input LUTs:             59 out of   1,024    5%
+  Number used as logic:                51
+  Number used as 16x1 ROMs:             8
+
+  Number of bonded IOBs:               32 out of      92   34%
+    IOB Flip Flops:                     2
+  Number of GCLKs:                      1 out of      16    6%
+
+   Number of RPM macros:            5
+Total equivalent gate count for design:  772
+Additional JTAG gate count for IOBs:  1,536
+Peak Memory Usage:  101 MB
+
+NOTES:
+
+   Related logic is defined as being logic that shares connectivity - e.g. two
+   LUTs are "related" if they share common inputs.  When assembling slices,
+   Map gives priority to combine logic that is related.  Doing so results in
+   the best timing performance.
+
+   Unrelated logic shares no connectivity.  Map will only begin packing
+   unrelated logic into a slice once 99% of the slices are occupied through
+   related logic packing.
+
+   Note that once logic distribution reaches the 99% level through related
+   logic packing, this does not mean the device is completely utilized.
+   Unrelated logic packing will then begin, continuing until all usable LUTs
+   and FFs are occupied.  Depending on your timing budget, increased levels of
+   unrelated logic packing may adversely affect the overall timing performance
+   of your design.
+
+Table of Contents
+-----------------
+Section 1 - Errors
+Section 2 - Warnings
+Section 3 - Informational
+Section 4 - Removed Logic Summary
+Section 5 - Removed Logic
+Section 6 - IOB Properties
+Section 7 - RPMs
+Section 8 - Guide Report
+Section 9 - Area Group Summary
+Section 10 - Modular Design Summary
+Section 11 - Timing Report
+Section 12 - Configuration String Information
+Section 13 - Additional Device Resource Counts
+
+Section 1 - Errors
+------------------
+
+Section 2 - Warnings
+--------------------
+WARNING:LIT:243 - Logical network XLXI_3/XLXI_1/CEO has no load.
+WARNING:LIT:374 - The above warning message base_net_load_rule is repeated 7
+   more times for the following (max. 5 shown):
+   XLXI_1/XLXI_4/GT,
+   XLXI_1/XLXI_3/O5,
+   XLXI_1/XLXI_3/O6,
+   XLXI_1/XLXI_3/O7,
+   XLXI_1/XLXI_2/S<6>
+   To see the details of these warning messages, please use the -detail switch.
+
+Section 3 - Informational
+-------------------------
+INFO:MapLib:562 - No environment variables are currently set.
+INFO:MapLib:535 - The following Virtex BUFG(s) is/are being retargetted to
+   Virtex2 BUFGMUX(s) with input tied to I0 and Select pin tied to constant 0:
+   BUFGP symbol "clk_BUFGP" (output signal=clk_BUFGP)
+INFO:LIT:244 - All of the single ended outputs in this design are using slew
+   rate limited output drivers. The delay on speed critical single ended outputs
+   can be dramatically reduced by designating them as fast outputs in the
+   schematic.
+
+Section 4 - Removed Logic Summary
+---------------------------------
+  34 block(s) removed
+  30 block(s) optimized away
+  34 signal(s) removed
+
+Section 5 - Removed Logic
+-------------------------
+
+The trimmed logic report below shows the logic removed from your design due to
+sourceless or loadless signals, and VCC or ground connections.  If the removal
+of a signal or symbol results in the subsequent removal of an additional signal
+or symbol, the message explaining that second removal will be indented.  This
+indentation will be repeated as a chain of related logic is removed.
+
+To quickly locate the original cause for the removal of a chain of logic, look
+above the place where that logic is listed in the trimming report, then locate
+the lines that are least indented (begin at the leftmost edge).
+
+The signal "XLXI_3/XLXI_1/TC" is sourceless and has been removed.
+ Sourceless block "XLXI_3/XLXI_1/I_36_67" (AND) removed.
+  The signal "XLXI_3/XLXI_1/CEO" is sourceless and has been removed.
+The signal "XLXI_1/XLXI_4/GT" is sourceless and has been removed.
+The signal "XLXI_1/XLXI_4/GT0_1" is sourceless and has been removed.
+ Sourceless block "XLXI_1/XLXI_4/I_36_37" (AND) removed.
+  The signal "XLXI_1/XLXI_4/GTA" is sourceless and has been removed.
+   Sourceless block "XLXI_1/XLXI_4/I_36_40" (OR) removed.
+The signal "XLXI_1/XLXI_4/GE0_1" is sourceless and has been removed.
+ Sourceless block "XLXI_1/XLXI_4/I_36_8" (OR) removed.
+The signal "XLXI_1/XLXI_4/GT_1" is sourceless and has been removed.
+The signal "XLXI_1/XLXI_4/GTB" is sourceless and has been removed.
+The signal "XLXI_1/XLXI_4/GTC" is sourceless and has been removed.
+The signal "XLXI_1/XLXI_3/O5" is sourceless and has been removed.
+The signal "XLXI_1/XLXI_3/O6" is sourceless and has been removed.
+The signal "XLXI_1/XLXI_3/O7" is sourceless and has been removed.
+The signal "XLXI_1/XLXI_3/MO5" is sourceless and has been removed.
+ Sourceless block "XLXI_1/XLXI_3/I_O5/I_36_7" (AND) removed.
+  The signal "XLXI_1/XLXI_3/I_O5/M0" is sourceless and has been removed.
+   Sourceless block "XLXI_1/XLXI_3/I_O5/I_36_8" (OR) removed.
+The signal "XLXI_1/XLXI_3/MO6" is sourceless and has been removed.
+ Sourceless block "XLXI_1/XLXI_3/I_O6/I_36_7" (AND) removed.
+  The signal "XLXI_1/XLXI_3/I_O6/M0" is sourceless and has been removed.
+   Sourceless block "XLXI_1/XLXI_3/I_O6/I_36_8" (OR) removed.
+The signal "XLXI_1/XLXI_3/MO7" is sourceless and has been removed.
+ Sourceless block "XLXI_1/XLXI_3/I_O7/I_36_7" (AND) removed.
+  The signal "XLXI_1/XLXI_3/I_O7/M0" is sourceless and has been removed.
+   Sourceless block "XLXI_1/XLXI_3/I_O7/I_36_8" (OR) removed.
+The signal "XLXI_1/XLXI_3/M70" is sourceless and has been removed.
+ Sourceless block "XLXI_1/XLXI_3/I_MO5/I_36_9" (AND) removed.
+  The signal "XLXI_1/XLXI_3/I_MO5/M1" is sourceless and has been removed.
+   Sourceless block "XLXI_1/XLXI_3/I_MO5/I_36_8" (OR) removed.
+ Sourceless block "XLXI_1/XLXI_3/I_MO7/I_36_7" (AND) removed.
+  The signal "XLXI_1/XLXI_3/I_MO7/M0" is sourceless and has been removed.
+   Sourceless block "XLXI_1/XLXI_3/I_MO7/I_36_8" (OR) removed.
+The signal "XLXI_1/XLXI_3/I_MO5/M0" is sourceless and has been removed.
+The signal "XLXI_1/XLXI_3/I_MO6/M0" is sourceless and has been removed.
+ Sourceless block "XLXI_1/XLXI_3/I_MO6/I_36_8" (OR) removed.
+The signal "XLXI_1/XLXI_3/I_MO6/M1" is sourceless and has been removed.
+The signal "XLXI_1/XLXI_3/I_MO7/M1" is sourceless and has been removed.
+The signal "XLXI_1/XLXI_3/I_M70/M0" is sourceless and has been removed.
+ Sourceless block "XLXI_1/XLXI_3/I_M70/I_36_8" (OR) removed.
+The signal "XLXI_1/XLXI_3/I_M70/M1" is sourceless and has been removed.
+The signal "XLXI_1/XLXI_3/I_O5/M1" is sourceless and has been removed.
+The signal "XLXI_1/XLXI_3/I_O6/M1" is sourceless and has been removed.
+The signal "XLXI_1/XLXI_3/I_O7/M1" is sourceless and has been removed.
+The signal "XLXI_1/XLXI_2/S<6>" is sourceless and has been removed.
+The signal "XLXI_1/XLXI_2/S<7>" is sourceless and has been removed.
+The signal "XLXI_1/XLXI_2/S<5>" is sourceless and has been removed.
+The signal "XLXI_1/XLXI_2/dummy" is sourceless and has been removed.
+Unused block "XLXI_1/XLXI_2/I_36_77" (XOR) removed.
+Unused block "XLXI_1/XLXI_2/I_36_80" (XOR) removed.
+Unused block "XLXI_1/XLXI_2/I_36_81" (XOR) removed.
+Unused block "XLXI_1/XLXI_2/XST_GND" (ZERO) removed.
+Unused block "XLXI_1/XLXI_3/I_M70/I_36_7" (AND) removed.
+Unused block "XLXI_1/XLXI_3/I_M70/I_36_9" (AND) removed.
+Unused block "XLXI_1/XLXI_3/I_MO5/I_36_7" (AND) removed.
+Unused block "XLXI_1/XLXI_3/I_MO6/I_36_7" (AND) removed.
+Unused block "XLXI_1/XLXI_3/I_MO6/I_36_9" (AND) removed.
+Unused block "XLXI_1/XLXI_3/I_MO7/I_36_9" (AND) removed.
+Unused block "XLXI_1/XLXI_3/I_O5/I_36_9" (AND) removed.
+Unused block "XLXI_1/XLXI_3/I_O6/I_36_9" (AND) removed.
+Unused block "XLXI_1/XLXI_3/I_O7/I_36_9" (AND) removed.
+Unused block "XLXI_1/XLXI_4/I_36_10" (AND) removed.
+Unused block "XLXI_1/XLXI_4/I_36_14" (AND) removed.
+Unused block "XLXI_1/XLXI_4/I_36_20" (AND) removed.
+Unused block "XLXI_1/XLXI_4/I_36_38" (AND) removed.
+Unused block "XLXI_3/XLXI_1/I_36_31" (AND) removed.
+
+Optimized Block(s):
+TYPE 		BLOCK
+XOR2 		XLXI_1/XLXI_2/I_36_221
+XOR2 		XLXI_1/XLXI_2/I_36_222
+XOR2 		XLXI_1/XLXI_2/I_36_223
+AND2 		XLXI_1/XLXI_3/I_M45/I_36_9
+AND2b1 		XLXI_1/XLXI_3/I_M56/I_36_7
+OR2 		XLXI_1/XLXI_3/I_M56/I_36_8
+AND2 		XLXI_1/XLXI_3/I_M56/I_36_9
+AND2b1 		XLXI_1/XLXI_3/I_M67/I_36_7
+OR2 		XLXI_1/XLXI_3/I_M67/I_36_8
+AND2 		XLXI_1/XLXI_3/I_M67/I_36_9
+AND2 		XLXI_1/XLXI_3/I_MO3/I_36_9
+AND2 		XLXI_1/XLXI_3/I_MO4/I_36_9
+AND2 		XLXI_1/XLXI_3/I_O0/I_36_9
+AND2 		XLXI_1/XLXI_3/I_O1/I_36_9
+AND2 		XLXI_1/XLXI_3/I_O2/I_36_9
+AND2 		XLXI_1/XLXI_3/I_O3/I_36_9
+AND2 		XLXI_1/XLXI_3/I_O4/I_36_9
+AND2b1 		XLXI_1/XLXI_4/I_36_1
+NOR2 		XLXI_1/XLXI_4/I_36_22
+AND2b1 		XLXI_1/XLXI_4/I_36_24
+AND2b1 		XLXI_1/XLXI_4/I_36_25
+XNOR2 		XLXI_1/XLXI_4/I_36_26
+AND2b1 		XLXI_1/XLXI_4/I_36_27
+XNOR2 		XLXI_1/XLXI_4/I_36_28
+AND3b1 		XLXI_1/XLXI_4/I_36_29
+AND3b1 		XLXI_1/XLXI_4/I_36_30
+OR2 		XLXI_1/XLXI_4/I_36_34
+OR2 		XLXI_1/XLXI_4/I_36_35
+VCC 		XLXI_3/XLXI_1/I_36_58
+GND 		XST_GND
+
+To enable printing of redundant blocks removed and signals merged, set the
+detailed map report option and rerun map.
+
+Section 6 - IOB Properties
+--------------------------
+
++------------------------------------------------------------------------------------------------------------------------+
+| IOB Name                           | Type    | Direction | IO Standard | Drive    | Slew | Reg (s)  | Resistor | IOB   |
+|                                    |         |           |             | Strength | Rate |          |          | Delay |
++------------------------------------------------------------------------------------------------------------------------+
+| GE_FLG                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| OV_FLG                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| R1<0>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| R1<1>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| R1<2>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| R1<3>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| R1<4>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| R2<0>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| R2<1>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| R2<2>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| R2<3>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| R2<4>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| R3<0>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| R3<1>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| R3<2>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| R3<3>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| R3<4>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| clk                                | IOB     | INPUT     | LVTTL       |          |      |          |          |       |
+| clk_en                             | IOB     | INPUT     | LVTTL       |          |      |          |          |       |
+| inst<0>                            | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| inst<1>                            | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| inst<2>                            | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| inst<3>                            | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| inst<4>                            | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| inst<5>                            | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| inst<6>                            | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| inst<7>                            | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| pc<0>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| pc<1>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| pc<2>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| pc<3>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| rst                                | IOB     | INPUT     | LVTTL       |          |      |          |          |       |
++------------------------------------------------------------------------------------------------------------------------+
+
+Section 7 - RPMs
+----------------
+XLXI_3_XLXI_1_4                         
+XLXI_3/XLXI_1/XLXI_3/XLXI_1_I_Q3_3      
+XLXI_3/XLXI_1/XLXI_3/XLXI_1_I_Q2_2      
+XLXI_3/XLXI_1/XLXI_3/XLXI_1_I_Q1_1      
+XLXI_3/XLXI_1/XLXI_3/XLXI_1_I_Q0_0      
+XLXI_2_XLXI_4_XLXI_7_4                  
+XLXI_2_XLXI_4_XLXI_6_3                  
+XLXI_2_XLXI_4_XLXI_5_2                  
+XLXI_2_XLXI_4_XLXI_4_1                  
+XLXI_2_XLXI_4_XLXI_2_0                  
+XLXI_1_XLXI_55_XLXI_2_XLXI_7_4          
+XLXI_1_XLXI_55_XLXI_2_XLXI_6_3          
+XLXI_1_XLXI_55_XLXI_2_XLXI_5_2          
+XLXI_1_XLXI_55_XLXI_2_XLXI_4_1          
+XLXI_1_XLXI_55_XLXI_2_XLXI_2_0          
+XLXI_1_XLXI_55_XLXI_1_XLXI_7_4          
+XLXI_1_XLXI_55_XLXI_1_XLXI_6_3          
+XLXI_1_XLXI_55_XLXI_1_XLXI_5_2          
+XLXI_1_XLXI_55_XLXI_1_XLXI_4_1          
+XLXI_1_XLXI_55_XLXI_1_XLXI_2_0          
+XLXI_1_XLXI_4_24                        
+XLXI_1_XLXI_3_25                        
+XLXI_1_XLXI_2_26                        
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_O7_2      
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_O6_3      
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_O5_4      
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_O4_5      
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_O3_6      
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_O2_7      
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_O1_1      
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_O0_0      
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_MO7_15    
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_MO6_23    
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_MO5_22    
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_MO4_21    
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_MO3_20    
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_MO2_19    
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_MO1_18    
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_MO0_17    
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_M70_16    
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_M67_10    
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_M56_9     
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_M45_8     
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_M34_11    
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_M23_14    
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_M12_13    
+XLXI_1/XLXI_3/XLXI_1/XLXI_3_I_M01_12    
+
+Section 8 - Guide Report
+------------------------
+Guide not run on this design.
+
+Section 9 - Area Group Summary
+------------------------------
+No area groups were found in this design.
+
+Section 10 - Modular Design Summary
+-----------------------------------
+Modular Design not used for this design.
+
+Section 11 - Timing Report
+--------------------------
+This design was not run using timing mode.
+
+Section 12 - Configuration String Details
+--------------------------
+Use the "-detail" map option to print out Configuration Strings
+
+Section 13 - Additional Device Resource Counts
+----------------------------------------------
+Number of JTAG Gates for IOBs = 32
+Number of Equivalent Gates for Design = 772
+Number of RPM Macros = 5
+Number of Hard Macros = 0
+CAPTUREs = 0
+BSCANs = 0
+STARTUPs = 0
+PCILOGICs = 0
+DCMs = 0
+GCLKs = 1
+ICAPs = 0
+18X18 Multipliers = 0
+Block RAMs = 0
+TBUFs = 0
+Total Registers (Flops & Latches in Slices & IOBs) not driven by LUTs = 1
+IOB Dual-Rate Flops not driven by LUTs = 0
+IOB Dual-Rate Flops = 0
+IOB Slave Pads = 0
+IOB Master Pads = 0
+IOB Latches not driven by LUTs = 0
+IOB Latches = 0
+IOB Flip Flops not driven by LUTs = 0
+IOB Flip Flops = 2
+Unbonded IOBs = 0
+Bonded IOBs = 32
+ORCYs = 0
+XORs = 5
+CARRY_INITs = 4
+CARRY_SKIPs = 0
+CARRY_MUXes = 8
+Total Shift Registers = 0
+Static Shift Registers = 0
+Dynamic Shift Registers = 0
+16x1 ROMs = 8
+16x1 RAMs = 0
+32x1 RAMs = 0
+Dual Port RAMs = 0
+MUXFs = 0
+MULT_ANDs = 0
+4 input LUTs used as Route-Thrus = 0
+4 input LUTs = 51
+Slice Latches not driven by LUTs = 0
+Slice Latches = 0
+Slice Flip Flops not driven by LUTs = 1
+Slice Flip Flops = 19
+Slices = 35
+F6 Muxes = 0
+F5 Muxes = 0
+F8 Muxes = 0
+F7 Muxes = 0
+Number of LUT signals with 4 loads = 0
+Number of LUT signals with 3 loads = 0
+Number of LUT signals with 2 loads = 8
+Number of LUT signals with 1 load = 35
+NGM Average fanout of LUT = 2.04
+NGM Maximum fanout of LUT = 17
+NGM Average fanin for LUT = 3.1569
+Number of LUT symbols = 51

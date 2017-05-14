@@ -1,0 +1,174 @@
+Release 7.1.01i - par H.39
+Copyright (c) 1995-2005 Xilinx, Inc.  All rights reserved.
+
+Wed Jun 01 15:12:09 2005
+
+
+# NOTE: This file is designed to be imported into a spreadsheet program
+# such as Microsoft Excel for viewing, printing and sorting. The |
+# character is used as the data field separator. This file is also designed
+# to support parsing.
+#
+INPUT FILE:       machine_map.ncd
+OUTPUT FILE:      machine.pad
+PART TYPE:        xc2v80
+SPEED GRADE:      -5
+PACKAGE:          cs144
+
+Pinout by Pin Number:
+
+-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+Pin Number|Signal Name|Pin Usage|Pin Name|Direction|IO Standard|IO Bank Number|Drive (mA)|Slew Rate|Termination|IOB Delay|Voltage|Constraint|DCI Value|IO Register|Signal Integrity|
+A1|||HSWAP_EN|||||||||||||
+A2|||RSVD|||||||||||||
+A3||DIFFM|IO_L01P_0|UNUSED||0||||||||||
+A4||DIFFS|IO_L03N_0/VRP_0|UNUSED||0||||||||||
+A5||DIFFS|IO_L94N_0/VREF_0|UNUSED||0||||||||||
+A6||DIFFS|IO_L96N_0/GCLK5P|UNUSED||0||||||||||
+A7||DIFFS|IO_L96N_1/GCLK3P|UNUSED||1||||||||||
+A8||DIFFS|IO_L95N_1/GCLK1P|UNUSED||1||||||||||
+A9|||VCCO_1|||1|||||any******|||||
+A10||DIFFS|IO_L02N_1|UNUSED||1||||||||||
+A11|||VCCO_1|||1|||||any******|||||
+A12|||VBATT|||||||||||||
+A13|||TMS|||||||||||||
+B1|||PROG_B|||||||||||||
+B2|||RSVD|||||||||||||
+B3||DIFFS|IO_L01N_0|UNUSED||0||||||||||
+B4||DIFFM|IO_L02P_0|UNUSED||0||||||||||
+B5|||VCCO_0|||0|||||any******|||||
+B6||DIFFM|IO_L95P_0/GCLK6S|UNUSED||0||||||||||
+B7||DIFFM|IO_L96P_1/GCLK2S|UNUSED||1||||||||||
+B8||DIFFM|IO_L95P_1/GCLK0S|UNUSED||1||||||||||
+B9|||GND|||||||||||||
+B10||DIFFM|IO_L02P_1|UNUSED||1||||||||||
+B11|||NC|||||||||||||
+B12|||TCK|||||||||||||
+B13|||VCCAUX||||||||3.3|||||
+C1|||TDI|||||||||||||
+C2|||VCCAUX||||||||3.3|||||
+C3|||VCCO_0|||0|||||any******|||||
+C4||DIFFS|IO_L02N_0|UNUSED||0||||||||||
+C5|||GND|||||||||||||
+C6||DIFFS|IO_L95N_0/GCLK7P|UNUSED||0||||||||||
+C7|||VCCINT||||||||1.5|||||
+C8||DIFFS|IO_L94N_1|UNUSED||1||||||||||
+C9||DIFFS|IO_L03N_1/VRP_1|UNUSED||1||||||||||
+C10||DIFFS|IO_L01N_1|UNUSED||1||||||||||
+C11|||TDO|||||||||||||
+C12|||VCCO_2|||2|||||3.30|||||
+C13||DIFFS|IO_L01N_2|UNUSED||2||||||||||
+D1||DIFFS|IO_L02N_7/VRP_7|UNUSED||7||||||||||
+D2||DIFFM|IO_L01P_7|UNUSED||7||||||||||
+D3||DIFFS|IO_L01N_7|UNUSED||7||||||||||
+D4|||VCCO_7|||7|||||any******|||||
+D5||DIFFM|IO_L03P_0/VRN_0|UNUSED||0||||||||||
+D6||DIFFM|IO_L94P_0|UNUSED||0||||||||||
+D7||DIFFM|IO_L96P_0/GCLK4S|UNUSED||0||||||||||
+D8||DIFFM|IO_L94P_1/VREF_1|UNUSED||1||||||||||
+D9||DIFFM|IO_L03P_1/VRN_1|UNUSED||1||||||||||
+D10||DIFFM|IO_L01P_1|UNUSED||1||||||||||
+D11||DIFFM|IO_L01P_2|UNUSED||2||||||||||
+D12||DIFFS|IO_L02N_2/VRP_2|UNUSED||2||||||||||
+D13||DIFFM|IO_L02P_2/VRN_2|UNUSED||2||||||||||
+E1|||GND|||||||||||||
+E2||DIFFM|IO_L03P_7/VREF_7|UNUSED||7||||||||||
+E3||DIFFS|IO_L03N_7|UNUSED||7||||||||||
+E4||DIFFM|IO_L02P_7/VRN_7|UNUSED||7||||||||||
+E10||DIFFS|IO_L03N_2|UNUSED||2||||||||||
+E11|inst<6>|IOB|IO_L03P_2/VREF_2|OUTPUT|LVTTL|2|12|SLOW|NONE**|||||NO|NONE|
+E12|||GND|||||||||||||
+E13|inst<7>|IOB|IO_L93N_2|OUTPUT|LVTTL|2|12|SLOW|NONE**|||||NO|NONE|
+F1||DIFFS|IO_L94N_7|UNUSED||7||||||||||
+F2||DIFFM|IO_L93P_7/VREF_7|UNUSED||7||||||||||
+F3|||VCCO_7|||7|||||any******|||||
+F4||DIFFS|IO_L93N_7|UNUSED||7||||||||||
+F10|||VCCO_2|||2|||||3.30|||||
+F11|pc<1>|IOB|IO_L93P_2/VREF_2|OUTPUT|LVTTL|2|12|SLOW|NONE**|||||NO|NONE|
+F12|pc<2>|IOB|IO_L94N_2|OUTPUT|LVTTL|2|12|SLOW|NONE**|||||NO|NONE|
+F13|||GND|||||||||||||
+G1||DIFFM|IO_L94P_7|UNUSED||7||||||||||
+G2|||GND|||||||||||||
+G3||DIFFS|IO_L96N_7|UNUSED||7||||||||||
+G4||DIFFM|IO_L96P_7|UNUSED||7||||||||||
+G10|inst<5>|IOB|IO_L94P_2|OUTPUT|LVTTL|2|12|SLOW|NONE**|||||NO|NONE|
+G11|R3<0>|IOB|IO_L96N_2|OUTPUT|LVTTL|2|12|SLOW|NONE**|||||NO|NONE|
+G12|inst<3>|IOB|IO_L96N_3|OUTPUT|LVTTL|3|12|SLOW|NONE**|||||NO|NONE|
+G13|pc<3>|IOB|IO_L96P_2|OUTPUT|LVTTL|2|12|SLOW|NONE**|||||NO|NONE|
+H1|R3<4>|IOB|IO_L96N_6|OUTPUT|LVTTL|6|12|SLOW|NONE**|||||NO|NONE|
+H2|||VCCINT||||||||1.5|||||
+H3|R3<3>|IOB|IO_L96P_6|OUTPUT|LVTTL|6|12|SLOW|NONE**|||||NO|NONE|
+H4|R2<4>|IOB|IO_L94N_6|OUTPUT|LVTTL|6|12|SLOW|NONE**|||||NO|NONE|
+H10|||GND|||||||||||||
+H11|R2<0>|IOB|IO_L94N_3|OUTPUT|LVTTL|3|12|SLOW|NONE**|||||NO|NONE|
+H12|inst<4>|IOB|IO_L96P_3|OUTPUT|LVTTL|3|12|SLOW|NONE**|||||NO|NONE|
+H13|||VCCINT||||||||1.5|||||
+J1|||GND|||||||||||||
+J2|R1<4>|IOB|IO_L94P_6|OUTPUT|LVTTL|6|12|SLOW|NONE**|||||NO|NONE|
+J3|||VCCO_6|||6|||||3.30|||||
+J4|||GND|||||||||||||
+J10|inst<0>|IOB|IO_L03N_3/VREF_3|OUTPUT|LVTTL|3|12|SLOW|NONE**|||||NO|NONE|
+J11|||GND|||||||||||||
+J12|||VCCO_3|||3|||||3.30|||||
+J13|R1<2>|IOB|IO_L94P_3|OUTPUT|LVTTL|3|12|SLOW|NONE**|||||NO|NONE|
+K1|R2<3>|IOB|IO_L03N_6/VREF_6|OUTPUT|LVTTL|6|12|SLOW|NONE**|||||NO|NONE|
+K2||DIFFM|IO_L03P_6|UNUSED||6||||||||||
+K3||DIFFS|IO_L02N_6/VRP_6|UNUSED||6||||||||||
+K4||DIFFM|IO_L01P_5/CS_B|UNUSED||5||||||||||
+K5||DIFFM|IO_L03P_5/D5/ALT_VRN_5|UNUSED||5||||||||||
+K6||DIFFM|IO_L94P_5/VREF_5|UNUSED||5||||||||||
+K7|OV_FLG|IOB|IO_L96P_4/GCLK0P|OUTPUT|LVTTL|4|12|SLOW|NONE**|||||YES|NONE|
+K8|clk_en|IOB|IO_L94P_4|INPUT|LVTTL|4||||NONE||||NO|NONE|
+K9|rst|IOB|IO_L03P_4/D3/ALT_VRN_4|INPUT|LVTTL|4||||NONE||||NO|NONE|
+K10||DIFFS|IO_L01N_3|UNUSED||3||||||||||
+K11|inst<1>|IOB|IO_L02P_3/VRN_3|OUTPUT|LVTTL|3|12|SLOW|NONE**|||||NO|NONE|
+K12|R1<1>|IOB|IO_L02N_3/VRP_3|OUTPUT|LVTTL|3|12|SLOW|NONE**|||||NO|NONE|
+K13|R1<0>|IOB|IO_L03P_3|OUTPUT|LVTTL|3|12|SLOW|NONE**|||||NO|NONE|
+L1||DIFFM|IO_L02P_6/VRN_6|UNUSED||6||||||||||
+L2||DIFFS|IO_L01N_6|UNUSED||6||||||||||
+L3||DIFFM|IO_L01P_6|UNUSED||6||||||||||
+L4||DIFFS|IO_L01N_5/RDWR_B|UNUSED||5||||||||||
+L5||DIFFS|IO_L03N_5/D4/ALT_VRP_5|UNUSED||5||||||||||
+L6||DIFFS|IO_L94N_5|UNUSED||5||||||||||
+L7|||VCCINT||||||||1.5|||||
+L8|R1<3>|IOB|IO_L95N_4/GCLK3S|OUTPUT|LVTTL|4|12|SLOW|NONE**|||||NO|NONE|
+L9|||GND|||||||||||||
+L10|R2<1>|IOB|IO_L02N_4/D0|OUTPUT|LVTTL|4|12|SLOW|NONE**|||||NO|NONE|
+L11|||VCCO_4|||4|||||3.30|||||
+L12|||VCCO_3|||3|||||3.30|||||
+L13||DIFFM|IO_L01P_3|UNUSED||3||||||||||
+M1|||VCCO_6|||6|||||3.30|||||
+M2|||M1|||||||||||||
+M3|||M2|||||||||||||
+M4||DIFFM|IO_L02P_5/D7|UNUSED||5||||||||||
+M5|||GND|||||||||||||
+M6|R3<1>|IOB|IO_L95P_5/GCLK4P|OUTPUT|LVTTL|5|12|SLOW|NONE**|||||NO|NONE|
+M7||DIFFM|IO_L96P_5/GCLK6P|UNUSED||5||||||||||
+M8|GE_FLG|IOB|IO_L95P_4/GCLK2P|OUTPUT|LVTTL|4|12|SLOW|NONE**|||||YES|NONE|
+M9|||VCCO_4|||4|||||3.30|||||
+M10||DIFFM|IO_L02P_4/D1|UNUSED||4||||||||||
+M11|R2<2>|IOB|IO_L01N_4/DOUT|OUTPUT|LVTTL|4|12|SLOW|NONE**|||||NO|NONE|
+M12|||PWRDWN_B|||||||||||||
+M13|||CCLK|||||||||||||
+N1|||VCCAUX||||||||3.3|||||
+N2|||M0|||||||||||||
+N3|||VCCO_5|||5|||||3.30|||||
+N4||DIFFS|IO_L02N_5/D6|UNUSED||5||||||||||
+N5|||VCCO_5|||5|||||3.30|||||
+N6||DIFFS|IO_L95N_5/GCLK5S|UNUSED||5||||||||||
+N7||DIFFS|IO_L96N_5/GCLK7S|UNUSED||5||||||||||
+N8|clk|IOB|IO_L96N_4/GCLK1S|INPUT|LVTTL|4||||NONE||||NO|NONE|
+N9|R3<2>|IOB|IO_L94N_4/VREF_4|OUTPUT|LVTTL|4|12|SLOW|NONE**|||||NO|NONE|
+N10|inst<2>|IOB|IO_L03N_4/D2/ALT_VRP_4|OUTPUT|LVTTL|4|12|SLOW|NONE**|||||NO|NONE|
+N11|pc<0>|IOB|IO_L01P_4/INIT_B|OUTPUT|LVTTL|4|12|SLOW|NONE**|||||NO|NONE|
+N12|||DONE|||||||||||||
+N13|||VCCAUX||||||||3.3|||||
+
+-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+
+* Default value.
+** This default Pullup/Pulldown value can be overridden in Bitgen. 
+****** This value can be any of the allowed voltages 
+       (1.2v,1.5v,1.8v,2.5v,3.3v) or VCCAUX 
+
+

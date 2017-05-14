@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.ast.Query>
+   <onyx.ast.VariableDeclaration datatype="onyx.types.AnyType" varName="$a">
+      <onyx.ast.Constant datatype="onyx.types.String">&amp; &amp; &lt; &lt;  &gt; &gt;</onyx.ast.Constant>
+   </onyx.ast.VariableDeclaration>
+   <onyx.ast.VariableDeclaration datatype="onyx.types.AnyType" varName="$b">
+      <onyx.ast.Constant datatype="onyx.types.String">&amp;amp; &amp; &amp;lt; &lt;  &gt; &gt; &amp;#00000000000000000000f8;</onyx.ast.Constant>
+   </onyx.ast.VariableDeclaration>
+   <onyx.ast.ExprList>
+      <onyx.ast.Variable>$a</onyx.ast.Variable>
+      <onyx.ast.Variable>$b</onyx.ast.Variable>
+      <onyx.ast.IfThenElseExpr>
+         <onyx.ast.Operator name="op:equals">
+            <onyx.ast.Variable>$a</onyx.ast.Variable>
+            <onyx.ast.Constant datatype="onyx.types.String">&amp; &amp; &lt; &lt; &gt; &gt;</onyx.ast.Constant>
+         </onyx.ast.Operator>
+         <onyx.ast.Variable>$a</onyx.ast.Variable>
+         <onyx.ast.Variable>$b</onyx.ast.Variable>
+      </onyx.ast.IfThenElseExpr>
+   </onyx.ast.ExprList>
+</onyx.ast.Query>
+

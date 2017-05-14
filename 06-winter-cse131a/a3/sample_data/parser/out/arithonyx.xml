@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.ast.Query>
+   <onyx.ast.ExprList>
+      <onyx.ast.Operator name="op:numeric-add">
+         <onyx.ast.Operator name="op:numeric-add">
+            <onyx.ast.Operator name="op:numeric-subtract">
+               <onyx.ast.Constant datatype="onyx.types.Integer">1</onyx.ast.Constant>
+               <onyx.ast.Constant datatype="onyx.types.Integer">2</onyx.ast.Constant>
+            </onyx.ast.Operator>
+            <onyx.ast.Operator name="op:numeric-multiply">
+               <onyx.ast.Constant datatype="onyx.types.Integer">3</onyx.ast.Constant>
+               <onyx.ast.Constant datatype="onyx.types.Integer">4</onyx.ast.Constant>
+            </onyx.ast.Operator>
+         </onyx.ast.Operator>
+         <onyx.ast.Operator name="op:numeric-unary-minus">
+            <onyx.ast.Constant datatype="onyx.types.Integer">8</onyx.ast.Constant>
+         </onyx.ast.Operator>
+      </onyx.ast.Operator>
+      <onyx.ast.Operator name="op:and">
+         <onyx.ast.Operator name="op:greater-than">
+            <onyx.ast.Constant datatype="onyx.types.Integer">4</onyx.ast.Constant>
+            <onyx.ast.Constant datatype="onyx.types.Integer">3</onyx.ast.Constant>
+         </onyx.ast.Operator>
+         <onyx.ast.Operator name="op:less-than">
+            <onyx.ast.Constant datatype="onyx.types.Integer">1</onyx.ast.Constant>
+            <onyx.ast.Constant datatype="onyx.types.Integer">2</onyx.ast.Constant>
+         </onyx.ast.Operator>
+      </onyx.ast.Operator>
+   </onyx.ast.ExprList>
+</onyx.ast.Query>
+

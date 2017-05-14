@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.ast.Query>
+   <onyx.ast.FunctionDeclaration datatype="onyx.types.Decimal" funcName="fac">
+      <onyx.ast.ArgumentDeclaration datatype="onyx.types.Decimal" varName="$n"/>
+      <onyx.ast.IfThenElseExpr>
+         <onyx.ast.Operator name="op:less-than">
+            <onyx.ast.Variable>$n</onyx.ast.Variable>
+            <onyx.ast.Constant datatype="onyx.types.Integer">1</onyx.ast.Constant>
+         </onyx.ast.Operator>
+         <onyx.ast.Constant datatype="onyx.types.Integer">1</onyx.ast.Constant>
+         <onyx.ast.Operator name="op:numeric-multiply">
+            <onyx.ast.Variable>$n</onyx.ast.Variable>
+            <onyx.ast.FunctionCall name="fac">
+               <onyx.ast.Operator name="op:numeric-subtract">
+                  <onyx.ast.Variable>$n</onyx.ast.Variable>
+                  <onyx.ast.Constant datatype="onyx.types.Integer">1</onyx.ast.Constant>
+               </onyx.ast.Operator>
+            </onyx.ast.FunctionCall>
+         </onyx.ast.Operator>
+      </onyx.ast.IfThenElseExpr>
+   </onyx.ast.FunctionDeclaration>
+   <onyx.ast.ExprList>
+      <onyx.ast.FunctionCall name="fac">
+         <onyx.ast.Constant datatype="onyx.types.Integer">6</onyx.ast.Constant>
+      </onyx.ast.FunctionCall>
+   </onyx.ast.ExprList>
+</onyx.ast.Query>
+

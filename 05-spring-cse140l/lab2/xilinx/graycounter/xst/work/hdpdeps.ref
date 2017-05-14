@@ -1,0 +1,27 @@
+V2 21
+FL G:/xilinx/projects/lab2/graycounter/graycounter.vhf 2005/05/03.22:42:35 H.38
+EN work/FTCE_MXILINX_GRAYCOUNTER 1115185564 \
+      FL G:/xilinx/projects/lab2/graycounter/graycounter.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/FTCE_MXILINX_GRAYCOUNTER/BEHAVIORAL 1115185565 \
+      FL G:/xilinx/projects/lab2/graycounter/graycounter.vhf \
+      EN work/FTCE_MXILINX_GRAYCOUNTER 1115185564 CP XOR2 CP FDCE
+EN work/GRAYCOUNTER 1115185566     FL G:/xilinx/projects/lab2/graycounter/graycounter.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/GRAYCOUNTER/BEHAVIORAL 1115185567 \
+      FL G:/xilinx/projects/lab2/graycounter/graycounter.vhf EN work/GRAYCOUNTER 1115185566 \
+      CP FTCE_MXILINX_GRAYCOUNTER CP AND4B3 CP AND4B1       CP OR4            CP XNOR4 \
+      CP XOR2           CP AND3B2
+FL G:/xilinx/projects/lab2/graycounter/graycounter2.vhf 2005/05/04.00:58:44 H.38
+EN work/FTCE_MXILINX_GRAYCOUNTER2 1115193592 \
+      FL G:/xilinx/projects/lab2/graycounter/graycounter2.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/FTCE_MXILINX_GRAYCOUNTER2/BEHAVIORAL 1115193593 \
+      FL G:/xilinx/projects/lab2/graycounter/graycounter2.vhf \
+      EN work/FTCE_MXILINX_GRAYCOUNTER2 1115193592 CP XOR2 CP FDCE
+EN work/GRAYCOUNTER2 1115193594    FL G:/xilinx/projects/lab2/graycounter/graycounter2.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/GRAYCOUNTER2/BEHAVIORAL 1115193595 \
+      FL G:/xilinx/projects/lab2/graycounter/graycounter2.vhf \
+      EN work/GRAYCOUNTER2 1115193594 CP FTCE_MXILINX_GRAYCOUNTER2 CP XNOR4 \
+      CP XOR2           CP AND3B2         CP AND3           CP OR2

@@ -1,0 +1,5 @@
+declare function foo ($a, $b, $c) {$a};
+declare function foo ($a as onyx.types.Integer, $b, $c) {$b};
+declare function foo ($a as onyx.types.Integer, $b as onyx.types.Integer, $c) {$c};
+
+foo(1, 2, 3)

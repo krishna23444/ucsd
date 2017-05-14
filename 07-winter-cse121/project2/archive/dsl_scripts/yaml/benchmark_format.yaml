@@ -1,0 +1,22 @@
+name: format
+type: bar
+x_label: disk size (blocks)
+y_label:
+arguments:
+  - size: 100
+  - 
+    - 2000
+    - foobar
+  - 10000
+  - 30000
+  - 200000
+# Not required, by default the values in _arguments_ will be used
+column_labels:
+  0: a
+  1: b
+  2: c
+  3: d
+format_first: false
+commands:
+  - format
+    - size

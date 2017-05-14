@@ -1,0 +1,14 @@
+# -*- makefile -*- vim:ft=make
+#  Template for Makefile to compile services externally.
+#  1. Set LIBDIR (Default: ./)
+#  2. Set LIBNAME (Default: Directory name)
+#  3. Set MACEPATH (Default: $(HOME)/mace/, set below as ../../)
+#  4. Include Makefile.lib
+
+#MACEPATH=$(HOME)/mace/
+MACEPATH=../../
+
+#LIBDIR=./
+#LIBNAME=$(notdir $(PWD))
+
+include $(MACEPATH)/services/Makefile.lib

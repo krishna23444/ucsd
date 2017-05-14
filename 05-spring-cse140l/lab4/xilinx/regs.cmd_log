@@ -1,0 +1,4 @@
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w regs.sch regs.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w regs.sch regs.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w regs.sch regs.vhf
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w regs.sch regs.vhf

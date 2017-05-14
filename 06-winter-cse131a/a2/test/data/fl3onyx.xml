@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.ast.Query>
+   <onyx.ast.FunctionDeclaration datatype="onyx.types.AnyType" funcName="f">
+      <onyx.ast.ArgumentDeclaration datatype="onyx.types.Integer" varName="$a"/>
+      <onyx.ast.ArgumentDeclaration datatype="onyx.types.AnyType" varName="$b"/>
+      <onyx.ast.Flwr>
+         <onyx.ast.LetAssignment varName="$z">
+            <onyx.ast.Operator name="op:numeric-add">
+               <onyx.ast.Variable>$a</onyx.ast.Variable>
+               <onyx.ast.Constant datatype="onyx.types.Integer">1</onyx.ast.Constant>
+            </onyx.ast.Operator>
+         </onyx.ast.LetAssignment>
+         <onyx.ast.Return>
+            <onyx.ast.Variable>$z</onyx.ast.Variable>
+         </onyx.ast.Return>
+      </onyx.ast.Flwr>
+   </onyx.ast.FunctionDeclaration>
+   <onyx.ast.ExprList>
+      <onyx.ast.FunctionCall name="f">
+         <onyx.ast.Constant datatype="onyx.types.Integer">3</onyx.ast.Constant>
+         <onyx.ast.Constant datatype="onyx.types.Integer">4</onyx.ast.Constant>
+      </onyx.ast.FunctionCall>
+   </onyx.ast.ExprList>
+</onyx.ast.Query>
+

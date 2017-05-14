@@ -1,0 +1,3 @@
+handler NotifyLeader {
+  virtual void notifyLeader(const MaceKey& leaderId);
+};

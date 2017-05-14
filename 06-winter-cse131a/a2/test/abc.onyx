@@ -1,0 +1,9 @@
+declare variable $a { "&amp; & &lt; <  &gt; >" };
+declare variable $b { "&#x0026;amp; & &#x000000026;lt; <  &gt; > &#00000000000000000000f8;" };
+
+(
+$a, $b,
+if ( $a = "& & < < > >" )
+  then $a
+  else $b
+)

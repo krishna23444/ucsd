@@ -1,0 +1,140 @@
+# //  ModelSim SE 6.1d Jan 23 2006 SunOS 5.10
+# //
+# //  Copyright 2006 Mentor Graphics Corporation
+# //              All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND 
+# //  PROPRIETARY INFORMATION WHICH IS THE PROPERTY
+# //  OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
+# //  AND IS SUBJECT TO LICENSE TERMS.
+# //
+# vsim -do fibonacci.do testbench_fibonacci 
+# Loading work.testbench_fibonacci
+# Loading work.fibonacci_calculator
+# do fibonacci.do 
+# unsigned
+# .main_pane.mdi.interior.cs.vm.paneset.cli_0.wf.clip.cs.pw.wf
+# Break at testbench_fibonacci.v line 69
+# Simulation Breakpoint: Break at testbench_fibonacci.v line 69
+# MACRO ./fibonacci.do PAUSED at line 4
+vlog *.v
+# Model Technology ModelSim SE vlog 6.1d Compiler 2006.01 Jan 23 2006
+# -- Compiling module fibonacci_calculator
+# -- Compiling module testbench_fibonacci
+# 
+# Top level modules:
+# 	testbench_fibonacci
+restart -f
+# Loading work.testbench_fibonacci
+# Loading work.fibonacci_calculator
+run -all
+# Break at testbench_fibonacci.v line 67
+do fibonacci.do
+# Model Technology ModelSim SE vlog 6.1d Compiler 2006.01 Jan 23 2006
+# -- Compiling module fibonacci_calculator
+# -- Compiling module testbench_fibonacci
+# 
+# Top level modules:
+# 	testbench_fibonacci
+# unsigned
+# .main_pane.mdi.interior.cs.vm.paneset.cli_0.wf.clip.cs.pw.wf
+# Loading work.testbench_fibonacci
+# Loading work.fibonacci_calculator
+# Break at testbench_fibonacci.v line 67
+clear wave
+# invalid command name "clear"
+
+
+do fibonacci.dor
+# Cannot open macro file: fibonacci.dor
+restart -f
+vlog *.v
+# Model Technology ModelSim SE vlog 6.1d Compiler 2006.01 Jan 23 2006
+# -- Compiling module fibonacci_calculator
+# -- Compiling module testbench_fibonacci
+# 
+# Top level modules:
+# 	testbench_fibonacci
+run -all
+# Break at testbench_fibonacci.v line 67
+# error on action  namespace inscope ::vsimwidgets::Dataflow {::.dataflow.pw.df.c Action} returned error 
+#  Trace back: function is namespace inscope ::vsimwidgets::Dataflow {::.dataflow.pw.df.c Action} SetMenuState {} invalid command name "::.dataflow.pw.df.c" 
+#    5: ::.vcop Action SetMenuState {} 
+#    4: ::.vcop UpdateToolbars 
+#    3: ::.vcop ActualActivate .dataflow 
+#    2: ::.vcop Activate .dataflow 1 
+#    1: ::vsimwidgets::Vcop <trace variable?>  
+vlog *.v
+# Model Technology ModelSim SE vlog 6.1d Compiler 2006.01 Jan 23 2006
+# -- Compiling module fibonacci_calculator
+# -- Compiling module testbench_fibonacci
+# 
+# Top level modules:
+# 	testbench_fibonacci
+restart -f
+# Loading work.testbench_fibonacci
+# Loading work.fibonacci_calculator
+run -all
+# Break at testbench_fibonacci.v line 66
+restart -f
+vlog *.v
+# Model Technology ModelSim SE vlog 6.1d Compiler 2006.01 Jan 23 2006
+# -- Compiling module fibonacci_calculator
+# -- Compiling module testbench_fibonacci
+# 
+# Top level modules:
+# 	testbench_fibonacci
+restart -f
+# Loading work.testbench_fibonacci
+# Loading work.fibonacci_calculator
+vlog *.v
+# Model Technology ModelSim SE vlog 6.1d Compiler 2006.01 Jan 23 2006
+# -- Compiling module fibonacci_calculator
+# -- Compiling module testbench_fibonacci
+# 
+# Top level modules:
+# 	testbench_fibonacci
+restart -f
+# Loading work.testbench_fibonacci
+# Loading work.fibonacci_calculator
+run -all
+# Break at testbench_fibonacci.v line 66
+vlog *.v
+# Model Technology ModelSim SE vlog 6.1d Compiler 2006.01 Jan 23 2006
+# -- Compiling module fibonacci_calculator
+# -- Compiling module testbench_fibonacci
+# 
+# Top level modules:
+# 	testbench_fibonacci
+restart -f
+# Loading work.testbench_fibonacci
+# Loading work.fibonacci_calculator
+run -all
+# Break at testbench_fibonacci.v line 66
+vlog *.v
+# Model Technology ModelSim SE vlog 6.1d Compiler 2006.01 Jan 23 2006
+# -- Compiling module fibonacci_calculator
+# -- Compiling module testbench_fibonacci
+# 
+# Top level modules:
+# 	testbench_fibonacci
+run -all
+# Break key hit 
+# Simulation stop requested.
+restart -f
+# Loading work.testbench_fibonacci
+# Loading work.fibonacci_calculator
+run -all
+# Break at testbench_fibonacci.v line 67
+vlog *.v
+# Model Technology ModelSim SE vlog 6.1d Compiler 2006.01 Jan 23 2006
+# -- Compiling module fibonacci_calculator
+# -- Compiling module testbench_fibonacci
+# 
+# Top level modules:
+# 	testbench_fibonacci
+restart -f
+# Loading work.testbench_fibonacci
+# Loading work.fibonacci_calculator
+run -all
+# Break at testbench_fibonacci.v line 67

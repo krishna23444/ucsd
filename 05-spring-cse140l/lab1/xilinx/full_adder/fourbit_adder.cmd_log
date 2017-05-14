@@ -1,0 +1,24 @@
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w fourbit_adder.sch fourbit_adder.vhf
+xst -intstyle ise -ifn __projnav/fourbit_adder.xst -ofn fourbit_adder.syr
+ngdbuild -intstyle ise -dd "g:\xilinx\projects\lab1\full_adder/_ngo" -nt timestamp -i  -p xc2v80-cs144-5 fourbit_adder.ngc fourbit_adder.ngd
+map -intstyle ise -p xc2v80-cs144-5 -cm area -pr b -k 4 -c 100 -tx off -o fourbit_adder_map.ncd fourbit_adder.ngd fourbit_adder.pcf
+par -w -intstyle ise -ol std -t 1 fourbit_adder_map.ncd fourbit_adder.ncd fourbit_adder.pcf
+trce -intstyle ise -e 3 -l 3 -s 5 -xml fourbit_adder fourbit_adder.ncd -o fourbit_adder.twr fourbit_adder.pcf
+netgen -intstyle ise -s 5   -pcf fourbit_adder.pcf -rpw 100 -tpw 0 -ar Structure -xon true -w -ofmt vhdl -sim fourbit_adder.ncd fourbit_adder_timesim.vhd
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w fourbit_adder.sch fourbit_adder.vhf
+xst -intstyle ise -ifn __projnav/fourbit_adder.xst -ofn fourbit_adder.syr
+ngdbuild -intstyle ise -dd "g:\xilinx\projects\lab1\full_adder/_ngo" -nt timestamp -i  -p xc2v80-cs144-5 fourbit_adder.ngc fourbit_adder.ngd
+map -intstyle ise -p xc2v80-cs144-5 -cm area -pr b -k 4 -c 100 -tx off -o fourbit_adder_map.ncd fourbit_adder.ngd fourbit_adder.pcf
+par -w -intstyle ise -ol std -t 1 fourbit_adder_map.ncd fourbit_adder.ncd fourbit_adder.pcf
+trce -intstyle ise -e 3 -l 3 -s 5 -xml fourbit_adder fourbit_adder.ncd -o fourbit_adder.twr fourbit_adder.pcf
+netgen -intstyle ise -s 5   -pcf fourbit_adder.pcf -rpw 100 -tpw 0 -ar Structure -xon true -w -ofmt vhdl -sim fourbit_adder.ncd fourbit_adder_timesim.vhd
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w fourbit_adder.sch fourbit_adder.vhf
+xst -intstyle ise -ifn __projnav/fourbit_adder.xst -ofn fourbit_adder.syr
+ngdbuild -intstyle ise -dd "g:\xilinx\projects\lab1\full_adder/_ngo" -nt timestamp -i  -p xc2v80-cs144-5 fourbit_adder.ngc fourbit_adder.ngd
+map -intstyle ise -p xc2v80-cs144-5 -cm area -pr b -k 4 -c 100 -tx off -o fourbit_adder_map.ncd fourbit_adder.ngd fourbit_adder.pcf
+par -w -intstyle ise -ol std -t 1 fourbit_adder_map.ncd fourbit_adder.ncd fourbit_adder.pcf
+trce -intstyle ise -e 3 -l 3 -s 5 -xml fourbit_adder fourbit_adder.ncd -o fourbit_adder.twr fourbit_adder.pcf
+netgen -intstyle ise -s 5   -pcf fourbit_adder.pcf -rpw 100 -tpw 0 -ar Structure -xon true -w -ofmt vhdl -sim fourbit_adder.ncd fourbit_adder_timesim.vhd
+par -w -intstyle ise -ol std -t 1 -ub fourbit_adder_map.ncd fourbit_adder.ncd fourbit_adder.pcf
+trce -intstyle ise -e 3 -l 3 -s 5 -xml fourbit_adder fourbit_adder.ncd -o fourbit_adder.twr fourbit_adder.pcf
+netgen -intstyle ise -s 5   -pcf fourbit_adder.pcf -rpw 100 -tpw 0 -ar Structure -xon true -w -ofmt vhdl -sim fourbit_adder.ncd fourbit_adder_timesim.vhd

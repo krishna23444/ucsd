@@ -1,0 +1,145 @@
+Team:
+Nachooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooos
+
+Members:
+Erik Buchanan
+Gil Edelman
+Nitay Joffe
+Philippe Gravel
+
+All of the members of our group sat together and worked on the same thing
+at the same time, for all of the code-writing.  We brainstormed and debated
+about implementation choices.  We tested both as a group and individually.
+
+In this assignment we implemented Virtual Memory for nachos, including demand 
+paging, page replacement, backing stores, and maintained a counter of page 
+faults. In addition, we implemented two different replacement algorithms.
+
+Transforming our previous paging system to use virtual memory was relatively 
+simple, and implemented phase 1 and 2 concurrently. 
+To implement demand paging, we added the page fault exception to our exception 
+handler, which when called tries to load the wanted page into memory. In order
+to test this, we also modified the program loader such that it creates the
+address space but does not allocate it's pages into memory. When a process
+tries to access a page that is not in memory, it will throw a page fault 
+exception.
+
+Page faults will use the current address space's "loadPageIntoMemory" function 
+to grab the wanted page. If there is enough free space in memory, the page
+will be allocated, and the function returns. If there isn't enough space, it
+will evict a page from memory using either a random page (arg: -Arandom) or
+least recently used (arg: -Alru). If a page is is clean (i.e. hasn't been
+modified), then we perform the swap immediately. If the dirty bit is true, we
+first copy the page into the backing store, then perform the swap.
+
+We used a random page eviction alrogithm because, while it is not the most
+efficient algorithm, it avoids the problems that arise with many other naive
+algorithms. For example, the first algorithm we tried chose the first page
+in the first address space.  The problem with that algorithm that we ran into
+is, say your first paged-in page is part of the text segment, and you're 
+currently executing a load instruction in that page.  Say the load instruction
+loads from a paged-out page in the data segment.  To load in the data page,
+the algorithm evicts the first page, the text segment page, and pages in the
+data page.  Next, the instruction re-executes after the page fault returns,
+and the text segment page is paged out, so it evicts the data segment page.
+This leads to infinite thrasing.  Similarly, any algorithm that is allowed
+to evict its own pages, and does so in some consistent way (like the first
+page, last page, etc), it will be possible to have infinite thrashing.
+The random algorithm solves this problem because eventually it will pick a
+page that isn't needed right now.  Also, with some algorithms nachos can't run
+with only 2 pages. It can with the random algorithm.  The random algorithm may
+sometimes pick pages that we will need again soon (or *very* soon), but it will
+eventually pick a suitable page.
+
+We implemented LRU as an improvement to the random algorithm.  We basically 
+keep a counter of the number of page faults since the last time the page
+was used.  On each page fault, we increment all the counters, clear all the 
+use bits and resetting the counters to zero for the pages that have been used,
+and then go about evicting the page with the highest counter value if
+necessary, and loading in the page.  In general, LRU performs better than
+the random algorithm, as shown below.  In the sort testcase, it actually 
+performs worse, because of the access pattern of the sort algorithm.  With
+random, there's a random chance that the algorithm will request a page that it
+has not paged out, whereas LRU will usually have paged the page out, because
+it has not been used in a long time.  More details below.
+
+In order to allow the use of more pages than we have in memory, we used backing
+stores. Whenever a process is started, we copy the process into a temporary 
+file. These files are used as backing stores from which we read and write pages
+as they are swapped from the physical memory. 
+
+In order to measure the paging activity we added three counters to the stats
+already maintained by nachos.
+PageFaults: counts how many page fault exception were thrown
+PageOut: counts how many pages were swapped out of physical memory
+PageIns: counts how many pages were swapped into physical memory
+         (from a swap file or from the executable)
+
+We also implemented the extra credit replacement algorithm. 
+We used a LRU approximation algorithm that selects the page with the highest
+counter. The counter is incremented every page fault if it hasn't been used 
+since the last fault, and is reset if the page has been used. In the case of 
+a tie, we randomly choose one of the pages.
+To specify the use of LRU, use -Alru
+To specify random sampling (default), use -Arandom
+
+To test our code, we incrementally wrote test programs in the test/ directory
+to verify every questionable behavior that came up. These tests are fairly
+simple by nature so that they can focus on testing just one thing. Most of the
+test files should have comments above them with an explanation of what is being
+tested and an example of the expected output.
+
+For example, some of our virtual memory test cases tested:
+vm1 - Only references some of the pages (demand paging)
+vm2 - References all of its pages (demand paging, sequential access)
+vm3 - Demonstrates the page replacement algorithm and dirty page handling
+vm4 - Good locality example
+vm5 - Poor locality example
+vm6 - Random locality example
+
+As far as we know, everything should work great except for snake, which stops 
+working after a couple seconds.
+
+
+Replacement Algorithm performance chart
+
+
+Physical memory size: 32 pages
+
+Program     Policy      PageFaults   PageOut     PageIns
+-------     ------      ----------   -------     -------
+matmult	    random             102        50          64
+            lru                 81        44          43
+
+sort        random             782       665         749
+            lru                878       826         845
+
+vm2         random           17307     16202        1681
+            lru              15630     15598           4
+
+vm3         random            6881      3348        3755
+            lru               6229      3128        3103
+
+Physical memory size: 16 pages
+
+Program     Policy      PageFaults   PageOut     PageIns
+-------     ------      ----------   -------     -------
+matmult	    random            4139       553        4101
+            lru               5529        97        5491
+
+sort        random            8936      7004        8903
+            lru               7976      7607        7943
+
+vm2         random           19259     16991        3633
+            lru              15630     15614           4
+
+vm3         random            7671      3629        4545
+            lru               6245      3128        3119
+            
+
+As you can see, LRU performs better than Random for most test cases.
+Random performs better than LRU for sort, because of the memory access
+behavior of the algorithm used, as well as mathmult for page faults and
+page ins, because of the small number of physical pages and the memory
+access patterns.  This phenomenon is discussed in more detail above.
+

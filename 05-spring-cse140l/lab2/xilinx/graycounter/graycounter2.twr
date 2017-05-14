@@ -1,0 +1,62 @@
+--------------------------------------------------------------------------------
+Release 7.1.01i Trace H.39
+Copyright (c) 1995-2005 Xilinx, Inc.  All rights reserved.
+
+G:/xilinx/ise71/bin/nt/trce.exe -ise
+g:\xilinx\projects\lab2\graycounter\graycounter.ise -intstyle ise -e 3 -l 3 -s
+5 -xml graycounter2 graycounter2.ncd -o graycounter2.twr graycounter2.pcf
+
+
+Design file:              graycounter2.ncd
+Physical constraint file: graycounter2.pcf
+Device,speed:             xc2v80,-5 (PRODUCTION 1.121 2005-02-23, STEPPING level 1)
+Report level:             error report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:2698 - No timing constraints found, doing default enumeration.
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths
+   option. All paths that are not constrained will be reported in the
+   unconstrained paths section(s) of the report.
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Setup/Hold to clock CLK
+------------+------------+------------+------------------+--------+
+            |  Setup to  |  Hold to   |                  |  Clock |
+Source      | clk (edge) | clk (edge) |Internal Clock(s) |  Phase |
+------------+------------+------------+------------------+--------+
+CLK_CE      |   -0.353(R)|    0.500(R)|CLK_BUFGP         |   0.000|
+------------+------------+------------+------------------+--------+
+
+Clock CLK to Pad
+------------+------------+------------------+--------+
+            | clk (edge) |                  |  Clock |
+Destination | to PAD     |Internal Clock(s) |  Phase |
+------------+------------+------------------+--------+
+D<0>        |    7.084(R)|CLK_BUFGP         |   0.000|
+D<1>        |    6.847(R)|CLK_BUFGP         |   0.000|
+D<2>        |    7.375(R)|CLK_BUFGP         |   0.000|
+D<3>        |    7.113(R)|CLK_BUFGP         |   0.000|
+------------+------------+------------------+--------+
+
+Clock to Setup on destination clock CLK
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+CLK            |    1.695|         |         |         |
+---------------+---------+---------+---------+---------+
+
+Analysis completed Wed May 04 01:00:12 2005
+--------------------------------------------------------------------------------
+
+
+
+Peak Memory Usage: 75 MB

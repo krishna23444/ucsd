@@ -1,0 +1,131 @@
+V2 107
+FL G:/xilinx/projects/lab4/register5.vhf 2005/05/31.23:49:00 H.38
+EN work/REGISTER5 1117663884       FL G:/xilinx/projects/lab4/register5.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/REGISTER5/BEHAVIORAL 1117663885 FL G:/xilinx/projects/lab4/register5.vhf \
+      EN work/REGISTER5 1117663884 CP FDRE
+FL G:/xilinx/projects/lab4/Mask5.vhf 2005/05/31.23:48:58 H.38
+EN work/MASK5 1117663886           FL G:/xilinx/projects/lab4/Mask5.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/MASK5/BEHAVIORAL 1117663887 FL G:/xilinx/projects/lab4/Mask5.vhf EN work/MASK5 1117663886 \
+      CP AND2
+FL G:/xilinx/projects/lab4/memory16x8.vhf 2005/06/01.14:06:47 H.38
+EN work/MEMORY16X8 1117663908      FL G:/xilinx/projects/lab4/memory16x8.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/MEMORY16X8/BEHAVIORAL 1117663909 FL G:/xilinx/projects/lab4/memory16x8.vhf \
+      EN work/MEMORY16X8 1117663908 CP ROM16X1
+FL G:/xilinx/projects/lab4/Mux2_5bus.vhf 2005/05/31.23:49:00 H.38
+EN work/M2_1_MXILINX_MUX2_5BUS 1117663880 FL G:/xilinx/projects/lab4/Mux2_5bus.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/M2_1_MXILINX_MUX2_5BUS/BEHAVIORAL 1117663881 \
+      FL G:/xilinx/projects/lab4/Mux2_5bus.vhf EN work/M2_1_MXILINX_MUX2_5BUS 1117663880 \
+      CP AND2B1         CP OR2            CP AND2
+EN work/MUX2_5BUS 1117663882       FL G:/xilinx/projects/lab4/Mux2_5bus.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/MUX2_5BUS/BEHAVIORAL 1117663883 FL G:/xilinx/projects/lab4/Mux2_5bus.vhf \
+      EN work/MUX2_5BUS 1117663882 CP M2_1_MXILINX_MUX2_5BUS
+FL G:/xilinx/projects/lab4/Mux5_3.vhf 2005/05/31.20:55:44 H.38
+EN work/M2_1_MXILINX_MUX5_3 1117598146 FL G:/xilinx/projects/lab4/Mux5_3.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/M2_1_MXILINX_MUX5_3/BEHAVIORAL 1117598147 FL G:/xilinx/projects/lab4/Mux5_3.vhf \
+      EN work/M2_1_MXILINX_MUX5_3 1117598146 CP AND2B1 CP OR2 CP AND2
+EN work/MUX5_3 1117598148          FL G:/xilinx/projects/lab4/Mux5_3.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/MUX5_3/BEHAVIORAL 1117598149 FL G:/xilinx/projects/lab4/Mux5_3.vhf EN work/MUX5_3 1117598148 \
+      CP M2_1_MXILINX_MUX5_3
+FL G:/xilinx/projects/lab4/program_counter.vhf 2005/05/31.20:55:50 H.38
+EN work/FTCE_MXILINX_PROGRAM_COUNTER 1117598152 \
+      FL G:/xilinx/projects/lab4/program_counter.vhf PB ieee/STD_LOGIC_1164 1106404628 \
+      PH ieee/NUMERIC_STD 1106404639
+AR work/FTCE_MXILINX_PROGRAM_COUNTER/BEHAVIORAL 1117598153 \
+      FL G:/xilinx/projects/lab4/program_counter.vhf \
+      EN work/FTCE_MXILINX_PROGRAM_COUNTER 1117598152 CP XOR2 CP FDCE
+EN work/CB4CE_MXILINX_PROGRAM_COUNTER 1117598154 \
+      FL G:/xilinx/projects/lab4/program_counter.vhf PB ieee/STD_LOGIC_1164 1106404628 \
+      PH ieee/NUMERIC_STD 1106404639
+AR work/CB4CE_MXILINX_PROGRAM_COUNTER/BEHAVIORAL 1117598155 \
+      FL G:/xilinx/projects/lab4/program_counter.vhf \
+      EN work/CB4CE_MXILINX_PROGRAM_COUNTER 1117598154 \
+      CP FTCE_MXILINX_PROGRAM_COUNTER CP AND4 CP AND3       CP AND2           CP VCC
+EN work/PROGRAM_COUNTER 1117598156 FL G:/xilinx/projects/lab4/program_counter.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/PROGRAM_COUNTER/BEHAVIORAL 1117598157 FL G:/xilinx/projects/lab4/program_counter.vhf \
+      EN work/PROGRAM_COUNTER 1117598156 CP CB4CE_MXILINX_PROGRAM_COUNTER
+FL G:/xilinx/projects/lab4/datapath.vhf 2005/06/01.01:40:48 H.38
+EN work/ADD8_MXILINX_DATAPATH 1117663890 FL G:/xilinx/projects/lab4/datapath.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/ADD8_MXILINX_DATAPATH/BEHAVIORAL 1117663891 FL G:/xilinx/projects/lab4/datapath.vhf \
+      EN work/ADD8_MXILINX_DATAPATH 1117663890 CP FMAP CP MUXCY_L CP MUXCY \
+      CP XORCY          CP MUXCY_D        CP XOR2
+EN work/M2_1_MXILINX_DATAPATH 1117663892 FL G:/xilinx/projects/lab4/datapath.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/M2_1_MXILINX_DATAPATH/BEHAVIORAL 1117663893 FL G:/xilinx/projects/lab4/datapath.vhf \
+      EN work/M2_1_MXILINX_DATAPATH 1117663892 CP AND2B1 CP OR2 CP AND2
+EN work/BRLSHFT8_MXILINX_DATAPATH 1117663894 FL G:/xilinx/projects/lab4/datapath.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/BRLSHFT8_MXILINX_DATAPATH/BEHAVIORAL 1117663895 \
+      FL G:/xilinx/projects/lab4/datapath.vhf EN work/BRLSHFT8_MXILINX_DATAPATH 1117663894 \
+      CP M2_1_MXILINX_DATAPATH
+EN work/COMPM8_MXILINX_DATAPATH 1117663896 FL G:/xilinx/projects/lab4/datapath.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/COMPM8_MXILINX_DATAPATH/BEHAVIORAL 1117663897 \
+      FL G:/xilinx/projects/lab4/datapath.vhf EN work/COMPM8_MXILINX_DATAPATH 1117663896 \
+      CP AND2B1         CP OR4            CP NOR2           CP AND3           CP OR2 \
+      CP AND3B1         CP XNOR2          CP AND2           CP AND4
+EN work/DATAPATH 1117663898        FL G:/xilinx/projects/lab4/datapath.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/DATAPATH/BEHAVIORAL 1117663899 FL G:/xilinx/projects/lab4/datapath.vhf \
+      EN work/DATAPATH 1117663898 CP GND   CP ADD8_MXILINX_DATAPATH \
+      CP BRLSHFT8_MXILINX_DATAPATH CP COMPM8_MXILINX_DATAPATH CP MASK5 CP INV \
+      CP BUF            CP MUX3_5BUS_V2
+FL G:/xilinx/projects/lab4/pcounter.vhf 2005/05/31.23:49:01 H.38
+EN work/FTCE_MXILINX_PCOUNTER 1117663902 FL G:/xilinx/projects/lab4/pcounter.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/FTCE_MXILINX_PCOUNTER/BEHAVIORAL 1117663903 FL G:/xilinx/projects/lab4/pcounter.vhf \
+      EN work/FTCE_MXILINX_PCOUNTER 1117663902 CP XOR2 CP FDCE
+EN work/CB4CE_MXILINX_PCOUNTER 1117663904 FL G:/xilinx/projects/lab4/pcounter.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/CB4CE_MXILINX_PCOUNTER/BEHAVIORAL 1117663905 FL G:/xilinx/projects/lab4/pcounter.vhf \
+      EN work/CB4CE_MXILINX_PCOUNTER 1117663904 CP FTCE_MXILINX_PCOUNTER CP AND4 \
+      CP AND3           CP AND2           CP VCC
+EN work/PCOUNTER 1117663906        FL G:/xilinx/projects/lab4/pcounter.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/PCOUNTER/BEHAVIORAL 1117663907 FL G:/xilinx/projects/lab4/pcounter.vhf \
+      EN work/PCOUNTER 1117663906 CP CB4CE_MXILINX_PCOUNTER
+FL G:/xilinx/projects/lab4/regs.vhf 2005/05/31.23:48:59 H.38
+EN work/REGS 1117663900            FL G:/xilinx/projects/lab4/regs.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/REGS/BEHAVIORAL 1117663901 FL G:/xilinx/projects/lab4/regs.vhf EN work/REGS 1117663900 \
+      CP FDRE           CP REGISTER5      CP MUX2_5BUS
+FL G:/xilinx/projects/lab4/truthtbl.vhd 2005/06/01.01:57:41 H.38
+EN work/TRUTHTBL 1117663910        FL G:/xilinx/projects/lab4/truthtbl.vhd \
+      PB ieee/STD_LOGIC_1164 1106404628 PB ieee/STD_LOGIC_ARITH 1106404630 \
+      PB ieee/STD_LOGIC_UNSIGNED 1106404634
+AR work/TRUTHTBL/BEHAVIORAL 1117663911 FL G:/xilinx/projects/lab4/truthtbl.vhd \
+      EN work/TRUTHTBL 1117663910
+FL G:/xilinx/projects/lab4/machine.vhf 2005/06/01.15:11:01 H.38
+EN work/MACHINE 1117663912         FL G:/xilinx/projects/lab4/machine.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/MACHINE/BEHAVIORAL 1117663913 FL G:/xilinx/projects/lab4/machine.vhf EN work/MACHINE 1117663912 \
+      CP DATAPATH       CP REGS           CP PCOUNTER       CP MEMORY16X8 \
+      CP TRUTHTBL
+FL G:/xilinx/projects/lab4/Mux3_5bus_v2.vhf 2005/06/01.01:43:59 H.38
+EN work/MUX3_5BUS_V2 1117663888    FL G:/xilinx/projects/lab4/Mux3_5bus_v2.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/MUX3_5BUS_V2/BEHAVIORAL 1117663889 FL G:/xilinx/projects/lab4/Mux3_5bus_v2.vhf \
+      EN work/MUX3_5BUS_V2 1117663888 CP MUX2_5BUS
+FL G:/xilinx/projects/lab4/Mux3_5bus.vhf 2005/05/31.23:48:59 H.38
+EN work/M2_1E_MXILINX_MUX3_5BUS 1117612723 FL G:/xilinx/projects/lab4/Mux3_5bus.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/M2_1E_MXILINX_MUX3_5BUS/BEHAVIORAL 1117612724 \
+      FL G:/xilinx/projects/lab4/Mux3_5bus.vhf EN work/M2_1E_MXILINX_MUX3_5BUS 1117612723 \
+      CP AND3           CP AND3B1         CP OR2
+EN work/M4_1E_MXILINX_MUX3_5BUS 1117612725 FL G:/xilinx/projects/lab4/Mux3_5bus.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/M4_1E_MXILINX_MUX3_5BUS/BEHAVIORAL 1117612726 \
+      FL G:/xilinx/projects/lab4/Mux3_5bus.vhf EN work/M4_1E_MXILINX_MUX3_5BUS 1117612725 \
+      CP M2_1E_MXILINX_MUX3_5BUS CP MUXF5
+EN work/MUX3_5BUS 1117612727       FL G:/xilinx/projects/lab4/Mux3_5bus.vhf \
+      PB ieee/STD_LOGIC_1164 1106404628 PH ieee/NUMERIC_STD 1106404639
+AR work/MUX3_5BUS/BEHAVIORAL 1117612728 FL G:/xilinx/projects/lab4/Mux3_5bus.vhf \
+      EN work/MUX3_5BUS 1117612727 CP M4_1E_MXILINX_MUX3_5BUS CP GND

@@ -1,0 +1,121 @@
+# =======================================
+# D-Mem 0 = Starting address
+# D-Mem 1 = # of elements in array
+# D-Mem 2 = Return value, mean of a[]
+#
+# =======================================
+# r0 	<->	start address
+# r1	<->	for loop count
+# r2	<->	current value to add
+# r3	<->	number of elements
+# ---------------------------------------
+# k = array number of starting
+# for (i = 0; i < 16; i++) {
+# 	sum = ak + i;
+# }
+# avg = sum / 16
+# r = sum % 16
+# if (r >= 8) {
+# 	avg++;	
+# }
+# ---------------------------------------
+
+0xA4  00                  mov     $r0, $zero
+0xD0  01                  ld      $r0, $r0        # r0 = start address = d0
+0xD4  02                  ld      $r1, $r0        # load in the new add value
+# ---------------------------------------
+# Begin the unlooped-loop in order to
+# optimize for the standard 16 numbers
+# ---------------------------------------
+0x3D  03                  add     $res, $r1       # res += r2
+0x7C  04                  inch                    # increment three iff overflow = 1
+0x34  05                  add     $one, $r0       # ++i
+0xD4  06                  ld      $r1, $r0
+0x3D  07                  add     $res, $r1
+0x7C  08                  inch
+0x34  09                  add     $one, $r0
+0xD4  10                  ld      $r1, $r0
+0x3D  11                  add     $res, $r1
+0x7C  12                  inch
+0x34  13                  add     $one, $r0
+0xD4  14                  ld      $r1, $r0
+0x3D  15                  add     $res, $r1
+0x7C  16                  inch
+0x34  17                  add     $one, $r0
+0xD4  18                  ld      $r1, $r0        # 5
+0x3D  19                  add     $res, $r1
+0x7C  20                  inch
+0x34  21                  add     $one, $r0
+0xD4  22                  ld      $r1, $r0
+0x3D  23                  add     $res, $r1
+0x7C  24                  inch
+0x34  25                  add     $one, $r0
+0xD4  26                  ld      $r1, $r0
+0x3D  27                  add     $res, $r1
+0x7C  28                  inch
+0x34  29                  add     $one, $r0
+0xD4  30                  ld      $r1, $r0
+0x3D  31                  add     $res, $r1
+0x7C  32                  inch
+0x34  33                  add     $one, $r0
+0xD4  34                  ld      $r1, $r0
+0x3D  35                  add     $res, $r1
+0x7C  36                  inch
+0x34  37                  add     $one, $r0
+0xD4  38                  ld      $r1, $r0        # 10
+0x3D  39                  add     $res, $r1
+0x7C  40                  inch
+0x34  41                  add     $one, $r0
+0xD4  42                  ld      $r1, $r0
+0x3D  43                  add     $res, $r1
+0x7C  44                  inch
+0x34  45                  add     $one, $r0
+0xD4  46                  ld      $r1, $r0
+0x3D  47                  add     $res, $r1
+0x7C  48                  inch
+0x34  49                  add     $one, $r0
+0xD4  50                  ld      $r1, $r0
+0x3D  51                  add     $res, $r1
+0x7C  52                  inch
+0x34  53                  add     $one, $r0
+0xD4  54                  ld      $r1, $r0
+0x3D  55                  add     $res, $r1
+0x7C  56                  inch
+0x34  57                  add     $one, $r0
+0xD4  58                  ld      $r1, $r0
+0x3D  59                  add     $res, $r1
+0x7C  60                  inch
+0x34  61                  add     $one, $r0
+0xD4  62                  ld      $r1, $r0        # 16th one for static 16 numbers
+0x3D  63                  add     $res, $r1
+0x7C  64                  inch
+# ---------------------------------------
+# Now shift lower portion 4 bits right
+# shift upper portion 4 bits left
+# add them together and will get the
+# number divided by 16
+# ---------------------------------------
+# 0000 1010 0111 0101
+# <---           --->
+# 1010 0000 0000 0111
+# Add them together to get
+# 1010 0111 = the number divided by 16
+# ---------------------------------------
+0x67  65                  srl4    $res            # res / 4
+0x76  66                  sll4    $three          # shift upper 4 bits left
+0xA6  67                  mov     $r0, $three     # move upper into a register
+0x3C  68                  add     $res, $r0       # add upper to lower
+# ---------------------------------------
+# Deal with the remainder
+# If the number is >= 8 (1xxx) round up
+# shift right 3, and with 0x1 and add num
+# ---------------------------------------
+0xB7  69                  mov     $r2, $res       # r2 = res temporarily
+0x7A  70                  srl3    $r2
+0x95  71                  and     $r2, $one       # if r2 >= 8, r2 == 1
+0x3E  72                  add     $res, $r2       # res += r2 (if remainder, add 1)
+0x34  73                  add     $one, $r0       # d1
+0x34  74                  add     $one, $r0       # d2
+0xAF  75                  mov     $r1, $res
+0xE1  76                  st      $r0, $r1        # store averge in
+0x00  77  		  hlt

@@ -1,0 +1,394 @@
+m255
+13
+cModel Technology
+dG:\xilinx\projects\lab1\Full_Adder
+Efourbit_adder
+w1113880355
+DP unisim vcomponents cIe6TJGN[9ngH:7_?I:FB1
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+Ffourbit_adder.vhf
+l0
+L31
+VSeFRI0i9bE:D@Fz^EJ]RJ2
+OX;C;6.0a;29
+31
+o-93 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Abehavioral
+DP unisim vcomponents cIe6TJGN[9ngH:7_?I:FB1
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DE work fourbit_adder SeFRI0i9bE:D@Fz^EJ]RJ2
+l51
+L39
+VE0`H>?SBnL9Vi:WGY8BjF2
+OX;C;6.0a;29
+31
+M3 ieee std_logic_1164
+M2 ieee numeric_std
+M1 unisim vcomponents
+o-93 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Astructure
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP vital2000 vital_primitives P<o@__YgakiANKimF[boN3
+DP simprim vpackage zFI8ah@Y4E_^X_3N<Wi6j2
+DP vital2000 vital_timing S^n>oJ2GS[H5aTKMo9OkE0
+DP simprim vcomponents Lm<h;IBQV0hW3fz`R3[Ia1
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DE work fourbit_adder _9S;P^m_9TX::gL>VJK3Q0
+l100
+L51
+VgE<URG7^D7Ai`LBV3lfNN2
+OX;C;6.0a;29
+30
+M6 ieee std_logic_1164
+M5 simprim vcomponents
+M4 vital2000 vital_timing
+M3 simprim vpackage
+M2 vital2000 vital_primitives
+M1 std textio
+o-87 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Ffourbit_adder_timesim.vhd
+w1113883059
+Efourbit_adder_busses
+w1113883060
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DP unisim vcomponents cIe6TJGN[9ngH:7_?I:FB1
+Ffourbit_adder_busses.timesim_vhw
+l0
+L28
+VAlAiBjaHG:@7F>`DD42eN3
+OX;C;6.0a;29
+31
+o-93 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Atestbench_arch
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DP unisim vcomponents cIe6TJGN[9ngH:7_?I:FB1
+DE work fourbit_adder_busses AlAiBjaHG:@7F>`DD42eN3
+l51
+L31
+V2XUonf85:mmUHZnain=A:2
+OX;C;6.0a;29
+31
+M5 unisim vcomponents
+M4 ieee std_logic_1164
+M3 ieee numeric_std
+M2 ieee std_logic_textio
+M1 std textio
+o-93 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Efourbit_adder_delay
+w1113883526
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DP unisim vcomponents cIe6TJGN[9ngH:7_?I:FB1
+Ffourbit_adder_delay.timesim_vhw
+l0
+L28
+V9CO:bco`?0N9[b40]Jk>l2
+OX;C;6.0a;29
+31
+o-93 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Atestbench_arch
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DP unisim vcomponents cIe6TJGN[9ngH:7_?I:FB1
+DE work fourbit_adder_delay 9CO:bco`?0N9[b40]Jk>l2
+l51
+L31
+V[Oh7_PHS6ia^kke8SgAa71
+OX;C;6.0a;29
+31
+M5 unisim vcomponents
+M4 ieee std_logic_1164
+M3 ieee numeric_std
+M2 ieee std_logic_textio
+M1 std textio
+o-93 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Efourbit_adder_tbw
+w1113880355
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DP unisim vcomponents cIe6TJGN[9ngH:7_?I:FB1
+Ffourbit_adder_tbw.ant
+l0
+L28
+Vi<?VjbZR:hfcJmLjo5??B0
+OX;C;6.0a;29
+31
+o-93 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Atestbench_arch
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DP unisim vcomponents cIe6TJGN[9ngH:7_?I:FB1
+DE work fourbit_adder_tbw i<?VjbZR:hfcJmLjo5??B0
+l69
+L31
+Vk@>B17Bkg`V>P^kD5:VKj3
+OX;C;6.0a;29
+31
+M5 unisim vcomponents
+M4 ieee std_logic_1164
+M3 ieee numeric_std
+M2 ieee std_logic_textio
+M1 std textio
+o-93 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Ffourbit_adder_tbw.timesim_vhw
+w1113876058
+Efull_adder
+w1113869323
+DP unisim vcomponents cIe6TJGN[9ngH:7_?I:FB1
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+Ffull_adder.vhf
+l0
+L31
+VG80Cinf[]bbK?AIONFAO>1
+OX;C;6.0a;29
+31
+o-93 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Abehavioral
+DP unisim vcomponents cIe6TJGN[9ngH:7_?I:FB1
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DE work full_adder G80Cinf[]bbK?AIONFAO>1
+l58
+L39
+VBVUDWK95M32G17`UWYP]l2
+OX;C;6.0a;29
+31
+M3 ieee std_logic_1164
+M2 ieee numeric_std
+M1 unisim vcomponents
+o-93 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Astructure
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP vital2000 vital_primitives P<o@__YgakiANKimF[boN3
+DP simprim vpackage zFI8ah@Y4E_^X_3N<Wi6j2
+DP vital2000 vital_timing S^n>oJ2GS[H5aTKMo9OkE0
+DP simprim vcomponents Lm<h;IBQV0hW3fz`R3[Ia1
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DE work full_adder JPTmW[Qg3c8ZP?BVlo7Fn2
+l67
+L51
+Ve`nAhLUX>^N@^zmk4O_5f0
+OX;C;6.0a;29
+30
+M6 ieee std_logic_1164
+M5 simprim vcomponents
+M4 vital2000 vital_timing
+M3 simprim vpackage
+M2 vital2000 vital_primitives
+M1 std textio
+o-87 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Ffull_adder_timesim.vhd
+w1113872026
+Efull_adder_tbw
+w1113872582
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DP unisim vcomponents cIe6TJGN[9ngH:7_?I:FB1
+Ffull_adder_tbw.timesim_vhw
+l0
+L28
+VP0hP]DeW0CmbLPIaPlzNC3
+OX;C;6.0a;29
+31
+o-93 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Atestbench_arch
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DP unisim vcomponents cIe6TJGN[9ngH:7_?I:FB1
+DE work full_adder_tbw P0hP]DeW0CmbLPIaPlzNC3
+l51
+L31
+Vz^1a:j@XFOWD=^O;c4e0h3
+OX;C;6.0a;29
+31
+M5 unisim vcomponents
+M4 ieee std_logic_1164
+M3 ieee numeric_std
+M2 ieee std_logic_textio
+M1 std textio
+o-93 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Ehalf_adder
+w1113869569
+DP unisim vcomponents cIe6TJGN[9ngH:7_?I:FB1
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+Fhalf_adder.vhf
+l0
+L31
+Vg3oc_n493lOj1RfNl02;R3
+OX;C;6.0a;29
+31
+o-93 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Abehavioral
+DP unisim vcomponents cIe6TJGN[9ngH:7_?I:FB1
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DE work half_adder g3oc_n493lOj1RfNl02;R3
+l54
+L38
+V4i?a6L:2ndlN2gDIz^US_3
+OX;C;6.0a;29
+31
+M3 ieee std_logic_1164
+M2 ieee numeric_std
+M1 unisim vcomponents
+o-93 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Esixteenbit_adder
+w1113884176
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP vital2000 vital_primitives P<o@__YgakiANKimF[boN3
+DP simprim vpackage zFI8ah@Y4E_^X_3N<Wi6j2
+DP vital2000 vital_timing S^n>oJ2GS[H5aTKMo9OkE0
+DP simprim vcomponents Lm<h;IBQV0hW3fz`R3[Ia1
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+Fsixteenbit_adder_timesim.vhd
+l0
+L41
+VSnN9Vd7K4jiIO6SL<E6`R0
+OX;C;6.0a;29
+30
+o-87 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Astructure
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP vital2000 vital_primitives P<o@__YgakiANKimF[boN3
+DP simprim vpackage zFI8ah@Y4E_^X_3N<Wi6j2
+DP vital2000 vital_timing S^n>oJ2GS[H5aTKMo9OkE0
+DP simprim vcomponents Lm<h;IBQV0hW3fz`R3[Ia1
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DE work sixteenbit_adder SnN9Vd7K4jiIO6SL<E6`R0
+l232
+L51
+VQ7<UV]XQRimjhjO0;HmA>3
+OX;C;6.0a;29
+30
+M6 ieee std_logic_1164
+M5 simprim vcomponents
+M4 vital2000 vital_timing
+M3 simprim vpackage
+M2 vital2000 vital_primitives
+M1 std textio
+o-87 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Abehavioral
+DP unisim vcomponents cIe6TJGN[9ngH:7_?I:FB1
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DE work sixteenbit_adder PS6JGQZkJTG0;]Fb7oE[L2
+l51
+L39
+VU@mXUkSji50ITcIU;a]F;2
+OX;C;6.0a;29
+31
+M3 ieee std_logic_1164
+M2 ieee numeric_std
+M1 unisim vcomponents
+o-93 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Fsixteenbit_adder.vhf
+w1113883840
+Esixteenbit_adder_tbw
+w1113881824
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DP unisim vcomponents cIe6TJGN[9ngH:7_?I:FB1
+Fsixteenbit_adder_tbw.timesim_vhw
+l0
+L28
+V^;6i70;MN[fGlNEIQ35XN2
+OX;C;6.0a;29
+31
+o-93 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Atestbench_arch
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DP unisim vcomponents cIe6TJGN[9ngH:7_?I:FB1
+DE work sixteenbit_adder_tbw ^;6i70;MN[fGlNEIQ35XN2
+l51
+L31
+VFbI=07X<RA7XQ_6eT[ThO0
+OX;C;6.0a;29
+31
+M5 unisim vcomponents
+M4 ieee std_logic_1164
+M3 ieee numeric_std
+M2 ieee std_logic_textio
+M1 std textio
+o-93 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Esixteenbit_delay
+w1113884176
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DP unisim vcomponents cIe6TJGN[9ngH:7_?I:FB1
+Fsixteenbit_delay.timesim_vhw
+l0
+L28
+V6DBj;GZ8`45HG0`Wa^Vfn0
+OX;C;6.0a;29
+31
+o-93 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000
+Atestbench_arch
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP ieee std_logic_textio 8YS?iX`WD1REQG`ZRYQGB2
+DP ieee numeric_std =NSdli^?T5OD8;4F<blj<3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DP unisim vcomponents cIe6TJGN[9ngH:7_?I:FB1
+DE work sixteenbit_delay 6DBj;GZ8`45HG0`Wa^Vfn0
+l51
+L31
+V=:3zlk@;zM4W>R2;[;mlN0
+OX;C;6.0a;29
+31
+M5 unisim vcomponents
+M4 ieee std_logic_1164
+M3 ieee numeric_std
+M2 ieee std_logic_textio
+M1 std textio
+o-93 -explicit -O0
+tExplicit 1GenerateLoopIterationMax 100000

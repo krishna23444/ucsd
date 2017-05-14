@@ -1,0 +1,3 @@
+declare function a($x as onyx.types.Integer) as onyx.types.Sequence { ($x,$x) };
+
+a(3)

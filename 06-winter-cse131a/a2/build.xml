@@ -1,0 +1,93 @@
+<project name="Parser" default="jflex" basedir=".">
+  <description>
+    Build file for compilers assignment 2 - onyx parser
+  </description>
+
+  <!-- project directories -->
+  <property name="src.dir" value="${basedir}"/>
+  <property name="build.dir" value="class"/>
+  <property name="lib.dir" value="lib"/>
+  <property name="doc.dir" value="doc"/>
+  <property name="test.dir" value="test"/>
+
+  <!-- scanner and parser language description filenames -->
+  <property name="scanner.file" value="scanner.jflex"/>
+  <property name="parser.file" value="parser.cup"/>
+
+  <!-- scan and parse script executable -->
+  <property name="scan.exe" value="scan"/>
+  <property name="parse.exe" value="parse"/>
+
+  <!-- Parser class name -->
+  <property name="parser.name" value="Parser"/>
+
+  <!-- java cup parser generator main class -->
+  <property name="java_cup.main" value="java_cup.Main"/>
+
+  <!-- classpath structure for targets to reference -->
+  <path id="project.path">
+    <pathelement location="${lib.dir}/"/>
+    <fileset dir="${lib.dir}">
+      <include name="**/*.jar"/>
+    </fileset>
+  </path>
+
+  <!-- start of targets/rules -->
+  <target name="all" depends="scan,parse" description="create everything">
+  </target>
+
+  <target name="clean" description="delete generated files">
+    <delete dir="${build}"/>
+  </target>
+
+  <target name="new" depends="clean,all">
+  </target>
+
+  <target name="init" description="create project directories">
+    <mkdir dir="${src}"/>
+    <mkdir dir="${build}"/>
+    <mkdir dir="${lib}"/>
+    <mkdir dir="${doc}"/>
+    <mkdir dir="${test}"/>
+  </target>
+
+  <target name="doc" description="generate javadoc">
+    <javadoc sourcepath="${src.dir}" destdir="${doc.dir}"/>
+  </target>
+
+  <target name="jflex" description="run jflex to generate scanner">
+    <exec executable="jflex">
+      <arg value="${scanner.file}"/>
+    </exec>
+  </target>
+
+  <target name="cup" description="run cup to generate parser">
+    <!-- <java jar="${java_cup.jar}" input="${parser.file}"/> -->
+    <java classname="${java_cup.main}" classpathref="project.path"
+        input="${parser.file}">
+      <arg value="-parser ${parser.name}"/>
+    </java>
+  </target>
+
+  <target name="compile" depends="jflex,cup" description="compile java code">
+    <javac srcdir="${src}" destdir="${build}">
+      <include name="**/*.java"/>
+    </javac>
+  </target>
+
+  <target name="scan" depends="compile" description="write scan script">
+  </target>
+
+  <target name="parse" depends="compile" description="write parse script">
+  </target>
+
+  <target name="test" depends="compile" description="run junit tests">
+    <java classname="junit.textui.TestRunner" taskname="junit">
+      <arg value="test.AllTests"/>
+    </java>
+  </target>
+</project>
+  
+
+<!-- <taskdef name="jflex" classname="JFlex.anttask.JFlexTask"/> -->
+<!-- <taskdef name="cup" classname="java_cup.anttask.CUPTask"/> -->

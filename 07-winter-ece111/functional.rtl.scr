@@ -1,0 +1,36 @@
+/*  functional.rtl.scr */
+
+
+/*  Check for errors in functional.rtl.v, translate verilog to an intermediate format, and write messages to file. */
+analyze -f verilog functional.rtl.v > frtl.analyze 
+
+
+/*  Build design from intermediate format and write messages to file.  */
+elaborate functional_rtl > frtl.elaborate
+
+
+/*  The module name is functional_rtl; set the current_design to functional_rtl.  */
+current_design functional_rtl  
+
+
+/*  The create_clock command is used on a synchronous design to specify the clock port and set a constraint. In this case, 5 ns. */
+/*  A constraint is a design goal for the compile command for the (maximum combinational path delay + library setup time).  */
+/*  The clock port in the functional_rtl module is clk.  */
+create_clock clk -period 5 
+
+
+/* The design is mapped to cells from the TSMC technology library and optimized.  */
+compile -map_effort medium > frtl.compile 
+
+
+/* Write an area report. */
+/* Divide the total area by 5.1, the area of a two-input nand gate, to obtain the area in units of gates. */
+report_area > frtl.area
+
+
+/* Write a timing (maximum combinational path delay in nanoseconds) report to file. */
+report_timing > frtl.timing
+
+
+/* save the design in Synopsys internal database format to functional_rtl.db file */
+write functional_rtl

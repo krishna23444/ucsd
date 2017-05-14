@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OnyxSource file="test.onyx">
+   <token column="1" id="57" line="1"/>
+   <token column="5" id="10" line="1">$d</token>
+   <token column="8" id="50" line="1"/>
+   <token column="11" id="4" line="1">document</token>
+   <token column="19" id="5" line="1"/>
+   <token column="20" id="45" line="1">book.xml</token>
+   <token column="30" id="6" line="1"/>
+   <token column="1" id="58" line="2"/>
+   <token column="5" id="10" line="2">$child</token>
+   <token column="12" id="49" line="2"/>
+   <token column="15" id="4" line="2">children</token>
+   <token column="23" id="5" line="2"/>
+   <token column="25" id="10" line="2">$d</token>
+   <token column="28" id="6" line="2"/>
+   <token column="3" id="48" line="3"/>
+   <token column="10" id="10" line="3">$child</token>
+   <token column="-1" id="0" line="-1"/>
+</OnyxSource>
+

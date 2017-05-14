@@ -1,0 +1,6 @@
+declare function foo( $a ,$b ) {
+  $a, $b
+};
+
+foo( (2,4), 3 )
+

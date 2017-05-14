@@ -1,0 +1,59 @@
+Team:
+Nachooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooos
+
+Members:
+Erik Buchanan
+Gil Edelman
+Nitay Joffe
+Phil Gravel
+
+All of the members of our group sat together and worked on the same thing
+at the same time, for all of the code-writing.  We brainstormed and debated
+about implementation choices.  We tested both as a group and individually.
+
+In this assignment we implemented Exec, Exit, Write, and Read system calls.
+We added a lock to the BitMap class to make it thread-safe.
+We created a table class to manage spaceId->{thread,exit value} mappings.
+This table is not the same one described in the assignment, it is specialized
+for our purpose.
+We moved most of the functionality of the AddrSpace constructor into a function
+because it had failure conditions and updated files that used it as necessary.
+Various methods and variables were added to Thread and AddrSpace for
+functionality required in this assignment.
+
+The Exec is split up among a couple of files (notably exception.cc and
+syscall.cc) because our design was constantly changing.  The Exec system call
+is split up into two functions. The first, which is done by the parent process
+(the one that is calling Exec), copies the arguments into kernel memory,
+creates an address space, and allocates extra space for arguments passed into
+main(). This function also handles any error conditions, for example not having
+enough memory available to run the program. Note that we did not specify a
+constant amount of space to allocate for the arguments, but rather we compute
+the exact space needed for each string and its pointer and allocate exactly
+that much. We felt this makes it much more general since it allows the user to
+pass in as much arguments as they want (provided there's space availible). The
+second function is executed by the child process (it is forked from the
+parent). It copies the arguments passed in to it's address space, initializes
+the machine registers and page state, and runs code. Note that we adjust the
+stack pointer so that it begins right where the arguments begin, which is at
+the same place it would have been if no arguments were passed in. This should
+protect the arguments and prevent the actual code from overriding them.
+
+To implement the console Write and Read system calls we created a SynchConsole
+class. This class uses the Console class provided by nachos and behaves
+similarily to the synchronous disk code in nachos.
+
+We also implemented the extra credit Join system call and pipes. For the join,
+we used our thread safe addressId->{thread,return_value} mapping table to
+communicate return values between the joinee and the joiner. The pipes used a
+bounded buffer class that we wrote to pass messages between the processes. Note
+that if a process creates a pipe and then joins it or finishes executing
+altogether, the pipeline will not be valid anymore, so we mark it as broken.
+
+To test our code, we incrementally wrote test programs in the test/ directory
+to verify every questionable behavior that came up. These tests are fairly
+simple by nature so that they can focus on testing just one thing. Most of the
+test files should have comments above them with an explanation of what is being
+tested and an example of the expected output.
+
+As far as we know, everything should work great.

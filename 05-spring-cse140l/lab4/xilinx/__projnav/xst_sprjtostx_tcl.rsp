@@ -1,0 +1,1 @@
+set allSynthModules {Mask5.MOD Mux3_5bus.MOD datapath.MOD register5.MOD Mux2_5bus.MOD regs.MOD pcounter.MOD memory16x8.MOD truthtbl.MOD machine.MOD}

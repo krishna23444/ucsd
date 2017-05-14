@@ -1,0 +1,72 @@
+- disco
+- shared memory
+  - cheat. don't modify guest os to extent xen did, but use drivers as a set of
+    tools to get into the os. vmware tools improve performance b/c they allow
+    the vmm to get information
+  - now guest os installs disco's driver for disk. most disk reads/writes goes
+    directly to the hard drive, but now the vmm knows about what blocks have
+    been read/written, and can manage much better
+- copy on write disk. same thing we do in memory. does such a disk exist? no.
+  but we have control of the disk through our driver, so we can manage it
+- each vm has its own private log, which is the changes to the image it was
+  booted from. can't actually make changes b/c image could be shared b/w
+  multiple vms
+- what happenns when u're done with vm, like an internet kiosk? can just chuck
+  the log, now all the details of your vm are lost
+- networking
+  - network device driver, sees all the packets
+  - don't want to go to disk, gms showed us even n etwork memory is faster
+  - how does an ethernet driver normally work? send a packet, give me an
+    interrupt when you get a packet for me
+  - vmm grabs the packet, puts it in ___, make interrupt to other vm with the
+    packet. play the shared memory game.
+  - disk blocks and page tables are conveniently the same usually, but network
+    has different mtu's. but there's no network we're sending over this time,
+    so you can send as much as you want, so we get rid of the mtu
+- fig. 5
+  - user usage = should be about the same, application is doing same stuff
+  - kernel = same or lower b/c disco vmm taking off some of the load since vm
+    doesn't do stuff like page allocation anymore
+  - idle time = drops b/c there's an overlap 
+- fig. 6
+  - pmake = parallel make, divy up jobs
+  - v = virtual memory expected by vms
+  - m = actual machine memory needed to back that up
+  - expect m to be lower than v b/c we can reuse memory using shared stuff
+  - assume size of disco overhead to be static
+  - 1vm -> 2vm, virtual memory goes from 27 to 36, why does it not double?
+    - count of how much virtual memory they're using, possible there's some
+      overlap b/c not all the same data has to be kept on both machines
+    - machine memory, M, no smaller than, but probably a bit bigger
+  - point of disco is that if we do the sharing stuff well, no matter how many
+    vms u run and how much virtual memory they want, V, we have a small
+    overhead of actual machine memory, M, overhead b/c they can share
+  - nfs? another way to share disk data. sharing it through the network. when
+    vms want to read same files, they'll send requests with different ips but
+    same memory address, and now disco vmm can save work
+- vmware runs basically disco stuff, but it also does a lot more... there's
+  lots of issues involved
+
+- esx paper
+  - small portion of esx product
+  - almsot exactly like disco, but disctinct from workstation b/c disco ran on
+    bare hardware, vmware the product runs on windows. it's gotta play games up
+    and down. esx doesn't have this problem, so it's much cleaner
+  - basicallly trying to emulate some of the games that disco played, why can't
+    they just do the exact same thing disco did?
+    - talked about disco as set of drivers, but underneath they really had to
+      hack the vm os a bit
+    - if you don't have a driver telling you which pages are the same, you have
+      to spend all day, in idle loop, trying to find identical pages
+  - how do you go about checking if two pages are equal?
+    - go through byte by byte. problem b/c page could change as we're checking,
+      so we need to lock it down
+    - use a hash function that hopefully changes for any byte change
+    - what happens if it changes after we checked? don't worry about it, but
+      need to check later when we do act upon the hash results
+    - lock down page by turning on read only, if vm tries to write while we're
+      checking just give it to it since it's about to change it anyways
+    - how do we know hashes are still good? read only bits are still set, it's
+      shared memory, it doesn't break up till a write occurs
+    - need to do our own garbage collection on pages
+  - walk memory, create hash entries for pages

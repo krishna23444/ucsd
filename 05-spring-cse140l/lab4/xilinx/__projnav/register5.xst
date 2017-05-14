@@ -1,0 +1,4 @@
+set -tmpdir .
+elaborate
+-ifn register5.prj
+-ifmt mixed

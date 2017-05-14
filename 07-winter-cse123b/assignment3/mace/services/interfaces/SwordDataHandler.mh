@@ -1,0 +1,6 @@
+#include "MaceTypes.h"
+#include "Sword.h"
+
+handler SwordData {
+  virtual void dhtGetResult(const int& seqno, AppUpcallMap& result) { }
+}; // SwordDataHandler

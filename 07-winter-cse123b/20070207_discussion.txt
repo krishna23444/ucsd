@@ -1,0 +1,65 @@
+- network as a pipe
+  - width is bandwidth
+  - length is delay
+  - bandwidth delay product (BDP) = bandwidth * delay
+    - equal to how much data can be in the pipe at a time
+- lookup www.google.com
+  - dhcp broadcast to  get information about next hop
+  - arp of next hop (gateway) to get mac address
+  - dns lookup of www.google.com
+  - http packet to google's ip
+- tcp protocol
+  - comparing vegas to reno, mostly conceptual
+  - reno = default, unless says to use vegas version
+    - congestion control = don't want to overrun the network
+      - slow start
+      - fast recovery / fast retransmit
+      - slowly build up, agressively backoff
+    - flow control = don't want to overrun the receiver
+      - negotiate receiver window size
+      - don't send more than the receiver can buffer at once
+    - essentially use the minimum of the two
+  - client wants to send a packet, how long does it take?
+    - client sends syn
+      - 1RTT total
+    - server sends syn ack
+    - client sends ack + data
+      - 2RTT total
+    - server sends ack
+    - client sends 2 packets
+      - 3RTT total
+    - server acks 2 packets
+    - client sends 4 packets
+      - 4RTT total
+- webserver (and servers in general)
+  - http request delimited by \r\n\r\n, ALWAYS, not just end of read
+  - multithreaded
+    - least portable, different thread packages on various platforms
+    - faster than multiprocess
+    - easy to code
+  - multiprocess
+    - socket()
+      bind()
+      listen()
+      accept()
+      fork() {
+        parse
+        verify
+        response...
+      }
+    - portable, fork() and exec() are pretty standard
+    - easy to code
+    - slowest, less efficient because of forking and context switching overhead
+    - least scalable
+  - event driven
+    - portable
+    - fast, but can actually be worse because any read blocks everything
+    - complex
+    - socket()
+      bind()
+      listen()
+      while (1) {
+        select()
+        clock
+        accept
+      }

@@ -1,0 +1,89 @@
+\documentclass{article}
+\usepackage{bbm}
+
+% Margin on left side of page is 1.0 inches plus \oddsidemargin.
+\oddsidemargin  -0.75in
+\evensidemargin  0pt
+% Margin on top also appears to be 1.0 inches plus \topmargin (not checked).
+\topmargin -0.5in
+\headheight 0.0in
+\headsep 0.0in
+\marginparwidth 0pt
+\marginparsep 0pt
+\textwidth   7.5in
+\textheight  10.6in
+
+\title{CSE166 - Image Processing - Homework 5}
+\author{Nitay Joffe}
+\date{November 14, 2006}
+
+\begin{document}
+\maketitle
+
+\noindent
+{\bf Written exercises}
+\begin{enumerate}
+  \item GW, Problem 8.1.
+  \begin{enumerate}
+    \item Can variable-length coding procedures be used to compress a histogram
+          equalized image with $2^n$ gray levels? Explain.\\
+          \linebreak
+          No, since each $2^n$ gray level occurs with equal probability, all
+          the symbols will have the same bit length $n$, and therefore no actual
+          compression will be done.\\
+    \item Can such an image contain interpixel redundancies that could be
+          exploited for data compression?\\
+          \linebreak
+          Yes, there could be clusters of pixels with the same graylevels.\\
+  \end{enumerate}
+
+  \item GW, Problem 8.12.
+  \begin{enumerate}
+    \item How many unique Huffman codes are there for a three-symbol source?\\
+          \linebreak
+          1\\
+    \item Construct them.\\
+          \begin{itemize}
+            \item 0, 10, 11\\
+          \end{itemize}
+  \end{enumerate}
+
+  \item GW, Problem 8.14.\\
+        The arithmetic decoding process is the reverse of the encoding
+        procedure. Decode the message 0.23355 given the coding model.\\
+  \linebreak
+  \begin{tabular}{ccc}
+    \hline
+    Symbol & Probability & Range\\
+    \hline
+    a & 0.2 & [0.0,0.2)\\
+    e & 0.3 & [0.2,0.5)\\
+    i & 0.1 & [0.5,0.6)\\
+    o & 0.2 & [0.6,0.8)\\
+    u & 0.1 & [0.8,0.9)\\
+    ! & 0.1 & [0.9,1.0)\\
+    \hline\\
+  \end{tabular}\\
+  0.23355 $\rightarrow$ eaii!\\
+
+  \item Consider the symmetric $2\times 2$ matrix
+        $$A=\left[\begin{array}{cc}a&b\\b&c\end{array}\right].$$
+        By finding the roots of the characteristic equation, 
+        $$\det(\lambda I-A)=0,$$ show that the eigenvalues of A are given by
+        $$\lambda = \frac{\mbox{tr}(A)\pm\sqrt{\mbox{tr}(A)^2-4\det(A)}}{2}$$\\
+        \linebreak
+        $$det(\lambda I-A) = \left|\begin{array}{cc}
+                                     \lambda-a & b\\
+                                     c & \lambda-d
+                                   \end{array}\right|
+          = (\lambda-a)(\lambda-d)-bc = \lambda^2-\lambda(a+d)+ad-bc$$
+        $$\lambda = \frac{a+d\pm\sqrt{(a+d)^2-4(1)(ad-bc)}}{2}$$
+        $$tr(A) = trace(A) = a + d$$
+        $$det(A) = \left|\begin{array}{cc}
+                           a & b\\
+                           c & d
+                         \end{array}\right| = ad-bc$$
+        $$\lambda = \frac{a+d\pm\sqrt{(a+d)^2-4(1)(ad-bc)}}{2}
+          = \frac{tr(A)\pm\sqrt{tr(A)^2-4det(A)}}{2}$$\\
+\end{enumerate}
+\end{document}

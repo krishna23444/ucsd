@@ -1,0 +1,230 @@
+# XST flow : Creating project file
+Mux5_3.prj
+# xst flow : Check Syntax
+Mux5_3.sprj
+__projnav/Mux5_3.xst
+xst
+# XST flow : Creating project file
+program_counter.prj
+# xst flow : Check Syntax
+program_counter.sprj
+__projnav/program_counter.xst
+xst
+# XST flow : Creating project file
+Mux3_5bus.prj
+# xst flow : Check Syntax
+Mux3_5bus.sprj
+__projnav/Mux3_5bus.xst
+xst
+# XST flow : Creating project file
+Mux3_5bus.prj
+# xst flow : Check Syntax
+Mux3_5bus.sprj
+__projnav/Mux3_5bus.xst
+xst
+# XST flow : Creating project file
+datapath.prj
+# xst flow : Check Syntax
+datapath.sprj
+__projnav/datapath.xst
+xst
+# XST flow : Creating project file
+datapath.prj
+# xst flow : Check Syntax
+datapath.sprj
+__projnav/datapath.xst
+xst
+# XST flow : Creating project file
+Mux2_5bus.prj
+# xst flow : Check Syntax
+Mux2_5bus.sprj
+__projnav/Mux2_5bus.xst
+xst
+# XST flow : Creating project file
+memory16x8.prj
+# xst flow : Check Syntax
+memory16x8.sprj
+__projnav/memory16x8.xst
+xst
+# XST flow : Creating project file
+register5.prj
+# xst flow : Check Syntax
+register5.sprj
+__projnav/register5.xst
+xst
+# XST flow : Creating project file
+regs.prj
+# xst flow : Check Syntax
+regs.sprj
+__projnav/regs.xst
+xst
+# XST flow : Creating project file
+regs.prj
+# xst flow : Check Syntax
+regs.sprj
+__projnav/regs.xst
+xst
+# XST flow : Creating project file
+regs.prj
+# xst flow : Check Syntax
+regs.sprj
+__projnav/regs.xst
+xst
+# XST flow : Creating project file
+datapath.prj
+# xst flow : Check Syntax
+datapath.sprj
+__projnav/datapath.xst
+xst
+# XST flow : Creating project file
+pcounter.prj
+# xst flow : Check Syntax
+pcounter.sprj
+__projnav/pcounter.xst
+xst
+# XST flow : Creating project file
+machine.prj
+# xst flow : Check Syntax
+machine.sprj
+__projnav/machine.xst
+xst
+# xst flow : Check Syntax
+machine.sprj
+__projnav/machine.xst
+xst
+# xst flow : Check Syntax
+machine.sprj
+__projnav/machine.xst
+xst
+# xst flow : Check Syntax
+machine.sprj
+__projnav/machine.xst
+xst
+# XST flow : Creating project file
+machine.prj
+# xst flow : Check Syntax
+machine.sprj
+__projnav/machine.xst
+xst
+# xst flow : Check Syntax
+machine.sprj
+__projnav/machine.xst
+xst
+# xst flow : Check Syntax
+machine.sprj
+__projnav/machine.xst
+xst
+# xst flow : Check Syntax
+machine.sprj
+__projnav/machine.xst
+xst
+# xst flow : Check Syntax
+machine.sprj
+__projnav/machine.xst
+xst
+# xst flow : Check Syntax
+machine.sprj
+__projnav/machine.xst
+xst
+# xst flow : Check Syntax
+machine.sprj
+__projnav/machine.xst
+xst
+# xst flow : Check Syntax
+machine.sprj
+__projnav/machine.xst
+xst
+# xst flow : Check Syntax
+machine.sprj
+__projnav/machine.xst
+xst
+# XST flow : Creating project file
+machine.prj
+# xst flow : Check Syntax
+machine.sprj
+__projnav/machine.xst
+xst
+# XST flow : Creating project file
+machine.prj
+# xst flow : Check Syntax
+machine.sprj
+__projnav/machine.xst
+xst
+# XST flow : Creating project file
+machine.prj
+# xst flow : Check Syntax
+machine.sprj
+__projnav/machine.xst
+xst
+# XST flow : Creating project file
+machine.prj
+# xst flow : RunXST
+machine.prj
+__projnav/machine.xst
+./xst
+# XST flow : Creating project file
+machine.prj
+# xst flow : Check Syntax
+machine.sprj
+__projnav/machine.xst
+xst
+# XST flow : Creating project file
+machine.prj
+# xst flow : Check Syntax
+machine.sprj
+__projnav/machine.xst
+xst
+# XST flow : Creating project file
+machine.prj
+# xst flow : RunXST
+machine.prj
+__projnav/machine.xst
+./xst
+# XST flow : Creating project file
+machine.prj
+# xst flow : RunXST
+machine.prj
+__projnav/machine.xst
+./xst
+# XST flow : Creating project file
+machine.prj
+# xst flow : RunXST
+machine.prj
+__projnav/machine.xst
+./xst
+# XST flow : Creating project file
+machine.prj
+# xst flow : RunXST
+machine.prj
+__projnav/machine.xst
+./xst
+# XST flow : Creating project file
+machine.prj
+# xst flow : RunXST
+machine.prj
+__projnav/machine.xst
+./xst
+# XST flow : Creating project file
+machine.prj
+# xst flow : RunXST
+machine.prj
+__projnav/machine.xst
+./xst
+# XST flow : Creating project file
+truthtbl.prj
+# xst flow : RunXST
+truthtbl.prj
+__projnav/truthtbl.xst
+./xst
+# XST flow : Creating project file
+machine.prj
+# xst flow : RunXST
+machine.prj
+__projnav/machine.xst
+./xst
+# XST flow : Creating project file
+machine.prj
+# xst flow : RunXST
+machine.prj
+__projnav/machine.xst
+./xst

@@ -1,0 +1,1 @@
+sch2vhdl -intstyle ise -family virtex2 -flat -suppress -w Mux5_3.sch Mux5_3.vhf

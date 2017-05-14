@@ -1,0 +1,17 @@
+Control Signals
+---------------
+halt
+readA0
+readA1
+readA2
+readB0
+readB1
+readB2
+op0
+op1
+op2
+regWrite
+memRead
+memWrite
+branch
+AOrFlag

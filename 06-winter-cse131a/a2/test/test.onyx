@@ -1,0 +1,4 @@
+let $d := document("book.xml")
+for $child in children( $d )
+  return $child
+

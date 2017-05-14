@@ -1,0 +1,96 @@
+
+service SimAggregateApp;
+
+provides SimApplication;
+trace=med;
+
+constants {
+  int INIT = 0;
+  int JOINED = 1;
+  int ROOT_ONLY = 0;
+  int NEXT_NODE = 1;
+  int RANDOM_LESSER = 2;
+  channel_id_t CHANNEL_ID = 1;
+}
+
+constructor_parameters {
+  int PEERSET_STYLE = ROOT_ONLY;
+  int SHOULD_JOIN = 1;
+  MaceKey me = MaceKey::null;
+}
+
+states {
+  needJoin;
+  needSubscribe;
+  done;
+}
+
+services {
+  Overlay tree_;
+  Aggregate rs_agg_;
+}
+
+state_variables {
+  int numNodes = 0;
+  int popCount = 0;
+}
+
+transitions {
+
+  downcall (state == init) maceInit() {
+    state = needJoin;
+  }
+
+  downcall (state == done) eventsWaiting() {
+    return false;
+  }
+  downcall eventsWaiting() {
+    return true;
+  }
+  
+  downcall (state == needJoin) simulateEvent() {
+    state = needSubscribe;
+    NodeSet peers;
+    if(PEERSET_STYLE == NEXT_NODE) {
+      peers.insert(upcall_getMaceKey((upcall_getNodeNumber() + 1) % numNodes));
+    } else if(PEERSET_STYLE == RANDOM_LESSER && upcall_getNodeNumber() != 0) {
+      peers.insert(upcall_getMaceKey(Util::randInt(upcall_getNodeNumber()))); // get a random node below you (if you're not node 0)
+    } else {
+      peers.insert(upcall_getMaceKey(0)); // pass in the same node to everyone
+    }
+    downcall_joinOverlay(peers);
+    return "joinOverlay(" + peers.toString() + ")";
+  }
+  downcall (state == needSubscribe) simulateEvent() {
+    state = done;
+    downcall_aggregateSubscribe(CHANNEL_ID);
+    return "aggregateSubscribe()";
+  }
+
+  downcall (state == init) simulateEvent() {
+    numNodes = upcall_getNodeCount();
+    maceInit();
+    return "maceInit()";
+  }
+
+  upcall distributeAggregateData(channel_id_t channelId, const mace::string& data, AggregateNodeBlobMap& cmap, 
+                                  const int count, AggregateNodeCountMap& nmap, const MaceKey& distributor) {
+    //ASSERT(state == done);
+    //CK: Strange, get distribute even when not subscribed.  Is that okay?
+    if(state != done) { return; }
+    ASSERT(channelId == CHANNEL_ID);
+    if(count == numNodes) {
+      popCount++;
+    }
+    else {
+      popCount=0;
+    }
+  }
+
+}
+
+properties {
+  liveness {
+    allPop : \forall n \in \nodes: n.popCount \geq 5;
+  }
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.error.SemanticError>
+  <StaticError column="18" line="2">Function foo with prototype foo(onyx.types.Integer) already defined</StaticError>
+</onyx.error.SemanticError>

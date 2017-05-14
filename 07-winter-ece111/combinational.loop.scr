@@ -1,0 +1,9 @@
+/* check for code errors and translate verilog to an intermediate format */
+analyze -format verilog combinational_loop.v
+
+/* build design from intermediate format */
+elaborate combinational_loop
+
+/* this command will result in a timing loop being reported */
+report_timing -loops
+

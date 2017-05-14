@@ -1,0 +1,30 @@
+; This scatterloading descriptor file defines:
+; one load region (FLASH_LOAD) and 2 execution regions (FLASH_EXEC & SRAM)
+;
+; At load time, the entire program (code & data) is placed in FLASH. 
+; 
+; During execution, the boot code, the library functions and the retarget.c
+; functions execute from the FLASH memory.
+; The application program (MAC_test.c) is copied from the FLASH to the SRAM 
+; memory and executes from there. This relocation is done by the library routine 
+; __main(). This is done because accessing the FLASH takes much more time than 
+; accessing the SRAM. Hence the application code executes significantly faster by 
+; placing it in the SRAM.
+;
+; The exception vector table must appear at 0x0 (it is part of boot_code.s), 
+; so boot_code.s is placed '+First' in the image.
+;
+; All the ReadWrite (RW) and ZI (ZeroInitialized) sections are also placed
+; in the SRAMs. This means that the stack and the heap are in the SRAMs.
+;
+
+LOAD_SRAM 0x0 
+{
+    EXEC_SRAM	0x0 
+    {
+        reset_vectors.o (reset_vectors, +First)
+        * (+RO)
+        * (+RW,+ZI)
+    }
+
+}

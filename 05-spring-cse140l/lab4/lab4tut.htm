@@ -1,0 +1,736 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Untitled Document</title>
+<style type="text/css">
+<!--
+.style3 {font-family: Arial, Helvetica, sans-serif}
+.style4 {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 20px;
+}
+body,td,th {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 20px;
+}
+.style5 {font-family: "Courier New", Courier, mono}
+.style6 {font-family: Verdana, Arial, Helvetica, sans-serif}
+.style7 {color: #FF0000}
+.style9 {color: #006600}
+.style10 {color: #009900}
+.style11 {color: #000066}
+.style12 {font-family: Arial, Helvetica, sans-serif; color: #000066; }
+.style14 {font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000; }
+-->
+</style>
+<meta name="generator" content="Namo WebEditor v6.0"></head>
+
+<body>
+<h1 class="style3 style11">A tutorial on a computer system design</h1>
+<p class="style4">In this tutorial, we will see a top-down design flow for the computer system described<br>in Lab4. We start from the understanding of the overall architecture, and then move to<br>the details of each building block. </p>
+<h2 class="style12">The architecture of the computer system</h2>
+<p class="style3">Before we go to the architecture of a computer, let's discuss how people perform <br>calculations. First people need an algorithm to be run, and some paper as well as <br>a calculator. Then people read the first instruction in the algorithm, perform the <br>corresponding operation in the calculator, and write down the intermediate results on <br>papers. After the current&nbsp;instruction is finished, the next&nbsp;instruction will be executed, <br>until no more instruction left. The following figure shows this flow. </p>
+<p class="style3"><img src="tu_imgs/people.jpg" width="798" height="463" border="0"></p>
+<p class="style3">Basically people organize the computation by reading&nbsp;instructions&nbsp;from&nbsp;a program <br>and operating on the tools. </p>
+<p class="style3">The&nbsp;computer&nbsp;system&nbsp;in&nbsp;Lab4 has a very similar flow. Memory block and program <br>counter are used to hold program and output the current instruction. Datapath module<br>and registers perform each instruction and store the intermediate results. Control logic<br>is the bridge between them. It compiles each instruction to the control signals needed <br>by the datapath module and registers. The next figure shows the architecture.</p>
+<p class="style3"><img src="tu_imgs/computer.jpg" width="866" height="460" border="0"></p>
+<p class="style3">At&nbsp;the&nbsp;beginning&nbsp;of each clock cycle, program counter will give the address of <br>the current instruction. Then the instruction will be read into the control logic <br>block and compiled to the corresponding control signals. According to the control <br>signals, datapath module will perform proper activities and get result ready to <br>the input of registers. When the next clock cycle arrives, the result is written to <br>the registers, and the new instruction starts to run. </p>
+<p class="style3">Based on the previous description, here are the function descriptions of these<br>building blocks. </p>
+<ul>
+    <li class="style3">Program counter: give the address of current instruction&nbsp;</li>
+    <li class="style3">Memory: hold program</li>
+    <li class="style3">Datapath: perform arithmetic computation</li>
+    <li class="style3">Registers: hold operands and intermediate results</li>
+    <li class="style3">Control logic: compile instructions to control signals</li>
+</ul>
+<p class="style3">The building blocks are implemented one by one, and then assembled together.<br>Control logic should be designed after other blocks. Therefore we know what are<br>the control signals needed and how to operate on them. In the following sections<br>we will discuss the details of each building block. </p>
+<h2 class="style12">Memory</h2>
+<p class="style3">Memory is used to store program. Therefore&nbsp;the word length of the momoery <br>block should be equal to the length of each instruction. In Lab4, each instruction<br>consists of 8 bits. The depth of the memory in this lab is set to 16. Hence we <br>need a memory block can hold 16 8-bit words. Xilinux provides 16 by 1-bit ROM<br>block ROM16x1. It can be used to store 1-bit information in the total 8 bits. Then<br>we need 8 ROM16x1 blocks to construct memory block. They share the address<br>inputs, and each of them outputs one bit of&nbsp;the data. </p>
+<p class="style3"><img src="tu_imgs/mem.jpg" width="713" height="607" border="0"></p>
+<p class="style3">Now we have&nbsp;the memory block to hold program. The next step is to put our <br>program into the memory block. Because it is read-only memory, we should define<br>the content&nbsp;as initial values of the ROM16x1s. The following part will show how<br>to translate a program to initial values. </p>
+<p class="style3">Here is a simple program to perform 01001+00011. </p>
+<ul>
+    <ul>
+        <p class="style3">1. Init<br>2. Move1 01001<br>3. Move2 00011<br>4. Add</p>
+    </ul>
+</ul>
+<p class="style3">According to the coding rule in lab4 description, the previous program can be <br>compiled to the following binary code in memory.</p>
+<table border="1" width="721">
+    <tr>
+        <td width="122">Address</td>
+        <td width="47">D(7)</td>
+        <td width="47">D(6)</td>
+        <td width="47">D(5)</td>
+        <td width="47">D(4)</td>
+        <td width="47">D(3)</td>
+        <td width="47">D(2)</td>
+        <td width="47">D(1)</td>
+        <td width="47">D(0)</td>
+        <td width="158">&nbsp;&nbsp;Instruction</td>
+    </tr>
+    <tr>
+        <td width="122">0000</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="158">
+            <p align="center">Init</p>
+        </td>
+    </tr>
+    <tr>
+        <td width="122">0001</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="47">1</td>
+        <td width="47">0</td>
+        <td width="47">1</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="47">1</td>
+        <td width="158">
+            <p align="center">Move1 01001</p>
+        </td>
+    </tr>
+    <tr>
+        <td width="122">0010</td>
+        <td width="47">0</td>
+        <td width="47">1</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="47">1</td>
+        <td width="47">1</td>
+        <td width="158">
+            <p align="center">Move2 00011</p>
+        </td>
+    </tr>
+    <tr>
+        <td width="122">0011</td>
+        <td width="47">1</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="158">
+            <p align="center">Add</p>
+        </td>
+    </tr>
+    <tr>
+        <td width="122">0100-1111</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="47">0</td>
+        <td width="158">
+            <p align="center">Init</p>
+        </td>
+    </tr>
+</table>
+<p><span class="style3">Finally the initial values are&nbsp;obtained by looking at the binary numbers on every&nbsp;<br>bit positions. (Refer to the slides of 5/18 discussion session)</span></p>
+<table border="1" width="671">
+    <tr>
+        <td width="49"><span style="font-size:10pt;">&nbsp;</span></td>
+        <td width="27"><span style="font-size:10pt;">11<br>11</span></td>
+        <td width="27"><span style="font-size:10pt;">11<br>10</span></td>
+        <td width="27"><span style="font-size:10pt;">11<br>01</span></td>
+        <td width="25"><span style="font-size:10pt;">11<br>00</span></td>
+        <td width="26"><span style="font-size:10pt;">10<br>11</span></td>
+        <td width="27"><span style="font-size:10pt;">10<br>10</span></td>
+        <td width="27"><span style="font-size:10pt;">10<br>01</span></td>
+        <td width="26"><span style="font-size:10pt;">10<br>00</span></td>
+        <td width="26"><span style="font-size:10pt;">01<br>11</span></td>
+        <td width="26"><span style="font-size:10pt;">01<br>10</span></td>
+        <td width="27"><span style="font-size:10pt;">01<br>01</span></td>
+        <td width="27"><span style="font-size:10pt;">01<br>00</span></td>
+        <td width="27"><span style="font-size:10pt;">00<br>11</span></td>
+        <td width="28"><span style="font-size:10pt;">00<br>10</span></td>
+        <td width="26"><span style="font-size:10pt;">00<br>01</span></td>
+        <td width="26"><span style="font-size:10pt;">00<br>00</span></td>
+        <td width="85"><span style="font-size:10pt;">Initial<br>Value</span></td>
+    </tr>
+    <tr>
+        <td width="49"><span style="font-size:10pt;">D(7)</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="25"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">1</span></td>
+        <td width="28"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="85"><span style="font-size:10pt;">0008</span></td>
+    </tr>
+    <tr>
+        <td width="49"><span style="font-size:10pt;">D(6)</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="25"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="28"><span style="font-size:10pt;">1</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="85"><span style="font-size:10pt;">0004</span></td>
+    </tr>
+    <tr>
+        <td width="49"><span style="font-size:10pt;">D(5)</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="25"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="28"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">1</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="85"><span style="font-size:10pt;">0002</span></td>
+    </tr>
+    <tr>
+        <td width="49"><span style="font-size:10pt;">D(4)</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="25"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="28"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="85"><span style="font-size:10pt;">0000</span></td>
+    </tr>
+    <tr>
+        <td width="49"><span style="font-size:10pt;">D(3)</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="25"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="28"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">1</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="85"><span style="font-size:10pt;">0002</span></td>
+    </tr>
+    <tr>
+        <td width="49"><span style="font-size:10pt;">D(2)</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="25"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="28"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="85"><span style="font-size:10pt;">0000</span></td>
+    </tr>
+    <tr>
+        <td width="49"><span style="font-size:10pt;">D(1)</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="25"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="28"><span style="font-size:10pt;">1</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="85"><span style="font-size:10pt;">0004</span></td>
+    </tr>
+    <tr>
+        <td width="49"><span style="font-size:10pt;">D(0)</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="25"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="27"><span style="font-size:10pt;">0</span></td>
+        <td width="28"><span style="font-size:10pt;">1</span></td>
+        <td width="26"><span style="font-size:10pt;">1</span></td>
+        <td width="26"><span style="font-size:10pt;">0</span></td>
+        <td width="85"><span style="font-size:10pt;">0006</span></td>
+    </tr>
+</table>
+
+<h2 class="style12">Program Counter</h2>
+<p class="style3">In the simple instruction set, there is no branch or jump commmand. Hence we <br>only need a regular 4-bit counter as the program counter, to explore the 16 words <br>in the memory one by one. Xilinux&nbsp;provides&nbsp;a&nbsp;4-bit counter CB4CE. It has clock <br>and clock enable inputs as well as an asynchronous clear input. The output is a <br>4-bit bus, which should be connected to the address port of memory block. </p>
+<p><img src="tu_imgs/pcounter.jpg" width="589" height="319" border="0"></p>
+<p class="style3">Imagine that the 4-bit counter starts&nbsp;from 0000 and increases one in every <br>clock cycles. The program will be read from the memory data port one <br>instruction by one instruction.</p>
+<h2 class="style12">Registers</h2>
+<p class="style3">There are three 5-bit registers R1, R2, R3 and two 1-bit flags OV_FLG, <br>GE_FLG in the system&nbsp;to store data. Each bit needs a flip-flop. Besides<br>the flip-flops, let's look at the operations on the registers block. Every<br>instruction will affect the values of registers. Initialize command clears<br>all the registers; move1, move2 and store commands change the value<br>of R1 or R2; other arithmetic operations change the value of R3 or flags. <br>Therefore we need the capability to clear the registers and indicate which <br>register should load data from where. </p>
+<p><span class="style3">By using D flip-flop FDRE, we can clear each bit and enable each bit to <br>read data. The last problem is the data source. From the instruction set, <br>we know that R1 only read data from memory, R3 and flags always read <br>data from datapath module, R2 may read data from memory or R3. <br>Hence the registers block needs two 5-bit data ports, one from memory,<br>the other from datapath. The following figure shows the structure of register <br>block. </span><br><img src="tu_imgs/regs.jpg" width="1018" height="429" border="0">&nbsp;</p>
+<p class="style3">Let's consider one input combination as an example. If R1_en=1 and all other <br>control signals are 0s, R1 will read in the data from memory, which is a&nbsp;Move1 <br>command. </p>
+<h2 class="style12">Datapath Module</h2>
+<p class="style3"><span class="style3">According to the instruction set, there are four arithmetic operations, add, shift, <br>compare and mask. We need four 5-bit blocks to perform these operations. <br></span><span class="style3">Xilinx provides 8-bit adder ADD8, 8-bit comparator COMPM8 and 8-bit shifter<br></span><span class="style3">BRLSHFT8. They can be modified to perform 5-bit operations. Mask operation<br></span><span class="style3">is quite simple. There is nothing more than 5 AND gates in parallel. </span></p>
+<p class="style3">Every operations use R1 and/or R2 as operands, and they share the input ports. <br>Besides the flag outputs, data outputs are shared by add, shift and mask operation.<br>A mux is added to select one operation result to the data output port. In addition,<br>2-bit shift offside control signals are needed for shift operation. The following figure<br>shows the structure of datapath module. </p>
+<p class="style3"><img src="tu_imgs/datapath.jpg" width="899" height="412" border="0"></p>
+<p class="style3">If sel(1:0)=&quot;01&quot;, the datapath module will perform R1+R2. The result will be <br>available at dpath_D(4:0) and the flag bit OV. </p>
+<h2 class="style12">Control Logic</h2>
+<p class="style3">So far, we already built memory, program counter, registers and datapath <br>module. The last step is to design&nbsp;control logic, which is a bridge between <br>instructions and control signals. The inputs of control logic are the instruction <br>bits from memory, the outputs are the control signals needed by registers<br>and datapath module. Essentially, control logic is a truth table describes the<br>function of each control signal. </p>
+<p class="style3">Consider the instruction Init which has instruction code &quot;000&quot;. All the registers <br>are cleared by this command. Correspondingly, the clr input of registers block <br>should be 1 and all other control signals are 0s. Another example is Add, <br>which has instruction code &quot;100&quot;. R3 and the overflow flag will be set by the <br>results from ADD5 block. Then R3_en and ov_en should be 1s, sel(1:0) should<br>be &quot;01&quot;, and all other control signals are 0s. The following table gives a sample<br>of control logic. <br></p>
+<table border="1" width="811">
+    <tr>
+        <td width="72"><span style="font-size:10pt;">Instruction</span></td>
+        <td width="37"><span style="font-size:10pt;">D(7)</span></td>
+        <td width="37"><span style="font-size:10pt;">D(6)</span></td>
+        <td width="37"><span style="font-size:10pt;">D(5)</span></td>
+        <td width="37"><span style="font-size:10pt;">D(4)</span></td>
+        <td width="37"><span style="font-size:10pt;">D(3)</span></td>
+        <td width="26"><span style="font-size:10pt;">clr</span></td>
+        <td width="49"><span style="font-size:10pt;">R1_en</span></td>
+        <td width="48"><span style="font-size:10pt;">R2_en</span></td>
+        <td width="49"><span style="font-size:10pt;">R2_sel</span></td>
+        <td width="47"><span style="font-size:10pt;">R3_en</span></td>
+        <td width="50"><span style="font-size:10pt;">ov_en</span></td>
+        <td width="47"><span style="font-size:10pt;">ge_en</span></td>
+        <td width="61"><span style="font-size:10pt;">sel(1:0)</span></td>
+        <td width="83"><span style="font-size:10pt;">shf_of(1:0)</span></td>
+    </tr>
+    <tr>
+        <td width="72"><span style="font-size:10pt;">Init</span></td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">s1</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">s0</span></p>
+        </td>
+        <td width="26">
+            <p align="center"><span style="font-size:10pt;">1</span></p>
+        </td>
+        <td width="49">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="48">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="49">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="47">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="50">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="47">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="61">
+            <p align="center"><span style="font-size:10pt;">00</span></p>
+        </td>
+        <td width="83">
+            <p align="center"><span style="font-size:10pt;">00</span></p>
+        </td>
+    </tr>
+    <tr>
+        <td width="72"><span style="font-size:10pt;">Move1</span></td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">1</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">s1</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">s0</span></p>
+        </td>
+        <td width="26">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="49">
+            <p align="center"><span style="font-size:10pt;">1</span></p>
+        </td>
+        <td width="48">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="49">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="47">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="50">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="47">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="61">
+            <p align="center"><span style="font-size:10pt;">00</span></p>
+        </td>
+        <td width="83">
+            <p align="center"><span style="font-size:10pt;">00</span></p>
+        </td>
+    </tr>
+    <tr>
+        <td width="72"><span style="font-size:10pt;">Move2</span></td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">1</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">s1</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">s0</span></p>
+        </td>
+        <td width="26">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="49">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="48">
+            <p align="center"><span style="font-size:10pt;">1</span></p>
+        </td>
+        <td width="49">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="47">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="50">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="47">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="61">
+            <p align="center"><span style="font-size:10pt;">00</span></p>
+        </td>
+        <td width="83">
+            <p align="center"><span style="font-size:10pt;">00</span></p>
+        </td>
+    </tr>
+    <tr>
+        <td width="72"><span style="font-size:10pt;">Store</span></td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">1</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">1</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">s1</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">s0</span></p>
+        </td>
+        <td width="26">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="49">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="48">
+            <p align="center"><span style="font-size:10pt;">1</span></p>
+        </td>
+        <td width="49">
+            <p align="center"><span style="font-size:10pt;">1</span></p>
+        </td>
+        <td width="47">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="50">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="47">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="61">
+            <p align="center"><span style="font-size:10pt;">00</span></p>
+        </td>
+        <td width="83">
+            <p align="center"><span style="font-size:10pt;">00</span></p>
+        </td>
+    </tr>
+    <tr>
+        <td width="72"><span style="font-size:10pt;">Add</span></td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">1</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">s1</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">s0</span></p>
+        </td>
+        <td width="26">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="49">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="48">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="49">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="47">
+            <p align="center"><span style="font-size:10pt;">1</span></p>
+        </td>
+        <td width="50">
+            <p align="center"><span style="font-size:10pt;">1</span></p>
+        </td>
+        <td width="47">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="61">
+            <p align="center"><span style="font-size:10pt;">01</span></p>
+        </td>
+        <td width="83">
+            <p align="center"><span style="font-size:10pt;">00</span></p>
+        </td>
+    </tr>
+    <tr>
+        <td width="72"><span style="font-size:10pt;">Shift</span></td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">1</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">1</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">s1</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">s0</span></p>
+        </td>
+        <td width="26">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="49">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="48">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="49">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="47">
+            <p align="center"><span style="font-size:10pt;">1</span></p>
+        </td>
+        <td width="50">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="47">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="61">
+            <p align="center"><span style="font-size:10pt;">00</span></p>
+        </td>
+        <td width="83">
+            <p align="center"><span style="font-size:10pt;">s1s0</span></p>
+        </td>
+    </tr>
+    <tr>
+        <td width="72"><span style="font-size:10pt;">Comp</span></td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">1</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">1</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">s1</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">s0</span></p>
+        </td>
+        <td width="26">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="49">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="48">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="49">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="47">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="50">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="47">
+            <p align="center"><span style="font-size:10pt;">1</span></p>
+        </td>
+        <td width="61">
+            <p align="center"><span style="font-size:10pt;">11</span></p>
+        </td>
+        <td width="83">
+            <p align="center"><span style="font-size:10pt;">00</span></p>
+        </td>
+    </tr>
+    <tr>
+        <td width="72"><span style="font-size:10pt;">Mask</span></td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">1</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">1</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">1</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">s1</span></p>
+        </td>
+        <td width="37">
+            <p align="center"><span style="font-size:10pt;">s0</span></p>
+        </td>
+        <td width="26">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="49">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="48">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="49">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="47">
+            <p align="center"><span style="font-size:10pt;">1</span></p>
+        </td>
+        <td width="50">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="47">
+            <p align="center"><span style="font-size:10pt;">0</span></p>
+        </td>
+        <td width="61">
+            <p align="center"><span style="font-size:10pt;">10</span></p>
+        </td>
+        <td width="83">
+            <p align="center"><span style="font-size:10pt;">00</span></p>
+        </td>
+    </tr>
+</table><p class="style3">For the VHDL implemention of a truth table, please refer to <span class="style3">the slides of 5/18 <br>discussion session.</span></p>
+<h2 class="style12">Top-level</h2>
+<p class="style3">After we implement all the building blocks, we finally put them together in the <br>top-level diagram. Program counter outputs to memory block; memory block<br>outputs data to registers and instructions to control logic; datapath read data<br>from registers and write back the results. The top-level diagram should be <br>similar to the following diagram. </p>
+<p class="style3"><img src="tu_imgs/top-level.jpg" width="913" height="564" border="0"></p>
+<h2 class="style12">Test the computer system</h2>
+
+<p class="style3">To verify the correctness of the system, we put&nbsp;a test program to the memory<br>block. Here is a simple test program. </p>
+<ul>
+    <p class="style3">0 &nbsp;init<br>1 &nbsp;mov1 10101<br>2 &nbsp;mov2 00110<br>3 &nbsp;add<br>4 &nbsp;stor<br>5 &nbsp;mov1 00001<br>6 &nbsp;add<br>7 &nbsp;stor<br>8 &nbsp;shift 10<br>9 &nbsp;stor<br>10 mov1 00111<br>11 comp&nbsp;<br>12 mask<br>13&nbsp;Init<br>14&nbsp;Init<br>15&nbsp;Init</p>
+</ul>
+<p class="style3">The correct simulation result is shown in the following graph. </p>
+<p class="style3"><img src="tu_imgs/simulation.jpg" width="1115" height="313" border="0"></p>
+<h4 class="style3">&nbsp;</h4>
+</body>
+</html>

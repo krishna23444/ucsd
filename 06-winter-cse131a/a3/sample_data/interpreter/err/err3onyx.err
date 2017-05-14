@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx.error.SemanticError>
+   <DynamicError column="8" line="3">If condition is not of type onyx.types.Boolean</DynamicError>
+</onyx.error.SemanticError>
+

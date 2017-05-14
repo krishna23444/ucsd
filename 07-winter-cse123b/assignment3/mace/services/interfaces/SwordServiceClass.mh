@@ -1,0 +1,9 @@
+#include "MaceTypes.h"
+#include "Sword.h"
+
+serviceclass Sword {
+  virtual void app_initialize();
+  virtual void update(const DMap& dmap, const SMap& smap, uint* key);
+  virtual void query(DQ dq, SQ sq, int seqno, uint* lo, uint* hi, AppUpcallMap& result, bool& waitForCallback);
+  handlers SwordData;
+}; // SwordServiceClass

@@ -1,0 +1,56 @@
+
+{-- Original XKwery Code                                    --}
+{-- ------------------------------------------------------- --}
+{-- document("stats.xml")                                   --}
+{-- for $p in document("stats.xml")//PLAYER                 --}
+{--   where $p/THROWS = "Left"                              --}
+{--     return <lefty> {$p/POSITION} {$p/SURNAME} </lefty>  --}
+
+{-- Transalated Onyx Code                                   --}
+{-- ------------------------------------------------------- --}
+
+
+declare function getDescendantOrSelfByTagName( $node, $tagname ) as onyx.types.Sequence {
+  if( tagname($node) = $tagname )
+  then
+    $node
+  else
+    ()
+  ,
+  if( isENode($node) )
+  then
+    for $child in children($node)
+      return getDescendantOrSelfByTagName( $child, $tagname )
+  else
+    ()
+};
+
+declare function getChildrenByTagName( $node, $tagname ) as onyx.types.Sequence {
+   if( isENode( $node ) )
+   then
+      for $child in children($node)
+         where tagname($child) = $tagname
+           return $child
+   else
+      ()
+};
+
+let $players := getDescendantOrSelfByTagName( document("xmldata/stats_1998.xml"), "PLAYER" )
+for $player in $players
+  let $throws := getChildrenByTagName( $player, "THROWS" )
+  let $position := getChildrenByTagName( $player, "POSITION" )
+  let $surname := getChildrenByTagName( $player, "SURNAME" )
+  let $textcontent := string(first($position)) + " " + string(first($surname))
+  let $tn := tnode( "lefty", attrenv(), $textcontent )
+    where
+      ( length($throws) > 0 )
+      and
+      (
+        if( isTNode(first($throws)) )
+	then
+	  string(first($throws)) = "Left"
+	else
+	  false
+      )
+      return $tn
+

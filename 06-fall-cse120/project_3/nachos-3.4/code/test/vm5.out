@@ -1,0 +1,13 @@
+Thread spaceID 1 Exiting with value 0
+No threads ready or runnable, and no pending interrupts.
+Assuming the program completed.
+Machine halting!
+
+Ticks: total 12481063, idle 0, system 8759370, user 3721693
+Disk I/O: reads 0, writes 0
+Console I/O: reads 0, writes 0
+Paging: faults 218982, in 215856, out 205203
+Network I/O: packets received 0, sent 0
+Physical memory size: 32 pages
+
+Cleaning up...
